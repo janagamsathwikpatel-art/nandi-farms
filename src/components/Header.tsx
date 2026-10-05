@@ -17,18 +17,26 @@ interface HeaderProps {
   cartCount: number;
   lovedCount: number;
   onOpenCart: () => void;
+  onOpenWishlist: () => void;
+  onOpenLocation: () => void;
+  selectedCity: string;
   searchQuery: string;
   setSearchQuery: (query: string) => void;
   onAddToCart?: (product: Product) => void;
+  onSelectCategory?: (catName: string) => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
   cartCount,
   lovedCount,
   onOpenCart,
+  onOpenWishlist,
+  onOpenLocation,
+  selectedCity,
   searchQuery,
   setSearchQuery,
   onAddToCart,
+  onSelectCategory,
 }) => {
   const [isCategoriesOpen, setIsCategoriesOpen] = useState(false);
   const [isSearchDropdownOpen, setIsSearchDropdownOpen] = useState(false);
@@ -58,11 +66,14 @@ export const Header: React.FC<HeaderProps> = ({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex items-center justify-between gap-4">
         
         {/* Left: Country Selector (India 🇮🇳 IN) */}
-        <div className="flex items-center space-x-1.5 sm:space-x-2 text-sm text-gray-700 bg-gray-50/80 px-2.5 sm:px-3 py-1.5 rounded-full border border-gray-200/60 cursor-pointer hover:bg-gray-100 transition-colors shrink-0">
+        <button
+          onClick={onOpenLocation}
+          className="flex items-center space-x-1.5 sm:space-x-2 text-sm text-gray-700 bg-gray-50/80 px-2.5 sm:px-3 py-1.5 rounded-full border border-gray-200/60 cursor-pointer hover:bg-gray-100 transition-colors shrink-0"
+        >
           <span className="text-sm sm:text-base">🇮🇳</span>
-          <span className="font-medium text-xs tracking-wide">IN</span>
+          <span className="font-bold text-xs tracking-wide text-gray-900">{selectedCity || 'IN'}</span>
           <ChevronDown className="w-3.5 h-3.5 text-gray-500" />
-        </div>
+        </button>
 
         {/* Center: Brand Logo (NandiFarms) */}
         <div className="flex items-center justify-center">
@@ -80,7 +91,8 @@ export const Header: React.FC<HeaderProps> = ({
         <div className="flex items-center space-x-3 sm:space-x-4 shrink-0">
           {/* Loved / Wishlist Button */}
           <button 
-            className="flex items-center space-x-1.5 text-xs font-semibold text-gray-700 hover:text-emerald-700 transition-colors py-1.5 px-2.5 rounded-full hover:bg-gray-50"
+            onClick={onOpenWishlist}
+            className="flex items-center space-x-1.5 text-xs font-semibold text-gray-700 hover:text-emerald-700 transition-colors py-1.5 px-2.5 rounded-full hover:bg-gray-50 cursor-pointer"
             title="Wishlist"
           >
             <div className="relative">

@@ -9,6 +9,8 @@ interface TodaysFreshPicksProps {
   cartItems: CartItem[];
   onAddToCart: (product: Product) => void;
   onUpdateQuantity: (productId: string, delta: number) => void;
+  onSelectProduct?: (product: Product) => void;
+  onShowAll?: () => void;
 }
 
 export const TodaysFreshPicks: React.FC<TodaysFreshPicksProps> = ({
@@ -16,6 +18,8 @@ export const TodaysFreshPicks: React.FC<TodaysFreshPicksProps> = ({
   cartItems,
   onAddToCart,
   onUpdateQuantity,
+  onSelectProduct,
+  onShowAll,
 }) => {
   const getProductQuantity = (id: string) => {
     const item = cartItems.find((ci) => ci.product.id === id);
@@ -32,7 +36,7 @@ export const TodaysFreshPicks: React.FC<TodaysFreshPicksProps> = ({
       <div className="flex justify-center -mt-6 mb-4">
         <button
           onClick={scrollToTop}
-          className="w-9 h-9 rounded-full bg-gray-100 hover:bg-emerald-100 text-gray-600 hover:text-emerald-800 flex items-center justify-center transition-colors border border-gray-200/80 shadow-xs"
+          className="w-9 h-9 rounded-full bg-gray-100 hover:bg-emerald-100 text-gray-600 hover:text-emerald-800 flex items-center justify-center transition-colors border border-gray-200/80 shadow-xs cursor-pointer"
           title="Back to Top"
         >
           <ChevronUp className="w-5 h-5" />
@@ -44,7 +48,10 @@ export const TodaysFreshPicks: React.FC<TodaysFreshPicksProps> = ({
         <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight font-sans">
           Today's Fresh Picks
         </h2>
-        <button className="flex items-center space-x-2 bg-gray-900 hover:bg-gray-800 text-white px-4 py-2 rounded-full text-xs font-semibold transition-colors shadow-xs group">
+        <button
+          onClick={onShowAll || scrollToTop}
+          className="flex items-center space-x-2 bg-gray-900 hover:bg-gray-800 text-white px-4 py-2 rounded-full text-xs font-semibold transition-colors shadow-xs group cursor-pointer"
+        >
           <span>Show All</span>
           <div className="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center group-hover:translate-x-0.5 transition-transform">
             <ChevronRight className="w-3.5 h-3.5" />
@@ -61,8 +68,11 @@ export const TodaysFreshPicks: React.FC<TodaysFreshPicksProps> = ({
               key={prod.id}
               className="bg-white rounded-3xl p-4 border border-gray-100/90 shadow-xs hover:shadow-lg transition-all duration-200 flex flex-col justify-between items-center text-center group"
             >
-              {/* Product Image */}
-              <div className="w-28 h-28 sm:w-32 sm:h-32 mb-3 flex items-center justify-center overflow-hidden rounded-2xl bg-gray-50/50 p-2 group-hover:scale-105 transition-transform">
+              {/* Product Image Clickable */}
+              <div
+                onClick={() => onSelectProduct && onSelectProduct(prod)}
+                className="w-28 h-28 sm:w-32 sm:h-32 mb-3 flex items-center justify-center overflow-hidden rounded-2xl bg-gray-50/50 p-2 group-hover:scale-105 transition-transform cursor-pointer"
+              >
                 <img
                   src={prod.image}
                   alt={prod.name}
@@ -70,8 +80,11 @@ export const TodaysFreshPicks: React.FC<TodaysFreshPicksProps> = ({
                 />
               </div>
 
-              {/* Product Info */}
-              <div className="space-y-1 w-full mb-4">
+              {/* Product Info Clickable */}
+              <div
+                onClick={() => onSelectProduct && onSelectProduct(prod)}
+                className="space-y-1 w-full mb-4 cursor-pointer"
+              >
                 <h3 className="font-bold text-sm text-gray-900 line-clamp-1 group-hover:text-emerald-700 transition-colors">
                   {prod.name}
                 </h3>

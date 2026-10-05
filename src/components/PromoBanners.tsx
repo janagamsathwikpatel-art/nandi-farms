@@ -3,7 +3,11 @@
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
 
-export const PromoBanners: React.FC = () => {
+interface PromoBannersProps {
+  onClaimOffer?: (offerTitle: string) => void;
+}
+
+export const PromoBanners: React.FC<PromoBannersProps> = ({ onClaimOffer }) => {
   const cards = [
     {
       id: 'promo-1',
@@ -11,6 +15,7 @@ export const PromoBanners: React.FC = () => {
       description: 'Sign up today and get instant savings on your first grocery purchase.',
       gradient: 'from-emerald-600 to-teal-700 text-white',
       image: 'https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=400&q=80',
+      code: 'NANDI10',
     },
     {
       id: 'promo-2',
@@ -18,6 +23,7 @@ export const PromoBanners: React.FC = () => {
       description: 'Order your daily essentials anywhere in India with zero delivery charges!',
       gradient: 'from-rose-500 to-pink-600 text-white',
       image: 'https://images.unsplash.com/photo-1526367790999-0150786686a2?auto=format&fit=crop&w=400&q=80',
+      code: 'FREEDEL',
     },
     {
       id: 'promo-3',
@@ -25,6 +31,7 @@ export const PromoBanners: React.FC = () => {
       description: 'We deliver everything you need straight to your door.',
       gradient: 'from-amber-400 via-amber-300 to-yellow-400 text-gray-900',
       image: 'https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=400&q=80',
+      code: 'FRESH2026',
     },
   ];
 
@@ -34,7 +41,8 @@ export const PromoBanners: React.FC = () => {
         {cards.map((card) => (
           <div
             key={card.id}
-            className={`relative overflow-hidden rounded-3xl p-6 sm:p-7 bg-gradient-to-br ${card.gradient} shadow-md border border-white/20 flex flex-col justify-between min-h-[340px] group transform hover:-translate-y-1 transition-all duration-200`}
+            onClick={() => onClaimOffer && onClaimOffer(card.title)}
+            className={`relative overflow-hidden rounded-3xl p-6 sm:p-7 bg-gradient-to-br ${card.gradient} shadow-md border border-white/20 flex flex-col justify-between min-h-[340px] group transform hover:-translate-y-1 transition-all duration-200 cursor-pointer`}
           >
             {/* Title Header */}
             <div>
@@ -60,7 +68,11 @@ export const PromoBanners: React.FC = () => {
                 {card.description}
               </p>
               <button
-                className="w-9 h-9 rounded-full bg-gray-950 text-white flex items-center justify-center shrink-0 hover:bg-gray-800 transition-colors shadow-md group-hover:scale-110"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onClaimOffer && onClaimOffer(card.title);
+                }}
+                className="w-9 h-9 rounded-full bg-gray-950 text-white flex items-center justify-center shrink-0 hover:bg-gray-800 transition-colors shadow-md group-hover:scale-110 cursor-pointer"
                 aria-label="View offer"
               >
                 <ArrowRight className="w-4 h-4" />

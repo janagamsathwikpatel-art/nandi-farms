@@ -4,7 +4,32 @@ import React from 'react';
 import { ChevronRight } from 'lucide-react';
 import { CATEGORIES } from '@/data/products';
 
-export const PopularCategories: React.FC = () => {
+interface PopularCategoriesProps {
+  onSelectCategory?: (categoryName: string) => void;
+  onShowAll?: () => void;
+}
+
+export const PopularCategories: React.FC<PopularCategoriesProps> = ({
+  onSelectCategory,
+  onShowAll,
+}) => {
+  const handleShowAll = () => {
+    if (onShowAll) {
+      onShowAll();
+    } else {
+      const el = document.getElementById('todays-picks');
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const handleCategoryClick = (catName: string) => {
+    if (onSelectCategory) {
+      onSelectCategory(catName);
+    }
+    const el = document.getElementById('todays-picks');
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
       {/* Section Header */}
@@ -12,7 +37,10 @@ export const PopularCategories: React.FC = () => {
         <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight font-sans">
           Product Categories
         </h2>
-        <button className="flex items-center space-x-2 bg-gray-900 hover:bg-gray-800 text-white px-4 py-2 rounded-full text-xs font-semibold transition-colors shadow-xs group">
+        <button
+          onClick={handleShowAll}
+          className="flex items-center space-x-2 bg-gray-900 hover:bg-gray-800 text-white px-4 py-2 rounded-full text-xs font-semibold transition-colors shadow-xs group cursor-pointer"
+        >
           <span>Show All</span>
           <div className="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center group-hover:translate-x-0.5 transition-transform">
             <ChevronRight className="w-3.5 h-3.5" />
@@ -23,10 +51,10 @@ export const PopularCategories: React.FC = () => {
       {/* Grid of Categories */}
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 xl:grid-cols-10 gap-3 sm:gap-4">
         {CATEGORIES.map((cat) => (
-          <a
+          <button
             key={cat.id}
-            href={`#${cat.id}`}
-            className={`group flex flex-col items-center justify-between p-4 rounded-3xl bg-gradient-to-b ${cat.bgGradient} border ${cat.borderColor} hover:shadow-lg transition-all duration-200 transform hover:-translate-y-1 text-center min-h-[190px]`}
+            onClick={() => handleCategoryClick(cat.name)}
+            className={`group flex flex-col items-center justify-between p-4 rounded-3xl bg-gradient-to-b ${cat.bgGradient} border ${cat.borderColor} hover:shadow-lg transition-all duration-200 transform hover:-translate-y-1 text-center min-h-[190px] cursor-pointer`}
           >
             {/* Image Container */}
             <div className="w-full h-24 sm:h-28 mb-3 overflow-hidden rounded-2xl shadow-xs group-hover:scale-105 transition-transform">
@@ -46,7 +74,7 @@ export const PopularCategories: React.FC = () => {
                 {String(cat.count).padStart(2, '0')} Product
               </p>
             </div>
-          </a>
+          </button>
         ))}
       </div>
     </section>
