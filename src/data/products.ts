@@ -194,7 +194,7 @@ export const PRODUCTS: Product[] = [
     farmer: 'Local Halwai',
     price: 180,
     unit: 'per box (500g)',
-    image: 'https://images.unsplash.com/photo-1599488615731-7e5c2823ff28?auto=format&fit=crop&w=400&q=80',
+    image: '/gulab-jamun.png',
     isBestSeller: true,
   },
   {
@@ -204,7 +204,7 @@ export const PRODUCTS: Product[] = [
     farmer: 'Local Halwai',
     price: 220,
     unit: 'per box (500g)',
-    image: 'https://images.unsplash.com/photo-1599488615731-7e5c2823ff28?auto=format&fit=crop&w=400&q=80',
+    image: '/gulab-jamun.png',
     isBestSeller: true,
   },
   {
