@@ -5,12 +5,12 @@ import { PRODUCTS } from '@/data/products';
 import { Product, CartItem } from '@/types';
 import { Header } from '@/components/Header';
 import { HeroSection } from '@/components/HeroSection';
+import { BarcoopBevySection } from '@/components/BarcoopBevySection';
 import { PopularCategories } from '@/components/PopularCategories';
 import { TodaysFreshPicks } from '@/components/TodaysFreshPicks';
 import { PromoBanners } from '@/components/PromoBanners';
 import { WeeklyBestSelling } from '@/components/WeeklyBestSelling';
 import { MostSellingProducts } from '@/components/MostSellingProducts';
-import { RealIngredientsSection } from '@/components/RealIngredientsSection';
 import { CTABanner } from '@/components/CTABanner';
 import { JustForYou } from '@/components/JustForYou';
 import { Footer } from '@/components/Footer';
@@ -109,49 +109,78 @@ export default function Home() {
         {/* 1. Hero Section */}
         <HeroSection />
 
-        {/* 3. Popular Categories */}
-        <PopularCategories />
+        {/* 2. Barcoop Bevy Inspired 3D Rotating "REAL INGREDIENTS ONLY" Feature Section */}
+        <BarcoopBevySection />
 
-        {/* 4. Today's Fresh Picks */}
-        <TodaysFreshPicks
-          products={filteredProducts}
-          cartItems={cartItems}
-          onAddToCart={handleAddToCart}
-          onUpdateQuantity={handleUpdateQuantity}
-        />
+        {/* Continuous Background Wrapper from Popular Categories to Just For You */}
+        <div className="relative overflow-hidden">
+          {/* Ambient Continuous Rotating Watermark & Floating Icons Background Layer */}
+          <div className="absolute inset-0 pointer-events-none select-none overflow-hidden opacity-30 z-0">
+            {/* Top Left Rotating Watermark Ring */}
+            <div className="absolute top-[3%] -left-20 w-80 h-80 rounded-full border-4 border-dashed border-emerald-300/40 animate-[spin_40s_linear_infinite] flex items-center justify-center">
+              <span className="text-6xl text-emerald-500/30">🌿</span>
+            </div>
 
-        {/* 5. Promo Banners Row */}
-        <PromoBanners />
+            {/* Middle Right Rotating Watermark Ring */}
+            <div className="absolute top-[28%] -right-24 w-96 h-96 rounded-full border-4 border-dashed border-[#3d1e31]/20 animate-[spin_45s_linear_infinite_reverse] flex items-center justify-center">
+              <span className="text-7xl text-[#3d1e31]/20">🍋</span>
+            </div>
 
-        {/* 6. Weekly Best Selling items */}
-        <WeeklyBestSelling
-          products={filteredProducts}
-          cartItems={cartItems}
-          onAddToCart={handleAddToCart}
-          onUpdateQuantity={handleUpdateQuantity}
-        />
+            {/* Lower Left Rotating Watermark Ring */}
+            <div className="absolute top-[60%] -left-28 w-[420px] h-[420px] rounded-full border-4 border-dashed border-amber-300/40 animate-[spin_50s_linear_infinite] flex items-center justify-center">
+              <span className="text-8xl text-amber-500/20">🍅</span>
+            </div>
 
-        {/* 7. Most Selling Products */}
-        <MostSellingProducts
-          products={filteredProducts}
-          cartItems={cartItems}
-          onAddToCart={handleAddToCart}
-          onUpdateQuantity={handleUpdateQuantity}
-        />
+            {/* Bottom Right Watermark Ring */}
+            <div className="absolute bottom-[5%] -right-20 w-80 h-80 rounded-full border-4 border-dashed border-rose-300/40 animate-[spin_38s_linear_infinite_reverse] flex items-center justify-center">
+              <span className="text-6xl text-rose-500/30">🍓</span>
+            </div>
+          </div>
 
-        {/* 8. Barcoop Bevy Inspired Real Ingredients Only Section */}
-        <RealIngredientsSection />
+          {/* Foreground Sections Content */}
+          <div className="relative z-10 space-y-4 sm:space-y-6">
+            {/* 3. Popular Categories */}
+            <PopularCategories />
 
-        {/* 9. Call To Action Banner */}
-        <CTABanner />
+            {/* 4. Today's Fresh Picks */}
+            <TodaysFreshPicks
+              products={filteredProducts}
+              cartItems={cartItems}
+              onAddToCart={handleAddToCart}
+              onUpdateQuantity={handleUpdateQuantity}
+            />
 
-        {/* 9. Just for you */}
-        <JustForYou
-          products={filteredProducts}
-          cartItems={cartItems}
-          onAddToCart={handleAddToCart}
-          onUpdateQuantity={handleUpdateQuantity}
-        />
+            {/* 5. Promo Banners Row */}
+            <PromoBanners />
+
+            {/* 6. Weekly Best Selling items */}
+            <WeeklyBestSelling
+              products={filteredProducts}
+              cartItems={cartItems}
+              onAddToCart={handleAddToCart}
+              onUpdateQuantity={handleUpdateQuantity}
+            />
+
+            {/* 7. Most Selling Products */}
+            <MostSellingProducts
+              products={filteredProducts}
+              cartItems={cartItems}
+              onAddToCart={handleAddToCart}
+              onUpdateQuantity={handleUpdateQuantity}
+            />
+
+            {/* 8. Call To Action Banner */}
+            <CTABanner />
+
+            {/* 9. Just for you */}
+            <JustForYou
+              products={filteredProducts}
+              cartItems={cartItems}
+              onAddToCart={handleAddToCart}
+              onUpdateQuantity={handleUpdateQuantity}
+            />
+          </div>
+        </div>
       </main>
 
       <Footer />
@@ -166,11 +195,8 @@ export default function Home() {
         onClearCart={handleClearCart}
       />
 
-      {/* Login & Signup Modal */}
-      <LoginModal
-        isOpen={isLoginOpen}
-        onClose={() => setIsLoginOpen(false)}
-      />
+      {/* Login / Signup Modal */}
+      <LoginModal isOpen={isLoginOpen} onClose={() => setIsLoginOpen(false)} />
     </div>
   );
 }
