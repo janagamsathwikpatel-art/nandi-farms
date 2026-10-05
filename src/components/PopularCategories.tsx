@@ -17,13 +17,13 @@ export const PopularCategories: React.FC<PopularCategoriesProps> = ({
 
   const scrollLeft = () => {
     if (scrollContainerRef.current) {
-      scrollContainerRef.current.scrollBy({ left: -320, behavior: 'smooth' });
+      scrollContainerRef.current.scrollBy({ left: -300, behavior: 'smooth' });
     }
   };
 
   const scrollRight = () => {
     if (scrollContainerRef.current) {
-      scrollContainerRef.current.scrollBy({ left: 320, behavior: 'smooth' });
+      scrollContainerRef.current.scrollBy({ left: 300, behavior: 'smooth' });
     }
   };
 
@@ -45,9 +45,9 @@ export const PopularCategories: React.FC<PopularCategoriesProps> = ({
   };
 
   return (
-    <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 sm:pt-6 pb-1 sm:pb-2 relative">
-      {/* Section Header with Left & Right Arrow Buttons */}
-      <div className="flex items-center justify-between mb-6 sm:mb-8">
+    <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 relative">
+      {/* Section Header with Navigation Arrows */}
+      <div className="flex items-center justify-between mb-5 sm:mb-6">
         <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight font-sans">
           Product Categories
         </h2>
@@ -84,54 +84,54 @@ export const PopularCategories: React.FC<PopularCategoriesProps> = ({
         </div>
       </div>
 
-      {/* Categories Carousel Slider with Floating Side Arrows */}
+      {/* Blinkit / Instamart Style Category Carousel (Pastel Rounded Box Image + Text Underneath) */}
       <div className="relative group/carousel">
-        {/* Left Side Floating Arrow Button */}
+        {/* Left Floating Arrow */}
         <button
           onClick={scrollLeft}
-          className="absolute -left-3 sm:-left-5 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-white/95 text-gray-800 shadow-xl border border-gray-200/90 flex items-center justify-center hover:bg-emerald-600 hover:text-white transition-all transform hover:scale-110 cursor-pointer"
+          className="absolute -left-3 sm:-left-5 top-12 sm:top-14 z-20 w-9 h-9 rounded-full bg-white text-gray-800 shadow-xl border border-gray-200 flex items-center justify-center hover:bg-emerald-600 hover:text-white transition-all transform hover:scale-110 cursor-pointer"
           title="Scroll Left"
         >
           <ChevronLeft className="w-5 h-5" />
         </button>
 
-        {/* Scrollable Category Cards Container */}
+        {/* Categories Scrollable Container */}
         <div
           ref={scrollContainerRef}
-          className="flex items-center space-x-3 sm:space-x-4 overflow-x-auto no-scrollbar scroll-smooth py-2 px-1"
+          className="flex items-start space-x-4 sm:space-x-6 overflow-x-auto no-scrollbar scroll-smooth py-2 px-1"
         >
           {CATEGORIES.map((cat) => (
             <button
               key={cat.id}
               onClick={() => handleCategoryClick(cat.name)}
-              className={`shrink-0 w-[150px] sm:w-[175px] group flex flex-col items-center justify-between rounded-[28px] bg-white border ${cat.borderColor} hover:shadow-2xl transition-all duration-200 transform hover:-translate-y-1 text-center overflow-hidden cursor-pointer shadow-xs border-b-2`}
+              className="shrink-0 w-[105px] sm:w-[125px] flex flex-col items-center text-center group cursor-pointer"
             >
-              {/* Full Length Top Image Section */}
-              <div className={`w-full h-44 sm:h-52 overflow-hidden bg-gradient-to-b ${cat.bgGradient} p-2 flex items-center justify-center`}>
+              {/* Standalone Soft Pastel Blue Rounded Image Box */}
+              <div className="w-full h-26 sm:h-30 rounded-2xl sm:rounded-3xl bg-[#ecf4ff] hover:bg-[#e2eeff] p-2 flex items-center justify-center overflow-hidden transition-all duration-200 group-hover:scale-105 shadow-2xs">
                 <img
                   src={cat.image}
                   alt={cat.name}
-                  className="w-full h-full object-cover rounded-2xl group-hover:scale-105 transition-transform duration-300 shadow-2xs"
+                  className="w-full h-full object-cover rounded-xl sm:rounded-2xl"
                 />
               </div>
 
-              {/* Bottom Info Section */}
-              <div className="py-3 px-2 w-full bg-white space-y-0.5 border-t border-gray-100/80">
-                <h3 className="font-bold text-xs sm:text-sm tracking-tight text-gray-900 group-hover:text-emerald-700 transition-colors line-clamp-1">
+              {/* Text Label Underneath the Box */}
+              <div className="mt-2.5 space-y-0.5 max-w-[115px]">
+                <h3 className="font-bold text-xs sm:text-xs text-gray-800 group-hover:text-emerald-700 transition-colors leading-tight line-clamp-2">
                   {cat.name}
                 </h3>
-                <p className="text-[11px] font-semibold text-gray-400">
-                  {String(cat.count).padStart(2, '0')} Product
+                <p className="text-[11px] font-medium text-gray-400">
+                  {String(cat.count).padStart(2, '0')} Products
                 </p>
               </div>
             </button>
           ))}
         </div>
 
-        {/* Right Side Floating Arrow Button */}
+        {/* Right Floating Arrow */}
         <button
           onClick={scrollRight}
-          className="absolute -right-3 sm:-right-5 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-white/95 text-gray-800 shadow-xl border border-gray-200/90 flex items-center justify-center hover:bg-emerald-600 hover:text-white transition-all transform hover:scale-110 cursor-pointer"
+          className="absolute -right-3 sm:-right-5 top-12 sm:top-14 z-20 w-9 h-9 rounded-full bg-white text-gray-800 shadow-xl border border-gray-200 flex items-center justify-center hover:bg-emerald-600 hover:text-white transition-all transform hover:scale-110 cursor-pointer"
           title="Scroll Right"
         >
           <ChevronRight className="w-5 h-5" />
