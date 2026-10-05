@@ -1,13 +1,97 @@
 'use client';
 
 import React from 'react';
-import { ChevronRight, Sparkles } from 'lucide-react';
 import { CATEGORIES } from '@/data/products';
 
 interface PopularCategoriesProps {
   onSelectCategory?: (categoryName: string) => void;
   onShowAll?: () => void;
 }
+
+const CATEGORY_STYLES: Record<
+  string,
+  { bg: string; badgeBg: string; displayCount: string; displayName?: string }
+> = {
+  'fresh-vegetables': {
+    bg: 'bg-[#dcfce7]',
+    badgeBg: 'bg-[#15803d]',
+    displayCount: '1.2k+ Products',
+  },
+  fruits: {
+    bg: 'bg-[#fef9c3]',
+    badgeBg: 'bg-[#ca8a04]',
+    displayCount: '980+ Products',
+    displayName: 'Fresh Fruits',
+  },
+  sweets: {
+    bg: 'bg-[#ffedd5]',
+    badgeBg: 'bg-[#c2410c]',
+    displayCount: '650+ Products',
+    displayName: 'Sweets & Mithai',
+  },
+  'pooja-needs': {
+    bg: 'bg-[#fce7f3]',
+    badgeBg: 'bg-[#be185d]',
+    displayCount: '510+ Products',
+    displayName: 'Pooja Essentials',
+  },
+  pickles: {
+    bg: 'bg-[#f5e6d3]',
+    badgeBg: 'bg-[#78350f]',
+    displayCount: '430+ Products',
+    displayName: 'Pickles & Chutneys',
+  },
+  'tea-coffee-drinks': {
+    bg: 'bg-[#e0f2fe]',
+    badgeBg: 'bg-[#1d4ed8]',
+    displayCount: '1.1k+ Products',
+    displayName: 'Tea & Coffee',
+  },
+  'daily-products': {
+    bg: 'bg-[#ffedd5]',
+    badgeBg: 'bg-[#b45309]',
+    displayCount: '890+ Products',
+    displayName: 'Snacks & Namkeen',
+  },
+  'dairy-eggs': {
+    bg: 'bg-[#e0f2fe]',
+    badgeBg: 'bg-[#1d4ed8]',
+    displayCount: '940+ Products',
+  },
+  rice: {
+    bg: 'bg-[#f5e5d3]',
+    badgeBg: 'bg-[#78350f]',
+    displayCount: '1.4k+ Products',
+    displayName: 'Staples & Grains',
+  },
+  'meat-fish': {
+    bg: 'bg-[#ccfbf1]',
+    badgeBg: 'bg-[#0f766e]',
+    displayCount: '680+ Products',
+    displayName: 'Frozen Food',
+  },
+  'personal-care': {
+    bg: 'bg-[#f3e8ff]',
+    badgeBg: 'bg-[#7e22ce]',
+    displayCount: '550+ Products',
+    displayName: 'Health & Wellness',
+  },
+  'karam-podulu': {
+    bg: 'bg-[#ffedd5]',
+    badgeBg: 'bg-[#c2410c]',
+    displayCount: '420+ Products',
+  },
+  ravva: {
+    bg: 'bg-[#fef9c3]',
+    badgeBg: 'bg-[#ca8a04]',
+    displayCount: '350+ Products',
+  },
+  'roots-vegetables': {
+    bg: 'bg-[#ffedd5]',
+    badgeBg: 'bg-[#b45309]',
+    displayCount: '480+ Products',
+  },
+};
 
 export const PopularCategories: React.FC<PopularCategoriesProps> = ({
   onSelectCategory,
@@ -32,70 +116,63 @@ export const PopularCategories: React.FC<PopularCategoriesProps> = ({
 
   return (
     <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
-      {/* Section Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-6 sm:mb-8 gap-3">
-        <div>
-          <div className="flex items-center space-x-2">
-            <span className="bg-emerald-100 text-emerald-800 text-[11px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider flex items-center space-x-1">
-              <Sparkles className="w-3 h-3 text-emerald-600" />
-              <span>Shop by Category</span>
-            </span>
-          </div>
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight font-sans mt-1">
-            Product Categories
-          </h2>
-        </div>
+      {/* Section Header - Exact matching Shop by Category & View All */}
+      <div className="flex items-center justify-between mb-6 sm:mb-7">
+        <h2 className="text-2xl sm:text-3xl font-extrabold text-[#2d3748] tracking-tight font-sans">
+          Shop by Category
+        </h2>
 
         <button
           onClick={handleShowAll}
-          className="self-start sm:self-auto inline-flex items-center space-x-2 bg-gray-900 hover:bg-emerald-700 text-white px-4 py-2 rounded-full text-xs font-bold transition-all shadow-xs group cursor-pointer"
+          className="text-sm font-bold text-gray-600 hover:text-gray-900 transition-colors cursor-pointer"
         >
-          <span>Explore All Categories</span>
-          <div className="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center group-hover:translate-x-0.5 transition-transform">
-            <ChevronRight className="w-3.5 h-3.5" />
-          </div>
+          View All
         </button>
       </div>
 
-      {/* Instamart 2-Row Bento Grid Card Layout */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-3.5 sm:gap-4.5">
-        {CATEGORIES.map((cat) => (
-          <button
-            key={cat.id}
-            onClick={() => handleCategoryClick(cat.name)}
-            className="group flex flex-col overflow-hidden rounded-2xl sm:rounded-3xl border border-gray-200/70 shadow-xs hover:shadow-xl transition-all duration-300 hover:-translate-y-1 bg-white cursor-pointer text-left"
-          >
-            {/* Top HD Photo Container (60% Height) */}
-            <div className="w-full h-28 sm:h-32 overflow-hidden bg-gray-100 relative p-1.5">
-              <div className="w-full h-full rounded-xl overflow-hidden relative">
+      {/* Grid Layout matching 1:1 with media_1791207214279.jpg */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 sm:gap-5">
+        {CATEGORIES.map((cat) => {
+          const style = CATEGORY_STYLES[cat.id] || {
+            bg: 'bg-[#dcfce7]',
+            badgeBg: 'bg-[#15803d]',
+            displayCount: `${cat.count} Products`,
+          };
+
+          const nameToDisplay = style.displayName || cat.name;
+
+          return (
+            <button
+              key={cat.id}
+              onClick={() => handleCategoryClick(cat.name)}
+              className={`${style.bg} rounded-3xl p-3.5 sm:p-4 flex flex-col justify-between items-center text-center shadow-2xs hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group cursor-pointer border border-black/5`}
+            >
+              {/* Top High Resolution Food Photo Box */}
+              <div className="w-full h-32 sm:h-36 rounded-2xl overflow-hidden mb-3 bg-white/40 flex items-center justify-center p-1.5 shadow-inner">
                 <img
                   src={cat.image}
                   alt={cat.name}
-                  className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-300"
+                  className="w-full h-full object-cover rounded-xl group-hover:scale-105 transition-transform duration-300"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
               </div>
-            </div>
 
-            {/* Bottom Soft Pastel Theme Content Box (40% Height) */}
-            <div className={`p-3 bg-gradient-to-br ${cat.bgGradient || 'from-emerald-50 to-teal-50/60'} flex flex-col justify-between flex-1 border-t border-gray-100/80`}>
-              <h3 className={`font-black text-xs sm:text-xs ${cat.textColor || 'text-gray-900'} leading-snug line-clamp-1 group-hover:text-emerald-800 transition-colors`}>
-                {cat.name}
+              {/* Category Title */}
+              <h3 className="font-extrabold text-sm sm:text-base text-[#1a202c] mb-2 leading-tight line-clamp-1 group-hover:text-emerald-800 transition-colors">
+                {nameToDisplay}
               </h3>
-              
-              <div className="mt-1.5 flex items-center justify-between">
-                <span className="text-[10px] font-extrabold text-emerald-800 bg-white/90 backdrop-blur-xs px-2 py-0.5 rounded-full shadow-2xs border border-emerald-200/50">
-                  {cat.count} Products
-                </span>
-                <div className="w-4 h-4 rounded-full bg-emerald-700/10 flex items-center justify-center opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all">
-                  <ChevronRight className="w-3 h-3 text-emerald-700" />
-                </div>
-              </div>
-            </div>
-          </button>
-        ))}
+
+              {/* Colored Pill Count Badge */}
+              <span
+                className={`${style.badgeBg} text-white px-3.5 py-1 rounded-full text-[11px] sm:text-xs font-bold tracking-wide shadow-xs inline-block`}
+              >
+                {style.displayCount}
+              </span>
+            </button>
+          );
+        })}
       </div>
     </section>
   );
 };
+
 
