@@ -98,7 +98,7 @@ export const CATEGORIES: Category[] = [
     bgGradient: 'from-orange-50 to-amber-100/60',
     borderColor: 'border-orange-200',
     textColor: 'text-orange-900',
-    image: '/roots-vegetables-category.jpg',
+    image: '/roots-vegetables-category.png',
   },
   {
     id: 'pickles',
