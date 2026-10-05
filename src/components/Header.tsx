@@ -6,7 +6,6 @@ import {
   Heart, 
   ShoppingBag, 
   ChevronDown, 
-  Headphones, 
   Leaf,
   Plus,
   X
@@ -65,7 +64,7 @@ export const Header: React.FC<HeaderProps> = ({
           <ChevronDown className="w-3.5 h-3.5 text-gray-500" />
         </div>
 
-        {/* 2nd Element: Search Grocery Items Bar (Prominent in 2nd Header Box) */}
+        {/* 2nd Element: Search Grocery Items Bar */}
         <div ref={searchRef} className="flex-1 max-w-xs sm:max-w-md md:max-w-lg relative">
           <div className="relative flex items-center">
             <Search className="w-4 h-4 text-gray-400 absolute left-3.5 sm:left-4 pointer-events-none" />
@@ -184,10 +183,10 @@ export const Header: React.FC<HeaderProps> = ({
         </div>
       </div>
 
-      {/* Primary Sub-Navigation Bar */}
+      {/* Primary Sub-Navigation Bar (Policy, FAQ's, Help & Support removed) */}
       <div className="border-t border-gray-100 bg-gray-50/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between py-2 text-xs font-medium">
-          {/* Left Navigation Pills */}
+          {/* Navigation Pills */}
           <nav className="flex items-center space-x-1 sm:space-x-2 overflow-x-auto no-scrollbar py-1">
             <a
               href="#shop"
@@ -235,16 +234,6 @@ export const Header: React.FC<HeaderProps> = ({
               About
             </a>
           </nav>
-
-          {/* Right Navigation Group */}
-          <div className="hidden lg:flex items-center space-x-4 text-gray-600 text-xs font-medium">
-            <a href="#policy" className="hover:text-emerald-800 transition-colors">Policy</a>
-            <a href="#faqs" className="hover:text-emerald-800 transition-colors">FAQ's</a>
-            <a href="#help" className="flex items-center space-x-1.5 hover:text-emerald-800 transition-colors">
-              <Headphones className="w-3.5 h-3.5 text-emerald-600" />
-              <span>Help & Support</span>
-            </a>
-          </div>
         </div>
       </div>
     </header>
