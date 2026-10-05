@@ -1,10 +1,10 @@
 'use client';
 
 import React from 'react';
-import { ArrowRight, Sparkles } from 'lucide-react';
+import { ArrowRight, Sparkles, Tag, Milk, Gift } from 'lucide-react';
 
 export const HeroSection: React.FC = () => {
-  const handleShopNow = () => {
+  const handleScrollToPicks = () => {
     const picksSection = document.getElementById('todays-picks');
     if (picksSection) {
       picksSection.scrollIntoView({ behavior: 'smooth' });
@@ -15,70 +15,143 @@ export const HeroSection: React.FC = () => {
 
   return (
     <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
-      <div className="relative overflow-hidden rounded-3xl sm:rounded-[36px] bg-gradient-to-r from-[#115e34] via-[#15723f] to-[#1a854a] min-h-[460px] sm:min-h-[500px] lg:min-h-[540px] flex items-center shadow-2xl border border-emerald-600/30">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6 items-stretch">
         
-        {/* Giant Ultra HD Watermark Title: NandiFarms in Lime Green */}
-        <div className="absolute inset-0 flex items-center justify-center select-none pointer-events-none overflow-hidden z-0">
-          <h1 className="text-[80px] sm:text-[130px] md:text-[160px] lg:text-[195px] font-black tracking-tighter text-[#8ee435] whitespace-nowrap font-sans leading-none transform scale-y-105 opacity-95 drop-shadow-md">
-            Nandi<span className="font-extrabold text-[#9ef542]">Farms</span>
-          </h1>
-        </div>
-
-        {/* Slanted "Same-Day Delivery" Floating Badge Tag */}
-        <div className="absolute top-6 sm:top-8 right-[15%] sm:right-[22%] md:right-[28%] z-20">
-          <div className="bg-[#0b3820]/90 backdrop-blur-md text-[#8ee435] text-[11px] sm:text-xs font-extrabold px-4 py-1.5 rounded-full border border-[#8ee435]/40 shadow-lg transform rotate-[-6deg] flex items-center space-x-1.5">
-            <Sparkles className="w-3.5 h-3.5 text-[#8ee435] animate-pulse" />
-            <span>Same-Day Delivery</span>
-          </div>
-        </div>
-
-        {/* Central Hero Delivery Person Image (High Resolution Cutout) */}
-        <div className="absolute inset-0 flex justify-center items-end pointer-events-none z-10">
-          <div className="relative w-full max-w-xs sm:max-w-md md:max-w-lg h-[95%] flex items-end justify-center">
-            <img
-              src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=1000&q=90"
-              alt="Nandi Farms Delivery Person"
-              className="h-full object-contain object-bottom drop-shadow-2xl rounded-t-3xl opacity-95"
-            />
-          </div>
-        </div>
-
-        {/* Content Overlay Grid */}
-        <div className="relative z-20 w-full max-w-7xl mx-auto px-6 sm:px-10 lg:px-14 py-8 sm:py-12 flex flex-col md:flex-row items-center justify-between gap-8">
+        {/* Main Left Promotional Banner (Instamart Wide Hero Card) */}
+        <div className="lg:col-span-8 relative overflow-hidden rounded-3xl sm:rounded-[32px] bg-gradient-to-br from-[#0c592e] via-[#10753d] to-[#158a49] p-6 sm:p-8 lg:p-10 text-white min-h-[340px] sm:min-h-[380px] flex flex-col justify-between shadow-xl border border-emerald-500/20">
           
-          {/* Left Hero Text Box & Functional Shop Now Button */}
-          <div className="max-w-xs sm:max-w-md space-y-5 text-white bg-[#0b3820]/50 backdrop-blur-md p-6 sm:p-7 rounded-3xl border border-[#8ee435]/30 shadow-2xl">
-            <p className="text-xs sm:text-sm md:text-base text-emerald-50 leading-relaxed font-medium">
-              Shop from thousands of farm-fresh fruits, vegetables, dairy, and daily essentials at unbeatable prices.
-            </p>
-            <div className="pt-1">
-              <button
-                onClick={handleShopNow}
-                className="inline-flex items-center space-x-3 bg-[#0b3820] hover:bg-[#072414] text-white font-extrabold text-xs sm:text-sm px-6 py-3 rounded-full transition-all shadow-xl hover:shadow-emerald-950/60 hover:scale-[1.03] border border-[#8ee435]/40 group cursor-pointer"
-              >
-                <span>Shop Now</span>
-                <div className="w-7 h-7 rounded-full bg-white/20 flex items-center justify-center text-white group-hover:translate-x-1 transition-transform">
-                  <ArrowRight className="w-4 h-4" />
+          {/* Top Header Badge */}
+          <div className="flex items-center space-x-2 z-10">
+            <span className="bg-[#fbbf24] text-emerald-950 font-black text-[11px] sm:text-xs px-3.5 py-1 rounded-full uppercase tracking-wider flex items-center space-x-1 shadow-md">
+              <Sparkles className="w-3.5 h-3.5" />
+              <span>50% OFF First Order</span>
+            </span>
+            <span className="bg-emerald-900/60 backdrop-blur-md text-emerald-200 text-[11px] sm:text-xs font-semibold px-3 py-1 rounded-full border border-emerald-400/30">
+              Code: NANDI50
+            </span>
+          </div>
+
+          {/* Main Banner Body */}
+          <div className="relative z-10 grid grid-cols-1 sm:grid-cols-12 items-center gap-6 my-4">
+            {/* Text & Action Column */}
+            <div className="sm:col-span-7 space-y-3 sm:space-y-4">
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white leading-tight tracking-tight font-sans">
+                Fresh Organic <br className="hidden sm:inline" />
+                <span className="text-[#a3f059]">Veggie Box</span>
+              </h1>
+              <p className="text-xs sm:text-sm text-emerald-100/90 max-w-sm leading-relaxed font-medium">
+                Shop 100% pesticide-free vegetables, fruits & farm-fresh daily essentials with 10-minute express delivery.
+              </p>
+
+              {/* Call to Action Button */}
+              <div className="pt-2">
+                <button
+                  onClick={handleScrollToPicks}
+                  className="inline-flex items-center space-x-2.5 bg-[#fbbf24] hover:bg-[#f59e0b] text-gray-950 font-black text-xs sm:text-sm px-6 py-3.5 rounded-full transition-all shadow-lg hover:shadow-yellow-500/30 hover:scale-[1.03] cursor-pointer group"
+                >
+                  <span>Claim Offer Now</span>
+                  <ArrowRight className="w-4 h-4 text-gray-950 group-hover:translate-x-1 transition-transform" />
+                </button>
+              </div>
+            </div>
+
+            {/* Right Fresh Veggie Basket Graphic */}
+            <div className="sm:col-span-5 flex justify-center sm:justify-end">
+              <div className="relative w-44 h-44 sm:w-56 sm:h-56 rounded-2xl overflow-hidden shadow-2xl border-2 border-emerald-300/30 transform hover:scale-105 transition-transform duration-300">
+                <img
+                  src="https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=600&q=80"
+                  alt="Fresh Organic Veggie Box"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-emerald-950/60 via-transparent to-transparent flex items-end p-3">
+                  <span className="text-white text-[11px] font-bold bg-emerald-900/80 px-2.5 py-1 rounded-md backdrop-blur-md">
+                    🌿 Direct from Farmers
+                  </span>
                 </div>
-              </button>
+              </div>
             </div>
           </div>
 
-          {/* Right Floating Product Card (Fresh Vegetables ₹180) */}
-          <div className="hidden lg:block bg-sky-50/95 backdrop-blur-md p-4 rounded-3xl shadow-2xl border border-sky-100 w-64 transform transition-all hover:scale-105 duration-200">
-            <div className="w-full h-36 rounded-2xl overflow-hidden mb-3 bg-white flex items-center justify-center p-2 border border-sky-100 shadow-inner">
+          {/* Footer Features Bar */}
+          <div className="relative z-10 pt-3 border-t border-emerald-600/40 flex flex-wrap items-center gap-4 text-[11px] sm:text-xs text-emerald-100 font-medium">
+            <span className="flex items-center space-x-1.5">
+              <span className="w-2 h-2 rounded-full bg-[#a3f059]"></span>
+              <span>⚡ 10-Min Delivery</span>
+            </span>
+            <span className="flex items-center space-x-1.5">
+              <span className="w-2 h-2 rounded-full bg-[#a3f059]"></span>
+              <span>🌱 100% Certified Organic</span>
+            </span>
+            <span className="flex items-center space-x-1.5">
+              <span className="w-2 h-2 rounded-full bg-[#a3f059]"></span>
+              <span>👩‍🌾 500+ Local Farmers</span>
+            </span>
+          </div>
+
+        </div>
+
+        {/* Stacked Right Side Feature Cards */}
+        <div className="lg:col-span-4 flex flex-col justify-between space-y-4 sm:space-y-5">
+          
+          {/* Top Card: Daily Fresh Milk & Ghee Subscription */}
+          <div 
+            onClick={handleScrollToPicks}
+            className="flex-1 bg-[#f4f9f4] hover:bg-[#eaf4ea] border border-emerald-200/80 rounded-3xl p-5 transition-all duration-200 shadow-sm hover:shadow-md cursor-pointer group flex items-center justify-between gap-4"
+          >
+            <div className="space-y-2">
+              <div className="inline-flex items-center space-x-1.5 text-xs font-bold text-emerald-800 bg-emerald-100/90 px-3 py-1 rounded-full">
+                <Milk className="w-3.5 h-3.5 text-emerald-700" />
+                <span>Milk & A2 Ghee</span>
+              </div>
+              <h3 className="font-extrabold text-gray-900 text-sm sm:text-base group-hover:text-emerald-700 transition-colors leading-snug">
+                Daily Fresh Milk Subscription
+              </h3>
+              <p className="text-xs text-gray-500 font-medium line-clamp-2">
+                Pure cow milk & A2 ghee delivered fresh to your door by 6 AM daily.
+              </p>
+              <div className="inline-flex items-center space-x-1 text-xs font-extrabold text-emerald-700 group-hover:underline pt-1">
+                <span>Subscribe & Save</span>
+                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+              </div>
+            </div>
+            
+            <div className="w-24 h-24 shrink-0 rounded-2xl overflow-hidden bg-white p-1 border border-emerald-100 shadow-xs">
               <img
-                src="https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=400&q=80"
-                alt="Fresh Vegetables Basket"
+                src="https://images.unsplash.com/photo-1550583724-b2692b85b150?auto=format&fit=crop&w=300&q=80"
+                alt="Daily Milk & Ghee"
                 className="w-full h-full object-cover rounded-xl"
               />
             </div>
-            <div className="space-y-1 px-1">
-              <h4 className="font-bold text-gray-900 text-sm">Fresh Vegetables</h4>
-              <div className="flex items-center space-x-2">
-                <span className="text-emerald-700 font-extrabold text-base">₹180</span>
-                <span className="text-gray-400 line-through text-xs font-medium">₹240</span>
+          </div>
+
+          {/* Bottom Card: Today Special - Sweets & Pickles */}
+          <div 
+            onClick={handleScrollToPicks}
+            className="flex-1 bg-[#fffbeb] hover:bg-[#fef3c7] border border-amber-200/80 rounded-3xl p-5 transition-all duration-200 shadow-sm hover:shadow-md cursor-pointer group flex items-center justify-between gap-4"
+          >
+            <div className="space-y-2">
+              <div className="inline-flex items-center space-x-1.5 text-xs font-bold text-amber-800 bg-amber-100/90 px-3 py-1 rounded-full">
+                <Gift className="w-3.5 h-3.5 text-amber-700" />
+                <span>Today's Farm Special</span>
               </div>
+              <h3 className="font-extrabold text-gray-900 text-sm sm:text-base group-hover:text-amber-800 transition-colors leading-snug">
+                Organic Sweets & Mango Pickles
+              </h3>
+              <p className="text-xs text-gray-600 font-medium line-clamp-2">
+                Authentic Gulab Jamun, Motichoor Ladoo & Andhra Pickles.
+              </p>
+              <div className="inline-flex items-center space-x-1 text-xs font-extrabold text-amber-800 group-hover:underline pt-1">
+                <span>Shop Today's Deals</span>
+                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+              </div>
+            </div>
+
+            <div className="w-24 h-24 shrink-0 rounded-2xl overflow-hidden bg-white p-1 border border-amber-100 shadow-xs">
+              <img
+                src="/sweets-category.png"
+                alt="Organic Sweets & Pickles"
+                className="w-full h-full object-cover rounded-xl"
+              />
             </div>
           </div>
 
@@ -88,3 +161,4 @@ export const HeroSection: React.FC = () => {
     </section>
   );
 };
+
