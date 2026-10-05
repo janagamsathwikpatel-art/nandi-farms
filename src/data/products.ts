@@ -204,7 +204,7 @@ export const PRODUCTS: Product[] = [
     farmer: 'Local Halwai',
     price: 220,
     unit: 'per box (500g)',
-    image: '/gulab-jamun.png',
+    image: '/motichoor-ladoo.png',
     isBestSeller: true,
   },
   {
