@@ -29,15 +29,6 @@ export const CATEGORIES: Category[] = [
     image: 'https://images.unsplash.com/photo-1550583724-b2692b85b150?auto=format&fit=crop&w=300&q=80',
   },
   {
-    id: 'bakery',
-    name: 'Bakery',
-    count: 12,
-    bgGradient: 'from-rose-50 to-orange-50/60',
-    borderColor: 'border-rose-100',
-    textColor: 'text-rose-900',
-    image: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=300&q=80',
-  },
-  {
     id: 'meat-fish',
     name: 'Meat & Fish',
     count: 9,
@@ -231,16 +222,6 @@ export const PRODUCTS: Product[] = [
     price: 45,
     unit: 'per kg',
     image: 'https://images.unsplash.com/photo-1598170845058-12ef4a457939?auto=format&fit=crop&w=400&q=80',
-    isBestSeller: true,
-  },
-  {
-    id: 'prod-18',
-    name: 'Artisan Sourdough Bread',
-    category: 'Bakery',
-    farmer: 'Local Farmers',
-    price: 110,
-    unit: 'per pc',
-    image: 'https://images.unsplash.com/photo-1589367920969-ab8e050bbb04?auto=format&fit=crop&w=400&q=80',
     isBestSeller: true,
   },
   {
