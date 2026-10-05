@@ -73,6 +73,24 @@ export const CATEGORIES: Category[] = [
     textColor: 'text-amber-900',
     image: '/ravva.png',
   },
+  {
+    id: 'rice',
+    name: 'Rice',
+    count: 16,
+    bgGradient: 'from-[#fef3c7] to-[#fde68a]/60',
+    borderColor: 'border-amber-200',
+    textColor: 'text-amber-900',
+    image: 'https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&w=300&q=80',
+  },
+  {
+    id: 'daily-products',
+    name: 'Daily Products',
+    count: 20,
+    bgGradient: 'from-[#e0f2fe] to-[#bae6fd]/60',
+    borderColor: 'border-sky-200',
+    textColor: 'text-sky-900',
+    image: 'https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=300&q=80',
+  },
 ];
 
 export const PRODUCTS: Product[] = [

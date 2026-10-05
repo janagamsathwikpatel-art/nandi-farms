@@ -21,7 +21,7 @@ export const PopularCategories: React.FC = () => {
       </div>
 
       {/* Grid of Categories */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-8 gap-4 sm:gap-5">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 xl:grid-cols-10 gap-3 sm:gap-4">
         {CATEGORIES.map((cat) => (
           <a
             key={cat.id}
