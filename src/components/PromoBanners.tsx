@@ -10,14 +10,14 @@ export const PromoBanners: React.FC = () => {
       title: 'NEW HERE? ENJOY 10% OFF YOUR FIRST ORDER',
       description: 'Sign up today and get instant savings on your first grocery purchase.',
       gradient: 'from-emerald-600 to-teal-700 text-white',
-      image: 'https://images.unsplash.com/photo-1604503468506-a8da13d82791?auto=format&fit=crop&w=400&q=80',
+      image: 'https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=400&q=80',
     },
     {
       id: 'promo-2',
-      title: 'FREE DELIVERY ON ORDERS OVER $50',
-      description: 'Stock up on your weekly groceries and save more with zero delivery charges.',
+      title: 'FREE DELIVERY WITH NO MINIMUM COST',
+      description: 'Order your daily essentials anywhere in India with zero delivery charges!',
       gradient: 'from-rose-500 to-pink-600 text-white',
-      image: 'https://images.unsplash.com/photo-1595855719940-5934225816da?auto=format&fit=crop&w=400&q=80',
+      image: 'https://images.unsplash.com/photo-1526367790999-0150786686a2?auto=format&fit=crop&w=400&q=80',
     },
     {
       id: 'promo-3',
@@ -38,12 +38,12 @@ export const PromoBanners: React.FC = () => {
           >
             {/* Title Header */}
             <div>
-              <h3 className="text-lg sm:text-xl font-black leading-tight tracking-tight max-w-[90%] font-sans">
+              <h3 className="text-lg sm:text-xl font-black leading-tight tracking-tight max-w-[90%] font-sans uppercase">
                 {card.title}
               </h3>
             </div>
 
-            {/* Organic Fluid Blob Frame for Image */}
+            {/* Circular Frame for Image */}
             <div className="my-4 flex justify-center items-center">
               <div className="relative w-36 h-36 sm:w-40 sm:h-40 rounded-full overflow-hidden border-4 border-white/50 shadow-xl bg-white/20 backdrop-blur-xs group-hover:scale-105 transition-transform duration-300">
                 <img
