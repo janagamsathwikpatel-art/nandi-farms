@@ -44,7 +44,7 @@ export const CATEGORIES: Category[] = [
     bgGradient: 'from-rose-50 to-pink-50/60',
     borderColor: 'border-rose-100',
     textColor: 'text-rose-900',
-    image: 'https://images.unsplash.com/photo-1599488615731-7e5c2823ff28?auto=format&fit=crop&w=400&q=80',
+    image: '/sweets-category.png',
   },
   {
     id: 'pooja-needs',
@@ -53,7 +53,7 @@ export const CATEGORIES: Category[] = [
     bgGradient: 'from-amber-50 to-orange-50/60',
     borderColor: 'border-amber-100',
     textColor: 'text-amber-900',
-    image: 'https://images.unsplash.com/photo-1609840114035-3c981b782dfe?auto=format&fit=crop&w=400&q=80',
+    image: '/pooja-needs-category.png',
   },
   {
     id: 'karam-podulu',
@@ -62,7 +62,7 @@ export const CATEGORIES: Category[] = [
     bgGradient: 'from-orange-50 to-red-50/60',
     borderColor: 'border-orange-100',
     textColor: 'text-orange-900',
-    image: 'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=400&q=80',
+    image: '/karam-podulu-category.jpg',
   },
   {
     id: 'ravva',
@@ -71,7 +71,7 @@ export const CATEGORIES: Category[] = [
     bgGradient: 'from-amber-50 to-yellow-50/60',
     borderColor: 'border-amber-100',
     textColor: 'text-amber-900',
-    image: 'https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&w=400&q=80',
+    image: '/ravva-category.png',
   },
   {
     id: 'rice',
