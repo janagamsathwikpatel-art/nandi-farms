@@ -35,7 +35,7 @@ export const CATEGORIES: Category[] = [
     bgGradient: 'from-emerald-50 to-teal-50/60',
     borderColor: 'border-emerald-100',
     textColor: 'text-emerald-900',
-    image: 'https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?auto=format&fit=crop&w=300&q=80',
+    image: '/meat-fish-category.png',
   },
   {
     id: 'sweets',
