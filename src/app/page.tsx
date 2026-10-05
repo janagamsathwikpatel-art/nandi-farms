@@ -15,7 +15,6 @@ import { JustForYou } from '@/components/JustForYou';
 import { Footer } from '@/components/Footer';
 import { CartDrawer } from '@/components/CartDrawer';
 import { LoginModal } from '@/components/LoginModal';
-import { Sparkles } from 'lucide-react';
 
 export default function Home() {
   // Initial cart with items
@@ -76,7 +75,7 @@ export default function Home() {
     : PRODUCTS;
 
   return (
-    <div className="min-h-screen bg-[#f8f9fa] text-gray-900 font-sans selection:bg-emerald-100 selection:text-emerald-900">
+    <div className="min-h-screen bg-[#3d1e31] text-gray-900 font-sans selection:bg-emerald-100 selection:text-emerald-900">
       {/* Header Bar */}
       <Header
         cartCount={cartCount}
@@ -105,12 +104,14 @@ export default function Home() {
       )}
 
       {/* Main Continuous Sections */}
-      <main className="space-y-4 sm:space-y-6">
-        {/* 1. Hero Section */}
-        <HeroSection />
+      <main className="w-full">
+        {/* 1. Hero Section (In clean container) */}
+        <div className="bg-[#f8f9fa] py-2">
+          <HeroSection />
+        </div>
 
-        {/* FULL LENGTH BARCOOP BEVY 3D ROTATING BACKGROUND CANVAS (Popular Categories to Just For You) */}
-        <div className="relative bg-[#3d1e31] text-white py-8 sm:py-12 shadow-2xl rounded-3xl max-w-7xl mx-auto border border-[#522943] overflow-hidden my-6">
+        {/* FULL LENGTH EDGE-TO-EDGE 3D ROTATING BACKGROUND CANVAS (Popular Categories to Just For You) */}
+        <div className="relative bg-[#3d1e31] text-white py-8 sm:py-12 w-full overflow-hidden border-t border-[#522943]">
           
           {/* 3D Background Canvas Animations (Text Rings, Watermarks, Floating Icons) */}
           <div className="absolute inset-0 pointer-events-none select-none overflow-hidden z-0 opacity-40">
@@ -193,17 +194,9 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Foreground Main Sections directly on 3D Plum Canvas */}
-          <div className="relative z-10 space-y-8 sm:space-y-12">
+          {/* Foreground Main Sections directly on Edge-to-Edge 3D Plum Canvas */}
+          <div className="relative z-10 space-y-8 sm:space-y-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             
-            {/* Header Badge inside Canvas */}
-            <div className="flex justify-center pt-2 pb-2">
-              <div className="inline-flex items-center space-x-2 bg-[#fcd34d]/20 border border-[#fcd34d]/40 px-4 py-1.5 rounded-full text-[#fcd34d] text-xs font-black uppercase tracking-widest shadow-lg backdrop-blur-md">
-                <Sparkles className="w-4 h-4 text-[#fcd34d] animate-pulse" />
-                <span>Barcoop Bevy 3D Canvas • Real Ingredients Only</span>
-              </div>
-            </div>
-
             {/* 2. Popular Categories Section */}
             <PopularCategories />
 
