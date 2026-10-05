@@ -119,13 +119,13 @@ export const CATEGORIES: Category[] = [
     image: '/personal-care-category.png',
   },
   {
-    id: 'tea-coffee-drinks',
-    name: 'Tea & Coffee Drinks',
+    id: 'tea-coffee-powder',
+    name: 'Tea & Coffee Powder',
     count: 14,
     bgGradient: 'from-amber-50 to-amber-100/60',
     borderColor: 'border-amber-200',
     textColor: 'text-amber-900',
-    image: 'https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&w=300&q=80',
+    image: '/tea-coffee-category.png',
   },
 ];
 
@@ -360,7 +360,7 @@ export const PRODUCTS: Product[] = [
   {
     id: 'prod-27',
     name: 'Organic Herbal Green Tea',
-    category: 'Tea & Coffee Drinks',
+    category: 'Tea & Coffee Powder',
     farmer: 'Nandi Estates',
     price: 160,
     unit: 'box of 25 bags',
@@ -370,7 +370,7 @@ export const PRODUCTS: Product[] = [
   {
     id: 'prod-28',
     name: 'Authentic Filter Coffee Powder',
-    category: 'Tea & Coffee Drinks',
+    category: 'Tea & Coffee Powder',
     farmer: 'Coorg Estates',
     price: 195,
     unit: 'per 250g pack',
