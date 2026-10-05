@@ -54,7 +54,7 @@ export const Header: React.FC<HeaderProps> = ({
 
   return (
     <header className="w-full bg-white sticky top-0 z-40 shadow-xs border-b border-gray-100">
-      {/* Top Utility Bar */}
+      {/* Top Main Header Row */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex items-center justify-between gap-3 sm:gap-4">
         
         {/* 1st Element: Country Selector (India 🇮🇳 IN) */}
@@ -151,42 +151,13 @@ export const Header: React.FC<HeaderProps> = ({
           </a>
         </div>
 
-        {/* 4th Element: Right Utility Buttons */}
-        <div className="flex items-center space-x-2 sm:space-x-4 shrink-0">
-          {/* Loved / Wishlist */}
-          <button 
-            className="flex items-center space-x-1.5 text-xs font-semibold text-gray-700 hover:text-emerald-700 transition-colors py-1.5 px-2 rounded-full hover:bg-gray-50"
-            title="Wishlist"
-          >
-            <div className="relative">
-              <Heart className="w-4 h-4 text-gray-700" />
-              {lovedCount > 0 && (
-                <span className="absolute -top-1.5 -right-1.5 w-3.5 h-3.5 bg-rose-500 text-white rounded-full text-[9px] font-bold flex items-center justify-center">
-                  {lovedCount}
-                </span>
-              )}
-            </div>
-            <span className="hidden sm:inline tracking-wider uppercase text-[11px]">LOVED</span>
-          </button>
-
-          {/* Cart Drawer Trigger */}
-          <button
-            onClick={onOpenCart}
-            className="flex items-center space-x-1.5 sm:space-x-2 bg-emerald-50 hover:bg-emerald-100 text-emerald-900 px-3 sm:px-3.5 py-1.5 rounded-full border border-emerald-200/70 transition-all font-semibold text-xs shadow-xs hover:shadow-sm"
-          >
-            <ShoppingBag className="w-4 h-4 text-emerald-700" />
-            <span className="tracking-wider uppercase text-[11px] font-bold hidden xs:inline">CART</span>
-            <span className="bg-emerald-800 text-white w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold">
-              {cartCount}
-            </span>
-          </button>
-        </div>
       </div>
 
-      {/* Primary Sub-Navigation Bar (Policy, FAQ's, Help & Support removed) */}
+      {/* Sub-Header Navigation Bar (Down of Main Header, Right above Hero Section) */}
       <div className="border-t border-gray-100 bg-gray-50/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between py-2 text-xs font-medium">
-          {/* Navigation Pills */}
+          
+          {/* Left Side: Navigation Pills */}
           <nav className="flex items-center space-x-1 sm:space-x-2 overflow-x-auto no-scrollbar py-1">
             <a
               href="#shop"
@@ -234,6 +205,38 @@ export const Header: React.FC<HeaderProps> = ({
               About
             </a>
           </nav>
+
+          {/* Right Side Options (Placed in Sub-Header down of main header above hero section) */}
+          <div className="flex items-center space-x-3 sm:space-x-4 shrink-0">
+            {/* Loved / Wishlist Button */}
+            <button 
+              className="flex items-center space-x-1.5 text-xs font-semibold text-gray-700 hover:text-emerald-700 transition-colors py-1.5 px-2 rounded-full hover:bg-white"
+              title="Wishlist"
+            >
+              <div className="relative">
+                <Heart className="w-4 h-4 text-gray-700" />
+                {lovedCount > 0 && (
+                  <span className="absolute -top-1.5 -right-1.5 w-3.5 h-3.5 bg-rose-500 text-white rounded-full text-[9px] font-bold flex items-center justify-center shadow-xs">
+                    {lovedCount}
+                  </span>
+                )}
+              </div>
+              <span className="tracking-wider uppercase text-[11px] font-bold">LOVED</span>
+            </button>
+
+            {/* Cart Drawer Trigger Button */}
+            <button
+              onClick={onOpenCart}
+              className="flex items-center space-x-2 bg-emerald-50 hover:bg-emerald-100 text-emerald-900 px-3.5 py-1.5 rounded-full border border-emerald-200/70 transition-all font-semibold text-xs shadow-xs hover:shadow-sm"
+            >
+              <ShoppingBag className="w-4 h-4 text-emerald-700" />
+              <span className="tracking-wider uppercase text-[11px] font-bold">CART</span>
+              <span className="bg-emerald-800 text-white w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold">
+                {cartCount}
+              </span>
+            </button>
+          </div>
+
         </div>
       </div>
     </header>
