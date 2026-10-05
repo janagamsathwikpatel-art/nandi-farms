@@ -55,6 +55,15 @@ export const CATEGORIES: Category[] = [
     textColor: 'text-amber-900',
     image: '/pooja-needs.png',
   },
+  {
+    id: 'karam-podulu',
+    name: 'Karam Podulu',
+    count: 14,
+    bgGradient: 'from-orange-50 to-red-50/60',
+    borderColor: 'border-orange-100',
+    textColor: 'text-orange-900',
+    image: '/karam-podulu.png',
+  },
 ];
 
 export const PRODUCTS: Product[] = [
@@ -150,7 +159,7 @@ export const PRODUCTS: Product[] = [
     isPopular: true,
   },
 
-  // Sweets & Pooja Category Items
+  // Sweets, Pooja & Karam Podulu Category Items
   {
     id: 'prod-20',
     name: 'Assorted Gulab Jamun Box',
@@ -179,6 +188,16 @@ export const PRODUCTS: Product[] = [
     price: 150,
     unit: 'per pack',
     image: '/pooja-needs.png',
+    isBestSeller: true,
+  },
+  {
+    id: 'prod-23',
+    name: 'Authentic Nalla Karam Podi Pouch',
+    category: 'Karam Podulu',
+    farmer: 'Local Farmers',
+    price: 120,
+    unit: 'per pack (250g)',
+    image: '/karam-podulu.png',
     isBestSeller: true,
   },
 
