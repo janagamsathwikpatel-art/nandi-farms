@@ -17,7 +17,7 @@ export const CATEGORIES: Category[] = [
     bgGradient: 'from-sky-50 to-cyan-50/60',
     borderColor: 'border-sky-100',
     textColor: 'text-sky-900',
-    image: 'https://images.unsplash.com/photo-1619566636858-adf3ef46400b?auto=format&fit=crop&w=300&q=80',
+    image: '/fruits-category.png',
   },
   {
     id: 'dairy-eggs',
