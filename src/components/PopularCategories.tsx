@@ -45,7 +45,7 @@ export const PopularCategories: React.FC<PopularCategoriesProps> = ({
   };
 
   return (
-    <section className="w-full max-w-[100vw] px-4 sm:px-8 lg:px-12 py-8 sm:py-12 relative">
+    <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 relative">
       {/* Section Header with Left & Right Arrow Buttons */}
       <div className="flex items-center justify-between mb-6 sm:mb-8">
         <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight font-sans">
@@ -104,10 +104,10 @@ export const PopularCategories: React.FC<PopularCategoriesProps> = ({
             <button
               key={cat.id}
               onClick={() => handleCategoryClick(cat.name)}
-              className={`shrink-0 w-[140px] sm:w-[160px] lg:w-[175px] group flex flex-col items-center justify-between p-4 rounded-3xl bg-gradient-to-b ${cat.bgGradient} border ${cat.borderColor} hover:shadow-lg transition-all duration-200 transform hover:-translate-y-1 text-center min-h-[195px] cursor-pointer`}
+              className={`shrink-0 w-[145px] sm:w-[165px] group flex flex-col items-center justify-between p-2.5 sm:p-3 rounded-[28px] bg-gradient-to-b ${cat.bgGradient} border ${cat.borderColor} hover:shadow-xl transition-all duration-200 transform hover:-translate-y-1 text-center min-h-[225px] sm:min-h-[250px] cursor-pointer`}
             >
-              {/* Image Container */}
-              <div className="w-full h-24 sm:h-28 mb-3 overflow-hidden rounded-2xl shadow-xs group-hover:scale-105 transition-transform">
+              {/* Image Container taking full height */}
+              <div className="w-full h-36 sm:h-44 mb-2.5 overflow-hidden rounded-2xl shadow-xs group-hover:scale-105 transition-transform duration-300">
                 <img
                   src={cat.image}
                   alt={cat.name}
@@ -116,7 +116,7 @@ export const PopularCategories: React.FC<PopularCategoriesProps> = ({
               </div>
 
               {/* Category Info */}
-              <div className="space-y-0.5">
+              <div className="space-y-0.5 pb-1 w-full">
                 <h3 className="font-bold text-xs sm:text-sm tracking-tight text-gray-900 group-hover:text-emerald-700 transition-colors line-clamp-1">
                   {cat.name}
                 </h3>
