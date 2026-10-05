@@ -5,7 +5,6 @@ import { PRODUCTS } from '@/data/products';
 import { Product, CartItem } from '@/types';
 import { Header } from '@/components/Header';
 import { HeroSection } from '@/components/HeroSection';
-import { BarcoopBevySection } from '@/components/BarcoopBevySection';
 import { PopularCategories } from '@/components/PopularCategories';
 import { TodaysFreshPicks } from '@/components/TodaysFreshPicks';
 import { PromoBanners } from '@/components/PromoBanners';
@@ -16,6 +15,7 @@ import { JustForYou } from '@/components/JustForYou';
 import { Footer } from '@/components/Footer';
 import { CartDrawer } from '@/components/CartDrawer';
 import { LoginModal } from '@/components/LoginModal';
+import { Sparkles } from 'lucide-react';
 
 export default function Home() {
   // Initial cart with items
@@ -109,76 +109,155 @@ export default function Home() {
         {/* 1. Hero Section */}
         <HeroSection />
 
-        {/* 2. Barcoop Bevy Inspired 3D Rotating "REAL INGREDIENTS ONLY" Feature Section */}
-        <BarcoopBevySection />
+        {/* FULL LENGTH BARCOOP BEVY 3D ROTATING BACKGROUND CANVAS (Popular Categories to Just For You) */}
+        <div className="relative bg-[#3d1e31] text-white py-8 sm:py-12 shadow-2xl rounded-3xl max-w-7xl mx-auto border border-[#522943] overflow-hidden my-6">
+          
+          {/* 3D Background Canvas Animations (Text Rings, Watermarks, Floating Icons) */}
+          <div className="absolute inset-0 pointer-events-none select-none overflow-hidden z-0 opacity-40">
+            {/* Top Center 3D Rotating Text Ring (Behind Popular Categories) */}
+            <div className="absolute top-[3%] left-1/2 -translate-x-1/2 w-[480px] h-[480px] md:w-[620px] md:h-[620px] rounded-full flex items-center justify-center animate-[spin_35s_linear_infinite]">
+              <svg className="w-full h-full transform -rotate-90 overflow-visible" viewBox="0 0 500 500">
+                <defs>
+                  <path
+                    id="ringTop"
+                    d="M 250, 250 m -210, 0 a 210,210 0 1,1 420,0 a 210,210 0 1,1 -420,0"
+                  />
+                </defs>
+                <text className="fill-[#fcd34d] text-[16px] font-black tracking-[0.25em] uppercase">
+                  <textPath href="#ringTop" startOffset="0%">
+                    • 100% NATURAL INGREDIENTS • NO ARTIFICIAL PRESERVATIVES • DIRECT FROM FARMERS • ZERO CHEMICALS 
+                  </textPath>
+                </text>
+              </svg>
 
-        {/* Continuous Background Wrapper from Popular Categories to Just For You */}
-        <div className="relative overflow-hidden">
-          {/* Ambient Continuous Rotating Watermark & Floating Icons Background Layer */}
-          <div className="absolute inset-0 pointer-events-none select-none overflow-hidden opacity-30 z-0">
-            {/* Top Left Rotating Watermark Ring */}
-            <div className="absolute top-[3%] -left-20 w-80 h-80 rounded-full border-4 border-dashed border-emerald-300/40 animate-[spin_40s_linear_infinite] flex items-center justify-center">
-              <span className="text-6xl text-emerald-500/30">🌿</span>
+              {/* Orbiting Icons */}
+              <span className="absolute -top-2 text-3xl">🍋</span>
+              <span className="absolute top-[15%] right-[8%] text-3xl">🌶️</span>
+              <span className="absolute top-1/2 -right-2 text-3xl">🍍</span>
+              <span className="absolute bottom-[15%] right-[8%] text-3xl">🍅</span>
+              <span className="absolute -bottom-2 text-3xl">🌿</span>
+              <span className="absolute bottom-[15%] left-[8%] text-3xl">🍓</span>
+              <span className="absolute top-1/2 -left-2 text-3xl">🥒</span>
+              <span className="absolute top-[15%] left-[8%] text-3xl">🍊</span>
             </div>
 
-            {/* Middle Right Rotating Watermark Ring */}
-            <div className="absolute top-[28%] -right-24 w-96 h-96 rounded-full border-4 border-dashed border-[#3d1e31]/20 animate-[spin_45s_linear_infinite_reverse] flex items-center justify-center">
-              <span className="text-7xl text-[#3d1e31]/20">🍋</span>
+            {/* Middle Section 3D Watermark Text (REAL INGREDIENTS ONLY) */}
+            <div className="absolute top-[35%] left-1/2 -translate-x-1/2 text-center opacity-30">
+              <h2 className="text-6xl sm:text-8xl font-black text-white uppercase tracking-tighter leading-none">
+                REAL<br />
+                <span className="text-[#fcd34d]">INGREDIENTS</span><br />
+                ONLY
+              </h2>
             </div>
 
-            {/* Lower Left Rotating Watermark Ring */}
-            <div className="absolute top-[60%] -left-28 w-[420px] h-[420px] rounded-full border-4 border-dashed border-amber-300/40 animate-[spin_50s_linear_infinite] flex items-center justify-center">
-              <span className="text-8xl text-amber-500/20">🍅</span>
+            {/* Mid-Lower 3D Rotating Text Ring (Behind Weekly Best Selling) */}
+            <div className="absolute top-[52%] left-1/2 -translate-x-1/2 w-[520px] h-[520px] md:w-[680px] md:h-[680px] rounded-full flex items-center justify-center animate-[spin_42s_linear_infinite_reverse]">
+              <svg className="w-full h-full transform -rotate-90 overflow-visible" viewBox="0 0 500 500">
+                <defs>
+                  <path
+                    id="ringMid"
+                    d="M 250, 250 m -210, 0 a 210,210 0 1,1 420,0 a 210,210 0 1,1 -420,0"
+                  />
+                </defs>
+                <text className="fill-[#fcd34d] text-[16px] font-black tracking-[0.25em] uppercase">
+                  <textPath href="#ringMid" startOffset="0%">
+                    • FARM FRESH PRODUCE • 100% ORGANIC & PURE • SAME-DAY DELIVERY • NANDI FARMS 
+                  </textPath>
+                </text>
+              </svg>
+              <span className="absolute -top-2 text-3xl">🌿</span>
+              <span className="absolute top-1/2 -right-2 text-3xl">🍅</span>
+              <span className="absolute -bottom-2 text-3xl">🍋</span>
+              <span className="absolute top-1/2 -left-2 text-3xl">🌶️</span>
             </div>
 
-            {/* Bottom Right Watermark Ring */}
-            <div className="absolute bottom-[5%] -right-20 w-80 h-80 rounded-full border-4 border-dashed border-rose-300/40 animate-[spin_38s_linear_infinite_reverse] flex items-center justify-center">
-              <span className="text-6xl text-rose-500/30">🍓</span>
+            {/* Bottom 3D Rotating Text Ring (Behind Just For You) */}
+            <div className="absolute bottom-[3%] left-1/2 -translate-x-1/2 w-[480px] h-[480px] md:w-[600px] md:h-[600px] rounded-full flex items-center justify-center animate-[spin_38s_linear_infinite]">
+              <svg className="w-full h-full transform -rotate-90 overflow-visible" viewBox="0 0 500 500">
+                <defs>
+                  <path
+                    id="ringBottom"
+                    d="M 250, 250 m -210, 0 a 210,210 0 1,1 420,0 a 210,210 0 1,1 -420,0"
+                  />
+                </defs>
+                <text className="fill-[#fcd34d] text-[16px] font-black tracking-[0.25em] uppercase">
+                  <textPath href="#ringBottom" startOffset="0%">
+                    • 100% NATURAL INGREDIENTS • NO ARTIFICIAL PRESERVATIVES • DIRECT FROM FARMERS 
+                  </textPath>
+                </text>
+              </svg>
+              <span className="absolute -top-2 text-3xl">🍓</span>
+              <span className="absolute top-1/2 -right-2 text-3xl">🍍</span>
+              <span className="absolute -bottom-2 text-3xl">🥒</span>
+              <span className="absolute top-1/2 -left-2 text-3xl">🍊</span>
             </div>
           </div>
 
-          {/* Foreground Sections Content */}
-          <div className="relative z-10 space-y-4 sm:space-y-6">
-            {/* 3. Popular Categories */}
-            <PopularCategories />
+          {/* Foreground Main Sections (Popular Categories down to Just For You) */}
+          <div className="relative z-10 space-y-6 sm:space-y-8">
+            
+            {/* Header Badge inside Canvas */}
+            <div className="flex justify-center pt-2 pb-4">
+              <div className="inline-flex items-center space-x-2 bg-[#fcd34d]/20 border border-[#fcd34d]/40 px-4 py-1.5 rounded-full text-[#fcd34d] text-xs font-black uppercase tracking-widest shadow-lg backdrop-blur-md">
+                <Sparkles className="w-4 h-4 text-[#fcd34d] animate-pulse" />
+                <span>Barcoop Bevy 3D Canvas • Real Ingredients Only</span>
+              </div>
+            </div>
 
-            {/* 4. Today's Fresh Picks */}
-            <TodaysFreshPicks
-              products={filteredProducts}
-              cartItems={cartItems}
-              onAddToCart={handleAddToCart}
-              onUpdateQuantity={handleUpdateQuantity}
-            />
+            {/* 2. Popular Categories Section */}
+            <div className="bg-white/95 backdrop-blur-md rounded-3xl p-2 sm:p-4 mx-3 sm:mx-6 shadow-xl border border-white/20 text-gray-900">
+              <PopularCategories />
+            </div>
 
-            {/* 5. Promo Banners Row */}
-            <PromoBanners />
+            {/* 3. Today's Fresh Picks */}
+            <div className="bg-white/95 backdrop-blur-md rounded-3xl p-2 sm:p-4 mx-3 sm:mx-6 shadow-xl border border-white/20 text-gray-900">
+              <TodaysFreshPicks
+                products={filteredProducts}
+                cartItems={cartItems}
+                onAddToCart={handleAddToCart}
+                onUpdateQuantity={handleUpdateQuantity}
+              />
+            </div>
 
-            {/* 6. Weekly Best Selling items */}
-            <WeeklyBestSelling
-              products={filteredProducts}
-              cartItems={cartItems}
-              onAddToCart={handleAddToCart}
-              onUpdateQuantity={handleUpdateQuantity}
-            />
+            {/* 4. Promo Banners Row */}
+            <div className="mx-3 sm:mx-6">
+              <PromoBanners />
+            </div>
 
-            {/* 7. Most Selling Products */}
-            <MostSellingProducts
-              products={filteredProducts}
-              cartItems={cartItems}
-              onAddToCart={handleAddToCart}
-              onUpdateQuantity={handleUpdateQuantity}
-            />
+            {/* 5. Weekly Best Selling items */}
+            <div className="bg-white/95 backdrop-blur-md rounded-3xl p-2 sm:p-4 mx-3 sm:mx-6 shadow-xl border border-white/20 text-gray-900">
+              <WeeklyBestSelling
+                products={filteredProducts}
+                cartItems={cartItems}
+                onAddToCart={handleAddToCart}
+                onUpdateQuantity={handleUpdateQuantity}
+              />
+            </div>
 
-            {/* 8. Call To Action Banner */}
-            <CTABanner />
+            {/* 6. Most Selling Products */}
+            <div className="bg-white/95 backdrop-blur-md rounded-3xl p-2 sm:p-4 mx-3 sm:mx-6 shadow-xl border border-white/20 text-gray-900">
+              <MostSellingProducts
+                products={filteredProducts}
+                cartItems={cartItems}
+                onAddToCart={handleAddToCart}
+                onUpdateQuantity={handleUpdateQuantity}
+              />
+            </div>
 
-            {/* 9. Just for you */}
-            <JustForYou
-              products={filteredProducts}
-              cartItems={cartItems}
-              onAddToCart={handleAddToCart}
-              onUpdateQuantity={handleUpdateQuantity}
-            />
+            {/* 7. Call To Action Banner */}
+            <div className="mx-3 sm:mx-6">
+              <CTABanner />
+            </div>
+
+            {/* 8. Just for you */}
+            <div className="bg-white/95 backdrop-blur-md rounded-3xl p-2 sm:p-4 mx-3 sm:mx-6 shadow-xl border border-white/20 text-gray-900 pb-6">
+              <JustForYou
+                products={filteredProducts}
+                cartItems={cartItems}
+                onAddToCart={handleAddToCart}
+                onUpdateQuantity={handleUpdateQuantity}
+              />
+            </div>
           </div>
         </div>
       </main>
