@@ -80,7 +80,7 @@ export const CATEGORIES: Category[] = [
     bgGradient: 'from-[#fef3c7] to-[#fde68a]/60',
     borderColor: 'border-amber-200',
     textColor: 'text-amber-900',
-    image: 'https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&w=300&q=80',
+    image: '/rice-category.png',
   },
   {
     id: 'daily-products',
