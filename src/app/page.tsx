@@ -5,7 +5,6 @@ import { PRODUCTS } from '@/data/products';
 import { Product, CartItem } from '@/types';
 import { Header } from '@/components/Header';
 import { HeroSection } from '@/components/HeroSection';
-import { BrandFeatures } from '@/components/BrandFeatures';
 import { PopularCategories } from '@/components/PopularCategories';
 import { TodaysFreshPicks } from '@/components/TodaysFreshPicks';
 import { PromoBanners } from '@/components/PromoBanners';
@@ -108,9 +107,6 @@ export default function Home() {
       <main className="space-y-4 sm:space-y-6">
         {/* 1. Hero Section */}
         <HeroSection />
-
-        {/* 2. Barcoop Bevy Inspired Brand Features (Placed directly down of Hero Section) */}
-        <BrandFeatures />
 
         {/* 3. Popular Categories */}
         <PopularCategories />
