@@ -18,7 +18,7 @@ import { CartDrawer } from '@/components/CartDrawer';
 import { LoginModal } from '@/components/LoginModal';
 
 export default function Home() {
-  // Initial cart with 9 items to match the Screenshot 1 "CART (9)" badge
+  // Initial cart with items
   const [cartItems, setCartItems] = useState<CartItem[]>([
     { product: PRODUCTS[0], quantity: 3 }, // Organic Red Tomatoes
     { product: PRODUCTS[1], quantity: 2 }, // Farm Eggs
@@ -69,7 +69,6 @@ export default function Home() {
     setCartItems([]);
   };
 
-  // Filter products by search query if typed
   const filteredProducts = searchQuery.trim()
     ? PRODUCTS.filter((p) =>
         p.name.toLowerCase().includes(searchQuery.toLowerCase())
@@ -83,7 +82,6 @@ export default function Home() {
         cartCount={cartCount}
         lovedCount={lovedItems.length}
         onOpenCart={() => setIsCartOpen(true)}
-        onOpenLogin={() => setIsLoginOpen(true)}
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
       />
@@ -105,48 +103,31 @@ export default function Home() {
         </div>
       )}
 
-      {/* Main Continuous Sections (Screenshots 1 -> 2 -> 3 -> 4) */}
+      {/* Main Continuous Sections */}
       <main className="space-y-4 sm:space-y-6">
-        {/* Screenshot 1: Hero Section */}
         <HeroSection />
-
-        {/* Screenshot 1: Popular Categories */}
         <PopularCategories />
-
-        {/* Screenshot 2: Today's Fresh Picks */}
         <TodaysFreshPicks
           products={filteredProducts}
           cartItems={cartItems}
           onAddToCart={handleAddToCart}
           onUpdateQuantity={handleUpdateQuantity}
         />
-
-        {/* Screenshot 2: Fresh Produce Banner */}
         <FreshProduceBanner />
-
-        {/* Screenshot 3: Promo Banners Row (10% off, Free Delivery, Grocery) */}
         <PromoBanners />
-
-        {/* Screenshot 3: Weekly Best Selling items */}
         <WeeklyBestSelling
           products={filteredProducts}
           cartItems={cartItems}
           onAddToCart={handleAddToCart}
           onUpdateQuantity={handleUpdateQuantity}
         />
-
-        {/* Screenshot 3: Most Selling Products */}
         <MostSellingProducts
           products={filteredProducts}
           cartItems={cartItems}
           onAddToCart={handleAddToCart}
           onUpdateQuantity={handleUpdateQuantity}
         />
-
-        {/* Screenshot 4: Ready To Fill Your Cart With Freshness? */}
         <CTABanner />
-
-        {/* Screenshot 4: Just for you */}
         <JustForYou
           products={filteredProducts}
           cartItems={cartItems}
@@ -155,7 +136,6 @@ export default function Home() {
         />
       </main>
 
-      {/* Screenshot 4: Footer */}
       <Footer />
 
       {/* Slide-over Cart Drawer */}

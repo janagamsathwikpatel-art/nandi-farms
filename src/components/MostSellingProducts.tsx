@@ -63,7 +63,7 @@ export const MostSellingProducts: React.FC<MostSellingProductsProps> = ({
                 <p className="text-[11px] text-gray-400 font-medium">{prod.farmer}</p>
                 <div className="pt-1">
                   <span className="text-sm font-extrabold text-gray-900">
-                    ${prod.price.toFixed(2)}
+                    ₹{prod.price}
                   </span>
                   <span className="text-[11px] font-normal text-gray-500 ml-1">
                     / {prod.unit}

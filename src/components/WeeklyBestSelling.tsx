@@ -25,7 +25,6 @@ export const WeeklyBestSelling: React.FC<WeeklyBestSellingProps> = ({
     return item ? item.quantity : 0;
   };
 
-  // Filter products by category or fallback to all bestsellers
   const filteredProducts = products.filter(
     (p) => p.category === activeCategory || p.isBestSeller
   ).slice(0, 5);
@@ -91,7 +90,7 @@ export const WeeklyBestSelling: React.FC<WeeklyBestSellingProps> = ({
                 <p className="text-[11px] text-gray-400 font-medium">{prod.farmer}</p>
                 <div className="pt-1">
                   <span className="text-sm font-extrabold text-gray-900">
-                    ${prod.price.toFixed(2)}
+                    ₹{prod.price}
                   </span>
                   <span className="text-[11px] font-normal text-gray-500 ml-1">
                     / {prod.unit}

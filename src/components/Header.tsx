@@ -5,7 +5,6 @@ import {
   Search, 
   Heart, 
   ShoppingBag, 
-  User, 
   ChevronDown, 
   Headphones, 
   Leaf,
@@ -18,7 +17,6 @@ interface HeaderProps {
   cartCount: number;
   lovedCount: number;
   onOpenCart: () => void;
-  onOpenLogin: () => void;
   searchQuery: string;
   setSearchQuery: (query: string) => void;
 }
@@ -27,7 +25,6 @@ export const Header: React.FC<HeaderProps> = ({
   cartCount,
   lovedCount,
   onOpenCart,
-  onOpenLogin,
   searchQuery,
   setSearchQuery,
 }) => {
@@ -38,10 +35,10 @@ export const Header: React.FC<HeaderProps> = ({
     <header className="w-full bg-white sticky top-0 z-40 shadow-xs border-b border-gray-100">
       {/* Top Utility Bar */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex items-center justify-between gap-4">
-        {/* Left: Language Selector */}
+        {/* Left: Country Selector (India 🇮🇳 IN) */}
         <div className="flex items-center space-x-2 text-sm text-gray-700 bg-gray-50/80 px-3 py-1.5 rounded-full border border-gray-200/60 cursor-pointer hover:bg-gray-100 transition-colors">
-          <span className="text-base">🇺🇸</span>
-          <span className="font-medium text-xs tracking-wide">EN</span>
+          <span className="text-base">🇮🇳</span>
+          <span className="font-medium text-xs tracking-wide">IN</span>
           <ChevronDown className="w-3.5 h-3.5 text-gray-500" />
         </div>
 
@@ -71,7 +68,7 @@ export const Header: React.FC<HeaderProps> = ({
           </a>
         </div>
 
-        {/* Right Utility Buttons */}
+        {/* Right Utility Buttons (Login/Signup removed as requested) */}
         <div className="flex items-center space-x-3 sm:space-x-4">
           {/* Loved / Wishlist */}
           <button 
@@ -99,15 +96,6 @@ export const Header: React.FC<HeaderProps> = ({
             <span className="bg-emerald-800 text-white w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold">
               {cartCount}
             </span>
-          </button>
-
-          {/* Login / Signup */}
-          <button
-            onClick={onOpenLogin}
-            className="hidden sm:flex items-center space-x-1.5 bg-gray-900 hover:bg-gray-800 text-white px-4 py-1.5 rounded-full text-xs font-medium transition-all shadow-xs"
-          >
-            <User className="w-3.5 h-3.5" />
-            <span>Login/Signup</span>
           </button>
 
           {/* Mobile menu toggle */}

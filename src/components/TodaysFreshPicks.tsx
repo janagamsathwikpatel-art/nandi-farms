@@ -28,7 +28,7 @@ export const TodaysFreshPicks: React.FC<TodaysFreshPicksProps> = ({
 
   return (
     <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 relative">
-      {/* Top Scroll Back Up Icon (matching Screenshot 2 top center) */}
+      {/* Top Scroll Back Up Icon */}
       <div className="flex justify-center -mt-6 mb-4">
         <button
           onClick={scrollToTop}
@@ -52,7 +52,7 @@ export const TodaysFreshPicks: React.FC<TodaysFreshPicksProps> = ({
         </button>
       </div>
 
-      {/* Grid of 10 Product Cards (2 rows of 5 on desktop) */}
+      {/* Grid of 10 Product Cards */}
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-5">
         {products.slice(0, 10).map((prod) => {
           const qty = getProductQuantity(prod.id);
@@ -78,7 +78,7 @@ export const TodaysFreshPicks: React.FC<TodaysFreshPicksProps> = ({
                 <p className="text-[11px] text-gray-400 font-medium">{prod.farmer}</p>
                 <div className="pt-1">
                   <span className="text-sm font-extrabold text-gray-900">
-                    ${prod.price.toFixed(2)}
+                    ₹{prod.price}
                   </span>
                   <span className="text-[11px] font-normal text-gray-500 ml-1">
                     / {prod.unit}

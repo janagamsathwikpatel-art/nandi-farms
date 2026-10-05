@@ -22,7 +22,6 @@ export const JustForYou: React.FC<JustForYouProps> = ({
     return item ? item.quantity : 0;
   };
 
-  // Specific 5 items matching screenshot 4: Basmati Rice, Pineapple, Papaya, Tomatoes, Strawberries
   const justForYouItems = [
     products.find((p) => p.name.includes('Basmati Rice')) || products[4],
     products.find((p) => p.name.includes('Pineapple')) || products[8],
@@ -72,7 +71,7 @@ export const JustForYou: React.FC<JustForYouProps> = ({
                 <p className="text-[11px] text-gray-400 font-medium">{prod.farmer}</p>
                 <div className="pt-1">
                   <span className="text-sm font-extrabold text-gray-900">
-                    ${prod.price.toFixed(2)}
+                    ₹{prod.price}
                   </span>
                   <span className="text-[11px] font-normal text-gray-500 ml-1">
                     / {prod.unit}

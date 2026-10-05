@@ -55,7 +55,7 @@ export const HeroSection: React.FC = () => {
             </div>
           </div>
 
-          {/* Right Floating Product Card (Screenshot 1: Fresh Vegetables $18.00) */}
+          {/* Right Floating Product Card (Fresh Vegetables ₹180) */}
           <div className="hidden lg:block bg-sky-50/90 backdrop-blur-md p-4 rounded-3xl shadow-2xl border border-sky-100/90 w-64 transform transition-all hover:scale-105 duration-200">
             <div className="w-full h-36 rounded-2xl overflow-hidden mb-3 bg-white flex items-center justify-center p-2 border border-sky-100">
               <img
@@ -67,8 +67,8 @@ export const HeroSection: React.FC = () => {
             <div className="space-y-1 px-1">
               <h4 className="font-bold text-gray-900 text-sm">Fresh Vegetables</h4>
               <div className="flex items-center space-x-2">
-                <span className="text-emerald-700 font-extrabold text-base">$18.00</span>
-                <span className="text-gray-400 line-through text-xs font-medium">$24.00</span>
+                <span className="text-emerald-700 font-extrabold text-base">₹180</span>
+                <span className="text-gray-400 line-through text-xs font-medium">₹240</span>
               </div>
             </div>
           </div>
