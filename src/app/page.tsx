@@ -75,7 +75,7 @@ export default function Home() {
     : PRODUCTS;
 
   return (
-    <div className="min-h-screen bg-[#f8f9fa] text-gray-900 font-sans selection:bg-emerald-100 selection:text-emerald-900">
+    <div className="min-h-screen bg-[#f8f9fa] text-gray-900 font-sans selection:bg-emerald-100 selection:text-emerald-900 relative overflow-x-hidden">
       {/* Header Bar */}
       <Header
         cartCount={cartCount}
@@ -103,8 +103,66 @@ export default function Home() {
         </div>
       )}
 
+      {/* AMBIENT ANIMATED 3D FRUITS & VEGETABLES BACKDROP SYMBOLS LAYER */}
+      <div className="absolute inset-0 pointer-events-none select-none overflow-hidden z-0 opacity-40">
+        {/* Floating 3D Broccoli */}
+        <div className="absolute top-[12%] left-[2%] text-5xl sm:text-6xl animate-bounce-slow transform hover:scale-125 transition-transform filter drop-shadow-md">
+          🥦
+        </div>
+
+        {/* Floating 3D Carrot */}
+        <div className="absolute top-[18%] right-[3%] text-5xl sm:text-6xl animate-pulse-slow transform rotate-12 filter drop-shadow-md">
+          🥕
+        </div>
+
+        {/* Floating 3D Tomato */}
+        <div className="absolute top-[28%] left-[4%] text-5xl sm:text-6xl animate-bounce-slow transform -rotate-12 filter drop-shadow-md">
+          🍅
+        </div>
+
+        {/* Floating 3D Banana */}
+        <div className="absolute top-[34%] right-[2%] text-5xl sm:text-6xl animate-pulse-slow transform rotate-45 filter drop-shadow-md">
+          🍌
+        </div>
+
+        {/* Floating 3D Pineapple */}
+        <div className="absolute top-[44%] left-[3%] text-5xl sm:text-6xl animate-bounce-slow transform -rotate-6 filter drop-shadow-md">
+          🍍
+        </div>
+
+        {/* Floating 3D Strawberry */}
+        <div className="absolute top-[52%] right-[4%] text-5xl sm:text-6xl animate-pulse-slow transform rotate-12 filter drop-shadow-md">
+          🍓
+        </div>
+
+        {/* Floating 3D Avocado */}
+        <div className="absolute top-[62%] left-[2%] text-5xl sm:text-6xl animate-bounce-slow transform rotate-15 filter drop-shadow-md">
+          🥑
+        </div>
+
+        {/* Floating 3D Lemon */}
+        <div className="absolute top-[70%] right-[3%] text-5xl sm:text-6xl animate-pulse-slow transform -rotate-12 filter drop-shadow-md">
+          🍋
+        </div>
+
+        {/* Floating 3D Grapes */}
+        <div className="absolute top-[80%] left-[4%] text-5xl sm:text-6xl animate-bounce-slow transform rotate-6 filter drop-shadow-md">
+          🍇
+        </div>
+
+        {/* Floating 3D Chili */}
+        <div className="absolute top-[88%] right-[2%] text-5xl sm:text-6xl animate-pulse-slow transform -rotate-45 filter drop-shadow-md">
+          🌶️
+        </div>
+
+        {/* Floating 3D Mint Leaf */}
+        <div className="absolute top-[95%] left-[3%] text-5xl sm:text-6xl animate-bounce-slow transform rotate-12 filter drop-shadow-md">
+          🌿
+        </div>
+      </div>
+
       {/* Main Continuous Sections */}
-      <main className="space-y-6 sm:space-y-8 py-4">
+      <main className="space-y-6 sm:space-y-8 py-4 relative z-10">
         {/* 1. Hero Section */}
         <HeroSection />
 
@@ -151,7 +209,9 @@ export default function Home() {
       </main>
 
       {/* Footer Section */}
-      <Footer />
+      <div className="relative z-10">
+        <Footer />
+      </div>
 
       {/* Slide-over Cart Drawer */}
       <CartDrawer
