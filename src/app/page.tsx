@@ -10,7 +10,6 @@ import { TodaysFreshPicks } from '@/components/TodaysFreshPicks';
 import { PromoBanners } from '@/components/PromoBanners';
 import { WeeklyBestSelling } from '@/components/WeeklyBestSelling';
 import { MostSellingProducts } from '@/components/MostSellingProducts';
-import SmoothScrollSlider from '@/components/SmoothScrollSlider';
 import { JustForYou } from '@/components/JustForYou';
 import { Footer } from '@/components/Footer';
 import { CartDrawer } from '@/components/CartDrawer';
@@ -259,9 +258,6 @@ export default function Home() {
           onSelectProduct={(prod) => setSelectedProduct(prod)}
           onShowAll={handleShowAllProducts}
         />
-
-        {/* Originkit Smooth Scroll Slider (Farm Produce Showcase) */}
-        <SmoothScrollSlider />
 
         {/* 7. Just for you */}
         <JustForYou
