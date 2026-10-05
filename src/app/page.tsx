@@ -11,7 +11,6 @@ import { PromoBanners } from '@/components/PromoBanners';
 import { WeeklyBestSelling } from '@/components/WeeklyBestSelling';
 import { MostSellingProducts } from '@/components/MostSellingProducts';
 import SmoothScrollSlider from '@/components/SmoothScrollSlider';
-import { CTABanner } from '@/components/CTABanner';
 import { JustForYou } from '@/components/JustForYou';
 import { Footer } from '@/components/Footer';
 import { CartDrawer } from '@/components/CartDrawer';
@@ -200,10 +199,7 @@ export default function Home() {
         {/* Originkit Smooth Scroll Slider (Farm Produce Showcase) */}
         <SmoothScrollSlider />
 
-        {/* 7. Call To Action Banner */}
-        <CTABanner />
-
-        {/* 8. Just for you */}
+        {/* 7. Just for you */}
         <JustForYou
           products={filteredProducts}
           cartItems={cartItems}

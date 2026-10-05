@@ -29,11 +29,11 @@ export const PopularCategories: React.FC = () => {
             className={`group flex flex-col items-center justify-between p-4 rounded-3xl bg-gradient-to-b ${cat.bgGradient} border ${cat.borderColor} hover:shadow-lg transition-all duration-200 transform hover:-translate-y-1 text-center min-h-[190px]`}
           >
             {/* Image Container */}
-            <div className="w-24 h-24 mb-3 flex items-center justify-center p-1.5 rounded-2xl bg-white/80 backdrop-blur-xs shadow-xs group-hover:scale-105 transition-transform">
+            <div className="w-full h-24 sm:h-28 mb-3 overflow-hidden rounded-2xl shadow-xs group-hover:scale-105 transition-transform">
               <img
                 src={cat.image}
                 alt={cat.name}
-                className="w-full h-full object-cover rounded-xl"
+                className="w-full h-full object-cover rounded-2xl"
               />
             </div>
 
