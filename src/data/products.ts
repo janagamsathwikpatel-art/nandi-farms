@@ -8,7 +8,7 @@ export const CATEGORIES: Category[] = [
     bgGradient: 'from-blue-50 to-indigo-50/60',
     borderColor: 'border-blue-100',
     textColor: 'text-blue-900',
-    image: 'https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=300&q=80',
+    image: '/fresh-vegetables-category.png',
   },
   {
     id: 'fruits',
