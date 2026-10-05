@@ -10,6 +10,8 @@ interface WeeklyBestSellingProps {
   cartItems: CartItem[];
   onAddToCart: (product: Product) => void;
   onUpdateQuantity: (productId: string, delta: number) => void;
+  onSelectProduct?: (product: Product) => void;
+  onShowAll?: () => void;
 }
 
 export const WeeklyBestSelling: React.FC<WeeklyBestSellingProps> = ({
@@ -17,6 +19,8 @@ export const WeeklyBestSelling: React.FC<WeeklyBestSellingProps> = ({
   cartItems,
   onAddToCart,
   onUpdateQuantity,
+  onSelectProduct,
+  onShowAll,
 }) => {
   const [activeCategory, setActiveCategory] = useState<string>('Fruits');
 
@@ -25,7 +29,6 @@ export const WeeklyBestSelling: React.FC<WeeklyBestSellingProps> = ({
     return item ? item.quantity : 0;
   };
 
-  // Filter products by category or fallback to all bestsellers
   const filteredProducts = products.filter(
     (p) => p.category === activeCategory || p.isBestSeller
   ).slice(0, 5);
@@ -37,7 +40,10 @@ export const WeeklyBestSelling: React.FC<WeeklyBestSellingProps> = ({
         <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight font-sans">
           Weekly Best Selling items
         </h2>
-        <button className="flex items-center space-x-2 bg-gray-900 hover:bg-gray-800 text-white px-4 py-2 rounded-full text-xs font-semibold transition-colors shadow-xs group">
+        <button
+          onClick={onShowAll}
+          className="flex items-center space-x-2 bg-gray-900 hover:bg-gray-800 text-white px-4 py-2 rounded-full text-xs font-semibold transition-colors shadow-xs group cursor-pointer"
+        >
           <span>Show All</span>
           <div className="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center group-hover:translate-x-0.5 transition-transform">
             <ChevronRight className="w-3.5 h-3.5" />
@@ -53,7 +59,7 @@ export const WeeklyBestSelling: React.FC<WeeklyBestSellingProps> = ({
             <button
               key={cat.id}
               onClick={() => setActiveCategory(cat.name)}
-              className={`px-4 py-2 rounded-full text-xs font-semibold transition-all duration-150 whitespace-nowrap shadow-xs ${
+              className={`px-4 py-2 rounded-full text-xs font-semibold transition-all duration-150 whitespace-nowrap shadow-xs cursor-pointer ${
                 isActive
                   ? 'bg-emerald-950 text-white shadow-md'
                   : 'bg-gray-100 hover:bg-gray-200 text-gray-700'
@@ -75,7 +81,10 @@ export const WeeklyBestSelling: React.FC<WeeklyBestSellingProps> = ({
               className="bg-white rounded-3xl p-4 border border-gray-100/90 shadow-xs hover:shadow-lg transition-all duration-200 flex flex-col justify-between items-center text-center group"
             >
               {/* Product Image */}
-              <div className="w-28 h-28 sm:w-32 sm:h-32 mb-3 flex items-center justify-center overflow-hidden rounded-2xl bg-gray-50/50 p-2 group-hover:scale-105 transition-transform">
+              <div
+                onClick={() => onSelectProduct && onSelectProduct(prod)}
+                className="w-28 h-28 sm:w-32 sm:h-32 mb-3 flex items-center justify-center overflow-hidden rounded-2xl bg-gray-50/50 p-2 group-hover:scale-105 transition-transform cursor-pointer"
+              >
                 <img
                   src={prod.image}
                   alt={prod.name}
@@ -84,14 +93,17 @@ export const WeeklyBestSelling: React.FC<WeeklyBestSellingProps> = ({
               </div>
 
               {/* Product Details */}
-              <div className="space-y-1 w-full mb-4">
+              <div
+                onClick={() => onSelectProduct && onSelectProduct(prod)}
+                className="space-y-1 w-full mb-4 cursor-pointer"
+              >
                 <h3 className="font-bold text-sm text-gray-900 line-clamp-1 group-hover:text-emerald-700 transition-colors">
                   {prod.name}
                 </h3>
                 <p className="text-[11px] text-gray-400 font-medium">{prod.farmer}</p>
                 <div className="pt-1">
                   <span className="text-sm font-extrabold text-gray-900">
-                    ${prod.price.toFixed(2)}
+                    ₹{prod.price}
                   </span>
                   <span className="text-[11px] font-normal text-gray-500 ml-1">
                     / {prod.unit}
