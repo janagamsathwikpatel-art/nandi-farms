@@ -44,7 +44,7 @@ export const CATEGORIES: Category[] = [
     bgGradient: 'from-rose-50 to-pink-50/60',
     borderColor: 'border-rose-100',
     textColor: 'text-rose-900',
-    image: '/sweets-category.png',
+    image: '/sweets-category.jpg',
   },
   {
     id: 'pooja-needs',
