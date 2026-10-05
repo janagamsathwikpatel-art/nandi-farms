@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { 
   Search, 
   Heart, 
@@ -8,10 +8,11 @@ import {
   ChevronDown, 
   Headphones, 
   Leaf,
-  Menu,
+  Plus,
   X
 } from 'lucide-react';
-import { CATEGORIES } from '@/data/products';
+import { CATEGORIES, PRODUCTS } from '@/data/products';
+import { Product } from '@/types';
 
 interface HeaderProps {
   cartCount: number;
@@ -19,6 +20,7 @@ interface HeaderProps {
   onOpenCart: () => void;
   searchQuery: string;
   setSearchQuery: (query: string) => void;
+  onAddToCart?: (product: Product) => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -27,49 +29,131 @@ export const Header: React.FC<HeaderProps> = ({
   onOpenCart,
   searchQuery,
   setSearchQuery,
+  onAddToCart,
 }) => {
   const [isCategoriesOpen, setIsCategoriesOpen] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isSearchDropdownOpen, setIsSearchDropdownOpen] = useState(false);
+  const searchRef = useRef<HTMLDivElement>(null);
+
+  // Filter products for instant live search dropdown
+  const searchResults = searchQuery.trim()
+    ? PRODUCTS.filter((p) =>
+        p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        p.category.toLowerCase().includes(searchQuery.toLowerCase())
+      ).slice(0, 5)
+    : [];
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (searchRef.current && !searchRef.current.contains(event.target as Node)) {
+        setIsSearchDropdownOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   return (
     <header className="w-full bg-white sticky top-0 z-40 shadow-xs border-b border-gray-100">
       {/* Top Utility Bar */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex items-center justify-between gap-4">
-        {/* Left: Country Selector (India 🇮🇳 IN) */}
-        <div className="flex items-center space-x-2 text-sm text-gray-700 bg-gray-50/80 px-3 py-1.5 rounded-full border border-gray-200/60 cursor-pointer hover:bg-gray-100 transition-colors">
-          <span className="text-base">🇮🇳</span>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex items-center justify-between gap-3 sm:gap-4">
+        
+        {/* 1st Element: Country Selector (India 🇮🇳 IN) */}
+        <div className="flex items-center space-x-1.5 sm:space-x-2 text-sm text-gray-700 bg-gray-50/80 px-2.5 sm:px-3 py-1.5 rounded-full border border-gray-200/60 cursor-pointer hover:bg-gray-100 transition-colors shrink-0">
+          <span className="text-sm sm:text-base">🇮🇳</span>
           <span className="font-medium text-xs tracking-wide">IN</span>
           <ChevronDown className="w-3.5 h-3.5 text-gray-500" />
         </div>
 
-        {/* Center-Left: Search Bar */}
-        <div className="flex-1 max-w-md relative hidden md:block">
+        {/* 2nd Element: Search Grocery Items Bar (Prominent in 2nd Header Box) */}
+        <div ref={searchRef} className="flex-1 max-w-xs sm:max-w-md md:max-w-lg relative">
           <div className="relative flex items-center">
-            <Search className="w-4 h-4 text-gray-400 absolute left-4 pointer-events-none" />
+            <Search className="w-4 h-4 text-gray-400 absolute left-3.5 sm:left-4 pointer-events-none" />
             <input
               type="text"
               value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
+              onChange={(e) => {
+                setSearchQuery(e.target.value);
+                setIsSearchDropdownOpen(true);
+              }}
+              onFocus={() => setIsSearchDropdownOpen(true)}
               placeholder="Search Grocery Items..."
-              className="w-full pl-10 pr-4 py-2 bg-gray-50 border border-gray-200/80 rounded-full text-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-600 focus:bg-white transition-all shadow-inner"
+              className="w-full pl-9 sm:pl-10 pr-8 sm:pr-10 py-2 bg-gray-50 border border-gray-200/80 rounded-full text-xs sm:text-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-600 focus:bg-white transition-all shadow-inner"
             />
+            {searchQuery && (
+              <button
+                onClick={() => setSearchQuery('')}
+                className="absolute right-3 text-gray-400 hover:text-gray-600 p-0.5"
+              >
+                <X className="w-3.5 h-3.5" />
+              </button>
+            )}
           </div>
+
+          {/* Instant Live Search Results Dropdown */}
+          {isSearchDropdownOpen && searchQuery.trim() !== '' && (
+            <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-2xl shadow-2xl border border-gray-100 py-2 z-50 animate-in fade-in slide-in-from-top-2 duration-150 max-h-80 overflow-y-auto">
+              <div className="px-4 py-1.5 text-[11px] font-bold text-gray-400 uppercase tracking-wider border-b border-gray-100">
+                Matching Grocery Items ({searchResults.length})
+              </div>
+              {searchResults.length === 0 ? (
+                <div className="px-4 py-4 text-xs text-gray-500 text-center">
+                  No grocery items found for "{searchQuery}"
+                </div>
+              ) : (
+                searchResults.map((prod) => (
+                  <div
+                    key={prod.id}
+                    className="flex items-center justify-between px-4 py-2.5 hover:bg-emerald-50/80 transition-colors border-b border-gray-50 last:border-0"
+                  >
+                    <div className="flex items-center space-x-3 min-w-0">
+                      <img
+                        src={prod.image}
+                        alt={prod.name}
+                        className="w-10 h-10 object-cover rounded-lg border border-gray-200"
+                      />
+                      <div className="min-w-0">
+                        <h4 className="font-bold text-xs text-gray-900 truncate">
+                          {prod.name}
+                        </h4>
+                        <p className="text-[11px] text-gray-500 font-medium">
+                          ₹{prod.price} / {prod.unit}
+                        </p>
+                      </div>
+                    </div>
+                    {onAddToCart && (
+                      <button
+                        onClick={() => {
+                          onAddToCart(prod);
+                          setIsSearchDropdownOpen(false);
+                        }}
+                        className="bg-emerald-700 hover:bg-emerald-800 text-white text-[11px] font-bold py-1 px-2.5 rounded-full flex items-center space-x-1 shadow-xs transition-colors shrink-0"
+                      >
+                        <Plus className="w-3 h-3" />
+                        <span>Add</span>
+                      </button>
+                    )}
+                  </div>
+                ))
+              )}
+            </div>
+          )}
         </div>
 
-        {/* Center: Brand Logo */}
-        <div className="flex items-center justify-center">
-          <a href="#" className="flex items-center space-x-2 group">
-            <div className="w-9 h-9 rounded-full bg-emerald-600 flex items-center justify-center text-white font-bold text-lg shadow-md group-hover:scale-105 transition-transform">
-              <Leaf className="w-5 h-5 fill-emerald-100 text-emerald-600" />
+        {/* 3rd Element: Brand Logo (NandiFarms) */}
+        <div className="flex items-center justify-center shrink-0">
+          <a href="#" className="flex items-center space-x-1.5 sm:space-x-2 group">
+            <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-emerald-600 flex items-center justify-center text-white font-bold text-lg shadow-md group-hover:scale-105 transition-transform">
+              <Leaf className="w-4 h-4 sm:w-5 sm:h-5 fill-emerald-100 text-emerald-600" />
             </div>
-            <span className="text-2xl font-extrabold tracking-tight text-gray-900 font-serif">
+            <span className="text-xl sm:text-2xl font-extrabold tracking-tight text-gray-900 font-serif">
               Nandi<span className="text-emerald-600 font-sans font-bold">Farms</span>
             </span>
           </a>
         </div>
 
-        {/* Right Utility Buttons (Login/Signup removed as requested) */}
-        <div className="flex items-center space-x-3 sm:space-x-4">
+        {/* 4th Element: Right Utility Buttons */}
+        <div className="flex items-center space-x-2 sm:space-x-4 shrink-0">
           {/* Loved / Wishlist */}
           <button 
             className="flex items-center space-x-1.5 text-xs font-semibold text-gray-700 hover:text-emerald-700 transition-colors py-1.5 px-2 rounded-full hover:bg-gray-50"
@@ -89,21 +173,13 @@ export const Header: React.FC<HeaderProps> = ({
           {/* Cart Drawer Trigger */}
           <button
             onClick={onOpenCart}
-            className="flex items-center space-x-2 bg-emerald-50 hover:bg-emerald-100 text-emerald-900 px-3.5 py-1.5 rounded-full border border-emerald-200/70 transition-all font-semibold text-xs shadow-xs hover:shadow-sm"
+            className="flex items-center space-x-1.5 sm:space-x-2 bg-emerald-50 hover:bg-emerald-100 text-emerald-900 px-3 sm:px-3.5 py-1.5 rounded-full border border-emerald-200/70 transition-all font-semibold text-xs shadow-xs hover:shadow-sm"
           >
             <ShoppingBag className="w-4 h-4 text-emerald-700" />
-            <span className="tracking-wider uppercase text-[11px] font-bold">CART</span>
+            <span className="tracking-wider uppercase text-[11px] font-bold hidden xs:inline">CART</span>
             <span className="bg-emerald-800 text-white w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold">
               {cartCount}
             </span>
-          </button>
-
-          {/* Mobile menu toggle */}
-          <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-2 text-gray-700 hover:text-emerald-600"
-          >
-            {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
       </div>

@@ -84,6 +84,7 @@ export default function Home() {
         onOpenCart={() => setIsCartOpen(true)}
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
+        onAddToCart={handleAddToCart}
       />
 
       {/* Search results banner if search active */}
