@@ -113,85 +113,47 @@ export default function Home() {
         {/* FULL LENGTH EDGE-TO-EDGE 3D ROTATING BACKGROUND CANVAS (Popular Categories to Just For You) */}
         <div className="relative bg-[#3d1e31] text-white py-8 sm:py-12 w-full overflow-hidden border-t border-[#522943]">
           
-          {/* 3D Background Canvas Animations (Text Rings, Watermarks, Floating Icons) */}
+          {/* 3D Background Canvas Animations (One Giant Center Circle with Nandi Farms Title & Custom Text Ring) */}
           <div className="absolute inset-0 pointer-events-none select-none overflow-hidden z-0 opacity-40">
-            {/* Top Center 3D Rotating Text Ring (Behind Popular Categories) */}
-            <div className="absolute top-[3%] left-1/2 -translate-x-1/2 w-[480px] h-[480px] md:w-[620px] md:h-[620px] rounded-full flex items-center justify-center animate-[spin_35s_linear_infinite]">
+            
+            {/* ONE GIANT MIDDLE CIRCLE (Spanning middle of Popular Categories to Just For You) */}
+            <div className="absolute top-[28%] left-1/2 -translate-x-1/2 w-[650px] h-[650px] md:w-[850px] md:h-[850px] lg:w-[980px] lg:h-[980px] rounded-full flex items-center justify-center animate-[spin_40s_linear_infinite]">
               <svg className="w-full h-full transform -rotate-90 overflow-visible" viewBox="0 0 500 500">
                 <defs>
                   <path
-                    id="ringTop"
+                    id="giantRing"
                     d="M 250, 250 m -210, 0 a 210,210 0 1,1 420,0 a 210,210 0 1,1 -420,0"
                   />
                 </defs>
-                <text className="fill-[#fcd34d] text-[16px] font-black tracking-[0.25em] uppercase">
-                  <textPath href="#ringTop" startOffset="0%">
-                    • 100% NATURAL INGREDIENTS • NO ARTIFICIAL PRESERVATIVES • DIRECT FROM FARMERS • ZERO CHEMICALS 
+                <text className="fill-[#fcd34d] text-[15px] font-black tracking-[0.22em] uppercase">
+                  <textPath href="#giantRing" startOffset="0%">
+                    • FRESH VEGETABLES & ORGANIC FRUITS • DAIRY PRODUCTS • 100% QUALITY PRODUCTS • FRESH VEGETABLES & ORGANIC FRUITS • DAIRY PRODUCTS • 100% QUALITY PRODUCTS 
                   </textPath>
                 </text>
               </svg>
 
-              {/* Orbiting Icons */}
-              <span className="absolute -top-2 text-3xl">🍋</span>
-              <span className="absolute top-[15%] right-[8%] text-3xl">🌶️</span>
-              <span className="absolute top-1/2 -right-2 text-3xl">🍍</span>
-              <span className="absolute bottom-[15%] right-[8%] text-3xl">🍅</span>
-              <span className="absolute -bottom-2 text-3xl">🌿</span>
-              <span className="absolute bottom-[15%] left-[8%] text-3xl">🍓</span>
-              <span className="absolute top-1/2 -left-2 text-3xl">🥒</span>
-              <span className="absolute top-[15%] left-[8%] text-3xl">🍊</span>
+              {/* Orbiting Farm Icons Along Circle Circumference */}
+              <span className="absolute -top-3 text-4xl">🍋</span>
+              <span className="absolute top-[14%] right-[7%] text-4xl">🌶️</span>
+              <span className="absolute top-1/2 -right-3 text-4xl">🍍</span>
+              <span className="absolute bottom-[14%] right-[7%] text-4xl">🍅</span>
+              <span className="absolute -bottom-3 text-4xl">🌿</span>
+              <span className="absolute bottom-[14%] left-[7%] text-4xl">🍓</span>
+              <span className="absolute top-1/2 -left-3 text-4xl">🥒</span>
+              <span className="absolute top-[14%] left-[7%] text-4xl">🍊</span>
             </div>
 
-            {/* Middle Section 3D Watermark Text (REAL INGREDIENTS ONLY) */}
-            <div className="absolute top-[35%] left-1/2 -translate-x-1/2 text-center opacity-30">
-              <h2 className="text-6xl sm:text-8xl font-black text-white uppercase tracking-tighter leading-none">
-                REAL<br />
-                <span className="text-[#fcd34d]">INGREDIENTS</span><br />
-                ONLY
+            {/* Middle Center Title inside the Giant Circle: NANDI FARMS */}
+            <div className="absolute top-[38%] left-1/2 -translate-x-1/2 text-center opacity-35">
+              <h2 className="text-6xl sm:text-8xl md:text-9xl font-black text-white uppercase tracking-tighter leading-none font-sans drop-shadow-2xl">
+                NANDI<br />
+                <span className="text-[#8ee435]">FARMS</span>
               </h2>
+              <p className="mt-2 text-xs sm:text-sm font-extrabold text-[#fcd34d] uppercase tracking-[0.3em]">
+                Fresh Vegetables & Organic Fruits • 100% Quality
+              </p>
             </div>
 
-            {/* Mid-Lower 3D Rotating Text Ring (Behind Weekly Best Selling) */}
-            <div className="absolute top-[52%] left-1/2 -translate-x-1/2 w-[520px] h-[520px] md:w-[680px] md:h-[680px] rounded-full flex items-center justify-center animate-[spin_42s_linear_infinite_reverse]">
-              <svg className="w-full h-full transform -rotate-90 overflow-visible" viewBox="0 0 500 500">
-                <defs>
-                  <path
-                    id="ringMid"
-                    d="M 250, 250 m -210, 0 a 210,210 0 1,1 420,0 a 210,210 0 1,1 -420,0"
-                  />
-                </defs>
-                <text className="fill-[#fcd34d] text-[16px] font-black tracking-[0.25em] uppercase">
-                  <textPath href="#ringMid" startOffset="0%">
-                    • FARM FRESH PRODUCE • 100% ORGANIC & PURE • SAME-DAY DELIVERY • NANDI FARMS 
-                  </textPath>
-                </text>
-              </svg>
-              <span className="absolute -top-2 text-3xl">🌿</span>
-              <span className="absolute top-1/2 -right-2 text-3xl">🍅</span>
-              <span className="absolute -bottom-2 text-3xl">🍋</span>
-              <span className="absolute top-1/2 -left-2 text-3xl">🌶️</span>
-            </div>
-
-            {/* Bottom 3D Rotating Text Ring (Behind Just For You) */}
-            <div className="absolute bottom-[3%] left-1/2 -translate-x-1/2 w-[480px] h-[480px] md:w-[600px] md:h-[600px] rounded-full flex items-center justify-center animate-[spin_38s_linear_infinite]">
-              <svg className="w-full h-full transform -rotate-90 overflow-visible" viewBox="0 0 500 500">
-                <defs>
-                  <path
-                    id="ringBottom"
-                    d="M 250, 250 m -210, 0 a 210,210 0 1,1 420,0 a 210,210 0 1,1 -420,0"
-                  />
-                </defs>
-                <text className="fill-[#fcd34d] text-[16px] font-black tracking-[0.25em] uppercase">
-                  <textPath href="#ringBottom" startOffset="0%">
-                    • 100% NATURAL INGREDIENTS • NO ARTIFICIAL PRESERVATIVES • DIRECT FROM FARMERS 
-                  </textPath>
-                </text>
-              </svg>
-              <span className="absolute -top-2 text-3xl">🍓</span>
-              <span className="absolute top-1/2 -right-2 text-3xl">🍍</span>
-              <span className="absolute -bottom-2 text-3xl">🥒</span>
-              <span className="absolute top-1/2 -left-2 text-3xl">🍊</span>
-            </div>
           </div>
 
           {/* Foreground Main Sections directly on Edge-to-Edge 3D Plum Canvas */}
