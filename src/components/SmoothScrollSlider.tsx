@@ -130,9 +130,9 @@ function __OriginkitBase_SmoothScrollSlider({
             category: "Aromatic Grains"
         },
         {
-            image: { alt: "Daily Products", src: "https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=900&q=80" },
+            image: { alt: "Farm Fresh Eggs", src: "/eggs-category.png" },
             offsetY: 0,
-            label: "Daily Products",
+            label: "Farm Fresh Eggs",
             category: "Dairy & Essentials"
         },
         {
@@ -517,11 +517,11 @@ const __originkitPresetProps = {
     },
     {
       "image": {
-        "alt": "Daily Products",
-        "src": "https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=900&q=80"
+        "alt": "Farm Fresh Eggs",
+        "src": "/eggs-category.png"
       },
       "offsetY": 0,
-      "label": "Daily Products",
+      "label": "Farm Fresh Eggs",
       "category": "Dairy & Essentials"
     },
     {
