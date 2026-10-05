@@ -64,6 +64,15 @@ export const CATEGORIES: Category[] = [
     textColor: 'text-orange-900',
     image: '/karam-podulu.png',
   },
+  {
+    id: 'ravva',
+    name: 'Ravva',
+    count: 10,
+    bgGradient: 'from-amber-50 to-yellow-50/60',
+    borderColor: 'border-amber-100',
+    textColor: 'text-amber-900',
+    image: '/ravva.png',
+  },
 ];
 
 export const PRODUCTS: Product[] = [
@@ -159,7 +168,7 @@ export const PRODUCTS: Product[] = [
     isPopular: true,
   },
 
-  // Sweets, Pooja & Karam Podulu Category Items
+  // Sweets, Pooja, Karam Podulu & Ravva Category Items
   {
     id: 'prod-20',
     name: 'Assorted Gulab Jamun Box',
@@ -198,6 +207,16 @@ export const PRODUCTS: Product[] = [
     price: 120,
     unit: 'per pack (250g)',
     image: '/karam-podulu.png',
+    isBestSeller: true,
+  },
+  {
+    id: 'prod-24',
+    name: 'Premium Bombay Ravva / Sooji',
+    category: 'Ravva',
+    farmer: 'Local Farmers',
+    price: 65,
+    unit: 'per kg',
+    image: '/ravva.png',
     isBestSeller: true,
   },
 
