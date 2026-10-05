@@ -45,7 +45,7 @@ export const PopularCategories: React.FC<PopularCategoriesProps> = ({
   };
 
   return (
-    <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 relative">
+    <section className="w-full max-w-[100vw] px-4 sm:px-8 lg:px-12 py-8 sm:py-12 relative">
       {/* Section Header with Left & Right Arrow Buttons */}
       <div className="flex items-center justify-between mb-6 sm:mb-8">
         <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight font-sans">
@@ -104,7 +104,7 @@ export const PopularCategories: React.FC<PopularCategoriesProps> = ({
             <button
               key={cat.id}
               onClick={() => handleCategoryClick(cat.name)}
-              className={`shrink-0 w-[140px] sm:w-[155px] group flex flex-col items-center justify-between p-4 rounded-3xl bg-gradient-to-b ${cat.bgGradient} border ${cat.borderColor} hover:shadow-lg transition-all duration-200 transform hover:-translate-y-1 text-center min-h-[195px] cursor-pointer`}
+              className={`shrink-0 w-[140px] sm:w-[160px] lg:w-[175px] group flex flex-col items-center justify-between p-4 rounded-3xl bg-gradient-to-b ${cat.bgGradient} border ${cat.borderColor} hover:shadow-lg transition-all duration-200 transform hover:-translate-y-1 text-center min-h-[195px] cursor-pointer`}
             >
               {/* Image Container */}
               <div className="w-full h-24 sm:h-28 mb-3 overflow-hidden rounded-2xl shadow-xs group-hover:scale-105 transition-transform">
