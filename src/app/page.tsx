@@ -178,39 +178,44 @@ export default function Home() {
         </div>
       )}
 
-      {/* WARM ORGANIC BACKGROUND LAYER (Exact match to media_1791211459226.png) */}
+      {/* WARM ORGANIC BACKGROUND LAYER WITH ENLARGED FLOATING LEAVES & HIGHER DENSITY */}
       <div className="absolute inset-0 pointer-events-none select-none overflow-hidden z-0">
         {/* Soft Organic Warm Cream Gradient Overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-[#faf9f4] via-[#f7f6ee] to-[#fbfaf5]"></div>
 
-        {/* Scattered Soft Floating Organic Leaves with Depth-of-Field Blur */}
-        <div className="absolute top-[6%] left-[3%] text-4xl opacity-50 blur-[1px] animate-bounce-slow transform -rotate-12">🍃</div>
-        <div className="absolute top-[14%] right-[4%] text-5xl opacity-40 blur-[1.5px] animate-pulse-slow transform rotate-45">🌿</div>
-        <div className="absolute top-[22%] left-[8%] text-3xl opacity-60 animate-bounce-slow transform rotate-12">🍃</div>
-        <div className="absolute top-[32%] right-[7%] text-4xl opacity-50 blur-[1px] animate-pulse-slow transform -rotate-45">🌿</div>
-        <div className="absolute top-[42%] left-[4%] text-5xl opacity-45 blur-[2px] animate-bounce-slow transform rotate-30">🍃</div>
-        <div className="absolute top-[55%] right-[5%] text-4xl opacity-60 animate-pulse-slow transform -rotate-15">🌿</div>
-        <div className="absolute top-[68%] left-[6%] text-3xl opacity-50 blur-[1px] animate-bounce-slow transform rotate-45">🍃</div>
-        <div className="absolute top-[80%] right-[4%] text-5xl opacity-40 blur-[1.5px] animate-pulse-slow transform -rotate-30">🌿</div>
-        <div className="absolute top-[92%] left-[5%] text-4xl opacity-50 animate-bounce-slow transform rotate-12">🍃</div>
+        {/* High Density & Extra Large Floating Organic Leaves with Soft Blur */}
+        <div className="absolute top-[3%] left-[1%] text-7xl sm:text-8xl lg:text-9xl opacity-55 blur-[1px] animate-bounce-slow transform -rotate-12">🍃</div>
+        <div className="absolute top-[8%] right-[2%] text-8xl sm:text-9xl lg:text-[140px] opacity-45 blur-[1.5px] animate-pulse-slow transform rotate-45">🌿</div>
+        <div className="absolute top-[14%] left-[6%] text-6xl sm:text-7xl opacity-60 animate-bounce-slow transform rotate-25">🌱</div>
+        <div className="absolute top-[20%] right-[5%] text-7xl sm:text-8xl lg:text-9xl opacity-50 blur-[1px] animate-pulse-slow transform -rotate-45">🍃</div>
+        <div className="absolute top-[26%] left-[2%] text-8xl sm:text-9xl opacity-55 blur-[2px] animate-bounce-slow transform rotate-30">🌿</div>
+        <div className="absolute top-[33%] right-[3%] text-6xl sm:text-7xl opacity-65 animate-pulse-slow transform -rotate-15">🍃</div>
+        <div className="absolute top-[40%] left-[5%] text-7xl sm:text-8xl opacity-50 blur-[1px] animate-bounce-slow transform rotate-45">🌱</div>
+        <div className="absolute top-[48%] right-[6%] text-8xl sm:text-9xl lg:text-[130px] opacity-45 blur-[1.5px] animate-pulse-slow transform -rotate-30">🌿</div>
+        <div className="absolute top-[56%] left-[3%] text-7xl sm:text-8xl opacity-60 animate-bounce-slow transform rotate-12">🍃</div>
+        <div className="absolute top-[64%] right-[4%] text-8xl sm:text-9xl opacity-50 blur-[1px] animate-pulse-slow transform -rotate-45">🌱</div>
+        <div className="absolute top-[72%] left-[6%] text-6xl sm:text-7xl opacity-65 animate-bounce-slow transform rotate-30">🌿</div>
+        <div className="absolute top-[81%] right-[2%] text-8xl sm:text-9xl lg:text-[130px] opacity-50 blur-[2px] animate-pulse-slow transform -rotate-20">🍃</div>
+        <div className="absolute top-[89%] left-[4%] text-7xl sm:text-8xl opacity-55 animate-bounce-slow transform rotate-15">🌿</div>
+        <div className="absolute top-[96%] right-[5%] text-6xl sm:text-7xl opacity-60 animate-pulse-slow transform -rotate-10">🌱</div>
 
-        {/* Left Bottom Botanical Foliage Accent SVG */}
-        <div className="absolute bottom-0 left-0 w-64 h-64 opacity-25 pointer-events-none transform -translate-x-10 translate-y-10">
+        {/* Left Bottom Botanical Foliage Accent SVG (Enlarged) */}
+        <div className="absolute bottom-0 left-0 w-80 h-80 sm:w-96 sm:h-96 lg:w-[480px] lg:h-[480px] opacity-35 pointer-events-none transform -translate-x-12 translate-y-12">
           <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full text-emerald-800">
-            <path d="M20 180 C50 120, 90 80, 150 40 M40 160 C70 140, 80 110, 70 80 M90 120 C120 100, 130 70, 110 50" stroke="currentColor" strokeWidth="4" strokeLinecap="round" />
-            <circle cx="150" cy="40" r="10" fill="currentColor" opacity="0.6" />
-            <circle cx="70" cy="80" r="12" fill="currentColor" opacity="0.5" />
-            <circle cx="110" cy="50" r="14" fill="currentColor" opacity="0.5" />
+            <path d="M20 180 C50 120, 90 80, 150 40 M40 160 C70 140, 80 110, 70 80 M90 120 C120 100, 130 70, 110 50" stroke="currentColor" strokeWidth="5" strokeLinecap="round" />
+            <circle cx="150" cy="40" r="12" fill="currentColor" opacity="0.7" />
+            <circle cx="70" cy="80" r="14" fill="currentColor" opacity="0.6" />
+            <circle cx="110" cy="50" r="16" fill="currentColor" opacity="0.6" />
           </svg>
         </div>
 
-        {/* Right Bottom Botanical Foliage Accent SVG */}
-        <div className="absolute bottom-0 right-0 w-64 h-64 opacity-25 pointer-events-none transform translate-x-10 translate-y-10">
+        {/* Right Bottom Botanical Foliage Accent SVG (Enlarged) */}
+        <div className="absolute bottom-0 right-0 w-80 h-80 sm:w-96 sm:h-96 lg:w-[480px] lg:h-[480px] opacity-35 pointer-events-none transform translate-x-12 translate-y-12">
           <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full text-emerald-800">
-            <path d="M180 180 C150 120, 110 80, 50 40 M160 160 C130 140, 120 110, 130 80 M110 120 C80 100, 70 70, 90 50" stroke="currentColor" strokeWidth="4" strokeLinecap="round" />
-            <circle cx="50" cy="40" r="10" fill="currentColor" opacity="0.6" />
-            <circle cx="130" cy="80" r="12" fill="currentColor" opacity="0.5" />
-            <circle cx="90" cy="50" r="14" fill="currentColor" opacity="0.5" />
+            <path d="M180 180 C150 120, 110 80, 50 40 M160 160 C130 140, 120 110, 130 80 M110 120 C80 100, 70 70, 90 50" stroke="currentColor" strokeWidth="5" strokeLinecap="round" />
+            <circle cx="50" cy="40" r="12" fill="currentColor" opacity="0.7" />
+            <circle cx="130" cy="80" r="14" fill="currentColor" opacity="0.6" />
+            <circle cx="90" cy="50" r="16" fill="currentColor" opacity="0.6" />
           </svg>
         </div>
       </div>
