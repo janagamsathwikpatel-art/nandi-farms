@@ -46,6 +46,15 @@ export const CATEGORIES: Category[] = [
     textColor: 'text-rose-900',
     image: 'https://images.unsplash.com/photo-1599488615731-7e5c2823ff28?auto=format&fit=crop&w=300&q=80',
   },
+  {
+    id: 'pooja-needs',
+    name: 'Pooja Needs',
+    count: 12,
+    bgGradient: 'from-amber-50 to-orange-50/60',
+    borderColor: 'border-amber-100',
+    textColor: 'text-amber-900',
+    image: '/pooja-needs.png',
+  },
 ];
 
 export const PRODUCTS: Product[] = [
@@ -141,7 +150,7 @@ export const PRODUCTS: Product[] = [
     isPopular: true,
   },
 
-  // Sweets Category Items
+  // Sweets & Pooja Category Items
   {
     id: 'prod-20',
     name: 'Assorted Gulab Jamun Box',
@@ -160,6 +169,16 @@ export const PRODUCTS: Product[] = [
     price: 220,
     unit: 'per box (500g)',
     image: 'https://images.unsplash.com/photo-1599488615731-7e5c2823ff28?auto=format&fit=crop&w=400&q=80',
+    isBestSeller: true,
+  },
+  {
+    id: 'prod-22',
+    name: 'Complete Pooja Essentials Kit',
+    category: 'Pooja Needs',
+    farmer: 'Local Vendors',
+    price: 150,
+    unit: 'per pack',
+    image: '/pooja-needs.png',
     isBestSeller: true,
   },
 
