@@ -193,11 +193,11 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Foreground Main Sections (Popular Categories down to Just For You) */}
-          <div className="relative z-10 space-y-6 sm:space-y-8">
+          {/* Foreground Main Sections directly on 3D Plum Canvas */}
+          <div className="relative z-10 space-y-8 sm:space-y-12">
             
             {/* Header Badge inside Canvas */}
-            <div className="flex justify-center pt-2 pb-4">
+            <div className="flex justify-center pt-2 pb-2">
               <div className="inline-flex items-center space-x-2 bg-[#fcd34d]/20 border border-[#fcd34d]/40 px-4 py-1.5 rounded-full text-[#fcd34d] text-xs font-black uppercase tracking-widest shadow-lg backdrop-blur-md">
                 <Sparkles className="w-4 h-4 text-[#fcd34d] animate-pulse" />
                 <span>Barcoop Bevy 3D Canvas • Real Ingredients Only</span>
@@ -205,59 +205,45 @@ export default function Home() {
             </div>
 
             {/* 2. Popular Categories Section */}
-            <div className="bg-white/95 backdrop-blur-md rounded-3xl p-2 sm:p-4 mx-3 sm:mx-6 shadow-xl border border-white/20 text-gray-900">
-              <PopularCategories />
-            </div>
+            <PopularCategories />
 
             {/* 3. Today's Fresh Picks */}
-            <div className="bg-white/95 backdrop-blur-md rounded-3xl p-2 sm:p-4 mx-3 sm:mx-6 shadow-xl border border-white/20 text-gray-900">
-              <TodaysFreshPicks
-                products={filteredProducts}
-                cartItems={cartItems}
-                onAddToCart={handleAddToCart}
-                onUpdateQuantity={handleUpdateQuantity}
-              />
-            </div>
+            <TodaysFreshPicks
+              products={filteredProducts}
+              cartItems={cartItems}
+              onAddToCart={handleAddToCart}
+              onUpdateQuantity={handleUpdateQuantity}
+            />
 
             {/* 4. Promo Banners Row */}
-            <div className="mx-3 sm:mx-6">
-              <PromoBanners />
-            </div>
+            <PromoBanners />
 
             {/* 5. Weekly Best Selling items */}
-            <div className="bg-white/95 backdrop-blur-md rounded-3xl p-2 sm:p-4 mx-3 sm:mx-6 shadow-xl border border-white/20 text-gray-900">
-              <WeeklyBestSelling
-                products={filteredProducts}
-                cartItems={cartItems}
-                onAddToCart={handleAddToCart}
-                onUpdateQuantity={handleUpdateQuantity}
-              />
-            </div>
+            <WeeklyBestSelling
+              products={filteredProducts}
+              cartItems={cartItems}
+              onAddToCart={handleAddToCart}
+              onUpdateQuantity={handleUpdateQuantity}
+            />
 
             {/* 6. Most Selling Products */}
-            <div className="bg-white/95 backdrop-blur-md rounded-3xl p-2 sm:p-4 mx-3 sm:mx-6 shadow-xl border border-white/20 text-gray-900">
-              <MostSellingProducts
-                products={filteredProducts}
-                cartItems={cartItems}
-                onAddToCart={handleAddToCart}
-                onUpdateQuantity={handleUpdateQuantity}
-              />
-            </div>
+            <MostSellingProducts
+              products={filteredProducts}
+              cartItems={cartItems}
+              onAddToCart={handleAddToCart}
+              onUpdateQuantity={handleUpdateQuantity}
+            />
 
             {/* 7. Call To Action Banner */}
-            <div className="mx-3 sm:mx-6">
-              <CTABanner />
-            </div>
+            <CTABanner />
 
             {/* 8. Just for you */}
-            <div className="bg-white/95 backdrop-blur-md rounded-3xl p-2 sm:p-4 mx-3 sm:mx-6 shadow-xl border border-white/20 text-gray-900 pb-6">
-              <JustForYou
-                products={filteredProducts}
-                cartItems={cartItems}
-                onAddToCart={handleAddToCart}
-                onUpdateQuantity={handleUpdateQuantity}
-              />
-            </div>
+            <JustForYou
+              products={filteredProducts}
+              cartItems={cartItems}
+              onAddToCart={handleAddToCart}
+              onUpdateQuantity={handleUpdateQuantity}
+            />
           </div>
         </div>
       </main>

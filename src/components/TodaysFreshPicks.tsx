@@ -41,7 +41,7 @@ export const TodaysFreshPicks: React.FC<TodaysFreshPicksProps> = ({
 
       {/* Section Header */}
       <div className="flex items-center justify-between mb-6 sm:mb-8">
-        <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight font-sans">
+        <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight font-sans drop-shadow-md">
           Today's Fresh Picks
         </h2>
         <button className="flex items-center space-x-2 bg-gray-900 hover:bg-gray-800 text-white px-4 py-2 rounded-full text-xs font-semibold transition-colors shadow-xs group">
