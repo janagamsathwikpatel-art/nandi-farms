@@ -31,15 +31,15 @@ export const TodaysFreshPicks: React.FC<TodaysFreshPicksProps> = ({
   };
 
   return (
-    <section id="todays-picks" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 relative scroll-mt-20">
+    <section id="todays-picks" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-1 sm:pt-2 pb-8 sm:pb-10 relative scroll-mt-20">
       {/* Top Scroll Back Up Icon */}
-      <div className="flex justify-center -mt-6 mb-4">
+      <div className="flex justify-center mb-2">
         <button
           onClick={scrollToTop}
-          className="w-9 h-9 rounded-full bg-gray-100 hover:bg-emerald-100 text-gray-600 hover:text-emerald-800 flex items-center justify-center transition-colors border border-gray-200/80 shadow-xs cursor-pointer"
+          className="w-7 h-7 rounded-full bg-gray-100 hover:bg-emerald-100 text-gray-500 hover:text-emerald-800 flex items-center justify-center transition-colors border border-gray-200/80 shadow-2xs cursor-pointer"
           title="Back to Top"
         >
-          <ChevronUp className="w-5 h-5" />
+          <ChevronUp className="w-4 h-4" />
         </button>
       </div>
 
