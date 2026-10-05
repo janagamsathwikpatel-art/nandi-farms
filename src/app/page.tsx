@@ -235,9 +235,11 @@ export default function Home() {
         <TodaysFreshPicks
           products={filteredProducts}
           cartItems={cartItems}
+          lovedItems={lovedItems}
           onAddToCart={handleAddToCart}
           onUpdateQuantity={handleUpdateQuantity}
           onSelectProduct={(prod) => setSelectedProduct(prod)}
+          onToggleLoved={handleToggleLoved}
           onShowAll={handleShowAllProducts}
         />
 

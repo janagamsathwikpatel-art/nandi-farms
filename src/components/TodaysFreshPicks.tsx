@@ -7,18 +7,22 @@ import { Product, CartItem } from '@/types';
 interface TodaysFreshPicksProps {
   products: Product[];
   cartItems: CartItem[];
+  lovedItems?: string[];
   onAddToCart: (product: Product) => void;
   onUpdateQuantity: (productId: string, delta: number) => void;
   onSelectProduct?: (product: Product) => void;
+  onToggleLoved?: (productId: string) => void;
   onShowAll?: () => void;
 }
 
 export const TodaysFreshPicks: React.FC<TodaysFreshPicksProps> = ({
   products,
   cartItems,
+  lovedItems = [],
   onAddToCart,
   onUpdateQuantity,
   onSelectProduct,
+  onToggleLoved,
   onShowAll,
 }) => {
   // Layout variant state: 'modern-quick-add' | 'spotlight-carousel' | 'compact-rows' | 'glassmorphic-premium'
@@ -117,43 +121,51 @@ export const TodaysFreshPicks: React.FC<TodaysFreshPicksProps> = ({
         </div>
       </div>
 
-      {/* LAYOUT 1: Modern Quick-Add Grocery Cards (Blinkit / Instamart Style) */}
+      {/* LAYOUT 1: Modern Quick-Add Grocery Cards (Clean Floating Cards without Heavy Grid Boxes) */}
       {layoutMode === 'modern-quick-add' && (
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-5 animate-in fade-in duration-200">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-6 animate-in fade-in duration-200">
           {activeProducts.map((prod, idx) => {
             const qty = getProductQuantity(prod.id);
+            const isLoved = lovedItems.includes(prod.id);
+
             return (
               <div
                 key={prod.id}
-                className="bg-white rounded-3xl p-3.5 border border-emerald-100/80 hover:border-emerald-500/40 shadow-xs hover:shadow-xl transition-all duration-300 flex flex-col justify-between group relative overflow-hidden"
+                className="flex flex-col justify-between group relative transition-all duration-300 hover:-translate-y-1"
               >
-                {/* Top Badges: Left Discount Badge, Right Express ETA */}
-                <div className="flex items-center justify-between absolute top-3 left-3 right-3 z-10 pointer-events-none">
-                  <span className="bg-emerald-100 text-emerald-900 text-[10px] font-extrabold px-2.5 py-0.5 rounded-full border border-emerald-200/80 shadow-2xs">
-                    {idx % 2 === 0 ? '15% OFF' : 'FRESH'}
-                  </span>
-                  <span className="bg-amber-100 text-amber-900 text-[10px] font-bold px-2 py-0.5 rounded-full border border-amber-200/80 flex items-center space-x-1 shadow-2xs">
-                    <Clock className="w-2.5 h-2.5 text-amber-700" />
-                    <span>10 mins</span>
-                  </span>
-                </div>
-
-                {/* Product Image */}
+                {/* Product Image Container with Floating Heart Love Button & Discount Badge */}
                 <div
                   onClick={() => onSelectProduct && onSelectProduct(prod)}
-                  className="w-full h-32 sm:h-36 mb-3 flex items-center justify-center overflow-hidden rounded-2xl bg-gray-50/80 p-2 group-hover:scale-105 transition-transform duration-300 cursor-pointer border border-gray-100"
+                  className="w-full h-36 sm:h-44 mb-3 flex items-center justify-center overflow-hidden rounded-2xl bg-white p-2.5 shadow-xs hover:shadow-xl transition-all duration-300 cursor-pointer border border-gray-200/80 relative"
                 >
+                  {/* Discount Badge */}
+                  <div className="absolute top-2.5 left-2.5 z-10 bg-emerald-100 text-emerald-900 text-[10px] font-extrabold px-2.5 py-0.5 rounded-full border border-emerald-200/80 shadow-2xs">
+                    {idx % 2 === 0 ? '15% OFF' : 'FRESH'}
+                  </div>
+
+                  {/* Loved (Wishlist Heart Button) */}
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      if (onToggleLoved) onToggleLoved(prod.id);
+                    }}
+                    className="absolute top-2.5 right-2.5 z-10 w-8 h-8 rounded-full bg-white/95 backdrop-blur-md flex items-center justify-center transition-all hover:scale-110 cursor-pointer shadow-xs border border-gray-200/60"
+                    title={isLoved ? "Remove from Loved Wishlist" : "Add to Loved Wishlist"}
+                  >
+                    <Heart className={`w-4 h-4 transition-colors ${isLoved ? 'fill-rose-500 text-rose-500' : 'text-gray-400 hover:text-rose-500'}`} />
+                  </button>
+
                   <img
                     src={prod.image}
                     alt={prod.name}
-                    className="w-full h-full object-cover rounded-xl"
+                    className="w-full h-full object-cover rounded-xl group-hover:scale-105 transition-transform duration-300"
                   />
                 </div>
 
                 {/* Product Details */}
                 <div
                   onClick={() => onSelectProduct && onSelectProduct(prod)}
-                  className="space-y-1 mb-3 cursor-pointer"
+                  className="space-y-1 mb-3 cursor-pointer px-1"
                 >
                   <h3 className="font-extrabold text-xs sm:text-sm text-gray-900 line-clamp-1 group-hover:text-emerald-700 transition-colors">
                     {prod.name}
@@ -166,8 +178,8 @@ export const TodaysFreshPicks: React.FC<TodaysFreshPicksProps> = ({
                   <p className="text-[11px] text-emerald-800 font-semibold">{prod.farmer}</p>
                 </div>
 
-                {/* Bottom Row: Price + Add Button */}
-                <div className="flex items-center justify-between pt-2.5 border-t border-gray-100">
+                {/* Bottom Row: Price + Add to Cart Button */}
+                <div className="flex items-center justify-between pt-2 border-t border-gray-200/60 px-1">
                   <div>
                     <span className="text-xs sm:text-sm font-black text-gray-900 block leading-none">
                       ₹{prod.price}
