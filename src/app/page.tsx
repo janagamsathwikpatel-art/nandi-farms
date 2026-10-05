@@ -21,9 +21,9 @@ export default function Home() {
   // Initial cart with items
   const [cartItems, setCartItems] = useState<CartItem[]>([
     { product: PRODUCTS[0], quantity: 3 }, // Organic Red Tomatoes
-    { product: PRODUCTS[1], quantity: 2 }, // Farm Eggs
-    { product: PRODUCTS[2], quantity: 2 }, // Fresh Bananas
-    { product: PRODUCTS[3], quantity: 2 }, // Fresh Whole Milk
+    { product: PRODUCTS[1], quantity: 2 }, // Fresh Bananas
+    { product: PRODUCTS[2], quantity: 2 }, // Fresh Whole Milk
+    { product: PRODUCTS[3], quantity: 2 }, // Premium Basmati Rice
   ]);
 
   const [lovedItems, setLovedItems] = useState<string[]>(['prod-1', 'prod-3']);

@@ -52,16 +52,6 @@ export const PRODUCTS: Product[] = [
     isPopular: true,
   },
   {
-    id: 'prod-2',
-    name: 'Farm Eggs',
-    category: 'Dairy & Eggs',
-    farmer: 'Local Farmers',
-    price: 60,
-    unit: 'per dozen',
-    image: 'https://images.unsplash.com/photo-1516467508483-a7212febe31a?auto=format&fit=crop&w=600&q=80',
-    isPopular: true,
-  },
-  {
     id: 'prod-3',
     name: 'Fresh Bananas',
     category: 'Fruits',
