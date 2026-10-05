@@ -144,7 +144,7 @@ export default function Home() {
   });
 
   return (
-    <div className="min-h-screen bg-[#f8f9fa] text-gray-900 font-sans selection:bg-emerald-100 selection:text-emerald-900 relative overflow-x-hidden">
+    <div className="min-h-screen bg-[#faf9f4] text-gray-900 font-sans selection:bg-emerald-100 selection:text-emerald-900 relative overflow-x-hidden">
       {/* Header Bar */}
       <Header
         cartCount={cartCount}
@@ -178,40 +178,40 @@ export default function Home() {
         </div>
       )}
 
-      {/* AMBIENT ANIMATED 3D FRUITS & VEGETABLES BACKDROP SYMBOLS LAYER */}
-      <div className="absolute inset-0 pointer-events-none select-none overflow-hidden z-0 opacity-40">
-        <div className="absolute top-[12%] left-[2%] text-5xl sm:text-6xl animate-bounce-slow transform hover:scale-125 transition-transform filter drop-shadow-md">
-          🥦
+      {/* WARM ORGANIC BACKGROUND LAYER (Exact match to media_1791211459226.png) */}
+      <div className="absolute inset-0 pointer-events-none select-none overflow-hidden z-0">
+        {/* Soft Organic Warm Cream Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#faf9f4] via-[#f7f6ee] to-[#fbfaf5]"></div>
+
+        {/* Scattered Soft Floating Organic Leaves with Depth-of-Field Blur */}
+        <div className="absolute top-[6%] left-[3%] text-4xl opacity-50 blur-[1px] animate-bounce-slow transform -rotate-12">🍃</div>
+        <div className="absolute top-[14%] right-[4%] text-5xl opacity-40 blur-[1.5px] animate-pulse-slow transform rotate-45">🌿</div>
+        <div className="absolute top-[22%] left-[8%] text-3xl opacity-60 animate-bounce-slow transform rotate-12">🍃</div>
+        <div className="absolute top-[32%] right-[7%] text-4xl opacity-50 blur-[1px] animate-pulse-slow transform -rotate-45">🌿</div>
+        <div className="absolute top-[42%] left-[4%] text-5xl opacity-45 blur-[2px] animate-bounce-slow transform rotate-30">🍃</div>
+        <div className="absolute top-[55%] right-[5%] text-4xl opacity-60 animate-pulse-slow transform -rotate-15">🌿</div>
+        <div className="absolute top-[68%] left-[6%] text-3xl opacity-50 blur-[1px] animate-bounce-slow transform rotate-45">🍃</div>
+        <div className="absolute top-[80%] right-[4%] text-5xl opacity-40 blur-[1.5px] animate-pulse-slow transform -rotate-30">🌿</div>
+        <div className="absolute top-[92%] left-[5%] text-4xl opacity-50 animate-bounce-slow transform rotate-12">🍃</div>
+
+        {/* Left Bottom Botanical Foliage Accent SVG */}
+        <div className="absolute bottom-0 left-0 w-64 h-64 opacity-25 pointer-events-none transform -translate-x-10 translate-y-10">
+          <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full text-emerald-800">
+            <path d="M20 180 C50 120, 90 80, 150 40 M40 160 C70 140, 80 110, 70 80 M90 120 C120 100, 130 70, 110 50" stroke="currentColor" strokeWidth="4" strokeLinecap="round" />
+            <circle cx="150" cy="40" r="10" fill="currentColor" opacity="0.6" />
+            <circle cx="70" cy="80" r="12" fill="currentColor" opacity="0.5" />
+            <circle cx="110" cy="50" r="14" fill="currentColor" opacity="0.5" />
+          </svg>
         </div>
-        <div className="absolute top-[18%] right-[3%] text-5xl sm:text-6xl animate-pulse-slow transform rotate-12 filter drop-shadow-md">
-          🥕
-        </div>
-        <div className="absolute top-[28%] left-[4%] text-5xl sm:text-6xl animate-bounce-slow transform -rotate-12 filter drop-shadow-md">
-          🍅
-        </div>
-        <div className="absolute top-[34%] right-[2%] text-5xl sm:text-6xl animate-pulse-slow transform rotate-45 filter drop-shadow-md">
-          🍌
-        </div>
-        <div className="absolute top-[44%] left-[3%] text-5xl sm:text-6xl animate-bounce-slow transform -rotate-6 filter drop-shadow-md">
-          🍍
-        </div>
-        <div className="absolute top-[52%] right-[4%] text-5xl sm:text-6xl animate-pulse-slow transform rotate-12 filter drop-shadow-md">
-          🍓
-        </div>
-        <div className="absolute top-[62%] left-[2%] text-5xl sm:text-6xl animate-bounce-slow transform rotate-15 filter drop-shadow-md">
-          🥑
-        </div>
-        <div className="absolute top-[70%] right-[3%] text-5xl sm:text-6xl animate-pulse-slow transform -rotate-12 filter drop-shadow-md">
-          🍋
-        </div>
-        <div className="absolute top-[80%] left-[4%] text-5xl sm:text-6xl animate-bounce-slow transform rotate-6 filter drop-shadow-md">
-          🍇
-        </div>
-        <div className="absolute top-[88%] right-[2%] text-5xl sm:text-6xl animate-pulse-slow transform -rotate-45 filter drop-shadow-md">
-          🌶️
-        </div>
-        <div className="absolute top-[95%] left-[3%] text-5xl sm:text-6xl animate-bounce-slow transform rotate-12 filter drop-shadow-md">
-          🌿
+
+        {/* Right Bottom Botanical Foliage Accent SVG */}
+        <div className="absolute bottom-0 right-0 w-64 h-64 opacity-25 pointer-events-none transform translate-x-10 translate-y-10">
+          <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full text-emerald-800">
+            <path d="M180 180 C150 120, 110 80, 50 40 M160 160 C130 140, 120 110, 130 80 M110 120 C80 100, 70 70, 90 50" stroke="currentColor" strokeWidth="4" strokeLinecap="round" />
+            <circle cx="50" cy="40" r="10" fill="currentColor" opacity="0.6" />
+            <circle cx="130" cy="80" r="12" fill="currentColor" opacity="0.5" />
+            <circle cx="90" cy="50" r="14" fill="currentColor" opacity="0.5" />
+          </svg>
         </div>
       </div>
 
