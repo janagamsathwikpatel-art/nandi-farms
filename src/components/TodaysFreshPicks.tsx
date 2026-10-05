@@ -27,7 +27,7 @@ export const TodaysFreshPicks: React.FC<TodaysFreshPicksProps> = ({
   };
 
   return (
-    <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 relative">
+    <section id="todays-picks" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 relative scroll-mt-20">
       {/* Top Scroll Back Up Icon */}
       <div className="flex justify-center -mt-6 mb-4">
         <button
