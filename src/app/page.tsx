@@ -10,6 +10,7 @@ import { TodaysFreshPicks } from '@/components/TodaysFreshPicks';
 import { PromoBanners } from '@/components/PromoBanners';
 import { WeeklyBestSelling } from '@/components/WeeklyBestSelling';
 import { MostSellingProducts } from '@/components/MostSellingProducts';
+import { RealIngredientsSection } from '@/components/RealIngredientsSection';
 import { CTABanner } from '@/components/CTABanner';
 import { JustForYou } from '@/components/JustForYou';
 import { Footer } from '@/components/Footer';
@@ -138,7 +139,10 @@ export default function Home() {
           onUpdateQuantity={handleUpdateQuantity}
         />
 
-        {/* 8. Call To Action Banner */}
+        {/* 8. Barcoop Bevy Inspired Real Ingredients Only Section */}
+        <RealIngredientsSection />
+
+        {/* 9. Call To Action Banner */}
         <CTABanner />
 
         {/* 9. Just for you */}
