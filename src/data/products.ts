@@ -83,13 +83,13 @@ export const CATEGORIES: Category[] = [
     image: '/rice-category.png',
   },
   {
-    id: 'daily-products',
-    name: 'Daily Products',
+    id: 'eggs',
+    name: 'Eggs',
     count: 20,
     bgGradient: 'from-[#e0f2fe] to-[#bae6fd]/60',
     borderColor: 'border-sky-200',
     textColor: 'text-sky-900',
-    image: 'https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=300&q=80',
+    image: '/eggs-category.png',
   },
   {
     id: 'roots-vegetables',
