@@ -5,9 +5,9 @@ import { PRODUCTS } from '@/data/products';
 import { Product, CartItem } from '@/types';
 import { Header } from '@/components/Header';
 import { HeroSection } from '@/components/HeroSection';
+import { BrandFeatures } from '@/components/BrandFeatures';
 import { PopularCategories } from '@/components/PopularCategories';
 import { TodaysFreshPicks } from '@/components/TodaysFreshPicks';
-import { FreshProduceBanner } from '@/components/FreshProduceBanner';
 import { PromoBanners } from '@/components/PromoBanners';
 import { WeeklyBestSelling } from '@/components/WeeklyBestSelling';
 import { MostSellingProducts } from '@/components/MostSellingProducts';
@@ -106,29 +106,46 @@ export default function Home() {
 
       {/* Main Continuous Sections */}
       <main className="space-y-4 sm:space-y-6">
+        {/* 1. Hero Section */}
         <HeroSection />
+
+        {/* 2. Barcoop Bevy Inspired Brand Features (Placed directly down of Hero Section) */}
+        <BrandFeatures />
+
+        {/* 3. Popular Categories */}
         <PopularCategories />
+
+        {/* 4. Today's Fresh Picks */}
         <TodaysFreshPicks
           products={filteredProducts}
           cartItems={cartItems}
           onAddToCart={handleAddToCart}
           onUpdateQuantity={handleUpdateQuantity}
         />
-        <FreshProduceBanner />
+
+        {/* 5. Promo Banners Row */}
         <PromoBanners />
+
+        {/* 6. Weekly Best Selling items */}
         <WeeklyBestSelling
           products={filteredProducts}
           cartItems={cartItems}
           onAddToCart={handleAddToCart}
           onUpdateQuantity={handleUpdateQuantity}
         />
+
+        {/* 7. Most Selling Products */}
         <MostSellingProducts
           products={filteredProducts}
           cartItems={cartItems}
           onAddToCart={handleAddToCart}
           onUpdateQuantity={handleUpdateQuantity}
         />
+
+        {/* 8. Call To Action Banner */}
         <CTABanner />
+
+        {/* 9. Just for you */}
         <JustForYou
           products={filteredProducts}
           cartItems={cartItems}
