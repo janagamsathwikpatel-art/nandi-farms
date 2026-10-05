@@ -113,26 +113,21 @@ export default function Home() {
         {/* FULL LENGTH EDGE-TO-EDGE 3D ROTATING BACKGROUND CANVAS (Popular Categories to Just For You) */}
         <div className="relative bg-[#3d1e31] text-white py-8 sm:py-12 w-full overflow-hidden border-t border-[#522943]">
           
-          {/* 3D Background Canvas Animations (One Giant Center Circle with Nandi Farms Title & Custom Text Ring) */}
-          <div className="absolute inset-0 pointer-events-none select-none overflow-hidden z-0 opacity-40">
+          {/* 3D Background Canvas Animations (Fixed & Multi-Section Giant Rotating Circles) */}
+          <div className="absolute inset-0 pointer-events-none select-none overflow-hidden z-0 opacity-45">
             
-            {/* ONE GIANT MIDDLE CIRCLE (Spanning middle of Popular Categories to Just For You) */}
-            <div className="absolute top-[28%] left-1/2 -translate-x-1/2 w-[650px] h-[650px] md:w-[850px] md:h-[850px] lg:w-[980px] lg:h-[980px] rounded-full flex items-center justify-center animate-[spin_40s_linear_infinite]">
+            {/* GIANT CIRCLE 1: Behind Popular Categories & Today's Fresh Picks */}
+            <div className="absolute top-[8%] left-1/2 -translate-x-1/2 w-[600px] h-[600px] md:w-[820px] md:h-[820px] lg:w-[920px] lg:h-[920px] rounded-full flex items-center justify-center animate-[spin_40s_linear_infinite]">
               <svg className="w-full h-full transform -rotate-90 overflow-visible" viewBox="0 0 500 500">
                 <defs>
-                  <path
-                    id="giantRing"
-                    d="M 250, 250 m -210, 0 a 210,210 0 1,1 420,0 a 210,210 0 1,1 -420,0"
-                  />
+                  <path id="ring1" d="M 250, 250 m -210, 0 a 210,210 0 1,1 420,0 a 210,210 0 1,1 -420,0" />
                 </defs>
                 <text className="fill-[#fcd34d] text-[15px] font-black tracking-[0.22em] uppercase">
-                  <textPath href="#giantRing" startOffset="0%">
+                  <textPath href="#ring1" startOffset="0%">
                     • FRESH VEGETABLES & ORGANIC FRUITS • DAIRY PRODUCTS • 100% QUALITY PRODUCTS • FRESH VEGETABLES & ORGANIC FRUITS • DAIRY PRODUCTS • 100% QUALITY PRODUCTS 
                   </textPath>
                 </text>
               </svg>
-
-              {/* Orbiting Farm Icons Along Circle Circumference */}
               <span className="absolute -top-3 text-4xl">🍋</span>
               <span className="absolute top-[14%] right-[7%] text-4xl">🌶️</span>
               <span className="absolute top-1/2 -right-3 text-4xl">🍍</span>
@@ -142,16 +137,80 @@ export default function Home() {
               <span className="absolute top-1/2 -left-3 text-4xl">🥒</span>
               <span className="absolute top-[14%] left-[7%] text-4xl">🍊</span>
             </div>
-
-            {/* Middle Center Title inside the Giant Circle: NANDI FARMS */}
-            <div className="absolute top-[38%] left-1/2 -translate-x-1/2 text-center opacity-35">
+            <div className="absolute top-[12%] left-1/2 -translate-x-1/2 text-center opacity-40">
               <h2 className="text-6xl sm:text-8xl md:text-9xl font-black text-white uppercase tracking-tighter leading-none font-sans drop-shadow-2xl">
-                NANDI<br />
-                <span className="text-[#8ee435]">FARMS</span>
+                NANDI<br /><span className="text-[#8ee435]">FARMS</span>
               </h2>
               <p className="mt-2 text-xs sm:text-sm font-extrabold text-[#fcd34d] uppercase tracking-[0.3em]">
                 Fresh Vegetables & Organic Fruits • 100% Quality
               </p>
+            </div>
+
+            {/* GIANT CIRCLE 2: Behind Promo Banners & Weekly Best Selling */}
+            <div className="absolute top-[38%] left-1/2 -translate-x-1/2 w-[600px] h-[600px] md:w-[820px] md:h-[820px] lg:w-[920px] lg:h-[920px] rounded-full flex items-center justify-center animate-[spin_45s_linear_infinite_reverse]">
+              <svg className="w-full h-full transform -rotate-90 overflow-visible" viewBox="0 0 500 500">
+                <defs>
+                  <path id="ring2" d="M 250, 250 m -210, 0 a 210,210 0 1,1 420,0 a 210,210 0 1,1 -420,0" />
+                </defs>
+                <text className="fill-[#fcd34d] text-[15px] font-black tracking-[0.22em] uppercase">
+                  <textPath href="#ring2" startOffset="0%">
+                    • FRESH VEGETABLES & ORGANIC FRUITS • DAIRY PRODUCTS • 100% QUALITY PRODUCTS • FRESH VEGETABLES & ORGANIC FRUITS • DAIRY PRODUCTS • 100% QUALITY PRODUCTS 
+                  </textPath>
+                </text>
+              </svg>
+              <span className="absolute -top-3 text-4xl">🌿</span>
+              <span className="absolute top-1/2 -right-3 text-4xl">🍅</span>
+              <span className="absolute -bottom-3 text-4xl">🍋</span>
+              <span className="absolute top-1/2 -left-3 text-4xl">🌶️</span>
+            </div>
+            <div className="absolute top-[42%] left-1/2 -translate-x-1/2 text-center opacity-40">
+              <h2 className="text-6xl sm:text-8xl md:text-9xl font-black text-white uppercase tracking-tighter leading-none font-sans drop-shadow-2xl">
+                NANDI<br /><span className="text-[#8ee435]">FARMS</span>
+              </h2>
+            </div>
+
+            {/* GIANT CIRCLE 3: Behind Most Selling Products & CTA Banner */}
+            <div className="absolute top-[68%] left-1/2 -translate-x-1/2 w-[600px] h-[600px] md:w-[820px] md:h-[820px] lg:w-[920px] lg:h-[920px] rounded-full flex items-center justify-center animate-[spin_38s_linear_infinite]">
+              <svg className="w-full h-full transform -rotate-90 overflow-visible" viewBox="0 0 500 500">
+                <defs>
+                  <path id="ring3" d="M 250, 250 m -210, 0 a 210,210 0 1,1 420,0 a 210,210 0 1,1 -420,0" />
+                </defs>
+                <text className="fill-[#fcd34d] text-[15px] font-black tracking-[0.22em] uppercase">
+                  <textPath href="#ring3" startOffset="0%">
+                    • FRESH VEGETABLES & ORGANIC FRUITS • DAIRY PRODUCTS • 100% QUALITY PRODUCTS • FRESH VEGETABLES & ORGANIC FRUITS • DAIRY PRODUCTS • 100% QUALITY PRODUCTS 
+                  </textPath>
+                </text>
+              </svg>
+              <span className="absolute -top-3 text-4xl">🍓</span>
+              <span className="absolute top-1/2 -right-3 text-4xl">🍍</span>
+              <span className="absolute -bottom-3 text-4xl">🥒</span>
+              <span className="absolute top-1/2 -left-3 text-4xl">🍊</span>
+            </div>
+            <div className="absolute top-[72%] left-1/2 -translate-x-1/2 text-center opacity-40">
+              <h2 className="text-6xl sm:text-8xl md:text-9xl font-black text-white uppercase tracking-tighter leading-none font-sans drop-shadow-2xl">
+                NANDI<br /><span className="text-[#8ee435]">FARMS</span>
+              </h2>
+            </div>
+
+            {/* GIANT CIRCLE 4: Behind Just For You */}
+            <div className="absolute top-[92%] left-1/2 -translate-x-1/2 w-[600px] h-[600px] md:w-[820px] md:h-[820px] lg:w-[920px] lg:h-[920px] rounded-full flex items-center justify-center animate-[spin_42s_linear_infinite_reverse]">
+              <svg className="w-full h-full transform -rotate-90 overflow-visible" viewBox="0 0 500 500">
+                <defs>
+                  <path id="ring4" d="M 250, 250 m -210, 0 a 210,210 0 1,1 420,0 a 210,210 0 1,1 -420,0" />
+                </defs>
+                <text className="fill-[#fcd34d] text-[15px] font-black tracking-[0.22em] uppercase">
+                  <textPath href="#ring4" startOffset="0%">
+                    • FRESH VEGETABLES & ORGANIC FRUITS • DAIRY PRODUCTS • 100% QUALITY PRODUCTS • FRESH VEGETABLES & ORGANIC FRUITS • DAIRY PRODUCTS • 100% QUALITY PRODUCTS 
+                  </textPath>
+                </text>
+              </svg>
+              <span className="absolute -top-3 text-4xl">🍋</span>
+              <span className="absolute top-1/2 -right-3 text-4xl">🌶️</span>
+            </div>
+            <div className="absolute top-[94%] left-1/2 -translate-x-1/2 text-center opacity-40">
+              <h2 className="text-6xl sm:text-8xl md:text-9xl font-black text-white uppercase tracking-tighter leading-none font-sans drop-shadow-2xl">
+                NANDI<br /><span className="text-[#8ee435]">FARMS</span>
+              </h2>
             </div>
 
           </div>
