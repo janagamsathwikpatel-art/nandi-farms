@@ -72,7 +72,6 @@ export const Header: React.FC<HeaderProps> = ({
         >
           <span className="text-sm sm:text-base">🇮🇳</span>
           <span className="font-bold text-xs tracking-wide text-gray-900">{selectedCity || 'IN'}</span>
-          <ChevronDown className="w-3.5 h-3.5 text-gray-500" />
         </button>
 
         {/* Center: Brand Logo (NandiFarms) */}
