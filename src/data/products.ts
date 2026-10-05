@@ -100,6 +100,15 @@ export const CATEGORIES: Category[] = [
     textColor: 'text-orange-900',
     image: '/roots-vegetables-category.jpg',
   },
+  {
+    id: 'pickles',
+    name: 'Pickles',
+    count: 18,
+    bgGradient: 'from-amber-50 to-red-100/60',
+    borderColor: 'border-amber-200',
+    textColor: 'text-amber-950',
+    image: '/pickles-category.png',
+  },
 ];
 
 export const PRODUCTS: Product[] = [
