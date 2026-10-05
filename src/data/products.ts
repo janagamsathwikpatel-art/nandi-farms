@@ -20,13 +20,13 @@ export const CATEGORIES: Category[] = [
     image: '/fruits-category.png',
   },
   {
-    id: 'dairy-eggs',
-    name: 'Dairy & Eggs',
+    id: 'dairy',
+    name: 'Dairy',
     count: 8,
     bgGradient: 'from-purple-50 to-fuchsia-50/60',
     borderColor: 'border-purple-100',
     textColor: 'text-purple-900',
-    image: 'https://images.unsplash.com/photo-1550583724-b2692b85b150?auto=format&fit=crop&w=300&q=80',
+    image: '/dairy-category.png',
   },
   {
     id: 'meat-fish',
@@ -154,7 +154,7 @@ export const PRODUCTS: Product[] = [
   {
     id: 'prod-4',
     name: 'Fresh Whole Milk',
-    category: 'Dairy & Eggs',
+    category: 'Dairy',
     farmer: 'Local Farmers',
     price: 65,
     unit: 'per L',
