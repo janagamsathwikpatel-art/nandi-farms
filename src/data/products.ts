@@ -37,15 +37,6 @@ export const CATEGORIES: Category[] = [
     textColor: 'text-emerald-900',
     image: 'https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?auto=format&fit=crop&w=300&q=80',
   },
-  {
-    id: 'beverages',
-    name: 'Beverages',
-    count: 13,
-    bgGradient: 'from-amber-50 to-yellow-50/60',
-    borderColor: 'border-amber-100',
-    textColor: 'text-amber-900',
-    image: 'https://images.unsplash.com/photo-1534353473418-4cfa6c56fd38?auto=format&fit=crop&w=300&q=80',
-  },
 ];
 
 export const PRODUCTS: Product[] = [
@@ -222,16 +213,6 @@ export const PRODUCTS: Product[] = [
     price: 45,
     unit: 'per kg',
     image: 'https://images.unsplash.com/photo-1598170845058-12ef4a457939?auto=format&fit=crop&w=400&q=80',
-    isBestSeller: true,
-  },
-  {
-    id: 'prod-19',
-    name: 'Fresh Orange Juice',
-    category: 'Beverages',
-    farmer: 'Local Farmers',
-    price: 95,
-    unit: 'per bottle',
-    image: 'https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?auto=format&fit=crop&w=400&q=80',
     isBestSeller: true,
   },
 ];
