@@ -118,6 +118,15 @@ export const CATEGORIES: Category[] = [
     textColor: 'text-pink-900',
     image: 'https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=300&q=80',
   },
+  {
+    id: 'tea-coffee-drinks',
+    name: 'Tea & Coffee Drinks',
+    count: 14,
+    bgGradient: 'from-amber-50 to-amber-100/60',
+    borderColor: 'border-amber-200',
+    textColor: 'text-amber-900',
+    image: 'https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&w=300&q=80',
+  },
 ];
 
 export const PRODUCTS: Product[] = [
@@ -346,6 +355,26 @@ export const PRODUCTS: Product[] = [
     price: 210,
     unit: 'per 250ml',
     image: 'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=400&q=80',
+    isPopular: true,
+  },
+  {
+    id: 'prod-27',
+    name: 'Organic Herbal Green Tea',
+    category: 'Tea & Coffee Drinks',
+    farmer: 'Nandi Estates',
+    price: 160,
+    unit: 'box of 25 bags',
+    image: 'https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=400&q=80',
+    isBestSeller: true,
+  },
+  {
+    id: 'prod-28',
+    name: 'Authentic Filter Coffee Powder',
+    category: 'Tea & Coffee Drinks',
+    farmer: 'Coorg Estates',
+    price: 195,
+    unit: 'per 250g pack',
+    image: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=400&q=80',
     isPopular: true,
   },
 ];
