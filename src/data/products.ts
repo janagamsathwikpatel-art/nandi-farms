@@ -58,7 +58,7 @@ export const PRODUCTS: Product[] = [
     farmer: 'Local Farmers',
     price: 60,
     unit: 'per dozen',
-    image: '/farm-eggs.png',
+    image: 'https://images.unsplash.com/photo-1516467508483-a7212febe31a?auto=format&fit=crop&w=600&q=80',
     isPopular: true,
   },
   {
