@@ -109,6 +109,15 @@ export const CATEGORIES: Category[] = [
     textColor: 'text-amber-950',
     image: '/pickles-category.png',
   },
+  {
+    id: 'personal-care',
+    name: 'Personal Care',
+    count: 16,
+    bgGradient: 'from-pink-50 to-rose-100/60',
+    borderColor: 'border-pink-200',
+    textColor: 'text-pink-900',
+    image: 'https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=300&q=80',
+  },
 ];
 
 export const PRODUCTS: Product[] = [
@@ -320,13 +329,23 @@ export const PRODUCTS: Product[] = [
     isBestSeller: true,
   },
   {
-    id: 'prod-17',
-    name: 'Organic Carrots',
-    category: 'Fresh Vegetables',
-    farmer: 'Local Farmers',
-    price: 45,
-    unit: 'per kg',
-    image: 'https://images.unsplash.com/photo-1598170845058-12ef4a457939?auto=format&fit=crop&w=400&q=80',
+    id: 'prod-25',
+    name: 'Organic Herbal Soap Pack',
+    category: 'Personal Care',
+    farmer: 'Nandi Naturals',
+    price: 140,
+    unit: 'pack of 3',
+    image: 'https://images.unsplash.com/photo-1608248597260-6521e15b57f0?auto=format&fit=crop&w=400&q=80',
     isBestSeller: true,
+  },
+  {
+    id: 'prod-26',
+    name: 'Pure Neem & Aloe Shampoo',
+    category: 'Personal Care',
+    farmer: 'Nandi Naturals',
+    price: 210,
+    unit: 'per 250ml',
+    image: 'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=400&q=80',
+    isPopular: true,
   },
 ];
