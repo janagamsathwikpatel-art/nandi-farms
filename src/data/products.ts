@@ -116,7 +116,7 @@ export const CATEGORIES: Category[] = [
     bgGradient: 'from-pink-50 to-rose-100/60',
     borderColor: 'border-pink-200',
     textColor: 'text-pink-900',
-    image: 'https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=300&q=80',
+    image: '/personal-care-category.png',
   },
   {
     id: 'tea-coffee-drinks',
