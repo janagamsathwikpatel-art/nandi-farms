@@ -37,6 +37,15 @@ export const CATEGORIES: Category[] = [
     textColor: 'text-emerald-900',
     image: 'https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?auto=format&fit=crop&w=300&q=80',
   },
+  {
+    id: 'sweets',
+    name: 'Sweets',
+    count: 15,
+    bgGradient: 'from-rose-50 to-pink-50/60',
+    borderColor: 'border-rose-100',
+    textColor: 'text-rose-900',
+    image: 'https://images.unsplash.com/photo-1599488615731-7e5c2823ff28?auto=format&fit=crop&w=300&q=80',
+  },
 ];
 
 export const PRODUCTS: Product[] = [
@@ -130,6 +139,28 @@ export const PRODUCTS: Product[] = [
     unit: 'per kg',
     image: 'https://images.unsplash.com/photo-1553279768-865429fa0078?auto=format&fit=crop&w=400&q=80',
     isPopular: true,
+  },
+
+  // Sweets Category Items
+  {
+    id: 'prod-20',
+    name: 'Assorted Gulab Jamun Box',
+    category: 'Sweets',
+    farmer: 'Local Halwai',
+    price: 180,
+    unit: 'per box (500g)',
+    image: 'https://images.unsplash.com/photo-1599488615731-7e5c2823ff28?auto=format&fit=crop&w=400&q=80',
+    isBestSeller: true,
+  },
+  {
+    id: 'prod-21',
+    name: 'Motichoor Ladoo Box',
+    category: 'Sweets',
+    farmer: 'Local Halwai',
+    price: 220,
+    unit: 'per box (500g)',
+    image: 'https://images.unsplash.com/photo-1599488615731-7e5c2823ff28?auto=format&fit=crop&w=400&q=80',
+    isBestSeller: true,
   },
 
   // Weekly Best Selling items (Screenshot 3)
