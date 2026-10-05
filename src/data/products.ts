@@ -91,6 +91,15 @@ export const CATEGORIES: Category[] = [
     textColor: 'text-sky-900',
     image: 'https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=300&q=80',
   },
+  {
+    id: 'roots-vegetables',
+    name: 'Roots Vegetables',
+    count: 15,
+    bgGradient: 'from-orange-50 to-amber-100/60',
+    borderColor: 'border-orange-200',
+    textColor: 'text-orange-900',
+    image: '/roots-vegetables-category.jpg',
+  },
 ];
 
 export const PRODUCTS: Product[] = [
