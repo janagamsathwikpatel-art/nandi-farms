@@ -16,61 +16,66 @@ export const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="w-full bg-transparent relative overflow-hidden font-sans pt-2">
+    <footer className="w-full bg-transparent relative overflow-hidden font-sans">
       {/* Exact 1:1 Graphic Footer Banner Image — Without Any Changes */}
-      <div className="relative max-w-[1440px] mx-auto overflow-hidden">
+      <div className="relative max-w-[1440px] mx-auto overflow-hidden select-none">
         <img
           src="/footer-banner-exact.jpg"
           alt="Nandi Farms Footer Banner — Nourishing lives, Naturally."
           className="w-full h-auto object-cover block select-none"
         />
 
-        {/* Interactive Click Hotspots & Functional Newsletter Form Overlay */}
+        {/* Interactive Click Hotspots & Precision Aligned Form Overlay */}
         <div className="absolute inset-0 z-10 pointer-events-auto">
-          {/* Quick Links Hotspot */}
+          {/* Quick Links Hotspots */}
           <a
             href="https://eveggie.in/"
             target="_blank"
             rel="noopener noreferrer"
-            className="absolute top-[35%] left-[29%] w-[12%] h-[40%] cursor-pointer"
+            className="absolute top-[35%] left-[29%] w-[12%] h-[40%] cursor-pointer rounded-lg hover:bg-white/5 transition-all"
             title="Click to view Quick Links"
           />
 
           {/* Contact Phone Hotspot (+91 9949777844) */}
           <a
             href="tel:9949777844"
-            className="absolute top-[52%] left-[53%] w-[20%] h-[8%] cursor-pointer"
+            className="absolute top-[52%] left-[53%] w-[20%] h-[8%] cursor-pointer rounded-lg hover:bg-white/5 transition-all"
             title="Call +91 9949777844"
           />
 
           {/* Contact Email Hotspot (support@nandifarms.com) */}
           <a
             href="mailto:support@nandifarms.com"
-            className="absolute top-[62%] left-[53%] w-[20%] h-[8%] cursor-pointer"
+            className="absolute top-[62%] left-[53%] w-[20%] h-[8%] cursor-pointer rounded-lg hover:bg-white/5 transition-all"
             title="Email support@nandifarms.com"
           />
 
-          {/* Interactive Newsletter Form Overlay */}
-          <div className="absolute top-[55%] right-[5.5%] w-[20.5%] h-[24%] flex flex-col justify-between">
-            <form onSubmit={handleSubscribe} className="space-y-1.5 h-full flex flex-col justify-between">
-              <input
-                type="email"
-                required
-                placeholder="Your email address..."
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="w-full bg-[#0a4233] border border-emerald-500/40 rounded-lg py-1.5 px-3 text-xs text-white placeholder-emerald-200/50 focus:outline-none focus:ring-1 focus:ring-amber-300"
-              />
-              <button
-                type="submit"
-                className="w-full py-2 bg-[#f7ebcf] hover:bg-[#f3e2b8] text-gray-950 font-bold text-xs rounded-lg transition-all cursor-pointer shadow-md"
-              >
-                {subscribed ? '✓ Subscribed!' : 'Subscribe'}
-              </button>
-            </form>
-          </div>
+          {/* Newsletter Form Overlay — Precision aligned to graphic input box and Subscribe button */}
+          <form onSubmit={handleSubscribe}>
+            <input
+              type="email"
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Your email address..."
+              className="absolute top-[53.5%] right-[5.4%] w-[20.5%] h-[8.5%] px-4 text-xs font-medium text-white bg-transparent border-none outline-none focus:outline-none focus:ring-0 placeholder:text-emerald-100/40 cursor-text"
+              title="Enter your email address for newsletter"
+            />
+            <button
+              type="submit"
+              className="absolute top-[64%] right-[5.4%] w-[20.5%] h-[8.5%] rounded-lg cursor-pointer bg-transparent hover:bg-black/5 active:bg-black/10 transition-all flex items-center justify-center"
+              title="Click to Subscribe"
+            >
+              {subscribed && (
+                <span className="bg-[#0a4233] text-amber-200 border border-amber-300/40 px-3 py-1.5 rounded-md text-xs font-bold shadow-lg">
+                  ✓ Subscribed!
+                </span>
+              )}
+            </button>
+          </form>
         </div>
       </div>
     </footer>
   );
 };
+
