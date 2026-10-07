@@ -43,12 +43,10 @@ export const PromoBanners: React.FC<PromoBannersProps> = ({ onClaimOffer }) => {
               className="w-full h-auto object-cover rounded-3xl group-hover:scale-[1.01] transition-transform duration-500"
             />
 
-            {/* Indian Rupee Price Badge Overlay for Card 2 */}
+            {/* Indian Rupee Price Overlay Covering $75 completely */}
             {card.priceOverlay && (
-              <div className="absolute bottom-[21%] left-0 right-0 flex justify-center pointer-events-none z-10">
-                <span className="bg-[#f7f5ed] text-gray-900 font-extrabold text-xs px-3.5 py-0.5 rounded-full shadow-2xs border border-amber-200/80">
-                  {card.priceOverlay}
-                </span>
+              <div className="absolute top-[66.5%] left-1/2 -translate-x-1/2 bg-[#f7f5ed] px-8 py-0.5 pointer-events-none z-10 text-center font-extrabold text-[15px] sm:text-[16px] text-gray-900 tracking-tight whitespace-nowrap">
+                {card.priceOverlay}
               </div>
             )}
           </div>
