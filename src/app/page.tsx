@@ -221,7 +221,7 @@ export default function Home() {
       </div>
 
       {/* Main Continuous Sections */}
-      <main className="space-y-3 sm:space-y-4 py-2 relative z-10">
+      <main className="space-y-1 sm:space-y-2 py-1 relative z-10">
         {/* 1. Hero Section */}
         <HeroSection />
 
