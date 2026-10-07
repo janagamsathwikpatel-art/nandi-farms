@@ -30,7 +30,7 @@ export const PopularCategories: React.FC<PopularCategoriesProps> = ({
   };
 
   return (
-    <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+    <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 sm:pt-6 pb-1 sm:pb-2">
       {/* Section Header */}
       <div className="flex items-center justify-between mb-5 sm:mb-6">
         <h2 

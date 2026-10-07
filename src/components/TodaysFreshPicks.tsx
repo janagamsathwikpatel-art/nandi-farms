@@ -41,18 +41,7 @@ export const TodaysFreshPicks: React.FC<TodaysFreshPicksProps> = ({
   const featuredProduct = activeProducts[0];
 
   return (
-    <section id="todays-picks" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-1 sm:pt-2 pb-8 sm:pb-10 relative scroll-mt-20">
-      {/* Top Scroll Back Up Icon */}
-      <div className="flex justify-center mb-2">
-        <button
-          onClick={scrollToTop}
-          className="w-7 h-7 rounded-full bg-gray-100 hover:bg-emerald-100 text-gray-500 hover:text-emerald-800 flex items-center justify-center transition-colors border border-gray-200/80 shadow-2xs cursor-pointer"
-          title="Back to Top"
-        >
-          <ChevronUp className="w-4 h-4" />
-        </button>
-      </div>
-
+    <section id="todays-picks" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-2 sm:pt-3 pb-8 sm:pb-10 relative scroll-mt-20">
       {/* Section Header & Layout Switcher Bar */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6 sm:mb-8">
         <div>
