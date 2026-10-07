@@ -33,8 +33,15 @@ export const PopularCategories: React.FC<PopularCategoriesProps> = ({
     <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
       {/* Section Header */}
       <div className="flex items-center justify-between mb-6 sm:mb-7">
-        <h2 className="text-2xl sm:text-3xl font-extrabold text-[#2d3748] tracking-tight font-sans">
+        <h2 
+          onClick={handleShowAll}
+          className="text-lg sm:text-xl font-bold text-[#2d3748] hover:text-emerald-700 transition-colors tracking-tight font-sans cursor-pointer flex items-center gap-2 group"
+          title="Click to view all category products"
+        >
           Shop by Category
+          <span className="text-xs font-medium text-emerald-600 opacity-0 group-hover:opacity-100 transition-opacity">
+            (Show All Data)
+          </span>
         </h2>
 
         <button
