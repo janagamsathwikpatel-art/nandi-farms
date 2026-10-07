@@ -35,7 +35,7 @@ export const JustForYou: React.FC<JustForYouProps> = ({
   ];
 
   return (
-    <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-1 sm:pt-2 pb-6 sm:pb-8">
+    <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-1 sm:pt-2 pb-0 mb-0">
       {/* Section Header */}
       <div className="flex items-center justify-between mb-6">
         <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight font-sans">
