@@ -114,7 +114,11 @@ export default function Home() {
   };
 
   const handleClaimOffer = (offerTitle: string) => {
-    addToast(`Offer claimed! 🎉 (${offerTitle}) Code applied at checkout.`, 'success');
+    addToast(`Offer claimed! 🎉 (${offerTitle}) Special discount code applied at checkout.`, 'success');
+    const el = document.getElementById('todays-picks') || document.getElementById('weekly-best-selling');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   const handleSelectCategory = (catName: string) => {
