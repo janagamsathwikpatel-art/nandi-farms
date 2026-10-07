@@ -57,12 +57,12 @@ export const PopularCategories: React.FC<PopularCategoriesProps> = ({
             onClick={() => handleCategoryClick(cat.name)}
             className="flex flex-col items-center text-center group cursor-pointer transition-all duration-200 hover:-translate-y-1"
           >
-            {/* Soft Gray Rounded Container (1:1 Reference Match) */}
-            <div className="w-full aspect-square rounded-2xl bg-[#f2f4f7] hover:bg-[#eaeef3] border border-gray-100/90 p-2 sm:p-2.5 flex items-center justify-center overflow-hidden shadow-2xs group-hover:shadow-md transition-all duration-200">
+            {/* Clean Borderless Category Image Container — Box Type Frame Removed */}
+            <div className="w-20 h-20 sm:w-24 sm:h-24 p-1 flex items-center justify-center transition-all duration-200 group-hover:scale-110">
               <img
                 src={cat.image}
                 alt={cat.name}
-                className="w-full h-full object-contain rounded-xl group-hover:scale-105 transition-transform duration-300"
+                className="w-full h-full object-contain filter drop-shadow-sm group-hover:drop-shadow-md transition-all duration-300"
               />
             </div>
 
