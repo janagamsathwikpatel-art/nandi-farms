@@ -14,7 +14,7 @@ export const PromoBanners: React.FC<PromoBannersProps> = ({ onClaimOffer }) => {
   };
 
   return (
-    <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
+    <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-0 my-1">
       {/* 1:1 Image Promo Banner Section */}
       <div className="relative rounded-3xl overflow-hidden shadow-xl border border-gray-200/80 group hover:shadow-2xl transition-all duration-300 bg-white">
         
