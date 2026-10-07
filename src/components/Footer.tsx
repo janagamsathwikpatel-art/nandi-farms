@@ -16,7 +16,7 @@ export const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="w-full bg-transparent relative overflow-hidden font-sans -mt-4 sm:-mt-6 lg:-mt-8">
+    <footer className="w-full bg-transparent relative overflow-hidden font-sans pt-2">
       {/* Exact 1:1 Graphic Footer Banner Image — Without Any Changes */}
       <div className="relative max-w-[1440px] mx-auto overflow-hidden">
         <img
