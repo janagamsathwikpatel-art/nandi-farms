@@ -59,10 +59,10 @@ export const CategoryQuickNav: React.FC<CategoryQuickNavProps> = ({
         <ChevronRight className="w-6 h-6" />
       </button>
 
-      {/* Horizontal Circular Avatar Bar — Full Length Ratio & Increased Font/Icon Sizes */}
+      {/* Full-Length Circular Avatar Bar — Complete Visibility Without Edge Cutoffs */}
       <div
         ref={scrollContainerRef}
-        className="flex items-center justify-start lg:justify-center space-x-6 sm:space-x-8 lg:space-x-10 overflow-x-auto no-scrollbar py-4 px-2 sm:px-6 scroll-smooth w-full"
+        className="flex items-center justify-start md:justify-between gap-3 sm:gap-5 md:gap-6 lg:gap-8 overflow-x-auto md:overflow-x-visible no-scrollbar py-4 px-3 sm:px-6 lg:px-8 w-full max-w-none scroll-smooth"
       >
         {ANVESHAN_CATEGORIES.map((cat) => {
           const isActive = activeCategory.toLowerCase() === cat.id.toLowerCase() || 
@@ -72,11 +72,11 @@ export const CategoryQuickNav: React.FC<CategoryQuickNavProps> = ({
             <button
               key={cat.id}
               onClick={() => onSelectCategory(cat.id)}
-              className="flex flex-col items-center flex-shrink-0 group/item cursor-pointer focus:outline-hidden"
+              className="flex flex-col items-center flex-shrink-0 md:flex-shrink group/item cursor-pointer focus:outline-hidden my-1"
             >
-              {/* Enlarged Circular Avatar Ring (80px - 112px) */}
+              {/* Responsive Circular Avatar Ring (64px - 100px) */}
               <div
-                className={`relative w-20 h-20 sm:w-24 sm:h-24 lg:w-28 lg:h-28 rounded-full flex items-center justify-center text-3xl sm:text-4xl lg:text-5xl transition-all duration-300 shadow-md ${
+                className={`relative w-16 h-16 sm:w-20 sm:h-20 md:w-22 md:h-22 lg:w-26 lg:h-26 xl:w-28 xl:h-28 rounded-full flex items-center justify-center text-2xl sm:text-3xl md:text-4xl lg:text-5xl transition-all duration-300 shadow-md ${
                   isActive
                     ? 'ring-4 ring-amber-400 border-2 border-emerald-900 bg-amber-50 shadow-xl scale-110'
                     : 'bg-emerald-50/80 border border-emerald-100 hover:border-emerald-500 hover:bg-amber-50/70 hover:scale-105 hover:shadow-lg'
@@ -87,14 +87,14 @@ export const CategoryQuickNav: React.FC<CategoryQuickNavProps> = ({
                 {/* Popular Sparkle Badge */}
                 {cat.isPopular && (
                   <span className="absolute top-0 right-0 bg-amber-500 text-white rounded-full p-1 shadow-sm animate-pulse">
-                    <Sparkles className="w-4 h-4" />
+                    <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                   </span>
                 )}
               </div>
 
-              {/* Increased Category Label Font Size */}
+              {/* Un-truncated Full Category Label */}
               <span
-                className={`mt-3 text-sm sm:text-base lg:text-lg font-extrabold tracking-tight transition-colors line-clamp-1 ${
+                className={`mt-2.5 sm:mt-3 text-xs sm:text-sm md:text-base lg:text-lg font-extrabold tracking-tight transition-colors whitespace-nowrap text-center ${
                   isActive
                     ? 'text-emerald-950 underline underline-offset-6 decoration-amber-500 decoration-4 font-black scale-105'
                     : 'text-gray-800 group-hover/item:text-emerald-900'
