@@ -1,224 +1,130 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Star, CheckCircle, Quote, ThumbsUp, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Star, ChevronLeft, ChevronRight } from 'lucide-react';
 
-export interface ReviewItem {
+export interface TestimonialItem {
   id: string;
   author: string;
-  location: string;
-  avatar: string;
-  rating: number;
-  date: string;
-  title: string;
   content: string;
-  productName: string;
-  category: string;
-  likes: number;
+  rating: number;
 }
 
-export const REVIEWS_DATA: ReviewItem[] = [
+export const TESTIMONIALS_DATA: TestimonialItem[] = [
   {
-    id: 'rev-1',
-    author: 'Radhika Sharma',
-    location: 'Hyderabad, Telangana',
-    avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=150&q=80',
+    id: 'test-1',
+    author: 'ANBAJAGANE R.',
+    content: 'Taste at optimum level ! I loved the taste ! It was neither too sweet nor flavourless ! Delightful blend of organic bilona ghee & coconut ! Every bite counted many nutritions !',
     rating: 5,
-    date: '2 days ago',
-    title: 'Purest A2 Bilona Ghee I have ever tasted!',
-    content: 'The divine aroma when opening the jar brought back memories of my grandmother preparing homemade bilona ghee. Beautiful grainy texture and rich taste!',
-    productName: 'A2 Gir Cow Bilona Ghee (1L)',
-    category: 'ghee',
-    likes: 42,
   },
   {
-    id: 'rev-2',
-    author: 'Vikram Rao',
-    location: 'Bengaluru, Karnataka',
-    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80',
+    id: 'test-2',
+    author: 'ANANYA',
+    content: 'Yummy! Love the organic bilona cow ghee. You get authentic grainy texture and rich golden aroma. Truly pure & delicious. Made our daily cooking so healthy.',
     rating: 5,
-    date: '1 week ago',
-    title: 'Authentic Wood Pressed Mustard Oil!',
-    content: 'Cooking with Nandi Farms cold pressed oil keeps natural nutrients intact. Pungent aroma, genuine purity, and zero artificial processing.',
-    productName: 'Wood Pressed Mustard Oil (1L)',
-    category: 'oils',
-    likes: 38,
   },
   {
-    id: 'rev-3',
-    author: 'Ananya Patel',
-    location: 'Chennai, Tamil Nadu',
-    avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80',
+    id: 'test-3',
+    author: 'SHRADHA RAJENDRRA.',
+    content: 'Hello, I like your products. Cold pressed oils, bilona ghee, A2 milk etc.. I like it.. I enjoy your Original Organic Food.. awesome taste.. totally healthy food..',
     rating: 5,
-    date: '3 days ago',
-    title: 'Fresh Vegetables delivered within hours!',
-    content: 'The organic spinach and tomatoes arrived crisp and chemical-free. Express delivery packaging kept everything farm-fresh.',
-    productName: 'Organic Fresh Veggie Basket (5kg)',
-    category: 'veggies',
-    likes: 29,
   },
   {
-    id: 'rev-4',
-    author: 'Suresh Kumar',
-    location: 'Vijayawada, Andhra Pradesh',
-    avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=150&q=80',
+    id: 'test-4',
+    author: 'YUKTI S.',
+    content: 'It is always wonderful ordering from Nandi Farms. They have a wonderful collection of organic oils, A2 ghee, and fresh produce. Kudos team for keeping stock always fresh.',
     rating: 5,
-    date: '5 days ago',
-    title: 'Unadulterated Raw Honey - 100% Pure!',
-    content: 'You can immediately tell the difference between commercial syrup honey and real raw wildflower honey from Nandi Farms. Truly high quality.',
-    productName: 'Organic Raw Wildflower Honey (500g)',
-    category: 'ghee',
-    likes: 54,
+  },
+  {
+    id: 'test-5',
+    author: 'PRIYA SHARMA',
+    content: 'The cold wood pressed mustard oil is exceptionally authentic. Unprocessed, zero chemicals, and doorstep express delivery within 2 hours in Hyderabad!',
+    rating: 5,
   },
 ];
 
 export const CustomerReviews: React.FC = () => {
-  const [activeFilter, setActiveFilter] = useState<string>('all');
-  const [likedReviews, setLikedReviews] = useState<Record<string, boolean>>({});
+  const [startIndex, setStartIndex] = useState<number>(0);
 
-  const filteredReviews = activeFilter === 'all'
-    ? REVIEWS_DATA
-    : REVIEWS_DATA.filter((r) => r.category === activeFilter);
-
-  const handleToggleLike = (id: string) => {
-    setLikedReviews((prev) => ({ ...prev, [id]: !prev[id] }));
+  const handleNext = () => {
+    setStartIndex((prev) => (prev + 1) % TESTIMONIALS_DATA.length);
   };
 
+  const handlePrev = () => {
+    setStartIndex((prev) => (prev - 1 + TESTIMONIALS_DATA.length) % TESTIMONIALS_DATA.length);
+  };
+
+  // Get 4 visible items wrapped around
+  const visibleItems = Array.from({ length: 4 }).map((_, i) => {
+    const idx = (startIndex + i) % TESTIMONIALS_DATA.length;
+    return TESTIMONIALS_DATA[idx];
+  });
+
   return (
-    <section className="w-full max-w-none bg-[#f8f7f0] border-y border-emerald-100/90 py-10 sm:py-14 px-4 sm:px-8 lg:px-12 my-6 relative overflow-hidden">
-      <div className="max-w-7xl mx-auto space-y-8">
+    <section className="w-full max-w-none bg-[#f4efe1] py-12 sm:py-16 px-4 sm:px-8 lg:px-12 my-6 relative overflow-hidden">
+      <div className="max-w-7xl mx-auto">
         
-        {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-gray-200/80 pb-6">
-          <div className="space-y-2">
-            <div className="inline-flex items-center space-x-2 bg-emerald-100 text-emerald-950 px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider border border-emerald-300">
-              <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
-              <span>Customer Verification & Trust</span>
-            </div>
-            <h2 className="text-3xl sm:text-4xl font-black text-gray-900 tracking-tight font-sans">
-              What Our Customers Say
-            </h2>
-            <p className="text-xs sm:text-sm text-gray-600 font-medium">
-              Real reviews from 50,000+ conscious Indian households who trust Nandi Farms essentials.
-            </p>
-          </div>
-
-          {/* Overall Rating Box */}
-          <div className="bg-white rounded-2xl p-4 border border-emerald-100 shadow-sm flex items-center space-x-4 shrink-0">
-            <div className="text-center pr-4 border-r border-gray-200">
-              <span className="text-3xl sm:text-4xl font-black text-gray-900 block leading-none">4.9</span>
-              <div className="flex text-amber-400 mt-1 justify-center">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-3.5 h-3.5 fill-current" />
-                ))}
-              </div>
-            </div>
-            <div>
-              <span className="text-xs font-black text-gray-900 block">12,850+ Verified Reviews</span>
-              <span className="text-[11px] text-emerald-800 font-bold flex items-center gap-1 mt-0.5">
-                <CheckCircle className="w-3 h-3 text-emerald-600" /> 100% Authentic Quality
-              </span>
-            </div>
-          </div>
+        {/* Centered Section Header with Side Dividers (Matching Reference Screenshot) */}
+        <div className="flex items-center justify-center mb-8 sm:mb-12">
+          <div className="flex-1 max-w-[180px] sm:max-w-xs h-[1.5px] bg-[#9e8b74]/60"></div>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#5c4a38] tracking-tight font-serif px-4 sm:px-8 whitespace-nowrap">
+            Customer Testimonials
+          </h2>
+          <div className="flex-1 max-w-[180px] sm:max-w-xs h-[1.5px] bg-[#9e8b74]/60"></div>
         </div>
 
-        {/* Category Filter Chips */}
-        <div className="flex flex-wrap gap-2.5">
-          {[
-            { id: 'all', label: 'All Reviews' },
-            { id: 'ghee', label: 'Desi Bilona Ghee & Honey' },
-            { id: 'oils', label: 'Wood Pressed Oils' },
-            { id: 'veggies', label: 'Fresh Vegetables' },
-          ].map((tab) => (
-            <button
-              key={tab.id}
-              onClick={() => setActiveFilter(tab.id)}
-              className={`px-4 py-2 rounded-full text-xs font-extrabold transition-all cursor-pointer ${
-                activeFilter === tab.id
-                  ? 'bg-emerald-950 text-white shadow-md scale-105'
-                  : 'bg-white text-gray-700 border border-gray-200 hover:border-emerald-500 hover:bg-emerald-50'
-              }`}
-            >
-              {tab.label}
-            </button>
-          ))}
-        </div>
+        {/* Testimonials Carousel Container */}
+        <div className="relative group/carousel">
+          {/* Navigation Left Arrow Button */}
+          <button
+            type="button"
+            onClick={handlePrev}
+            className="absolute -left-3 sm:-left-5 top-1/2 -translate-y-1/2 z-20 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/90 backdrop-blur-xs border border-gray-400/60 shadow-md flex items-center justify-center text-gray-800 hover:bg-[#5c4a38] hover:text-white transition-all cursor-pointer hover:scale-110 active:scale-95"
+            aria-label="Previous Testimonials"
+          >
+            <ChevronLeft className="w-5 h-5 stroke-[2.5]" />
+          </button>
 
-        {/* Reviews Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredReviews.map((rev) => {
-            const isLiked = likedReviews[rev.id];
-            const likeCount = rev.likes + (isLiked ? 1 : 0);
-
-            return (
+          {/* 4-Column Rectangular Testimonial Cards Grid (Matching Reference Screenshot) */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 items-stretch">
+            {visibleItems.map((item) => (
               <div
-                key={rev.id}
-                className="bg-white rounded-3xl p-6 border border-gray-200/80 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between relative group"
+                key={item.id}
+                className="bg-[#f7f3e8] border border-gray-700/70 rounded-xl p-5 sm:p-6 flex flex-col justify-between hover:shadow-xl transition-all duration-300 min-h-[220px] sm:min-h-[240px]"
               >
-                {/* Quote Icon Accent */}
-                <Quote className="absolute top-6 right-6 w-8 h-8 text-emerald-100 group-hover:text-emerald-200 transition-colors pointer-events-none" />
-
-                <div className="space-y-4 relative z-10">
-                  {/* Star Rating & Verified Badge */}
-                  <div className="flex items-center justify-between">
-                    <div className="flex text-amber-400 space-x-0.5">
-                      {[...Array(rev.rating)].map((_, i) => (
-                        <Star key={i} className="w-4 h-4 fill-current" />
-                      ))}
-                    </div>
-                    <span className="inline-flex items-center text-[10px] font-extrabold bg-emerald-50 text-emerald-800 px-2.5 py-0.5 rounded-full border border-emerald-200">
-                      <CheckCircle className="w-3 h-3 mr-1 text-emerald-600" />
-                      Verified Buyer
-                    </span>
+                <div>
+                  {/* 5 Gold Stars at Top Left */}
+                  <div className="flex text-amber-500 space-x-1 mb-4">
+                    {[...Array(item.rating)].map((_, i) => (
+                      <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
+                    ))}
                   </div>
 
-                  {/* Review Headline & Body */}
-                  <div className="space-y-2">
-                    <h3 className="font-extrabold text-base text-gray-900 leading-snug">
-                      "{rev.title}"
-                    </h3>
-                    <p className="text-xs text-gray-600 leading-relaxed font-medium">
-                      {rev.content}
-                    </p>
-                  </div>
-
-                  {/* Purchased Product Tag */}
-                  <div className="bg-gray-50 border border-gray-100 rounded-xl p-2.5 text-[11px] text-gray-700 font-semibold">
-                    <span className="text-gray-400 block text-[9px] uppercase font-bold tracking-wider">Item Purchased:</span>
-                    <span className="text-emerald-950 font-bold">{rev.productName}</span>
-                  </div>
+                  {/* Review Text Body */}
+                  <p className="text-xs sm:text-sm text-gray-700 font-medium leading-relaxed font-sans">
+                    {item.content}
+                  </p>
                 </div>
 
-                {/* Author Info & Helpful Button */}
-                <div className="pt-4 mt-4 border-t border-gray-100 flex items-center justify-between">
-                  <div className="flex items-center space-x-3">
-                    <img
-                      src={rev.avatar}
-                      alt={rev.author}
-                      className="w-10 h-10 rounded-full object-cover border-2 border-emerald-200 shadow-2xs"
-                    />
-                    <div>
-                      <h4 className="text-xs font-extrabold text-gray-900">{rev.author}</h4>
-                      <p className="text-[10px] text-gray-400 font-medium">{rev.location}</p>
-                    </div>
-                  </div>
-
-                  <button
-                    type="button"
-                    onClick={() => handleToggleLike(rev.id)}
-                    className={`flex items-center space-x-1 px-3 py-1.5 rounded-full text-[11px] font-bold transition-all cursor-pointer ${
-                      isLiked
-                        ? 'bg-emerald-100 text-emerald-950 border border-emerald-300'
-                        : 'bg-gray-100 hover:bg-gray-200 text-gray-600'
-                    }`}
-                  >
-                    <ThumbsUp className={`w-3 h-3 ${isLiked ? 'fill-emerald-800 text-emerald-800' : ''}`} />
-                    <span>{likeCount}</span>
-                  </button>
+                {/* Bold Uppercase Author Name at Bottom Left */}
+                <div className="pt-4 mt-4 border-t border-gray-300/40">
+                  <h4 className="text-xs font-black text-gray-950 uppercase tracking-wider font-sans">
+                    {item.author}
+                  </h4>
                 </div>
               </div>
-            );
-          })}
+            ))}
+          </div>
+
+          {/* Navigation Right Arrow Button */}
+          <button
+            type="button"
+            onClick={handleNext}
+            className="absolute -right-3 sm:-right-5 top-1/2 -translate-y-1/2 z-20 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/90 backdrop-blur-xs border border-gray-400/60 shadow-md flex items-center justify-center text-gray-800 hover:bg-[#5c4a38] hover:text-white transition-all cursor-pointer hover:scale-110 active:scale-95"
+            aria-label="Next Testimonials"
+          >
+            <ChevronRight className="w-5 h-5 stroke-[2.5]" />
+          </button>
         </div>
 
       </div>
