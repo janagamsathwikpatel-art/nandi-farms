@@ -10,7 +10,6 @@ import { TodaysFreshPicks } from '@/components/TodaysFreshPicks';
 import { PromoBanners } from '@/components/PromoBanners';
 import { WeeklyBestSelling } from '@/components/WeeklyBestSelling';
 import { MostSellingProducts } from '@/components/MostSellingProducts';
-import { TrustSignalsBar } from '@/components/TrustSignalsBar';
 import { CustomerReviews } from '@/components/CustomerReviews';
 import { JustForYou } from '@/components/JustForYou';
 import { Footer } from '@/components/Footer';
@@ -284,9 +283,6 @@ export default function Home() {
 
         {/* 8. Customer Reviews & Ratings Showcase (Organic India Style) */}
         <CustomerReviews />
-
-        {/* 9. Trust Signals & Quality Guarantees Showcase Bar */}
-        <TrustSignalsBar />
       </main>
 
       {/* Footer Section */}
