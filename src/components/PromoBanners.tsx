@@ -67,7 +67,7 @@ export const PromoBanners: React.FC<PromoBannersProps> = ({ onClaimOffer }) => {
   };
 
   return (
-    <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-2 pb-3 my-1">
+    <section className="w-full max-w-none px-4 sm:px-8 lg:px-12 py-0 my-0">
       {/* 3 Standalone Full-Length Graphic Offer Cards — Zero Bottom Gap & No Duplicate Button */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6 items-stretch">
         {cards.map((card) => (
