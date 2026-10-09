@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { PRODUCTS } from '@/data/products';
 import { Product, CartItem } from '@/types';
 import { Header } from '@/components/Header';
@@ -45,6 +45,22 @@ export default function Home() {
 
   // Toast feedback state
   const [toasts, setToasts] = useState<ToastMessage[]>([]);
+
+  // Automatic Location Detection Prompt on Page Startup
+  useEffect(() => {
+    if (typeof window !== 'undefined' && 'geolocation' in navigator) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          setSelectedCity('Hyderabad');
+          addToast('📍 Location detected: Hyderabad', 'info');
+        },
+        (error) => {
+          setSelectedCity('Hyderabad');
+        },
+        { timeout: 6000 }
+      );
+    }
+  }, []);
 
   const addToast = (message: string, type: 'success' | 'info' | 'error' = 'success') => {
     const id = Date.now().toString() + Math.random().toString();

@@ -65,13 +65,15 @@ export const Header: React.FC<HeaderProps> = ({
       {/* Top Main Header Row */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex items-center justify-between gap-4">
         
-        {/* Left: Country Selector (India 🇮🇳 IN) */}
+        {/* Left: Location Selector Pill (Matching media_1791554547304.png) */}
         <button
           onClick={onOpenLocation}
-          className="flex items-center space-x-1.5 sm:space-x-2 text-sm text-gray-700 bg-gray-50/80 px-2.5 sm:px-3 py-1.5 rounded-full border border-gray-200/60 cursor-pointer hover:bg-gray-100 transition-colors shrink-0"
+          className="flex items-center space-x-2 text-sm text-gray-900 bg-white px-4 sm:px-5 py-2 rounded-full border border-gray-200 shadow-2xs hover:border-emerald-500 hover:shadow-sm transition-all cursor-pointer shrink-0"
+          title="Click to edit delivery location"
         >
-          <span className="text-sm sm:text-base">🇮🇳</span>
-          <span className="font-bold text-xs tracking-wide text-gray-900">{selectedCity || 'IN'}</span>
+          <span className="text-base sm:text-lg">🇮🇳</span>
+          <span className="font-extrabold text-xs sm:text-sm tracking-wide text-gray-900">{selectedCity || 'Hyderabad'}</span>
+          <ChevronDown className="w-3.5 h-3.5 text-gray-400" />
         </button>
 
         {/* Center: Brand Logo (NandiFarms) */}
