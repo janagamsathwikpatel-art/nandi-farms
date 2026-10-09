@@ -81,14 +81,14 @@ export const PromoBanners: React.FC<PromoBannersProps> = ({ onClaimOffer }) => {
           <div
             key={card.id}
             onClick={() => handleOpenModal(card)}
-            className="group relative rounded-[32px] sm:rounded-[36px] overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer bg-transparent leading-none"
+            className="group relative rounded-t-[80px] sm:rounded-t-[100px] rounded-b-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer border border-gray-200/90 bg-white"
             title={`Click to claim ${card.title}`}
           >
-            {/* Direct High-Definition Image Asset (Zero Bottom Gap & Flush Card Fit) */}
+            {/* Direct High-Definition Image Asset (100% Authentic Display Inside Arched Grid Box) */}
             <img
               src={card.image}
               alt={card.title}
-              className="w-full h-auto object-cover block leading-none group-hover:scale-[1.015] transition-transform duration-500 rounded-[32px] sm:rounded-[36px]"
+              className="w-full h-auto object-cover block group-hover:scale-[1.02] transition-transform duration-500 rounded-t-[80px] sm:rounded-t-[100px] rounded-b-3xl"
               loading="eager"
             />
           </div>
