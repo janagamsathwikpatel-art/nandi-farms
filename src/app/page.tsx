@@ -12,6 +12,7 @@ import { WeeklyBestSelling } from '@/components/WeeklyBestSelling';
 import { MostSellingProducts } from '@/components/MostSellingProducts';
 import { CustomerReviews } from '@/components/CustomerReviews';
 import { JustForYou } from '@/components/JustForYou';
+import { Footer } from '@/components/Footer';
 import { CartDrawer } from '@/components/CartDrawer';
 import { LoginModal } from '@/components/LoginModal';
 import { ProductModal } from '@/components/ProductModal';
@@ -277,6 +278,11 @@ export default function Home() {
         {/* 8. Customer Reviews & Ratings Showcase (Organic India Style) */}
         <CustomerReviews />
       </main>
+
+      {/* Footer Section (Matching media_1791547755419.png) */}
+      <div className="relative z-10">
+        <Footer />
+      </div>
 
       {/* Slide-over Cart Drawer */}
       <CartDrawer

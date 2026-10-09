@@ -1,296 +1,180 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
+import { ArrowRight, Leaf } from 'lucide-react';
 
 export const Footer: React.FC = () => {
-  const [email, setEmail] = useState('');
-  const [subscribed, setSubscribed] = useState(false);
-  const [paymentNotice, setPaymentNotice] = useState<string | null>(null);
-  const [activePaymentMethod, setActivePaymentMethod] = useState<{
-    name: string;
-    icon: string;
-    vpa: string;
-    deepLink: string;
-  } | null>(null);
-  const [paymentCompleted, setPaymentCompleted] = useState(false);
-  const [copiedVPA, setCopiedVPA] = useState(false);
-
-  const handleSubscribe = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (email.trim()) {
-      setSubscribed(true);
-      setEmail('');
-      setTimeout(() => setSubscribed(false), 4000);
+  const handleScrollToProducts = () => {
+    const el = document.getElementById('todays-picks') || document.getElementById('weekly-best-selling');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
     }
-  };
-
-  const handlePaymentClick = (methodName: string, icon: string, deepLink: string) => {
-    setPaymentNotice(`Connecting to ${methodName}... Opening payment app!`);
-    setActivePaymentMethod({
-      name: methodName,
-      icon,
-      vpa: '9949777844@ybl',
-      deepLink,
-    });
-    setPaymentCompleted(false);
-
-    setTimeout(() => setPaymentNotice(null), 3500);
-
-    // Attempt mobile app launch via deep link scheme
-    try {
-      if (typeof window !== 'undefined' && deepLink.startsWith('upi://') || deepLink.startsWith('tez://')) {
-        window.location.href = deepLink;
-      }
-    } catch (err) {
-      console.log('App deep link fallback to modal');
-    }
-  };
-
-  const handleCopyVPA = (vpa: string) => {
-    navigator.clipboard.writeText(vpa);
-    setCopiedVPA(true);
-    setTimeout(() => setCopiedVPA(false), 3000);
-  };
-
-  const handleConfirmPayment = () => {
-    setPaymentCompleted(true);
-    setTimeout(() => {
-      setActivePaymentMethod(null);
-      setPaymentCompleted(false);
-    }, 3500);
   };
 
   return (
-    <footer className="w-full bg-transparent relative overflow-hidden font-sans">
-      {/* Exact 1:1 High-Definition Full Length Graphic Footer Banner Image */}
-      <div className="relative w-full max-w-none mx-auto overflow-hidden select-none">
-        <img
-          src="/footer-banner-exact.jpg"
-          alt="Nandi Farms Footer Banner — Nourishing lives, Naturally."
-          className="w-full h-auto object-cover block select-none min-w-full"
-        />
-
-        {/* Interactive Click Hotspots & Precision Aligned Form Overlay */}
-        <div className="absolute inset-0 z-10 pointer-events-auto">
-          {/* Social Media Hotspots */}
-          <a
-            href="https://facebook.com/nandifarms"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="absolute top-[64%] left-[6.8%] w-[2.2%] h-[6.5%] cursor-pointer rounded-full hover:bg-white/10 transition-all"
-            title="Follow Nandi Farms on Facebook"
-          />
-          <a
-            href="https://instagram.com/nandifarms"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="absolute top-[64%] left-[9.3%] w-[2.2%] h-[6.5%] cursor-pointer rounded-full hover:bg-white/10 transition-all"
-            title="Follow Nandi Farms on Instagram"
-          />
-          <a
-            href="https://youtube.com/@nandifarms"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="absolute top-[64%] left-[11.8%] w-[2.2%] h-[6.5%] cursor-pointer rounded-full hover:bg-white/10 transition-all"
-            title="Subscribe on YouTube"
-          />
-          <a
-            href="https://linkedin.com/company/nandifarms"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="absolute top-[64%] left-[14.3%] w-[2.2%] h-[6.5%] cursor-pointer rounded-full hover:bg-white/10 transition-all"
-            title="Connect on LinkedIn"
-          />
-
-          {/* Quick Links Hotspots */}
-          <a
-            href="https://eveggie.in/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="absolute top-[35%] left-[29%] w-[12%] h-[40%] cursor-pointer rounded-lg hover:bg-white/5 transition-all"
-            title="Click to view Quick Links"
-          />
-
-          {/* Contact Phone Hotspot (+91 9949777844) */}
-          <a
-            href="tel:9949777844"
-            className="absolute top-[52%] left-[53%] w-[20%] h-[8%] cursor-pointer rounded-lg hover:bg-white/5 transition-all"
-            title="Call +91 9949777844"
-          />
-
-          {/* Contact Email Hotspot (support@nandifarms.com) */}
-          <a
-            href="mailto:support@nandifarms.com"
-            className="absolute top-[62%] left-[53%] w-[20%] h-[8%] cursor-pointer rounded-lg hover:bg-white/5 transition-all"
-            title="Email support@nandifarms.com"
-          />
-
-          {/* Direct App Payment Option Hotspots */}
-          {/* VISA */}
-          <div
-            onClick={() => handlePaymentClick('VISA Gateway', '💳', 'https://eveggie.in/checkout')}
-            className="absolute top-[82%] left-[17.8%] w-[3.8%] h-[8%] cursor-pointer rounded-md hover:bg-white/10 transition-all"
-            title="Pay with VISA Card"
-          />
-          {/* Mastercard */}
-          <div
-            onClick={() => handlePaymentClick('Mastercard Gateway', '💳', 'https://eveggie.in/checkout')}
-            className="absolute top-[82%] left-[22.0%] w-[3.8%] h-[8%] cursor-pointer rounded-md hover:bg-white/10 transition-all"
-            title="Pay with Mastercard"
-          />
-          {/* UPI Direct App */}
-          <div
-            onClick={() => handlePaymentClick('UPI Direct App', '📱', 'upi://pay?pa=9949777844@ybl&pn=NandiFarms&cu=INR')}
-            className="absolute top-[82%] left-[26.0%] w-[3.8%] h-[8%] cursor-pointer rounded-md hover:bg-white/10 transition-all"
-            title="Open UPI App to Pay"
-          />
-          {/* RuPay Direct App */}
-          <div
-            onClick={() => handlePaymentClick('RuPay UPI App', '🇮🇳', 'upi://pay?pa=9949777844@ybl&pn=NandiFarms&cu=INR')}
-            className="absolute top-[82%] left-[30.2%] w-[3.8%] h-[8%] cursor-pointer rounded-md hover:bg-white/10 transition-all"
-            title="Pay with RuPay"
-          />
-          {/* Google Pay (GPay) Direct App */}
-          <div
-            onClick={() => handlePaymentClick('Google Pay (GPay)', '🟢', 'tez://upi/pay?pa=9949777844@ybl&pn=NandiFarms&cu=INR')}
-            className="absolute top-[82%] left-[34.4%] w-[3.8%] h-[8%] cursor-pointer rounded-md hover:bg-white/10 transition-all"
-            title="Open Google Pay to Complete Payment"
-          />
-
-          {/* Newsletter Form Overlay — Precision aligned with 0 double placeholder text */}
-          <form onSubmit={handleSubscribe}>
-            <input
-              type="email"
-              required
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder=""
-              className="absolute top-[53.5%] right-[5.4%] w-[20.5%] h-[8.5%] px-4 text-xs font-medium text-white bg-transparent border-none outline-none focus:outline-none focus:ring-0 cursor-text"
-              title="Enter your email address for newsletter"
-            />
-            <button
-              type="submit"
-              className="absolute top-[64%] right-[5.4%] w-[20.5%] h-[8.5%] rounded-lg cursor-pointer bg-transparent hover:bg-black/5 active:bg-black/10 transition-all flex items-center justify-center"
-              title="Click to Subscribe"
-            >
-              {subscribed && (
-                <span className="bg-[#0a4233] text-amber-200 border border-amber-300/40 px-3 py-1.5 rounded-md text-xs font-bold shadow-lg">
-                  ✓ Subscribed!
-                </span>
-              )}
-            </button>
-          </form>
-
-          {/* Payment App Launch Notice Toast */}
-          {paymentNotice && (
-            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-[#0a4233] text-amber-200 border border-emerald-500/40 px-4 py-2 rounded-xl text-xs font-bold shadow-2xl animate-fade-in z-20 flex items-center space-x-2">
-              <span className="animate-pulse">💳</span>
-              <span>{paymentNotice}</span>
-            </div>
-          )}
-        </div>
-      </div>
-
-      {/* Interactive Nandi Farms Payment Gateway & App Connector Modal */}
-      {activePaymentMethod && (
-        <div className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4 animate-fade-in">
-          <div className="bg-[#0a4233] border border-emerald-500/40 rounded-3xl p-6 max-w-md w-full text-white shadow-2xl relative overflow-hidden">
-            {/* Close Button */}
-            <button
-              onClick={() => setActivePaymentMethod(null)}
-              className="absolute top-4 right-4 w-8 h-8 rounded-full bg-emerald-900/60 text-emerald-200 hover:text-white flex items-center justify-center transition-all cursor-pointer"
-            >
-              ✕
-            </button>
-
-            {/* Header */}
-            <div className="flex items-center space-x-3 mb-4">
-              <div className="w-10 h-10 rounded-2xl bg-emerald-800/80 flex items-center justify-center text-xl shadow-inner">
-                {activePaymentMethod.icon}
+    <footer className="w-full bg-[#f2f6eb] text-[#203b29] font-sans relative overflow-hidden pt-10 sm:pt-14 pb-6 px-4 sm:px-8 lg:px-12 border-t border-[#e2ebd9]">
+      <div className="max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-6 items-center pb-10 sm:pb-14">
+          
+          {/* LEFT SECTION: Logo & Quick Navigation Columns */}
+          <div className="lg:col-span-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 lg:gap-8 pr-0 lg:pr-6 border-b lg:border-b-0 lg:border-r border-[#d2dec6] pb-8 lg:pb-0">
+            
+            {/* Branding Logo Block */}
+            <div className="flex flex-col items-start space-y-1 pr-4">
+              {/* Leaves Icon */}
+              <div className="flex items-center space-x-1 text-[#4a6b53] mb-1">
+                <Leaf className="w-5 h-5 fill-[#63876d] transform -rotate-12" />
+                <Leaf className="w-4 h-4 fill-[#7c9e86] transform rotate-45 -translate-x-1" />
               </div>
-              <div>
-                <h3 className="font-bold text-lg text-amber-200">
-                  {activePaymentMethod.name} Connected
-                </h3>
-                <p className="text-xs text-emerald-200/80">
-                  Nandi Farms Secure Direct Checkout
-                </p>
+              <h3 className="text-3xl font-black tracking-widest font-serif text-[#1e3827]">
+                NANDHI
+              </h3>
+              <div className="flex items-center space-x-2 text-[10px] font-black tracking-[0.35em] text-[#42614b] uppercase">
+                <span className="w-4 h-[1px] bg-[#42614b]" />
+                <span>FARMS</span>
+                <span className="w-4 h-[1px] bg-[#42614b]" />
               </div>
             </div>
 
-            {paymentCompleted ? (
-              <div className="py-8 text-center space-y-3 animate-fade-in">
-                <div className="w-16 h-16 bg-emerald-500/20 rounded-full flex items-center justify-center mx-auto text-3xl text-amber-300">
-                  ✓
-                </div>
-                <h4 className="font-bold text-xl text-amber-200">Payment Completed!</h4>
-                <p className="text-xs text-emerald-100">
-                  Order #NF-84920 Confirmed. Your farm-fresh groceries are on the way! 🎉
-                </p>
+            {/* Vertical Separator */}
+            <div className="hidden sm:block w-[1.5px] h-28 bg-[#d2dec6]" />
+
+            {/* EXPLORE Column */}
+            <div className="space-y-2 min-w-[100px]">
+              <div className="space-y-1">
+                <h4 className="text-xs font-black tracking-widest uppercase text-[#35533c]">
+                  EXPLORE
+                </h4>
+                <div className="w-5 h-[2.5px] bg-[#5a7c62] rounded-full" />
               </div>
-            ) : (
-              <div className="space-y-4">
-                {/* Official VPA Box */}
-                <div className="bg-emerald-950/80 border border-emerald-600/30 rounded-2xl p-3 flex items-center justify-between">
-                  <div>
-                    <p className="text-[10px] text-emerald-300 uppercase tracking-wider font-semibold">
-                      Official UPI Merchant VPA
-                    </p>
-                    <p className="font-mono text-sm font-bold text-amber-300">
-                      {activePaymentMethod.vpa}
-                    </p>
-                  </div>
-                  <button
-                    onClick={() => handleCopyVPA(activePaymentMethod.vpa)}
-                    className="px-3 py-1.5 bg-amber-400/20 hover:bg-amber-400/30 text-amber-200 text-xs font-bold rounded-xl transition-all cursor-pointer"
-                  >
-                    {copiedVPA ? '✓ Copied!' : 'Copy ID'}
+              <ul className="space-y-1.5 text-xs font-semibold text-[#4e6754]">
+                <li>
+                  <button onClick={handleScrollToProducts} className="hover:text-[#1e3827] transition-colors cursor-pointer">
+                    Shop All
                   </button>
-                </div>
+                </li>
+                <li>
+                  <button onClick={handleScrollToProducts} className="hover:text-[#1e3827] transition-colors cursor-pointer">
+                    Milk
+                  </button>
+                </li>
+                <li>
+                  <button onClick={handleScrollToProducts} className="hover:text-[#1e3827] transition-colors cursor-pointer">
+                    Vegetables
+                  </button>
+                </li>
+                <li>
+                  <button onClick={handleScrollToProducts} className="hover:text-[#1e3827] transition-colors cursor-pointer">
+                    Fruits
+                  </button>
+                </li>
+              </ul>
+            </div>
 
-                {/* QR Code Scan Container */}
-                <div className="bg-white/5 border border-emerald-500/20 rounded-2xl p-4 text-center space-y-2">
-                  <p className="text-xs text-emerald-100 font-medium">
-                    Scan with GPay, PhonePe, Paytm, or any UPI App
-                  </p>
-                  <div className="w-40 h-40 bg-white rounded-2xl mx-auto p-2 flex items-center justify-center shadow-lg">
-                    {/* High Precision QR Artwork */}
-                    <img
-                      src={`https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=${encodeURIComponent(activePaymentMethod.deepLink)}`}
-                      alt="UPI Payment QR Code"
-                      className="w-full h-full object-contain rounded-xl"
-                    />
-                  </div>
-                  <p className="text-[11px] text-emerald-300 font-bold">
-                    Amount: ₹499 • Nandi Farms Direct Pay
-                  </p>
-                </div>
+            {/* Vertical Separator */}
+            <div className="hidden sm:block w-[1.5px] h-28 bg-[#d2dec6]" />
 
-                {/* Action Buttons */}
-                <div className="space-y-2 pt-2">
-                  <a
-                    href={activePaymentMethod.deepLink}
-                    className="w-full py-3 bg-gradient-to-r from-amber-300 via-amber-200 to-amber-400 hover:from-amber-200 hover:to-amber-300 text-emerald-950 font-bold text-sm rounded-xl shadow-lg transition-all flex items-center justify-center space-x-2 cursor-pointer"
-                  >
-                    <span>Launch {activePaymentMethod.name} App</span>
-                    <span>➔</span>
+            {/* CONNECT Column */}
+            <div className="space-y-2 min-w-[100px]">
+              <div className="space-y-1">
+                <h4 className="text-xs font-black tracking-widest uppercase text-[#35533c]">
+                  CONNECT
+                </h4>
+                <div className="w-5 h-[2.5px] bg-[#5a7c62] rounded-full" />
+              </div>
+              <ul className="space-y-1.5 text-xs font-semibold text-[#4e6754]">
+                <li>
+                  <a href="#about" className="hover:text-[#1e3827] transition-colors">
+                    About Us
                   </a>
+                </li>
+                <li>
+                  <a href="mailto:support@nandifarms.com" className="hover:text-[#1e3827] transition-colors">
+                    Contact Us
+                  </a>
+                </li>
+                <li>
+                  <a href="#faq" className="hover:text-[#1e3827] transition-colors">
+                    FAQs
+                  </a>
+                </li>
+              </ul>
+            </div>
 
-                  <button
-                    onClick={handleConfirmPayment}
-                    className="w-full py-2.5 bg-emerald-800/80 hover:bg-emerald-700 text-white font-semibold text-xs rounded-xl transition-all cursor-pointer border border-emerald-500/30"
-                  >
-                    Done Payment / Confirm Order
-                  </button>
-                </div>
-              </div>
-            )}
+            {/* Right-most Vertical Separator */}
+            <div className="hidden lg:block w-[1.5px] h-28 bg-[#d2dec6]" />
+          </div>
+
+          {/* MIDDLE SECTION: Hero Tagline & Interactive Button */}
+          <div className="lg:col-span-6 relative flex flex-col justify-center items-start pl-0 lg:pl-4">
+            {/* Organic Curved Backdrop Shape */}
+            <div className="absolute right-0 top-1/2 -translate-y-1/2 w-full lg:w-[115%] h-[130%] pointer-events-none opacity-40 overflow-hidden hidden sm:block">
+              <svg viewBox="0 0 500 300" fill="none" className="w-full h-full text-[#c8d8bb]">
+                <path d="M 150 0 C 80 100, 100 200, 500 300 L 500 0 Z" fill="currentColor" opacity="0.35" />
+              </svg>
+            </div>
+
+            {/* Tagline Content */}
+            <div className="relative z-10 max-w-md">
+              <h2 className="text-4xl sm:text-5xl lg:text-6xl font-normal font-serif text-[#1e3827] leading-[1.08] tracking-tight">
+                Freshness,<br />naturally.
+              </h2>
+              <p className="text-xs sm:text-sm text-[#4e6754] font-medium mt-3 leading-relaxed">
+                Milk, fruits &amp; vegetables for everyday living.
+              </p>
+
+              <button
+                type="button"
+                onClick={handleScrollToProducts}
+                className="mt-6 border border-[#2a4733] text-[#1e3827] rounded-full px-6 py-2.5 text-xs font-bold uppercase tracking-wider hover:bg-[#1e3827] hover:text-white transition-all cursor-pointer inline-flex items-center space-x-2 group shadow-xs"
+              >
+                <span>EXPLORE OUR PRODUCTS</span>
+                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+              </button>
+            </div>
+
+            {/* Farm Illustration Sketch Artwork Overlay */}
+            <div className="absolute right-0 bottom-0 w-64 sm:w-80 lg:w-96 opacity-85 pointer-events-none hidden md:block transform translate-x-4 translate-y-4">
+              <svg viewBox="0 0 300 200" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full text-[#4a6b53]/40">
+                {/* Barn House Outline */}
+                <path d="M120 100 L170 60 L220 100 L220 160 L120 160 Z" stroke="currentColor" strokeWidth="1.5" />
+                <path d="M120 100 L220 100" stroke="currentColor" strokeWidth="1.5" />
+                <rect x="150" y="120" width="30" height="40" stroke="currentColor" strokeWidth="1.5" />
+                
+                {/* Fruit Tree Outline */}
+                <path d="M250 160 C250 120, 240 100, 250 80 C230 70, 220 40, 250 30 C270 20, 290 50, 280 80 C290 100, 280 140, 280 160" stroke="currentColor" strokeWidth="1.5" />
+                <circle cx="240" cy="50" r="4" fill="currentColor" opacity="0.6" />
+                <circle cx="265" cy="40" r="4" fill="currentColor" opacity="0.6" />
+                <circle cx="255" cy="65" r="4" fill="currentColor" opacity="0.6" />
+
+                {/* Grazing Cow & Milk Can Sketch */}
+                <path d="M50 150 C40 140, 60 120, 80 130 C90 120, 100 130, 95 150 Z" stroke="currentColor" strokeWidth="1.5" />
+                <rect x="100" y="140" width="12" height="18" rx="2" stroke="currentColor" strokeWidth="1.5" fill="none" />
+                
+                {/* Crop Field Rows */}
+                <path d="M10 180 C80 170, 180 170, 290 180" stroke="currentColor" strokeWidth="1.5" strokeDasharray="3 3" />
+                <path d="M20 190 C90 182, 190 182, 280 190" stroke="currentColor" strokeWidth="1.5" strokeDasharray="3 3" />
+              </svg>
+            </div>
+          </div>
+
+        </div>
+
+        {/* BOTTOM LEGAL & COPYRIGHT BAR */}
+        <div className="pt-6 border-t border-[#d2dec6] flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-[#526a57] font-medium">
+          <p>© 2026 NANDHI FARMS. All rights reserved.</p>
+          <div className="flex items-center space-x-3">
+            <a href="#privacy" className="hover:text-[#1e3827] transition-colors">
+              Privacy Policy
+            </a>
+            <span>·</span>
+            <a href="#terms" className="hover:text-[#1e3827] transition-colors">
+              Terms &amp; Conditions
+            </a>
           </div>
         </div>
-      )}
+
+      </div>
     </footer>
   );
 };
-
-
-
