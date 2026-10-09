@@ -26,12 +26,12 @@ export const Footer: React.FC = () => {
 
   return (
     <footer className="w-full bg-transparent relative overflow-hidden font-sans">
-      {/* Exact 1:1 High-Definition Graphic Footer Banner Image */}
-      <div className="relative max-w-[1440px] mx-auto overflow-hidden select-none">
+      {/* Exact 1:1 High-Definition Full Length Graphic Footer Banner Image */}
+      <div className="relative w-full max-w-none mx-auto overflow-hidden select-none">
         <img
           src="/footer-banner-exact.jpg"
           alt="Nandi Farms Footer Banner — Nourishing lives, Naturally."
-          className="w-full h-auto object-cover block select-none"
+          className="w-full h-auto object-cover block select-none min-w-full"
         />
 
         {/* Interactive Click Hotspots & Precision Aligned Form Overlay */}
