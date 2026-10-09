@@ -65,15 +65,24 @@ export const Header: React.FC<HeaderProps> = ({
       {/* Top Main Header Row */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex items-center justify-between gap-4">
         
-        {/* Left: Location Selector Pill (Matching media_1791554547304.png) */}
+        {/* Left: Location Header Widget (Matching media_1791554906894.png) */}
         <button
           onClick={onOpenLocation}
-          className="flex items-center space-x-2 text-sm text-gray-900 bg-white px-4 sm:px-5 py-2 rounded-full border border-gray-200 shadow-2xs hover:border-emerald-500 hover:shadow-sm transition-all cursor-pointer shrink-0"
+          className="flex flex-col items-start text-left cursor-pointer group shrink-0 max-w-[190px] sm:max-w-[260px] md:max-w-[320px]"
           title="Click to edit delivery location"
         >
-          <span className="text-base sm:text-lg">🇮🇳</span>
-          <span className="font-extrabold text-xs sm:text-sm tracking-wide text-gray-900">{selectedCity || 'Hyderabad'}</span>
-          <ChevronDown className="w-3.5 h-3.5 text-gray-400" />
+          {/* Top Line: Bold Delivery in 10 minutes */}
+          <span className="font-black text-sm sm:text-base tracking-tight text-gray-950 leading-none group-hover:text-emerald-700 transition-colors">
+            Delivery in 10 minutes
+          </span>
+
+          {/* Sub Line: Detailed Street Address + Dropdown Arrow */}
+          <div className="flex items-center space-x-1 mt-0.5 text-xs text-gray-700 font-medium w-full">
+            <span className="truncate font-semibold text-[11px] sm:text-xs text-gray-800">
+              {selectedCity.includes(',') ? selectedCity : `12-4-36/10, Pragathi Nagar, ${selectedCity}`}
+            </span>
+            <ChevronDown className="w-3.5 h-3.5 text-gray-950 fill-gray-950 shrink-0 transform group-hover:translate-y-0.5 transition-transform" />
+          </div>
         </button>
 
         {/* Center: Brand Logo (NandiFarms) */}
