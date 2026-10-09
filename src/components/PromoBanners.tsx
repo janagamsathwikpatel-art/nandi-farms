@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Check, Copy, X, Gift } from 'lucide-react';
+import { Check, Copy, X, Gift, ArrowRight } from 'lucide-react';
 
 interface PromoBannersProps {
   onClaimOffer?: (offerTitle: string) => void;
@@ -68,22 +68,38 @@ export const PromoBanners: React.FC<PromoBannersProps> = ({ onClaimOffer }) => {
 
   return (
     <section className="w-full max-w-none px-4 sm:px-8 lg:px-12 py-6 my-2">
-      {/* 3 Arched Grid Containers with Direct Authentic Image Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 items-stretch max-w-7xl mx-auto">
+      {/* Full-Length Arched Grid Showcase Container */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 items-stretch w-full max-w-none">
         {cards.map((card) => (
           <div
             key={card.id}
             onClick={() => handleOpenModal(card)}
-            className="group relative rounded-t-[75px] sm:rounded-t-[95px] rounded-b-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer border border-gray-200/80 bg-white flex flex-col justify-between"
+            className="group relative rounded-t-[75px] sm:rounded-t-[95px] rounded-b-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer border border-gray-200/90 bg-white flex flex-col justify-between"
             title={`Click to claim ${card.title}`}
           >
-            {/* Direct High-Definition Image Asset (100% Authentic Image Display) */}
-            <div className="w-full h-full overflow-hidden rounded-t-[75px] sm:rounded-t-[95px] rounded-b-3xl">
+            {/* High-Definition Crisp Graphic Display */}
+            <div className="w-full overflow-hidden rounded-t-[75px] sm:rounded-t-[95px]">
               <img
                 src={card.image}
                 alt={card.title}
-                className="w-full h-full object-cover block group-hover:scale-105 transition-transform duration-500 rounded-t-[75px] sm:rounded-t-[95px] rounded-b-3xl"
+                className="w-full h-auto object-cover block group-hover:scale-105 transition-transform duration-500 rounded-t-[75px] sm:rounded-t-[95px]"
+                loading="eager"
               />
+            </div>
+
+            {/* Down of Grids: Prominent Claim Offer Button */}
+            <div className="p-4 bg-gradient-to-b from-white to-[#faf9f5] border-t border-gray-100 flex items-center justify-center">
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleOpenModal(card);
+                }}
+                className="w-full max-w-[260px] bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-sm sm:text-base py-3 px-6 rounded-full shadow-lg hover:shadow-emerald-600/30 transition-all duration-200 flex items-center justify-center space-x-2 group/btn cursor-pointer active:scale-95"
+              >
+                <span>Claim Offer</span>
+                <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+              </button>
             </div>
           </div>
         ))}
