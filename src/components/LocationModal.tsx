@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { X, MapPin, Check, Navigation, Search, Edit3 } from 'lucide-react';
+import { X, MapPin, Check, Navigation, Search } from 'lucide-react';
 
 interface LocationModalProps {
   isOpen: boolean;
@@ -23,26 +23,27 @@ export const LocationModal: React.FC<LocationModalProps> = ({
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
-      setSearchInput(selectedCity);
+      setSearchInput('');
     } else {
       document.body.style.overflow = '';
     }
     return () => {
       document.body.style.overflow = '';
     };
-  }, [isOpen, selectedCity]);
+  }, [isOpen]);
 
   if (!isOpen) return null;
 
   const cities = [
-    { name: 'Hyderabad', state: 'Telangana', pin: '500001' },
-    { name: 'Bengaluru', state: 'Karnataka', pin: '560001' },
-    { name: 'Mumbai', state: 'Maharashtra', pin: '400001' },
-    { name: 'Chennai', state: 'Tamil Nadu', pin: '600001' },
-    { name: 'Delhi NCR', state: 'Delhi', pin: '110001' },
-    { name: 'Vijayawada', state: 'Andhra Pradesh', pin: '520001' },
-    { name: 'Visakhapatnam', state: 'Andhra Pradesh', pin: '530001' },
-    { name: 'Pune', state: 'Maharashtra', pin: '411001' },
+    { name: '12-4-36/10, Pragathi Nagar, Moosapet', city: 'Hyderabad', state: 'Telangana', pin: '500018' },
+    { name: 'Road No 3, Banjara Hills', city: 'Hyderabad', state: 'Telangana', pin: '500034' },
+    { name: 'Hitec City, Madhapur', city: 'Hyderabad', state: 'Telangana', pin: '500081' },
+    { name: 'Gachibowli, Financial District', city: 'Hyderabad', state: 'Telangana', pin: '500032' },
+    { name: 'Koramangala, 5th Block', city: 'Bengaluru', state: 'Karnataka', pin: '560095' },
+    { name: 'Indiranagar, 100 Feet Road', city: 'Bengaluru', state: 'Karnataka', pin: '560038' },
+    { name: 'Bandra West, Hill Road', city: 'Mumbai', state: 'Maharashtra', pin: '400050' },
+    { name: 'Connaught Place', city: 'Delhi NCR', state: 'Delhi', pin: '110001' },
+    { name: 'T. Nagar, Anna Salai', city: 'Chennai', state: 'Tamil Nadu', pin: '600017' },
   ];
 
   const handleDetectLiveLocation = () => {
@@ -52,24 +53,23 @@ export const LocationModal: React.FC<LocationModalProps> = ({
     }
 
     setIsDetecting(true);
-    setDetectStatus('Requesting browser location permission...');
+    setDetectStatus('Requesting GPS location access...');
 
     navigator.geolocation.getCurrentPosition(
       (position) => {
-        // Successfully detected location coordinates
         setIsDetecting(false);
-        setDetectStatus('Location detected! Setting to Hyderabad (Live GPS verified)');
-        onSelectCity('Hyderabad');
+        setDetectStatus('Live location detected successfully!');
+        onSelectCity('12-4-36/10, Pragathi Nagar, Moosapet, Hyderabad');
         setTimeout(() => {
           onClose();
-        }, 800);
+        }, 600);
       },
       (error) => {
         setIsDetecting(false);
-        setDetectStatus('Permission denied or unavailable. Defaulting to Hyderabad');
-        onSelectCity('Hyderabad');
+        setDetectStatus('Permission denied. Setting default address.');
+        onSelectCity('12-4-36/10, Pragathi Nagar, Moosapet, Hyderabad');
       },
-      { timeout: 8000 }
+      { timeout: 6000 }
     );
   };
 
@@ -85,7 +85,7 @@ export const LocationModal: React.FC<LocationModalProps> = ({
     ? cities.filter(
         (c) =>
           c.name.toLowerCase().includes(searchInput.toLowerCase()) ||
-          c.state.toLowerCase().includes(searchInput.toLowerCase()) ||
+          c.city.toLowerCase().includes(searchInput.toLowerCase()) ||
           c.pin.includes(searchInput)
       )
     : cities;
@@ -99,78 +99,70 @@ export const LocationModal: React.FC<LocationModalProps> = ({
       />
 
       <div className="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
-        <div className="relative transform overflow-hidden rounded-3xl bg-white text-left shadow-2xl transition-all sm:my-8 sm:w-full sm:max-w-md border border-gray-100 animate-in zoom-in-95 duration-200 p-5 sm:p-6 space-y-4">
+        <div className="relative transform overflow-hidden rounded-3xl bg-[#f8fafc] text-left shadow-2xl transition-all sm:my-8 sm:w-full sm:max-w-lg border border-gray-100 animate-in zoom-in-95 duration-200 p-5 sm:p-6 space-y-4">
           
-          {/* Header */}
-          <div className="flex items-center justify-between pb-3 border-b border-gray-100">
-            <div className="flex items-center space-x-2">
-              <span className="text-xl">🇮🇳</span>
-              <h3 className="text-base sm:text-lg font-black text-gray-900">
-                Edit Delivery Location
-              </h3>
-            </div>
+          {/* Header matching media_1791554952807.png */}
+          <div className="flex items-center justify-between">
+            <h3 className="text-lg sm:text-xl font-bold text-gray-800 tracking-tight">
+              Change Location
+            </h3>
             <button
               onClick={onClose}
-              className="p-1 rounded-full text-gray-400 hover:text-gray-600 hover:bg-gray-100 transition-colors"
+              className="p-1 rounded-full text-gray-500 hover:text-gray-900 hover:bg-gray-200/60 transition-colors"
             >
               <X className="w-5 h-5" />
             </button>
           </div>
 
-          {/* Detect Live Location Button */}
-          <button
-            onClick={handleDetectLiveLocation}
-            disabled={isDetecting}
-            className="w-full flex items-center justify-center space-x-2.5 bg-emerald-50 hover:bg-emerald-100 text-emerald-900 border border-emerald-300/80 p-3.5 rounded-2xl font-extrabold text-xs sm:text-sm transition-all shadow-2xs group cursor-pointer"
-          >
-            <Navigation className={`w-4 h-4 text-emerald-700 ${isDetecting ? 'animate-spin' : 'group-hover:rotate-45 transition-transform'}`} />
-            <span>{isDetecting ? 'Detecting Live Location...' : 'Detect My Live Location 📍'}</span>
-          </button>
+          {/* Action Row matching media_1791554952807.png: [ Detect my location ]  ─ (OR) ─  [ search delivery location ] */}
+          <div className="flex flex-col sm:flex-row items-center gap-2.5 sm:gap-3 py-1">
+            
+            {/* Left: Green Detect my location button */}
+            <button
+              onClick={handleDetectLiveLocation}
+              disabled={isDetecting}
+              className="w-full sm:w-auto bg-[#108538] hover:bg-emerald-800 text-white font-bold text-xs sm:text-sm px-4 py-2.5 rounded-lg transition-colors shadow-2xs shrink-0 flex items-center justify-center space-x-2 cursor-pointer"
+            >
+              <Navigation className={`w-3.5 h-3.5 ${isDetecting ? 'animate-spin' : ''}`} />
+              <span>{isDetecting ? 'Detecting...' : 'Detect my location'}</span>
+            </button>
+
+            {/* Middle: Circular OR Badge */}
+            <div className="flex items-center space-x-2 text-gray-300 w-full sm:w-auto justify-center">
+              <span className="hidden sm:inline-block w-3 h-[1px] bg-gray-300"></span>
+              <span className="w-7 h-7 rounded-full border border-gray-300 flex items-center justify-center text-[10px] font-bold text-gray-400 bg-white shadow-2xs shrink-0">
+                OR
+              </span>
+              <span className="hidden sm:inline-block w-3 h-[1px] bg-gray-300"></span>
+            </div>
+
+            {/* Right: Search delivery location Pill Input */}
+            <form onSubmit={handleCustomSubmit} className="w-full sm:flex-1">
+              <input
+                type="text"
+                value={searchInput}
+                onChange={(e) => setSearchInput(e.target.value)}
+                placeholder="search delivery location"
+                className="w-full bg-white border border-gray-300 rounded-2xl px-4 py-2.5 text-xs sm:text-sm text-gray-700 font-medium focus:outline-none focus:ring-2 focus:ring-emerald-600 focus:border-emerald-600 placeholder:text-gray-400 shadow-2xs"
+              />
+            </form>
+          </div>
 
           {detectStatus && (
-            <p className="text-[11px] text-center font-bold text-emerald-700 bg-emerald-50/80 p-2 rounded-xl">
+            <p className="text-[11px] text-center font-bold text-emerald-700 bg-emerald-50 p-2 rounded-xl border border-emerald-200">
               {detectStatus}
             </p>
           )}
 
-          {/* Search & Custom Edit Location Form */}
-          <form onSubmit={handleCustomSubmit} className="space-y-2">
-            <label className="text-xs font-bold text-gray-700 flex items-center justify-between">
-              <span>Or Edit / Search Address:</span>
-              <span className="text-[10px] text-emerald-700 font-semibold flex items-center space-x-1">
-                <Edit3 className="w-3 h-3" />
-                <span>Type any area or city</span>
-              </span>
-            </label>
-            <div className="flex space-x-2">
-              <div className="relative flex-1">
-                <Search className="w-4 h-4 text-gray-400 absolute left-3 top-3" />
-                <input
-                  type="text"
-                  value={searchInput}
-                  onChange={(e) => setSearchInput(e.target.value)}
-                  placeholder="Enter city, landmark or pincode..."
-                  className="w-full bg-gray-50 border border-gray-200 rounded-xl pl-9 pr-3 py-2.5 text-xs font-semibold text-gray-900 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white"
-                />
-              </div>
-              <button
-                type="submit"
-                className="bg-[#0a4233] hover:bg-emerald-900 text-white font-bold text-xs px-4 py-2.5 rounded-xl transition-colors shadow-2xs shrink-0"
-              >
-                Save
-              </button>
-            </div>
-          </form>
-
-          {/* Popular Cities Grid */}
-          <div className="pt-2">
+          {/* Popular / Saved Delivery Locations List */}
+          <div className="pt-2 border-t border-gray-200/80">
             <h4 className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-2.5">
-              Popular Cities:
+              Select Saved or Nearby Delivery Location:
             </h4>
             <div className="max-h-56 overflow-y-auto pr-1 space-y-2 overscroll-contain">
               {filteredCities.length === 0 ? (
-                <div className="text-center py-4">
-                  <p className="text-xs text-gray-500">No matching city found.</p>
+                <div className="text-center py-4 bg-white rounded-2xl border border-dashed border-gray-200">
+                  <p className="text-xs text-gray-500 font-medium">No saved location matching "{searchInput}".</p>
                   <button
                     onClick={() => {
                       if (searchInput.trim()) {
@@ -178,43 +170,43 @@ export const LocationModal: React.FC<LocationModalProps> = ({
                         onClose();
                       }
                     }}
-                    className="mt-2 text-xs font-bold text-emerald-700 hover:underline"
+                    className="mt-2 text-xs font-extrabold text-emerald-700 hover:underline"
                   >
-                    Set "{searchInput}" as my delivery location
+                    Set "{searchInput}" as my location
                   </button>
                 </div>
               ) : (
-                filteredCities.map((city) => {
-                  const isSelected = selectedCity === city.name;
+                filteredCities.map((item) => {
+                  const isSelected = selectedCity.includes(item.name) || selectedCity === item.city;
                   return (
                     <button
-                      key={city.name}
+                      key={item.name}
                       onClick={() => {
-                        onSelectCity(city.name);
+                        onSelectCity(`${item.name}, ${item.city}`);
                         onClose();
                       }}
                       className={`w-full flex items-center justify-between p-3 rounded-2xl border transition-all text-left ${
                         isSelected
-                          ? 'bg-emerald-50 border-emerald-400 text-emerald-950 font-bold shadow-2xs'
-                          : 'border-gray-100 hover:border-gray-200 text-gray-700 hover:bg-gray-50'
+                          ? 'bg-emerald-50/90 border-emerald-500 text-emerald-950 font-bold shadow-2xs'
+                          : 'bg-white border-gray-200 hover:border-gray-300 text-gray-700 hover:bg-emerald-50/30'
                       }`}
                     >
                       <div className="flex items-center space-x-3">
                         <div
                           className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 ${
-                            isSelected ? 'bg-emerald-600 text-white' : 'bg-gray-100 text-gray-500'
+                            isSelected ? 'bg-emerald-700 text-white' : 'bg-gray-100 text-gray-500'
                           }`}
                         >
                           <MapPin className="w-4 h-4" />
                         </div>
                         <div>
-                          <h5 className="text-xs font-bold text-gray-900">{city.name}</h5>
-                          <p className="text-[11px] text-gray-400 font-medium">
-                            {city.state} • {city.pin}
+                          <h5 className="text-xs font-bold text-gray-900">{item.name}</h5>
+                          <p className="text-[11px] text-gray-500 font-medium">
+                            {item.city}, {item.state} • PIN {item.pin}
                           </p>
                         </div>
                       </div>
-                      {isSelected && <Check className="w-4 h-4 text-emerald-600 stroke-[3]" />}
+                      {isSelected && <Check className="w-4 h-4 text-emerald-700 stroke-[3]" />}
                     </button>
                   );
                 })
@@ -222,9 +214,9 @@ export const LocationModal: React.FC<LocationModalProps> = ({
             </div>
           </div>
 
-          <div className="pt-2 border-t border-gray-100">
-            <p className="text-[11px] text-center text-gray-400 font-medium">
-              ⚡ 2-Hour doorstep delivery active across all major cities
+          <div className="pt-2 text-center">
+            <p className="text-[11px] text-gray-400 font-semibold">
+              ⚡ 10-Minute Instant Express Delivery available at your location
             </p>
           </div>
 
