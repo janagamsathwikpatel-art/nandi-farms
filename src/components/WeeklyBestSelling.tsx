@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { ChevronRight, Plus, Minus } from 'lucide-react';
 import { Product, CartItem } from '@/types';
 import { CATEGORIES } from '@/data/products';
+import { CategoryQuickNav } from './CategoryQuickNav';
 
 interface WeeklyBestSellingProps {
   products: Product[];
@@ -22,27 +23,44 @@ export const WeeklyBestSelling: React.FC<WeeklyBestSellingProps> = ({
   onSelectProduct,
   onShowAll,
 }) => {
-  const [activeCategory, setActiveCategory] = useState<string>('Fruits');
+  const [activeCategory, setActiveCategory] = useState<string>('ghee');
 
   const getProductQuantity = (id: string) => {
     const item = cartItems.find((ci) => ci.product.id === id);
     return item ? item.quantity : 0;
   };
 
-  const filteredProducts = products.filter(
-    (p) => p.category === activeCategory || p.isBestSeller
-  ).slice(0, 5);
+  const filteredProducts = products.filter((p) => {
+    if (activeCategory === 'all') return true;
+    if (activeCategory === 'ghee') return p.name.toLowerCase().includes('ghee') || p.category === 'Dairy';
+    if (activeCategory === 'oils') return p.name.toLowerCase().includes('oil') || p.category === 'Oils';
+    if (activeCategory === 'atta') return p.name.toLowerCase().includes('atta') || p.category === 'Ravva';
+    if (activeCategory === 'honey') return p.name.toLowerCase().includes('honey') || p.name.toLowerCase().includes('karam');
+    if (activeCategory === 'combos') return p.isBestSeller;
+    if (activeCategory === 'fresh-vegetables') return p.category === 'Fresh Vegetables' || p.category === 'Roots Vegetables';
+    if (activeCategory === 'fruits') return p.category === 'Fruits';
+    if (activeCategory === 'dairy') return p.category === 'Dairy' || p.category === 'Eggs';
+    return true;
+  }).slice(0, 5);
 
   return (
-    <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-1 sm:pt-2 pb-1 sm:pb-2">
+    <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-2 sm:pt-4 pb-4 sm:pb-6">
       {/* Section Header */}
-      <div className="flex items-center justify-between mb-6">
-        <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight font-sans">
-          Weekly Best Selling items
-        </h2>
+      <div className="flex items-center justify-between mb-2">
+        <div>
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight font-sans flex items-center gap-2">
+            <span>Weekly Best Selling items</span>
+            <span className="text-xs font-bold bg-amber-100 text-amber-900 px-2.5 py-0.5 rounded-full border border-amber-300">
+              100% Traditional
+            </span>
+          </h2>
+          <p className="text-xs sm:text-sm text-gray-500 font-medium mt-0.5">
+            Authentic farm-fresh essentials bilona churned & wood pressed
+          </p>
+        </div>
         <button
           onClick={onShowAll}
-          className="flex items-center space-x-2 bg-gray-900 hover:bg-gray-800 text-white px-4 py-2 rounded-full text-xs font-semibold transition-colors shadow-xs group cursor-pointer"
+          className="flex items-center space-x-2 bg-emerald-950 hover:bg-emerald-900 text-white px-4 py-2 rounded-full text-xs font-semibold transition-colors shadow-xs group cursor-pointer"
         >
           <span>Show All</span>
           <div className="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center group-hover:translate-x-0.5 transition-transform">
@@ -51,25 +69,11 @@ export const WeeklyBestSelling: React.FC<WeeklyBestSellingProps> = ({
         </button>
       </div>
 
-      {/* Category Filter Pills */}
-      <div className="flex items-center space-x-2 sm:space-x-3 overflow-x-auto no-scrollbar mb-6 pb-2">
-        {CATEGORIES.map((cat) => {
-          const isActive = activeCategory === cat.name;
-          return (
-            <button
-              key={cat.id}
-              onClick={() => setActiveCategory(cat.name)}
-              className={`px-4 py-2 rounded-full text-xs font-semibold transition-all duration-150 whitespace-nowrap shadow-xs cursor-pointer ${
-                isActive
-                  ? 'bg-emerald-950 text-white shadow-md'
-                  : 'bg-gray-100 hover:bg-gray-200 text-gray-700'
-              }`}
-            >
-              {cat.name}
-            </button>
-          );
-        })}
-      </div>
+      {/* Anveshan Category Quick-Nav Circular Bar */}
+      <CategoryQuickNav
+        activeCategory={activeCategory}
+        onSelectCategory={(catId) => setActiveCategory(catId)}
+      />
 
       {/* 5 Product Cards Row */}
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-5">
