@@ -18,6 +18,12 @@ import {
   ShieldCheck,
   ChevronLeft,
   Sparkles,
+  Phone,
+  User,
+  Clock,
+  Truck,
+  MapPin,
+  PackageCheck,
 } from 'lucide-react';
 import { CartItem } from '@/types';
 
@@ -627,36 +633,122 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
               </div>
             )}
 
-            {/* STEP 4: ORDER COMPLETION SCREEN */}
+            {/* STEP 4: POST-PAYMENT LIVE ORDER TRACKING SCREEN */}
             {currentStep === 'order_complete' && (
-              <div className="h-full flex flex-col items-center justify-center text-center p-6 space-y-4 my-auto">
-                <div className="w-20 h-20 bg-emerald-100 rounded-full flex items-center justify-center text-emerald-700 shadow-inner">
-                  <CheckCircle2 className="w-12 h-12 animate-bounce" />
+              <div className="space-y-4 py-2 animate-in fade-in duration-300">
+                
+                {/* 1. HERO ETA & ORDER CONFIRMATION HEADER */}
+                <div className="bg-gradient-to-br from-emerald-900 to-emerald-950 text-white p-4 sm:p-5 rounded-3xl shadow-xl text-left relative overflow-hidden">
+                  <div className="flex items-center justify-between">
+                    <span className="bg-emerald-800/80 text-amber-300 font-extrabold text-[10px] sm:text-xs px-2.5 py-1 rounded-full border border-amber-300/30 uppercase tracking-wider">
+                      Order ID: NF-892401
+                    </span>
+                    <span className="text-xs text-emerald-200 font-bold flex items-center space-x-1">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
+                      <span>Payment Verified</span>
+                    </span>
+                  </div>
+
+                  <div className="mt-3">
+                    <p className="text-xs text-emerald-200 font-medium">Estimated Delivery Arrival:</p>
+                    <div className="flex items-baseline space-x-2 mt-0.5">
+                      <h4 className="text-2xl sm:text-3xl font-black text-white">8-10 Mins</h4>
+                      <span className="text-xs text-amber-300 font-bold animate-pulse">⚡ Express 10-Min Delivery</span>
+                    </div>
+                  </div>
+
+                  {/* Animated Progress Bar */}
+                  <div className="mt-4 bg-emerald-950/60 rounded-full h-2 overflow-hidden p-0.5 border border-emerald-700/50">
+                    <div className="bg-gradient-to-r from-emerald-400 via-amber-300 to-emerald-400 h-full rounded-full w-[65%] animate-pulse" />
+                  </div>
                 </div>
-                <h4 className="text-2xl font-black text-gray-900">Order Confirmed!</h4>
-                <p className="text-xs text-gray-600 leading-relaxed max-w-xs">
-                  Thank you for shopping with <strong>Nandi Farms</strong>! Your payment was verified and your organic produce will be delivered within 2 hours.
-                </p>
-                <div className="bg-emerald-50 p-4 rounded-2xl border border-emerald-200 text-left w-full text-xs space-y-1.5">
-                  <div className="flex justify-between text-gray-600">
-                    <span>Order Status:</span>
-                    <span className="font-bold text-emerald-700">Processing 🚚</span>
+
+                {/* 2. DELIVERY BOY (DELIVERY EXECUTIVE) DETAILS CARD */}
+                <div className="bg-white p-4 rounded-3xl border border-gray-200 shadow-md space-y-3 text-left">
+                  <div className="flex items-center justify-between pb-2 border-b border-gray-100">
+                    <span className="text-xs font-black text-gray-900 uppercase tracking-wider flex items-center space-x-1.5">
+                      <Truck className="w-4 h-4 text-emerald-700" />
+                      <span>Assigned Delivery Executive</span>
+                    </span>
+                    <span className="bg-emerald-100 text-emerald-800 text-[10px] font-black px-2 py-0.5 rounded-full">
+                      On the way 🛵
+                    </span>
                   </div>
-                  <div className="flex justify-between text-gray-600">
-                    <span>Payment Mode:</span>
-                    <span className="font-bold text-gray-900 uppercase">{selectedPaymentMethod}</span>
-                  </div>
-                  <div className="flex justify-between text-gray-600 pt-1 border-t border-emerald-200">
-                    <span>Total Paid:</span>
-                    <span className="font-extrabold text-emerald-950">₹{netTotal}</span>
+
+                  <div className="flex items-center justify-between gap-2">
+                    <div className="flex items-center space-x-3">
+                      <div className="w-12 h-12 rounded-2xl bg-emerald-100 border border-emerald-300 flex items-center justify-center text-emerald-900 font-black text-lg shadow-2xs shrink-0">
+                        <User className="w-6 h-6 text-emerald-800" />
+                      </div>
+                      <div>
+                        <h5 className="font-extrabold text-sm text-gray-900">Ramesh Kumar</h5>
+                        <p className="text-[11px] text-gray-500 font-medium">
+                          ⭐ 4.9 <span className="text-gray-400">(1,250+ deliveries)</span>
+                        </p>
+                        <p className="text-[10px] text-emerald-700 font-bold mt-0.5">
+                          📱 Mobile: +91 98765 43210
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Instant Call Button */}
+                    <a
+                      href="tel:+919876543210"
+                      className="bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs px-3.5 py-2.5 rounded-2xl shadow-md transition-transform active:scale-95 flex items-center space-x-1.5 shrink-0"
+                    >
+                      <Phone className="w-3.5 h-3.5" />
+                      <span>Call Ramesh</span>
+                    </a>
                   </div>
                 </div>
+
+                {/* 3. STEP-BY-STEP LIVE TIMELINE TRACKER */}
+                <div className="bg-gray-50 p-4 rounded-3xl border border-gray-200/80 space-y-3 text-left">
+                  <h5 className="text-xs font-black text-gray-900 uppercase tracking-wider">
+                    Live Order Status Timeline:
+                  </h5>
+                  <div className="space-y-3 relative pl-4 border-l-2 border-emerald-500 ml-2">
+                    
+                    <div className="relative">
+                      <span className="absolute -left-[23px] top-0 w-3 h-3 bg-emerald-600 rounded-full ring-4 ring-white" />
+                      <p className="text-xs font-bold text-gray-900">Order Placed & Payment Verified</p>
+                      <p className="text-[10px] text-gray-500">Order ID: NF-892401 • Paid via {selectedPaymentMethod.toUpperCase()}</p>
+                    </div>
+
+                    <div className="relative">
+                      <span className="absolute -left-[23px] top-0 w-3 h-3 bg-emerald-600 rounded-full ring-4 ring-white" />
+                      <p className="text-xs font-bold text-gray-900">Packed at Nandi Farms Hub</p>
+                      <p className="text-[10px] text-gray-500">Quality checked & sealed for fresh delivery</p>
+                    </div>
+
+                    <div className="relative">
+                      <span className="absolute -left-[23px] top-0 w-3 h-3 bg-amber-500 rounded-full ring-4 ring-white animate-ping" />
+                      <p className="text-xs font-bold text-emerald-800">Out for Doorstep Delivery</p>
+                      <p className="text-[10px] text-emerald-700 font-semibold">Ramesh Kumar is approaching your location</p>
+                    </div>
+
+                    <div className="relative opacity-60">
+                      <span className="absolute -left-[23px] top-0 w-3 h-3 bg-gray-300 rounded-full ring-4 ring-white" />
+                      <p className="text-xs font-bold text-gray-600">Expected Arrival at Doorstep</p>
+                      <p className="text-[10px] text-gray-500">12-4-36/10, Pragathi Nagar, Moosapet</p>
+                    </div>
+
+                  </div>
+                </div>
+
+                {/* 4. RECEIPT SUMMARY & CLOSE BUTTON */}
+                <div className="bg-white p-3.5 rounded-2xl border border-gray-200 text-xs flex items-center justify-between">
+                  <span className="font-semibold text-gray-600">Total Paid Amount:</span>
+                  <span className="font-black text-emerald-950 text-sm">₹{netTotal}</span>
+                </div>
+
                 <button
                   onClick={handleCloseDrawer}
-                  className="w-full bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs py-3 rounded-full transition-all shadow-md"
+                  className="w-full bg-[#07362a] hover:bg-emerald-900 text-white font-bold text-xs py-3.5 rounded-full transition-all shadow-md"
                 >
-                  Continue Shopping
+                  Close & Continue Shopping
                 </button>
+
               </div>
             )}
 
