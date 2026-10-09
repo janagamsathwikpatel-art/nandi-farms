@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Check, Copy, X, Gift, Sparkles, Tag, ArrowRight } from 'lucide-react';
+import { Check, Copy, X, Gift } from 'lucide-react';
 
 interface PromoBannersProps {
   onClaimOffer?: (offerTitle: string) => void;
@@ -21,35 +21,29 @@ export const PromoBanners: React.FC<PromoBannersProps> = ({ onClaimOffer }) => {
     {
       id: 'promo-1',
       title: '10% OFF FIRST ORDER',
-      tag: 'LIMITED TIME',
+      subtitle: 'LIMITED TIME OFFER',
       code: 'NANDI10',
       discount: '10% INSTANT OFF',
-      description: 'Join today and get an exclusive 10% discount on your entire first order of farm-fresh groceries.',
-      headerBg: 'bg-gradient-to-b from-emerald-600 via-emerald-600 to-emerald-700',
-      tagBg: 'bg-amber-100 text-amber-950 border-amber-300',
-      icon: '🥑🍎',
+      description: 'Get an exclusive 10% discount on your entire first order of farm-fresh groceries.',
+      image: '/promo-card-1.jpg',
     },
     {
       id: 'promo-2',
       title: 'FREE EXPRESS DELIVERY',
-      tag: 'On orders over ₹499',
+      subtitle: 'ON ORDERS OVER ₹499',
       code: 'FREEDEL',
       discount: 'FREE DELIVERY',
-      description: 'Shop and get your fresh produce delivered straight to your doorstep quickly with our express service.',
-      headerBg: 'bg-gradient-to-b from-rose-500 via-rose-600 to-red-600',
-      tagBg: 'bg-rose-100 text-rose-950 border-rose-300',
-      icon: '📦🚚',
+      description: 'Shop fresh produce over ₹499 and get zero delivery charges delivered straight to your door.',
+      image: '/promo-card-2.jpg',
     },
     {
       id: 'promo-3',
       title: '100% FARM FRESH',
-      tag: 'DIRECT FROM LOCAL FARMS',
+      subtitle: 'DIRECT FROM LOCAL FARMS',
       code: 'FARMFRESH',
       discount: 'FRESH HARVEST DEAL',
-      description: 'Enjoy the finest quality produce, harvested daily from local sustainable farms for maximum flavor and nutrition.',
-      headerBg: 'bg-gradient-to-b from-amber-500 via-amber-500 to-yellow-600',
-      tagBg: 'bg-amber-100 text-amber-950 border-amber-300',
-      icon: '🧺🥛',
+      description: 'Enjoy handpicked, chemical-free organic produce harvested daily from local sustainable farms.',
+      image: '/promo-card-3.jpg',
     },
   ];
 
@@ -73,56 +67,22 @@ export const PromoBanners: React.FC<PromoBannersProps> = ({ onClaimOffer }) => {
   };
 
   return (
-    <section className="w-full max-w-none px-4 sm:px-8 lg:px-12 py-6 my-2">
-      {/* 3 Arched Grid Offer Cards (Matching Reference Screenshot 1 & 2 Layout) */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 items-stretch max-w-7xl mx-auto">
+    <section className="w-full max-w-none px-4 sm:px-8 lg:px-12 py-4 sm:py-6">
+      {/* 3 Standalone Full-Length Graphic Promo Grid Cards — Exact Reference Images */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6 items-stretch max-w-7xl mx-auto">
         {cards.map((card) => (
           <div
             key={card.id}
             onClick={() => handleOpenModal(card)}
-            className="group relative bg-[#fbfaf5] rounded-t-[75px] sm:rounded-t-[95px] rounded-b-3xl border border-gray-200/80 shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer flex flex-col justify-between overflow-hidden"
+            className="rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl group transform hover:-translate-y-1.5 transition-all duration-300 cursor-pointer w-full block bg-transparent border border-gray-100"
+            title={`Click to claim ${card.title}`}
           >
-            {/* Top Arched Graphic Header Container */}
-            <div className={`relative ${card.headerBg} pt-10 pb-8 px-6 text-center text-white rounded-t-[75px] sm:rounded-t-[95px] flex flex-col items-center justify-center overflow-hidden`}>
-              {/* Background Wave Accents */}
-              <div className="absolute top-0 inset-x-0 h-16 bg-white/10 rounded-b-full pointer-events-none"></div>
-              
-              {/* Main Bold Offer Title */}
-              <h3 className="text-2xl sm:text-3xl font-black tracking-tight leading-tight uppercase text-white drop-shadow-xs max-w-[220px]">
-                {card.title}
-              </h3>
-
-              {/* 3D Visual Illustration Box */}
-              <div className="my-4 relative z-10 w-28 h-28 sm:w-32 sm:h-32 rounded-3xl bg-white/20 backdrop-blur-xs flex items-center justify-center text-5xl sm:text-6xl shadow-inner group-hover:scale-110 transition-transform duration-300">
-                <span className="filter drop-shadow-md">{card.icon}</span>
-              </div>
-            </div>
-
-            {/* Bottom Card Content */}
-            <div className="p-6 text-center flex flex-col items-center justify-between flex-1 space-y-4">
-              {/* Offer Pill Tag */}
-              <div className={`px-4 py-1 rounded-full text-xs font-black uppercase tracking-wider border ${card.tagBg} shadow-xs`}>
-                {card.tag}
-              </div>
-
-              {/* Offer Description */}
-              <p className="text-xs sm:text-sm text-gray-600 font-medium leading-relaxed max-w-[280px]">
-                {card.description}
-              </p>
-
-              {/* Working Claim Offer CTA Button */}
-              <button
-                type="button"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handleOpenModal(card);
-                }}
-                className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-sm sm:text-base py-3 px-6 rounded-full shadow-lg hover:shadow-emerald-600/30 transition-all duration-200 flex items-center justify-center space-x-2 group/btn cursor-pointer active:scale-95"
-              >
-                <span>Claim Offer</span>
-                <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
-              </button>
-            </div>
+            {/* Full Length Graphic Card Image (Zero Gap, Exact Reference Screenshot Image) */}
+            <img
+              src={card.image}
+              alt={card.title}
+              className="w-full h-auto block object-cover rounded-3xl group-hover:scale-[1.015] transition-transform duration-500"
+            />
           </div>
         ))}
       </div>
