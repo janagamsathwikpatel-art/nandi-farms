@@ -84,7 +84,7 @@ export const NandiFarmsShowcase: React.FC<NandiFarmsShowcaseProps> = ({ onOrderN
 
       {/* 2. NANDI FARMS PRODUCT IMAGES AUTO-SCROLLING ROW (ONLY DIRECT IMAGES, NO BOXES/FRAMES) */}
       <div className="w-full py-5 px-2 overflow-hidden group/showcase relative">
-        <div className="flex w-max animate-marquee space-x-4 sm:space-x-5 group-hover/showcase:[animation-play-state:paused] transition-all">
+        <div className="flex w-max animate-marquee-slow space-x-4 sm:space-x-5 group-hover/showcase:[animation-play-state:paused] transition-all">
           {/* Repeat product image items twice for smooth endless horizontal left scrolling */}
           {[...cards, ...cards, ...cards].map((card, idx) => (
             <div
