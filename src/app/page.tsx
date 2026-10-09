@@ -10,6 +10,7 @@ import { TodaysFreshPicks } from '@/components/TodaysFreshPicks';
 import { PromoBanners } from '@/components/PromoBanners';
 import { WeeklyBestSelling } from '@/components/WeeklyBestSelling';
 import { MostSellingProducts } from '@/components/MostSellingProducts';
+import { TrustSignalsBar } from '@/components/TrustSignalsBar';
 import { JustForYou } from '@/components/JustForYou';
 import { Footer } from '@/components/Footer';
 import { CartDrawer } from '@/components/CartDrawer';
@@ -270,7 +271,10 @@ export default function Home() {
           onShowAll={handleShowAllProducts}
         />
 
-        {/* 7. Just for you */}
+        {/* 7. Trust Signals & Quality Guarantees Showcase Bar */}
+        <TrustSignalsBar />
+
+        {/* 8. Just for you */}
         <JustForYou
           products={filteredProducts}
           cartItems={cartItems}
