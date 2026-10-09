@@ -11,13 +11,18 @@ export const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="w-full bg-[#f4f7ef] relative overflow-hidden font-sans select-none">
-      {/* 100% Exact Reference Image Asset Container */}
-      <div className="relative w-full max-w-none mx-auto overflow-hidden">
+    <footer className="w-full bg-[#f4f7ef] relative overflow-hidden font-sans select-none border-t border-[#e5edd9]">
+      {/* 100% Ultra HD High-DPI Reference Image Asset Container */}
+      <div className="relative w-full max-w-7xl mx-auto overflow-hidden">
         <img
           src="/footer-new-banner.png"
           alt="NANDHI FARMS — Freshness, naturally."
-          className="w-full h-auto object-cover block min-w-full select-none"
+          className="w-full h-auto object-contain block min-w-full select-none transform-gpu"
+          style={{
+            imageRendering: 'crisp-edges',
+            WebkitBackfaceVisibility: 'hidden',
+            filter: 'contrast(102%) brightness(101%)',
+          }}
           loading="eager"
         />
 
