@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { X, Heart, ShoppingBag, Trash2, Plus } from 'lucide-react';
 import { Product } from '@/types';
 
@@ -21,6 +21,17 @@ export const WishlistModal: React.FC<WishlistModalProps> = ({
   onToggleLoved,
   onAddToCart,
 }) => {
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isOpen]);
+
   if (!isOpen) return null;
 
   const lovedProducts = allProducts.filter((p) => lovedProductIds.includes(p.id));
