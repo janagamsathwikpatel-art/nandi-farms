@@ -1,86 +1,168 @@
 'use client';
 
-import React from 'react';
-import { ArrowRight } from 'lucide-react';
+import React, { useState } from 'react';
+import { Check, Copy, X, Gift } from 'lucide-react';
 
 interface PromoBannersProps {
   onClaimOffer?: (offerTitle: string) => void;
 }
 
 export const PromoBanners: React.FC<PromoBannersProps> = ({ onClaimOffer }) => {
+  const [activeOfferModal, setActiveOfferModal] = useState<{
+    title: string;
+    code: string;
+    discount: string;
+    description: string;
+  } | null>(null);
+
+  const [copiedCode, setCopiedCode] = useState<boolean>(false);
+
   const cards = [
     {
       id: 'promo-1',
-      title: 'NEW HERE? ENJOY 10% OFF YOUR FIRST ORDER',
-      description: 'Sign up today and get instant savings on your first grocery purchase.',
-      gradient: 'from-emerald-600 to-teal-700 text-white',
-      image: 'https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=400&q=80',
+      title: '10% OFF FIRST ORDER',
+      subtitle: 'LIMITED TIME OFFER',
       code: 'NANDI10',
+      discount: '10% INSTANT OFF',
+      description: 'Get an exclusive 10% discount on your entire first order of farm-fresh groceries.',
+      image: '/promo-card-1.jpg',
     },
     {
       id: 'promo-2',
-      title: 'FREE DELIVERY WITH NO MINIMUM COST',
-      description: 'Order your daily essentials anywhere in India with zero delivery charges!',
-      gradient: 'from-rose-500 to-pink-600 text-white',
-      image: 'https://images.unsplash.com/photo-1526367790999-0150786686a2?auto=format&fit=crop&w=400&q=80',
+      title: 'FREE EXPRESS DELIVERY',
+      subtitle: 'ON ORDERS OVER ₹499',
       code: 'FREEDEL',
+      discount: 'FREE DELIVERY',
+      description: 'Shop fresh produce over ₹499 and get zero delivery charges delivered straight to your door.',
+      image: '/promo-card-2.jpg',
     },
     {
       id: 'promo-3',
-      title: 'FRESH GROCERIES FOR YOUR FAMILY, WITHOUT HASSLE.',
-      description: 'We deliver everything you need straight to your door.',
-      gradient: 'from-amber-400 via-amber-300 to-yellow-400 text-gray-900',
-      image: 'https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=400&q=80',
-      code: 'FRESH2026',
+      title: '100% FARM FRESH',
+      subtitle: 'DIRECT FROM LOCAL FARMS',
+      code: 'FARMFRESH',
+      discount: 'FRESH HARVEST DEAL',
+      description: 'Enjoy handpicked, chemical-free organic produce harvested daily from local sustainable farms.',
+      image: '/promo-card-3.jpg',
     },
   ];
 
+  const handleOpenModal = (card: typeof cards[0]) => {
+    setActiveOfferModal({
+      title: card.title,
+      code: card.code,
+      discount: card.discount,
+      description: card.description,
+    });
+    setCopiedCode(false);
+    if (onClaimOffer) {
+      onClaimOffer(card.title);
+    }
+  };
+
+  const handleCopyCode = (code: string) => {
+    navigator.clipboard.writeText(code);
+    setCopiedCode(true);
+    setTimeout(() => setCopiedCode(false), 3000);
+  };
+
   return (
-    <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-10">
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6">
+    <section className="w-full max-w-none px-4 sm:px-8 lg:px-12 py-0 my-0">
+      {/* 3 Standalone Full-Length Graphic Offer Cards — Zero Bottom Gap & No Duplicate Button */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6 items-stretch">
         {cards.map((card) => (
           <div
             key={card.id}
-            onClick={() => onClaimOffer && onClaimOffer(card.title)}
-            className={`relative overflow-hidden rounded-3xl p-6 sm:p-7 bg-gradient-to-br ${card.gradient} shadow-md border border-white/20 flex flex-col justify-between min-h-[340px] group transform hover:-translate-y-1 transition-all duration-200 cursor-pointer`}
+            onClick={() => handleOpenModal(card)}
+            className="rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl group transform hover:-translate-y-1.5 transition-all duration-300 cursor-pointer max-w-[360px] mx-auto w-full block bg-transparent"
+            title={`Click to claim ${card.title}`}
           >
-            {/* Title Header */}
-            <div>
-              <h3 className="text-lg sm:text-xl font-black leading-tight tracking-tight max-w-[90%] font-sans uppercase">
-                {card.title}
-              </h3>
-            </div>
-
-            {/* Circular Frame for Image */}
-            <div className="my-4 flex justify-center items-center">
-              <div className="relative w-36 h-36 sm:w-40 sm:h-40 rounded-full overflow-hidden border-4 border-white/50 shadow-xl bg-white/20 backdrop-blur-xs group-hover:scale-105 transition-transform duration-300">
-                <img
-                  src={card.image}
-                  alt={card.title}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            </div>
-
-            {/* Bottom Row: Description + Arrow Button */}
-            <div className="flex items-end justify-between gap-3 pt-2">
-              <p className="text-xs font-medium leading-relaxed max-w-[80%] opacity-90">
-                {card.description}
-              </p>
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  onClaimOffer && onClaimOffer(card.title);
-                }}
-                className="w-9 h-9 rounded-full bg-gray-950 text-white flex items-center justify-center shrink-0 hover:bg-gray-800 transition-colors shadow-md group-hover:scale-110 cursor-pointer"
-                aria-label="View offer"
-              >
-                <ArrowRight className="w-4 h-4" />
-              </button>
-            </div>
+            {/* Full Length Graphic Card Image (Zero Gap, Seamless Display) */}
+            <img
+              src={card.image}
+              alt={card.title}
+              className="w-full h-auto block object-cover rounded-3xl group-hover:scale-[1.015] transition-transform duration-500"
+            />
           </div>
         ))}
       </div>
+
+      {/* Interactive Offer Claim Modal */}
+      {activeOfferModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-xs p-4 animate-fade-in">
+          <div className="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl relative border border-emerald-100 animate-scale-up">
+            {/* Close Button */}
+            <button
+              onClick={() => setActiveOfferModal(null)}
+              className="absolute top-4 right-4 text-gray-400 hover:text-gray-700 bg-gray-100 hover:bg-gray-200 p-2 rounded-full transition-colors cursor-pointer"
+            >
+              <X className="w-5 h-5" />
+            </button>
+
+            {/* Modal Icon & Header */}
+            <div className="text-center space-y-2 mb-6">
+              <div className="w-16 h-16 rounded-full bg-amber-100 text-amber-800 flex items-center justify-center mx-auto shadow-inner">
+                <Gift className="w-8 h-8 text-emerald-800" />
+              </div>
+              <h3 className="text-xl font-extrabold text-gray-900 tracking-tight font-sans">
+                {activeOfferModal.title}
+              </h3>
+              <p className="text-xs text-gray-500 font-medium">
+                {activeOfferModal.description}
+              </p>
+            </div>
+
+            {/* Coupon Code Box with Instant Copy */}
+            <div className="bg-emerald-50 border-2 border-dashed border-emerald-400 rounded-2xl p-4 mb-6 flex items-center justify-between">
+              <div>
+                <span className="text-[11px] uppercase font-bold text-emerald-700 block">Promo Code</span>
+                <span className="text-xl font-mono font-black text-emerald-950 tracking-wider">
+                  {activeOfferModal.code}
+                </span>
+              </div>
+              <button
+                onClick={() => handleCopyCode(activeOfferModal.code)}
+                className={`px-4 py-2 rounded-xl font-bold text-xs flex items-center space-x-1.5 transition-all cursor-pointer ${
+                  copiedCode
+                    ? 'bg-emerald-800 text-white shadow-md'
+                    : 'bg-emerald-700 hover:bg-emerald-800 text-white shadow-xs'
+                }`}
+              >
+                {copiedCode ? (
+                  <>
+                    <Check className="w-4 h-4 text-amber-400" />
+                    <span>Copied! 🎉</span>
+                  </>
+                ) : (
+                  <>
+                    <Copy className="w-4 h-4" />
+                    <span>Copy Code</span>
+                  </>
+                )}
+              </button>
+            </div>
+
+            {/* Action Buttons */}
+            <div className="space-y-2">
+              <button
+                onClick={() => {
+                  handleCopyCode(activeOfferModal.code);
+                  setTimeout(() => setActiveOfferModal(null), 800);
+                }}
+                className="w-full bg-emerald-900 hover:bg-emerald-950 text-white font-extrabold text-sm py-3 px-4 rounded-xl shadow-md transition-all cursor-pointer"
+              >
+                Apply Coupon & Continue Shopping 🛒
+              </button>
+              <button
+                onClick={() => setActiveOfferModal(null)}
+                className="w-full bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold text-xs py-2.5 px-4 rounded-xl transition-colors cursor-pointer"
+              >
+                Close Window
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 };

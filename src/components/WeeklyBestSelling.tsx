@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { ChevronRight, Plus, Minus } from 'lucide-react';
 import { Product, CartItem } from '@/types';
 import { CATEGORIES } from '@/data/products';
+import { CategoryQuickNav } from './CategoryQuickNav';
 
 interface WeeklyBestSellingProps {
   products: Product[];
@@ -22,27 +23,59 @@ export const WeeklyBestSelling: React.FC<WeeklyBestSellingProps> = ({
   onSelectProduct,
   onShowAll,
 }) => {
-  const [activeCategory, setActiveCategory] = useState<string>('Fruits');
+  const [activeCategory, setActiveCategory] = useState<string>('ghee');
 
   const getProductQuantity = (id: string) => {
     const item = cartItems.find((ci) => ci.product.id === id);
     return item ? item.quantity : 0;
   };
 
-  const filteredProducts = products.filter(
-    (p) => p.category === activeCategory || p.isBestSeller
-  ).slice(0, 5);
+  // 1. Filter products for active category
+  let categoryItems = products.filter((p) => {
+    if (activeCategory === 'all') return true;
+    if (activeCategory === 'ghee') return p.name.toLowerCase().includes('ghee') || p.category === 'Dairy';
+    if (activeCategory === 'oils') return p.name.toLowerCase().includes('oil') || p.category === 'Oils';
+    if (activeCategory === 'atta') return p.name.toLowerCase().includes('atta') || p.category === 'Ravva';
+    if (activeCategory === 'honey') return p.name.toLowerCase().includes('honey') || p.name.toLowerCase().includes('karam');
+    if (activeCategory === 'combos') return p.isBestSeller;
+    if (activeCategory === 'fresh-vegetables') return p.category === 'Fresh Vegetables' || p.category === 'Roots Vegetables';
+    if (activeCategory === 'fruits') return p.category === 'Fruits';
+    if (activeCategory === 'dairy') return p.category === 'Dairy' || p.category === 'Eggs';
+    return true;
+  });
+
+  const categoryItemIds = new Set(categoryItems.map((p) => p.id));
+
+  // 2. Auto-fill up to 5 products with top best-sellers if category has fewer than 5 items
+  if (categoryItems.length < 5) {
+    const bestSellersFallback = products.filter(
+      (p) => !categoryItemIds.has(p.id)
+    );
+    categoryItems = [...categoryItems, ...bestSellersFallback].slice(0, 5);
+  } else {
+    categoryItems = categoryItems.slice(0, 5);
+  }
+
+  const filteredProducts = categoryItems;
 
   return (
-    <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
+    <section className="w-full max-w-none px-4 sm:px-8 lg:px-12 pt-0 sm:pt-1 pb-4 sm:pb-6">
       {/* Section Header */}
-      <div className="flex items-center justify-between mb-6">
-        <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight font-sans">
-          Weekly Best Selling items
-        </h2>
+      <div className="flex items-center justify-between mb-2">
+        <div>
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight font-sans flex items-center gap-2">
+            <span>Weekly Best Selling items</span>
+            <span className="text-xs font-bold bg-amber-100 text-amber-900 px-2.5 py-0.5 rounded-full border border-amber-300">
+              100% Traditional
+            </span>
+          </h2>
+          <p className="text-xs sm:text-sm text-gray-500 font-medium mt-0.5">
+            Authentic farm-fresh essentials bilona churned & wood pressed
+          </p>
+        </div>
         <button
           onClick={onShowAll}
-          className="flex items-center space-x-2 bg-gray-900 hover:bg-gray-800 text-white px-4 py-2 rounded-full text-xs font-semibold transition-colors shadow-xs group cursor-pointer"
+          className="flex items-center space-x-2 bg-emerald-950 hover:bg-emerald-900 text-white px-4 py-2 rounded-full text-xs font-semibold transition-colors shadow-xs group cursor-pointer"
         >
           <span>Show All</span>
           <div className="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center group-hover:translate-x-0.5 transition-transform">
@@ -51,39 +84,34 @@ export const WeeklyBestSelling: React.FC<WeeklyBestSellingProps> = ({
         </button>
       </div>
 
-      {/* Category Filter Pills */}
-      <div className="flex items-center space-x-2 sm:space-x-3 overflow-x-auto no-scrollbar mb-6 pb-2">
-        {CATEGORIES.map((cat) => {
-          const isActive = activeCategory === cat.name;
-          return (
-            <button
-              key={cat.id}
-              onClick={() => setActiveCategory(cat.name)}
-              className={`px-4 py-2 rounded-full text-xs font-semibold transition-all duration-150 whitespace-nowrap shadow-xs cursor-pointer ${
-                isActive
-                  ? 'bg-emerald-950 text-white shadow-md'
-                  : 'bg-gray-100 hover:bg-gray-200 text-gray-700'
-              }`}
-            >
-              {cat.name}
-            </button>
-          );
-        })}
-      </div>
+      {/* Anveshan Category Quick-Nav Circular Bar */}
+      <CategoryQuickNav
+        activeCategory={activeCategory}
+        onSelectCategory={(catId) => setActiveCategory(catId)}
+      />
 
-      {/* 5 Product Cards Row */}
+      {/* 5 Product Cards Row — Full 5-Column Grid */}
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-5">
         {filteredProducts.map((prod) => {
           const qty = getProductQuantity(prod.id);
+          const isFallbackBestSeller = !categoryItemIds.has(prod.id) && activeCategory !== 'all';
+
           return (
             <div
               key={prod.id}
-              className="bg-white rounded-3xl p-4 border border-gray-100/90 shadow-xs hover:shadow-lg transition-all duration-200 flex flex-col justify-between items-center text-center group"
+              className="bg-white rounded-3xl p-4 border border-gray-100/90 shadow-xs hover:shadow-lg transition-all duration-200 flex flex-col justify-between items-center text-center group relative overflow-hidden"
             >
+              {/* Top Seller Badge for Auto-Filled Items */}
+              {isFallbackBestSeller && (
+                <div className="absolute top-2 right-2 bg-amber-500 text-white font-extrabold text-[10px] px-2 py-0.5 rounded-full shadow-xs tracking-wider z-10 flex items-center gap-0.5">
+                  <span>🔥 TOP SELLER</span>
+                </div>
+              )}
+
               {/* Product Image */}
               <div
                 onClick={() => onSelectProduct && onSelectProduct(prod)}
-                className="w-28 h-28 sm:w-32 sm:h-32 mb-3 flex items-center justify-center overflow-hidden rounded-2xl bg-gray-50/50 p-2 group-hover:scale-105 transition-transform cursor-pointer"
+                className="w-28 h-28 sm:w-32 sm:h-32 mb-3 flex items-center justify-center overflow-hidden rounded-2xl bg-gray-50/50 p-2 group-hover:scale-105 transition-transform cursor-pointer relative"
               >
                 <img
                   src={prod.image}

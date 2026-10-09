@@ -10,6 +10,7 @@ import { TodaysFreshPicks } from '@/components/TodaysFreshPicks';
 import { PromoBanners } from '@/components/PromoBanners';
 import { WeeklyBestSelling } from '@/components/WeeklyBestSelling';
 import { MostSellingProducts } from '@/components/MostSellingProducts';
+import { TrustSignalsBar } from '@/components/TrustSignalsBar';
 import { JustForYou } from '@/components/JustForYou';
 import { Footer } from '@/components/Footer';
 import { CartDrawer } from '@/components/CartDrawer';
@@ -114,7 +115,11 @@ export default function Home() {
   };
 
   const handleClaimOffer = (offerTitle: string) => {
-    addToast(`Offer claimed! 🎉 (${offerTitle}) Code applied at checkout.`, 'success');
+    addToast(`Offer claimed! 🎉 (${offerTitle}) Special discount code applied at checkout.`, 'success');
+    const el = document.getElementById('todays-picks') || document.getElementById('weekly-best-selling');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   const handleSelectCategory = (catName: string) => {
@@ -221,7 +226,7 @@ export default function Home() {
       </div>
 
       {/* Main Continuous Sections */}
-      <main className="space-y-6 sm:space-y-8 py-4 relative z-10">
+      <main className="space-y-1 sm:space-y-2 py-1 relative z-10">
         {/* 1. Hero Section */}
         <HeroSection />
 
@@ -275,6 +280,9 @@ export default function Home() {
           onSelectProduct={(prod) => setSelectedProduct(prod)}
           onShowAll={handleShowAllProducts}
         />
+
+        {/* 8. Trust Signals & Quality Guarantees Showcase Bar */}
+        <TrustSignalsBar />
       </main>
 
       {/* Footer Section */}

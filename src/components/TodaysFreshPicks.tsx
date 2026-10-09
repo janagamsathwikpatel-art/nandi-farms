@@ -41,83 +41,16 @@ export const TodaysFreshPicks: React.FC<TodaysFreshPicksProps> = ({
   const featuredProduct = activeProducts[0];
 
   return (
-    <section id="todays-picks" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-1 sm:pt-2 pb-8 sm:pb-10 relative scroll-mt-20">
-      {/* Top Scroll Back Up Icon */}
-      <div className="flex justify-center mb-2">
-        <button
-          onClick={scrollToTop}
-          className="w-7 h-7 rounded-full bg-gray-100 hover:bg-emerald-100 text-gray-500 hover:text-emerald-800 flex items-center justify-center transition-colors border border-gray-200/80 shadow-2xs cursor-pointer"
-          title="Back to Top"
-        >
-          <ChevronUp className="w-4 h-4" />
-        </button>
-      </div>
-
-      {/* Section Header & Layout Switcher Bar */}
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6 sm:mb-8">
+    <section id="todays-picks" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-2 sm:pt-3 pb-1 sm:pb-2 relative scroll-mt-20">
+      {/* Section Header */}
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-5 sm:mb-6">
         <div>
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight font-sans">
+          <h2 className="text-xl sm:text-2xl font-bold text-gray-900 tracking-tight font-sans">
             Today's Fresh Picks
           </h2>
           <p className="text-xs text-gray-500 font-medium mt-0.5">
             Farm-harvested daily & delivered within 2 hours
           </p>
-        </div>
-
-        <div className="flex flex-wrap items-center gap-2">
-          {/* Layout Mode Selector Pills */}
-          <div className="flex items-center bg-gray-100 p-1 rounded-full border border-gray-200/80 text-xs font-semibold text-gray-700">
-            <button
-              onClick={() => setLayoutMode('modern-quick-add')}
-              className={`px-3 py-1.5 rounded-full transition-all cursor-pointer ${
-                layoutMode === 'modern-quick-add'
-                  ? 'bg-emerald-700 text-white shadow-xs font-bold'
-                  : 'hover:text-emerald-700'
-              }`}
-            >
-              Layout 1 (Blinkit)
-            </button>
-            <button
-              onClick={() => setLayoutMode('spotlight-carousel')}
-              className={`px-3 py-1.5 rounded-full transition-all cursor-pointer ${
-                layoutMode === 'spotlight-carousel'
-                  ? 'bg-emerald-700 text-white shadow-xs font-bold'
-                  : 'hover:text-emerald-700'
-              }`}
-            >
-              Layout 2 (Spotlight)
-            </button>
-            <button
-              onClick={() => setLayoutMode('compact-rows')}
-              className={`px-3 py-1.5 rounded-full transition-all cursor-pointer ${
-                layoutMode === 'compact-rows'
-                  ? 'bg-emerald-700 text-white shadow-xs font-bold'
-                  : 'hover:text-emerald-700'
-              }`}
-            >
-              Layout 3 (Rows)
-            </button>
-            <button
-              onClick={() => setLayoutMode('glassmorphic-premium')}
-              className={`px-3 py-1.5 rounded-full transition-all cursor-pointer ${
-                layoutMode === 'glassmorphic-premium'
-                  ? 'bg-emerald-700 text-white shadow-xs font-bold'
-                  : 'hover:text-emerald-700'
-              }`}
-            >
-              Layout 4 (Glass)
-            </button>
-          </div>
-
-          <button
-            onClick={onShowAll || scrollToTop}
-            className="flex items-center space-x-2 bg-gray-900 hover:bg-gray-800 text-white px-4 py-2 rounded-full text-xs font-semibold transition-colors shadow-xs group cursor-pointer"
-          >
-            <span>Show All</span>
-            <div className="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center group-hover:translate-x-0.5 transition-transform">
-              <ChevronRight className="w-3.5 h-3.5" />
-            </div>
-          </button>
         </div>
       </div>
 
