@@ -65,16 +65,16 @@ export const TodaysFreshPicks: React.FC<TodaysFreshPicksProps> = ({
   };
 
   return (
-    <section id="todays-picks" className="w-full max-w-none bg-[#fbf9f4] py-8 sm:py-12 px-4 sm:px-8 lg:px-12 my-4 relative">
+    <section id="todays-picks" className="w-full max-w-none bg-transparent py-6 sm:py-10 px-4 sm:px-8 lg:px-12 my-4 relative">
       <div className="max-w-7xl mx-auto">
         
-        {/* Centered Section Header */}
+        {/* Centered Section Header Matching media_1791546178599.png */}
         <div className="text-center mb-8 sm:mb-10">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#1a8e4c] tracking-tight font-serif inline-block">
-            Our Best Sellers
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#1b6b38] tracking-tight font-serif inline-block">
+            Today&apos;s Fresh Picks
           </h2>
           <p className="text-xs sm:text-sm text-gray-500 font-medium mt-1.5">
-            Farm-harvested daily & delivered fresh directly to your doorstep
+            Farm-harvested daily &amp; delivered fresh directly to your doorstep
           </p>
         </div>
 

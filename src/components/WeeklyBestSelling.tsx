@@ -92,29 +92,14 @@ export const WeeklyBestSelling: React.FC<WeeklyBestSellingProps> = ({
   return (
     <section className="w-full max-w-none px-4 sm:px-8 lg:px-12 pt-0 sm:pt-1 pb-4 sm:pb-6 my-4">
       <div className="max-w-7xl mx-auto">
-        {/* Section Header */}
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-2">
-          <div>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight font-sans flex items-center gap-2">
-              <span>Weekly Best Selling items</span>
-              <span className="text-xs font-bold bg-amber-100 text-amber-900 px-2.5 py-0.5 rounded-full border border-amber-300">
-                100% Traditional
-              </span>
-            </h2>
-            <p className="text-xs sm:text-sm text-gray-500 font-medium mt-0.5">
-              Authentic farm-fresh essentials bilona churned & wood pressed
-            </p>
-          </div>
-          <button
-            type="button"
-            onClick={onShowAll}
-            className="flex items-center space-x-2 bg-emerald-950 hover:bg-emerald-900 text-white px-4 py-2 rounded-full text-xs font-semibold transition-colors shadow-xs group cursor-pointer"
-          >
-            <span>Show All</span>
-            <div className="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center group-hover:translate-x-0.5 transition-transform">
-              <ChevronRight className="w-3.5 h-3.5" />
-            </div>
-          </button>
+        {/* Centered Section Header Matching media_1791546178599.png */}
+        <div className="text-center mb-6 sm:mb-8">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#1b6b38] font-serif tracking-tight">
+            Weekly Best Selling items
+          </h2>
+          <p className="text-xs sm:text-sm font-medium text-gray-500 font-sans mt-2">
+            Farm-harvested daily & delivered fresh directly to your doorstep
+          </p>
         </div>
 
         {/* Anveshan Category Quick-Nav Circular Bar */}
