@@ -5,6 +5,7 @@ import React, { useState } from 'react';
 export const Footer: React.FC = () => {
   const [email, setEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
+  const [paymentNotice, setPaymentNotice] = useState<string | null>(null);
 
   const handleSubscribe = (e: React.FormEvent) => {
     e.preventDefault();
@@ -15,9 +16,17 @@ export const Footer: React.FC = () => {
     }
   };
 
+  const handlePaymentClick = (methodName: string, deepLink: string) => {
+    setPaymentNotice(`Opening ${methodName}... Complete payment securely!`);
+    setTimeout(() => setPaymentNotice(null), 4000);
+    
+    // Attempt to launch payment app via deep link
+    window.location.href = deepLink;
+  };
+
   return (
     <footer className="w-full bg-transparent relative overflow-hidden font-sans">
-      {/* Exact 1:1 Graphic Footer Banner Image — Without Any Changes */}
+      {/* Exact 1:1 High-Definition Graphic Footer Banner Image */}
       <div className="relative max-w-[1440px] mx-auto overflow-hidden select-none">
         <img
           src="/footer-banner-exact.jpg"
@@ -27,6 +36,36 @@ export const Footer: React.FC = () => {
 
         {/* Interactive Click Hotspots & Precision Aligned Form Overlay */}
         <div className="absolute inset-0 z-10 pointer-events-auto">
+          {/* Social Media Hotspots */}
+          <a
+            href="https://facebook.com/nandifarms"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="absolute top-[64%] left-[6.8%] w-[2.2%] h-[6.5%] cursor-pointer rounded-full hover:bg-white/10 transition-all"
+            title="Follow Nandi Farms on Facebook"
+          />
+          <a
+            href="https://instagram.com/nandifarms"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="absolute top-[64%] left-[9.3%] w-[2.2%] h-[6.5%] cursor-pointer rounded-full hover:bg-white/10 transition-all"
+            title="Follow Nandi Farms on Instagram"
+          />
+          <a
+            href="https://youtube.com/@nandifarms"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="absolute top-[64%] left-[11.8%] w-[2.2%] h-[6.5%] cursor-pointer rounded-full hover:bg-white/10 transition-all"
+            title="Subscribe on YouTube"
+          />
+          <a
+            href="https://linkedin.com/company/nandifarms"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="absolute top-[64%] left-[14.3%] w-[2.2%] h-[6.5%] cursor-pointer rounded-full hover:bg-white/10 transition-all"
+            title="Connect on LinkedIn"
+          />
+
           {/* Quick Links Hotspots */}
           <a
             href="https://eveggie.in/"
@@ -50,15 +89,47 @@ export const Footer: React.FC = () => {
             title="Email support@nandifarms.com"
           />
 
-          {/* Newsletter Form Overlay — Precision aligned to graphic input box and Subscribe button */}
+          {/* Direct App Payment Option Hotspots */}
+          {/* VISA */}
+          <div
+            onClick={() => handlePaymentClick('VISA Payment Gateway', 'https://eveggie.in/checkout')}
+            className="absolute top-[82%] left-[17.8%] w-[3.8%] h-[8%] cursor-pointer rounded-md hover:bg-white/10 transition-all"
+            title="Pay with VISA Card"
+          />
+          {/* Mastercard */}
+          <div
+            onClick={() => handlePaymentClick('Mastercard Payment Gateway', 'https://eveggie.in/checkout')}
+            className="absolute top-[82%] left-[22.0%] w-[3.8%] h-[8%] cursor-pointer rounded-md hover:bg-white/10 transition-all"
+            title="Pay with Mastercard"
+          />
+          {/* UPI Direct App */}
+          <div
+            onClick={() => handlePaymentClick('UPI App', 'upi://pay?pa=9949777844@ybl&pn=NandiFarms&cu=INR')}
+            className="absolute top-[82%] left-[26.0%] w-[3.8%] h-[8%] cursor-pointer rounded-md hover:bg-white/10 transition-all"
+            title="Open UPI App to Pay"
+          />
+          {/* RuPay Direct App */}
+          <div
+            onClick={() => handlePaymentClick('RuPay UPI App', 'upi://pay?pa=9949777844@ybl&pn=NandiFarms&cu=INR')}
+            className="absolute top-[82%] left-[30.2%] w-[3.8%] h-[8%] cursor-pointer rounded-md hover:bg-white/10 transition-all"
+            title="Pay with RuPay"
+          />
+          {/* Google Pay (GPay) Direct App */}
+          <div
+            onClick={() => handlePaymentClick('Google Pay App', 'tez://upi/pay?pa=9949777844@ybl&pn=NandiFarms&cu=INR')}
+            className="absolute top-[82%] left-[34.4%] w-[3.8%] h-[8%] cursor-pointer rounded-md hover:bg-white/10 transition-all"
+            title="Open Google Pay to Complete Payment"
+          />
+
+          {/* Newsletter Form Overlay — Precision aligned with 0 double placeholder text */}
           <form onSubmit={handleSubscribe}>
             <input
               type="email"
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="Your email address..."
-              className="absolute top-[53.5%] right-[5.4%] w-[20.5%] h-[8.5%] px-4 text-xs font-medium text-white bg-transparent border-none outline-none focus:outline-none focus:ring-0 placeholder:text-emerald-100/40 cursor-text"
+              placeholder=""
+              className="absolute top-[53.5%] right-[5.4%] w-[20.5%] h-[8.5%] px-4 text-xs font-medium text-white bg-transparent border-none outline-none focus:outline-none focus:ring-0 cursor-text"
               title="Enter your email address for newsletter"
             />
             <button
@@ -73,9 +144,18 @@ export const Footer: React.FC = () => {
               )}
             </button>
           </form>
+
+          {/* Payment App Launch Notice Alert */}
+          {paymentNotice && (
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-[#0a4233] text-amber-200 border border-emerald-500/40 px-4 py-2 rounded-xl text-xs font-bold shadow-2xl animate-fade-in z-20 flex items-center space-x-2">
+              <span className="animate-pulse">💳</span>
+              <span>{paymentNotice}</span>
+            </div>
+          )}
         </div>
       </div>
     </footer>
   );
 };
+
 
