@@ -67,28 +67,21 @@ export const PromoBanners: React.FC<PromoBannersProps> = ({ onClaimOffer }) => {
   };
 
   return (
-    <section className="w-full max-w-none bg-gradient-to-b from-[#e8e6d9] via-[#f2f0e4] to-[#faf9f3] py-8 sm:py-12 px-4 sm:px-8 lg:px-12 my-2 relative overflow-hidden">
-      {/* Top Organic Wave SVG Curve */}
-      <div className="absolute top-0 inset-x-0 overflow-hidden leading-none pointer-events-none opacity-40">
-        <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="relative block w-full h-12 text-[#dcd9c9] fill-current">
-          <path d="M0,0 C150,90 350,-40 500,40 C650,120 900,10 1200,40 L1200,0 L0,0 Z"></path>
-        </svg>
-      </div>
-
-      {/* 3 Arched Grid Boxes with Direct Authentic Image Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 items-stretch max-w-7xl mx-auto relative z-10">
+    <section className="w-full max-w-none bg-transparent py-6 sm:py-8 px-4 sm:px-8 lg:px-12 my-2 relative">
+      {/* 3 Arched Compact Grid Boxes */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5 items-stretch max-w-5xl mx-auto relative z-10">
         {cards.map((card) => (
           <div
             key={card.id}
             onClick={() => handleOpenModal(card)}
-            className="group relative rounded-t-[80px] sm:rounded-t-[100px] rounded-b-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer bg-transparent leading-none"
+            className="group relative rounded-t-[60px] sm:rounded-t-[80px] rounded-b-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1.5 cursor-pointer bg-transparent leading-none"
             title={`Click to claim ${card.title}`}
           >
-            {/* Direct High-Definition Image Asset (100% Flush Card Fit, Zero Bottom Gap) */}
+            {/* Direct High-Definition Image Asset (100% Flush Card Fit) */}
             <img
               src={card.image}
               alt={card.title}
-              className="w-full h-auto object-cover block leading-none group-hover:scale-[1.015] transition-transform duration-500 rounded-t-[80px] sm:rounded-t-[100px] rounded-b-3xl"
+              className="w-full h-auto object-cover block leading-none group-hover:scale-[1.015] transition-transform duration-500 rounded-t-[60px] sm:rounded-t-[80px] rounded-b-2xl"
               loading="eager"
             />
           </div>
