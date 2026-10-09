@@ -12,7 +12,7 @@ export const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="w-full bg-[#f2f6eb] text-[#203b29] font-sans relative overflow-hidden pt-10 sm:pt-14 pb-6 px-4 sm:px-8 lg:px-12 border-t border-[#e2ebd9]">
+    <footer className="w-full bg-[#f2f6eb] text-[#203b29] font-sans relative overflow-hidden pt-10 sm:pt-14 pb-6 px-4 sm:px-8 lg:px-12">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-6 items-center pb-10 sm:pb-14">
           

@@ -61,7 +61,7 @@ export const CustomerReviews: React.FC = () => {
   });
 
   return (
-    <section className="w-full max-w-none bg-[#f4efe1] py-12 sm:py-16 px-4 sm:px-8 lg:px-12 my-6 relative overflow-hidden">
+    <section className="w-full max-w-none bg-transparent py-8 sm:py-12 px-4 sm:px-8 lg:px-12 my-0 relative">
       <div className="max-w-7xl mx-auto">
         
         {/* Centered Section Header with Side Dividers (Matching Reference Screenshot) */}
