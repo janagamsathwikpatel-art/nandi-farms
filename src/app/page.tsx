@@ -271,10 +271,7 @@ export default function Home() {
           onShowAll={handleShowAllProducts}
         />
 
-        {/* 7. Trust Signals & Quality Guarantees Showcase Bar */}
-        <TrustSignalsBar />
-
-        {/* 8. Just for you */}
+        {/* 7. Just for you */}
         <JustForYou
           products={filteredProducts}
           cartItems={cartItems}
@@ -283,6 +280,9 @@ export default function Home() {
           onSelectProduct={(prod) => setSelectedProduct(prod)}
           onShowAll={handleShowAllProducts}
         />
+
+        {/* 8. Trust Signals & Quality Guarantees Showcase Bar */}
+        <TrustSignalsBar />
       </main>
 
       {/* Footer Section */}
