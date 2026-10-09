@@ -36,7 +36,7 @@ export const CategoryQuickNav: React.FC<CategoryQuickNavProps> = ({
 
   const handleScroll = (direction: 'left' | 'right') => {
     if (scrollContainerRef.current) {
-      const scrollAmount = direction === 'left' ? -240 : 240;
+      const scrollAmount = direction === 'left' ? -320 : 320;
       scrollContainerRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
     }
   };
@@ -46,23 +46,23 @@ export const CategoryQuickNav: React.FC<CategoryQuickNavProps> = ({
       {/* Scroll Navigation Buttons for Desktop */}
       <button
         onClick={() => handleScroll('left')}
-        className="hidden md:flex absolute -left-3 top-1/2 -translate-y-1/2 z-10 w-8 h-8 rounded-full bg-white/95 shadow-md border border-gray-200 items-center justify-center text-gray-700 hover:bg-emerald-900 hover:text-white transition-all cursor-pointer"
+        className="hidden md:flex absolute -left-2 sm:left-1 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-white shadow-xl border border-gray-200 items-center justify-center text-gray-800 hover:bg-emerald-950 hover:text-white transition-all cursor-pointer hover:scale-110"
         aria-label="Scroll Left"
       >
-        <ChevronLeft className="w-4 h-4" />
+        <ChevronLeft className="w-6 h-6" />
       </button>
       <button
         onClick={() => handleScroll('right')}
-        className="hidden md:flex absolute -right-3 top-1/2 -translate-y-1/2 z-10 w-8 h-8 rounded-full bg-white/95 shadow-md border border-gray-200 items-center justify-center text-gray-700 hover:bg-emerald-900 hover:text-white transition-all cursor-pointer"
+        className="hidden md:flex absolute -right-2 sm:right-1 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-white shadow-xl border border-gray-200 items-center justify-center text-gray-800 hover:bg-emerald-950 hover:text-white transition-all cursor-pointer hover:scale-110"
         aria-label="Scroll Right"
       >
-        <ChevronRight className="w-4 h-4" />
+        <ChevronRight className="w-6 h-6" />
       </button>
 
-      {/* Horizontal Circular Avatar Bar */}
+      {/* Horizontal Circular Avatar Bar — Full Length Ratio & Increased Font/Icon Sizes */}
       <div
         ref={scrollContainerRef}
-        className="flex items-center space-x-4 sm:space-x-6 overflow-x-auto no-scrollbar py-3 px-2 scroll-smooth"
+        className="flex items-center justify-start lg:justify-center space-x-6 sm:space-x-8 lg:space-x-10 overflow-x-auto no-scrollbar py-4 px-2 sm:px-6 scroll-smooth w-full"
       >
         {ANVESHAN_CATEGORIES.map((cat) => {
           const isActive = activeCategory.toLowerCase() === cat.id.toLowerCase() || 
@@ -74,30 +74,30 @@ export const CategoryQuickNav: React.FC<CategoryQuickNavProps> = ({
               onClick={() => onSelectCategory(cat.id)}
               className="flex flex-col items-center flex-shrink-0 group/item cursor-pointer focus:outline-hidden"
             >
-              {/* Circular Avatar Ring */}
+              {/* Enlarged Circular Avatar Ring (80px - 112px) */}
               <div
-                className={`relative w-16 h-16 sm:w-20 sm:h-20 rounded-full flex items-center justify-center text-2xl sm:text-3xl transition-all duration-200 shadow-sm ${
+                className={`relative w-20 h-20 sm:w-24 sm:h-24 lg:w-28 lg:h-28 rounded-full flex items-center justify-center text-3xl sm:text-4xl lg:text-5xl transition-all duration-300 shadow-md ${
                   isActive
-                    ? 'ring-4 ring-amber-400 border-2 border-emerald-800 bg-amber-50 shadow-md scale-105'
-                    : 'bg-emerald-50/70 border border-emerald-100 hover:border-emerald-400 hover:bg-amber-50/50 hover:scale-105'
+                    ? 'ring-4 ring-amber-400 border-2 border-emerald-900 bg-amber-50 shadow-xl scale-110'
+                    : 'bg-emerald-50/80 border border-emerald-100 hover:border-emerald-500 hover:bg-amber-50/70 hover:scale-105 hover:shadow-lg'
                 }`}
               >
                 <span>{cat.icon}</span>
 
                 {/* Popular Sparkle Badge */}
                 {cat.isPopular && (
-                  <span className="absolute -top-1 -right-1 bg-amber-500 text-white rounded-full p-0.5 shadow-xs">
-                    <Sparkles className="w-3 h-3" />
+                  <span className="absolute top-0 right-0 bg-amber-500 text-white rounded-full p-1 shadow-sm animate-pulse">
+                    <Sparkles className="w-4 h-4" />
                   </span>
                 )}
               </div>
 
-              {/* Category Label */}
+              {/* Increased Category Label Font Size */}
               <span
-                className={`mt-2 text-xs sm:text-sm font-semibold tracking-tight transition-colors line-clamp-1 ${
+                className={`mt-3 text-sm sm:text-base lg:text-lg font-extrabold tracking-tight transition-colors line-clamp-1 ${
                   isActive
-                    ? 'text-emerald-950 font-extrabold underline underline-offset-4 decoration-amber-500 decoration-2'
-                    : 'text-gray-700 group-hover/item:text-emerald-800'
+                    ? 'text-emerald-950 underline underline-offset-6 decoration-amber-500 decoration-4 font-black scale-105'
+                    : 'text-gray-800 group-hover/item:text-emerald-900'
                 }`}
               >
                 {cat.name}
