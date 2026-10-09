@@ -283,9 +283,9 @@ export default function Home() {
         <NandiFarmsShowcase onOrderNow={handleShowAllProducts} />
       </main>
 
-      {/* Footer Section (Matching media_1791547755419.png) */}
+      {/* Footer Section */}
       <div className="relative z-10">
-        <Footer />
+        <Footer onSelectCategory={handleSelectCategory} />
       </div>
 
       {/* Slide-over Cart Drawer */}
