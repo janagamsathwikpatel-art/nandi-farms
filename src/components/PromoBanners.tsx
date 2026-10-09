@@ -74,33 +74,16 @@ export const PromoBanners: React.FC<PromoBannersProps> = ({ onClaimOffer }) => {
           <div
             key={card.id}
             onClick={() => handleOpenModal(card)}
-            className="group relative rounded-t-[75px] sm:rounded-t-[95px] rounded-b-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer border border-gray-200/90 bg-white flex flex-col justify-between"
+            className="group relative rounded-t-[75px] sm:rounded-t-[95px] rounded-b-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer border border-gray-200/60 bg-transparent"
             title={`Click to claim ${card.title}`}
           >
-            {/* High-Definition Crisp Graphic Display */}
-            <div className="w-full overflow-hidden rounded-t-[75px] sm:rounded-t-[95px]">
-              <img
-                src={card.image}
-                alt={card.title}
-                className="w-full h-auto object-cover block group-hover:scale-105 transition-transform duration-500 rounded-t-[75px] sm:rounded-t-[95px]"
-                loading="eager"
-              />
-            </div>
-
-            {/* Down of Grids: Prominent Claim Offer Button */}
-            <div className="p-4 bg-gradient-to-b from-white to-[#faf9f5] border-t border-gray-100 flex items-center justify-center">
-              <button
-                type="button"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handleOpenModal(card);
-                }}
-                className="w-full max-w-[260px] bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-sm sm:text-base py-3 px-6 rounded-full shadow-lg hover:shadow-emerald-600/30 transition-all duration-200 flex items-center justify-center space-x-2 group/btn cursor-pointer active:scale-95"
-              >
-                <span>Claim Offer</span>
-                <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
-              </button>
-            </div>
+            {/* Direct High-Definition Seamless Image (Zero White Gap & Clean Single Button inside Graphic) */}
+            <img
+              src={card.image}
+              alt={card.title}
+              className="w-full h-auto object-cover block group-hover:scale-[1.02] transition-transform duration-500 rounded-t-[75px] sm:rounded-t-[95px] rounded-b-3xl"
+              loading="eager"
+            />
           </div>
         ))}
       </div>
