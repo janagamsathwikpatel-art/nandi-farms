@@ -43,26 +43,36 @@ export const CategoryQuickNav: React.FC<CategoryQuickNavProps> = ({
 
   return (
     <div className="relative w-full my-4 sm:my-6 group">
-      {/* Scroll Navigation Buttons for Desktop */}
+      {/* Scroll Navigation Buttons — Fully Interactive & Responsive */}
       <button
-        onClick={() => handleScroll('left')}
-        className="hidden md:flex absolute -left-2 sm:left-1 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-white shadow-xl border border-gray-200 items-center justify-center text-gray-800 hover:bg-emerald-950 hover:text-white transition-all cursor-pointer hover:scale-110"
+        type="button"
+        onClick={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          handleScroll('left');
+        }}
+        className="flex absolute left-0 sm:left-1 top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white/95 backdrop-blur-xs shadow-xl border-2 border-emerald-700/30 items-center justify-center text-emerald-950 hover:bg-emerald-950 hover:text-white transition-all cursor-pointer hover:scale-110 active:scale-95 shadow-emerald-950/20"
         aria-label="Scroll Left"
       >
-        <ChevronLeft className="w-6 h-6" />
+        <ChevronLeft className="w-6 h-6 stroke-[2.5]" />
       </button>
       <button
-        onClick={() => handleScroll('right')}
-        className="hidden md:flex absolute -right-2 sm:right-1 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-white shadow-xl border border-gray-200 items-center justify-center text-gray-800 hover:bg-emerald-950 hover:text-white transition-all cursor-pointer hover:scale-110"
+        type="button"
+        onClick={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          handleScroll('right');
+        }}
+        className="flex absolute right-0 sm:right-1 top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white/95 backdrop-blur-xs shadow-xl border-2 border-emerald-700/30 items-center justify-center text-emerald-950 hover:bg-emerald-950 hover:text-white transition-all cursor-pointer hover:scale-110 active:scale-95 shadow-emerald-950/20"
         aria-label="Scroll Right"
       >
-        <ChevronRight className="w-6 h-6" />
+        <ChevronRight className="w-6 h-6 stroke-[2.5]" />
       </button>
 
-      {/* Full-Length Circular Avatar Bar — Complete Visibility Without Edge Cutoffs */}
+      {/* Full-Length Circular Avatar Bar — Overflow Scrollable Container */}
       <div
         ref={scrollContainerRef}
-        className="flex items-center justify-start md:justify-between gap-3 sm:gap-5 md:gap-6 lg:gap-8 overflow-x-auto md:overflow-x-visible no-scrollbar py-4 px-3 sm:px-6 lg:px-8 w-full max-w-none scroll-smooth"
+        className="flex items-center justify-start gap-4 sm:gap-6 lg:gap-8 overflow-x-auto no-scrollbar py-4 px-10 sm:px-14 lg:px-16 w-full max-w-none scroll-smooth"
       >
         {ANVESHAN_CATEGORIES.map((cat) => {
           const isActive = activeCategory.toLowerCase() === cat.id.toLowerCase() || 
@@ -72,7 +82,7 @@ export const CategoryQuickNav: React.FC<CategoryQuickNavProps> = ({
             <button
               key={cat.id}
               onClick={() => onSelectCategory(cat.id)}
-              className="flex flex-col items-center flex-shrink-0 md:flex-shrink group/item cursor-pointer focus:outline-hidden my-1"
+              className="flex flex-col items-center flex-shrink-0 group/item cursor-pointer focus:outline-hidden my-1"
             >
               {/* Responsive Circular Avatar Ring (64px - 100px) */}
               <div
