@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { ChevronRight, ChevronDown, Plus, Minus, Heart } from 'lucide-react';
+import { ChevronRight, ChevronDown, Plus, Minus, Heart, Check } from 'lucide-react';
 import { Product, CartItem } from '@/types';
 import { CategoryQuickNav } from './CategoryQuickNav';
 
@@ -27,10 +27,38 @@ export const WeeklyBestSelling: React.FC<WeeklyBestSellingProps> = ({
   onShowAll,
 }) => {
   const [activeCategory, setActiveCategory] = useState<string>('ghee');
+  const [selectedUnits, setSelectedUnits] = useState<Record<string, string>>({});
+  const [openDropdownId, setOpenDropdownId] = useState<string | null>(null);
 
   const getProductQuantity = (id: string) => {
     const item = cartItems.find((ci) => ci.product.id === id);
     return item ? item.quantity : 0;
+  };
+
+  const getVariantOptions = (unit: string) => {
+    const u = (unit || '').toLowerCase();
+    if (u.includes('ghee') || u.includes('l') || u.includes('ml')) {
+      return ['500 ml', '1 L', '2 L'];
+    }
+    if (u.includes('dozen')) {
+      return ['per dozen', 'half dozen'];
+    }
+    if (u.includes('g') || u.includes('kg')) {
+      return ['500g', '1 kg', '2 kg'];
+    }
+    return ['Small Pack', 'Standard Pack', 'Family Pack'];
+  };
+
+  const getAdjustedPrice = (prod: Product, selectedUnit: string) => {
+    const basePrice = prod.price;
+    const u = selectedUnit.toLowerCase();
+    if (u.includes('500g') || u.includes('500 ml') || u.includes('half')) {
+      return Math.round(basePrice * 0.55);
+    }
+    if (u.includes('2 kg') || u.includes('2 l') || u.includes('2l')) {
+      return Math.round(basePrice * 1.9);
+    }
+    return basePrice;
   };
 
   // 1. Filter products for active category
@@ -95,14 +123,19 @@ export const WeeklyBestSelling: React.FC<WeeklyBestSellingProps> = ({
           onSelectCategory={(catId) => setActiveCategory(catId)}
         />
 
-        {/* 5 Product Cards Row (Matching Reference Screenshot Design) */}
+        {/* 5 Product Cards Row */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 sm:gap-5 items-stretch">
           {filteredProducts.map((prod, idx) => {
             const qty = getProductQuantity(prod.id);
             const isLoved = lovedItems.includes(prod.id);
             const isFallbackBestSeller = !categoryItemIds.has(prod.id) && activeCategory !== 'all';
             const discountPercent = idx % 3 === 0 ? '18%' : idx % 3 === 1 ? '17%' : '14%';
-            const originalPrice = Math.round(prod.price * 1.2);
+            
+            const variantOptions = getVariantOptions(prod.unit);
+            const currentUnit = selectedUnits[prod.id] || prod.unit || variantOptions[0];
+            const currentPrice = getAdjustedPrice(prod, currentUnit);
+            const originalPrice = Math.round(currentPrice * 1.2);
+            const isDropdownOpen = openDropdownId === prod.id;
 
             return (
               <div
@@ -110,7 +143,7 @@ export const WeeklyBestSelling: React.FC<WeeklyBestSellingProps> = ({
                 className="bg-[#f7f3e8] border border-amber-200/60 rounded-3xl p-3.5 sm:p-4 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group relative"
               >
                 <div>
-                  {/* Top Badges: Left Yellow Discount Pill | Right Green Bestseller Pill */}
+                  {/* Top Badges */}
                   <div className="flex items-center justify-between mb-2.5 z-10 relative">
                     <span className="bg-amber-400 text-gray-950 font-black text-[10px] sm:text-xs px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full shadow-2xs">
                       {discountPercent} OFF
@@ -121,7 +154,7 @@ export const WeeklyBestSelling: React.FC<WeeklyBestSellingProps> = ({
                     </span>
                   </div>
 
-                  {/* Compact Product Image Container Box — Full Length Image Fit */}
+                  {/* Compact Product Image Container Box */}
                   <div
                     onClick={() => onSelectProduct && onSelectProduct(prod)}
                     className="w-full h-36 sm:h-44 md:h-48 rounded-2xl bg-white p-2.5 flex items-center justify-center overflow-hidden border border-amber-100 shadow-inner mb-3 cursor-pointer relative"
@@ -139,7 +172,6 @@ export const WeeklyBestSelling: React.FC<WeeklyBestSellingProps> = ({
                       <Heart className={`w-3.5 h-3.5 sm:w-4 sm:h-4 transition-colors ${isLoved ? 'fill-rose-500 text-rose-500' : 'text-gray-400 hover:text-rose-500'}`} />
                     </button>
 
-                    {/* High Definition Full Length Product Image */}
                     <img
                       src={prod.image}
                       alt={prod.name}
@@ -156,20 +188,54 @@ export const WeeklyBestSelling: React.FC<WeeklyBestSellingProps> = ({
                     {prod.name}
                   </h3>
 
-                  {/* Product Price Row (Current Price + Strike-through MRP) */}
+                  {/* Product Price Row */}
                   <div className="flex items-center justify-center space-x-1.5 mb-2">
                     <span className="text-sm sm:text-base font-black text-gray-900">
-                      ₹ {prod.price}
+                      ₹ {currentPrice}
                     </span>
                     <span className="text-[11px] text-gray-400 line-through font-semibold">
                       ₹ {originalPrice}
                     </span>
                   </div>
 
-                  {/* Variant Dropdown Selector Pill Container */}
-                  <div className="border border-gray-900 rounded-full px-3 py-1 text-[11px] font-extrabold flex items-center justify-between bg-white text-gray-900 cursor-pointer mb-3 shadow-2xs hover:bg-gray-50 transition-colors">
-                    <span>{prod.unit || '500 ml'}</span>
-                    <ChevronDown className="w-3 h-3 text-gray-700 stroke-[3]" />
+                  {/* Interactive Variant Dropdown Selector Pill */}
+                  <div className="relative mb-3 z-30">
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setOpenDropdownId(isDropdownOpen ? null : prod.id);
+                      }}
+                      className="w-full border border-gray-900 rounded-full px-3 py-1 text-[11px] font-extrabold flex items-center justify-between bg-white text-gray-900 cursor-pointer shadow-2xs hover:bg-gray-50 transition-colors"
+                    >
+                      <span>{currentUnit}</span>
+                      <ChevronDown className={`w-3 h-3 text-gray-700 stroke-[3] transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`} />
+                    </button>
+
+                    {/* Dropdown Options Popup Menu */}
+                    {isDropdownOpen && (
+                      <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-200 rounded-2xl shadow-xl p-1 z-40 animate-fade-in">
+                        {variantOptions.map((opt) => (
+                          <button
+                            key={opt}
+                            type="button"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setSelectedUnits((prev) => ({ ...prev, [prod.id]: opt }));
+                              setOpenDropdownId(null);
+                            }}
+                            className={`w-full text-left px-3 py-1.5 text-xs font-bold rounded-xl flex items-center justify-between transition-colors cursor-pointer ${
+                              currentUnit === opt
+                                ? 'bg-emerald-50 text-emerald-950 font-black'
+                                : 'text-gray-700 hover:bg-gray-100'
+                            }`}
+                          >
+                            <span>{opt}</span>
+                            {currentUnit === opt && <Check className="w-3.5 h-3.5 text-emerald-700 stroke-[3]" />}
+                          </button>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 </div>
 
@@ -180,7 +246,7 @@ export const WeeklyBestSelling: React.FC<WeeklyBestSellingProps> = ({
                       type="button"
                       onClick={(e) => {
                         e.stopPropagation();
-                        onAddToCart(prod);
+                        onAddToCart({ ...prod, price: currentPrice, unit: currentUnit });
                       }}
                       className="w-full bg-[#1a8e4c] hover:bg-emerald-800 text-white font-extrabold text-xs sm:text-sm py-2.5 px-4 rounded-full shadow-md hover:shadow-emerald-700/30 transition-all duration-200 cursor-pointer text-center block active:scale-95"
                     >
