@@ -67,22 +67,24 @@ export const PromoBanners: React.FC<PromoBannersProps> = ({ onClaimOffer }) => {
   };
 
   return (
-    <section className="w-full max-w-none px-4 sm:px-8 lg:px-12 py-4 sm:py-6">
-      {/* 3 Standalone Full-Length Graphic Promo Grid Cards — Exact Reference Images */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6 items-stretch max-w-7xl mx-auto">
+    <section className="w-full max-w-none px-4 sm:px-8 lg:px-12 py-6 my-2">
+      {/* 3 Arched Grid Containers with Direct Authentic Image Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 items-stretch max-w-7xl mx-auto">
         {cards.map((card) => (
           <div
             key={card.id}
             onClick={() => handleOpenModal(card)}
-            className="rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl group transform hover:-translate-y-1.5 transition-all duration-300 cursor-pointer w-full block bg-transparent border border-gray-100"
+            className="group relative rounded-t-[75px] sm:rounded-t-[95px] rounded-b-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer border border-gray-200/80 bg-white flex flex-col justify-between"
             title={`Click to claim ${card.title}`}
           >
-            {/* Full Length Graphic Card Image (Zero Gap, Exact Reference Screenshot Image) */}
-            <img
-              src={card.image}
-              alt={card.title}
-              className="w-full h-auto block object-cover rounded-3xl group-hover:scale-[1.015] transition-transform duration-500"
-            />
+            {/* Direct High-Definition Image Asset (100% Authentic Image Display) */}
+            <div className="w-full h-full overflow-hidden rounded-t-[75px] sm:rounded-t-[95px] rounded-b-3xl">
+              <img
+                src={card.image}
+                alt={card.title}
+                className="w-full h-full object-cover block group-hover:scale-105 transition-transform duration-500 rounded-t-[75px] sm:rounded-t-[95px] rounded-b-3xl"
+              />
+            </div>
           </div>
         ))}
       </div>
