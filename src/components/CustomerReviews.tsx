@@ -68,7 +68,7 @@ export const CustomerReviews: React.FC = () => {
         <div className="flex items-center justify-center mb-8 sm:mb-12">
           <div className="flex-1 max-w-[180px] sm:max-w-xs h-[1.5px] bg-[#9e8b74]/60"></div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#5c4a38] tracking-tight font-serif px-4 sm:px-8 whitespace-nowrap">
-            Customer Testimonials
+            Customer Reviews
           </h2>
           <div className="flex-1 max-w-[180px] sm:max-w-xs h-[1.5px] bg-[#9e8b74]/60"></div>
         </div>
