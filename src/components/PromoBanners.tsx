@@ -67,21 +67,29 @@ export const PromoBanners: React.FC<PromoBannersProps> = ({ onClaimOffer }) => {
   };
 
   return (
-    <section className="w-full max-w-none px-4 sm:px-8 lg:px-12 py-0 my-0">
-      {/* 3 Standalone Full-Length Graphic Offer Cards — Zero Bottom Gap & No Duplicate Button */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6 items-stretch">
+    <section className="w-full max-w-none bg-gradient-to-b from-[#e8e6d9] via-[#f2f0e4] to-[#faf9f3] py-8 sm:py-12 px-4 sm:px-8 lg:px-12 my-2 relative overflow-hidden">
+      {/* Top Organic Wave SVG Curve */}
+      <div className="absolute top-0 inset-x-0 overflow-hidden leading-none pointer-events-none opacity-40">
+        <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="relative block w-full h-12 text-[#dcd9c9] fill-current">
+          <path d="M0,0 C150,90 350,-40 500,40 C650,120 900,10 1200,40 L1200,0 L0,0 Z"></path>
+        </svg>
+      </div>
+
+      {/* 3 Arched Grid Boxes with Direct Authentic Image Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 items-stretch max-w-7xl mx-auto relative z-10">
         {cards.map((card) => (
           <div
             key={card.id}
             onClick={() => handleOpenModal(card)}
-            className="rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl group transform hover:-translate-y-1.5 transition-all duration-300 cursor-pointer max-w-[360px] mx-auto w-full block bg-transparent"
+            className="group relative rounded-t-[80px] sm:rounded-t-[100px] rounded-b-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer border border-gray-200/90 bg-white"
             title={`Click to claim ${card.title}`}
           >
-            {/* Full Length Graphic Card Image (Zero Gap, Seamless Display) */}
+            {/* Direct High-Definition Image Asset (100% Authentic Display Inside Arched Grid Box) */}
             <img
               src={card.image}
               alt={card.title}
-              className="w-full h-auto block object-cover rounded-3xl group-hover:scale-[1.015] transition-transform duration-500"
+              className="w-full h-auto object-cover block group-hover:scale-[1.02] transition-transform duration-500 rounded-t-[80px] sm:rounded-t-[100px] rounded-b-3xl"
+              loading="eager"
             />
           </div>
         ))}
@@ -93,6 +101,7 @@ export const PromoBanners: React.FC<PromoBannersProps> = ({ onClaimOffer }) => {
           <div className="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl relative border border-emerald-100 animate-scale-up">
             {/* Close Button */}
             <button
+              type="button"
               onClick={() => setActiveOfferModal(null)}
               className="absolute top-4 right-4 text-gray-400 hover:text-gray-700 bg-gray-100 hover:bg-gray-200 p-2 rounded-full transition-colors cursor-pointer"
             >
@@ -121,6 +130,7 @@ export const PromoBanners: React.FC<PromoBannersProps> = ({ onClaimOffer }) => {
                 </span>
               </div>
               <button
+                type="button"
                 onClick={() => handleCopyCode(activeOfferModal.code)}
                 className={`px-4 py-2 rounded-xl font-bold text-xs flex items-center space-x-1.5 transition-all cursor-pointer ${
                   copiedCode
@@ -145,6 +155,7 @@ export const PromoBanners: React.FC<PromoBannersProps> = ({ onClaimOffer }) => {
             {/* Action Buttons */}
             <div className="space-y-2">
               <button
+                type="button"
                 onClick={() => {
                   handleCopyCode(activeOfferModal.code);
                   setTimeout(() => setActiveOfferModal(null), 800);
@@ -154,6 +165,7 @@ export const PromoBanners: React.FC<PromoBannersProps> = ({ onClaimOffer }) => {
                 Apply Coupon & Continue Shopping 🛒
               </button>
               <button
+                type="button"
                 onClick={() => setActiveOfferModal(null)}
                 className="w-full bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold text-xs py-2.5 px-4 rounded-xl transition-colors cursor-pointer"
               >
