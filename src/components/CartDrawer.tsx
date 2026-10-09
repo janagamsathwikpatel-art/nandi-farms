@@ -24,6 +24,7 @@ import {
   Truck,
   MapPin,
   PackageCheck,
+  Navigation,
 } from 'lucide-react';
 import { CartItem } from '@/types';
 
@@ -699,6 +700,76 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
                       <Phone className="w-3.5 h-3.5" />
                       <span>Call Ramesh</span>
                     </a>
+                  </div>
+                </div>
+
+                {/* 3. LIVE GPS MAP LOCATION & ROUTE TRACKER */}
+                <div className="bg-white rounded-3xl border border-gray-200 shadow-md overflow-hidden text-left relative group">
+                  {/* Map Header Status */}
+                  <div className="bg-slate-900 text-white p-3 px-4 flex items-center justify-between">
+                    <div className="flex items-center space-x-2">
+                      <span className="relative flex h-2.5 w-2.5">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+                      </span>
+                      <span className="font-extrabold text-xs tracking-wide">Live GPS Location Map</span>
+                    </div>
+                    <span className="text-[10px] bg-emerald-950 text-emerald-300 font-bold px-2.5 py-0.5 rounded-full border border-emerald-700/50">
+                      1.2 km away • 4 Mins
+                    </span>
+                  </div>
+
+                  {/* Simulated Map View Canvas */}
+                  <div className="relative h-48 bg-[#e8ece9] overflow-hidden flex items-center justify-center">
+                    {/* Map Grid Road Vector Pattern Background */}
+                    <svg className="absolute inset-0 w-full h-full opacity-35 text-slate-400" fill="none" stroke="currentColor">
+                      <path d="M 0,20 Q 80,40 160,20 T 320,30" strokeWidth="6" stroke="#94a3b8" />
+                      <path d="M 40,0 Q 60,100 80,200" strokeWidth="8" stroke="#cbd5e1" />
+                      <path d="M 200,0 Q 180,120 220,200" strokeWidth="7" stroke="#cbd5e1" />
+                      <path d="M 0,110 L 400,110" strokeWidth="10" stroke="#ffffff" />
+                      <path d="M 0,160 Q 150,140 400,170" strokeWidth="6" stroke="#cbd5e1" />
+                    </svg>
+
+                    {/* Dotted Delivery Route Path Line */}
+                    <svg className="absolute inset-0 w-full h-full z-10 pointer-events-none">
+                      <path
+                        d="M 60,130 C 130,130 150,60 280,60"
+                        fill="none"
+                        stroke="#059669"
+                        strokeWidth="4"
+                        strokeDasharray="6 6"
+                        className="animate-pulse"
+                      />
+                    </svg>
+
+                    {/* Delivery Executive Marker (🛵 Ramesh Kumar) */}
+                    <div className="absolute left-[50px] top-[108px] z-20 flex flex-col items-center animate-bounce">
+                      <div className="bg-[#07362a] text-white text-[9px] font-black px-2 py-0.5 rounded-full shadow-lg border border-amber-300 flex items-center space-x-1 whitespace-nowrap">
+                        <span>🛵 Ramesh Kumar</span>
+                      </div>
+                      <div className="w-8 h-8 bg-emerald-600 rounded-full flex items-center justify-center text-white shadow-xl ring-4 ring-emerald-400/40 text-sm mt-0.5">
+                        🛵
+                      </div>
+                    </div>
+
+                    {/* Customer Destination Marker (🏠 Home) */}
+                    <div className="absolute right-[50px] top-[40px] z-20 flex flex-col items-center">
+                      <div className="bg-rose-950 text-white text-[9px] font-black px-2 py-0.5 rounded-full shadow-lg border border-rose-300 flex items-center space-x-1 whitespace-nowrap">
+                        <span>🏠 Doorstep</span>
+                      </div>
+                      <div className="w-8 h-8 bg-rose-600 rounded-full flex items-center justify-center text-white shadow-xl ring-4 ring-rose-400/40 text-sm mt-0.5">
+                        📍
+                      </div>
+                    </div>
+
+                    {/* Map Footer Overlay Badge */}
+                    <div className="absolute bottom-2 left-2 right-2 z-20 bg-white/90 backdrop-blur-xs p-2 rounded-xl border border-gray-200 shadow-sm flex items-center justify-between text-[11px] font-bold text-gray-800">
+                      <span className="flex items-center space-x-1.5 text-emerald-800">
+                        <Navigation className="w-3.5 h-3.5 animate-spin" />
+                        <span>In Transit • Speed 26 km/h</span>
+                      </span>
+                      <span className="text-[10px] text-gray-500 font-medium">GPS Signal 🟢 Strong</span>
+                    </div>
                   </div>
                 </div>
 
