@@ -12,6 +12,7 @@ import { WeeklyBestSelling } from '@/components/WeeklyBestSelling';
 import { MostSellingProducts } from '@/components/MostSellingProducts';
 import { CustomerReviews } from '@/components/CustomerReviews';
 import { JustForYou } from '@/components/JustForYou';
+import { NandiFarmsShowcase } from '@/components/NandiFarmsShowcase';
 import { Footer } from '@/components/Footer';
 import { CartDrawer } from '@/components/CartDrawer';
 import { LoginModal } from '@/components/LoginModal';
@@ -275,8 +276,11 @@ export default function Home() {
           onShowAll={handleShowAllProducts}
         />
 
-        {/* 8. Customer Reviews & Ratings Showcase (Organic India Style) */}
+        {/* 8. Customer Reviews & Ratings Showcase */}
         <CustomerReviews />
+
+        {/* 9. Nandi Farms Auto-Scrolling Category Showcase (Above Footer, Matching media_1791549332402.png) */}
+        <NandiFarmsShowcase onOrderNow={handleShowAllProducts} />
       </main>
 
       {/* Footer Section (Matching media_1791547755419.png) */}
