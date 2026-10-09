@@ -93,13 +93,6 @@ export const CategoryQuickNav: React.FC<CategoryQuickNavProps> = ({
                 }`}
               >
                 <span>{cat.icon}</span>
-
-                {/* Popular Sparkle Badge */}
-                {cat.isPopular && (
-                  <span className="absolute top-0 right-0 bg-amber-500 text-white rounded-full p-1 shadow-sm animate-pulse">
-                    <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-                  </span>
-                )}
               </div>
 
               {/* Un-truncated Full Category Label */}
