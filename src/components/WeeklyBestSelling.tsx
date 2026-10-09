@@ -30,7 +30,8 @@ export const WeeklyBestSelling: React.FC<WeeklyBestSellingProps> = ({
     return item ? item.quantity : 0;
   };
 
-  const filteredProducts = products.filter((p) => {
+  // 1. Filter products for active category
+  let categoryItems = products.filter((p) => {
     if (activeCategory === 'all') return true;
     if (activeCategory === 'ghee') return p.name.toLowerCase().includes('ghee') || p.category === 'Dairy';
     if (activeCategory === 'oils') return p.name.toLowerCase().includes('oil') || p.category === 'Oils';
@@ -41,7 +42,21 @@ export const WeeklyBestSelling: React.FC<WeeklyBestSellingProps> = ({
     if (activeCategory === 'fruits') return p.category === 'Fruits';
     if (activeCategory === 'dairy') return p.category === 'Dairy' || p.category === 'Eggs';
     return true;
-  }).slice(0, 5);
+  });
+
+  const categoryItemIds = new Set(categoryItems.map((p) => p.id));
+
+  // 2. Auto-fill up to 5 products with top best-sellers if category has fewer than 5 items
+  if (categoryItems.length < 5) {
+    const bestSellersFallback = products.filter(
+      (p) => !categoryItemIds.has(p.id)
+    );
+    categoryItems = [...categoryItems, ...bestSellersFallback].slice(0, 5);
+  } else {
+    categoryItems = categoryItems.slice(0, 5);
+  }
+
+  const filteredProducts = categoryItems;
 
   return (
     <section className="w-full max-w-none px-4 sm:px-8 lg:px-12 pt-0 sm:pt-1 pb-4 sm:pb-6">
@@ -75,19 +90,28 @@ export const WeeklyBestSelling: React.FC<WeeklyBestSellingProps> = ({
         onSelectCategory={(catId) => setActiveCategory(catId)}
       />
 
-      {/* 5 Product Cards Row */}
+      {/* 5 Product Cards Row — Full 5-Column Grid */}
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-5">
         {filteredProducts.map((prod) => {
           const qty = getProductQuantity(prod.id);
+          const isFallbackBestSeller = !categoryItemIds.has(prod.id) && activeCategory !== 'all';
+
           return (
             <div
               key={prod.id}
-              className="bg-white rounded-3xl p-4 border border-gray-100/90 shadow-xs hover:shadow-lg transition-all duration-200 flex flex-col justify-between items-center text-center group"
+              className="bg-white rounded-3xl p-4 border border-gray-100/90 shadow-xs hover:shadow-lg transition-all duration-200 flex flex-col justify-between items-center text-center group relative overflow-hidden"
             >
+              {/* Top Seller Badge for Auto-Filled Items */}
+              {isFallbackBestSeller && (
+                <div className="absolute top-2 right-2 bg-amber-500 text-white font-extrabold text-[10px] px-2 py-0.5 rounded-full shadow-xs tracking-wider z-10 flex items-center gap-0.5">
+                  <span>🔥 TOP SELLER</span>
+                </div>
+              )}
+
               {/* Product Image */}
               <div
                 onClick={() => onSelectProduct && onSelectProduct(prod)}
-                className="w-28 h-28 sm:w-32 sm:h-32 mb-3 flex items-center justify-center overflow-hidden rounded-2xl bg-gray-50/50 p-2 group-hover:scale-105 transition-transform cursor-pointer"
+                className="w-28 h-28 sm:w-32 sm:h-32 mb-3 flex items-center justify-center overflow-hidden rounded-2xl bg-gray-50/50 p-2 group-hover:scale-105 transition-transform cursor-pointer relative"
               >
                 <img
                   src={prod.image}
