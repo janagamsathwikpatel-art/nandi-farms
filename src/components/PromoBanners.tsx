@@ -180,7 +180,7 @@ export const PromoBanners: React.FC<PromoBannersProps> = ({ onClaimOffer, onOpen
                   {/* CENTERPIECE: Grand Hero 3D Nandi Farms Grocery Bag & Produce (w-[84%] sm:w-[80%]) */}
                   <div className="absolute top-[20%] sm:top-[18%] left-1/2 -translate-x-1/2 w-[84%] sm:w-[80%] z-15 transition-transform duration-500 group-hover:scale-105">
                     <img
-                      src="/card2-groceries-nandi-clean.png"
+                      src="/card2-groceries-nandi-v2.png"
                       alt="3D Nandi Farms Fresh Produce"
                       className="w-full h-auto object-contain filter select-none drop-shadow-[0_20px_22px_rgba(0,0,0,0.25)]"
                       loading="eager"
