@@ -259,18 +259,8 @@ export const PromoBanners: React.FC<PromoBannersProps> = ({ onClaimOffer, onOpen
                   />
                 </div>
 
-                {/* LAYER 2: 3D Stage with Left-to-Right Moving Leaves and Drop-In 3D Basket */}
+                {/* LAYER 2: 3D Stage with Drop-In 3D Basket */}
                 <div className="absolute inset-0 pointer-events-none overflow-hidden" style={{ perspective: '1000px' }}>
-                  {/* LEAVES: Moving motion from left side to right side */}
-                  <div className="absolute inset-0 animate-leaves-breeze z-12 opacity-95">
-                    <img
-                      src="/card3-leaves-overlay.png"
-                      alt="Organic Leaves"
-                      className="w-full h-auto object-contain select-none"
-                      loading="eager"
-                    />
-                  </div>
-
                   {/* 3D BASKET: Drops in from upside and stops in middle above text */}
                   <div className="absolute top-[26%] sm:top-[24%] left-1/2 -translate-x-1/2 w-[76%] sm:w-[72%] animate-basket-drop-and-settle z-15 transition-transform duration-500 group-hover:scale-105">
                     <img
