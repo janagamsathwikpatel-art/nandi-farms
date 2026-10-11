@@ -93,15 +93,15 @@ export const PromoBanners: React.FC<PromoBannersProps> = ({ onClaimOffer, onOpen
               <div
                 key={card.id}
                 onClick={() => handleClaimOffer(card)}
-                className="group relative rounded-t-[60px] sm:rounded-t-[80px] rounded-b-3xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer bg-[#FAF5E4] border border-emerald-950/5 select-none"
+                className="group relative rounded-t-[60px] sm:rounded-t-[80px] rounded-b-3xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer bg-[#FAF5E4] border border-emerald-950/5 select-none h-full flex flex-col"
                 title={`Click to claim ${card.title}`}
               >
-                {/* LAYER 1: Option 1 Lush Morning Harvest Background Template (Scaled to fill card bounds completely) */}
-                <div className="w-full h-auto overflow-hidden">
+                {/* LAYER 1: Option 1 Lush Morning Harvest Background Template (Full-length, zero gaps) */}
+                <div className="w-full h-full flex-1 overflow-hidden relative">
                   <img
                     src="/promo-card-1-morning-harvest.jpg"
                     alt={card.title}
-                    className="w-full h-auto object-cover block leading-none select-none scale-[1.08] transform origin-center transition-transform duration-500"
+                    className="w-full h-full object-cover block leading-none select-none scale-[1.05] transform origin-center transition-transform duration-500"
                     loading="eager"
                   />
                 </div>
@@ -162,15 +162,15 @@ export const PromoBanners: React.FC<PromoBannersProps> = ({ onClaimOffer, onOpen
               <div
                 key={card.id}
                 onClick={() => handleClaimOffer(card)}
-                className="group relative rounded-t-[60px] sm:rounded-t-[80px] rounded-b-3xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer bg-[#FAF5E4] border border-emerald-950/5 select-none"
+                className="group relative rounded-t-[60px] sm:rounded-t-[80px] rounded-b-3xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer bg-[#FAF5E4] border border-emerald-950/5 select-none h-full flex flex-col"
                 title={`Click to claim ${card.title}`}
               >
-                {/* LAYER 1: Full-Length Sunrise Speed Template (Zero gaps, zero baked-in buttons) */}
-                <div className="w-full h-auto overflow-hidden">
+                {/* LAYER 1: Full-Length Sunrise Speed Template (Full-length, zero gaps) */}
+                <div className="w-full h-full flex-1 overflow-hidden relative">
                   <img
                     src="/promo-card-2-sunrise-speed.jpg"
                     alt={card.title}
-                    className="w-full h-auto object-cover block leading-none select-none scale-[1.04] transform origin-center transition-transform duration-500"
+                    className="w-full h-full object-cover block leading-none select-none scale-[1.05] transform origin-center transition-transform duration-500"
                     loading="eager"
                   />
                 </div>
@@ -246,15 +246,15 @@ export const PromoBanners: React.FC<PromoBannersProps> = ({ onClaimOffer, onOpen
               <div
                 key={card.id}
                 onClick={() => handleClaimOffer(card)}
-                className="group relative rounded-t-[60px] sm:rounded-t-[80px] rounded-b-3xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer bg-[#FAF5E4] border border-emerald-950/5 select-none"
+                className="group relative rounded-t-[60px] sm:rounded-t-[80px] rounded-b-3xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer bg-[#FAF5E4] border border-emerald-950/5 select-none h-full flex flex-col"
                 title={`Click to claim ${card.title}`}
               >
-                {/* LAYER 1: Full-Length Farm Fresh Background Template (STABLE & STATIC BASE) */}
-                <div className="w-full h-auto overflow-hidden">
+                {/* LAYER 1: Full-Length Farm Fresh Background Template (STABLE & STATIC BASE, Full-length, zero gaps) */}
+                <div className="w-full h-full flex-1 overflow-hidden relative">
                   <img
                     src="/promo-card-3-farm-fresh.jpg"
                     alt={card.title}
-                    className="w-full h-auto object-cover block leading-none select-none"
+                    className="w-full h-full object-cover block leading-none select-none scale-[1.05] transform origin-center"
                     loading="eager"
                   />
                 </div>
