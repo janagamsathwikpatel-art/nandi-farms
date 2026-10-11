@@ -280,19 +280,19 @@ export const PromoBanners: React.FC<PromoBannersProps> = ({ onClaimOffer, onOpen
                 {/* LAYER 3: 3D Stage with Slow-Motion Drop-In Produce Basket */}
                 <div className="absolute inset-0 pointer-events-none overflow-hidden" style={{ perspective: '1000px' }}>
                   {/* 3D BASKET: Centered wrapper with inner slow-motion glide from upside of grid */}
-                  <div className="absolute top-[26%] sm:top-[24%] left-1/2 -translate-x-1/2 w-[76%] sm:w-[72%] z-15 transition-transform duration-500 group-hover:scale-105">
+                  <div className="absolute top-[26%] sm:top-[25%] left-1/2 -translate-x-1/2 w-[63%] sm:w-[58%] z-15 transition-transform duration-500 group-hover:scale-105">
                     <div className="w-full animate-basket-slow-descent">
                       <img
                         src="/card3-basket-fresh-v7.png"
                         alt="3D Farm Fresh Basket"
-                        className="w-full h-auto object-contain filter select-none drop-shadow-[0_18px_20px_rgba(0,0,0,0.25)]"
+                        className="w-full h-auto object-contain filter select-none drop-shadow-[0_16px_18px_rgba(0,0,0,0.22)]"
                         loading="eager"
                       />
                     </div>
                   </div>
 
                   {/* Soft ground contact shadow beneath basket (synchronized expansion) */}
-                  <div className="absolute top-[58%] sm:top-[56%] left-1/2 -translate-x-1/2 w-[68%] h-3.5 bg-black/25 rounded-full blur-md animate-basket-shadow z-10" />
+                  <div className="absolute top-[53%] sm:top-[52%] left-1/2 -translate-x-1/2 w-[54%] sm:w-[50%] h-3 bg-black/20 rounded-full blur-md animate-basket-shadow z-10" />
                 </div>
 
                 {/* LAYER 3: 100% Native Code-Designed Interactive Claim Offer Button */}
