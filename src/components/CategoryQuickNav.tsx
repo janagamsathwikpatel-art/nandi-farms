@@ -42,8 +42,8 @@ export const CategoryQuickNav: React.FC<CategoryQuickNavProps> = ({
   };
 
   return (
-    <div className="relative w-full my-4 sm:my-6 group">
-      {/* Scroll Navigation Buttons — Fully Interactive & Responsive */}
+    <div className="relative w-full my-2 sm:my-3 group">
+      {/* Scroll Navigation Buttons — Compact & Responsive */}
       <button
         type="button"
         onClick={(e) => {
@@ -51,10 +51,10 @@ export const CategoryQuickNav: React.FC<CategoryQuickNavProps> = ({
           e.stopPropagation();
           handleScroll('left');
         }}
-        className="flex absolute left-0 sm:left-1 top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white/95 backdrop-blur-xs shadow-xl border-2 border-emerald-700/30 items-center justify-center text-emerald-950 hover:bg-emerald-950 hover:text-white transition-all cursor-pointer hover:scale-110 active:scale-95 shadow-emerald-950/20"
+        className="flex absolute left-0 top-1/2 -translate-y-1/2 z-30 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white/95 backdrop-blur-xs shadow-md border border-emerald-700/20 items-center justify-center text-emerald-950 hover:bg-emerald-950 hover:text-white transition-all cursor-pointer hover:scale-110 active:scale-95"
         aria-label="Scroll Left"
       >
-        <ChevronLeft className="w-6 h-6 stroke-[2.5]" />
+        <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 stroke-[2.5]" />
       </button>
       <button
         type="button"
@@ -63,16 +63,16 @@ export const CategoryQuickNav: React.FC<CategoryQuickNavProps> = ({
           e.stopPropagation();
           handleScroll('right');
         }}
-        className="flex absolute right-0 sm:right-1 top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white/95 backdrop-blur-xs shadow-xl border-2 border-emerald-700/30 items-center justify-center text-emerald-950 hover:bg-emerald-950 hover:text-white transition-all cursor-pointer hover:scale-110 active:scale-95 shadow-emerald-950/20"
+        className="flex absolute right-0 top-1/2 -translate-y-1/2 z-30 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white/95 backdrop-blur-xs shadow-md border border-emerald-700/20 items-center justify-center text-emerald-950 hover:bg-emerald-950 hover:text-white transition-all cursor-pointer hover:scale-110 active:scale-95"
         aria-label="Scroll Right"
       >
-        <ChevronRight className="w-6 h-6 stroke-[2.5]" />
+        <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 stroke-[2.5]" />
       </button>
 
-      {/* Full-Length Circular Avatar Bar — Overflow Scrollable Container */}
+      {/* Refined Compact Circular Avatar Bar — Overflow Scrollable Container */}
       <div
         ref={scrollContainerRef}
-        className="flex items-center justify-start gap-4 sm:gap-6 lg:gap-8 overflow-x-auto no-scrollbar py-4 px-10 sm:px-14 lg:px-16 w-full max-w-none scroll-smooth"
+        className="flex items-center justify-start gap-3 sm:gap-4 md:gap-5 lg:gap-6 overflow-x-auto no-scrollbar py-2.5 px-8 sm:px-11 w-full max-w-none scroll-smooth"
       >
         {ANVESHAN_CATEGORIES.map((cat) => {
           const isActive = activeCategory.toLowerCase() === cat.id.toLowerCase() || 
@@ -82,25 +82,25 @@ export const CategoryQuickNav: React.FC<CategoryQuickNavProps> = ({
             <button
               key={cat.id}
               onClick={() => onSelectCategory(cat.id)}
-              className="flex flex-col items-center flex-shrink-0 group/item cursor-pointer focus:outline-hidden my-1"
+              className="flex flex-col items-center flex-shrink-0 group/item cursor-pointer focus:outline-hidden my-0.5"
             >
-              {/* Responsive Circular Avatar Ring (64px - 100px) */}
+              {/* Compact Circular Avatar Ring (48px - 72px) */}
               <div
-                className={`relative w-16 h-16 sm:w-20 sm:h-20 md:w-22 md:h-22 lg:w-26 lg:h-26 xl:w-28 xl:h-28 rounded-full flex items-center justify-center text-2xl sm:text-3xl md:text-4xl lg:text-5xl transition-all duration-300 shadow-md ${
+                className={`relative w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-18 lg:h-18 rounded-full flex items-center justify-center text-xl sm:text-2xl md:text-3xl transition-all duration-300 shadow-xs ${
                   isActive
-                    ? 'ring-4 ring-amber-400 border-2 border-emerald-900 bg-amber-50 shadow-xl scale-110'
-                    : 'bg-emerald-50/80 border border-emerald-100 hover:border-emerald-500 hover:bg-amber-50/70 hover:scale-105 hover:shadow-lg'
+                    ? 'ring-[3px] ring-amber-400 border border-emerald-900 bg-amber-50 shadow-md scale-105'
+                    : 'bg-emerald-50/80 border border-emerald-100 hover:border-emerald-400 hover:bg-amber-50/60 hover:scale-105 hover:shadow-sm'
                 }`}
               >
                 <span>{cat.icon}</span>
               </div>
 
-              {/* Un-truncated Full Category Label */}
+              {/* Refined Category Label */}
               <span
-                className={`mt-2.5 sm:mt-3 text-xs sm:text-sm md:text-base lg:text-lg font-extrabold tracking-tight transition-colors whitespace-nowrap text-center ${
+                className={`mt-1.5 sm:mt-2 text-[11px] sm:text-xs md:text-sm font-bold tracking-tight transition-colors whitespace-nowrap text-center ${
                   isActive
-                    ? 'text-emerald-950 underline underline-offset-6 decoration-amber-500 decoration-4 font-black scale-105'
-                    : 'text-gray-800 group-hover/item:text-emerald-900'
+                    ? 'text-emerald-950 underline underline-offset-4 decoration-amber-500 decoration-2 font-black'
+                    : 'text-gray-800 group-hover/item:text-emerald-900 font-semibold'
                 }`}
               >
                 {cat.name}

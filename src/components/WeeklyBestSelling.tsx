@@ -125,16 +125,16 @@ export const WeeklyBestSelling: React.FC<WeeklyBestSellingProps> = ({
             return (
               <div
                 key={prod.id}
-                className="bg-[#f7f3e8] border border-amber-200/60 rounded-3xl p-3.5 sm:p-4 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group relative"
+                className="bg-[#f7f3e8] border border-amber-200/60 rounded-3xl p-3 sm:p-3.5 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group relative"
               >
                 <div>
                   {/* Top Badges */}
-                  <div className="flex items-center justify-between mb-2.5 z-10 relative">
-                    <span className="bg-amber-400 text-gray-950 font-black text-[10px] sm:text-xs px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full shadow-2xs">
+                  <div className="flex items-center justify-between mb-2 z-10 relative">
+                    <span className="bg-amber-400 text-gray-950 font-black text-[10px] sm:text-xs px-2 py-0.5 sm:px-2.5 sm:py-0.5 rounded-full shadow-2xs">
                       {discountPercent} OFF
                     </span>
 
-                    <span className="bg-[#1a8e4c] text-white font-extrabold text-[10px] sm:text-xs px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full shadow-2xs">
+                    <span className="bg-[#1a8e4c] text-white font-extrabold text-[10px] sm:text-xs px-2.5 py-0.5 sm:px-3 sm:py-0.5 rounded-full shadow-2xs">
                       {isFallbackBestSeller ? '🔥 TOP SELLER' : 'Bestseller'}
                     </span>
                   </div>
@@ -142,7 +142,7 @@ export const WeeklyBestSelling: React.FC<WeeklyBestSellingProps> = ({
                   {/* Compact Product Image Container Box */}
                   <div
                     onClick={() => onSelectProduct && onSelectProduct(prod)}
-                    className="w-full h-36 sm:h-44 md:h-48 rounded-2xl bg-white p-2.5 flex items-center justify-center overflow-hidden border border-amber-100 shadow-inner mb-3 cursor-pointer relative"
+                    className="w-full h-32 sm:h-36 md:h-40 rounded-2xl bg-white p-2 flex items-center justify-center overflow-hidden border border-amber-100 shadow-inner mb-2.5 cursor-pointer relative"
                   >
                     {/* Floating Loved Heart Button */}
                     <button
