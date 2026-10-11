@@ -175,10 +175,23 @@ export const PromoBanners: React.FC<PromoBannersProps> = ({ onClaimOffer, onOpen
                   />
                 </div>
 
-                {/* LAYER 2: 3D Express Delivery Truck driving dynamically toward the LEFT */}
-                <div className="absolute inset-0 pointer-events-none z-10 overflow-hidden">
-                  {/* Truck cruises towards the left */}
-                  <div className="absolute top-[36%] right-[0%] w-[50%] animate-truck-drive-left transition-transform duration-500 group-hover:scale-105">
+                {/* LAYER 2: 3D Stage with Central Basket and Orbiting Delivery Van */}
+                <div className="absolute inset-0 pointer-events-none overflow-hidden" style={{ perspective: '1000px' }}>
+                  {/* CENTERPIECE: 3D Nandi Farms Grocery Bag & Produce (Placed in the Middle) */}
+                  <div className="absolute top-[30%] sm:top-[28%] left-1/2 -translate-x-1/2 w-[60%] sm:w-[56%] z-18 transition-transform duration-500 group-hover:scale-105">
+                    <img
+                      src="/card2-groceries-nandi-clean.png"
+                      alt="3D Nandi Farms Fresh Produce"
+                      className="w-full h-auto object-contain filter select-none drop-shadow-[0_16px_18px_rgba(0,0,0,0.22)]"
+                      loading="eager"
+                    />
+                  </div>
+
+                  {/* Dynamic Ground Contact Shadow beneath Central Produce */}
+                  <div className="absolute top-[62%] sm:top-[61%] left-1/2 -translate-x-1/2 w-[58%] h-3.5 bg-black/25 rounded-full blur-md animate-fruit-shadow z-12" />
+
+                  {/* ORBITING 3D DELIVERY VAN: Circles smoothly around the central basket */}
+                  <div className="absolute top-[35%] left-1/2 -translate-x-1/2 w-[44%] animate-truck-orbit-basket transition-transform duration-500">
                     <img
                       src="/card2-truck-3d.png"
                       alt="3D Express Delivery Truck"
@@ -191,19 +204,6 @@ export const PromoBanners: React.FC<PromoBannersProps> = ({ onClaimOffer, onOpen
                       <span className="text-[10px] text-amber-400 font-bold">⚡</span>
                     </div>
                   </div>
-
-                  {/* LAYER 3: 3D Grocery Bag, Oranges, Clock, and Berries */}
-                  <div className="absolute top-[31%] left-[3%] w-[58%] transition-transform duration-500 group-hover:scale-105">
-                    <img
-                      src="/card2-groceries-3d.png"
-                      alt="3D Farm Fresh Grocery Bag"
-                      className="w-full h-auto object-contain filter select-none drop-shadow-[0_16px_18px_rgba(0,0,0,0.22)]"
-                      loading="eager"
-                    />
-                  </div>
-
-                  {/* Dynamic Ground Contact Shadow */}
-                  <div className="absolute top-[61%] left-[12%] right-[12%] h-3.5 bg-black/25 rounded-full blur-md animate-fruit-shadow" />
                 </div>
 
                 {/* LAYER 4: 100% Native Code-Designed Interactive Claim Offer Button */}
