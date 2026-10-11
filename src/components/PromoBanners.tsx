@@ -93,67 +93,31 @@ export const PromoBanners: React.FC<PromoBannersProps> = ({ onClaimOffer, onOpen
               <div
                 key={card.id}
                 onClick={() => handleClaimOffer(card)}
-                className="group relative rounded-t-[60px] sm:rounded-t-[80px] rounded-b-3xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer bg-[#FBF8EE] border border-emerald-950/5 flex flex-col aspect-[385/585] select-none"
+                className="group relative rounded-t-[60px] sm:rounded-t-[80px] rounded-b-3xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer bg-[#FAF5E4] border border-emerald-950/5 select-none"
                 title={`Click to claim ${card.title}`}
               >
-                {/* LAYER 1: 100% Seamless Native Card Background (ZERO box or raster seams) */}
-                <div className="absolute inset-0 flex flex-col pointer-events-none">
-                  {/* Emerald Arched Top Header */}
-                  <div className="h-[46%] w-full bg-gradient-to-b from-[#137b3f] to-[#0f6834] relative px-6 pt-7 sm:pt-8 flex flex-col items-center text-center">
-                    {/* Background Decorative Vector Leaves */}
-                    <div className="absolute inset-0 opacity-15 overflow-hidden">
-                      <svg className="w-full h-full" viewBox="0 0 200 200" fill="none">
-                        <path d="M20,40 Q60,10 80,60 T140,80" stroke="white" strokeWidth="2" strokeDasharray="4 4" />
-                        <path d="M160,20 Q190,50 170,90" stroke="white" strokeWidth="2" />
-                      </svg>
-                    </div>
-
-                    {/* Crisp Vector Typography (100% Sharp) */}
-                    <h3 className="text-white font-black text-3xl sm:text-4xl tracking-tight leading-none drop-shadow-sm">
-                      10% OFF
-                    </h3>
-                    <h4 className="text-white/95 font-black text-xl sm:text-2xl tracking-wide mt-1.5 uppercase drop-shadow-sm">
-                      FIRST ORDER
-                    </h4>
-                  </div>
-
-                  {/* Seamless S-Curve Wave Divider */}
-                  <div className="relative -mt-1 w-full leading-none">
-                    <svg viewBox="0 0 385 85" fill="none" className="w-full h-auto block" preserveAspectRatio="none">
-                      <path
-                        d="M0,0 C90,65 190,75 385,15 L385,85 L0,85 Z"
-                        fill="#FBF8EE"
-                      />
-                    </svg>
-                  </div>
-
-                  {/* Smooth Cream Lower Half */}
-                  <div className="flex-1 bg-[#FBF8EE] px-5 sm:px-6 pt-3 sm:pt-4 flex flex-col items-center text-center">
-                    {/* Intact 'LIMITED TIME' Pill Badge */}
-                    <span className="bg-[#F3E8CB] text-[#3D3017] text-[10px] sm:text-[11px] font-black uppercase tracking-wider px-3.5 py-1 rounded-full border border-[#E7D6AA] shadow-xs">
-                      LIMITED TIME
-                    </span>
-                    {/* Clean Unclipped Description Text */}
-                    <p className="text-[#2C2C2C] text-xs sm:text-[13px] font-medium leading-relaxed mt-2 sm:mt-2.5 max-w-[270px]">
-                      Join today and get an exclusive 10% discount on your entire first order of farm-fresh groceries.
-                    </p>
-                  </div>
-                </div>
+                {/* LAYER 1: Option 1 Lush Morning Harvest Background Template (Zero seams, zero box artifacts) */}
+                <img
+                  src="/promo-card-1-morning-harvest.jpg"
+                  alt={card.title}
+                  className="w-full h-auto object-cover block leading-none select-none rounded-t-[60px] sm:rounded-t-[80px] rounded-b-3xl"
+                  loading="eager"
+                />
 
                 {/* LAYER 2: 3D Produce Centerpiece (Drops In from Upside + Infinite 3D Float) */}
                 <div className="absolute inset-0 pointer-events-none z-10 overflow-hidden flex flex-col items-center justify-center">
                   {/* Produce Drops from Upside into Place */}
-                  <div className="absolute top-[22%] left-[8%] right-[8%] animate-fruit-drop-and-float transition-transform duration-500 group-hover:scale-105">
+                  <div className="absolute top-[21.5%] left-[7%] right-[7%] animate-fruit-drop-and-float transition-transform duration-500 group-hover:scale-105">
                     <img
                       src="/card1-fruits-3d.png"
                       alt="3D Farm Fresh Fruits"
-                      className="w-full h-auto object-contain filter select-none drop-shadow-[0_16px_20px_rgba(0,0,0,0.25)]"
+                      className="w-full h-auto object-contain filter select-none drop-shadow-[0_18px_22px_rgba(0,0,0,0.28)]"
                       loading="eager"
                     />
                   </div>
 
                   {/* Dynamic Ground Contact Shadow */}
-                  <div className="absolute top-[61%] left-[22%] right-[22%] h-3.5 bg-black/30 rounded-full blur-md animate-fruit-shadow" />
+                  <div className="absolute top-[61%] left-[20%] right-[20%] h-3.5 bg-black/30 rounded-full blur-md animate-fruit-shadow" />
                 </div>
 
                 {/* LAYER 3: 100% Native Code-Designed Interactive Claim Offer Button */}
