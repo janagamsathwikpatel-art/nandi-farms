@@ -154,7 +154,7 @@ body {
 @keyframes truckGoldTrailLeftToRight {
   0% {
     left: -32%;
-    top: 29%;
+    top: 26%;
     transform: translateY(0px) rotateZ(3deg) scale(1.02);
     opacity: 0;
   }
@@ -163,17 +163,17 @@ body {
   }
   25% {
     left: 10%;
-    top: 41%;
+    top: 35%;
     transform: translateY(-2px) rotateZ(1deg) scale(1.08);
   }
   50% {
     left: 46%;
-    top: 50%;
+    top: 40%;
     transform: translateY(0px) rotateZ(-1deg) scale(1.14);
   }
   75% {
     left: 80%;
-    top: 46%;
+    top: 36%;
     transform: translateY(-2px) rotateZ(1deg) scale(1.10);
   }
   95% {
@@ -181,7 +181,7 @@ body {
   }
   100% {
     left: 118%;
-    top: 42%;
+    top: 32%;
     transform: translateY(0px) rotateZ(2deg) scale(1.04);
     opacity: 0;
   }
