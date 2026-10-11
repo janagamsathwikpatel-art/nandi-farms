@@ -241,6 +241,85 @@ export const PromoBanners: React.FC<PromoBannersProps> = ({ onClaimOffer, onOpen
             );
           }
 
+          if (card.id === 'promo-3') {
+            return (
+              <div
+                key={card.id}
+                onClick={() => handleClaimOffer(card)}
+                className="group relative rounded-t-[60px] sm:rounded-t-[80px] rounded-b-3xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer bg-[#FAF5E4] border border-emerald-950/5 select-none"
+                title={`Click to claim ${card.title}`}
+              >
+                {/* LAYER 1: Clean Farm Fresh Background Template (Zero baked-in button) */}
+                <div className="w-full h-auto overflow-hidden">
+                  <img
+                    src="/promo-card-3-farm-fresh.jpg"
+                    alt={card.title}
+                    className="w-full h-auto object-cover block leading-none select-none scale-[1.03] transform origin-center transition-transform duration-500"
+                    loading="eager"
+                  />
+                </div>
+
+                {/* LAYER 2: 3D Stage with Left-to-Right Moving Leaves and Drop-In 3D Basket */}
+                <div className="absolute inset-0 pointer-events-none overflow-hidden" style={{ perspective: '1000px' }}>
+                  {/* LEAVES: Moving motion from left side to right side */}
+                  <div className="absolute inset-0 animate-leaves-breeze z-12 opacity-95">
+                    <img
+                      src="/card3-leaves-overlay.png"
+                      alt="Organic Leaves"
+                      className="w-full h-auto object-contain select-none"
+                      loading="eager"
+                    />
+                  </div>
+
+                  {/* 3D BASKET: Drops in from upside and stops in middle above text */}
+                  <div className="absolute top-[26%] sm:top-[24%] left-1/2 -translate-x-1/2 w-[76%] sm:w-[72%] animate-basket-drop-and-settle z-15 transition-transform duration-500 group-hover:scale-105">
+                    <img
+                      src="/card3-basket-fresh-3d.png"
+                      alt="3D Farm Fresh Basket"
+                      className="w-full h-auto object-contain filter select-none drop-shadow-[0_18px_20px_rgba(0,0,0,0.25)]"
+                      loading="eager"
+                    />
+                  </div>
+
+                  {/* Soft ground contact shadow beneath basket */}
+                  <div className="absolute top-[58%] sm:top-[56%] left-1/2 -translate-x-1/2 w-[68%] h-3.5 bg-black/25 rounded-full blur-md animate-fruit-shadow z-10" />
+                </div>
+
+                {/* LAYER 3: 100% Native Code-Designed Interactive Claim Offer Button */}
+                <div className="absolute bottom-[4.5%] sm:bottom-[5.5%] left-0 right-0 px-4 sm:px-6 flex items-center justify-center z-20 pointer-events-auto">
+                  <button
+                    type="button"
+                    onClick={(e) => handleClaimOffer(card, e)}
+                    className={`w-full max-w-[210px] sm:max-w-[230px] py-2.5 sm:py-3 px-4 rounded-full font-black text-xs sm:text-sm tracking-wide shadow-lg hover:shadow-2xl transition-all duration-300 transform active:scale-95 flex items-center justify-center space-x-1.5 cursor-pointer ${
+                      isClaimed
+                        ? 'bg-[#063321] text-amber-300 ring-2 ring-amber-400 scale-[1.02]'
+                        : 'bg-gradient-to-r from-[#178544] via-[#1a934b] to-[#147a3e] hover:from-[#116e37] hover:to-[#0f6130] text-white hover:scale-105 hover:shadow-emerald-600/30'
+                    }`}
+                  >
+                    {isClaimed ? (
+                      <>
+                        <Check className="w-4 h-4 text-emerald-400 stroke-[3] animate-bounce" />
+                        <span>Claimed! ({card.code})</span>
+                      </>
+                    ) : (
+                      <>
+                        <span>Claim Offer</span>
+                        <Sparkles className="w-3.5 h-3.5 text-amber-300 group-hover:rotate-12 transition-transform" />
+                      </>
+                    )}
+                  </button>
+                </div>
+
+                {/* Top Claimed Ribbon Badge (when claimed) */}
+                {isClaimed && (
+                  <div className="absolute top-4 right-4 bg-emerald-900/90 text-amber-300 text-[10px] font-black px-2.5 py-1 rounded-full uppercase tracking-wider backdrop-blur-xs shadow-md border border-amber-300/40 z-20">
+                    ✓ Active Deal
+                  </div>
+                )}
+              </div>
+            );
+          }
+
           return (
             <div
               key={card.id}

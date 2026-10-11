@@ -195,5 +195,46 @@ body {
   will-change: left, top, transform;
 }
 
+/* Card 3: 3D Basket Drop from Upside and Settle Above Text */
+@keyframes basketDropFromTop {
+  0% {
+    transform: translateY(-90px) scale(0.88);
+    opacity: 0;
+  }
+  60% {
+    transform: translateY(6px) scale(1.02);
+    opacity: 1;
+  }
+  80% {
+    transform: translateY(-2px) scale(0.99);
+  }
+  100% {
+    transform: translateY(0px) scale(1);
+    opacity: 1;
+  }
+}
 
+.animate-basket-drop-and-settle {
+  animation: basketDropFromTop 1.1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  transform-style: preserve-3d;
+  will-change: transform, opacity;
+}
 
+/* Card 3: Leaves Gentle Breeze Motion From Left Side to Right Side */
+@keyframes leavesBreezeLeftToRight {
+  0% {
+    transform: translateX(-8px) rotate(-1.5deg);
+  }
+  50% {
+    transform: translateX(8px) rotate(1.5deg);
+  }
+  100% {
+    transform: translateX(-8px) rotate(-1.5deg);
+  }
+}
+
+.animate-leaves-breeze {
+  animation: leavesBreezeLeftToRight 5.5s ease-in-out infinite;
+  transform-origin: top center;
+  will-change: transform;
+}
