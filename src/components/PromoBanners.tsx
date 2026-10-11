@@ -175,23 +175,23 @@ export const PromoBanners: React.FC<PromoBannersProps> = ({ onClaimOffer, onOpen
                   />
                 </div>
 
-                {/* LAYER 2: 3D Stage with Central Basket and Orbiting Delivery Van */}
+                {/* LAYER 2: 3D Stage with Grand Basket and Slow-Motion Delivery Van above ₹499 text */}
                 <div className="absolute inset-0 pointer-events-none overflow-hidden" style={{ perspective: '1000px' }}>
-                  {/* CENTERPIECE: 3D Nandi Farms Grocery Bag & Produce (Enlarged Basket) */}
-                  <div className="absolute top-[26%] sm:top-[24%] left-1/2 -translate-x-1/2 w-[72%] sm:w-[68%] z-18 transition-transform duration-500 group-hover:scale-105">
+                  {/* CENTERPIECE: Grand Hero 3D Nandi Farms Grocery Bag & Produce (w-[84%] sm:w-[80%]) */}
+                  <div className="absolute top-[20%] sm:top-[18%] left-1/2 -translate-x-1/2 w-[84%] sm:w-[80%] z-15 transition-transform duration-500 group-hover:scale-105">
                     <img
                       src="/card2-groceries-nandi-clean.png"
                       alt="3D Nandi Farms Fresh Produce"
-                      className="w-full h-auto object-contain filter select-none drop-shadow-[0_18px_20px_rgba(0,0,0,0.24)]"
+                      className="w-full h-auto object-contain filter select-none drop-shadow-[0_20px_22px_rgba(0,0,0,0.25)]"
                       loading="eager"
                     />
                   </div>
 
-                  {/* Dynamic Ground Contact Shadow beneath Central Produce (Expanded) */}
-                  <div className="absolute top-[62%] sm:top-[61%] left-1/2 -translate-x-1/2 w-[70%] h-4 bg-black/25 rounded-full blur-md animate-fruit-shadow z-12" />
+                  {/* Dynamic Ground Contact Shadow beneath Central Produce */}
+                  <div className="absolute top-[64%] sm:top-[63%] left-1/2 -translate-x-1/2 w-[82%] h-4 bg-black/25 rounded-full blur-md animate-fruit-shadow z-10" />
 
-                  {/* ORBITING 3D DELIVERY VAN: Circles smoothly around the central basket */}
-                  <div className="absolute top-[34%] left-1/2 -translate-x-1/2 w-[44%] animate-truck-orbit-basket transition-transform duration-500">
+                  {/* SLOW-MOTION DELIVERY VAN: Cruising along the road directly ABOVE "On orders over ₹499" */}
+                  <div className="absolute top-[54%] sm:top-[52%] left-1/2 -translate-x-1/2 w-[46%] sm:w-[44%] animate-truck-slow-above-499 z-20 transition-transform duration-500">
                     <img
                       src="/card2-truck-3d.png"
                       alt="3D Express Delivery Truck"

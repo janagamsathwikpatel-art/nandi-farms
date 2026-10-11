@@ -113,47 +113,22 @@ body {
   animation: fruitShadowPulse 4.5s ease-in-out infinite;
 }
 
-/* 3D Delivery Van Orbiting Around Central Basket (Card 2) */
-@keyframes truckOrbitAroundBasket {
-  /* 0%: Foreground Right, driving leftwards across the front */
+/* 3D Delivery Van Slow-Motion Cruise Directly Above "On orders over ₹499" */
+@keyframes truckSlowCruiseAbove499 {
   0% {
-    transform: translateX(100px) translateY(16px) translateZ(40px) rotateY(-8deg) rotateZ(0deg) scale(1.05);
-    z-index: 25;
+    transform: translateX(110px) translateY(0px) rotateY(-8deg) rotateZ(0deg) scale(1.03);
   }
-  /* 25%: Sweeps across front of basket towards the left */
   25% {
-    transform: translateX(-40px) translateY(10px) translateZ(30px) rotateY(-12deg) rotateZ(-1deg) scale(1.02);
-    z-index: 25;
+    transform: translateX(15px) translateY(-3px) rotateY(-10deg) rotateZ(-1deg) scale(1.0);
   }
-  /* 38%: Banks around the Left flank of the enlarged basket */
-  38% {
-    transform: translateX(-128px) translateY(-2px) translateZ(0px) rotateY(-18deg) rotateZ(-2deg) scale(0.94);
-    z-index: 25;
+  50% {
+    transform: translateX(-110px) translateY(1px) rotateY(-8deg) rotateZ(0.5deg) scale(0.97);
   }
-  /* 48%: Slips behind the basket */
-  48% {
-    transform: translateX(-95px) translateY(-14px) translateZ(-35px) rotateY(-10deg) rotateZ(1deg) scale(0.86);
-    z-index: 10;
+  75% {
+    transform: translateX(-10px) translateY(-2px) rotateY(-6deg) rotateZ(-0.5deg) scale(1.0);
   }
-  /* 60%: Driving behind the central grocery bag */
-  60% {
-    transform: translateX(0px) translateY(-18px) translateZ(-45px) rotateY(0deg) rotateZ(0deg) scale(0.82);
-    z-index: 10;
-  }
-  /* 72%: Emerging from behind the basket on the right */
-  72% {
-    transform: translateX(95px) translateY(-10px) translateZ(-25px) rotateY(12deg) rotateZ(-1deg) scale(0.88);
-    z-index: 10;
-  }
-  /* 85%: Sweeps forward around the Right flank into foreground */
-  85% {
-    transform: translateX(122px) translateY(8px) translateZ(25px) rotateY(6deg) rotateZ(1deg) scale(1.0);
-    z-index: 25;
-  }
-  /* 100%: Loops back smoothly to foreground position */
   100% {
-    transform: translateX(100px) translateY(16px) translateZ(40px) rotateY(-8deg) rotateZ(0deg) scale(1.05);
-    z-index: 25;
+    transform: translateX(110px) translateY(0px) rotateY(-8deg) rotateZ(0deg) scale(1.03);
   }
 }
 
@@ -167,12 +142,12 @@ body {
   }
 }
 
-.animate-truck-orbit-basket {
+.animate-truck-slow-above-499 {
   animation: 
-    truckOrbitAroundBasket 15s cubic-bezier(0.42, 0, 0.58, 1) infinite,
+    truckSlowCruiseAbove499 16s cubic-bezier(0.42, 0, 0.58, 1) infinite,
     truckEngineVibe 0.22s linear infinite;
   transform-style: preserve-3d;
-  will-change: transform, z-index;
+  will-change: transform;
 }
 
 
