@@ -96,13 +96,15 @@ export const PromoBanners: React.FC<PromoBannersProps> = ({ onClaimOffer, onOpen
                 className="group relative rounded-t-[60px] sm:rounded-t-[80px] rounded-b-3xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer bg-[#FAF5E4] border border-emerald-950/5 select-none"
                 title={`Click to claim ${card.title}`}
               >
-                {/* LAYER 1: Option 1 Lush Morning Harvest Background Template (Zero seams, zero box artifacts) */}
-                <img
-                  src="/promo-card-1-morning-harvest.jpg"
-                  alt={card.title}
-                  className="w-full h-auto object-cover block leading-none select-none rounded-t-[60px] sm:rounded-t-[80px] rounded-b-3xl"
-                  loading="eager"
-                />
+                {/* LAYER 1: Option 1 Lush Morning Harvest Background Template (Scaled to fill card bounds completely) */}
+                <div className="w-full h-auto overflow-hidden">
+                  <img
+                    src="/promo-card-1-morning-harvest.jpg"
+                    alt={card.title}
+                    className="w-full h-auto object-cover block leading-none select-none scale-[1.08] transform origin-center transition-transform duration-500"
+                    loading="eager"
+                  />
+                </div>
 
                 {/* LAYER 2: 3D Produce Centerpiece (Drops In from Upside + Infinite 3D Float) */}
                 <div className="absolute inset-0 pointer-events-none z-10 overflow-hidden flex flex-col items-center justify-center">
