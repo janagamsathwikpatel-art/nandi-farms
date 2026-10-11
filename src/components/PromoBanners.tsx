@@ -101,7 +101,7 @@ export const PromoBanners: React.FC<PromoBannersProps> = ({ onClaimOffer, onOpen
                   <img
                     src="/promo-card-1-morning-harvest.jpg"
                     alt={card.title}
-                    className="w-full h-full object-cover block leading-none select-none scale-[1.05] transform origin-center transition-transform duration-500"
+                    className="w-full h-full object-cover block leading-none select-none transform origin-center transition-transform duration-500"
                     loading="eager"
                   />
                 </div>
@@ -123,11 +123,11 @@ export const PromoBanners: React.FC<PromoBannersProps> = ({ onClaimOffer, onOpen
                 </div>
 
                 {/* LAYER 3: 100% Native Code-Designed Interactive Claim Offer Button */}
-                <div className="absolute bottom-[4.5%] sm:bottom-[5.5%] left-0 right-0 px-4 sm:px-6 flex items-center justify-center z-20 pointer-events-auto">
+                <div className="absolute bottom-[3.5%] sm:bottom-[4.2%] left-0 right-0 px-4 sm:px-6 flex items-center justify-center z-20 pointer-events-auto">
                   <button
                     type="button"
                     onClick={(e) => handleClaimOffer(card, e)}
-                    className={`w-full max-w-[210px] sm:max-w-[230px] py-2.5 sm:py-3 px-4 rounded-full font-black text-xs sm:text-sm tracking-wide shadow-lg hover:shadow-2xl transition-all duration-300 transform active:scale-95 flex items-center justify-center space-x-1.5 cursor-pointer ${
+                    className={`w-full max-w-[210px] sm:max-w-[230px] py-2 sm:py-2.5 px-4 rounded-full font-black text-xs sm:text-sm tracking-wide shadow-lg hover:shadow-2xl transition-all duration-300 transform active:scale-95 flex items-center justify-center space-x-1.5 cursor-pointer ${
                       isClaimed
                         ? 'bg-[#063321] text-amber-300 ring-2 ring-amber-400 scale-[1.02]'
                         : 'bg-gradient-to-r from-[#178544] via-[#1a934b] to-[#147a3e] hover:from-[#116e37] hover:to-[#0f6130] text-white hover:scale-105 hover:shadow-emerald-600/30'
@@ -170,7 +170,7 @@ export const PromoBanners: React.FC<PromoBannersProps> = ({ onClaimOffer, onOpen
                   <img
                     src="/promo-card-2-sunrise-speed.jpg"
                     alt={card.title}
-                    className="w-full h-full object-cover block leading-none select-none scale-[1.05] transform origin-center transition-transform duration-500"
+                    className="w-full h-full object-cover block leading-none select-none transform origin-center transition-transform duration-500"
                     loading="eager"
                   />
                 </div>
@@ -207,11 +207,11 @@ export const PromoBanners: React.FC<PromoBannersProps> = ({ onClaimOffer, onOpen
                 </div>
 
                 {/* LAYER 4: 100% Native Code-Designed Interactive Claim Offer Button */}
-                <div className="absolute bottom-[4.5%] sm:bottom-[5.5%] left-0 right-0 px-4 sm:px-6 flex items-center justify-center z-20 pointer-events-auto">
+                <div className="absolute bottom-[3.5%] sm:bottom-[4.2%] left-0 right-0 px-4 sm:px-6 flex items-center justify-center z-20 pointer-events-auto">
                   <button
                     type="button"
                     onClick={(e) => handleClaimOffer(card, e)}
-                    className={`w-full max-w-[210px] sm:max-w-[230px] py-2.5 sm:py-3 px-4 rounded-full font-black text-xs sm:text-sm tracking-wide shadow-lg hover:shadow-2xl transition-all duration-300 transform active:scale-95 flex items-center justify-center space-x-1.5 cursor-pointer ${
+                    className={`w-full max-w-[210px] sm:max-w-[230px] py-2 sm:py-2.5 px-4 rounded-full font-black text-xs sm:text-sm tracking-wide shadow-lg hover:shadow-2xl transition-all duration-300 transform active:scale-95 flex items-center justify-center space-x-1.5 cursor-pointer ${
                       isClaimed
                         ? 'bg-[#063321] text-amber-300 ring-2 ring-amber-400 scale-[1.02]'
                         : 'bg-gradient-to-r from-[#178544] via-[#1a934b] to-[#147a3e] hover:from-[#116e37] hover:to-[#0f6130] text-white hover:scale-105 hover:shadow-emerald-600/30'
@@ -254,7 +254,7 @@ export const PromoBanners: React.FC<PromoBannersProps> = ({ onClaimOffer, onOpen
                   <img
                     src="/promo-card-3-farm-fresh.jpg"
                     alt={card.title}
-                    className="w-full h-full object-cover block leading-none select-none scale-[1.05] transform origin-center"
+                    className="w-full h-full object-cover block leading-none select-none transform origin-center"
                     loading="eager"
                   />
                 </div>
@@ -296,11 +296,11 @@ export const PromoBanners: React.FC<PromoBannersProps> = ({ onClaimOffer, onOpen
                 </div>
 
                 {/* LAYER 3: 100% Native Code-Designed Interactive Claim Offer Button */}
-                <div className="absolute bottom-[4.5%] sm:bottom-[5.5%] left-0 right-0 px-4 sm:px-6 flex items-center justify-center z-20 pointer-events-auto">
+                <div className="absolute bottom-[3.5%] sm:bottom-[4.2%] left-0 right-0 px-4 sm:px-6 flex items-center justify-center z-20 pointer-events-auto">
                   <button
                     type="button"
                     onClick={(e) => handleClaimOffer(card, e)}
-                    className={`w-full max-w-[210px] sm:max-w-[230px] py-2.5 sm:py-3 px-4 rounded-full font-black text-xs sm:text-sm tracking-wide shadow-lg hover:shadow-2xl transition-all duration-300 transform active:scale-95 flex items-center justify-center space-x-1.5 cursor-pointer ${
+                    className={`w-full max-w-[210px] sm:max-w-[230px] py-2 sm:py-2.5 px-4 rounded-full font-black text-xs sm:text-sm tracking-wide shadow-lg hover:shadow-2xl transition-all duration-300 transform active:scale-95 flex items-center justify-center space-x-1.5 cursor-pointer ${
                       isClaimed
                         ? 'bg-[#063321] text-amber-300 ring-2 ring-amber-400 scale-[1.02]'
                         : 'bg-gradient-to-r from-[#178544] via-[#1a934b] to-[#147a3e] hover:from-[#116e37] hover:to-[#0f6130] text-white hover:scale-105 hover:shadow-emerald-600/30'
