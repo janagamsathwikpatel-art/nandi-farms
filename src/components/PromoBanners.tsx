@@ -109,17 +109,17 @@ export const PromoBanners: React.FC<PromoBannersProps> = ({ onClaimOffer, onOpen
                 {/* LAYER 2: 3D Produce Centerpiece (Drops In from Upside + Infinite 3D Float) */}
                 <div className="absolute inset-0 pointer-events-none z-10 overflow-hidden flex flex-col items-center justify-center">
                   {/* Produce Drops from Upside into Place */}
-                  <div className="absolute top-[21.5%] left-[7%] right-[7%] animate-fruit-drop-and-float transition-transform duration-500 group-hover:scale-105">
+                  <div className="absolute top-[23%] left-[13%] right-[13%] animate-fruit-drop-and-float transition-transform duration-500 group-hover:scale-105">
                     <img
                       src="/card1-fruits-3d.png"
                       alt="3D Farm Fresh Fruits"
-                      className="w-full h-auto object-contain filter select-none drop-shadow-[0_18px_22px_rgba(0,0,0,0.28)]"
+                      className="w-full h-auto object-contain filter select-none drop-shadow-[0_16px_20px_rgba(0,0,0,0.25)]"
                       loading="eager"
                     />
                   </div>
 
                   {/* Dynamic Ground Contact Shadow */}
-                  <div className="absolute top-[61%] left-[20%] right-[20%] h-3.5 bg-black/30 rounded-full blur-md animate-fruit-shadow" />
+                  <div className="absolute top-[59%] left-[25%] right-[25%] h-3 bg-black/30 rounded-full blur-md animate-fruit-shadow" />
                 </div>
 
                 {/* LAYER 3: 100% Native Code-Designed Interactive Claim Offer Button */}
