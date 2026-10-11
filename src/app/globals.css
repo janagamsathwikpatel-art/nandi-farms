@@ -153,36 +153,36 @@ body {
 /* 3D Delivery Van: Left-to-Right Cruise Along Background Golden Trail */
 @keyframes truckGoldTrailLeftToRight {
   0% {
-    left: -25%;
-    top: 30%;
-    transform: translateY(0px) rotateZ(3deg) scale(0.92);
+    left: -32%;
+    top: 29%;
+    transform: translateY(0px) rotateZ(3deg) scale(1.02);
     opacity: 0;
   }
   5% {
     opacity: 1;
   }
   25% {
-    left: 12%;
-    top: 42%;
-    transform: translateY(-2px) rotateZ(1deg) scale(0.97);
+    left: 10%;
+    top: 41%;
+    transform: translateY(-2px) rotateZ(1deg) scale(1.08);
   }
   50% {
-    left: 48%;
-    top: 51%;
-    transform: translateY(0px) rotateZ(-1deg) scale(1.0);
+    left: 46%;
+    top: 50%;
+    transform: translateY(0px) rotateZ(-1deg) scale(1.14);
   }
   75% {
-    left: 82%;
-    top: 47%;
-    transform: translateY(-2px) rotateZ(1deg) scale(0.98);
+    left: 80%;
+    top: 46%;
+    transform: translateY(-2px) rotateZ(1deg) scale(1.10);
   }
   95% {
     opacity: 1;
   }
   100% {
-    left: 115%;
-    top: 43%;
-    transform: translateY(0px) rotateZ(2deg) scale(0.94);
+    left: 118%;
+    top: 42%;
+    transform: translateY(0px) rotateZ(2deg) scale(1.04);
     opacity: 0;
   }
 }
