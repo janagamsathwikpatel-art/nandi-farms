@@ -264,7 +264,7 @@ export const PromoBanners: React.FC<PromoBannersProps> = ({ onClaimOffer, onOpen
                   {/* 3D BASKET: Slowly glides from upside of grid and settles cleanly above text */}
                   <div className="absolute top-[26%] sm:top-[24%] left-1/2 -translate-x-1/2 w-[76%] sm:w-[72%] animate-basket-slow-descent z-15 transition-transform duration-500 group-hover:scale-105">
                     <img
-                      src="/card3-basket-fresh-3d.png"
+                      src="/card3-basket-fresh-v4.png"
                       alt="3D Farm Fresh Basket"
                       className="w-full h-auto object-contain filter select-none drop-shadow-[0_18px_20px_rgba(0,0,0,0.25)]"
                       loading="eager"
