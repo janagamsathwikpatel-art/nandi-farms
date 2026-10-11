@@ -198,17 +198,17 @@ body {
 /* Card 3: Slow-Motion Basket Descent From Upside of Grid */
 @keyframes basketSlowDescentFromTop {
   0% {
-    transform: translateY(-220px) scale(0.9);
+    transform: translateY(-140%) scale(0.86);
     opacity: 0;
   }
-  30% {
+  20% {
     opacity: 1;
   }
-  80% {
-    transform: translateY(4px) scale(1.01);
+  75% {
+    transform: translateY(6px) scale(1.02);
   }
-  92% {
-    transform: translateY(-1px) scale(0.995);
+  88% {
+    transform: translateY(-2px) scale(0.995);
   }
   100% {
     transform: translateY(0px) scale(1);
@@ -217,24 +217,65 @@ body {
 }
 
 .animate-basket-slow-descent {
-  animation: basketSlowDescentFromTop 3.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: basketSlowDescentFromTop 4.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
   transform-style: preserve-3d;
   will-change: transform, opacity;
 }
 
-/* Card 3: Background Leaves 3D Parallax & Depth Sway */
-@keyframes bgLeavesParallax3D {
-  0%, 100% {
-    transform: scale(1.06) rotateX(0deg) rotateY(0deg) translateZ(0px);
+/* Card 3: Ground Shadow Expansion Synchronized with Slow-Motion Descent */
+@keyframes basketShadowSlowExpand {
+  0% {
+    transform: scale(0.25);
+    opacity: 0;
   }
-  50% {
-    transform: scale(1.08) rotateX(1.5deg) rotateY(1.8deg) translateZ(8px);
+  25% {
+    opacity: 0.12;
+  }
+  75% {
+    transform: scale(1.06);
+    opacity: 0.28;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.25;
   }
 }
 
-.animate-bg-leaves-3d {
-  animation: bgLeavesParallax3D 7s ease-in-out infinite;
-  transform-origin: center top;
+.animate-basket-shadow {
+  animation: basketShadowSlowExpand 4.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  will-change: transform, opacity;
+}
+
+/* Card 3: Left Leaf Vine 3D Parallax & Depth Sway (Background Leaves Only) */
+@keyframes leavesSwayLeft3D {
+  0%, 100% {
+    transform: rotateZ(0deg) rotateY(0deg) translateZ(0px);
+  }
+  50% {
+    transform: rotateZ(2.2deg) rotateY(4.5deg) translateZ(10px) scale(1.018);
+  }
+}
+
+.animate-leaves-left-3d {
+  animation: leavesSwayLeft3D 6.5s ease-in-out infinite;
+  transform-origin: left top;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+/* Card 3: Right Leaf Vine 3D Parallax & Depth Sway (Background Leaves Only) */
+@keyframes leavesSwayRight3D {
+  0%, 100% {
+    transform: rotateZ(0deg) rotateX(0deg) translateZ(0px);
+  }
+  50% {
+    transform: rotateZ(-2.5deg) rotateX(4deg) translateZ(12px) scale(1.02);
+  }
+}
+
+.animate-leaves-right-3d {
+  animation: leavesSwayRight3D 7.5s ease-in-out infinite;
+  transform-origin: right top;
   transform-style: preserve-3d;
   will-change: transform;
 }

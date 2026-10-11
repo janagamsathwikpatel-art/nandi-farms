@@ -249,30 +249,50 @@ export const PromoBanners: React.FC<PromoBannersProps> = ({ onClaimOffer, onOpen
                 className="group relative rounded-t-[60px] sm:rounded-t-[80px] rounded-b-3xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer bg-[#FAF5E4] border border-emerald-950/5 select-none"
                 title={`Click to claim ${card.title}`}
               >
-                {/* LAYER 1: Full-Length Farm Fresh Background Template with 3D Parallax Leaves */}
+                {/* LAYER 1: Full-Length Farm Fresh Background Template (STABLE & STATIC BASE) */}
                 <div className="w-full h-auto overflow-hidden">
                   <img
                     src="/promo-card-3-farm-fresh.jpg"
                     alt={card.title}
-                    className="w-full h-auto object-cover block leading-none select-none scale-[1.06] animate-bg-leaves-3d transform origin-center transition-transform duration-500"
+                    className="w-full h-auto object-cover block leading-none select-none"
                     loading="eager"
                   />
                 </div>
 
-                {/* LAYER 2: 3D Stage with Slow-Motion Drop-In Produce Basket */}
+                {/* LAYER 2: Independent 3D Parallax Leaves (Leaves Move Only) */}
+                <div className="absolute inset-0 pointer-events-none overflow-hidden" style={{ perspective: '1200px' }}>
+                  <img
+                    src="/card3-leaves-left.png"
+                    alt=""
+                    aria-hidden="true"
+                    className="absolute inset-0 w-full h-full object-cover pointer-events-none select-none animate-leaves-left-3d"
+                    loading="eager"
+                  />
+                  <img
+                    src="/card3-leaves-right.png"
+                    alt=""
+                    aria-hidden="true"
+                    className="absolute inset-0 w-full h-full object-cover pointer-events-none select-none animate-leaves-right-3d"
+                    loading="eager"
+                  />
+                </div>
+
+                {/* LAYER 3: 3D Stage with Slow-Motion Drop-In Produce Basket */}
                 <div className="absolute inset-0 pointer-events-none overflow-hidden" style={{ perspective: '1000px' }}>
-                  {/* 3D BASKET: Slowly glides from upside of grid and settles cleanly above text */}
-                  <div className="absolute top-[26%] sm:top-[24%] left-1/2 -translate-x-1/2 w-[76%] sm:w-[72%] animate-basket-slow-descent z-15 transition-transform duration-500 group-hover:scale-105">
-                    <img
-                      src="/card3-basket-fresh-v7.png"
-                      alt="3D Farm Fresh Basket"
-                      className="w-full h-auto object-contain filter select-none drop-shadow-[0_18px_20px_rgba(0,0,0,0.25)]"
-                      loading="eager"
-                    />
+                  {/* 3D BASKET: Centered wrapper with inner slow-motion glide from upside of grid */}
+                  <div className="absolute top-[26%] sm:top-[24%] left-1/2 -translate-x-1/2 w-[76%] sm:w-[72%] z-15 transition-transform duration-500 group-hover:scale-105">
+                    <div className="w-full animate-basket-slow-descent">
+                      <img
+                        src="/card3-basket-fresh-v7.png"
+                        alt="3D Farm Fresh Basket"
+                        className="w-full h-auto object-contain filter select-none drop-shadow-[0_18px_20px_rgba(0,0,0,0.25)]"
+                        loading="eager"
+                      />
+                    </div>
                   </div>
 
-                  {/* Soft ground contact shadow beneath basket */}
-                  <div className="absolute top-[58%] sm:top-[56%] left-1/2 -translate-x-1/2 w-[68%] h-3.5 bg-black/25 rounded-full blur-md animate-fruit-shadow z-10" />
+                  {/* Soft ground contact shadow beneath basket (synchronized expansion) */}
+                  <div className="absolute top-[58%] sm:top-[56%] left-1/2 -translate-x-1/2 w-[68%] h-3.5 bg-black/25 rounded-full blur-md animate-basket-shadow z-10" />
                 </div>
 
                 {/* LAYER 3: 100% Native Code-Designed Interactive Claim Offer Button */}
