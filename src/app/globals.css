@@ -195,18 +195,20 @@ body {
   will-change: left, top, transform;
 }
 
-/* Card 3: 3D Basket Drop from Upside and Settle Above Text */
-@keyframes basketDropFromTop {
+/* Card 3: Slow-Motion Basket Descent From Upside of Grid */
+@keyframes basketSlowDescentFromTop {
   0% {
-    transform: translateY(-90px) scale(0.88);
+    transform: translateY(-220px) scale(0.9);
     opacity: 0;
   }
-  60% {
-    transform: translateY(6px) scale(1.02);
+  30% {
     opacity: 1;
   }
   80% {
-    transform: translateY(-2px) scale(0.99);
+    transform: translateY(4px) scale(1.01);
+  }
+  92% {
+    transform: translateY(-1px) scale(0.995);
   }
   100% {
     transform: translateY(0px) scale(1);
@@ -214,27 +216,25 @@ body {
   }
 }
 
-.animate-basket-drop-and-settle {
-  animation: basketDropFromTop 1.1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+.animate-basket-slow-descent {
+  animation: basketSlowDescentFromTop 3.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   transform-style: preserve-3d;
   will-change: transform, opacity;
 }
 
-/* Card 3: Leaves Gentle Breeze Motion From Left Side to Right Side */
-@keyframes leavesBreezeLeftToRight {
-  0% {
-    transform: translateX(-8px) rotate(-1.5deg);
+/* Card 3: Background Leaves 3D Parallax & Depth Sway */
+@keyframes bgLeavesParallax3D {
+  0%, 100% {
+    transform: scale(1.06) rotateX(0deg) rotateY(0deg) translateZ(0px);
   }
   50% {
-    transform: translateX(8px) rotate(1.5deg);
-  }
-  100% {
-    transform: translateX(-8px) rotate(-1.5deg);
+    transform: scale(1.08) rotateX(1.5deg) rotateY(1.8deg) translateZ(8px);
   }
 }
 
-.animate-leaves-breeze {
-  animation: leavesBreezeLeftToRight 5.5s ease-in-out infinite;
-  transform-origin: top center;
+.animate-bg-leaves-3d {
+  animation: bgLeavesParallax3D 7s ease-in-out infinite;
+  transform-origin: center top;
+  transform-style: preserve-3d;
   will-change: transform;
 }

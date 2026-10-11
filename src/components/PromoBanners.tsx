@@ -249,20 +249,20 @@ export const PromoBanners: React.FC<PromoBannersProps> = ({ onClaimOffer, onOpen
                 className="group relative rounded-t-[60px] sm:rounded-t-[80px] rounded-b-3xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer bg-[#FAF5E4] border border-emerald-950/5 select-none"
                 title={`Click to claim ${card.title}`}
               >
-                {/* LAYER 1: Clean Farm Fresh Background Template (Zero baked-in button) */}
+                {/* LAYER 1: Full-Length Farm Fresh Background Template with 3D Parallax Leaves */}
                 <div className="w-full h-auto overflow-hidden">
                   <img
                     src="/promo-card-3-farm-fresh.jpg"
                     alt={card.title}
-                    className="w-full h-auto object-cover block leading-none select-none scale-[1.03] transform origin-center transition-transform duration-500"
+                    className="w-full h-auto object-cover block leading-none select-none scale-[1.06] animate-bg-leaves-3d transform origin-center transition-transform duration-500"
                     loading="eager"
                   />
                 </div>
 
-                {/* LAYER 2: 3D Stage with Drop-In 3D Basket */}
+                {/* LAYER 2: 3D Stage with Slow-Motion Drop-In Produce Basket */}
                 <div className="absolute inset-0 pointer-events-none overflow-hidden" style={{ perspective: '1000px' }}>
-                  {/* 3D BASKET: Drops in from upside and stops in middle above text */}
-                  <div className="absolute top-[26%] sm:top-[24%] left-1/2 -translate-x-1/2 w-[76%] sm:w-[72%] animate-basket-drop-and-settle z-15 transition-transform duration-500 group-hover:scale-105">
+                  {/* 3D BASKET: Slowly glides from upside of grid and settles cleanly above text */}
+                  <div className="absolute top-[26%] sm:top-[24%] left-1/2 -translate-x-1/2 w-[76%] sm:w-[72%] animate-basket-slow-descent z-15 transition-transform duration-500 group-hover:scale-105">
                     <img
                       src="/card3-basket-fresh-3d.png"
                       alt="3D Farm Fresh Basket"
