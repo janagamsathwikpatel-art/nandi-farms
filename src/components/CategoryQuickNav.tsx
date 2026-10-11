@@ -17,10 +17,17 @@ export const ANVESHAN_CATEGORIES: QuickNavCategory[] = [
   { id: 'oils', name: 'Wood Pressed Oils', icon: '🛢️', count: 8, isPopular: true },
   { id: 'atta', name: 'Stoneground Atta', icon: '🌾', count: 6 },
   { id: 'honey', name: 'Raw Honey', icon: '🍯', count: 5 },
-  { id: 'combos', name: 'Value Combos', icon: '📦', count: 9 },
+  { id: 'sweets', name: 'Organic Sweets', icon: '🍬', count: 7, isPopular: true },
+  { id: 'podulu', name: 'Spicy Podulu', icon: '🌶️', count: 6 },
+  { id: 'pickles', name: 'Farm Pickles', icon: '🏺', count: 9 },
+  { id: 'eggs', name: 'Country Eggs', icon: '🥚', count: 4 },
+  { id: 'rice', name: 'Heritage Rice', icon: '🍚', count: 8 },
+  { id: 'pooja', name: 'Pooja Essentials', icon: '🪔', count: 5 },
+  { id: 'coffee-tea', name: 'Coffee & Tea', icon: '☕', count: 6 },
   { id: 'fresh-vegetables', name: 'Veggies', icon: '🥦', count: 23 },
   { id: 'fruits', name: 'Fruits', icon: '🍎', count: 18 },
   { id: 'dairy', name: 'Dairy & Curd', icon: '🥛', count: 8 },
+  { id: 'combos', name: 'Value Combos', icon: '📦', count: 9 },
 ];
 
 interface CategoryQuickNavProps {

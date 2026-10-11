@@ -67,7 +67,14 @@ export const WeeklyBestSelling: React.FC<WeeklyBestSellingProps> = ({
     if (activeCategory === 'ghee') return p.name.toLowerCase().includes('ghee') || p.category === 'Dairy';
     if (activeCategory === 'oils') return p.name.toLowerCase().includes('oil') || p.category === 'Oils';
     if (activeCategory === 'atta') return p.name.toLowerCase().includes('atta') || p.category === 'Ravva';
-    if (activeCategory === 'honey') return p.name.toLowerCase().includes('honey') || p.name.toLowerCase().includes('karam');
+    if (activeCategory === 'honey') return p.name.toLowerCase().includes('honey');
+    if (activeCategory === 'sweets') return p.category === 'Sweets' || p.name.toLowerCase().includes('ladoo') || p.name.toLowerCase().includes('jamun');
+    if (activeCategory === 'podulu') return p.category === 'Karam Podulu' || p.name.toLowerCase().includes('podi') || p.name.toLowerCase().includes('karam');
+    if (activeCategory === 'pickles') return p.category === 'Pickles' || p.name.toLowerCase().includes('pickle');
+    if (activeCategory === 'eggs') return p.category === 'Eggs' || p.name.toLowerCase().includes('egg');
+    if (activeCategory === 'rice') return p.category === 'Rice' || p.name.toLowerCase().includes('rice');
+    if (activeCategory === 'pooja') return p.category === 'Pooja Needs' || p.name.toLowerCase().includes('pooja');
+    if (activeCategory === 'coffee-tea') return p.category === 'Tea & Coffee Powder' || p.name.toLowerCase().includes('tea') || p.name.toLowerCase().includes('coffee');
     if (activeCategory === 'combos') return p.isBestSeller;
     if (activeCategory === 'fresh-vegetables') return p.category === 'Fresh Vegetables' || p.category === 'Roots Vegetables';
     if (activeCategory === 'fruits') return p.category === 'Fruits';
