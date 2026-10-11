@@ -177,21 +177,21 @@ export const PromoBanners: React.FC<PromoBannersProps> = ({ onClaimOffer, onOpen
 
                 {/* LAYER 2: 3D Stage with Central Basket and Orbiting Delivery Van */}
                 <div className="absolute inset-0 pointer-events-none overflow-hidden" style={{ perspective: '1000px' }}>
-                  {/* CENTERPIECE: 3D Nandi Farms Grocery Bag & Produce (Placed in the Middle) */}
-                  <div className="absolute top-[30%] sm:top-[28%] left-1/2 -translate-x-1/2 w-[60%] sm:w-[56%] z-18 transition-transform duration-500 group-hover:scale-105">
+                  {/* CENTERPIECE: 3D Nandi Farms Grocery Bag & Produce (Enlarged Basket) */}
+                  <div className="absolute top-[26%] sm:top-[24%] left-1/2 -translate-x-1/2 w-[72%] sm:w-[68%] z-18 transition-transform duration-500 group-hover:scale-105">
                     <img
                       src="/card2-groceries-nandi-clean.png"
                       alt="3D Nandi Farms Fresh Produce"
-                      className="w-full h-auto object-contain filter select-none drop-shadow-[0_16px_18px_rgba(0,0,0,0.22)]"
+                      className="w-full h-auto object-contain filter select-none drop-shadow-[0_18px_20px_rgba(0,0,0,0.24)]"
                       loading="eager"
                     />
                   </div>
 
-                  {/* Dynamic Ground Contact Shadow beneath Central Produce */}
-                  <div className="absolute top-[62%] sm:top-[61%] left-1/2 -translate-x-1/2 w-[58%] h-3.5 bg-black/25 rounded-full blur-md animate-fruit-shadow z-12" />
+                  {/* Dynamic Ground Contact Shadow beneath Central Produce (Expanded) */}
+                  <div className="absolute top-[62%] sm:top-[61%] left-1/2 -translate-x-1/2 w-[70%] h-4 bg-black/25 rounded-full blur-md animate-fruit-shadow z-12" />
 
                   {/* ORBITING 3D DELIVERY VAN: Circles smoothly around the central basket */}
-                  <div className="absolute top-[35%] left-1/2 -translate-x-1/2 w-[44%] animate-truck-orbit-basket transition-transform duration-500">
+                  <div className="absolute top-[34%] left-1/2 -translate-x-1/2 w-[44%] animate-truck-orbit-basket transition-transform duration-500">
                     <img
                       src="/card2-truck-3d.png"
                       alt="3D Express Delivery Truck"

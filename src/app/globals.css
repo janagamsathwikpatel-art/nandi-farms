@@ -117,22 +117,22 @@ body {
 @keyframes truckOrbitAroundBasket {
   /* 0%: Foreground Right, driving leftwards across the front */
   0% {
-    transform: translateX(85px) translateY(14px) translateZ(40px) rotateY(-8deg) rotateZ(0deg) scale(1.05);
+    transform: translateX(100px) translateY(16px) translateZ(40px) rotateY(-8deg) rotateZ(0deg) scale(1.05);
     z-index: 25;
   }
   /* 25%: Sweeps across front of basket towards the left */
   25% {
-    transform: translateX(-35px) translateY(8px) translateZ(30px) rotateY(-12deg) rotateZ(-1deg) scale(1.02);
+    transform: translateX(-40px) translateY(10px) translateZ(30px) rotateY(-12deg) rotateZ(-1deg) scale(1.02);
     z-index: 25;
   }
-  /* 38%: Banks around the Left side of the basket */
+  /* 38%: Banks around the Left flank of the enlarged basket */
   38% {
-    transform: translateX(-110px) translateY(-2px) translateZ(0px) rotateY(-18deg) rotateZ(-2deg) scale(0.94);
+    transform: translateX(-128px) translateY(-2px) translateZ(0px) rotateY(-18deg) rotateZ(-2deg) scale(0.94);
     z-index: 25;
   }
   /* 48%: Slips behind the basket */
   48% {
-    transform: translateX(-80px) translateY(-14px) translateZ(-35px) rotateY(-10deg) rotateZ(1deg) scale(0.86);
+    transform: translateX(-95px) translateY(-14px) translateZ(-35px) rotateY(-10deg) rotateZ(1deg) scale(0.86);
     z-index: 10;
   }
   /* 60%: Driving behind the central grocery bag */
@@ -142,17 +142,17 @@ body {
   }
   /* 72%: Emerging from behind the basket on the right */
   72% {
-    transform: translateX(85px) translateY(-10px) translateZ(-25px) rotateY(12deg) rotateZ(-1deg) scale(0.88);
+    transform: translateX(95px) translateY(-10px) translateZ(-25px) rotateY(12deg) rotateZ(-1deg) scale(0.88);
     z-index: 10;
   }
-  /* 85%: Sweeps forward around the Right side into the foreground */
+  /* 85%: Sweeps forward around the Right flank into foreground */
   85% {
-    transform: translateX(105px) translateY(6px) translateZ(25px) rotateY(6deg) rotateZ(1deg) scale(1.0);
+    transform: translateX(122px) translateY(8px) translateZ(25px) rotateY(6deg) rotateZ(1deg) scale(1.0);
     z-index: 25;
   }
   /* 100%: Loops back smoothly to foreground position */
   100% {
-    transform: translateX(85px) translateY(14px) translateZ(40px) rotateY(-8deg) rotateZ(0deg) scale(1.05);
+    transform: translateX(100px) translateY(16px) translateZ(40px) rotateY(-8deg) rotateZ(0deg) scale(1.05);
     z-index: 25;
   }
 }
