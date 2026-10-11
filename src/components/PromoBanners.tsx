@@ -279,9 +279,9 @@ export const PromoBanners: React.FC<PromoBannersProps> = ({ onClaimOffer, onOpen
 
                 {/* LAYER 3: 3D Stage with Slow-Motion Drop-In Produce Basket */}
                 <div className="absolute inset-0 pointer-events-none overflow-hidden" style={{ perspective: '1000px' }}>
-                  {/* 3D BASKET: Centered wrapper with inner slow-motion glide from upside of grid */}
+                  {/* 3D BASKET: Centered wrapper with inner slow-motion glide and continuous 3D rotation */}
                   <div className="absolute top-[26%] sm:top-[25%] left-1/2 -translate-x-1/2 w-[63%] sm:w-[58%] z-15 transition-transform duration-500 group-hover:scale-105">
-                    <div className="w-full animate-basket-slow-descent">
+                    <div className="w-full animate-basket-3d-motion">
                       <img
                         src="/card3-basket-fresh-v7.png"
                         alt="3D Farm Fresh Basket"
@@ -291,8 +291,8 @@ export const PromoBanners: React.FC<PromoBannersProps> = ({ onClaimOffer, onOpen
                     </div>
                   </div>
 
-                  {/* Soft ground contact shadow beneath basket (synchronized expansion) */}
-                  <div className="absolute top-[53%] sm:top-[52%] left-1/2 -translate-x-1/2 w-[54%] sm:w-[50%] h-3 bg-black/20 rounded-full blur-md animate-basket-shadow z-10" />
+                  {/* Soft ground contact shadow beneath basket (synchronized expansion & continuous breathing) */}
+                  <div className="absolute top-[53%] sm:top-[52%] left-1/2 -translate-x-1/2 w-[54%] sm:w-[50%] h-3 bg-black/20 rounded-full blur-md animate-basket-shadow-sync z-10" />
                 </div>
 
                 {/* LAYER 3: 100% Native Code-Designed Interactive Claim Offer Button */}
