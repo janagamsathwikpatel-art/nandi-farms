@@ -150,5 +150,50 @@ body {
   will-change: transform;
 }
 
+/* 3D Delivery Van: Left-to-Right Cruise Along Background Golden Trail */
+@keyframes truckGoldTrailLeftToRight {
+  0% {
+    left: -25%;
+    top: 30%;
+    transform: translateY(0px) rotateZ(3deg) scale(0.92);
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+  }
+  25% {
+    left: 12%;
+    top: 42%;
+    transform: translateY(-2px) rotateZ(1deg) scale(0.97);
+  }
+  50% {
+    left: 48%;
+    top: 51%;
+    transform: translateY(0px) rotateZ(-1deg) scale(1.0);
+  }
+  75% {
+    left: 82%;
+    top: 47%;
+    transform: translateY(-2px) rotateZ(1deg) scale(0.98);
+  }
+  95% {
+    opacity: 1;
+  }
+  100% {
+    left: 115%;
+    top: 43%;
+    transform: translateY(0px) rotateZ(2deg) scale(0.94);
+    opacity: 0;
+  }
+}
+
+.animate-truck-gold-trail {
+  animation: 
+    truckGoldTrailLeftToRight 11s cubic-bezier(0.38, 0.05, 0.22, 1) infinite,
+    truckEngineVibe 0.2s linear infinite;
+  transform-style: preserve-3d;
+  will-change: left, top, transform;
+}
+
 
 

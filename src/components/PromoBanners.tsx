@@ -175,7 +175,7 @@ export const PromoBanners: React.FC<PromoBannersProps> = ({ onClaimOffer, onOpen
                   />
                 </div>
 
-                {/* LAYER 2: 3D Stage with Grand Basket and Slow-Motion Delivery Van above ₹499 text */}
+                {/* LAYER 2: 3D Stage with Grand Basket and Left-to-Right Golden Trail Delivery Van */}
                 <div className="absolute inset-0 pointer-events-none overflow-hidden" style={{ perspective: '1000px' }}>
                   {/* CENTERPIECE: Grand Hero 3D Nandi Farms Grocery Bag & Produce (w-[84%] sm:w-[80%]) */}
                   <div className="absolute top-[20%] sm:top-[18%] left-1/2 -translate-x-1/2 w-[84%] sm:w-[80%] z-15 transition-transform duration-500 group-hover:scale-105">
@@ -190,18 +190,18 @@ export const PromoBanners: React.FC<PromoBannersProps> = ({ onClaimOffer, onOpen
                   {/* Dynamic Ground Contact Shadow beneath Central Produce */}
                   <div className="absolute top-[64%] sm:top-[63%] left-1/2 -translate-x-1/2 w-[82%] h-4 bg-black/25 rounded-full blur-md animate-fruit-shadow z-10" />
 
-                  {/* SLOW-MOTION DELIVERY VAN: Cruising along the road directly ABOVE "On orders over ₹499" */}
-                  <div className="absolute top-[54%] sm:top-[52%] left-1/2 -translate-x-1/2 w-[46%] sm:w-[44%] animate-truck-slow-above-499 z-20 transition-transform duration-500">
+                  {/* DELIVERY VAN: Cruising Left-to-Right Along Background Golden Trail, Looping Continuously */}
+                  <div className="absolute w-[44%] sm:w-[42%] animate-truck-gold-trail z-20 pointer-events-none">
                     <img
-                      src="/card2-truck-3d.png"
+                      src="/card2-truck-right-3d.png"
                       alt="3D Express Delivery Truck"
-                      className="w-full h-auto object-contain filter select-none drop-shadow-[0_16px_18px_rgba(0,0,0,0.30)]"
+                      className="w-full h-auto object-contain filter select-none drop-shadow-[0_16px_18px_rgba(0,0,0,0.32)]"
                       loading="eager"
                     />
-                    {/* Motion speed streaks behind the truck */}
-                    <div className="absolute -right-2 top-1/2 -translate-y-1/2 flex flex-col space-y-0.5 opacity-80">
-                      <span className="text-xs text-rose-500 font-black animate-pulse">💨</span>
-                      <span className="text-[10px] text-amber-400 font-bold">⚡</span>
+                    {/* Golden speed sparkles trailing behind truck on the left */}
+                    <div className="absolute -left-2 top-1/2 -translate-y-1/2 flex items-center space-x-0.5 opacity-80 pointer-events-none">
+                      <span className="text-[10px] text-amber-400 font-black animate-pulse">✨</span>
+                      <span className="text-xs text-amber-300 font-bold">💨</span>
                     </div>
                   </div>
                 </div>
