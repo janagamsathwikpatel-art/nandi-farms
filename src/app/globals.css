@@ -43,7 +43,26 @@ body {
   animation: marquee 35s linear infinite;
 }
 
-/* 3D Levitation & Floating for Produce Centerpiece (Card 1) */
+/* 1. Entrance: Fruit drops down from upside with physics spring bounce */
+@keyframes fruitDropIn {
+  0% {
+    transform: translateY(-90px) scale(0.92) rotateX(12deg);
+    opacity: 0;
+  }
+  60% {
+    transform: translateY(6px) scale(1.02) rotateX(-4deg);
+    opacity: 1;
+  }
+  80% {
+    transform: translateY(-3px) scale(0.99) rotateX(2deg);
+  }
+  100% {
+    transform: translateY(0px) scale(1) rotateX(0deg);
+    opacity: 1;
+  }
+}
+
+/* 2. 3D Levitation & Floating for Produce Centerpiece (Card 1) */
 @keyframes fruitLevitate3D {
   0%, 100% {
     transform: translateY(0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(1);
@@ -69,6 +88,15 @@ body {
   will-change: transform, filter;
 }
 
+/* Combined: Drops in first from upside, then seamlessly loops infinite 3D floating */
+.animate-fruit-drop-and-float {
+  animation: 
+    fruitDropIn 0.85s cubic-bezier(0.22, 1, 0.36, 1) forwards,
+    fruitLevitate3D 4.5s ease-in-out 0.85s infinite;
+  transform-style: preserve-3d;
+  will-change: transform, filter;
+}
+
 /* Dynamic Shadow Depth beneath Fruits */
 @keyframes fruitShadowPulse {
   0%, 100% {
@@ -84,4 +112,5 @@ body {
 .animate-fruit-shadow {
   animation: fruitShadowPulse 4.5s ease-in-out infinite;
 }
+
 
