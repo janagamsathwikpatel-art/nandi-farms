@@ -113,4 +113,42 @@ body {
   animation: fruitShadowPulse 4.5s ease-in-out infinite;
 }
 
+/* 3D Delivery Truck driving towards the left side (Card 2) */
+@keyframes driveTruckLeft3D {
+  0% {
+    transform: translateX(35px) translateY(0px) rotateY(-4deg) rotateZ(0deg) scale(0.97);
+  }
+  25% {
+    transform: translateX(10px) translateY(-3px) rotateY(-6deg) rotateZ(-1.5deg) scale(1.02);
+  }
+  50% {
+    transform: translateX(-15px) translateY(1px) rotateY(-5deg) rotateZ(0.5deg) scale(1);
+  }
+  75% {
+    transform: translateX(-40px) translateY(-2px) rotateY(-4deg) rotateZ(-0.5deg) scale(0.99);
+  }
+  100% {
+    transform: translateX(-65px) translateY(0px) rotateY(-4deg) rotateZ(0deg) scale(0.97);
+  }
+}
+
+/* Engine vibration and tire road contact feel */
+@keyframes truckEngineVibe {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-1.5px);
+  }
+}
+
+.animate-truck-drive-left {
+  animation: 
+    driveTruckLeft3D 4.5s ease-in-out infinite alternate,
+    truckEngineVibe 0.16s linear infinite;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+
 

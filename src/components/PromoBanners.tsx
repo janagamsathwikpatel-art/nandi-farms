@@ -157,6 +157,90 @@ export const PromoBanners: React.FC<PromoBannersProps> = ({ onClaimOffer, onOpen
             );
           }
 
+          if (card.id === 'promo-2') {
+            return (
+              <div
+                key={card.id}
+                onClick={() => handleClaimOffer(card)}
+                className="group relative rounded-t-[60px] sm:rounded-t-[80px] rounded-b-3xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer bg-[#FAF5E4] border border-emerald-950/5 select-none"
+                title={`Click to claim ${card.title}`}
+              >
+                {/* LAYER 1: Full-Length Sunrise Speed Template (Zero gaps, zero baked-in buttons) */}
+                <div className="w-full h-auto overflow-hidden">
+                  <img
+                    src="/promo-card-2-sunrise-speed.jpg"
+                    alt={card.title}
+                    className="w-full h-auto object-cover block leading-none select-none scale-[1.04] transform origin-center transition-transform duration-500"
+                    loading="eager"
+                  />
+                </div>
+
+                {/* LAYER 2: 3D Express Delivery Truck driving dynamically toward the LEFT */}
+                <div className="absolute inset-0 pointer-events-none z-10 overflow-hidden">
+                  {/* Truck cruises towards the left */}
+                  <div className="absolute top-[36%] right-[0%] w-[50%] animate-truck-drive-left transition-transform duration-500 group-hover:scale-105">
+                    <img
+                      src="/card2-truck-3d.png"
+                      alt="3D Express Delivery Truck"
+                      className="w-full h-auto object-contain filter select-none drop-shadow-[0_16px_18px_rgba(0,0,0,0.30)]"
+                      loading="eager"
+                    />
+                    {/* Motion speed streaks behind the truck */}
+                    <div className="absolute -right-2 top-1/2 -translate-y-1/2 flex flex-col space-y-0.5 opacity-80">
+                      <span className="text-xs text-rose-500 font-black animate-pulse">💨</span>
+                      <span className="text-[10px] text-amber-400 font-bold">⚡</span>
+                    </div>
+                  </div>
+
+                  {/* LAYER 3: 3D Grocery Bag, Oranges, Clock, and Berries */}
+                  <div className="absolute top-[31%] left-[3%] w-[58%] transition-transform duration-500 group-hover:scale-105">
+                    <img
+                      src="/card2-groceries-3d.png"
+                      alt="3D Farm Fresh Grocery Bag"
+                      className="w-full h-auto object-contain filter select-none drop-shadow-[0_16px_18px_rgba(0,0,0,0.22)]"
+                      loading="eager"
+                    />
+                  </div>
+
+                  {/* Dynamic Ground Contact Shadow */}
+                  <div className="absolute top-[61%] left-[12%] right-[12%] h-3.5 bg-black/25 rounded-full blur-md animate-fruit-shadow" />
+                </div>
+
+                {/* LAYER 4: 100% Native Code-Designed Interactive Claim Offer Button */}
+                <div className="absolute bottom-[4.5%] sm:bottom-[5.5%] left-0 right-0 px-4 sm:px-6 flex items-center justify-center z-20 pointer-events-auto">
+                  <button
+                    type="button"
+                    onClick={(e) => handleClaimOffer(card, e)}
+                    className={`w-full max-w-[210px] sm:max-w-[230px] py-2.5 sm:py-3 px-4 rounded-full font-black text-xs sm:text-sm tracking-wide shadow-lg hover:shadow-2xl transition-all duration-300 transform active:scale-95 flex items-center justify-center space-x-1.5 cursor-pointer ${
+                      isClaimed
+                        ? 'bg-[#063321] text-amber-300 ring-2 ring-amber-400 scale-[1.02]'
+                        : 'bg-gradient-to-r from-[#178544] via-[#1a934b] to-[#147a3e] hover:from-[#116e37] hover:to-[#0f6130] text-white hover:scale-105 hover:shadow-emerald-600/30'
+                    }`}
+                  >
+                    {isClaimed ? (
+                      <>
+                        <Check className="w-4 h-4 text-emerald-400 stroke-[3] animate-bounce" />
+                        <span>Claimed! ({card.code})</span>
+                      </>
+                    ) : (
+                      <>
+                        <span>Claim Offer</span>
+                        <Sparkles className="w-3.5 h-3.5 text-amber-300 group-hover:rotate-12 transition-transform" />
+                      </>
+                    )}
+                  </button>
+                </div>
+
+                {/* Top Claimed Ribbon Badge (when claimed) */}
+                {isClaimed && (
+                  <div className="absolute top-4 right-4 bg-emerald-900/90 text-amber-300 text-[10px] font-black px-2.5 py-1 rounded-full uppercase tracking-wider backdrop-blur-xs shadow-md border border-amber-300/40 z-20">
+                    ✓ Active Deal
+                  </div>
+                )}
+              </div>
+            );
+          }
+
           return (
             <div
               key={card.id}
