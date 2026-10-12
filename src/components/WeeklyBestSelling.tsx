@@ -67,7 +67,14 @@ export const WeeklyBestSelling: React.FC<WeeklyBestSellingProps> = ({
     if (activeCategory === 'ghee') return p.name.toLowerCase().includes('ghee') || p.category === 'Dairy';
     if (activeCategory === 'oils') return p.name.toLowerCase().includes('oil') || p.category === 'Oils';
     if (activeCategory === 'atta') return p.name.toLowerCase().includes('atta') || p.category === 'Ravva';
-    if (activeCategory === 'honey') return p.name.toLowerCase().includes('honey') || p.name.toLowerCase().includes('karam');
+    if (activeCategory === 'honey') return p.name.toLowerCase().includes('honey');
+    if (activeCategory === 'sweets') return p.category === 'Sweets' || p.name.toLowerCase().includes('ladoo') || p.name.toLowerCase().includes('jamun');
+    if (activeCategory === 'podulu') return p.category === 'Karam Podulu' || p.name.toLowerCase().includes('podi') || p.name.toLowerCase().includes('karam');
+    if (activeCategory === 'pickles') return p.category === 'Pickles' || p.name.toLowerCase().includes('pickle');
+    if (activeCategory === 'eggs') return p.category === 'Eggs' || p.name.toLowerCase().includes('egg');
+    if (activeCategory === 'rice') return p.category === 'Rice' || p.name.toLowerCase().includes('rice');
+    if (activeCategory === 'pooja') return p.category === 'Pooja Needs' || p.name.toLowerCase().includes('pooja');
+    if (activeCategory === 'coffee-tea') return p.category === 'Tea & Coffee Powder' || p.name.toLowerCase().includes('tea') || p.name.toLowerCase().includes('coffee');
     if (activeCategory === 'combos') return p.isBestSeller;
     if (activeCategory === 'fresh-vegetables') return p.category === 'Fresh Vegetables' || p.category === 'Roots Vegetables';
     if (activeCategory === 'fruits') return p.category === 'Fruits';
@@ -125,16 +132,16 @@ export const WeeklyBestSelling: React.FC<WeeklyBestSellingProps> = ({
             return (
               <div
                 key={prod.id}
-                className="bg-[#f7f3e8] border border-amber-200/60 rounded-3xl p-3.5 sm:p-4 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group relative"
+                className="bg-[#f7f3e8] border border-amber-200/60 rounded-3xl p-3 sm:p-3.5 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group relative"
               >
                 <div>
                   {/* Top Badges */}
-                  <div className="flex items-center justify-between mb-2.5 z-10 relative">
-                    <span className="bg-amber-400 text-gray-950 font-black text-[10px] sm:text-xs px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full shadow-2xs">
+                  <div className="flex items-center justify-between mb-2 z-10 relative">
+                    <span className="bg-amber-400 text-gray-950 font-black text-[10px] sm:text-xs px-2 py-0.5 sm:px-2.5 sm:py-0.5 rounded-full shadow-2xs">
                       {discountPercent} OFF
                     </span>
 
-                    <span className="bg-[#1a8e4c] text-white font-extrabold text-[10px] sm:text-xs px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full shadow-2xs">
+                    <span className="bg-[#1a8e4c] text-white font-extrabold text-[10px] sm:text-xs px-2.5 py-0.5 sm:px-3 sm:py-0.5 rounded-full shadow-2xs">
                       {isFallbackBestSeller ? '🔥 TOP SELLER' : 'Bestseller'}
                     </span>
                   </div>
@@ -142,7 +149,7 @@ export const WeeklyBestSelling: React.FC<WeeklyBestSellingProps> = ({
                   {/* Compact Product Image Container Box */}
                   <div
                     onClick={() => onSelectProduct && onSelectProduct(prod)}
-                    className="w-full h-36 sm:h-44 md:h-48 rounded-2xl bg-white p-2.5 flex items-center justify-center overflow-hidden border border-amber-100 shadow-inner mb-3 cursor-pointer relative"
+                    className="w-full h-32 sm:h-36 md:h-40 rounded-2xl bg-white p-2 flex items-center justify-center overflow-hidden border border-amber-100 shadow-inner mb-2.5 cursor-pointer relative"
                   >
                     {/* Floating Loved Heart Button */}
                     <button

@@ -131,12 +131,11 @@ export default function Home() {
     });
   };
 
-  const handleClaimOffer = (offerTitle: string) => {
-    addToast(`Offer claimed! 🎉 (${offerTitle}) Special discount code applied at checkout.`, 'success');
-    const el = document.getElementById('todays-picks') || document.getElementById('weekly-best-selling');
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
-    }
+  const handleClaimOffer = (offerTitle: string, offerCode?: string) => {
+    addToast(
+      `Offer claimed! 🎉 (${offerTitle}) Promo code ${offerCode ? `"${offerCode}"` : ''} copied & applied at checkout.`,
+      'success'
+    );
   };
 
   const handleSelectCategory = (catName: string) => {
@@ -260,7 +259,10 @@ export default function Home() {
         />
 
         {/* 4. Promo Banners Row */}
-        <PromoBanners onClaimOffer={handleClaimOffer} />
+        <PromoBanners 
+          onClaimOffer={handleClaimOffer} 
+          onOpenCart={() => setIsCartOpen(true)}
+        />
 
         {/* 5. Weekly Best Selling items */}
         <WeeklyBestSelling
