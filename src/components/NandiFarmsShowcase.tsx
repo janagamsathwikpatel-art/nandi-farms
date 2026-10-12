@@ -1,12 +1,13 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 
 interface NandiFarmsShowcaseProps {
   onOrderNow?: () => void;
 }
 
 export const NandiFarmsShowcase: React.FC<NandiFarmsShowcaseProps> = ({ onOrderNow }) => {
+  const [isPaused, setIsPaused] = useState(false);
   const handleAction = () => {
     if (onOrderNow) {
       onOrderNow();
@@ -110,13 +111,24 @@ export const NandiFarmsShowcase: React.FC<NandiFarmsShowcaseProps> = ({ onOrderN
       </div>
 
       {/* 2. ENLARGED NANDI FARMS PRODUCT IMAGES AUTO-SCROLLING ROW (Pauses on Mouse Hover) */}
-      <div className="w-full py-6 px-2 overflow-hidden group/showcase relative">
-        <div className="flex w-max animate-marquee-slow space-x-5 sm:space-x-6 lg:space-x-8 group-hover/showcase:[animation-play-state:paused] transition-all">
+      <div
+        className="w-full py-6 px-2 overflow-hidden group/showcase showcase-marquee-container relative"
+        onMouseEnter={() => setIsPaused(true)}
+        onMouseLeave={() => setIsPaused(false)}
+      >
+        <div
+          className="flex w-max animate-marquee-slow space-x-5 sm:space-x-6 lg:space-x-8 group-hover/showcase:[animation-play-state:paused] transition-all marquee-pause-on-hover"
+          style={{ animationPlayState: isPaused ? 'paused' : 'running' }}
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+        >
           {/* Repeat product image items 3 times for smooth endless horizontal left scrolling (24 items total) */}
           {[...cards, ...cards, ...cards].map((card, idx) => (
             <div
               key={`${card.id}-${idx}`}
               onClick={handleAction}
+              onMouseEnter={() => setIsPaused(true)}
+              onMouseLeave={() => setIsPaused(false)}
               className="w-64 sm:w-72 md:w-80 h-64 sm:h-72 md:h-80 aspect-square rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 cursor-pointer group relative flex-shrink-0 bg-transparent border-0"
             >
               {/* Direct 100% Flush Enlarged Product Image Graphic */}

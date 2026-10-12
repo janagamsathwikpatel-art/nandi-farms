@@ -43,6 +43,14 @@ body {
   animation: marquee 35s linear infinite;
 }
 
+/* 100% Guaranteed Pause Marquee Scrolling on Hover */
+.animate-marquee:hover,
+.animate-marquee-slow:hover,
+.showcase-marquee-container:hover .animate-marquee-slow,
+.marquee-pause-on-hover:hover {
+  animation-play-state: paused !important;
+}
+
 /* 1. Entrance: Fruit drops down from upside with physics spring bounce */
 @keyframes fruitDropIn {
   0% {
