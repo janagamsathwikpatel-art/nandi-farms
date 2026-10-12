@@ -25,8 +25,10 @@ export const PopularCategories: React.FC<PopularCategoriesProps> = ({
     if (onSelectCategory) {
       onSelectCategory(catName);
     }
-    const el = document.getElementById('todays-picks');
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
+    setTimeout(() => {
+      const el = document.getElementById('category-products-view') || document.getElementById('todays-picks');
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }, 50);
   };
 
   return (

@@ -12,6 +12,7 @@ import { WeeklyBestSelling } from '@/components/WeeklyBestSelling';
 import { MostSellingProducts } from '@/components/MostSellingProducts';
 import { CustomerReviews } from '@/components/CustomerReviews';
 import { JustForYou } from '@/components/JustForYou';
+import { FilteredCategoryProducts } from '@/components/FilteredCategoryProducts';
 import { NandiFarmsShowcase } from '@/components/NandiFarmsShowcase';
 import { Footer } from '@/components/Footer';
 import { CartDrawer } from '@/components/CartDrawer';
@@ -140,7 +141,11 @@ export default function Home() {
 
   const handleSelectCategory = (catName: string) => {
     setSelectedCategoryFilter(catName);
-    addToast(`Filtered showcase for "${catName}"`, 'info');
+    addToast(`Showing products in "${catName}"`, 'info');
+    setTimeout(() => {
+      const el = document.getElementById('category-products-view') || document.getElementById('todays-picks');
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }, 80);
   };
 
   const handleShowAllProducts = () => {
@@ -157,10 +162,31 @@ export default function Home() {
       ? p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
         p.category.toLowerCase().includes(searchQuery.toLowerCase())
       : true;
-    const matchesCategory = selectedCategoryFilter
-      ? p.category.toLowerCase() === selectedCategoryFilter.toLowerCase() ||
-        (selectedCategoryFilter === 'Fresh Vegetables' && p.category === 'Vegetables')
-      : true;
+
+    if (!selectedCategoryFilter) {
+      return matchesSearch;
+    }
+
+    const filter = selectedCategoryFilter.trim().toLowerCase();
+    const cat = (p.category || '').toLowerCase();
+    const name = (p.name || '').toLowerCase();
+
+    const matchesCategory =
+      cat === filter ||
+      cat.includes(filter) ||
+      filter.includes(cat) ||
+      (filter === 'fresh vegetables' && (cat.includes('vegetable') || name.includes('tomato') || name.includes('spinach') || name.includes('broccoli'))) ||
+      (filter === 'roots vegetables' && (cat.includes('roots') || name.includes('carrot') || name.includes('potato') || name.includes('beetroot') || name.includes('ginger'))) ||
+      (filter === 'karam podulu' && (cat.includes('karam') || name.includes('karam') || name.includes('podi'))) ||
+      (filter === 'ravva' && (cat.includes('ravva') || name.includes('ravva') || name.includes('sooji'))) ||
+      (filter === 'rice' && (cat.includes('rice') || name.includes('rice'))) ||
+      (filter === 'eggs' && (cat.includes('egg') || name.includes('egg'))) ||
+      (filter === 'pickles' && (cat.includes('pickle') || name.includes('pickle') || name.includes('avakaya') || name.includes('gongura'))) ||
+      (filter === 'dairy' && (cat.includes('dairy') || name.includes('milk') || name.includes('ghee') || name.includes('paneer') || name.includes('curd'))) ||
+      (filter === 'meat & fish' && (cat.includes('meat') || cat.includes('chicken') || cat.includes('fish'))) ||
+      (filter === 'tea & coffee powder' && (cat.includes('tea') || cat.includes('coffee') || name.includes('tea') || name.includes('coffee'))) ||
+      (filter === 'personal care' && (cat.includes('personal') || name.includes('soap') || name.includes('shampoo')));
+
     return matchesSearch && matchesCategory;
   });
 
@@ -246,65 +272,82 @@ export default function Home() {
           onShowAll={handleShowAllProducts}
         />
 
-        {/* 3. Today's Fresh Picks */}
-        <TodaysFreshPicks
-          products={filteredProducts}
-          cartItems={cartItems}
-          lovedItems={lovedItems}
-          onAddToCart={handleAddToCart}
-          onUpdateQuantity={handleUpdateQuantity}
-          onSelectProduct={(prod) => setSelectedProduct(prod)}
-          onToggleLoved={handleToggleLoved}
-          onShowAll={handleShowAllProducts}
-        />
+        {/* CONDITIONAL: When category filter or search query is active, show ONLY that category's products! */}
+        {selectedCategoryFilter || searchQuery.trim() ? (
+          <FilteredCategoryProducts
+            categoryName={selectedCategoryFilter || `Search: "${searchQuery}"`}
+            products={filteredProducts}
+            cartItems={cartItems}
+            lovedItems={lovedItems}
+            onAddToCart={handleAddToCart}
+            onUpdateQuantity={handleUpdateQuantity}
+            onSelectProduct={(prod) => setSelectedProduct(prod)}
+            onToggleLoved={handleToggleLoved}
+            onClearFilter={handleShowAllProducts}
+          />
+        ) : (
+          <>
+            {/* 3. Today's Fresh Picks */}
+            <TodaysFreshPicks
+              products={filteredProducts}
+              cartItems={cartItems}
+              lovedItems={lovedItems}
+              onAddToCart={handleAddToCart}
+              onUpdateQuantity={handleUpdateQuantity}
+              onSelectProduct={(prod) => setSelectedProduct(prod)}
+              onToggleLoved={handleToggleLoved}
+              onShowAll={handleShowAllProducts}
+            />
 
-        {/* 4. Promo Banners Row */}
-        <PromoBanners 
-          onClaimOffer={handleClaimOffer} 
-          onOpenCart={() => setIsCartOpen(true)}
-        />
+            {/* 4. Promo Banners Row */}
+            <PromoBanners 
+              onClaimOffer={handleClaimOffer} 
+              onOpenCart={() => setIsCartOpen(true)}
+            />
 
-        {/* 5. Weekly Best Selling items */}
-        <WeeklyBestSelling
-          products={filteredProducts}
-          cartItems={cartItems}
-          lovedItems={lovedItems}
-          onAddToCart={handleAddToCart}
-          onUpdateQuantity={handleUpdateQuantity}
-          onSelectProduct={(prod) => setSelectedProduct(prod)}
-          onToggleLoved={handleToggleLoved}
-          onShowAll={handleShowAllProducts}
-        />
+            {/* 5. Weekly Best Selling items */}
+            <WeeklyBestSelling
+              products={filteredProducts}
+              cartItems={cartItems}
+              lovedItems={lovedItems}
+              onAddToCart={handleAddToCart}
+              onUpdateQuantity={handleUpdateQuantity}
+              onSelectProduct={(prod) => setSelectedProduct(prod)}
+              onToggleLoved={handleToggleLoved}
+              onShowAll={handleShowAllProducts}
+            />
 
-        {/* 6. Most Selling Products */}
-        <MostSellingProducts
-          products={filteredProducts}
-          cartItems={cartItems}
-          lovedItems={lovedItems}
-          onAddToCart={handleAddToCart}
-          onUpdateQuantity={handleUpdateQuantity}
-          onSelectProduct={(prod) => setSelectedProduct(prod)}
-          onToggleLoved={handleToggleLoved}
-          onShowAll={handleShowAllProducts}
-        />
+            {/* 6. Most Selling Products */}
+            <MostSellingProducts
+              products={filteredProducts}
+              cartItems={cartItems}
+              lovedItems={lovedItems}
+              onAddToCart={handleAddToCart}
+              onUpdateQuantity={handleUpdateQuantity}
+              onSelectProduct={(prod) => setSelectedProduct(prod)}
+              onToggleLoved={handleToggleLoved}
+              onShowAll={handleShowAllProducts}
+            />
 
-        {/* 7. Just for you */}
-        <JustForYou
-          products={filteredProducts}
-          cartItems={cartItems}
-          lovedItems={lovedItems}
-          onAddToCart={handleAddToCart}
-          onUpdateQuantity={handleUpdateQuantity}
-          onSelectProduct={(prod) => setSelectedProduct(prod)}
-          onToggleLoved={handleToggleLoved}
-          onShowAll={handleShowAllProducts}
-        />
+            {/* 7. Just for you */}
+            <JustForYou
+              products={filteredProducts}
+              cartItems={cartItems}
+              lovedItems={lovedItems}
+              onAddToCart={handleAddToCart}
+              onUpdateQuantity={handleUpdateQuantity}
+              onSelectProduct={(prod) => setSelectedProduct(prod)}
+              onToggleLoved={handleToggleLoved}
+              onShowAll={handleShowAllProducts}
+            />
 
-        {/* 8. Customer Reviews & Ratings Showcase */}
-        <CustomerReviews />
+            {/* 8. Customer Reviews & Ratings Showcase */}
+            <CustomerReviews />
 
-        {/* 9. Nandi Farms Auto-Scrolling Category Showcase (Above Footer, Matching media_1791549332402.png) */}
-        <NandiFarmsShowcase onOrderNow={handleShowAllProducts} />
+            {/* 9. Nandi Farms Auto-Scrolling Category Showcase (Above Footer, Matching media_1791549332402.png) */}
+            <NandiFarmsShowcase onOrderNow={handleShowAllProducts} />
+          </>
+        )}
       </main>
 
       {/* Footer Section */}
