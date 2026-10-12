@@ -46,6 +46,9 @@ export const TodaysFreshPicks: React.FC<TodaysFreshPicksProps> = ({
     if (u.includes('g') || u.includes('kg')) {
       return ['500g', '1 kg', '2 kg'];
     }
+    if (u.includes('pack')) {
+      return ['per pack', 'pack of 2', 'family pack'];
+    }
     return ['Small Pack', 'Standard Pack', 'Family Pack'];
   };
 
@@ -54,6 +57,12 @@ export const TodaysFreshPicks: React.FC<TodaysFreshPicksProps> = ({
     const u = selectedUnit.toLowerCase();
     if (u.includes('500g') || u.includes('500 ml') || u.includes('half')) {
       return Math.round(basePrice * 0.55);
+    }
+    if (u.includes('pack of 2')) {
+      return Math.round(basePrice * 1.9);
+    }
+    if (u.includes('family pack')) {
+      return Math.round(basePrice * 2.7);
     }
     if (u.includes('2 kg') || u.includes('2 l') || u.includes('2l')) {
       return Math.round(basePrice * 1.9);
