@@ -82,7 +82,7 @@ export const PromoBanners: React.FC<PromoBannersProps> = ({ onClaimOffer, onOpen
   };
 
   return (
-    <section className="w-full max-w-none bg-transparent py-6 sm:py-8 px-4 sm:px-8 lg:px-12 my-2 relative">
+    <section className="w-full max-w-none bg-transparent pt-1 sm:pt-2 pb-6 sm:pb-8 px-4 sm:px-8 lg:px-12 mt-0 mb-2 relative">
       {/* 3 Arched Compact Grid Boxes */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6 items-stretch max-w-5xl mx-auto relative z-10">
         {cards.map((card) => {
