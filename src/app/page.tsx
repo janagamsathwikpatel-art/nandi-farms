@@ -204,6 +204,7 @@ export default function Home() {
         setSearchQuery={setSearchQuery}
         onAddToCart={handleAddToCart}
         onSelectCategory={handleSelectCategory}
+        onShowAll={handleShowAllProducts}
       />
 
       {/* Active Filter Banner (Search or Category Filter) */}
