@@ -268,9 +268,11 @@ export default function Home() {
         <WeeklyBestSelling
           products={filteredProducts}
           cartItems={cartItems}
+          lovedItems={lovedItems}
           onAddToCart={handleAddToCart}
           onUpdateQuantity={handleUpdateQuantity}
           onSelectProduct={(prod) => setSelectedProduct(prod)}
+          onToggleLoved={handleToggleLoved}
           onShowAll={handleShowAllProducts}
         />
 
@@ -278,9 +280,11 @@ export default function Home() {
         <MostSellingProducts
           products={filteredProducts}
           cartItems={cartItems}
+          lovedItems={lovedItems}
           onAddToCart={handleAddToCart}
           onUpdateQuantity={handleUpdateQuantity}
           onSelectProduct={(prod) => setSelectedProduct(prod)}
+          onToggleLoved={handleToggleLoved}
           onShowAll={handleShowAllProducts}
         />
 
@@ -288,9 +292,11 @@ export default function Home() {
         <JustForYou
           products={filteredProducts}
           cartItems={cartItems}
+          lovedItems={lovedItems}
           onAddToCart={handleAddToCart}
           onUpdateQuantity={handleUpdateQuantity}
           onSelectProduct={(prod) => setSelectedProduct(prod)}
+          onToggleLoved={handleToggleLoved}
           onShowAll={handleShowAllProducts}
         />
 

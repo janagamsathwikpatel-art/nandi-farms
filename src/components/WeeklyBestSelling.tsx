@@ -84,14 +84,14 @@ export const WeeklyBestSelling: React.FC<WeeklyBestSellingProps> = ({
 
   const categoryItemIds = new Set(categoryItems.map((p) => p.id));
 
-  // 2. Auto-fill up to 5 products with top best-sellers if category has fewer than 5 items
-  if (categoryItems.length < 5) {
+  // 2. Auto-fill up to 6 products with top best-sellers if category has fewer than 6 items
+  if (categoryItems.length < 6) {
     const bestSellersFallback = products.filter(
       (p) => !categoryItemIds.has(p.id)
     );
-    categoryItems = [...categoryItems, ...bestSellersFallback].slice(0, 5);
+    categoryItems = [...categoryItems, ...bestSellersFallback].slice(0, 6);
   } else {
-    categoryItems = categoryItems.slice(0, 5);
+    categoryItems = categoryItems.slice(0, 6);
   }
 
   const filteredProducts = categoryItems;
@@ -115,8 +115,8 @@ export const WeeklyBestSelling: React.FC<WeeklyBestSellingProps> = ({
           onSelectCategory={(catId) => setActiveCategory(catId)}
         />
 
-        {/* 5 Product Cards Row */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 sm:gap-5 items-stretch">
+        {/* 6-Column Product Cards Row */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-4 lg:gap-4.5 items-stretch">
           {filteredProducts.map((prod, idx) => {
             const qty = getProductQuantity(prod.id);
             const isLoved = lovedItems.includes(prod.id);
@@ -132,24 +132,24 @@ export const WeeklyBestSelling: React.FC<WeeklyBestSellingProps> = ({
             return (
               <div
                 key={prod.id}
-                className="bg-[#f7f3e8] border border-amber-200/60 rounded-3xl p-3 sm:p-3.5 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group relative"
+                className="bg-[#f7f3e8] border border-amber-200/60 rounded-2xl sm:rounded-3xl p-3 sm:p-3.5 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group relative"
               >
                 <div>
                   {/* Top Badges */}
                   <div className="flex items-center justify-between mb-2 z-10 relative">
-                    <span className="bg-amber-400 text-gray-950 font-black text-[10px] sm:text-xs px-2 py-0.5 sm:px-2.5 sm:py-0.5 rounded-full shadow-2xs">
+                    <span className="bg-amber-400 text-gray-950 font-black text-[9px] sm:text-[10px] px-1.5 py-0.5 sm:px-2 rounded-full shadow-2xs">
                       {discountPercent} OFF
                     </span>
 
-                    <span className="bg-[#1a8e4c] text-white font-extrabold text-[10px] sm:text-xs px-2.5 py-0.5 sm:px-3 sm:py-0.5 rounded-full shadow-2xs">
+                    <span className="bg-[#1a8e4c] text-white font-extrabold text-[9px] sm:text-[10px] px-2 py-0.5 sm:px-2.5 rounded-full shadow-2xs">
                       {isFallbackBestSeller ? '🔥 TOP SELLER' : 'Bestseller'}
                     </span>
                   </div>
 
-                  {/* Compact Product Image Container Box */}
+                  {/* Full-Bleed Product Image Container Box */}
                   <div
                     onClick={() => onSelectProduct && onSelectProduct(prod)}
-                    className="w-full h-32 sm:h-36 md:h-40 rounded-2xl bg-white p-2 flex items-center justify-center overflow-hidden border border-amber-100 shadow-inner mb-2.5 cursor-pointer relative"
+                    className="w-full aspect-square rounded-2xl bg-white overflow-hidden border border-amber-100 shadow-inner mb-2.5 cursor-pointer relative"
                   >
                     {/* Floating Loved Heart Button */}
                     <button
@@ -158,16 +158,16 @@ export const WeeklyBestSelling: React.FC<WeeklyBestSellingProps> = ({
                         e.stopPropagation();
                         if (onToggleLoved) onToggleLoved(prod.id);
                       }}
-                      className="absolute top-2 right-2 z-20 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/90 backdrop-blur-xs flex items-center justify-center transition-all hover:scale-110 cursor-pointer shadow-xs border border-gray-200/60"
+                      className="absolute top-2 right-2 z-20 w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-white/90 backdrop-blur-xs flex items-center justify-center transition-all hover:scale-110 cursor-pointer shadow-xs border border-gray-200/60"
                       title={isLoved ? "Remove from Loved Wishlist" : "Add to Loved Wishlist"}
                     >
-                      <Heart className={`w-3.5 h-3.5 sm:w-4 sm:h-4 transition-colors ${isLoved ? 'fill-rose-500 text-rose-500' : 'text-gray-400 hover:text-rose-500'}`} />
+                      <Heart className={`w-3 h-3 sm:w-3.5 sm:h-3.5 transition-colors ${isLoved ? 'fill-rose-500 text-rose-500' : 'text-gray-400 hover:text-rose-500'}`} />
                     </button>
 
                     <img
                       src={prod.image}
                       alt={prod.name}
-                      className="w-full h-full object-contain block group-hover:scale-105 transition-transform duration-300 rounded-xl"
+                      className="w-full h-full object-cover block group-hover:scale-105 transition-transform duration-500"
                       loading="eager"
                     />
                   </div>
