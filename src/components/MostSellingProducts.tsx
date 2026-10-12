@@ -52,6 +52,10 @@ export const MostSellingProducts: React.FC<MostSellingProductsProps> = ({
   const getAdjustedPrice = (prod: Product, selectedUnit: string) => {
     const basePrice = prod.price;
     const u = selectedUnit.toLowerCase();
+    const baseUnit = (prod.unit || '').toLowerCase();
+    if (u === baseUnit) {
+      return basePrice;
+    }
     if (u.includes('500g') || u.includes('500 ml') || u.includes('half')) {
       return Math.round(basePrice * 0.55);
     }
