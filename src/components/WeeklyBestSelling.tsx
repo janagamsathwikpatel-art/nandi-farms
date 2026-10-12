@@ -74,40 +74,92 @@ export const WeeklyBestSelling: React.FC<WeeklyBestSellingProps> = ({
     return basePrice;
   };
 
-  // 1. Filter products for active category
-  let categoryItems = products.filter((p) => {
+  // 1. Strict Category Matching for Circular Nav Bar
+  const categoryItems = products.filter((p) => {
+    const nameLower = (p.name || '').toLowerCase();
+    const catLower = (p.category || '').toLowerCase();
+
     if (activeCategory === 'all') return true;
-    if (activeCategory === 'ghee') return p.name.toLowerCase().includes('ghee') || p.category === 'Dairy';
-    if (activeCategory === 'oils') return p.name.toLowerCase().includes('oil') || p.category === 'Oils';
-    if (activeCategory === 'atta') return p.name.toLowerCase().includes('atta') || p.category === 'Ravva';
-    if (activeCategory === 'honey') return p.name.toLowerCase().includes('honey');
-    if (activeCategory === 'sweets') return p.category === 'Sweets' || p.name.toLowerCase().includes('ladoo') || p.name.toLowerCase().includes('jamun');
-    if (activeCategory === 'podulu') return p.category === 'Karam Podulu' || p.name.toLowerCase().includes('podi') || p.name.toLowerCase().includes('karam');
-    if (activeCategory === 'pickles') return p.category === 'Pickles' || p.name.toLowerCase().includes('pickle');
-    if (activeCategory === 'eggs') return p.category === 'Eggs' || p.name.toLowerCase().includes('egg');
-    if (activeCategory === 'rice') return p.category === 'Rice' || p.name.toLowerCase().includes('rice');
-    if (activeCategory === 'pooja') return p.category === 'Pooja Needs' || p.name.toLowerCase().includes('pooja');
-    if (activeCategory === 'coffee-tea') return p.category === 'Tea & Coffee Powder' || p.name.toLowerCase().includes('tea') || p.name.toLowerCase().includes('coffee');
-    if (activeCategory === 'combos') return p.isBestSeller;
-    if (activeCategory === 'fresh-vegetables') return p.category === 'Fresh Vegetables' || p.category === 'Roots Vegetables';
-    if (activeCategory === 'fruits') return p.category === 'Fruits';
-    if (activeCategory === 'dairy') return p.category === 'Dairy' || p.category === 'Eggs';
-    return true;
+    if (activeCategory === 'ghee') return nameLower.includes('ghee');
+    if (activeCategory === 'oils') return nameLower.includes('oil') || catLower === 'oils';
+    if (activeCategory === 'atta') {
+      return (
+        nameLower.includes('atta') ||
+        nameLower.includes('flour') ||
+        nameLower.includes('rava') ||
+        nameLower.includes('ravva') ||
+        nameLower.includes('sooji') ||
+        catLower === 'ravva'
+      );
+    }
+    if (activeCategory === 'honey') return nameLower.includes('honey');
+    if (activeCategory === 'sweets') {
+      return (
+        catLower === 'sweets' ||
+        nameLower.includes('ladoo') ||
+        nameLower.includes('jamun') ||
+        nameLower.includes('sweet') ||
+        nameLower.includes('katli')
+      );
+    }
+    if (activeCategory === 'podulu') {
+      return (
+        catLower === 'karam podulu' ||
+        nameLower.includes('podi') ||
+        nameLower.includes('karam') ||
+        nameLower.includes('powder')
+      );
+    }
+    if (activeCategory === 'pickles') return catLower === 'pickles' || nameLower.includes('pickle');
+    if (activeCategory === 'eggs') return catLower === 'eggs' || nameLower.includes('egg');
+    if (activeCategory === 'rice') return catLower === 'rice' || nameLower.includes('rice');
+    if (activeCategory === 'pooja') {
+      return (
+        catLower === 'pooja needs' ||
+        nameLower.includes('pooja') ||
+        nameLower.includes('camphor') ||
+        nameLower.includes('dhoop') ||
+        nameLower.includes('sandalwood') ||
+        nameLower.includes('agarbatti')
+      );
+    }
+    if (activeCategory === 'coffee-tea') {
+      return (
+        catLower === 'tea & coffee powder' ||
+        nameLower.includes('tea') ||
+        nameLower.includes('coffee')
+      );
+    }
+    if (activeCategory === 'combos') {
+      return (
+        nameLower.includes('combo') ||
+        nameLower.includes('kit') ||
+        nameLower.includes('pack')
+      );
+    }
+    if (activeCategory === 'fresh-vegetables') {
+      return (
+        (catLower === 'fresh vegetables' || catLower === 'roots vegetables') &&
+        !nameLower.includes('curd') &&
+        !nameLower.includes('milk')
+      );
+    }
+    if (activeCategory === 'fruits') return catLower === 'fruits';
+    if (activeCategory === 'dairy') {
+      return (
+        (catLower === 'dairy' && !nameLower.includes('ghee')) ||
+        nameLower.includes('milk') ||
+        nameLower.includes('curd') ||
+        nameLower.includes('paneer') ||
+        nameLower.includes('butter')
+      );
+    }
+    return false;
   });
 
-  const categoryItemIds = new Set(categoryItems.map((p) => p.id));
-
-  // 2. Auto-fill up to 6 products with top best-sellers if category has fewer than 6 items
-  if (categoryItems.length < 6) {
-    const bestSellersFallback = products.filter(
-      (p) => !categoryItemIds.has(p.id)
-    );
-    categoryItems = [...categoryItems, ...bestSellersFallback].slice(0, 6);
-  } else {
-    categoryItems = categoryItems.slice(0, 6);
-  }
-
-  const filteredProducts = categoryItems;
+  // Strict display: Show ONLY items in selected category with zero fallback pollution.
+  // When 'all' is selected, show the top 8 products.
+  const filteredProducts = activeCategory === 'all' ? categoryItems.slice(0, 8) : categoryItems;
 
   return (
     <section className="w-full max-w-none px-4 sm:px-8 lg:px-12 pt-0 sm:pt-1 pb-4 sm:pb-6 my-4">
@@ -128,36 +180,42 @@ export const WeeklyBestSelling: React.FC<WeeklyBestSellingProps> = ({
           onSelectCategory={(catId) => setActiveCategory(catId)}
         />
 
-        {/* 6-Column Product Cards Row */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-4 lg:gap-4.5 items-stretch">
-          {filteredProducts.map((prod, idx) => {
-            const qty = getProductQuantity(prod.id);
-            const isLoved = lovedItems.includes(prod.id);
-            const isFallbackBestSeller = !categoryItemIds.has(prod.id) && activeCategory !== 'all';
-            const discountPercent = idx % 3 === 0 ? '18%' : idx % 3 === 1 ? '17%' : '14%';
-            
-            const variantOptions = getVariantOptions(prod.unit);
-            const currentUnit = selectedUnits[prod.id] || prod.unit || variantOptions[0];
-            const currentPrice = getAdjustedPrice(prod, currentUnit);
-            const originalPrice = Math.round(currentPrice * 1.2);
-            const isDropdownOpen = openDropdownId === prod.id;
+        {/* Product Cards Row or Empty State */}
+        {filteredProducts.length === 0 ? (
+          <div className="text-center py-12 px-4 bg-amber-50/50 rounded-3xl border border-dashed border-amber-200 my-4">
+            <span className="text-4xl mb-2 block">🌾</span>
+            <p className="text-base sm:text-lg font-bold text-gray-800">Fresh harvest arriving soon for this category!</p>
+            <p className="text-xs sm:text-sm text-gray-500 mt-1">Check back shortly or explore our other farm-fresh produce.</p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-4 lg:gap-4.5 items-stretch">
+            {filteredProducts.map((prod, idx) => {
+              const qty = getProductQuantity(prod.id);
+              const isLoved = lovedItems.includes(prod.id);
+              const discountPercent = idx % 3 === 0 ? '18%' : idx % 3 === 1 ? '17%' : '14%';
+              
+              const variantOptions = getVariantOptions(prod.unit);
+              const currentUnit = selectedUnits[prod.id] || prod.unit || variantOptions[0];
+              const currentPrice = getAdjustedPrice(prod, currentUnit);
+              const originalPrice = Math.round(currentPrice * 1.2);
+              const isDropdownOpen = openDropdownId === prod.id;
 
-            return (
-              <div
-                key={prod.id}
-                className="bg-[#f7f3e8] border border-amber-200/60 rounded-2xl sm:rounded-3xl p-3 sm:p-3.5 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group relative"
-              >
-                <div>
-                  {/* Top Badges */}
-                  <div className="flex items-center justify-between mb-2 z-10 relative">
-                    <span className="bg-amber-400 text-gray-950 font-black text-[9px] sm:text-[10px] px-1.5 py-0.5 sm:px-2 rounded-full shadow-2xs">
-                      {discountPercent} OFF
-                    </span>
+              return (
+                <div
+                  key={prod.id}
+                  className="bg-[#f7f3e8] border border-amber-200/60 rounded-2xl sm:rounded-3xl p-3 sm:p-3.5 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group relative"
+                >
+                  <div>
+                    {/* Top Badges */}
+                    <div className="flex items-center justify-between mb-2 z-10 relative">
+                      <span className="bg-amber-400 text-gray-950 font-black text-[9px] sm:text-[10px] px-1.5 py-0.5 sm:px-2 rounded-full shadow-2xs">
+                        {discountPercent} OFF
+                      </span>
 
-                    <span className="bg-[#1a8e4c] text-white font-extrabold text-[9px] sm:text-[10px] px-2 py-0.5 sm:px-2.5 rounded-full shadow-2xs">
-                      {isFallbackBestSeller ? '🔥 TOP SELLER' : 'Bestseller'}
-                    </span>
-                  </div>
+                      <span className="bg-[#1a8e4c] text-white font-extrabold text-[9px] sm:text-[10px] px-2 py-0.5 sm:px-2.5 rounded-full shadow-2xs">
+                        {prod.isBestSeller ? 'Bestseller' : 'Farm Fresh'}
+                      </span>
+                    </div>
 
                   {/* Full-Bleed Product Image Container Box */}
                   <div
@@ -283,11 +341,11 @@ export const WeeklyBestSelling: React.FC<WeeklyBestSellingProps> = ({
                     </div>
                   )}
                 </div>
-
               </div>
             );
           })}
         </div>
+      )}
       </div>
     </section>
   );
