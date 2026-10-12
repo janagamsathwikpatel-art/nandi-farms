@@ -62,7 +62,7 @@ export const CATEGORIES: Category[] = [
     bgGradient: 'from-orange-50 to-red-50/60',
     borderColor: 'border-orange-100',
     textColor: 'text-orange-900',
-    image: '/karam-podulu-category.png',
+    image: '/karam-podulu-category-v2.png',
   },
   {
     id: 'ravva',
