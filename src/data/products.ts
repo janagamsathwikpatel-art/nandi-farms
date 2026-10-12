@@ -178,8 +178,9 @@ export const PRODUCTS: Product[] = [
     farmer: 'Local Farmers',
     price: 240,
     unit: 'per kg',
-    image: 'https://images.unsplash.com/photo-1604503468506-a8da13d82791?auto=format&fit=crop&w=400&q=80',
+    image: '/chicken-breast.png',
     isPopular: true,
+    isBestSeller: true,
   },
   {
     id: 'prod-22',
