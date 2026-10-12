@@ -130,6 +130,51 @@ body {
   will-change: transform;
 }
 
+/* 3D Delivery Van: Drives Smoothly Along Background Golden Trail (Left to Right, Continuous Loop) */
+@keyframes truckDriveAlongGoldenTrail {
+  0% {
+    left: -32%;
+    top: 50%;
+    transform: translateY(0px) rotateZ(3deg) scale(0.96);
+    opacity: 0;
+  }
+  6% {
+    opacity: 1;
+  }
+  25% {
+    left: 8%;
+    top: 48%;
+    transform: translateY(-2px) rotateZ(1deg) scale(0.98);
+  }
+  50% {
+    left: 38%;
+    top: 43%;
+    transform: translateY(-4px) rotateZ(-1deg) scale(1.02);
+  }
+  75% {
+    left: 72%;
+    top: 36%;
+    transform: translateY(-3px) rotateZ(1deg) scale(1.05);
+  }
+  92% {
+    opacity: 1;
+  }
+  100% {
+    left: 116%;
+    top: 28%;
+    transform: translateY(0px) rotateZ(3deg) scale(0.98);
+    opacity: 0;
+  }
+}
+
+.animate-truck-gold-trail {
+  animation: 
+    truckDriveAlongGoldenTrail 8.5s cubic-bezier(0.4, 0.05, 0.25, 1) infinite,
+    truckEngineVibe 0.22s linear infinite;
+  transform-style: preserve-3d;
+  will-change: left, top, transform, opacity;
+}
+
 /* Card 3: Instant 100% Opacity Basket Stable Float (Guaranteed never empty) */
 .animate-basket-3d-motion,
 .animate-basket-stable-float {
