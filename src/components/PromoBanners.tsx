@@ -93,15 +93,15 @@ export const PromoBanners: React.FC<PromoBannersProps> = ({ onClaimOffer, onOpen
               <div
                 key={card.id}
                 onClick={() => handleClaimOffer(card)}
-                className="group relative rounded-t-[60px] sm:rounded-t-[80px] rounded-b-3xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer bg-[#FAF5E4] border border-emerald-950/5 select-none"
+                className="group relative rounded-t-[60px] sm:rounded-t-[80px] rounded-b-3xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer bg-[#FAF5E4] border border-emerald-950/5 select-none h-full flex flex-col"
                 title={`Click to claim ${card.title}`}
               >
-                {/* LAYER 1: Option 1 Lush Morning Harvest Background Template (Scaled to fill card bounds completely) */}
-                <div className="w-full h-auto overflow-hidden">
+                {/* LAYER 1: Option 1 Lush Morning Harvest Background Template (Full-length, zero gaps) */}
+                <div className="w-full h-full flex-1 overflow-hidden relative">
                   <img
                     src="/promo-card-1-morning-harvest.jpg"
                     alt={card.title}
-                    className="w-full h-auto object-cover block leading-none select-none scale-[1.08] transform origin-center transition-transform duration-500"
+                    className="w-full h-full object-cover block leading-none select-none transform origin-center transition-transform duration-500"
                     loading="eager"
                   />
                 </div>
@@ -123,11 +123,11 @@ export const PromoBanners: React.FC<PromoBannersProps> = ({ onClaimOffer, onOpen
                 </div>
 
                 {/* LAYER 3: 100% Native Code-Designed Interactive Claim Offer Button */}
-                <div className="absolute bottom-[4.5%] sm:bottom-[5.5%] left-0 right-0 px-4 sm:px-6 flex items-center justify-center z-20 pointer-events-auto">
+                <div className="absolute bottom-[3.5%] sm:bottom-[4.2%] left-0 right-0 px-4 sm:px-6 flex items-center justify-center z-20 pointer-events-auto">
                   <button
                     type="button"
                     onClick={(e) => handleClaimOffer(card, e)}
-                    className={`w-full max-w-[210px] sm:max-w-[230px] py-2.5 sm:py-3 px-4 rounded-full font-black text-xs sm:text-sm tracking-wide shadow-lg hover:shadow-2xl transition-all duration-300 transform active:scale-95 flex items-center justify-center space-x-1.5 cursor-pointer ${
+                    className={`w-full max-w-[210px] sm:max-w-[230px] py-2 sm:py-2.5 px-4 rounded-full font-black text-xs sm:text-sm tracking-wide shadow-lg hover:shadow-2xl transition-all duration-300 transform active:scale-95 flex items-center justify-center space-x-1.5 cursor-pointer ${
                       isClaimed
                         ? 'bg-[#063321] text-amber-300 ring-2 ring-amber-400 scale-[1.02]'
                         : 'bg-gradient-to-r from-[#178544] via-[#1a934b] to-[#147a3e] hover:from-[#116e37] hover:to-[#0f6130] text-white hover:scale-105 hover:shadow-emerald-600/30'
@@ -162,40 +162,40 @@ export const PromoBanners: React.FC<PromoBannersProps> = ({ onClaimOffer, onOpen
               <div
                 key={card.id}
                 onClick={() => handleClaimOffer(card)}
-                className="group relative rounded-t-[60px] sm:rounded-t-[80px] rounded-b-3xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer bg-[#FAF5E4] border border-emerald-950/5 select-none"
+                className="group relative rounded-t-[60px] sm:rounded-t-[80px] rounded-b-3xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer bg-[#FAF5E4] border border-emerald-950/5 select-none h-full flex flex-col"
                 title={`Click to claim ${card.title}`}
               >
-                {/* LAYER 1: Full-Length Sunrise Speed Template (Zero gaps, zero baked-in buttons) */}
-                <div className="w-full h-auto overflow-hidden">
+                {/* LAYER 1: Full-Length Sunrise Speed Template (Full-length, zero gaps) */}
+                <div className="w-full h-full flex-1 overflow-hidden relative">
                   <img
-                    src="/promo-card-2-sunrise-speed.jpg"
+                    src="/promo-card-2-full-length.jpg"
                     alt={card.title}
-                    className="w-full h-auto object-cover block leading-none select-none scale-[1.04] transform origin-center transition-transform duration-500"
+                    className="w-full h-full object-cover block leading-none select-none transform origin-center transition-transform duration-500"
                     loading="eager"
                   />
                 </div>
 
-                {/* LAYER 2: 3D Stage with Grand Basket and Left-to-Right Golden Trail Delivery Van */}
+                {/* LAYER 2: 3D Stage with Refined Produce Basket and Left-to-Right Golden Trail Delivery Van */}
                 <div className="absolute inset-0 pointer-events-none overflow-hidden" style={{ perspective: '1000px' }}>
-                  {/* CENTERPIECE: Grand Hero 3D Nandi Farms Grocery Bag & Produce (Enlarged w-[94%] sm:w-[90%]) */}
-                  <div className="absolute top-[16%] sm:top-[14%] left-1/2 -translate-x-1/2 w-[94%] sm:w-[90%] z-15 transition-transform duration-500 group-hover:scale-105">
+                  {/* CENTERPIECE: 3D Nandi Farms Grocery Bag & Produce (Refined size: w-[76%] sm:w-[72%]) */}
+                  <div className="absolute top-[18%] sm:top-[16%] left-1/2 -translate-x-1/2 w-[76%] sm:w-[72%] z-15 transition-transform duration-500 group-hover:scale-105">
                     <img
                       src="/card2-groceries-nandi-v2.png"
                       alt="3D Nandi Farms Fresh Produce"
-                      className="w-full h-auto object-contain filter select-none drop-shadow-[0_22px_24px_rgba(0,0,0,0.28)]"
+                      className="w-full h-auto object-contain filter select-none drop-shadow-[0_20px_22px_rgba(0,0,0,0.26)]"
                       loading="eager"
                     />
                   </div>
 
                   {/* Dynamic Ground Contact Shadow beneath Central Produce */}
-                  <div className="absolute top-[64%] sm:top-[63%] left-1/2 -translate-x-1/2 w-[90%] h-4.5 bg-black/25 rounded-full blur-md animate-fruit-shadow z-10" />
+                  <div className="absolute top-[61%] sm:top-[60%] left-1/2 -translate-x-1/2 w-[72%] sm:w-[68%] h-4 bg-black/22 rounded-full blur-md animate-fruit-shadow z-10" />
 
-                  {/* DELIVERY VAN: Cruising Left-to-Right Along Background Golden Trail (Enlarged w-[54%] sm:w-[50%]) */}
-                  <div className="absolute w-[54%] sm:w-[50%] animate-truck-gold-trail z-20 pointer-events-none">
+                  {/* DELIVERY VAN: Cruising Left-to-Right Along Background Golden Trail */}
+                  <div className="absolute w-[48%] sm:w-[45%] animate-truck-gold-trail z-20 pointer-events-none">
                     <img
                       src="/card2-truck-right-3d.png"
                       alt="3D Express Delivery Truck"
-                      className="w-full h-auto object-contain filter select-none drop-shadow-[0_18px_20px_rgba(0,0,0,0.35)]"
+                      className="w-full h-auto object-contain filter select-none drop-shadow-[0_16px_18px_rgba(0,0,0,0.32)]"
                       loading="eager"
                     />
                     {/* Golden speed sparkles trailing behind truck on the left */}
@@ -207,11 +207,100 @@ export const PromoBanners: React.FC<PromoBannersProps> = ({ onClaimOffer, onOpen
                 </div>
 
                 {/* LAYER 4: 100% Native Code-Designed Interactive Claim Offer Button */}
-                <div className="absolute bottom-[4.5%] sm:bottom-[5.5%] left-0 right-0 px-4 sm:px-6 flex items-center justify-center z-20 pointer-events-auto">
+                <div className="absolute bottom-[3.5%] sm:bottom-[4.2%] left-0 right-0 px-4 sm:px-6 flex items-center justify-center z-20 pointer-events-auto">
                   <button
                     type="button"
                     onClick={(e) => handleClaimOffer(card, e)}
-                    className={`w-full max-w-[210px] sm:max-w-[230px] py-2.5 sm:py-3 px-4 rounded-full font-black text-xs sm:text-sm tracking-wide shadow-lg hover:shadow-2xl transition-all duration-300 transform active:scale-95 flex items-center justify-center space-x-1.5 cursor-pointer ${
+                    className={`w-full max-w-[210px] sm:max-w-[230px] py-2 sm:py-2.5 px-4 rounded-full font-black text-xs sm:text-sm tracking-wide shadow-lg hover:shadow-2xl transition-all duration-300 transform active:scale-95 flex items-center justify-center space-x-1.5 cursor-pointer ${
+                      isClaimed
+                        ? 'bg-[#063321] text-amber-300 ring-2 ring-amber-400 scale-[1.02]'
+                        : 'bg-gradient-to-r from-[#178544] via-[#1a934b] to-[#147a3e] hover:from-[#116e37] hover:to-[#0f6130] text-white hover:scale-105 hover:shadow-emerald-600/30'
+                    }`}
+                  >
+                    {isClaimed ? (
+                      <>
+                        <Check className="w-4 h-4 text-emerald-400 stroke-[3] animate-bounce" />
+                        <span>Claimed! ({card.code})</span>
+                      </>
+                    ) : (
+                      <>
+                        <span>Claim Offer</span>
+                        <Sparkles className="w-3.5 h-3.5 text-amber-300 group-hover:rotate-12 transition-transform" />
+                      </>
+                    )}
+                  </button>
+                </div>
+
+                {/* Top Claimed Ribbon Badge (when claimed) */}
+                {isClaimed && (
+                  <div className="absolute top-4 right-4 bg-emerald-900/90 text-amber-300 text-[10px] font-black px-2.5 py-1 rounded-full uppercase tracking-wider backdrop-blur-xs shadow-md border border-amber-300/40 z-20">
+                    ✓ Active Deal
+                  </div>
+                )}
+              </div>
+            );
+          }
+
+          if (card.id === 'promo-3') {
+            return (
+              <div
+                key={card.id}
+                onClick={() => handleClaimOffer(card)}
+                className="group relative rounded-t-[60px] sm:rounded-t-[80px] rounded-b-3xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer bg-[#FAF5E4] border border-emerald-950/5 select-none h-full flex flex-col"
+                title={`Click to claim ${card.title}`}
+              >
+                {/* LAYER 1: Full-Length Farm Fresh Background Template (STABLE & STATIC BASE, Full-length, zero gaps) */}
+                <div className="w-full h-full flex-1 overflow-hidden relative">
+                  <img
+                    src="/promo-card-3-full-length.jpg"
+                    alt={card.title}
+                    className="w-full h-full object-cover block leading-none select-none transform origin-center transition-transform duration-500"
+                    loading="eager"
+                  />
+                </div>
+
+                {/* LAYER 2: Independent 3D Parallax Leaves (Leaves Move Only) */}
+                <div className="absolute inset-0 pointer-events-none overflow-hidden" style={{ perspective: '1200px' }}>
+                  <img
+                    src="/card3-leaves-left.png"
+                    alt=""
+                    aria-hidden="true"
+                    className="absolute inset-0 w-full h-full object-cover pointer-events-none select-none animate-leaves-left-3d"
+                    loading="eager"
+                  />
+                  <img
+                    src="/card3-leaves-right.png"
+                    alt=""
+                    aria-hidden="true"
+                    className="absolute inset-0 w-full h-full object-cover pointer-events-none select-none animate-leaves-right-3d"
+                    loading="eager"
+                  />
+                </div>
+
+                {/* LAYER 3: 3D Stage with Slow-Motion Drop-In Produce Basket */}
+                <div className="absolute inset-0 pointer-events-none overflow-hidden" style={{ perspective: '1000px' }}>
+                  {/* 3D BASKET: Centered wrapper with inner slow-motion glide and continuous 3D rotation */}
+                  <div className="absolute top-[26%] sm:top-[25%] left-1/2 -translate-x-1/2 w-[63%] sm:w-[58%] z-15 transition-transform duration-500 group-hover:scale-105">
+                    <div className="w-full animate-basket-3d-motion">
+                      <img
+                        src="/card3-basket-fresh-v7.png"
+                        alt="3D Farm Fresh Basket"
+                        className="w-full h-auto object-contain filter select-none drop-shadow-[0_16px_18px_rgba(0,0,0,0.22)]"
+                        loading="eager"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Soft ground contact shadow beneath basket (synchronized expansion & continuous breathing) */}
+                  <div className="absolute top-[53%] sm:top-[52%] left-1/2 -translate-x-1/2 w-[54%] sm:w-[50%] h-3 bg-black/20 rounded-full blur-md animate-basket-shadow-sync z-10" />
+                </div>
+
+                {/* LAYER 3: 100% Native Code-Designed Interactive Claim Offer Button */}
+                <div className="absolute bottom-[3.5%] sm:bottom-[4.2%] left-0 right-0 px-4 sm:px-6 flex items-center justify-center z-20 pointer-events-auto">
+                  <button
+                    type="button"
+                    onClick={(e) => handleClaimOffer(card, e)}
+                    className={`w-full max-w-[210px] sm:max-w-[230px] py-2 sm:py-2.5 px-4 rounded-full font-black text-xs sm:text-sm tracking-wide shadow-lg hover:shadow-2xl transition-all duration-300 transform active:scale-95 flex items-center justify-center space-x-1.5 cursor-pointer ${
                       isClaimed
                         ? 'bg-[#063321] text-amber-300 ring-2 ring-amber-400 scale-[1.02]'
                         : 'bg-gradient-to-r from-[#178544] via-[#1a934b] to-[#147a3e] hover:from-[#116e37] hover:to-[#0f6130] text-white hover:scale-105 hover:shadow-emerald-600/30'
