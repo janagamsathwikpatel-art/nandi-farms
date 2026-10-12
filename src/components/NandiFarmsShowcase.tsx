@@ -18,7 +18,6 @@ export const NandiFarmsShowcase: React.FC<NandiFarmsShowcaseProps> = ({ onOrderN
   };
 
   const tickerItemsUpper = [
-    '🥒 Pesticides Free',
     '🎖️ Premium Quality',
     '🍃 Direct from Farms',
     'Traditional Bilona Ghee',
