@@ -66,7 +66,7 @@ export const MostSellingProducts: React.FC<MostSellingProductsProps> = ({
   };
 
   return (
-    <section className="w-full max-w-none px-4 sm:px-8 lg:px-12 pt-2 sm:pt-4 pb-4 sm:pb-6 my-4">
+    <section className="w-full max-w-none px-4 sm:px-8 lg:px-12 pt-2 sm:pt-4 pb-1 sm:pb-2 mt-4 mb-0">
       <div className="max-w-7xl mx-auto">
         {/* Centered Section Header Matching media_1791546178599.png */}
         <div className="text-center mb-8 sm:mb-10">
