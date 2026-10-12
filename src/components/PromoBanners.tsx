@@ -168,7 +168,7 @@ export const PromoBanners: React.FC<PromoBannersProps> = ({ onClaimOffer, onOpen
                 {/* LAYER 1: Full-Length Sunrise Speed Template (Full-length, zero gaps) */}
                 <div className="w-full h-full flex-1 overflow-hidden relative">
                   <img
-                    src="/promo-card-2-sunrise-speed.jpg"
+                    src="/promo-card-2-full-length.jpg"
                     alt={card.title}
                     className="w-full h-full object-cover block leading-none select-none transform origin-center transition-transform duration-500"
                     loading="eager"
