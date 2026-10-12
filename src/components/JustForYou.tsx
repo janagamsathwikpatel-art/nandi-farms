@@ -73,9 +73,9 @@ export const JustForYou: React.FC<JustForYouProps> = ({
   };
 
   return (
-    <section className="w-full max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 my-8 sm:my-12">
+    <section className="w-full max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 mt-2 sm:mt-3 mb-1 sm:mb-2">
       {/* Centered Section Header Matching media_1791546178599.png */}
-      <div className="text-center mb-8 sm:mb-10">
+      <div className="text-center mb-6 sm:mb-8">
         <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#1b6b38] font-serif tracking-tight">
           Just for you
         </h2>

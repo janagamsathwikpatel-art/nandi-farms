@@ -25,12 +25,14 @@ export const PopularCategories: React.FC<PopularCategoriesProps> = ({
     if (onSelectCategory) {
       onSelectCategory(catName);
     }
-    const el = document.getElementById('todays-picks');
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
+    setTimeout(() => {
+      const el = document.getElementById('category-products-view') || document.getElementById('todays-picks');
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }, 50);
   };
 
   return (
-    <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 sm:pt-6 pb-1 sm:pb-2">
+    <section id="shop-by-category" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 sm:pt-6 pb-0 mb-0">
       {/* Section Header */}
       <div className="flex items-center justify-between mb-5 sm:mb-6">
         <h2 

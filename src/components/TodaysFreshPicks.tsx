@@ -78,11 +78,11 @@ export const TodaysFreshPicks: React.FC<TodaysFreshPicksProps> = ({
   };
 
   return (
-    <section id="todays-picks" className="w-full max-w-none bg-transparent py-6 sm:py-10 px-4 sm:px-8 lg:px-12 my-4 relative">
+    <section id="todays-picks" className="w-full max-w-none bg-transparent pt-1 sm:pt-2 pb-1 sm:pb-2 px-4 sm:px-8 lg:px-12 mt-1 sm:mt-2 mb-0 relative">
       <div className="max-w-7xl mx-auto">
         
         {/* Centered Section Header Matching media_1791546178599.png */}
-        <div className="text-center mb-8 sm:mb-10">
+        <div className="text-center mb-6 sm:mb-8">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#1b6b38] tracking-tight font-serif inline-block">
             Today&apos;s Fresh Picks
           </h2>
@@ -252,7 +252,7 @@ export const TodaysFreshPicks: React.FC<TodaysFreshPicksProps> = ({
         </div>
 
         {/* Down of Section: View All Products Button */}
-        <div className="mt-10 sm:mt-12 text-center flex justify-center">
+        <div className="mt-6 sm:mt-8 text-center flex justify-center">
           <button
             type="button"
             onClick={onShowAll}

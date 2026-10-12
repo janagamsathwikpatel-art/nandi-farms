@@ -61,11 +61,11 @@ export const CustomerReviews: React.FC = () => {
   });
 
   return (
-    <section className="w-full max-w-none bg-transparent py-8 sm:py-12 px-4 sm:px-8 lg:px-12 my-0 relative">
+    <section className="w-full max-w-none bg-transparent pt-2 sm:pt-4 pb-8 sm:pb-12 px-4 sm:px-8 lg:px-12 my-0 relative">
       <div className="max-w-7xl mx-auto">
         
         {/* Centered Section Header with Side Dividers (Matching Reference Screenshot) */}
-        <div className="flex items-center justify-center mb-8 sm:mb-12">
+        <div className="flex items-center justify-center mb-6 sm:mb-8">
           <div className="flex-1 max-w-[180px] sm:max-w-xs h-[1.5px] bg-[#9e8b74]/60"></div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#5c4a38] tracking-tight font-serif px-4 sm:px-8 whitespace-nowrap">
             Customer Reviews
