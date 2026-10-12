@@ -40,34 +40,28 @@ export const NandiFarmsShowcase: React.FC<NandiFarmsShowcaseProps> = ({ onOrderN
 
   const cards = [
     {
-      id: 'showcase-1',
-      title: 'Spices & Masalas',
+      id: 'showcase-milk',
+      title: 'Pure Farm Fresh Milk',
       buttonText: 'Order Now',
-      image: '/promo-card-1.jpg',
+      image: '/showcase-nandi-milk.jpg',
     },
     {
-      id: 'showcase-2',
-      title: 'Wood Cold Pressed Oils',
+      id: 'showcase-vegetables',
+      title: 'Farm Fresh Vegetables',
       buttonText: 'Order Now',
-      image: '/promo-card-2.jpg',
+      image: '/showcase-nandi-vegetables.jpg',
     },
     {
-      id: 'showcase-3',
-      title: 'Honey Varieties',
+      id: 'showcase-fruits',
+      title: 'Fresh Organic Fruits',
       buttonText: 'Shop Now',
-      image: '/promo-card-3.jpg',
+      image: '/showcase-nandi-fruits.jpg',
     },
     {
-      id: 'showcase-4',
-      title: 'Special Millet Semiya',
-      buttonText: 'Shop Now',
-      image: '/promo-card-1.jpg',
-    },
-    {
-      id: 'showcase-5',
-      title: 'Premium A2 Cow Ghee',
+      id: 'showcase-curd',
+      title: 'Pure Natural Curd',
       buttonText: 'Order Now',
-      image: '/promo-card-2.jpg',
+      image: '/showcase-nandi-curd.jpg',
     },
   ];
 
@@ -94,12 +88,12 @@ export const NandiFarmsShowcase: React.FC<NandiFarmsShowcaseProps> = ({ onOrderN
       {/* 2. ENLARGED NANDI FARMS PRODUCT IMAGES AUTO-SCROLLING ROW (Pauses on Mouse Hover) */}
       <div className="w-full py-6 px-2 overflow-hidden group/showcase relative">
         <div className="flex w-max animate-marquee-slow space-x-5 sm:space-x-6 lg:space-x-8 group-hover/showcase:[animation-play-state:paused] transition-all">
-          {/* Repeat product image items thrice for smooth endless horizontal left scrolling */}
-          {[...cards, ...cards, ...cards].map((card, idx) => (
+          {/* Repeat product image items 4 times for smooth endless horizontal left scrolling */}
+          {[...cards, ...cards, ...cards, ...cards].map((card, idx) => (
             <div
               key={`${card.id}-${idx}`}
               onClick={handleAction}
-              className="w-72 sm:w-80 md:w-96 h-56 sm:h-64 md:h-72 rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 cursor-pointer group relative flex-shrink-0 bg-transparent border-0"
+              className="w-64 sm:w-72 md:w-80 h-64 sm:h-72 md:h-80 aspect-square rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 cursor-pointer group relative flex-shrink-0 bg-transparent border-0"
             >
               {/* Direct 100% Flush Enlarged Product Image Graphic */}
               <img
