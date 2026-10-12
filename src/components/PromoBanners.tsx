@@ -252,9 +252,9 @@ export const PromoBanners: React.FC<PromoBannersProps> = ({ onClaimOffer, onOpen
                 {/* LAYER 1: Full-Length Farm Fresh Background Template (STABLE & STATIC BASE, Full-length, zero gaps) */}
                 <div className="w-full h-full flex-1 overflow-hidden relative">
                   <img
-                    src="/promo-card-3-farm-fresh.jpg"
+                    src="/promo-card-3-full-length.jpg"
                     alt={card.title}
-                    className="w-full h-full object-cover block leading-none select-none transform origin-center"
+                    className="w-full h-full object-cover block leading-none select-none transform origin-center transition-transform duration-500"
                     loading="eager"
                   />
                 </div>
