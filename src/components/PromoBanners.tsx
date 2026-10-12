@@ -175,27 +175,27 @@ export const PromoBanners: React.FC<PromoBannersProps> = ({ onClaimOffer, onOpen
                   />
                 </div>
 
-                {/* LAYER 2: 3D Stage with Grand Basket and Left-to-Right Golden Trail Delivery Van */}
+                {/* LAYER 2: 3D Stage with Refined Produce Basket and Left-to-Right Golden Trail Delivery Van */}
                 <div className="absolute inset-0 pointer-events-none overflow-hidden" style={{ perspective: '1000px' }}>
-                  {/* CENTERPIECE: Grand Hero 3D Nandi Farms Grocery Bag & Produce (Enlarged w-[94%] sm:w-[90%]) */}
-                  <div className="absolute top-[16%] sm:top-[14%] left-1/2 -translate-x-1/2 w-[94%] sm:w-[90%] z-15 transition-transform duration-500 group-hover:scale-105">
+                  {/* CENTERPIECE: 3D Nandi Farms Grocery Bag & Produce (Refined size: w-[76%] sm:w-[72%]) */}
+                  <div className="absolute top-[18%] sm:top-[16%] left-1/2 -translate-x-1/2 w-[76%] sm:w-[72%] z-15 transition-transform duration-500 group-hover:scale-105">
                     <img
                       src="/card2-groceries-nandi-v2.png"
                       alt="3D Nandi Farms Fresh Produce"
-                      className="w-full h-auto object-contain filter select-none drop-shadow-[0_22px_24px_rgba(0,0,0,0.28)]"
+                      className="w-full h-auto object-contain filter select-none drop-shadow-[0_20px_22px_rgba(0,0,0,0.26)]"
                       loading="eager"
                     />
                   </div>
 
                   {/* Dynamic Ground Contact Shadow beneath Central Produce */}
-                  <div className="absolute top-[64%] sm:top-[63%] left-1/2 -translate-x-1/2 w-[90%] h-4.5 bg-black/25 rounded-full blur-md animate-fruit-shadow z-10" />
+                  <div className="absolute top-[61%] sm:top-[60%] left-1/2 -translate-x-1/2 w-[72%] sm:w-[68%] h-4 bg-black/22 rounded-full blur-md animate-fruit-shadow z-10" />
 
-                  {/* DELIVERY VAN: Cruising Left-to-Right Along Background Golden Trail (Enlarged w-[54%] sm:w-[50%]) */}
-                  <div className="absolute w-[54%] sm:w-[50%] animate-truck-gold-trail z-20 pointer-events-none">
+                  {/* DELIVERY VAN: Cruising Left-to-Right Along Background Golden Trail */}
+                  <div className="absolute w-[48%] sm:w-[45%] animate-truck-gold-trail z-20 pointer-events-none">
                     <img
                       src="/card2-truck-right-3d.png"
                       alt="3D Express Delivery Truck"
-                      className="w-full h-auto object-contain filter select-none drop-shadow-[0_18px_20px_rgba(0,0,0,0.35)]"
+                      className="w-full h-auto object-contain filter select-none drop-shadow-[0_16px_18px_rgba(0,0,0,0.32)]"
                       loading="eager"
                     />
                     {/* Golden speed sparkles trailing behind truck on the left */}
