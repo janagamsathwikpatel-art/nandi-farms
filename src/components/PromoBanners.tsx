@@ -174,38 +174,35 @@ export const PromoBanners: React.FC<PromoBannersProps> = ({ onClaimOffer, onOpen
                   />
                 </div>
 
-                {/* LAYER 2: 3D Stage with Grocery Bag & Stationary Anchored Delivery Van */}
+                {/* LAYER 2: 3D Stage with Centered Produce Bag & Golden Trail Cruising Delivery Van */}
                 <div className="absolute inset-0 pointer-events-none overflow-hidden" style={{ perspective: '1000px' }}>
                   {/* CENTERPIECE: 3D Nandi Farms Grocery Bag & Produce */}
-                  <div className="absolute top-[16%] sm:top-[15%] left-[10%] sm:left-[12%] w-[58%] sm:w-[54%] z-15 transition-transform duration-500 group-hover:scale-105">
+                  <div className="absolute top-[18%] sm:top-[16%] left-1/2 -translate-x-1/2 w-[70%] sm:w-[66%] z-15 transition-transform duration-500 group-hover:scale-105">
                     <img
                       src="/card2-groceries-nandi-v2.png"
                       alt="3D Nandi Farms Fresh Produce"
-                      className="w-full h-auto object-contain filter select-none drop-shadow-[0_18px_20px_rgba(0,0,0,0.24)]"
+                      className="w-full h-auto object-contain filter select-none drop-shadow-[0_20px_22px_rgba(0,0,0,0.26)]"
                       loading="eager"
                     />
                   </div>
 
-                  {/* Ground Contact Shadow beneath Central Produce */}
-                  <div className="absolute top-[58%] sm:top-[57%] left-[12%] w-[54%] h-3.5 bg-black/20 rounded-full blur-md animate-fruit-shadow z-10" />
+                  {/* Dynamic Ground Contact Shadow beneath Central Produce */}
+                  <div className="absolute top-[60%] sm:top-[59%] left-1/2 -translate-x-1/2 w-[66%] sm:w-[62%] h-4 bg-black/22 rounded-full blur-md animate-fruit-shadow z-10" />
 
-                  {/* DELIVERY VAN: Stationary Anchored Hover (Permanently visible inside card, NEVER leaves canvas) */}
-                  <div className="absolute top-[32%] sm:top-[30%] right-[4%] sm:right-[6%] w-[48%] sm:w-[45%] animate-truck-stationary-hover z-20 pointer-events-none transition-transform duration-500 group-hover:scale-105">
+                  {/* DELIVERY VAN: Cruising Left-to-Right Along Background Golden Trail (Continuous Loop) */}
+                  <div className="absolute w-[46%] sm:w-[42%] animate-truck-gold-trail z-20 pointer-events-none">
                     <img
                       src="/card2-truck-right-3d.png"
                       alt="3D Express Delivery Truck"
-                      className="w-full h-auto object-contain filter select-none drop-shadow-[0_16px_18px_rgba(0,0,0,0.28)]"
+                      className="w-full h-auto object-contain filter select-none drop-shadow-[0_16px_18px_rgba(0,0,0,0.30)]"
                       loading="eager"
                     />
-                    {/* Golden speed sparkles */}
+                    {/* Golden speed sparkles trailing behind truck on the left */}
                     <div className="absolute -left-2 top-1/2 -translate-y-1/2 flex items-center space-x-0.5 opacity-80 pointer-events-none">
                       <span className="text-xs text-amber-400 font-black animate-pulse">✨</span>
                       <span className="text-sm text-amber-300 font-bold">💨</span>
                     </div>
                   </div>
-
-                  {/* Ground Shadow for Truck */}
-                  <div className="absolute top-[56%] sm:top-[55%] right-[6%] w-[40%] h-3 bg-black/20 rounded-full blur-md z-10" />
                 </div>
 
                 {/* LAYER 4: 100% Native Code-Designed Interactive Claim Offer Button */}
