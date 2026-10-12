@@ -63,6 +63,30 @@ export const NandiFarmsShowcase: React.FC<NandiFarmsShowcaseProps> = ({ onOrderN
       buttonText: 'Order Now',
       image: '/showcase-nandi-curd.jpg',
     },
+    {
+      id: 'showcase-tea-powder',
+      title: 'Premium Tea Powder',
+      buttonText: 'Order Now',
+      image: '/showcase-nandi-tea-powder.jpg',
+    },
+    {
+      id: 'showcase-honey',
+      title: 'Pure Raw Honey',
+      buttonText: 'Shop Now',
+      image: '/showcase-nandi-honey.jpg',
+    },
+    {
+      id: 'showcase-coffee-powder',
+      title: 'Fresh Coffee Powder',
+      buttonText: 'Order Now',
+      image: '/showcase-nandi-coffee-powder.jpg',
+    },
+    {
+      id: 'showcase-ghee',
+      title: 'Traditional Pure Ghee',
+      buttonText: 'Order Now',
+      image: '/showcase-nandi-ghee.jpg',
+    },
   ];
 
   return (
@@ -88,8 +112,8 @@ export const NandiFarmsShowcase: React.FC<NandiFarmsShowcaseProps> = ({ onOrderN
       {/* 2. ENLARGED NANDI FARMS PRODUCT IMAGES AUTO-SCROLLING ROW (Pauses on Mouse Hover) */}
       <div className="w-full py-6 px-2 overflow-hidden group/showcase relative">
         <div className="flex w-max animate-marquee-slow space-x-5 sm:space-x-6 lg:space-x-8 group-hover/showcase:[animation-play-state:paused] transition-all">
-          {/* Repeat product image items 4 times for smooth endless horizontal left scrolling */}
-          {[...cards, ...cards, ...cards, ...cards].map((card, idx) => (
+          {/* Repeat product image items 3 times for smooth endless horizontal left scrolling (24 items total) */}
+          {[...cards, ...cards, ...cards].map((card, idx) => (
             <div
               key={`${card.id}-${idx}`}
               onClick={handleAction}
