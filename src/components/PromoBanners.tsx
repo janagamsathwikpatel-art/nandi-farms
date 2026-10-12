@@ -93,7 +93,7 @@ export const PromoBanners: React.FC<PromoBannersProps> = ({ onClaimOffer, onOpen
               <div
                 key={card.id}
                 onClick={() => handleClaimOffer(card)}
-                className="group relative rounded-t-[60px] sm:rounded-t-[80px] rounded-b-3xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer bg-[#FAF5E4] border border-emerald-950/5 select-none h-full flex flex-col"
+                className="group relative rounded-t-[60px] sm:rounded-t-[80px] rounded-b-3xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer bg-[#FAF5E4] border border-emerald-950/5 select-none min-h-[380px] sm:min-h-[420px] h-full flex flex-col"
                 title={`Click to claim ${card.title}`}
               >
                 {/* LAYER 1: Option 1 Lush Morning Harvest Background Template (Full-length, zero gaps) */}
@@ -106,20 +106,19 @@ export const PromoBanners: React.FC<PromoBannersProps> = ({ onClaimOffer, onOpen
                   />
                 </div>
 
-                {/* LAYER 2: 3D Produce Centerpiece (Drops In from Upside + Infinite 3D Float) */}
+                {/* LAYER 2: 3D Produce Centerpiece (Stable In-Place Levitation — Guaranteed Visible) */}
                 <div className="absolute inset-0 pointer-events-none z-10 overflow-hidden flex flex-col items-center justify-center">
-                  {/* Produce Drops from Upside into Place */}
-                  <div className="absolute top-[23%] left-[13%] right-[13%] animate-fruit-drop-and-float transition-transform duration-500 group-hover:scale-105">
+                  <div className="absolute top-[22%] sm:top-[20%] left-1/2 -translate-x-1/2 w-[72%] sm:w-[68%] animate-fruit-stable-float transition-transform duration-500 group-hover:scale-105">
                     <img
                       src="/card1-fruits-3d.png"
                       alt="3D Farm Fresh Fruits"
-                      className="w-full h-auto object-contain filter select-none drop-shadow-[0_16px_20px_rgba(0,0,0,0.25)]"
+                      className="w-full h-auto object-contain filter select-none drop-shadow-[0_16px_20px_rgba(0,0,0,0.22)]"
                       loading="eager"
                     />
                   </div>
 
                   {/* Dynamic Ground Contact Shadow */}
-                  <div className="absolute top-[59%] left-[25%] right-[25%] h-3 bg-black/30 rounded-full blur-md animate-fruit-shadow" />
+                  <div className="absolute top-[58%] sm:top-[57%] left-1/2 -translate-x-1/2 w-[60%] sm:w-[56%] h-3.5 bg-black/25 rounded-full blur-md animate-fruit-shadow" />
                 </div>
 
                 {/* LAYER 3: 100% Native Code-Designed Interactive Claim Offer Button */}
@@ -162,7 +161,7 @@ export const PromoBanners: React.FC<PromoBannersProps> = ({ onClaimOffer, onOpen
               <div
                 key={card.id}
                 onClick={() => handleClaimOffer(card)}
-                className="group relative rounded-t-[60px] sm:rounded-t-[80px] rounded-b-3xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer bg-[#FAF5E4] border border-emerald-950/5 select-none h-full flex flex-col"
+                className="group relative rounded-t-[60px] sm:rounded-t-[80px] rounded-b-3xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer bg-[#FAF5E4] border border-emerald-950/5 select-none min-h-[380px] sm:min-h-[420px] h-full flex flex-col"
                 title={`Click to claim ${card.title}`}
               >
                 {/* LAYER 1: Full-Length Sunrise Speed Template (Full-length, zero gaps) */}
@@ -175,35 +174,38 @@ export const PromoBanners: React.FC<PromoBannersProps> = ({ onClaimOffer, onOpen
                   />
                 </div>
 
-                {/* LAYER 2: 3D Stage with Refined Produce Basket and Left-to-Right Golden Trail Delivery Van */}
+                {/* LAYER 2: 3D Stage with Grocery Bag & Stationary Anchored Delivery Van */}
                 <div className="absolute inset-0 pointer-events-none overflow-hidden" style={{ perspective: '1000px' }}>
-                  {/* CENTERPIECE: 3D Nandi Farms Grocery Bag & Produce (Refined size: w-[76%] sm:w-[72%]) */}
-                  <div className="absolute top-[18%] sm:top-[16%] left-1/2 -translate-x-1/2 w-[76%] sm:w-[72%] z-15 transition-transform duration-500 group-hover:scale-105">
+                  {/* CENTERPIECE: 3D Nandi Farms Grocery Bag & Produce */}
+                  <div className="absolute top-[16%] sm:top-[15%] left-[10%] sm:left-[12%] w-[58%] sm:w-[54%] z-15 transition-transform duration-500 group-hover:scale-105">
                     <img
                       src="/card2-groceries-nandi-v2.png"
                       alt="3D Nandi Farms Fresh Produce"
-                      className="w-full h-auto object-contain filter select-none drop-shadow-[0_20px_22px_rgba(0,0,0,0.26)]"
+                      className="w-full h-auto object-contain filter select-none drop-shadow-[0_18px_20px_rgba(0,0,0,0.24)]"
                       loading="eager"
                     />
                   </div>
 
-                  {/* Dynamic Ground Contact Shadow beneath Central Produce */}
-                  <div className="absolute top-[61%] sm:top-[60%] left-1/2 -translate-x-1/2 w-[72%] sm:w-[68%] h-4 bg-black/22 rounded-full blur-md animate-fruit-shadow z-10" />
+                  {/* Ground Contact Shadow beneath Central Produce */}
+                  <div className="absolute top-[58%] sm:top-[57%] left-[12%] w-[54%] h-3.5 bg-black/20 rounded-full blur-md animate-fruit-shadow z-10" />
 
-                  {/* DELIVERY VAN: Cruising Left-to-Right Along Background Golden Trail */}
-                  <div className="absolute w-[48%] sm:w-[45%] animate-truck-gold-trail z-20 pointer-events-none">
+                  {/* DELIVERY VAN: Stationary Anchored Hover (Permanently visible inside card, NEVER leaves canvas) */}
+                  <div className="absolute top-[32%] sm:top-[30%] right-[4%] sm:right-[6%] w-[48%] sm:w-[45%] animate-truck-stationary-hover z-20 pointer-events-none transition-transform duration-500 group-hover:scale-105">
                     <img
                       src="/card2-truck-right-3d.png"
                       alt="3D Express Delivery Truck"
-                      className="w-full h-auto object-contain filter select-none drop-shadow-[0_16px_18px_rgba(0,0,0,0.32)]"
+                      className="w-full h-auto object-contain filter select-none drop-shadow-[0_16px_18px_rgba(0,0,0,0.28)]"
                       loading="eager"
                     />
-                    {/* Golden speed sparkles trailing behind truck on the left */}
+                    {/* Golden speed sparkles */}
                     <div className="absolute -left-2 top-1/2 -translate-y-1/2 flex items-center space-x-0.5 opacity-80 pointer-events-none">
                       <span className="text-xs text-amber-400 font-black animate-pulse">✨</span>
                       <span className="text-sm text-amber-300 font-bold">💨</span>
                     </div>
                   </div>
+
+                  {/* Ground Shadow for Truck */}
+                  <div className="absolute top-[56%] sm:top-[55%] right-[6%] w-[40%] h-3 bg-black/20 rounded-full blur-md z-10" />
                 </div>
 
                 {/* LAYER 4: 100% Native Code-Designed Interactive Claim Offer Button */}
@@ -246,7 +248,7 @@ export const PromoBanners: React.FC<PromoBannersProps> = ({ onClaimOffer, onOpen
               <div
                 key={card.id}
                 onClick={() => handleClaimOffer(card)}
-                className="group relative rounded-t-[60px] sm:rounded-t-[80px] rounded-b-3xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer bg-[#FAF5E4] border border-emerald-950/5 select-none h-full flex flex-col"
+                className="group relative rounded-t-[60px] sm:rounded-t-[80px] rounded-b-3xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 cursor-pointer bg-[#FAF5E4] border border-emerald-950/5 select-none min-h-[380px] sm:min-h-[420px] h-full flex flex-col"
                 title={`Click to claim ${card.title}`}
               >
                 {/* LAYER 1: Full-Length Farm Fresh Background Template (STABLE & STATIC BASE, Full-length, zero gaps) */}
@@ -277,22 +279,22 @@ export const PromoBanners: React.FC<PromoBannersProps> = ({ onClaimOffer, onOpen
                   />
                 </div>
 
-                {/* LAYER 3: 3D Stage with Slow-Motion Drop-In Produce Basket */}
+                {/* LAYER 3: 3D Stage with Permanently Anchored Produce Basket (NEVER EMPTY — Guaranteed Instant Visibility) */}
                 <div className="absolute inset-0 pointer-events-none overflow-hidden" style={{ perspective: '1000px' }}>
-                  {/* 3D BASKET: Centered wrapper with inner slow-motion glide and continuous 3D rotation */}
-                  <div className="absolute top-[26%] sm:top-[25%] left-1/2 -translate-x-1/2 w-[63%] sm:w-[58%] z-15 transition-transform duration-500 group-hover:scale-105">
-                    <div className="w-full animate-basket-3d-motion">
+                  {/* 3D BASKET: Centered permanently between leaves with 100% immediate opacity */}
+                  <div className="absolute top-[21%] sm:top-[20%] left-1/2 -translate-x-1/2 w-[65%] sm:w-[60%] z-15 transition-transform duration-500 group-hover:scale-105">
+                    <div className="w-full animate-basket-stable-float">
                       <img
                         src="/card3-basket-fresh-v7.png"
                         alt="3D Farm Fresh Basket"
-                        className="w-full h-auto object-contain filter select-none drop-shadow-[0_16px_18px_rgba(0,0,0,0.22)]"
+                        className="w-full h-auto object-contain filter select-none drop-shadow-[0_18px_20px_rgba(0,0,0,0.24)]"
                         loading="eager"
                       />
                     </div>
                   </div>
 
-                  {/* Soft ground contact shadow beneath basket (synchronized expansion & continuous breathing) */}
-                  <div className="absolute top-[53%] sm:top-[52%] left-1/2 -translate-x-1/2 w-[54%] sm:w-[50%] h-3 bg-black/20 rounded-full blur-md animate-basket-shadow-sync z-10" />
+                  {/* Fixed ground contact shadow beneath basket */}
+                  <div className="absolute top-[55%] sm:top-[54%] left-1/2 -translate-x-1/2 w-[55%] sm:w-[50%] h-3.5 bg-black/22 rounded-full blur-md z-10" />
                 </div>
 
                 {/* LAYER 3: 100% Native Code-Designed Interactive Claim Offer Button */}
