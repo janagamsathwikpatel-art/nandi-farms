@@ -239,9 +239,10 @@ export const PRODUCTS: Product[] = [
     name: 'Assorted Gulab Jamun Box',
     category: 'Sweets',
     farmer: 'Local Halwai',
-    price: 180,
+    price: 99,
     unit: 'per box (500g)',
     image: '/gulab-jamun.png',
+    isPopular: true,
     isBestSeller: true,
   },
   {
