@@ -199,8 +199,9 @@ export const PRODUCTS: Product[] = [
     farmer: 'Local Farmers',
     price: 145,
     unit: 'per L',
-    image: 'https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?auto=format&fit=crop&w=400&q=80',
+    image: '/sunflower-oil.png',
     isPopular: true,
+    isBestSeller: true,
   },
   {
     id: 'prod-8',
