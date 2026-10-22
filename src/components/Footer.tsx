@@ -26,7 +26,7 @@ export const Footer: React.FC<FooterProps> = ({ onSelectCategory }) => {
   };
 
   return (
-    <footer className="w-full bg-[#f4f7ef] relative overflow-hidden font-sans border-t border-[#dce5d8] select-none">
+    <footer id="about" className="w-full bg-[#f4f7ef] relative overflow-hidden font-sans border-t border-[#dce5d8] select-none">
       
       {/* Ultra-HD Pastoral Farm Landscape Background Artwork (Fades seamlessly from right) */}
       <div className="absolute inset-y-0 right-0 w-full md:w-3/4 lg:w-2/3 pointer-events-none select-none overflow-hidden z-0">

@@ -24,6 +24,7 @@ interface HeaderProps {
   setSearchQuery: (query: string) => void;
   onAddToCart?: (product: Product) => void;
   onSelectCategory?: (catName: string) => void;
+  onShowAll?: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -37,10 +38,64 @@ export const Header: React.FC<HeaderProps> = ({
   setSearchQuery,
   onAddToCart,
   onSelectCategory,
+  onShowAll,
 }) => {
   const [isCategoriesOpen, setIsCategoriesOpen] = useState(false);
   const [isSearchDropdownOpen, setIsSearchDropdownOpen] = useState(false);
   const searchRef = useRef<HTMLDivElement>(null);
+
+  const handleShopClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (onShowAll) onShowAll();
+    setTimeout(() => {
+      const el = document.getElementById('shop-by-category') || document.getElementById('todays-picks');
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }, 50);
+  };
+
+  const handleCategoriesHeaderClick = () => {
+    setIsCategoriesOpen((prev) => !prev);
+    const el = document.getElementById('shop-by-category');
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const handleCategoryItemClick = (catName: string, e: React.MouseEvent) => {
+    e.preventDefault();
+    setIsCategoriesOpen(false);
+    if (onSelectCategory) {
+      onSelectCategory(catName);
+    }
+    setTimeout(() => {
+      const el = document.getElementById('category-products-view') || document.getElementById('todays-picks');
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }, 50);
+  };
+
+  const handleDealsClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (onShowAll) onShowAll();
+    setTimeout(() => {
+      const el = document.getElementById('deals');
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }, 50);
+  };
+
+  const handleFreshProduceClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (onSelectCategory) {
+      onSelectCategory('Fresh Vegetables');
+    }
+    setTimeout(() => {
+      const el = document.getElementById('category-products-view') || document.getElementById('todays-picks');
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }, 50);
+  };
+
+  const handleAboutClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    const el = document.getElementById('about');
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
+  };
 
   // Filter products for instant live search dropdown
   const searchResults = searchQuery.trim()
@@ -137,51 +192,65 @@ export const Header: React.FC<HeaderProps> = ({
           
           {/* Left Side: Navigation Pills */}
           <nav className="flex items-center space-x-1 sm:space-x-2 overflow-x-auto no-scrollbar py-0.5 w-full sm:w-auto">
-            <a
-              href="#shop"
-              className="bg-emerald-950 text-white px-4 py-1.5 rounded-full font-semibold transition-colors shadow-xs shrink-0"
+            <button
+              type="button"
+              onClick={handleShopClick}
+              className="bg-emerald-950 hover:bg-emerald-900 text-white px-4 py-1.5 rounded-full font-semibold transition-colors shadow-xs shrink-0 cursor-pointer active:scale-95"
             >
               Shop
-            </a>
+            </button>
 
             {/* Categories Dropdown */}
             <div className="relative shrink-0">
               <button
-                onClick={() => setIsCategoriesOpen(!isCategoriesOpen)}
-                className="flex items-center space-x-1 text-gray-700 hover:text-emerald-800 px-3 py-1.5 rounded-full hover:bg-white transition-colors"
+                type="button"
+                onClick={handleCategoriesHeaderClick}
+                className="flex items-center space-x-1 text-gray-700 hover:text-emerald-800 px-3 py-1.5 rounded-full hover:bg-white transition-colors cursor-pointer"
               >
                 <span>Categories</span>
                 <ChevronDown className="w-3.5 h-3.5 text-gray-500" />
               </button>
 
               {isCategoriesOpen && (
-                <div className="absolute top-full left-0 mt-2 w-56 bg-white rounded-2xl shadow-xl border border-gray-100 py-2 z-50 animate-in fade-in slide-in-from-top-2 duration-150">
+                <div className="absolute top-full left-0 mt-2 w-56 bg-white rounded-2xl shadow-xl border border-gray-100 py-2 z-50 animate-in fade-in slide-in-from-top-2 duration-150 max-h-80 overflow-y-auto">
                   {CATEGORIES.map((cat) => (
-                    <a
+                    <button
                       key={cat.id}
-                      href={`#${cat.id}`}
-                      onClick={() => setIsCategoriesOpen(false)}
-                      className="flex items-center justify-between px-4 py-2 hover:bg-emerald-50 text-gray-800 text-xs font-medium transition-colors"
+                      type="button"
+                      onClick={(e) => handleCategoryItemClick(cat.name, e)}
+                      className="w-full flex items-center justify-between px-4 py-2 hover:bg-emerald-50 text-gray-800 text-xs font-medium transition-colors text-left cursor-pointer"
                     >
                       <span>{cat.name}</span>
-                      <span className="text-[10px] bg-gray-100 text-gray-600 px-2 py-0.5 rounded-full">
+                      <span className="text-[10px] bg-gray-100 text-gray-600 px-2 py-0.5 rounded-full font-bold">
                         {cat.count}
                       </span>
-                    </a>
+                    </button>
                   ))}
                 </div>
               )}
             </div>
 
-            <a href="#deals" className="text-gray-700 hover:text-emerald-800 px-3 py-1.5 rounded-full hover:bg-white transition-colors shrink-0">
+            <button
+              type="button"
+              onClick={handleDealsClick}
+              className="text-gray-700 hover:text-emerald-800 px-3 py-1.5 rounded-full hover:bg-white transition-colors shrink-0 cursor-pointer"
+            >
               Deals
-            </a>
-            <a href="#fresh-produce" className="text-gray-700 hover:text-emerald-800 px-3 py-1.5 rounded-full hover:bg-white transition-colors shrink-0">
+            </button>
+            <button
+              type="button"
+              onClick={handleFreshProduceClick}
+              className="text-gray-700 hover:text-emerald-800 px-3 py-1.5 rounded-full hover:bg-white transition-colors shrink-0 cursor-pointer"
+            >
               Fresh Produce
-            </a>
-            <a href="#about" className="text-gray-700 hover:text-emerald-800 px-3 py-1.5 rounded-full hover:bg-white transition-colors shrink-0">
+            </button>
+            <button
+              type="button"
+              onClick={handleAboutClick}
+              className="text-gray-700 hover:text-emerald-800 px-3 py-1.5 rounded-full hover:bg-white transition-colors shrink-0 cursor-pointer"
+            >
               About
-            </a>
+            </button>
           </nav>
 
           {/* Right Side: Search Grocery Items Input Bar (Placed down of main header right above Hero Section) */}
