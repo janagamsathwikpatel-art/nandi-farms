@@ -26,7 +26,7 @@ import {
   PackageCheck,
   Navigation,
 } from 'lucide-react';
-import { CartItem } from '@/types';
+import { CartItem, Product } from '@/types';
 
 interface CartDrawerProps {
   isOpen: boolean;
@@ -35,7 +35,76 @@ interface CartDrawerProps {
   onUpdateQuantity: (productId: string, delta: number) => void;
   onRemoveItem: (productId: string) => void;
   onClearCart: () => void;
+  onAddToCart?: (product: Product) => void;
+  availableProducts?: Product[];
 }
+
+const DEFAULT_RECOMMENDED_PRODUCTS: Product[] = [
+  {
+    id: 'prod-dairy-2',
+    name: 'Pure Desi Cow Ghee (Bilona)',
+    category: 'Dairy',
+    farmer: 'Nandi Dairy Farms',
+    price: 650,
+    unit: 'jar (500ml)',
+    image: '/showcase-nandi-ghee.jpg',
+    isPopular: true,
+    isBestSeller: true,
+  },
+  {
+    id: 'prod-honey-1',
+    name: 'Wild Forest Raw Organic Honey',
+    category: 'Fresh Produce',
+    farmer: 'Nests of Nallamala',
+    price: 380,
+    unit: 'jar (500g)',
+    image: '/showcase-nandi-honey.jpg',
+    isPopular: true,
+    isBestSeller: true,
+  },
+  {
+    id: 'prod-eggs-1',
+    name: 'Farm Fresh Country Eggs',
+    category: 'Eggs',
+    farmer: 'Nandi Poultry',
+    price: 75,
+    unit: 'pack of 6',
+    image: '/eggs-category.png',
+    isPopular: true,
+    isBestSeller: true,
+  },
+  {
+    id: 'prod-oil-3',
+    name: 'Wood Pressed Mustard Oil (Kachi Ghani)',
+    category: 'Oils',
+    farmer: 'Nandi Oil Mills',
+    price: 195,
+    unit: 'bottle (1 L)',
+    image: '/sunflower-oil.png',
+    isPopular: true,
+  },
+  {
+    id: 'prod-dairy-3',
+    name: 'Farm Fresh Malai Paneer',
+    category: 'Dairy',
+    farmer: 'Nandi Dairy Farms',
+    price: 120,
+    unit: 'pack (200g)',
+    image: '/dairy-category.png',
+    isPopular: true,
+  },
+  {
+    id: 'prod-atta-1',
+    name: 'Stoneground Whole Wheat Chakki Atta',
+    category: 'Ravva',
+    farmer: 'Nandi Traditional Mills',
+    price: 260,
+    unit: 'bag (5 kg)',
+    image: '/ravva.png',
+    isPopular: true,
+    isBestSeller: true,
+  },
+];
 
 interface AppliedCoupon {
   code: string;
@@ -50,6 +119,8 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
   onUpdateQuantity,
   onRemoveItem,
   onClearCart,
+  onAddToCart,
+  availableProducts = [],
 }) => {
   // Navigation & Step State: 'cart' | 'payment_select' | 'qr_scanner' | 'order_complete'
   const [currentStep, setCurrentStep] = useState<'cart' | 'payment_select' | 'qr_scanner' | 'order_complete'>('cart');
@@ -108,6 +179,21 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
 
   // Estimated savings
   const totalSavings = Math.round(subtotal * 0.2) + (deliveryFee === 0 ? 40 : 0) + couponDiscount;
+
+  // Curated Reference/Recommended Products list
+  const recommendedList =
+    availableProducts && availableProducts.length > 0
+      ? availableProducts.filter((p) =>
+          [
+            'prod-dairy-2',
+            'prod-honey-1',
+            'prod-eggs-1',
+            'prod-oil-3',
+            'prod-dairy-3',
+            'prod-atta-1',
+          ].includes(p.id)
+        )
+      : DEFAULT_RECOMMENDED_PRODUCTS;
 
   // Handle coupon application
   const handleApplyCoupon = (manualCode?: string) => {
@@ -388,6 +474,92 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
                     <span className="text-[11px] font-black text-emerald-800 bg-white px-2.5 py-1 rounded-lg border border-emerald-200">
                       Direct Farm Source
                     </span>
+                  </div>
+
+                  {/* RECOMMENDED REFERENCE ITEMS TO BUY */}
+                  <div className="bg-white rounded-3xl border border-gray-200/90 p-5 sm:p-6 shadow-xs space-y-4">
+                    <div className="flex items-center justify-between pb-3 border-b border-gray-100">
+                      <div>
+                        <div className="flex items-center space-x-2">
+                          <span className="text-lg">✨</span>
+                          <h4 className="font-black text-base text-gray-900">
+                            Customers Also Added to Cart
+                          </h4>
+                          <span className="bg-emerald-100 text-emerald-900 text-[10px] font-black px-2 py-0.5 rounded-full">
+                            Top Fresh Picks
+                          </span>
+                        </div>
+                        <p className="text-xs text-gray-400 font-medium mt-0.5">
+                          Complete your daily grocery basket with farm-direct essentials
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 xl:grid-cols-6 gap-3 sm:gap-3.5">
+                      {recommendedList.map((prod) => {
+                        const inCartItem = cartItems.find((ci) => ci.product.id === prod.id);
+                        const qty = inCartItem ? inCartItem.quantity : 0;
+
+                        return (
+                          <div
+                            key={prod.id}
+                            className="bg-[#faf8f5] rounded-2xl border border-amber-200/70 p-3 flex flex-col justify-between hover:shadow-md transition-all group"
+                          >
+                            <div>
+                              <div className="w-full aspect-square rounded-xl bg-white overflow-hidden mb-2 border border-amber-100 flex items-center justify-center p-1 relative">
+                                <img
+                                  src={prod.image}
+                                  alt={prod.name}
+                                  className="w-full h-full object-contain group-hover:scale-105 transition-transform"
+                                />
+                              </div>
+                              <h5 className="font-extrabold text-xs text-gray-900 line-clamp-1" title={prod.name}>
+                                {prod.name}
+                              </h5>
+                              <p className="text-[10px] text-gray-500 font-medium mt-0.5 truncate">
+                                {prod.unit}
+                              </p>
+                            </div>
+
+                            <div className="mt-2.5 pt-2 border-t border-amber-100 flex items-center justify-between">
+                              <span className="font-black text-xs text-emerald-950">
+                                ₹{prod.price}
+                              </span>
+
+                              {qty === 0 ? (
+                                <button
+                                  type="button"
+                                  onClick={() => onAddToCart && onAddToCart(prod)}
+                                  className="bg-[#1b6b38] hover:bg-emerald-900 text-white text-[10px] font-black px-3 py-1 rounded-lg shadow-2xs transition active:scale-95 cursor-pointer"
+                                >
+                                  + ADD
+                                </button>
+                              ) : (
+                                <div className="flex items-center border border-emerald-600 bg-white rounded-lg px-1.5 py-0.5 shadow-2xs">
+                                  <button
+                                    type="button"
+                                    onClick={() => onUpdateQuantity(prod.id, -1)}
+                                    className="text-emerald-800 hover:text-emerald-950 p-0.5 cursor-pointer"
+                                  >
+                                    <Minus className="w-3 h-3 stroke-[2.5]" />
+                                  </button>
+                                  <span className="w-5 text-center font-black text-xs text-emerald-950">
+                                    {qty}
+                                  </span>
+                                  <button
+                                    type="button"
+                                    onClick={() => onUpdateQuantity(prod.id, 1)}
+                                    className="text-emerald-800 hover:text-emerald-950 p-0.5 cursor-pointer"
+                                  >
+                                    <Plus className="w-3 h-3 stroke-[2.5]" />
+                                  </button>
+                                </div>
+                              )}
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
                   </div>
 
                   {/* Farm Quality Guarantee Badge */}
