@@ -325,7 +325,7 @@ export default function Home() {
         <Footer onSelectCategory={handleSelectCategory} />
       </div>
 
-      {/* Slide-over Cart Drawer */}
+      {/* Full-Page Cart */}
       <CartDrawer
         isOpen={isCartOpen}
         onClose={() => setIsCartOpen(false)}
@@ -333,6 +333,8 @@ export default function Home() {
         onUpdateQuantity={handleUpdateQuantity}
         onRemoveItem={handleRemoveItem}
         onClearCart={handleClearCart}
+        onAddToCart={handleAddToCart}
+        availableProducts={PRODUCTS}
       />
 
       {/* Wishlist Drawer */}
