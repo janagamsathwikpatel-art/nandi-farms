@@ -191,7 +191,7 @@ export default function Home() {
   });
 
   return (
-    <div className="min-h-screen bg-[#faf9f4] text-gray-900 font-sans selection:bg-emerald-100 selection:text-emerald-900 relative overflow-x-hidden">
+    <div className="min-h-screen bg-[#f9f9f8] text-gray-900 font-sans selection:bg-emerald-100 selection:text-emerald-900 relative overflow-x-hidden">
       {/* Header Bar */}
       <Header
         cartCount={cartCount}
@@ -226,40 +226,9 @@ export default function Home() {
         </div>
       )}
 
-      {/* EXACT ORGANIC REFERENCE BACKGROUND LAYOUT (Matching media_1791545788364.png) */}
-      <div className="fixed inset-0 pointer-events-none select-none overflow-hidden z-0">
-        {/* Soft Organic Warm Cream Canvas Base */}
-        <div className="absolute inset-0 bg-[#faf9f4]" />
-
-        {/* 1. TOP-RIGHT ORGANIC SAGE GREEN BLOB (Matching media_1791545788364.png) */}
-        <svg
-          className="absolute top-0 right-0 w-[60vw] max-w-[900px] h-[75vh] max-h-[850px] pointer-events-none"
-          viewBox="0 0 600 600"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          preserveAspectRatio="none"
-        >
-          <path
-            d="M 220 0 C 130 180, 160 420, 600 560 L 600 0 Z"
-            fill="#e2eadd"
-            opacity="0.95"
-          />
-        </svg>
-
-        {/* 2. LOWER SECTION WARM SAND WAVE RIBBON (Matching media_1791545788364.png) */}
-        <svg
-          className="absolute bottom-[8vh] left-0 w-full h-[22vh] max-h-[260px] pointer-events-none"
-          viewBox="0 0 1440 200"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          preserveAspectRatio="none"
-        >
-          <path
-            d="M 0 60 C 320 120, 640 140, 960 90 C 1200 50, 1360 80, 1440 100 L 1440 170 C 1360 150, 1200 120, 960 160 C 640 210, 320 180, 0 120 Z"
-            fill="#f4ead5"
-            opacity="0.9"
-          />
-        </svg>
+      {/* OPTION 2: PRISTINE MODERN GROCERY MINIMALIST BACKGROUND (Zepto & Country Delight Style) */}
+      <div className="fixed inset-0 pointer-events-none select-none overflow-hidden z-0 bg-[#f9f9f8]">
+        <div className="absolute inset-0 bg-gradient-to-b from-white via-[#f9f9f8] to-[#f4f4f2]" />
       </div>
 
       {/* Main Continuous Sections */}
