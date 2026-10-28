@@ -4,105 +4,96 @@ import React, { useRef, useState } from "react";
 import { ChevronLeft, ChevronRight, Plus, Minus, Star, ShoppingBag, ArrowRight, ShieldCheck } from "lucide-react";
 import { NANDI_PRODUCTS, NandiProduct } from "@/data/nandiProducts";
 
-export interface CategoryItem {
+export interface QuickCategory {
   id: string;
   title: string;
   image: string;
+  productKey: string;
+  badge?: string;
 }
 
-export const HUMPY_CATEGORIES: CategoryItem[] = [
+export const QUICK_CATEGORIES: QuickCategory[] = [
   {
     id: "flour",
-    title: "Flour",
-    image: "/images/categories/flour.png",
+    title: "Atta, Flours & Dals",
+    image: "/images/quick_categories/c9.webp",
+    productKey: "flour",
+    badge: "Stone Ground",
   },
   {
-    id: "ghee",
-    title: "Ghee",
-    image: "/images/categories/ghee.png",
+    id: "ghee-oil",
+    title: "Oils, Ghee & Masala",
+    image: "/images/quick_categories/c10.webp",
+    productKey: "ghee",
+    badge: "Wood Pressed",
   },
   {
     id: "dairy",
-    title: "Dairy",
-    image: "/images/categories/dairy.png",
+    title: "Dairy, Bread & Eggs",
+    image: "/images/quick_categories/c2.webp",
+    productKey: "dairy",
+    badge: "Farm Fresh",
   },
   {
-    id: "desi-milk",
-    title: "Desi Milk",
-    image: "/images/categories/desi-milk.png",
-  },
-  {
-    id: "eggs",
-    title: "Eggs",
-    image: "/images/categories/eggs.png",
-  },
-  {
-    id: "dal",
-    title: "Dal",
-    image: "/images/categories/dal.png",
-  },
-  {
-    id: "sweeteners",
-    title: "Sweeteners",
-    image: "/images/categories/sweeteners.png",
-  },
-  {
-    id: "oil",
-    title: "Oil",
-    image: "/images/categories/oil.png",
+    id: "veggies",
+    title: "Fruits & Vegetables",
+    image: "/images/quick_categories/c1.webp",
+    productKey: "flour", // or vegetable items
+    badge: "Morning Pluck",
   },
   {
     id: "honey",
-    title: "Honey",
-    image: "/images/categories/honey.png",
+    title: "Honey & Sweeteners",
+    image: "/images/quick_categories/c8.webp",
+    productKey: "honey",
+    badge: "100% Raw",
   },
   {
-    id: "dry-fruits",
-    title: "Dry Fruits",
-    image: "/images/categories/dry-fruits.png",
+    id: "bakery",
+    title: "Bakery & Biscuits",
+    image: "/images/quick_categories/c7.webp",
+    productKey: "bread",
   },
   {
-    id: "seeds",
-    title: "Seeds",
-    image: "/images/categories/seeds.png",
+    id: "tea",
+    title: "Tea & Health Drinks",
+    image: "/images/quick_categories/c6.webp",
+    productKey: "spices",
   },
   {
-    id: "rice",
-    title: "Rice",
-    image: "/images/categories/rice.png",
-  },
-  {
-    id: "spices",
-    title: "Spices",
-    image: "/images/categories/spices.png",
-  },
-  {
-    id: "millet",
-    title: "Millet",
-    image: "/images/categories/millet.png",
-  },
-  {
-    id: "bread",
-    title: "Bread",
-    image: "/images/categories/bread.png",
+    id: "organic",
+    title: "Organic & Healthy Living",
+    image: "/images/quick_categories/c14.webp",
+    productKey: "sweeteners",
+    badge: "Certified",
   },
 ];
 
-export default function HumpyCategorySection() {
+export default function ShopByCategorySection() {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
-  // Default to 'flour' matching user reference image
+  // Default to first category
   const [activeCategoryId, setActiveCategoryId] = useState<string>("flour");
   const [cart, setCart] = useState<{ [productId: string]: number }>({});
   const [basketToast, setBasketToast] = useState<string | null>(null);
 
   const activeCategory =
-    HUMPY_CATEGORIES.find((c) => c.id === activeCategoryId) || HUMPY_CATEGORIES[0];
+    QUICK_CATEGORIES.find((c) => c.id === activeCategoryId) || QUICK_CATEGORIES[0];
 
-  const productsForCategory: NandiProduct[] = NANDI_PRODUCTS[activeCategoryId] || [];
+  // Get products based on active category
+  const productsForCategory: NandiProduct[] =
+    activeCategoryId === "ghee-oil"
+      ? [...(NANDI_PRODUCTS.ghee || []), ...(NANDI_PRODUCTS.oil || [])]
+      : activeCategoryId === "dairy"
+      ? [...(NANDI_PRODUCTS.dairy || []), ...(NANDI_PRODUCTS["desi-milk"] || []), ...(NANDI_PRODUCTS.eggs || [])]
+      : activeCategoryId === "flour"
+      ? [...(NANDI_PRODUCTS.flour || []), ...(NANDI_PRODUCTS.dal || [])]
+      : activeCategoryId === "honey"
+      ? [...(NANDI_PRODUCTS.honey || []), ...(NANDI_PRODUCTS.sweeteners || [])]
+      : NANDI_PRODUCTS[activeCategory.productKey] || [];
 
   const scroll = (direction: "left" | "right") => {
     if (scrollContainerRef.current) {
-      const scrollAmount = direction === "left" ? -300 : 300;
+      const scrollAmount = direction === "left" ? -340 : 340;
       scrollContainerRef.current.scrollBy({ left: scrollAmount, behavior: "smooth" });
     }
   };
@@ -148,7 +139,7 @@ export default function HumpyCategorySection() {
           <div className="mt-2.5 mx-auto w-16 h-[2px] bg-[#d89b4f] rounded-full" />
         </div>
 
-        {/* Carousel Container with Left/Right Navigation Arrows */}
+        {/* Category Carousel / Grid with Left/Right Nav Arrows */}
         <div className="relative group mb-10">
           {/* Left Arrow Button */}
           <button
@@ -168,49 +159,43 @@ export default function HumpyCategorySection() {
             <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
           </button>
 
-          {/* Horizontally Scrollable Category Row */}
+          {/* Category Cards Slider (Zepto & Blinkit Style) */}
           <div
             ref={scrollContainerRef}
-            className="stories-insta-row flex items-center gap-4 sm:gap-6 lg:gap-8 overflow-x-auto no-scrollbar scroll-smooth px-2 py-4"
+            className="stories-insta-row flex items-stretch gap-3.5 sm:gap-5 overflow-x-auto no-scrollbar scroll-smooth px-2 py-4"
           >
-            {HUMPY_CATEGORIES.map((cat) => {
+            {QUICK_CATEGORIES.map((cat) => {
               const isActive = activeCategoryId === cat.id;
               return (
                 <div
                   key={cat.id}
                   onClick={() => setActiveCategoryId(cat.id)}
-                  className="story-item flex flex-col items-center flex-shrink-0 cursor-pointer group/item select-none text-center"
+                  className={`story-item flex flex-col items-center flex-shrink-0 cursor-pointer select-none text-center p-2.5 sm:p-3 rounded-2xl transition-all duration-300 w-28 sm:w-36 lg:w-40 border ${
+                    isActive
+                      ? "bg-[#faf6ee] border-[#003628] ring-2 ring-[#003628] shadow-md transform -translate-y-1"
+                      : "bg-[#fcfbf9] border-[#e8e2d4] hover:border-[#b87a38] hover:bg-white hover:shadow-md"
+                  }`}
                 >
-                  {/* Circular Avatar Frame: Dark green ring highlight when active (matching screenshot) */}
-                  <div
-                    className={`story-border p-[3.5px] rounded-full transition-all duration-300 ${
-                      isActive
-                        ? "ring-3 ring-[#003628] ring-offset-2 scale-105"
-                        : "hover:scale-105"
-                    }`}
-                  >
-                    <div
-                      className={`story-avatar w-22 h-22 sm:w-26 sm:h-26 lg:w-28 lg:h-28 rounded-full overflow-hidden bg-[#faf8f5] border-2 transition-all flex items-center justify-center p-2.5 ${
-                        isActive
-                          ? "border-[#003628] shadow-md bg-white"
-                          : "border-[#e6e0d3] group-hover/item:border-[#003628] shadow-xs"
-                      }`}
-                    >
-                      <img
-                        src={cat.image}
-                        alt={cat.title}
-                        className="w-full h-full object-contain transition-transform duration-300 group-hover/item:scale-110"
-                        loading="lazy"
-                      />
-                    </div>
+                  {/* Category Image Box */}
+                  <div className="relative w-full aspect-[4/3] rounded-xl overflow-hidden mb-2.5 bg-white flex items-center justify-center p-1">
+                    <img
+                      src={cat.image}
+                      alt={cat.title}
+                      className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105"
+                      loading="lazy"
+                    />
+
+                    {cat.badge && (
+                      <div className="absolute top-1 right-1 bg-[#162e1e] text-[#e8c07e] text-[8px] font-bold px-1.5 py-0.5 rounded shadow-xs">
+                        {cat.badge}
+                      </div>
+                    )}
                   </div>
 
                   {/* Category Title */}
                   <span
-                    className={`story-item-title mt-2 text-xs sm:text-sm font-semibold transition-colors tracking-tight ${
-                      isActive
-                        ? "text-[#003628] font-bold"
-                        : "text-[#2e3e31] group-hover/item:text-[#003628]"
+                    className={`story-item-title text-xs sm:text-sm font-semibold leading-tight line-clamp-2 transition-colors ${
+                      isActive ? "text-[#003628] font-bold" : "text-[#2e3e31]"
                     }`}
                   >
                     {cat.title}
@@ -229,11 +214,11 @@ export default function HumpyCategorySection() {
                 <span>Nandi Farms Harvest</span>
               </div>
               <h3 className="font-serif text-xl sm:text-2xl md:text-3xl font-bold text-[#183420]">
-                {activeCategory.title} Collection
+                {activeCategory.title}
               </h3>
             </div>
             <p className="text-xs sm:text-sm text-[#677769]">
-              Showing {productsForCategory.length} authentic farm-fresh {activeCategory.title.toLowerCase()} products
+              Showing {productsForCategory.length} authentic farm-fresh items
             </p>
           </div>
 
@@ -347,7 +332,7 @@ export default function HumpyCategorySection() {
                               className="p-1 hover:bg-[#004e3a] rounded transition-colors active:scale-90"
                               aria-label="Increase quantity"
                             >
-                              <Plus className="w-3 h-3" />
+                              <Plus className="w-3.5 h-3.5" />
                             </button>
                           </div>
                         )}
