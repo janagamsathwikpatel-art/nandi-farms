@@ -90,13 +90,13 @@ export const CustomerReviews: React.FC = () => {
             {visibleItems.map((item) => (
               <div
                 key={item.id}
-                className="bg-[#f7f3e8] border border-gray-700/70 rounded-xl p-5 sm:p-6 flex flex-col justify-between hover:shadow-xl transition-all duration-300 min-h-[220px] sm:min-h-[240px]"
+                className="bg-white border border-[#E5E9DE] rounded-xl p-5 sm:p-6 flex flex-col justify-between hover:shadow-xl transition-all duration-300 min-h-[220px] sm:min-h-[240px]"
               >
                 <div>
-                  {/* 5 Gold Stars at Top Left */}
-                  <div className="flex text-amber-500 space-x-1 mb-4">
+                  {/* 5 Butter Yellow Stars at Top Left */}
+                  <div className="flex text-[#F3D778] space-x-1 mb-4">
                     {[...Array(item.rating)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
+                      <Star key={i} className="w-4 h-4 fill-[#F3D778] text-[#F3D778]" />
                     ))}
                   </div>
 

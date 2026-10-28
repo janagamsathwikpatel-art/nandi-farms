@@ -81,12 +81,12 @@ export const TodaysFreshPicks: React.FC<TodaysFreshPicksProps> = ({
     <section id="todays-picks" className="w-full max-w-none bg-transparent pt-1 sm:pt-2 pb-1 sm:pb-2 px-4 sm:px-8 lg:px-12 mt-1 sm:mt-2 mb-0 relative">
       <div className="max-w-7xl mx-auto">
         
-        {/* Centered Section Header Matching media_1791546178599.png */}
+        {/* Centered Section Header */}
         <div className="text-center mb-6 sm:mb-8">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#1b6b38] tracking-tight font-serif inline-block">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#1E3024] tracking-tight font-serif inline-block">
             Today&apos;s Fresh Picks
           </h2>
-          <p className="text-xs sm:text-sm text-gray-500 font-medium mt-1.5">
+          <p className="text-xs sm:text-sm text-[#5E7264] font-medium mt-1.5">
             Farm-harvested daily &amp; delivered fresh directly to your doorstep
           </p>
         </div>
@@ -107,16 +107,16 @@ export const TodaysFreshPicks: React.FC<TodaysFreshPicksProps> = ({
             return (
               <div
                 key={prod.id}
-                className="bg-[#f7f3e8] border border-amber-200/60 rounded-2xl sm:rounded-3xl p-3 sm:p-3.5 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group relative"
+                className="bg-white border border-[#E5E9DE] rounded-2xl sm:rounded-3xl p-3 sm:p-3.5 shadow-xs hover:shadow-xl transition-all duration-300 flex flex-col justify-between group relative"
               >
                 <div>
                   {/* Top Badges */}
                   <div className="flex items-center justify-between mb-2 z-10 relative">
-                    <span className="bg-amber-400 text-gray-950 font-black text-[9px] sm:text-[10px] px-1.5 py-0.5 sm:px-2 rounded-full shadow-2xs">
+                    <span className="bg-[#F3D778] text-[#4A3800] font-black text-[9px] sm:text-[10px] px-1.5 py-0.5 sm:px-2 rounded-full shadow-2xs">
                       {discountPercent} OFF
                     </span>
 
-                    <span className="bg-[#1a8e4c] text-white font-extrabold text-[9px] sm:text-[10px] px-2 py-0.5 sm:px-2.5 rounded-full shadow-2xs">
+                    <span className="bg-[#28563D] text-white font-extrabold text-[9px] sm:text-[10px] px-2 py-0.5 sm:px-2.5 rounded-full shadow-2xs">
                       Bestseller
                     </span>
                   </div>
@@ -215,12 +215,12 @@ export const TodaysFreshPicks: React.FC<TodaysFreshPicksProps> = ({
                         e.stopPropagation();
                         onAddToCart({ ...prod, price: currentPrice, unit: currentUnit });
                       }}
-                      className="w-full bg-[#1a8e4c] hover:bg-emerald-800 text-white font-extrabold text-xs sm:text-sm py-2 sm:py-2.5 px-3 rounded-full shadow-md hover:shadow-emerald-700/30 transition-all duration-200 cursor-pointer text-center block active:scale-95"
+                      className="w-full bg-[#28563D] hover:bg-[#1E422F] text-white font-extrabold text-xs sm:text-sm py-2 sm:py-2.5 px-3 rounded-full shadow-md hover:shadow-emerald-950/30 transition-all duration-200 cursor-pointer text-center block active:scale-95"
                     >
                       Add to Cart
                     </button>
                   ) : (
-                    <div className="w-full bg-[#1a8e4c] text-white rounded-full py-1 sm:py-1.5 px-2.5 sm:px-3 flex items-center justify-between shadow-md">
+                    <div className="w-full bg-[#28563D] text-white rounded-full py-1 sm:py-1.5 px-2.5 sm:px-3 flex items-center justify-between shadow-md">
                       <button
                         type="button"
                         onClick={(e) => {
@@ -256,7 +256,7 @@ export const TodaysFreshPicks: React.FC<TodaysFreshPicksProps> = ({
           <button
             type="button"
             onClick={onShowAll}
-            className="inline-flex items-center space-x-2.5 bg-[#1a8e4c] hover:bg-emerald-800 text-white font-extrabold text-sm sm:text-base px-8 py-3.5 rounded-full shadow-lg hover:shadow-emerald-700/30 transition-all duration-200 cursor-pointer group hover:scale-105 active:scale-95"
+            className="inline-flex items-center space-x-2.5 bg-[#28563D] hover:bg-[#1E422F] text-white font-extrabold text-sm sm:text-base px-8 py-3.5 rounded-full shadow-lg hover:shadow-emerald-950/30 transition-all duration-200 cursor-pointer group hover:scale-105 active:scale-95"
           >
             <span>View All Products</span>
             <div className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center group-hover:translate-x-1 transition-transform">
