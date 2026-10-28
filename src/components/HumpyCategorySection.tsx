@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useRef, useState } from "react";
-import { ChevronLeft, ChevronRight, Plus, Minus, Star, ShoppingBag, ArrowRight, Zap, CheckCircle2 } from "lucide-react";
-import { NANDI_PRODUCTS, NandiProduct } from "@/data/nandiProducts";
+import { ChevronLeft, ChevronRight, Plus, Minus, Star, ShoppingBag, ArrowRight, Zap, CheckCircle2, Layers } from "lucide-react";
+import { NANDI_PRODUCTS, ALL_NANDI_PRODUCTS, NandiProduct } from "@/data/nandiProducts";
 
 export interface CategoryItem {
   id: string;
@@ -90,15 +90,20 @@ export const HUMPY_CATEGORIES: CategoryItem[] = [
 
 export default function HumpyCategorySection() {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
-  // Default to 'flour' matching user reference screenshot
-  const [activeCategoryId, setActiveCategoryId] = useState<string>("flour");
+  // Default to 'all' or 'flour' - let's support viewing all items or specific category
+  const [activeCategoryId, setActiveCategoryId] = useState<string>("all");
   const [cart, setCart] = useState<{ [productId: string]: number }>({});
   const [basketToast, setBasketToast] = useState<string | null>(null);
 
   const activeCategory =
-    HUMPY_CATEGORIES.find((c) => c.id === activeCategoryId) || HUMPY_CATEGORIES[0];
+    activeCategoryId === "all"
+      ? { id: "all", title: "All Farm Harvest", image: "" }
+      : HUMPY_CATEGORIES.find((c) => c.id === activeCategoryId) || HUMPY_CATEGORIES[0];
 
-  const productsForCategory: NandiProduct[] = NANDI_PRODUCTS[activeCategoryId] || [];
+  const displayedProducts: NandiProduct[] =
+    activeCategoryId === "all"
+      ? ALL_NANDI_PRODUCTS
+      : NANDI_PRODUCTS[activeCategoryId] || [];
 
   const scroll = (direction: "left" | "right") => {
     if (scrollContainerRef.current) {
@@ -130,11 +135,8 @@ export default function HumpyCategorySection() {
 
   const totalItemsCount = Object.values(cart).reduce((sum, q) => sum + q, 0);
   const totalPrice = Object.entries(cart).reduce((sum, [id, qty]) => {
-    for (const catProds of Object.values(NANDI_PRODUCTS)) {
-      const p = catProds.find((prod) => prod.id === id);
-      if (p) return sum + p.price * qty;
-    }
-    return sum;
+    const p = ALL_NANDI_PRODUCTS.find((prod) => prod.id === id);
+    return sum + (p ? p.price * qty : 0);
   }, 0);
 
   return (
@@ -223,23 +225,39 @@ export default function HumpyCategorySection() {
 
         {/* Compact Zepto/Blinkit Style Product Grid (Decreased Size) */}
         <div className="mt-6 pt-6 border-t border-[#f0ece2]">
-          {/* Header Row */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+          {/* Header & Filter Controls Row */}
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-5">
             <div>
               <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#162e1e]/10 text-[11px] font-semibold text-[#162e1e] mb-1">
                 <span>Nandi Farms Harvest</span>
               </div>
               <h3 className="font-serif text-lg sm:text-xl md:text-2xl font-bold text-[#183420]">
-                {activeCategory.title} Collection
+                {activeCategory.title}
               </h3>
             </div>
-            <p className="text-xs text-[#677769]">
-              Showing {productsForCategory.length} packaged grocery items
-            </p>
+
+            {/* Quick Catalog Filter Pills */}
+            <div className="flex items-center gap-2 flex-wrap">
+              <button
+                onClick={() => setActiveCategoryId("all")}
+                className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold transition-all cursor-pointer ${
+                  activeCategoryId === "all"
+                    ? "bg-[#003628] text-white shadow-xs"
+                    : "bg-[#f4efe6] text-[#334636] hover:bg-[#eae3d5]"
+                }`}
+              >
+                <Layers className="w-3 h-3" />
+                <span>All Items ({ALL_NANDI_PRODUCTS.length})</span>
+              </button>
+
+              <span className="text-xs text-[#677769]">
+                Showing {displayedProducts.length} items
+              </span>
+            </div>
           </div>
 
           {/* Compact Product Grid: 5 to 6 Columns on Desktop (Zepto / Blinkit Layout) */}
-          {productsForCategory.length === 0 ? (
+          {displayedProducts.length === 0 ? (
             <div className="text-center py-10 bg-[#faf8f5] rounded-xl border border-dashed border-[#dcd6c8]">
               <p className="font-serif text-base text-[#183420] font-medium">
                 Fresh harvest for {activeCategory.title} coming soon!
@@ -250,7 +268,7 @@ export default function HumpyCategorySection() {
             </div>
           ) : (
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-2.5 sm:gap-3.5">
-              {productsForCategory.map((product) => {
+              {displayedProducts.map((product) => {
                 const qty = cart[product.id] || 0;
 
                 return (
