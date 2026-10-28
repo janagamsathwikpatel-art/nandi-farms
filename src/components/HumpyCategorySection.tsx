@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useRef, useState } from "react";
-import { ChevronLeft, ChevronRight, Plus, Minus, Star, ShoppingBag, ArrowRight, Zap, CheckCircle2, Layers } from "lucide-react";
+import { ChevronLeft, ChevronRight, Plus, Minus, Star, ShoppingBag, ArrowRight, Zap, CheckCircle2 } from "lucide-react";
 import { NANDI_PRODUCTS, ALL_NANDI_PRODUCTS, NandiProduct } from "@/data/nandiProducts";
 
 export interface CategoryItem {
@@ -11,6 +11,11 @@ export interface CategoryItem {
 }
 
 export const HUMPY_CATEGORIES: CategoryItem[] = [
+  {
+    id: "all",
+    title: "All",
+    image: "/images/categories/all.png",
+  },
   {
     id: "flour",
     title: "Flour",
@@ -90,15 +95,13 @@ export const HUMPY_CATEGORIES: CategoryItem[] = [
 
 export default function HumpyCategorySection() {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
-  // Default to 'all' or 'flour' - let's support viewing all items or specific category
+  // Default to 'all' positioned 1st in the category bar
   const [activeCategoryId, setActiveCategoryId] = useState<string>("all");
   const [cart, setCart] = useState<{ [productId: string]: number }>({});
   const [basketToast, setBasketToast] = useState<string | null>(null);
 
   const activeCategory =
-    activeCategoryId === "all"
-      ? { id: "all", title: "All Farm Harvest", image: "" }
-      : HUMPY_CATEGORIES.find((c) => c.id === activeCategoryId) || HUMPY_CATEGORIES[0];
+    HUMPY_CATEGORIES.find((c) => c.id === activeCategoryId) || HUMPY_CATEGORIES[0];
 
   const displayedProducts: NandiProduct[] =
     activeCategoryId === "all"
@@ -142,7 +145,7 @@ export default function HumpyCategorySection() {
   return (
     <section id="categories" className="stories-insta-sec bg-[#ffffff] py-10 sm:py-14 relative border-b border-[#eeebe2]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Heading matching Image 1 */}
+        {/* Section Heading matching Reference */}
         <div className="text-center mb-6 sm:mb-8">
           <h2 className="primary-title text-2xl sm:text-3xl md:text-4xl font-bold text-[#003628] tracking-tight">
             Shop By Category
@@ -150,7 +153,7 @@ export default function HumpyCategorySection() {
           <div className="mt-2.5 mx-auto w-16 h-[2px] bg-[#d89b4f] rounded-full" />
         </div>
 
-        {/* Carousel Container matching Image 1 exactly (unchanged) */}
+        {/* Carousel Container matching Screenshot exactly */}
         <div className="relative group mb-8">
           {/* Left Navigation Arrow */}
           <button
@@ -170,7 +173,7 @@ export default function HumpyCategorySection() {
             <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
           </button>
 
-          {/* Horizontally Scrollable Story Row (Image 1 Unchanged) */}
+          {/* Horizontally Scrollable Story Row with 'All' positioned 1st */}
           <div
             ref={scrollContainerRef}
             className="stories-insta-row flex items-center gap-4 sm:gap-6 lg:gap-8 overflow-x-auto no-scrollbar scroll-smooth px-2 py-3"
@@ -183,27 +186,29 @@ export default function HumpyCategorySection() {
                   onClick={() => setActiveCategoryId(cat.id)}
                   className="story-item flex flex-col items-center flex-shrink-0 cursor-pointer group/item select-none text-center"
                 >
-                  {/* Circular Avatar with Active Dark Green Ring (Exact Image 1) */}
+                  {/* Concentric Double Green Ring matching Screenshot Pixel-for-Pixel */}
                   <div
-                    className={`story-border p-[3.5px] rounded-full transition-all duration-300 ${
+                    className={`story-border p-1 rounded-full transition-all duration-300 ${
                       isActive
-                        ? "ring-3 ring-[#003628] ring-offset-2 scale-105"
-                        : "hover:scale-105"
+                        ? "border-2 border-[#003628] scale-105"
+                        : "border-2 border-transparent hover:scale-105"
                     }`}
                   >
                     <div
-                      className={`story-avatar w-20 h-20 sm:w-24 sm:h-24 lg:w-26 lg:h-26 rounded-full overflow-hidden bg-[#faf8f5] border-2 transition-all flex items-center justify-center p-2.5 ${
+                      className={`story-avatar-wrap p-0.5 rounded-full transition-all duration-300 ${
                         isActive
-                          ? "border-[#003628] shadow-md bg-white"
-                          : "border-[#e6e0d3] group-hover/item:border-[#003628] shadow-xs"
+                          ? "border-2 border-[#003628] bg-white shadow-sm"
+                          : "border border-[#e6e0d3] bg-[#faf8f5] group-hover/item:border-[#003628]/40"
                       }`}
                     >
-                      <img
-                        src={cat.image}
-                        alt={cat.title}
-                        className="w-full h-full object-contain transition-transform duration-300 group-hover/item:scale-110"
-                        loading="lazy"
-                      />
+                      <div className="story-avatar w-18 h-18 sm:w-22 sm:h-22 lg:w-24 lg:h-24 rounded-full overflow-hidden flex items-center justify-center p-2 bg-gradient-to-br from-[#faf8f5] to-[#f2ede4]">
+                        <img
+                          src={cat.image}
+                          alt={cat.title}
+                          className="w-full h-full object-contain transition-transform duration-300 group-hover/item:scale-110"
+                          loading="lazy"
+                        />
+                      </div>
                     </div>
                   </div>
 
@@ -223,40 +228,25 @@ export default function HumpyCategorySection() {
           </div>
         </div>
 
-        {/* Compact Zepto/Blinkit Style Product Grid (Decreased Size) */}
+        {/* Compact Zepto/Blinkit Style Product Grid */}
         <div className="mt-6 pt-6 border-t border-[#f0ece2]">
-          {/* Header & Filter Controls Row */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-5">
+          {/* Header Row */}
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
             <div>
               <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#162e1e]/10 text-[11px] font-semibold text-[#162e1e] mb-1">
                 <span>Nandi Farms Harvest</span>
               </div>
               <h3 className="font-serif text-lg sm:text-xl md:text-2xl font-bold text-[#183420]">
-                {activeCategory.title}
+                {activeCategory.id === "all" ? "All Farm Harvest" : `${activeCategory.title} Collection`}
               </h3>
             </div>
 
-            {/* Quick Catalog Filter Pills */}
-            <div className="flex items-center gap-2 flex-wrap">
-              <button
-                onClick={() => setActiveCategoryId("all")}
-                className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold transition-all cursor-pointer ${
-                  activeCategoryId === "all"
-                    ? "bg-[#003628] text-white shadow-xs"
-                    : "bg-[#f4efe6] text-[#334636] hover:bg-[#eae3d5]"
-                }`}
-              >
-                <Layers className="w-3 h-3" />
-                <span>All Items ({ALL_NANDI_PRODUCTS.length})</span>
-              </button>
-
-              <span className="text-xs text-[#677769]">
-                Showing {displayedProducts.length} items
-              </span>
-            </div>
+            <p className="text-xs text-[#677769]">
+              Showing {displayedProducts.length} items
+            </p>
           </div>
 
-          {/* Compact Product Grid: 5 to 6 Columns on Desktop (Zepto / Blinkit Layout) */}
+          {/* Compact Product Grid: 5 to 6 Columns on Desktop */}
           {displayedProducts.length === 0 ? (
             <div className="text-center py-10 bg-[#faf8f5] rounded-xl border border-dashed border-[#dcd6c8]">
               <p className="font-serif text-base text-[#183420] font-medium">
