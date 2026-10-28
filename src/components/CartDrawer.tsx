@@ -503,10 +503,10 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
                         return (
                           <div
                             key={prod.id}
-                            className="bg-[#faf8f5] rounded-2xl border border-amber-200/70 p-3 flex flex-col justify-between hover:shadow-md transition-all group"
+                            className="bg-white rounded-2xl border border-[#E5E9DE] p-3 flex flex-col justify-between hover:shadow-md transition-all group"
                           >
                             <div>
-                              <div className="w-full aspect-square rounded-xl bg-white overflow-hidden mb-2 border border-amber-100 flex items-center justify-center p-1 relative">
+                              <div className="w-full aspect-square rounded-xl bg-[#F7F5ED] overflow-hidden mb-2 border border-gray-100 flex items-center justify-center p-1 relative">
                                 <img
                                   src={prod.image}
                                   alt={prod.name}
@@ -521,8 +521,8 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
                               </p>
                             </div>
 
-                            <div className="mt-2.5 pt-2 border-t border-amber-100 flex items-center justify-between">
-                              <span className="font-black text-xs text-emerald-950">
+                            <div className="mt-2.5 pt-2 border-t border-gray-100 flex items-center justify-between">
+                              <span className="font-black text-xs text-gray-900">
                                 ₹{prod.price}
                               </span>
 
@@ -530,12 +530,12 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
                                 <button
                                   type="button"
                                   onClick={() => onAddToCart && onAddToCart(prod)}
-                                  className="bg-[#1b6b38] hover:bg-emerald-900 text-white text-[10px] font-black px-3 py-1 rounded-lg shadow-2xs transition active:scale-95 cursor-pointer"
+                                  className="bg-[#28563D] hover:bg-[#1E422F] text-white text-[10px] font-black px-3 py-1 rounded-lg shadow-2xs transition active:scale-95 cursor-pointer"
                                 >
                                   + ADD
                                 </button>
                               ) : (
-                                <div className="flex items-center border border-emerald-600 bg-white rounded-lg px-1.5 py-0.5 shadow-2xs">
+                                <div className="flex items-center border border-[#28563D] bg-white rounded-lg px-1.5 py-0.5 shadow-2xs">
                                   <button
                                     type="button"
                                     onClick={() => onUpdateQuantity(prod.id, -1)}
@@ -727,7 +727,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
                     {/* Proceed Button */}
                     <button
                       onClick={handleProceedToPaymentSelect}
-                      className="w-full bg-[#07362a] hover:bg-[#05271e] text-white py-3.5 px-4 rounded-2xl font-black text-sm flex items-center justify-center space-x-2 shadow-md hover:shadow-xl transition-all cursor-pointer"
+                      className="w-full bg-[#28563D] hover:bg-[#1E422F] text-white py-3.5 px-4 rounded-2xl font-black text-sm flex items-center justify-center space-x-2 shadow-md hover:shadow-xl transition-all cursor-pointer"
                     >
                       <span>Proceed to Select Payment</span>
                       <ArrowRight className="w-4 h-4" />

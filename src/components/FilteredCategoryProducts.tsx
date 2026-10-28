@@ -160,7 +160,7 @@ export const FilteredCategoryProducts: React.FC<FilteredCategoryProductsProps> =
                   />
 
                   {/* Top Discount Badge */}
-                  <div className="absolute top-2 left-2 bg-[#ff3269] text-white text-[9px] sm:text-[10px] font-black px-2 py-0.5 rounded-full shadow-xs uppercase tracking-wide">
+                  <div className="absolute top-2 left-2 bg-[#F3D778] text-[#4A3800] text-[9px] sm:text-[10px] font-black px-2 py-0.5 rounded-full shadow-xs uppercase tracking-wide">
                     {discountPercent} OFF
                   </div>
 
@@ -253,12 +253,12 @@ export const FilteredCategoryProducts: React.FC<FilteredCategoryProductsProps> =
                         e.stopPropagation();
                         onAddToCart({ ...prod, price: currentPrice, unit: currentUnit });
                       }}
-                      className="w-full bg-[#1a8e4c] hover:bg-emerald-800 text-white font-extrabold text-xs sm:text-sm py-2 sm:py-2.5 px-3 rounded-full shadow-md hover:shadow-emerald-700/30 transition-all duration-200 cursor-pointer text-center block active:scale-95"
+                      className="w-full bg-[#28563D] hover:bg-[#1E422F] text-white font-extrabold text-xs sm:text-sm py-2 sm:py-2.5 px-3 rounded-full shadow-md hover:shadow-emerald-950/30 transition-all duration-200 cursor-pointer text-center block active:scale-95"
                     >
                       Add to Cart
                     </button>
                   ) : (
-                    <div className="w-full bg-[#1a8e4c] text-white rounded-full py-1 sm:py-1.5 px-2.5 sm:px-3 flex items-center justify-between shadow-md">
+                    <div className="w-full bg-[#28563D] text-white rounded-full py-1 sm:py-1.5 px-2.5 sm:px-3 flex items-center justify-between shadow-md">
                       <button
                         type="button"
                         onClick={(e) => {

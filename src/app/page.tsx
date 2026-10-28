@@ -191,7 +191,7 @@ export default function Home() {
   });
 
   return (
-    <div className="min-h-screen bg-[#f9f9f8] text-gray-900 font-sans selection:bg-emerald-100 selection:text-emerald-900 relative overflow-x-hidden">
+    <div className="min-h-screen bg-[#F7F5ED] text-gray-900 font-sans selection:bg-[#E2EBDD] selection:text-[#1E3024] relative overflow-x-hidden">
       {/* Header Bar */}
       <Header
         cartCount={cartCount}
@@ -226,9 +226,9 @@ export default function Home() {
         </div>
       )}
 
-      {/* OPTION 2: PRISTINE MODERN GROCERY MINIMALIST BACKGROUND (Zepto & Country Delight Style) */}
-      <div className="fixed inset-0 pointer-events-none select-none overflow-hidden z-0 bg-[#f9f9f8]">
-        <div className="absolute inset-0 bg-gradient-to-b from-white via-[#f9f9f8] to-[#f4f4f2]" />
+      {/* Warm Cream Natural Canvas Background (#F7F5ED) */}
+      <div className="fixed inset-0 pointer-events-none select-none overflow-hidden z-0 bg-[#F7F5ED]">
+        <div className="absolute inset-0 bg-gradient-to-b from-[#FDFBF7] via-[#F7F5ED] to-[#F2EFE5]" />
       </div>
 
       {/* Main Continuous Sections */}

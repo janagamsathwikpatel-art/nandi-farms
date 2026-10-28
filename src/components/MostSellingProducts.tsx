@@ -68,12 +68,12 @@ export const MostSellingProducts: React.FC<MostSellingProductsProps> = ({
   return (
     <section className="w-full max-w-none px-4 sm:px-8 lg:px-12 pt-2 sm:pt-4 pb-1 sm:pb-2 mt-4 mb-0">
       <div className="max-w-7xl mx-auto">
-        {/* Centered Section Header Matching media_1791546178599.png */}
+        {/* Centered Section Header */}
         <div className="text-center mb-8 sm:mb-10">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#1b6b38] font-serif tracking-tight">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#1E3024] font-serif tracking-tight">
             🔥 Most Selling Products
           </h2>
-          <p className="text-xs sm:text-sm font-medium text-gray-500 font-sans mt-2">
+          <p className="text-xs sm:text-sm font-medium text-[#5E7264] font-sans mt-2">
             Top-rated bestseller staples high in demand
           </p>
         </div>
@@ -94,16 +94,16 @@ export const MostSellingProducts: React.FC<MostSellingProductsProps> = ({
             return (
               <div
                 key={prod.id}
-                className="bg-[#f7f3e8] border border-amber-200/60 rounded-2xl sm:rounded-3xl p-3 sm:p-3.5 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group relative"
+                className="bg-white border border-[#E5E9DE] rounded-2xl sm:rounded-3xl p-3 sm:p-3.5 shadow-xs hover:shadow-xl transition-all duration-300 flex flex-col justify-between group relative"
               >
                 <div>
                   {/* Top Badges */}
                   <div className="flex items-center justify-between mb-2 z-10 relative">
-                    <span className="bg-amber-400 text-gray-950 font-black text-[9px] sm:text-[10px] px-1.5 py-0.5 sm:px-2 rounded-full shadow-2xs">
+                    <span className="bg-[#F3D778] text-[#4A3800] font-black text-[9px] sm:text-[10px] px-1.5 py-0.5 sm:px-2 rounded-full shadow-2xs">
                       {discountPercent} OFF
                     </span>
 
-                    <span className="bg-[#1a8e4c] text-white font-extrabold text-[9px] sm:text-[10px] px-2 py-0.5 sm:px-2.5 rounded-full shadow-2xs">
+                    <span className="bg-[#28563D] text-white font-extrabold text-[9px] sm:text-[10px] px-2 py-0.5 sm:px-2.5 rounded-full shadow-2xs">
                       Bestseller
                     </span>
                   </div>
@@ -202,12 +202,12 @@ export const MostSellingProducts: React.FC<MostSellingProductsProps> = ({
                         e.stopPropagation();
                         onAddToCart({ ...prod, price: currentPrice, unit: currentUnit });
                       }}
-                      className="w-full bg-[#1a8e4c] hover:bg-emerald-800 text-white font-extrabold text-xs sm:text-sm py-2.5 px-4 rounded-full shadow-md hover:shadow-emerald-700/30 transition-all duration-200 cursor-pointer text-center block active:scale-95"
+                      className="w-full bg-[#28563D] hover:bg-[#1E422F] text-white font-extrabold text-xs sm:text-sm py-2.5 px-4 rounded-full shadow-md hover:shadow-emerald-950/30 transition-all duration-200 cursor-pointer text-center block active:scale-95"
                     >
                       Add to Cart
                     </button>
                   ) : (
-                    <div className="w-full bg-[#1a8e4c] text-white rounded-full py-1.5 px-3 flex items-center justify-between shadow-md">
+                    <div className="w-full bg-[#28563D] text-white rounded-full py-1.5 px-3 flex items-center justify-between shadow-md">
                       <button
                         type="button"
                         onClick={(e) => {

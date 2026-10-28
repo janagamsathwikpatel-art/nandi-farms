@@ -143,11 +143,11 @@ export const Header: React.FC<HeaderProps> = ({
         {/* Center: Brand Logo (NandiFarms) */}
         <div className="flex items-center justify-center">
           <a href="#" className="flex items-center space-x-2 group">
-            <div className="w-9 h-9 rounded-full bg-emerald-600 flex items-center justify-center text-white font-bold text-lg shadow-md group-hover:scale-105 transition-transform">
-              <Leaf className="w-5 h-5 fill-emerald-100 text-emerald-600" />
+            <div className="w-9 h-9 rounded-full bg-[#28563D] flex items-center justify-center text-white font-bold text-lg shadow-md group-hover:scale-105 transition-transform">
+              <Leaf className="w-5 h-5 fill-emerald-100 text-[#28563D]" />
             </div>
             <span className="text-2xl sm:text-3xl font-extrabold tracking-tight text-gray-900 font-serif">
-              Nandi<span className="text-emerald-600 font-sans font-bold">Farms</span>
+              Nandi<span className="text-[#28563D] font-sans font-bold">Farms</span>
             </span>
           </a>
         </div>
@@ -157,7 +157,7 @@ export const Header: React.FC<HeaderProps> = ({
           {/* Loved / Wishlist Button */}
           <button 
             onClick={onOpenWishlist}
-            className="flex items-center space-x-1.5 text-xs font-semibold text-gray-700 hover:text-emerald-700 transition-colors py-1.5 px-2.5 rounded-full hover:bg-gray-50 cursor-pointer"
+            className="flex items-center space-x-1.5 text-xs font-semibold text-gray-700 hover:text-[#28563D] transition-colors py-1.5 px-2.5 rounded-full hover:bg-gray-50 cursor-pointer"
             title="Wishlist"
           >
             <div className="relative">
@@ -171,14 +171,14 @@ export const Header: React.FC<HeaderProps> = ({
             <span className="hidden sm:inline tracking-wider uppercase text-[11px] font-bold">LOVED</span>
           </button>
 
-          {/* Cart Drawer Trigger Button */}
+          {/* Cart Drawer Trigger Button in Forest Green (#28563D) */}
           <button
             onClick={onOpenCart}
-            className="flex items-center space-x-2 bg-emerald-50 hover:bg-emerald-100 text-emerald-900 px-3.5 py-1.5 rounded-full border border-emerald-200/70 transition-all font-semibold text-xs shadow-xs hover:shadow-sm"
+            className="flex items-center space-x-2 bg-[#28563D] hover:bg-[#1E422F] text-white px-3.5 py-1.5 rounded-full border border-[#28563D] transition-all font-semibold text-xs shadow-xs hover:shadow-sm cursor-pointer"
           >
-            <ShoppingBag className="w-4 h-4 text-emerald-700" />
+            <ShoppingBag className="w-4 h-4 text-white" />
             <span className="tracking-wider uppercase text-[11px] font-bold">CART</span>
-            <span className="bg-emerald-800 text-white w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold">
+            <span className="bg-[#F3D778] text-[#4A3800] w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-black">
               {cartCount}
             </span>
           </button>
