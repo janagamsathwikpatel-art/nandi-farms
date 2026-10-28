@@ -1,117 +1,92 @@
 "use client";
 
 import React, { useRef, useState } from "react";
-import { ChevronLeft, ChevronRight, Plus, Minus, Star, ShoppingBag, ArrowRight } from "lucide-react";
-import humpyProductsData from "@/data/humpyProducts.json";
+import { ChevronLeft, ChevronRight, Plus, Minus, Star, ShoppingBag, ArrowRight, ShieldCheck } from "lucide-react";
+import { NANDI_PRODUCTS, NandiProduct } from "@/data/nandiProducts";
 
 export interface CategoryItem {
   id: string;
   title: string;
   image: string;
-  collectionKey: string;
 }
 
 export const HUMPY_CATEGORIES: CategoryItem[] = [
   {
-    id: "dairy",
-    title: "Dairy",
-    image: "/images/categories/dairy.png",
-    collectionKey: "dairy-products",
-  },
-  {
-    id: "desi-milk",
-    title: "Desi Milk",
-    image: "/images/categories/desi-milk.png",
-    collectionKey: "dairy-products",
-  },
-  {
-    id: "eggs",
-    title: "Eggs",
-    image: "/images/categories/eggs.png",
-    collectionKey: "organic-eggs",
-  },
-  {
     id: "flour",
     title: "Flour",
     image: "/images/categories/flour.png",
-    collectionKey: "desi-grain-flours",
   },
   {
     id: "ghee",
     title: "Ghee",
     image: "/images/categories/ghee.png",
-    collectionKey: "desi-cow-ghee",
+  },
+  {
+    id: "dairy",
+    title: "Dairy",
+    image: "/images/categories/dairy.png",
+  },
+  {
+    id: "desi-milk",
+    title: "Desi Milk",
+    image: "/images/categories/desi-milk.png",
+  },
+  {
+    id: "eggs",
+    title: "Eggs",
+    image: "/images/categories/eggs.png",
   },
   {
     id: "dal",
     title: "Dal",
     image: "/images/categories/dal.png",
-    collectionKey: "organic-dals",
   },
   {
     id: "sweeteners",
     title: "Sweeteners",
     image: "/images/categories/sweeteners.png",
-    collectionKey: "natural-sweeteners",
   },
   {
     id: "oil",
     title: "Oil",
     image: "/images/categories/oil.png",
-    collectionKey: "cold-pressed-oils",
-  },
-  {
-    id: "dry-fruits",
-    title: "Dry Fruits",
-    image: "/images/categories/dry-fruits.png",
-    collectionKey: "dry-fruits",
-  },
-  {
-    id: "seeds",
-    title: "Seeds",
-    image: "/images/categories/seeds.png",
-    collectionKey: "organic-seeds",
-  },
-  {
-    id: "rice",
-    title: "Rice",
-    image: "/images/categories/rice.png",
-    collectionKey: "organic-rice",
-  },
-  {
-    id: "spices",
-    title: "Spices",
-    image: "/images/categories/spices.png",
-    collectionKey: "organic-masala-spices",
-  },
-  {
-    id: "millet",
-    title: "Millet",
-    image: "/images/categories/millet.png",
-    collectionKey: "organic-millets",
-  },
-  {
-    id: "bread",
-    title: "Bread",
-    image: "/images/categories/bread.png",
-    collectionKey: "healthy-breads",
   },
   {
     id: "honey",
     title: "Honey",
     image: "/images/categories/honey.png",
-    collectionKey: "natural-honeys",
+  },
+  {
+    id: "dry-fruits",
+    title: "Dry Fruits",
+    image: "/images/categories/dry-fruits.png",
+  },
+  {
+    id: "seeds",
+    title: "Seeds",
+    image: "/images/categories/seeds.png",
+  },
+  {
+    id: "rice",
+    title: "Rice",
+    image: "/images/categories/rice.png",
+  },
+  {
+    id: "spices",
+    title: "Spices",
+    image: "/images/categories/spices.png",
+  },
+  {
+    id: "millet",
+    title: "Millet",
+    image: "/images/categories/millet.png",
+  },
+  {
+    id: "bread",
+    title: "Bread",
+    image: "/images/categories/bread.png",
   },
 ];
-
-interface Product {
-  id: string;
-  title: string;
-  price: number;
-  compare_at_price: number;
-  image: string | null;
-  weight: string;
-}
 
 export default function HumpyCategorySection() {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
@@ -121,10 +96,9 @@ export default function HumpyCategorySection() {
   const [basketToast, setBasketToast] = useState<string | null>(null);
 
   const activeCategory =
-    HUMPY_CATEGORIES.find((c) => c.id === activeCategoryId) || HUMPY_CATEGORIES[3];
+    HUMPY_CATEGORIES.find((c) => c.id === activeCategoryId) || HUMPY_CATEGORIES[0];
 
-  const productsForCategory: Product[] =
-    (humpyProductsData as Record<string, Product[]>)[activeCategory.collectionKey] || [];
+  const productsForCategory: NandiProduct[] = NANDI_PRODUCTS[activeCategoryId] || [];
 
   const scroll = (direction: "left" | "right") => {
     if (scrollContainerRef.current) {
@@ -133,7 +107,7 @@ export default function HumpyCategorySection() {
     }
   };
 
-  const handleAddToCart = (product: Product) => {
+  const handleAddToCart = (product: NandiProduct) => {
     setCart((prev) => ({
       ...prev,
       [product.id]: (prev[product.id] || 0) + 1,
@@ -156,8 +130,7 @@ export default function HumpyCategorySection() {
 
   const totalItemsCount = Object.values(cart).reduce((sum, q) => sum + q, 0);
   const totalPrice = Object.entries(cart).reduce((sum, [id, qty]) => {
-    // find across all categories
-    for (const catProds of Object.values(humpyProductsData as Record<string, Product[]>)) {
+    for (const catProds of Object.values(NANDI_PRODUCTS)) {
       const p = catProds.find((prod) => prod.id === id);
       if (p) return sum + p.price * qty;
     }
@@ -167,7 +140,7 @@ export default function HumpyCategorySection() {
   return (
     <section id="categories" className="stories-insta-sec bg-[#ffffff] py-12 sm:py-16 relative border-b border-[#eeebe2]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Heading matching Humpy Farms */}
+        {/* Section Heading matching reference */}
         <div className="text-center mb-8 sm:mb-10">
           <h2 className="primary-title text-2xl sm:text-3xl md:text-4xl font-bold text-[#003628] tracking-tight">
             Shop By Category
@@ -253,7 +226,7 @@ export default function HumpyCategorySection() {
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6">
             <div>
               <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#162e1e]/10 text-xs font-semibold text-[#162e1e] mb-1.5">
-                <span>Selected Category</span>
+                <span>Nandi Farms Harvest</span>
               </div>
               <h3 className="font-serif text-xl sm:text-2xl md:text-3xl font-bold text-[#183420]">
                 {activeCategory.title} Collection
@@ -271,19 +244,13 @@ export default function HumpyCategorySection() {
                 Fresh harvest for {activeCategory.title} coming soon!
               </p>
               <p className="text-xs text-[#718173] mt-1">
-                Our farmers are preparing the next batch. Check other categories above!
+                Our farmers at Nandi Farms are preparing the next batch. Check other categories above!
               </p>
             </div>
           ) : (
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
               {productsForCategory.map((product) => {
                 const qty = cart[product.id] || 0;
-                const discount =
-                  product.compare_at_price > product.price
-                    ? Math.round(
-                        ((product.compare_at_price - product.price) / product.compare_at_price) * 100
-                      )
-                    : 0;
 
                 return (
                   <div
@@ -291,49 +258,51 @@ export default function HumpyCategorySection() {
                     className="group bg-white rounded-2xl border border-[#e8e2d4] hover:border-[#003628] overflow-hidden flex flex-col justify-between p-3.5 sm:p-4 transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
                   >
                     <div>
-                      {/* Product Image */}
+                      {/* Product Image Box */}
                       <div className="relative w-full aspect-square rounded-xl overflow-hidden bg-[#faf8f5] mb-3 border border-[#f0ece3]">
-                        {product.image ? (
-                          <img
-                            src={product.image}
-                            alt={product.title}
-                            className="w-full h-full object-contain p-2 transition-transform duration-500 group-hover:scale-105"
-                            loading="lazy"
-                          />
-                        ) : (
-                          <div className="w-full h-full flex items-center justify-center text-xs text-[#8c9c8e]">
-                            No image
-                          </div>
-                        )}
+                        <img
+                          src={product.image}
+                          alt={product.title}
+                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                          loading="lazy"
+                        />
 
                         {/* Discount Badge */}
-                        {discount > 0 && (
+                        {product.discount && (
                           <div className="absolute top-2.5 left-2.5 bg-[#b87a38] text-white text-[10px] font-bold px-2 py-0.5 rounded-md shadow-sm">
-                            {discount}% OFF
+                            {product.discount}
                           </div>
                         )}
 
-                        {/* Organic Mark */}
-                        <div className="absolute top-2.5 right-2.5 bg-white/90 backdrop-blur-xs text-[#003628] text-[9px] font-bold px-1.5 py-0.5 rounded shadow-xs border border-[#e2dbce]">
-                          100% Organic
+                        {/* Tag */}
+                        {product.tag && (
+                          <div className="absolute bottom-2.5 left-2.5 bg-[#003628] text-[#e8c07e] text-[9px] font-bold px-2 py-0.5 rounded-full shadow-xs">
+                            {product.tag}
+                          </div>
+                        )}
+
+                        {/* Nandi Farms Organic Badge */}
+                        <div className="absolute top-2.5 right-2.5 bg-white/95 backdrop-blur-xs text-[#003628] text-[9px] font-bold px-2 py-0.5 rounded shadow-xs border border-[#e2dbce] flex items-center gap-1">
+                          <ShieldCheck className="w-3 h-3 text-emerald-600" />
+                          <span>100% Organic</span>
                         </div>
                       </div>
 
-                      {/* Weight / Pack */}
-                      <span className="text-[11px] font-semibold text-[#738374] block uppercase tracking-wider">
+                      {/* Weight / Pack Specification */}
+                      <span className="text-[11px] font-semibold text-[#738374] block uppercase tracking-wider mb-1">
                         {product.weight}
                       </span>
 
                       {/* Product Title */}
-                      <h4 className="font-semibold text-xs sm:text-sm text-[#183420] mt-1 line-clamp-2 leading-snug group-hover:text-[#b87a38] transition-colors">
+                      <h4 className="font-semibold text-xs sm:text-sm text-[#183420] line-clamp-2 leading-snug group-hover:text-[#b87a38] transition-colors">
                         {product.title}
                       </h4>
 
                       {/* Rating */}
                       <div className="flex items-center gap-1 mt-1.5 text-xs text-[#9c7a28]">
                         <Star className="w-3.5 h-3.5 fill-[#f59e0b] text-[#f59e0b]" />
-                        <span className="text-xs font-bold text-[#183420]">4.9</span>
-                        <span className="text-[10px] text-[#738374]">(98)</span>
+                        <span className="text-xs font-bold text-[#183420]">{product.rating}</span>
+                        <span className="text-[10px] text-[#738374]">({product.reviewsCount})</span>
                       </div>
                     </div>
 
@@ -344,9 +313,9 @@ export default function HumpyCategorySection() {
                           <span className="font-bold text-sm sm:text-base text-[#183420]">
                             ₹{product.price}
                           </span>
-                          {product.compare_at_price > product.price && (
+                          {product.originalPrice > product.price && (
                             <span className="text-xs text-[#91a093] line-through">
-                              ₹{product.compare_at_price}
+                              ₹{product.originalPrice}
                             </span>
                           )}
                         </div>
