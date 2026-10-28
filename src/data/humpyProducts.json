@@ -1,0 +1,494 @@
+{
+  "desi-grain-flours": [
+    {
+      "id": "8347071775003",
+      "title": "Khapli Wheat Flour",
+      "price": 131.0,
+      "compare_at_price": 175.0,
+      "image": "https://cdn.shopify.com/s/files/1/0777/5843/1515/files/Flours-15_487e8d74-ca44-43c9-ab1d-afe35171f137.jpg?v=1740494604",
+      "weight": "1 KG"
+    },
+    {
+      "id": "8347066269979",
+      "title": "Multi Millet Mix Flour",
+      "price": 135.0,
+      "compare_at_price": 180.0,
+      "image": "https://cdn.shopify.com/s/files/1/0777/5843/1515/files/Flours-36.jpg?v=1740494636",
+      "weight": "1 KG"
+    },
+    {
+      "id": "8347070955803",
+      "title": "Lokwan Wheat Flour",
+      "price": 135.0,
+      "compare_at_price": 180.0,
+      "image": "https://cdn.shopify.com/s/files/1/0777/5843/1515/files/Flours-29.jpg?v=1740494720",
+      "weight": "1 KG"
+    },
+    {
+      "id": "8347064434971",
+      "title": "Jowar flour",
+      "price": 203.0,
+      "compare_at_price": 270.0,
+      "image": "https://cdn.shopify.com/s/files/1/0777/5843/1515/files/Flours-22.jpg?v=1740494665",
+      "weight": "1 KG"
+    },
+    {
+      "id": "8347069350171",
+      "title": "Ragi (Nachni) Flour",
+      "price": 131.0,
+      "compare_at_price": 175.0,
+      "image": "https://cdn.shopify.com/s/files/1/0777/5843/1515/files/Flours-43.jpg?v=1740494691",
+      "weight": "1 KG"
+    },
+    {
+      "id": "8347062993179",
+      "title": "Besan",
+      "price": 203.0,
+      "compare_at_price": 270.0,
+      "image": "https://cdn.shopify.com/s/files/1/0777/5843/1515/files/Flours-08.jpg?v=1740494801",
+      "weight": "1 KG"
+    }
+  ],
+  "dairy-products": [
+    {
+      "id": "8346855899419",
+      "title": "Desi Cow Paneer",
+      "price": 126.0,
+      "compare_at_price": 170.0,
+      "image": "https://cdn.shopify.com/s/files/1/0777/5843/1515/files/CopyofListImages-PaneerNew.jpg?v=1783759940",
+      "weight": "200 Grams"
+    },
+    {
+      "id": "8346854588699",
+      "title": "Desi Cow Cheese- Plain Cheese",
+      "price": 220.0,
+      "compare_at_price": 295.0,
+      "image": "https://cdn.shopify.com/s/files/1/0777/5843/1515/files/Cheese-07.jpg?v=1716282100",
+      "weight": "200 Grams"
+    },
+    {
+      "id": "8346853081371",
+      "title": "Desi Cow Cheese- Garlic Cheese",
+      "price": 220.0,
+      "compare_at_price": 295.0,
+      "image": "https://cdn.shopify.com/s/files/1/0777/5843/1515/files/Cheese-09.jpg?v=1716281428",
+      "weight": "200 Grams"
+    },
+    {
+      "id": "10533580767515",
+      "title": "A2 Paneer - Buy 2 Get 1 Free",
+      "price": 340.0,
+      "compare_at_price": 170.0,
+      "image": "https://cdn.shopify.com/s/files/1/0777/5843/1515/files/Paneer_4500x4500_3b98e2d9-878b-4364-8d35-6b0aab2b2efb.png?v=1792218672",
+      "weight": "400 Grams"
+    }
+  ],
+  "organic-eggs": [
+    {
+      "id": "9629945856283",
+      "title": "Antibiotics Free Eggs",
+      "price": 95.0,
+      "compare_at_price": 125.0,
+      "image": "https://cdn.shopify.com/s/files/1/0777/5843/1515/files/List_Images-45_2.jpg?v=1723914315",
+      "weight": "500g"
+    }
+  ],
+  "desi-cow-ghee": [
+    {
+      "id": "8346914259227",
+      "title": "Vedic Bilona Desi Cow Ghee",
+      "price": 1299.0,
+      "compare_at_price": 1599.0,
+      "image": "https://cdn.shopify.com/s/files/1/0777/5843/1515/files/Ghees-11_902cfd96-a6c6-45a3-a1f6-f885fcdc18cb.jpg?v=1725689126",
+      "weight": "500 ML / Vedic Bilona"
+    },
+    {
+      "id": "8347014791451",
+      "title": "Creamy Bilona Desi Cow Ghee",
+      "price": 960.0,
+      "compare_at_price": 1199.0,
+      "image": "https://cdn.shopify.com/s/files/1/0777/5843/1515/files/Ghees-02_1.jpg?v=1716202153",
+      "weight": "500 ML / Creamy Bilona"
+    },
+    {
+      "id": "10533578375451",
+      "title": "Vedic Bilona Ghee - Buy 1 Get 1 Free",
+      "price": 1599.0,
+      "compare_at_price": 1599.0,
+      "image": "https://cdn.shopify.com/s/files/1/0777/5843/1515/files/VedicBilona_4500x4500_53c39129-f55a-4efb-a178-31da49a46ae1.png?v=1792218365",
+      "weight": "500 ML / Vedic Bilona"
+    },
+    {
+      "id": "10533574476059",
+      "title": "Creamy Bilona Ghee - Buy 1 Get 1 Free",
+      "price": 1199.0,
+      "compare_at_price": 1199.0,
+      "image": "https://cdn.shopify.com/s/files/1/0777/5843/1515/files/DesiGhee_4500x4500_85c55d36-c8c7-4501-9000-3713eb8d2d7f.png?v=1792218522",
+      "weight": "500 ML / Creamy Bilona"
+    }
+  ],
+  "organic-dals": [
+    {
+      "id": "8347041988891",
+      "title": "Toor Dal",
+      "price": 236.0,
+      "compare_at_price": 315.0,
+      "image": "https://cdn.shopify.com/s/files/1/0777/5843/1515/files/Dals-24.jpg?v=1716275737",
+      "weight": "1 KG"
+    },
+    {
+      "id": "8347044872475",
+      "title": "Moong Dal",
+      "price": 247.0,
+      "compare_at_price": 330.0,
+      "image": "https://cdn.shopify.com/s/files/1/0777/5843/1515/files/Dals-17.jpg?v=1716275306",
+      "weight": "1 KG"
+    },
+    {
+      "id": "8347049689371",
+      "title": "Chana Dal",
+      "price": 169.0,
+      "compare_at_price": 225.0,
+      "image": "https://cdn.shopify.com/s/files/1/0777/5843/1515/files/Dals-02.jpg?v=1716275002",
+      "weight": "1 KG"
+    },
+    {
+      "id": "8347046740251",
+      "title": "Masoor Dal",
+      "price": 203.0,
+      "compare_at_price": 270.0,
+      "image": "https://cdn.shopify.com/s/files/1/0777/5843/1515/files/Dals-10.jpg?v=1716275536",
+      "weight": "1 KG"
+    },
+    {
+      "id": "8347039498523",
+      "title": "Urad Dal Whole",
+      "price": 263.0,
+      "compare_at_price": 350.0,
+      "image": "https://cdn.shopify.com/s/files/1/0777/5843/1515/files/Dals-31.jpg?v=1716275923",
+      "weight": "1 KG"
+    }
+  ],
+  "natural-sweeteners": [
+    {
+      "id": "8346955383067",
+      "title": "Jaggery Powder",
+      "price": 195.0,
+      "compare_at_price": 260.0,
+      "image": "https://cdn.shopify.com/s/files/1/0777/5843/1515/files/Sweetners-09.jpg?v=1728474027",
+      "weight": "1 KG"
+    },
+    {
+      "id": "9659634712859",
+      "title": "Brown Sugar",
+      "price": 150.0,
+      "compare_at_price": 200.0,
+      "image": "https://cdn.shopify.com/s/files/1/0777/5843/1515/files/Sweetners-02.jpg?v=1740490255",
+      "weight": "1 KG"
+    },
+    {
+      "id": "10534655623451",
+      "title": "Jaggery Powder - Buy 1 Get 1 Free",
+      "price": 260.0,
+      "compare_at_price": 260.0,
+      "image": "https://cdn.shopify.com/s/files/1/0777/5843/1515/files/JaggeryPowder_4500x4500_5adc0830-f956-4b14-9bb7-b5e0d0a116df.png?v=1792221553",
+      "weight": "1 KG"
+    }
+  ],
+  "cold-pressed-oils": [
+    {
+      "id": "8346930413851",
+      "title": "Black Mustard (Mohri) Oil",
+      "price": 412.0,
+      "compare_at_price": 550.0,
+      "image": "https://cdn.shopify.com/s/files/1/0777/5843/1515/files/Oils-11.jpg?v=1716277203",
+      "weight": "1 LTR"
+    },
+    {
+      "id": "8346914160923",
+      "title": "Groundnut Oil",
+      "price": 450.0,
+      "compare_at_price": 600.0,
+      "image": "https://cdn.shopify.com/s/files/1/0777/5843/1515/files/Oils-38.jpg?v=1716278140",
+      "weight": "1 LTR"
+    },
+    {
+      "id": "8346925728027",
+      "title": "Sesame (Til) Oil",
+      "price": 563.0,
+      "compare_at_price": 750.0,
+      "image": "https://cdn.shopify.com/s/files/1/0777/5843/1515/files/Oils-20.jpg?v=1716277406",
+      "weight": "1 LTR"
+    },
+    {
+      "id": "8346910228763",
+      "title": "Coconut Oil",
+      "price": 975.0,
+      "compare_at_price": 1299.0,
+      "image": "https://cdn.shopify.com/s/files/1/0777/5843/1515/files/Oils-02.jpg?v=1716276996",
+      "weight": "1 LTR"
+    },
+    {
+      "id": "10533587910939",
+      "title": "Groundnut Oil - Buy 1 Get 1 Free",
+      "price": 600.0,
+      "compare_at_price": 600.0,
+      "image": "https://cdn.shopify.com/s/files/1/0777/5843/1515/files/GroundnutOil_4500x4500_7bb72a30-2ad6-4ab5-953c-e3f0258d582d.png?v=1792219716",
+      "weight": "1 LTR"
+    },
+    {
+      "id": "10533585912091",
+      "title": "Sesame Oil - Buy 1 Get 1 Free",
+      "price": 750.0,
+      "compare_at_price": 750.0,
+      "image": "https://cdn.shopify.com/s/files/1/0777/5843/1515/files/Sesame_4500x4500_39692f4b-4577-465e-94dc-0a18b69c8e75.png?v=1792219567",
+      "weight": "1 LTR"
+    }
+  ],
+  "natural-honeys": [
+    {
+      "id": "8347000439067",
+      "title": "Wild Forest Natural Honey",
+      "price": 360.0,
+      "compare_at_price": 480.0,
+      "image": "https://cdn.shopify.com/s/files/1/0777/5843/1515/files/Honey-10.jpg?v=1716280465",
+      "weight": "500 Grams"
+    },
+    {
+      "id": "8346921697563",
+      "title": "Tulsi Natural Honey",
+      "price": 488.0,
+      "compare_at_price": 650.0,
+      "image": "https://cdn.shopify.com/s/files/1/0777/5843/1515/files/Honey-26.jpg?v=1716281003",
+      "weight": "500  Grams"
+    },
+    {
+      "id": "8346955907355",
+      "title": "Multi Flora Natural Honey",
+      "price": 510.0,
+      "compare_at_price": 680.0,
+      "image": "https://cdn.shopify.com/s/files/1/0777/5843/1515/files/Honey-02.jpg?v=1716279981",
+      "weight": "500 Grams"
+    },
+    {
+      "id": "8346991657243",
+      "title": "Lychee Natural Honey",
+      "price": 487.0,
+      "compare_at_price": 650.0,
+      "image": "https://cdn.shopify.com/s/files/1/0777/5843/1515/files/Honey-18.jpg?v=1716280680",
+      "weight": "500 Grams"
+    },
+    {
+      "id": "10534818709787",
+      "title": "Wild Forest Natural Honey - Buy 1 Get 1 Free",
+      "price": 380.0,
+      "compare_at_price": 380.0,
+      "image": "https://cdn.shopify.com/s/files/1/0777/5843/1515/files/WildFlowerHoney_4500x4500_03e9b89d-03ee-4b4c-afa8-56b4767e3f42.png?v=1792228569",
+      "weight": "300 Grams"
+    },
+    {
+      "id": "10534813237531",
+      "title": "Multi Flora Natural Honey - Buy 1 Get 1 Free",
+      "price": 380.0,
+      "compare_at_price": 380.0,
+      "image": "https://cdn.shopify.com/s/files/1/0777/5843/1515/files/MultiFloraHoney_4500x4500_4fd938e3-b300-4045-991f-11bfce5c060b.png?v=1792228422",
+      "weight": "300 Grams"
+    }
+  ],
+  "organic-rice": [
+    {
+      "id": "8347020263707",
+      "title": "Poha",
+      "price": 64.0,
+      "compare_at_price": 85.0,
+      "image": "https://cdn.shopify.com/s/files/1/0777/5843/1515/files/Breakfast-01.jpg?v=1740495397",
+      "weight": "500 Grams"
+    },
+    {
+      "id": "8347036254491",
+      "title": "Sona Masoori Rice",
+      "price": 105.0,
+      "compare_at_price": 140.0,
+      "image": "https://cdn.shopify.com/s/files/1/0777/5843/1515/files/Rices-22.jpg?v=1740491344",
+      "weight": "1 KG"
+    },
+    {
+      "id": "8347031666971",
+      "title": "White Basmati Rice",
+      "price": 225.0,
+      "compare_at_price": 300.0,
+      "image": "https://cdn.shopify.com/s/files/1/0777/5843/1515/files/Rices-01.jpg?v=1740491285",
+      "weight": "1 KG"
+    },
+    {
+      "id": "8347034222875",
+      "title": "Black Rice",
+      "price": 428.0,
+      "compare_at_price": 570.0,
+      "image": "https://cdn.shopify.com/s/files/1/0777/5843/1515/files/Rices-08.jpg?v=1740491477",
+      "weight": "1 KG"
+    }
+  ],
+  "dry-fruits": [
+    {
+      "id": "8358615023899",
+      "title": "Desi Cow's Milk (Glass Bottle)",
+      "price": 1530.0,
+      "compare_at_price": 1650.0,
+      "image": "https://cdn.shopify.com/s/files/1/0777/5843/1515/files/CopyofListImages-08New.jpg?v=1783759381",
+      "weight": "15L / Farm Fresh"
+    },
+    {
+      "id": "8346914259227",
+      "title": "Vedic Bilona Desi Cow Ghee",
+      "price": 1299.0,
+      "compare_at_price": 1599.0,
+      "image": "https://cdn.shopify.com/s/files/1/0777/5843/1515/files/Ghees-11_902cfd96-a6c6-45a3-a1f6-f885fcdc18cb.jpg?v=1725689126",
+      "weight": "500 ML / Vedic Bilona"
+    },
+    {
+      "id": "9629945856283",
+      "title": "Antibiotics Free Eggs",
+      "price": 95.0,
+      "compare_at_price": 125.0,
+      "image": "https://cdn.shopify.com/s/files/1/0777/5843/1515/files/List_Images-45_2.jpg?v=1723914315",
+      "weight": "500g"
+    },
+    {
+      "id": "8433284448539",
+      "title": "Desi Cow Milk (Pouch)",
+      "price": 1470.0,
+      "compare_at_price": 1470.0,
+      "image": "https://cdn.shopify.com/s/files/1/0777/5843/1515/files/CopyofListImages-New.jpg?v=1783759309",
+      "weight": "15L / Pasteurized"
+    },
+    {
+      "id": "8347014791451",
+      "title": "Creamy Bilona Desi Cow Ghee",
+      "price": 960.0,
+      "compare_at_price": 1199.0,
+      "image": "https://cdn.shopify.com/s/files/1/0777/5843/1515/files/Ghees-02_1.jpg?v=1716202153",
+      "weight": "500 ML / Creamy Bilona"
+    },
+    {
+      "id": "8346855899419",
+      "title": "Desi Cow Paneer",
+      "price": 126.0,
+      "compare_at_price": 170.0,
+      "image": "https://cdn.shopify.com/s/files/1/0777/5843/1515/files/CopyofListImages-PaneerNew.jpg?v=1783759940",
+      "weight": "200 Grams"
+    }
+  ],
+  "organic-seeds": [
+    {
+      "id": "8797643637019",
+      "title": "Chia Seeds",
+      "price": 289.0,
+      "compare_at_price": 289.0,
+      "image": "https://cdn.shopify.com/s/files/1/0777/5843/1515/files/Seeds-01.jpg?v=1740557524",
+      "weight": "250 gm"
+    },
+    {
+      "id": "8797489889563",
+      "title": "Peanuts",
+      "price": 340.0,
+      "compare_at_price": 340.0,
+      "image": "https://cdn.shopify.com/s/files/1/0777/5843/1515/files/Seeds-15.jpg?v=1740725651",
+      "weight": "1 kg"
+    },
+    {
+      "id": "8347065254171",
+      "title": "Flax Seeds",
+      "price": 240.0,
+      "compare_at_price": 240.0,
+      "image": "https://cdn.shopify.com/s/files/1/0777/5843/1515/files/Seeds-43.jpg?v=1740725869",
+      "weight": "500 Grams"
+    }
+  ],
+  "organic-masala-spices": [
+    {
+      "id": "8347020624155",
+      "title": "Turmeric Powder",
+      "price": 100.0,
+      "compare_at_price": 100.0,
+      "image": "https://cdn.shopify.com/s/files/1/0777/5843/1515/files/Spices-43.jpg?v=1740490487",
+      "weight": "200 Grams"
+    },
+    {
+      "id": "8347017052443",
+      "title": "Cumin Seeds (Jeera)",
+      "price": 165.0,
+      "compare_at_price": 220.0,
+      "image": "https://cdn.shopify.com/s/files/1/0777/5843/1515/files/Spices-15.jpg?v=1740490760",
+      "weight": "200 Grams"
+    },
+    {
+      "id": "8347023048987",
+      "title": "Chilli Powder",
+      "price": 165.0,
+      "compare_at_price": 220.0,
+      "image": "https://cdn.shopify.com/s/files/1/0777/5843/1515/files/Spices-01.jpg?v=1740490901",
+      "weight": "200 GMS"
+    },
+    {
+      "id": "8347012333851",
+      "title": "Mustard Seeds (Mohri/Rai)",
+      "price": 63.0,
+      "compare_at_price": 84.0,
+      "image": "https://cdn.shopify.com/s/files/1/0777/5843/1515/files/Spices-29.jpg?v=1740490627",
+      "weight": "200 Grams"
+    },
+    {
+      "id": "8347001520411",
+      "title": "Chole Masala",
+      "price": 169.0,
+      "compare_at_price": 225.0,
+      "image": "https://cdn.shopify.com/s/files/1/0777/5843/1515/files/Spices-08.jpg?v=1740490834",
+      "weight": "200 Grams"
+    }
+  ],
+  "organic-millets": [
+    {
+      "id": "8347035959579",
+      "title": "Quinoa",
+      "price": 280.0,
+      "compare_at_price": 280.0,
+      "image": "https://cdn.shopify.com/s/files/1/0777/5843/1515/files/Breakfast-08.jpg?v=1740495375",
+      "weight": "500 Grams"
+    }
+  ],
+  "healthy-breads": [
+    {
+      "id": "8346883129627",
+      "title": "Multigrain Super Seed Bread",
+      "price": 110.0,
+      "compare_at_price": 110.0,
+      "image": "https://cdn.shopify.com/s/files/1/0777/5843/1515/files/Breads-23.jpg?v=1716275440",
+      "weight": "400 Grams"
+    },
+    {
+      "id": "8346885390619",
+      "title": "Oats Whole Wheat Bread",
+      "price": 110.0,
+      "compare_at_price": 110.0,
+      "image": "https://cdn.shopify.com/s/files/1/0777/5843/1515/files/Breads-16.jpg?v=1716275663",
+      "weight": "400 Grams"
+    },
+    {
+      "id": "8346900988187",
+      "title": "Exotic Herb Focaccia Bread",
+      "price": 110.0,
+      "compare_at_price": 110.0,
+      "image": "https://cdn.shopify.com/s/files/1/0777/5843/1515/files/Breads-09.jpg?v=1716275102",
+      "weight": "200 Grams"
+    },
+    {
+      "id": "8346884374811",
+      "title": "Dried Herbs Whole Wheat Bread",
+      "price": 110.0,
+      "compare_at_price": 110.0,
+      "image": "https://cdn.shopify.com/s/files/1/0777/5843/1515/files/Breads-02.jpg?v=1716274313",
+      "weight": "400 Grams"
+    }
+  ]
+}
