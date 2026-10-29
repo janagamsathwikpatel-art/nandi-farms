@@ -5,25 +5,18 @@
   overflow: hidden;
   padding: 36px 4.5% 64px;
   color: #1b3823;
-  background-color: #eef3e8;
+  background-color: transparent;
   font-family: Arial, sans-serif;
   box-sizing: border-box;
 }
 
-/* Panoramic Countryside HD Background - Pure Vibrant Landscape (No white wash overlay) */
+/* Pure Panoramic Countryside HD Background (100% Original Artwork) */
 .harvest-hero-section::before {
   content: "";
   position: absolute;
   inset: 0;
   z-index: -1;
-  background:
-    linear-gradient(
-      90deg,
-      rgba(244, 248, 240, 0.40) 0%,
-      rgba(244, 248, 240, 0.15) 35%,
-      transparent 100%
-    ),
-    url("/images/harvest-landscape-clean-uhd.png") center / cover no-repeat;
+  background: url("/images/harvest-landscape-clean-uhd.png") center / cover no-repeat;
   opacity: 1;
 }
 
