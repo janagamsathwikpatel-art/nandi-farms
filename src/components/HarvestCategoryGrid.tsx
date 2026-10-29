@@ -12,7 +12,6 @@ import {
   Leaf,
 } from "lucide-react";
 import MilkSubscriptionModal from "./MilkSubscriptionModal";
-import HarvestSection from "./HarvestSection";
 
 export interface HarvestItem {
   id: string;
@@ -762,7 +761,7 @@ const TODAYS_HARVEST_PRODUCTS: TodaysHarvestFeatured[] = [
     price: 70,
     originalPrice: 85,
     unit: "1 L",
-    image: "/images/todays_harvest/buffalo_milk.png",
+    image: "/images/buffalo-milk.png",
     badge: "Rich & Creamy",
     description: "100% single-source farm fresh buffalo milk from pasture-fed water buffaloes. Naturally sweet, thick, and packed with calcium and healthy fats. Bottled within 15 minutes of dawn milking.",
     highlights: ["Chilled to 4°C in 15 mins", "Zero Preservatives or Additives", "Eco-friendly Sealed Glass Bottle", "Delivered Cold before 7:00 AM"],
@@ -774,7 +773,7 @@ const TODAYS_HARVEST_PRODUCTS: TodaysHarvestFeatured[] = [
     price: 60,
     originalPrice: 75,
     unit: "1 L",
-    image: "/images/todays_harvest/cow_milk.png",
+    image: "/images/cow-milk.png",
     badge: "A2 Single Source",
     description: "Gentle on digestion and naturally rich in A2 beta-casein proteins. Sourced directly from our free-grazing indigenous cows at Nandi Eco Farm with zero hormone injections.",
     highlights: ["Certified A2 Beta-Casein", "Zero Adulteration or Dilution", "Farm-Bottled Fresh Daily", "Automated Pause Anytime"],
@@ -786,7 +785,7 @@ const TODAYS_HARVEST_PRODUCTS: TodaysHarvestFeatured[] = [
     price: 199,
     originalPrice: 249,
     unit: "basket",
-    image: "/images/todays_harvest/vegetable_basket.png",
+    image: "/images/vegetable-basket.png",
     badge: "Harvested Today",
     description: "An assorted morning harvest containing seasonal farm staples: vine-ripened red tomatoes, tender baby carrots, crisp bell peppers, and fresh coriander, harvested fresh at 5:00 AM.",
     highlights: ["100% Chemical-Free Farming", "Harvested at First Dawn", "Zero Cold-Storage Delay", "Direct Farm-to-Kitchen"],
@@ -798,7 +797,7 @@ const TODAYS_HARVEST_PRODUCTS: TodaysHarvestFeatured[] = [
     price: 30,
     originalPrice: 40,
     unit: "300 g",
-    image: "/images/todays_harvest/leafy_greens.png",
+    image: "/images/leafy-greens.png",
     badge: "Hydro / Soil Pure",
     description: "Crisp, vibrant spinach and local greens harvested at first dawn. Washed in ozonated natural water, tender, and packed with vital iron, folate, and living nutrients.",
     highlights: ["Zero Chemical Pesticides", "Tender Morning Cut", "Washed in Ozonated Water", "Vibrant & Living Greens"],
@@ -930,31 +929,83 @@ export default function HarvestCategoryGrid() {
         ref={freshPageRef}
         className="w-full bg-[#fdfbf7] border-t border-[#ede7d8] transition-all duration-500"
       >
-        {/* NEW LUSH FARM HARVEST SECTION (Live HTML Text & Products outside Ultra HD Background) */}
-        <HarvestSection
-          cartCount={totalCartCount}
-          onAddToCart={(product, qty) => updateCart(product.id, qty)}
-          onOpenModal={(product) =>
-            setActiveModalProduct({
-              id: product.id,
-              title: product.name,
-              subtitle: product.description,
-              price: product.price,
-              originalPrice: product.originalPrice || product.price,
-              unit: product.unit || "1 L",
-              image: product.image,
-              badge: product.badge,
-              description: product.description,
-              highlights:
-                product.highlights || [
-                  "100% Farm Fresh",
-                  "Zero Chemical Spray",
-                  "Direct Farm Delivery",
-                ],
-            })
-          }
-          onViewAllProducts={scrollToCatalog}
-        />
+        {/* UNTOUCHED ULTRA HD TODAY'S HARVEST BANNER (100% Original Image without any changes) */}
+        <div className="relative w-full overflow-hidden border-b border-[#eee8db] bg-[#fbf8f2]">
+          <div className="relative w-full aspect-[3072/1026] select-none">
+            {/* 100% Untouched Original Artwork in Ultra HD */}
+            <img
+              src="/images/harvest-banner-original-uhd.png"
+              alt="Today's Harvest - Fresh Farm Products"
+              className="w-full h-full object-cover block"
+              loading="eager"
+            />
+
+            {/* Top Right "View all products →" Hotspot */}
+            <button
+              type="button"
+              onClick={scrollToCatalog}
+              className="absolute right-[2%] top-[4%] w-[13%] h-[12%] cursor-pointer rounded-lg hover:bg-black/5 active:scale-95 transition-all"
+              aria-label="View all products"
+              title="View all products"
+            />
+
+            {/* Product 1: Buffalo Milk Hotspots */}
+            <div
+              onClick={() => setActiveModalProduct(TODAYS_HARVEST_PRODUCTS[0])}
+              className="absolute left-[30%] top-[8%] w-[13%] h-[60%] cursor-pointer rounded-2xl hover:bg-white/15 transition-all"
+              title="Click to view Buffalo Milk details"
+            />
+            <button
+              type="button"
+              onClick={() => updateCart(TODAYS_HARVEST_PRODUCTS[0].id, 1)}
+              className="absolute left-[31%] top-[70%] w-[12%] h-[12%] rounded-xl cursor-pointer hover:bg-black/10 active:scale-95 transition-all"
+              aria-label="Add Buffalo Milk to cart"
+              title="Add to cart"
+            />
+
+            {/* Product 2: Cow Milk Hotspots */}
+            <div
+              onClick={() => setActiveModalProduct(TODAYS_HARVEST_PRODUCTS[1])}
+              className="absolute left-[45%] top-[8%] w-[13%] h-[60%] cursor-pointer rounded-2xl hover:bg-white/15 transition-all"
+              title="Click to view Cow Milk details"
+            />
+            <button
+              type="button"
+              onClick={() => updateCart(TODAYS_HARVEST_PRODUCTS[1].id, 1)}
+              className="absolute left-[46%] top-[70%] w-[12%] h-[12%] rounded-xl cursor-pointer hover:bg-black/10 active:scale-95 transition-all"
+              aria-label="Add Cow Milk to cart"
+              title="Add to cart"
+            />
+
+            {/* Product 3: Seasonal Vegetable Basket Hotspots */}
+            <div
+              onClick={() => setActiveModalProduct(TODAYS_HARVEST_PRODUCTS[2])}
+              className="absolute left-[58%] top-[8%] w-[18%] h-[60%] cursor-pointer rounded-2xl hover:bg-white/15 transition-all"
+              title="Click to view Seasonal Vegetable Basket details"
+            />
+            <button
+              type="button"
+              onClick={() => updateCart(TODAYS_HARVEST_PRODUCTS[2].id, 1)}
+              className="absolute left-[62%] top-[70%] w-[12%] h-[12%] rounded-xl cursor-pointer hover:bg-black/10 active:scale-95 transition-all"
+              aria-label="Add Vegetable Basket to cart"
+              title="Add to cart"
+            />
+
+            {/* Product 4: Leafy Greens Hotspots */}
+            <div
+              onClick={() => setActiveModalProduct(TODAYS_HARVEST_PRODUCTS[3])}
+              className="absolute left-[77%] top-[8%] w-[19%] h-[60%] cursor-pointer rounded-2xl hover:bg-white/15 transition-all"
+              title="Click to view Leafy Greens details"
+            />
+            <button
+              type="button"
+              onClick={() => updateCart(TODAYS_HARVEST_PRODUCTS[3].id, 1)}
+              className="absolute left-[80%] top-[70%] w-[12%] h-[12%] rounded-xl cursor-pointer hover:bg-black/10 active:scale-95 transition-all"
+              aria-label="Add Leafy Greens to cart"
+              title="Add to cart"
+            />
+          </div>
+        </div>
 
         {/* Fresh Page Sub-Filter Chips & Catalog */}
         <div ref={catalogRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
