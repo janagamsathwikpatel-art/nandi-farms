@@ -14,16 +14,9 @@ export default function Home() {
 
   return (
     <div className="min-h-screen flex flex-col bg-[#ffffff] selection:bg-[#c58b4a] selection:text-white">
-      {/* Top Navbar matching reference design */}
-      <Navbar
-        onOpenContact={() => setIsContactOpen(true)}
-        cartCount={0}
-        onOpenCart={() => setIsContactOpen(true)}
-      />
-
       {/* Main Content */}
       <main className="flex-1">
-        {/* Hero Section matching exact reference image with 4K HD text-free landscape */}
+        {/* Hero Section */}
         <Hero />
 
         {/* Humpy Farms "Shop By Category" & Related Items Section (down of hero section) */}
