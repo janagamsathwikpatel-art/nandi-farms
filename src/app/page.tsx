@@ -1,9 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
-import HumpyCategorySection from "@/components/HumpyCategorySection";
+import HarvestCategoryGrid from "@/components/HarvestCategoryGrid";
 import ExperienceFarm from "@/components/ExperienceFarm";
 import VisitFarm from "@/components/VisitFarm";
 import Footer from "@/components/Footer";
@@ -19,8 +18,8 @@ export default function Home() {
         {/* Hero Section */}
         <Hero />
 
-        {/* Humpy Farms "Shop By Category" & Related Items Section (down of hero section) */}
-        <HumpyCategorySection />
+        {/* 3x3 Harvest Category Grid directly below Hero */}
+        <HarvestCategoryGrid />
 
         {/* "Come Experience the Farm" Section matching exact reference image */}
         <ExperienceFarm />
