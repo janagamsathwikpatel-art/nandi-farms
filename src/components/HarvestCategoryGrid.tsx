@@ -929,135 +929,96 @@ export default function HarvestCategoryGrid() {
         ref={freshPageRef}
         className="w-full bg-[#fdfbf7] border-t border-[#ede7d8] transition-all duration-500"
       >
-        {/* INTERACTIVE TODAY'S HARVEST SECTION (HD Items with Click-to-Open Modal & Add-to-Cart) */}
-        <div className="relative w-full overflow-hidden border-b border-[#eee8db] bg-[#fbf8f2] py-8 sm:py-10 px-4 sm:px-6 lg:px-8">
-          {/* Subtle rustic background sketch watermark */}
-          <div className="absolute left-0 bottom-0 w-72 h-44 opacity-15 pointer-events-none select-none">
+        {/* ULTRA HD SEAMLESS TODAY'S HARVEST BANNER WITH INTERACTIVE HOTSPOTS */}
+        <div className="relative w-full overflow-hidden border-b border-[#eee8db] bg-[#fbf8f2]">
+          <div className="relative w-full aspect-[3072/1023] select-none">
+            {/* Ultra HD 3072x1023 Crisp Artwork */}
             <img
-              src="/images/todays_harvest/farm_sketch.png"
-              alt=""
-              className="w-full h-full object-contain object-left-bottom"
+              src="/images/todays-harvest-banner-uhd.png"
+              alt="Today's Harvest - Fresh Farm Products"
+              className="w-full h-full object-cover block"
+              loading="eager"
             />
-          </div>
 
-          <div className="relative max-w-7xl mx-auto flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-8 z-10">
-            {/* Left Column: Editorial Header */}
-            <div className="lg:w-[26%] shrink-0 flex flex-col justify-between">
-              <div>
-                <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-900/10 text-emerald-900 text-[10px] font-bold tracking-[0.2em] uppercase mb-2">
-                  <Leaf className="w-3 h-3 text-emerald-700" />
-                  <span>Fresh Today</span>
-                </div>
-                <h2 className="font-serif text-3xl sm:text-4xl text-[#142819] font-medium tracking-tight">
-                  TODAY&apos;S HARVEST
-                </h2>
-                <p className="text-xs sm:text-sm text-[#4d5c4b] mt-2 leading-relaxed">
-                  Carefully sourced. Honestly priced. Delivered fresh across Hyderabad.
-                </p>
-                <div className="w-14 h-0.5 bg-[#d8ccb6] mt-4" />
-              </div>
+            {/* "View all products →" Hotspot (Top Right: x ≈ 86% - 98%, y ≈ 6% - 16%) */}
+            <button
+              type="button"
+              onClick={scrollToCatalog}
+              className="absolute right-[2.5%] top-[6%] w-[14%] h-[12%] cursor-pointer rounded-lg hover:bg-black/5 active:scale-95 transition-all"
+              aria-label="View all products"
+              title="View all products"
+            />
+
+            {/* Item 1: Buffalo Milk (x: 26.5% - 42%) */}
+            <div
+              onClick={() => setActiveModalProduct(TODAYS_HARVEST_PRODUCTS[0])}
+              className="absolute left-[26.5%] top-[8%] w-[15.5%] h-[85%] cursor-pointer rounded-2xl hover:bg-white/20 active:bg-white/30 transition-all duration-200 group"
+              title="Click to view Buffalo Milk details"
+            >
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  updateCart(TODAYS_HARVEST_PRODUCTS[0].id, 1);
+                }}
+                className="absolute left-[8%] bottom-[7%] w-[84%] h-[16%] rounded-lg cursor-pointer hover:bg-black/10 active:scale-95 transition-all"
+                aria-label="Add Buffalo Milk to cart"
+                title="Add to cart"
+              />
             </div>
 
-            {/* Right Column: 4 Interactive HD Product Cards */}
-            <div className="lg:w-[74%] w-full flex flex-col">
-              <div className="flex items-center justify-between sm:justify-end mb-3">
-                <span className="sm:hidden text-xs font-semibold text-[#183622]">Featured Harvest</span>
-                <button
-                  type="button"
-                  onClick={scrollToCatalog}
-                  className="text-xs font-semibold text-emerald-900 hover:text-emerald-700 flex items-center gap-1 group cursor-pointer"
-                >
-                  <span>View all products</span>
-                  <span className="transition-transform duration-200 group-hover:translate-x-1">→</span>
-                </button>
-              </div>
+            {/* Item 2: Cow Milk (x: 43% - 58.5%) */}
+            <div
+              onClick={() => setActiveModalProduct(TODAYS_HARVEST_PRODUCTS[1])}
+              className="absolute left-[43%] top-[8%] w-[15.5%] h-[85%] cursor-pointer rounded-2xl hover:bg-white/20 active:bg-white/30 transition-all duration-200 group"
+              title="Click to view Cow Milk details"
+            >
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  updateCart(TODAYS_HARVEST_PRODUCTS[1].id, 1);
+                }}
+                className="absolute left-[8%] bottom-[7%] w-[84%] h-[16%] rounded-lg cursor-pointer hover:bg-black/10 active:scale-95 transition-all"
+                aria-label="Add Cow Milk to cart"
+                title="Add to cart"
+              />
+            </div>
 
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
-                {TODAYS_HARVEST_PRODUCTS.map((prod) => {
-                  const qty = cart[prod.id] || 0;
-                  return (
-                    <div
-                      key={prod.id}
-                      onClick={() => setActiveModalProduct(prod)}
-                      className="bg-[#f7f3ea]/70 hover:bg-white rounded-2xl p-3 sm:p-3.5 border border-[#ede4d2] hover:border-emerald-600/50 hover:shadow-xl transition-all duration-300 cursor-pointer flex flex-col justify-between group"
-                    >
-                      {/* HD Product Cutout */}
-                      <div className="w-full aspect-[4/3] flex items-center justify-center overflow-hidden mb-2 rounded-xl bg-[#fbf8f2]/60 p-1">
-                        <img
-                          src={prod.image}
-                          alt={prod.title}
-                          className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300 drop-shadow-sm"
-                          loading="eager"
-                        />
-                      </div>
+            {/* Item 3: Seasonal Vegetable Basket (x: 59.5% - 78%) */}
+            <div
+              onClick={() => setActiveModalProduct(TODAYS_HARVEST_PRODUCTS[2])}
+              className="absolute left-[59.5%] top-[8%] w-[18.5%] h-[85%] cursor-pointer rounded-2xl hover:bg-white/20 active:bg-white/30 transition-all duration-200 group"
+              title="Click to view Seasonal Vegetable Basket details"
+            >
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  updateCart(TODAYS_HARVEST_PRODUCTS[2].id, 1);
+                }}
+                className="absolute left-[10%] bottom-[7%] w-[80%] h-[16%] rounded-lg cursor-pointer hover:bg-black/10 active:scale-95 transition-all"
+                aria-label="Add Vegetable Basket to cart"
+                title="Add to cart"
+              />
+            </div>
 
-                      {/* Title & Subtitle */}
-                      <div>
-                        {prod.badge && (
-                          <span className="text-[9px] uppercase font-bold tracking-wider text-emerald-800 bg-emerald-100/60 px-1.5 py-0.5 rounded-sm inline-block mb-1">
-                            {prod.badge}
-                          </span>
-                        )}
-                        <h4 className="font-serif text-sm sm:text-base font-semibold text-[#162e1e] line-clamp-1 group-hover:text-emerald-800 transition-colors">
-                          {prod.title}
-                        </h4>
-                        <p className="text-[11px] text-[#556453] mt-0.5 line-clamp-2 leading-relaxed">
-                          {prod.subtitle}
-                        </p>
-                      </div>
-
-                      {/* Price & Add to Cart button */}
-                      <div className="flex items-center justify-between mt-3 pt-2.5 border-t border-[#eee5d5]">
-                        <div className="flex items-baseline gap-1">
-                          <span className="font-serif text-sm sm:text-base font-bold text-[#142918]">
-                            ₹{prod.price}
-                          </span>
-                          <span className="text-[10px] font-sans font-normal text-[#6b7969]">
-                            /{prod.unit}
-                          </span>
-                        </div>
-
-                        {qty === 0 ? (
-                          <button
-                            type="button"
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              updateCart(prod.id, 1);
-                            }}
-                            className="px-3 py-1 bg-[#1a3821] hover:bg-[#132d19] active:scale-95 text-white text-xs font-semibold rounded-lg flex items-center gap-1 transition-all shadow-xs cursor-pointer"
-                          >
-                            <span>Add</span>
-                            <ShoppingBag className="w-3 h-3" />
-                          </button>
-                        ) : (
-                          <div
-                            onClick={(e) => e.stopPropagation()}
-                            className="flex items-center bg-[#1a3821] text-white rounded-lg px-2 py-0.5 shadow-xs gap-2"
-                          >
-                            <button
-                              type="button"
-                              onClick={() => updateCart(prod.id, -1)}
-                              className="w-4 h-4 flex items-center justify-center hover:bg-emerald-700 rounded transition-colors cursor-pointer text-xs"
-                              aria-label="Decrease quantity"
-                            >
-                              -
-                            </button>
-                            <span className="text-xs font-bold">{qty}</span>
-                            <button
-                              type="button"
-                              onClick={() => updateCart(prod.id, 1)}
-                              className="w-4 h-4 flex items-center justify-center hover:bg-emerald-700 rounded transition-colors cursor-pointer text-xs"
-                              aria-label="Increase quantity"
-                            >
-                              +
-                            </button>
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
+            {/* Item 4: Leafy Greens (x: 79% - 97.5%) */}
+            <div
+              onClick={() => setActiveModalProduct(TODAYS_HARVEST_PRODUCTS[3])}
+              className="absolute left-[79%] top-[8%] w-[18.5%] h-[85%] cursor-pointer rounded-2xl hover:bg-white/20 active:bg-white/30 transition-all duration-200 group"
+              title="Click to view Leafy Greens details"
+            >
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  updateCart(TODAYS_HARVEST_PRODUCTS[3].id, 1);
+                }}
+                className="absolute left-[10%] bottom-[7%] w-[80%] h-[16%] rounded-lg cursor-pointer hover:bg-black/10 active:scale-95 transition-all"
+                aria-label="Add Leafy Greens to cart"
+                title="Add to cart"
+              />
             </div>
           </div>
         </div>
