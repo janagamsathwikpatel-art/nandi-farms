@@ -25,24 +25,24 @@ export default function DesiGoodnessSection() {
 
   return (
     <section className="desi-goodness-section" aria-label="Desi Goodness - The true Indian Milk">
-      {/* 4K Ultra HD Panoramic Banner / Cinematic Video Player */}
+      {/* 16:9 Landscape Clean Cow Cinematic Video Player */}
       <div className="desi-goodness-banner-container">
         <video
           ref={videoRef}
           src="/videos/desi-cow-cinematic.mp4"
-          className="desi-goodness-video-player"
+          className="cow-image"
           autoPlay
           loop
           muted
           playsInline
           preload="auto"
-          poster="/images/desi-goodness-banner-4k.png"
+          poster="/images/desi-cow-landscape-1920x1080.jpg"
         >
           <source src="/videos/desi-cow-cinematic.mp4" type="video/mp4" />
           <img
-            src="/images/desi-goodness-banner-4k.png"
-            alt="Desi Goodness - The true Indian Milk featuring Desi Gir Cow in lush organic pasture"
-            className="desi-goodness-banner-img"
+            src="/images/desi-cow-landscape-1920x1080.jpg"
+            alt="Pure Indian Desi Gir Cow in 16:9 Landscape"
+            className="cow-image"
             loading="eager"
           />
         </video>

@@ -2,7 +2,7 @@
 .desi-goodness-section {
   position: relative;
   width: 100%;
-  background-color: #faf6ee;
+  background-color: #f7f2e5;
   overflow: hidden;
   box-sizing: border-box;
 }
@@ -11,18 +11,28 @@
 .desi-goodness-banner-container {
   position: relative;
   width: 100%;
-  aspect-ratio: 3840 / 1642;
+  height: 420px;
   overflow: hidden;
-  background: #faf6ee;
+  background: #f7f2e5;
 }
 
-.desi-goodness-banner-img,
-.desi-goodness-video-player {
+/* User-Specified Clean Cow Image & Video Display (Prevents Distortion) */
+.cow-image {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: 420px;
+  object-fit: contain;
+  object-position: center;
   display: block;
+  background: #f7f2e5;
   transform: translateZ(0);
+}
+
+.cow-image-cover {
+  width: 100%;
+  height: 420px;
+  object-fit: cover;
+  object-position: center;
+  display: block;
 }
 
 /* Ambient Layer */
