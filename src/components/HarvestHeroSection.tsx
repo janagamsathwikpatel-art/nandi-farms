@@ -21,7 +21,7 @@ export const HERO_PRODUCTS: HeroProduct[] = [
     description: "Rich, creamy, farm-fresh buffalo milk",
     price: 70,
     unit: "1 L",
-    image: "/images/buffalo-milk-splash.png",
+    image: "/images/buffalo-milk.png",
     badge: "Rich & Creamy",
     highlights: [
       "Chilled to 4°C in 15 mins",
