@@ -10,7 +10,7 @@
   box-sizing: border-box;
 }
 
-/* Panoramic Countryside HD Background */
+/* Panoramic Countryside HD Background - Pure Vibrant Landscape (No white wash overlay) */
 .harvest-hero-section::before {
   content: "";
   position: absolute;
@@ -19,10 +19,9 @@
   background:
     linear-gradient(
       90deg,
-      rgba(244, 248, 240, 0.94) 0%,
-      rgba(244, 248, 240, 0.85) 30%,
-      rgba(244, 248, 240, 0.50) 65%,
-      rgba(244, 248, 240, 0.35) 100%
+      rgba(244, 248, 240, 0.40) 0%,
+      rgba(244, 248, 240, 0.15) 35%,
+      transparent 100%
     ),
     url("/images/harvest-landscape-clean-uhd.png") center / cover no-repeat;
   opacity: 1;
@@ -136,22 +135,22 @@
 
 .harvest-hero-product-card {
   min-width: 0;
-  background: rgba(253, 252, 247, 0.85);
-  border: 1px solid rgba(220, 230, 214, 0.8);
-  border-radius: 18px;
-  padding: 18px 16px;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 0;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  backdrop-filter: blur(8px);
-  box-shadow: 0 4px 18px rgba(24, 54, 34, 0.05);
-  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+  backdrop-filter: none;
+  box-shadow: none;
+  transition: transform 0.3s ease;
 }
 
 .harvest-hero-product-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 10px 28px rgba(24, 54, 34, 0.12);
-  background: rgba(255, 255, 255, 0.95);
+  box-shadow: none;
+  background: transparent;
 }
 
 .harvest-hero-product-image {
