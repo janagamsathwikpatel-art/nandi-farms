@@ -12,6 +12,7 @@ import {
   Leaf,
 } from "lucide-react";
 import MilkSubscriptionModal from "./MilkSubscriptionModal";
+import HarvestHeroSection from "./HarvestHeroSection";
 
 export interface HarvestItem {
   id: string;
@@ -929,83 +930,38 @@ export default function HarvestCategoryGrid() {
         ref={freshPageRef}
         className="w-full bg-[#fdfbf7] border-t border-[#ede7d8] transition-all duration-500"
       >
-        {/* UNTOUCHED ULTRA HD TODAY'S HARVEST BANNER (100% Original Image without any changes) */}
-        <div className="relative w-full overflow-hidden border-b border-[#eee8db] bg-[#fbf8f2]">
-          <div className="relative w-full aspect-[3072/1026] select-none">
-            {/* 100% Untouched Original Artwork in Ultra HD */}
-            <img
-              src="/images/harvest-banner-original-uhd.png"
-              alt="Today's Harvest - Fresh Farm Products"
-              className="w-full h-full object-cover block"
-              loading="eager"
-            />
-
-            {/* Top Right "View all products →" Hotspot */}
-            <button
-              type="button"
-              onClick={scrollToCatalog}
-              className="absolute right-[2%] top-[4%] w-[13%] h-[12%] cursor-pointer rounded-lg hover:bg-black/5 active:scale-95 transition-all"
-              aria-label="View all products"
-              title="View all products"
-            />
-
-            {/* Product 1: Buffalo Milk Hotspots */}
-            <div
-              onClick={() => setActiveModalProduct(TODAYS_HARVEST_PRODUCTS[0])}
-              className="absolute left-[30%] top-[8%] w-[13%] h-[60%] cursor-pointer rounded-2xl hover:bg-white/15 transition-all"
-              title="Click to view Buffalo Milk details"
-            />
-            <button
-              type="button"
-              onClick={() => updateCart(TODAYS_HARVEST_PRODUCTS[0].id, 1)}
-              className="absolute left-[31%] top-[70%] w-[12%] h-[12%] rounded-xl cursor-pointer hover:bg-black/10 active:scale-95 transition-all"
-              aria-label="Add Buffalo Milk to cart"
-              title="Add to cart"
-            />
-
-            {/* Product 2: Cow Milk Hotspots */}
-            <div
-              onClick={() => setActiveModalProduct(TODAYS_HARVEST_PRODUCTS[1])}
-              className="absolute left-[45%] top-[8%] w-[13%] h-[60%] cursor-pointer rounded-2xl hover:bg-white/15 transition-all"
-              title="Click to view Cow Milk details"
-            />
-            <button
-              type="button"
-              onClick={() => updateCart(TODAYS_HARVEST_PRODUCTS[1].id, 1)}
-              className="absolute left-[46%] top-[70%] w-[12%] h-[12%] rounded-xl cursor-pointer hover:bg-black/10 active:scale-95 transition-all"
-              aria-label="Add Cow Milk to cart"
-              title="Add to cart"
-            />
-
-            {/* Product 3: Seasonal Vegetable Basket Hotspots */}
-            <div
-              onClick={() => setActiveModalProduct(TODAYS_HARVEST_PRODUCTS[2])}
-              className="absolute left-[58%] top-[8%] w-[18%] h-[60%] cursor-pointer rounded-2xl hover:bg-white/15 transition-all"
-              title="Click to view Seasonal Vegetable Basket details"
-            />
-            <button
-              type="button"
-              onClick={() => updateCart(TODAYS_HARVEST_PRODUCTS[2].id, 1)}
-              className="absolute left-[62%] top-[70%] w-[12%] h-[12%] rounded-xl cursor-pointer hover:bg-black/10 active:scale-95 transition-all"
-              aria-label="Add Vegetable Basket to cart"
-              title="Add to cart"
-            />
-
-            {/* Product 4: Leafy Greens Hotspots */}
-            <div
-              onClick={() => setActiveModalProduct(TODAYS_HARVEST_PRODUCTS[3])}
-              className="absolute left-[77%] top-[8%] w-[19%] h-[60%] cursor-pointer rounded-2xl hover:bg-white/15 transition-all"
-              title="Click to view Leafy Greens details"
-            />
-            <button
-              type="button"
-              onClick={() => updateCart(TODAYS_HARVEST_PRODUCTS[3].id, 1)}
-              className="absolute left-[80%] top-[70%] w-[12%] h-[12%] rounded-xl cursor-pointer hover:bg-black/10 active:scale-95 transition-all"
-              aria-label="Add Leafy Greens to cart"
-              title="Add to cart"
-            />
-          </div>
-        </div>
+        {/* HD FARM-FRESH ECOMMERCE HERO SECTION WITH FUNCTIONAL ADD-TO-CART */}
+        <HarvestHeroSection
+          cartCount={totalCartCount}
+          onAddToCart={(product, qty) => updateCart(product.id, qty)}
+          onOpenModal={(product) =>
+            setActiveModalProduct({
+              id: product.id,
+              title: product.name,
+              subtitle: product.description,
+              price: product.price,
+              originalPrice:
+                product.id === "th-buffalo-milk"
+                  ? 85
+                  : product.id === "th-cow-milk"
+                  ? 75
+                  : product.id === "th-veggie-basket"
+                  ? 249
+                  : 40,
+              unit: product.unit,
+              image: product.image,
+              badge: product.badge,
+              description: product.description,
+              highlights:
+                product.highlights || [
+                  "100% Farm Fresh",
+                  "Zero Chemical Spray",
+                  "Direct Farm Delivery",
+                ],
+            })
+          }
+          onViewAllProducts={scrollToCatalog}
+        />
 
         {/* Fresh Page Sub-Filter Chips & Catalog */}
         <div ref={catalogRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
