@@ -804,13 +804,11 @@ export default function HarvestCategoryGrid() {
         {/* Live HTML Typography Layer rendered OUTSIDE the image */}
         <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4 pointer-events-none">
           {/* Botanical Dual Leaf Emblem */}
-          <div className="flex items-center gap-3 mb-1 sm:mb-2 opacity-85">
-            <div className="w-8 sm:w-14 h-[1px] bg-[#1a3824]/40" />
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" className="w-4 h-4 sm:w-5 sm:h-5 text-[#183622]">
+          <div className="flex items-center justify-center mb-1.5 sm:mb-2 opacity-90">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="w-5 h-5 sm:w-6 sm:h-6 text-[#183622]">
               <path d="M12 4C10 9 6 11 2 11C2 15 5 20 12 20C19 20 22 15 22 11C18 11 14 9 12 4Z" fill="currentColor" fillOpacity="0.85" />
               <path d="M12 6V18" stroke="#f6f2e8" strokeWidth="1.2" strokeLinecap="round" />
             </svg>
-            <div className="w-8 sm:w-14 h-[1px] bg-[#1a3824]/40" />
           </div>
 
           {/* Live Heading */}
@@ -818,14 +816,10 @@ export default function HarvestCategoryGrid() {
             Shop By Category
           </h2>
 
-          {/* Subtitle with Flanking Accent Rules */}
-          <div className="flex items-center gap-3 mt-1.5 sm:mt-3">
-            <div className="w-6 sm:w-10 h-[1px] bg-[#1a3824]/40" />
-            <span className="text-[9px] sm:text-xs font-semibold tracking-[0.25em] text-[#22442d] uppercase font-sans">
-              PURE GOODNESS FOR A HEALTHIER TOMORROW
-            </span>
-            <div className="w-6 sm:w-10 h-[1px] bg-[#1a3824]/40" />
-          </div>
+          {/* Subtitle cleanly without line fragments */}
+          <p className="text-[10px] sm:text-xs font-semibold tracking-[0.25em] text-[#22442d] uppercase font-sans mt-2 sm:mt-3">
+            PURE GOODNESS FOR A HEALTHIER TOMORROW
+          </p>
         </div>
       </div>
 
