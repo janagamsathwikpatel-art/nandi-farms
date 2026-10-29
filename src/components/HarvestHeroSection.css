@@ -134,7 +134,8 @@
   padding: 0;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
+  gap: 6px;
   backdrop-filter: none;
   box-shadow: none;
   transition: transform 0.3s ease;
@@ -147,12 +148,12 @@
 }
 
 .harvest-hero-product-image {
-  height: 135px;
+  height: 118px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  margin-bottom: 8px;
+  margin-bottom: 4px;
   position: relative;
 }
 
@@ -170,10 +171,10 @@
 
 .harvest-hero-product-card h2 {
   font-family: Arial, sans-serif;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 700;
-  line-height: 1.35;
-  margin: 0 0 6px;
+  line-height: 1.3;
+  margin: 0 0 2px;
   color: #162c1d;
   cursor: pointer;
   transition: color 0.2s ease;
@@ -184,18 +185,17 @@
 }
 
 .harvest-hero-product-description {
-  min-height: 38px;
   color: #556758;
-  font-size: 13px;
-  line-height: 1.4;
-  margin: 0 0 10px;
+  font-size: 12px;
+  line-height: 1.35;
+  margin: 0 0 4px;
 }
 
 .harvest-hero-product-price {
   font-family: Georgia, "Times New Roman", serif;
-  font-size: 26px;
+  font-size: 21px;
   font-weight: 700;
-  margin: 0 0 14px;
+  margin: 0 0 6px;
   color: #142a1a;
   display: flex;
   align-items: baseline;
@@ -204,7 +204,7 @@
 
 .harvest-hero-product-price span {
   font-family: Arial, sans-serif;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 500;
   color: #617364;
 }
@@ -215,21 +215,21 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  max-width: 140px;
-  margin: 0 auto 12px;
+  max-width: 105px;
+  margin: 0 auto 6px;
   border: 1px solid #c9d6c3;
   border-radius: 30px;
-  background: rgba(255, 255, 255, 0.7);
-  padding: 2px 4px;
+  background: rgba(255, 255, 255, 0.75);
+  padding: 1px 3px;
   box-sizing: border-box;
 }
 
 .harvest-hero-quantity-control button {
   border: 0;
   background: transparent;
-  width: 32px;
-  height: 32px;
-  font-size: 18px;
+  width: 24px;
+  height: 24px;
+  font-size: 15px;
   font-weight: 600;
   cursor: pointer;
   color: #1b3823;
@@ -250,9 +250,9 @@
 
 .harvest-hero-quantity-control span {
   font-weight: 700;
-  font-size: 14px;
+  font-size: 13px;
   color: #1b3823;
-  min-width: 24px;
+  min-width: 20px;
   text-align: center;
 }
 
@@ -260,19 +260,19 @@
 .harvest-hero-add-cart {
   width: 100%;
   border: 0;
-  border-radius: 12px;
-  padding: 12px 14px;
+  border-radius: 8px;
+  padding: 8px 12px;
   background: #234b31;
   color: #ffffff;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 600;
   cursor: pointer;
   transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  box-shadow: 0 4px 12px rgba(35, 75, 49, 0.25);
+  gap: 6px;
+  box-shadow: 0 2px 8px rgba(35, 75, 49, 0.2);
 }
 
 .harvest-hero-add-cart:hover {
@@ -357,24 +357,30 @@
   }
 
   .harvest-hero-product-image {
-    height: 115px;
+    height: 100px;
   }
 
   .harvest-hero-product-card h2 {
-    font-size: 14px;
+    font-size: 13px;
   }
 
   .harvest-hero-product-description {
     font-size: 11px;
-    min-height: 38px;
+    margin: 0 0 2px;
   }
 
   .harvest-hero-product-price {
-    font-size: 22px;
+    font-size: 18px;
+    margin: 0 0 4px;
+  }
+
+  .harvest-hero-quantity-control {
+    max-width: 95px;
+    margin: 0 auto 4px;
   }
 
   .harvest-hero-add-cart {
-    font-size: 12px;
-    padding: 10px 8px;
+    font-size: 11px;
+    padding: 6px 8px;
   }
 }
