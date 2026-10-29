@@ -2,7 +2,6 @@
 
 import React, { useState, useRef } from "react";
 import {
-  Sparkles,
   ShoppingBag,
   Plus,
   Minus,
@@ -11,9 +10,6 @@ import {
   ArrowRight,
   ArrowLeft,
   CheckCircle2,
-  Calendar,
-  ShieldCheck,
-  Truck,
   Leaf,
 } from "lucide-react";
 import MilkSubscriptionModal from "./MilkSubscriptionModal";
@@ -889,61 +885,14 @@ export default function HarvestCategoryGrid() {
           </div>
         </div>
 
-        {/* Fresh Page Editorial Hero Banner */}
-        <div className="relative bg-gradient-to-b from-[#f7f3ea] to-[#fdfbf7] py-10 md:py-14 px-4 sm:px-6 lg:px-8 border-b border-[#eee8db]">
-          <div className="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center justify-between gap-6">
-            <div className="max-w-3xl">
-              <div className="inline-flex items-center gap-2 px-3 py-1 bg-emerald-900/10 text-emerald-900 rounded-full text-xs font-semibold tracking-wider uppercase mb-3">
-                <Leaf className="w-3.5 h-3.5 text-emerald-700" />
-                <span>Nandi Farms Certified Harvest</span>
-              </div>
-              <h1 className="font-serif text-3xl sm:text-5xl text-[#162e1e] font-medium tracking-tight">
-                Fresh {activeBox.title} Collection
-              </h1>
-              <p className="text-sm sm:text-base text-[#465544] mt-2.5 font-sans leading-relaxed">
-                {activeBox.bannerDesc}
-              </p>
-              <div className="flex flex-wrap items-center gap-4 mt-4 text-xs text-[#5a6858] font-medium">
-                <span className="flex items-center gap-1">
-                  <ShieldCheck className="w-4 h-4 text-emerald-700" /> Zero Chemical Spray
-                </span>
-                <span>•</span>
-                <span className="flex items-center gap-1">
-                  <Truck className="w-4 h-4 text-emerald-700" /> Cold-Chain Delivery in 10-15 Mins
-                </span>
-                <span>•</span>
-                <span className="flex items-center gap-1">
-                  <Sparkles className="w-4 h-4 text-emerald-700" /> Harvested Fresh Daily
-                </span>
-              </div>
-            </div>
-
-            {/* Milk Subscription Quick Trigger (when in Milk category) */}
-            {selectedCategory === "milk" && (
-              <div className="bg-white p-5 rounded-2xl border border-emerald-600/30 shadow-md max-w-sm flex flex-col justify-between">
-                <div>
-                  <div className="flex items-center gap-2 text-xs font-bold text-emerald-800 uppercase tracking-wider mb-1">
-                    <Calendar className="w-4 h-4 text-emerald-700" />
-                    <span>Daily Morning Delivery</span>
-                  </div>
-                  <h3 className="font-serif text-lg font-medium text-[#162e1e]">
-                    A2 Milk Subscription
-                  </h3>
-                  <p className="text-xs text-[#526050] mt-1">
-                    Delivered cold to your doorstep before 7:00 AM every morning. Automated pause anytime.
-                  </p>
-                </div>
-                <button
-                  type="button"
-                  onClick={() => setIsMilkModalOpen(true)}
-                  className="mt-4 w-full py-2.5 bg-emerald-800 hover:bg-emerald-900 active:scale-95 text-white text-xs font-semibold rounded-xl transition-all shadow-sm flex items-center justify-center gap-1.5"
-                >
-                  <span>Subscribe Now</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </button>
-              </div>
-            )}
-          </div>
+        {/* Today's Harvest Banner (Replaces previous editorial header with matching dimensions) */}
+        <div className="relative w-full overflow-hidden border-b border-[#eee8db] bg-[#fbf8f2]">
+          <img
+            src="/images/todays-harvest-banner-hd.png"
+            alt="Today's Harvest - Fresh Farm Products"
+            className="w-full h-auto object-cover block"
+            loading="eager"
+          />
         </div>
 
         {/* Fresh Page Sub-Filter Chips & Catalog */}
