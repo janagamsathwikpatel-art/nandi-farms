@@ -835,7 +835,7 @@ export default function HarvestCategoryGrid() {
               aria-label={`Open ${box.title} Fresh Page`}
             >
               {/* Pure Photograph without any text - 100% flush zero gap */}
-              <div className="w-full aspect-[1200/540] overflow-hidden bg-[#f4eee2] p-0 m-0 block">
+              <div className="w-full aspect-[1200/480] overflow-hidden bg-[#f4eee2] p-0 m-0 block">
                 <img
                   src={box.photo}
                   alt={box.title}
