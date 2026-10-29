@@ -40,7 +40,7 @@ export interface CategoryBox {
   id: string;
   title: string;
   tagline: string;
-  image: string;
+  photo: string;
   subCategories: string[];
   bannerDesc: string;
 }
@@ -49,8 +49,8 @@ export const CATEGORY_BOXES: CategoryBox[] = [
   {
     id: "milk",
     title: "Milk",
-    tagline: "Pure. Fresh. Everyday. →",
-    image: "/images/category_cards/milk_uhd.jpg",
+    tagline: "Pure. Fresh. Everyday.",
+    photo: "/images/category_photos/milk_photo.jpg",
     subCategories: ["All Milk", "A2 Desi Cow", "Buffalo Milk", "Full Cream"],
     bannerDesc:
       "100% single-source farm fresh milk chilled to 4°C within 15 minutes of dawn milking. Zero adulteration, zero preservatives, and no synthetic hormones.",
@@ -58,8 +58,8 @@ export const CATEGORY_BOXES: CategoryBox[] = [
   {
     id: "vegetables",
     title: "Vegetables",
-    tagline: "Seasonal goodness from our farms. →",
-    image: "/images/category_cards/vegetables_uhd.jpg",
+    tagline: "Seasonal goodness from our farms.",
+    photo: "/images/category_photos/vegetables_photo.jpg",
     subCategories: ["All Veggies", "Daily Cooking", "Roots & Tubers", "Crisp & Salads"],
     bannerDesc:
       "Harvested daily from certified organic acreage. Grown in rich living soil nourished by natural compost and fresh rainwater.",
@@ -67,8 +67,8 @@ export const CATEGORY_BOXES: CategoryBox[] = [
   {
     id: "fruits",
     title: "Fruits",
-    tagline: "Nature's sweetest harvest. →",
-    image: "/images/category_cards/fruits_uhd.jpg",
+    tagline: "Nature's sweetest harvest.",
+    photo: "/images/category_photos/fruits_photo.jpg",
     subCategories: ["All Fruits", "Seasonal Harvest", "Tree Ripened", "Citrus & Berries"],
     bannerDesc:
       "Tree-ripened orchard harvest delivered without carbide ripening or wax coating. Bursting with natural fructose, minerals, and vitamins.",
@@ -76,8 +76,8 @@ export const CATEGORY_BOXES: CategoryBox[] = [
   {
     id: "grains_pulses",
     title: "Grains & Pulses",
-    tagline: "Wholesome nutrition for every meal. →",
-    image: "/images/category_cards/grains_pulses_uhd.jpg",
+    tagline: "Wholesome nutrition for every meal.",
+    photo: "/images/category_photos/grains_pulses_photo.jpg",
     subCategories: ["All Grains", "Unpolished Dals", "Aged Rice", "Native Millets"],
     bannerDesc:
       "Traditional native seeds, unpolished to retain 100% of their nutrient-dense bran and natural dietary fibers.",
@@ -85,8 +85,8 @@ export const CATEGORY_BOXES: CategoryBox[] = [
   {
     id: "oils_ghee",
     title: "Oils & Ghee",
-    tagline: "Pure oils for a healthier you. →",
-    image: "/images/category_cards/oils_ghee_uhd.jpg",
+    tagline: "Pure oils for a healthier you.",
+    photo: "/images/category_photos/oils_ghee_photo.jpg",
     subCategories: ["All Oils & Ghee", "A2 Bilona Ghee", "Cold Pressed", "Wood Pressed"],
     bannerDesc:
       "Hand-churned Vedic bilona curd ghee and slow-pressed oils extracted at room temperature in wooden mills.",
@@ -94,8 +94,8 @@ export const CATEGORY_BOXES: CategoryBox[] = [
   {
     id: "spices",
     title: "Spices",
-    tagline: "Natural flavours, rooted in tradition. →",
-    image: "/images/category_cards/spices_uhd.jpg",
+    tagline: "Natural flavours, rooted in tradition.",
+    photo: "/images/category_photos/spices_photo.jpg",
     subCategories: ["All Spices", "High Curcumin", "Sun Dried", "Stone Ground"],
     bannerDesc:
       "Sun-dried indigenous spices, rich in active volatile essential oils and slow-ground to preserve heritage aromas.",
@@ -103,8 +103,8 @@ export const CATEGORY_BOXES: CategoryBox[] = [
   {
     id: "dairy_products",
     title: "Dairy Products",
-    tagline: "Goodness in every bite. →",
-    image: "/images/category_cards/dairy_products_uhd.jpg",
+    tagline: "Goodness in every bite.",
+    photo: "/images/category_photos/dairy_products_photo.jpg",
     subCategories: ["All Dairy", "Malai Paneer", "Farm Butter", "Set Curd & Dahi"],
     bannerDesc:
       "Slow-batch artisan dairy crafted fresh daily from whole unhomogenized A2 cow and buffalo milk.",
@@ -112,8 +112,8 @@ export const CATEGORY_BOXES: CategoryBox[] = [
   {
     id: "leafy_greens",
     title: "Leafy Greens",
-    tagline: "Fresh leaves, brighter days. →",
-    image: "/images/category_cards/leafy_greens_uhd.jpg",
+    tagline: "Fresh leaves, brighter days.",
+    photo: "/images/category_photos/leafy_greens_photo.jpg",
     subCategories: ["All Greens", "Tender Spinach", "Aromatic Herbs", "Cooking Greens"],
     bannerDesc:
       "Crisp, dewy leaves plucked at dawn and hydro-cooled immediately to preserve tender cell walls and crisp crunch.",
@@ -121,8 +121,8 @@ export const CATEGORY_BOXES: CategoryBox[] = [
   {
     id: "healthy_snacks",
     title: "Healthy Snacks",
-    tagline: "Nutritious choices for active living. →",
-    image: "/images/category_cards/healthy_snacks_uhd.jpg",
+    tagline: "Nutritious choices for active living.",
+    photo: "/images/category_photos/healthy_snacks_photo.jpg",
     subCategories: ["All Snacks", "Roasted Nuts", "Omega-3 Seeds", "Guilt-Free Crunch"],
     bannerDesc:
       "Lightly roasted farm nuts and superfood seeds without palm oil, artificial flavors, or synthetic preservatives.",
@@ -791,17 +791,45 @@ export default function HarvestCategoryGrid() {
 
   return (
     <section id="categories" className="relative w-full bg-[#f6f2e8] overflow-hidden">
-      {/* 100% Full-Width Edge-to-Edge "Shop By Category" Banner (4K Ultra HD) */}
-      <div className="w-full p-0 m-0 leading-none overflow-hidden block">
+      {/* 100% Full-Width Panoramic "Shop By Category" Banner (Text Rendered Outside Image) */}
+      <div className="relative w-full p-0 m-0 leading-none overflow-hidden block">
+        {/* Pure Photographic Background (Zero baked text) */}
         <img
-          src="/images/shop-by-category-banner-uhd.png"
-          alt="Shop By Category - Pure Goodness for a Healthier Tomorrow"
+          src="/images/shop-by-category-banner-clean-bg.png"
+          alt="Shop By Category Background"
           className="w-full h-auto object-cover block m-0 p-0"
           loading="eager"
         />
+
+        {/* Live HTML Typography Layer rendered OUTSIDE the image */}
+        <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4 pointer-events-none">
+          {/* Botanical Dual Leaf Emblem */}
+          <div className="flex items-center gap-3 mb-1 sm:mb-2 opacity-85">
+            <div className="w-8 sm:w-14 h-[1px] bg-[#1a3824]/40" />
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" className="w-4 h-4 sm:w-5 sm:h-5 text-[#183622]">
+              <path d="M12 4C10 9 6 11 2 11C2 15 5 20 12 20C19 20 22 15 22 11C18 11 14 9 12 4Z" fill="currentColor" fillOpacity="0.85" />
+              <path d="M12 6V18" stroke="#f6f2e8" strokeWidth="1.2" strokeLinecap="round" />
+            </svg>
+            <div className="w-8 sm:w-14 h-[1px] bg-[#1a3824]/40" />
+          </div>
+
+          {/* Live Heading */}
+          <h2 className="font-serif text-3xl sm:text-5xl md:text-6xl text-[#183622] font-medium tracking-tight">
+            Shop By Category
+          </h2>
+
+          {/* Subtitle with Flanking Accent Rules */}
+          <div className="flex items-center gap-3 mt-1.5 sm:mt-3">
+            <div className="w-6 sm:w-10 h-[1px] bg-[#1a3824]/40" />
+            <span className="text-[9px] sm:text-xs font-semibold tracking-[0.25em] text-[#22442d] uppercase font-sans">
+              PURE GOODNESS FOR A HEALTHIER TOMORROW
+            </span>
+            <div className="w-6 sm:w-10 h-[1px] bg-[#1a3824]/40" />
+          </div>
+        </div>
       </div>
 
-      {/* 1. 100% BORDERLESS 3x3 CATEGORY GRID (Zero box lines, zero divider borders, seamless full width) */}
+      {/* 1. 100% BORDERLESS 3x3 CATEGORY GRID (Pure Photos + Live HTML Text Outside Image) */}
       <div className="w-full">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 w-full border-none gap-0 p-0 m-0">
           {CATEGORY_BOXES.map((box) => (
@@ -809,16 +837,33 @@ export default function HarvestCategoryGrid() {
               key={box.id}
               type="button"
               onClick={() => handleCardClick(box.id)}
-              className="relative w-full overflow-hidden text-left focus:outline-none border-none p-0 m-0 cursor-pointer block bg-[#f4eee2]"
+              className="relative w-full overflow-hidden text-left focus:outline-none border-none p-0 m-0 cursor-pointer block bg-[#f4eee2] group transition-colors hover:bg-[#ede7da]"
               aria-label={`Open ${box.title} Fresh Page`}
             >
-              {/* Ultra HD Card Artwork - 100% Clean without box layer or clipping */}
-              <img
-                src={box.image}
-                alt={box.title}
-                className="w-full h-auto object-cover block m-0 p-0"
-                loading="eager"
-              />
+              {/* Pure Photograph without any text */}
+              <div className="w-full overflow-hidden bg-[#f4eee2]">
+                <img
+                  src={box.photo}
+                  alt={box.title}
+                  className="w-full h-auto object-cover block m-0 p-0"
+                  loading="eager"
+                />
+              </div>
+
+              {/* Live HTML Text Block rendered OUTSIDE the image */}
+              <div className="px-6 py-5 sm:px-7 sm:py-6 bg-[#f4eee2] flex items-center justify-between border-t border-[#eadecb]/50">
+                <div>
+                  <h3 className="font-serif text-2xl sm:text-3xl text-[#183622] font-medium tracking-tight">
+                    {box.title}
+                  </h3>
+                  <p className="text-xs sm:text-sm text-[#4e5e4d] mt-1 font-sans">
+                    {box.tagline}
+                  </p>
+                </div>
+                <span className="text-2xl text-[#183622] font-light pl-4 transition-transform duration-300 group-hover:translate-x-1.5 shrink-0">
+                  →
+                </span>
+              </div>
             </button>
           ))}
         </div>
