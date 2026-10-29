@@ -50,7 +50,7 @@ export const CATEGORY_BOXES: CategoryBox[] = [
     id: "milk",
     title: "Milk",
     tagline: "Pure. Fresh. Everyday. →",
-    image: "/images/category_cards/milk_hd.jpg",
+    image: "/images/category_cards/milk_uhd.jpg",
     subCategories: ["All Milk", "A2 Desi Cow", "Buffalo Milk", "Full Cream"],
     bannerDesc:
       "100% single-source farm fresh milk chilled to 4°C within 15 minutes of dawn milking. Zero adulteration, zero preservatives, and no synthetic hormones.",
@@ -59,7 +59,7 @@ export const CATEGORY_BOXES: CategoryBox[] = [
     id: "vegetables",
     title: "Vegetables",
     tagline: "Seasonal goodness from our farms. →",
-    image: "/images/category_cards/vegetables_hd.jpg",
+    image: "/images/category_cards/vegetables_uhd.jpg",
     subCategories: ["All Veggies", "Daily Cooking", "Roots & Tubers", "Crisp & Salads"],
     bannerDesc:
       "Harvested daily from certified organic acreage. Grown in rich living soil nourished by natural compost and fresh rainwater.",
@@ -68,7 +68,7 @@ export const CATEGORY_BOXES: CategoryBox[] = [
     id: "fruits",
     title: "Fruits",
     tagline: "Nature's sweetest harvest. →",
-    image: "/images/category_cards/fruits_hd.jpg",
+    image: "/images/category_cards/fruits_uhd.jpg",
     subCategories: ["All Fruits", "Seasonal Harvest", "Tree Ripened", "Citrus & Berries"],
     bannerDesc:
       "Tree-ripened orchard harvest delivered without carbide ripening or wax coating. Bursting with natural fructose, minerals, and vitamins.",
@@ -77,7 +77,7 @@ export const CATEGORY_BOXES: CategoryBox[] = [
     id: "grains_pulses",
     title: "Grains & Pulses",
     tagline: "Wholesome nutrition for every meal. →",
-    image: "/images/category_cards/grains_pulses_hd.jpg",
+    image: "/images/category_cards/grains_pulses_uhd.jpg",
     subCategories: ["All Grains", "Unpolished Dals", "Aged Rice", "Native Millets"],
     bannerDesc:
       "Traditional native seeds, unpolished to retain 100% of their nutrient-dense bran and natural dietary fibers.",
@@ -86,7 +86,7 @@ export const CATEGORY_BOXES: CategoryBox[] = [
     id: "oils_ghee",
     title: "Oils & Ghee",
     tagline: "Pure oils for a healthier you. →",
-    image: "/images/category_cards/oils_ghee_hd.jpg",
+    image: "/images/category_cards/oils_ghee_uhd.jpg",
     subCategories: ["All Oils & Ghee", "A2 Bilona Ghee", "Cold Pressed", "Wood Pressed"],
     bannerDesc:
       "Hand-churned Vedic bilona curd ghee and slow-pressed oils extracted at room temperature in wooden mills.",
@@ -95,7 +95,7 @@ export const CATEGORY_BOXES: CategoryBox[] = [
     id: "spices",
     title: "Spices",
     tagline: "Natural flavours, rooted in tradition. →",
-    image: "/images/category_cards/spices_hd.jpg",
+    image: "/images/category_cards/spices_uhd.jpg",
     subCategories: ["All Spices", "High Curcumin", "Sun Dried", "Stone Ground"],
     bannerDesc:
       "Sun-dried indigenous spices, rich in active volatile essential oils and slow-ground to preserve heritage aromas.",
@@ -104,7 +104,7 @@ export const CATEGORY_BOXES: CategoryBox[] = [
     id: "dairy_products",
     title: "Dairy Products",
     tagline: "Goodness in every bite. →",
-    image: "/images/category_cards/dairy_products_hd.jpg",
+    image: "/images/category_cards/dairy_products_uhd.jpg",
     subCategories: ["All Dairy", "Malai Paneer", "Farm Butter", "Set Curd & Dahi"],
     bannerDesc:
       "Slow-batch artisan dairy crafted fresh daily from whole unhomogenized A2 cow and buffalo milk.",
@@ -113,7 +113,7 @@ export const CATEGORY_BOXES: CategoryBox[] = [
     id: "leafy_greens",
     title: "Leafy Greens",
     tagline: "Fresh leaves, brighter days. →",
-    image: "/images/category_cards/leafy_greens_hd.jpg",
+    image: "/images/category_cards/leafy_greens_uhd.jpg",
     subCategories: ["All Greens", "Tender Spinach", "Aromatic Herbs", "Cooking Greens"],
     bannerDesc:
       "Crisp, dewy leaves plucked at dawn and hydro-cooled immediately to preserve tender cell walls and crisp crunch.",
@@ -122,7 +122,7 @@ export const CATEGORY_BOXES: CategoryBox[] = [
     id: "healthy_snacks",
     title: "Healthy Snacks",
     tagline: "Nutritious choices for active living. →",
-    image: "/images/category_cards/healthy_snacks_hd.jpg",
+    image: "/images/category_cards/healthy_snacks_uhd.jpg",
     subCategories: ["All Snacks", "Roasted Nuts", "Omega-3 Seeds", "Guilt-Free Crunch"],
     bannerDesc:
       "Lightly roasted farm nuts and superfood seeds without palm oil, artificial flavors, or synthetic preservatives.",
@@ -791,10 +791,10 @@ export default function HarvestCategoryGrid() {
 
   return (
     <section id="categories" className="relative w-full bg-[#f6f2e8] overflow-hidden">
-      {/* 100% Full-Width Edge-to-Edge "Shop By Category" Banner (Zero Gaps) */}
+      {/* 100% Full-Width Edge-to-Edge "Shop By Category" Banner (4K Ultra HD) */}
       <div className="w-full p-0 m-0 leading-none overflow-hidden block">
         <img
-          src="/images/shop-by-category-banner-clean.png"
+          src="/images/shop-by-category-banner-uhd.png"
           alt="Shop By Category - Pure Goodness for a Healthier Tomorrow"
           className="w-full h-auto object-cover block m-0 p-0"
           loading="eager"
