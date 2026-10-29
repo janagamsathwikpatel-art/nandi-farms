@@ -6,14 +6,26 @@ import "./DesiGoodnessSection.css";
 export default function DesiGoodnessSection() {
   return (
     <section className="desi-goodness-section" aria-label="Desi Goodness - The true Indian Milk">
-      {/* 4K Ultra HD Panoramic Banner */}
+      {/* 4K Ultra HD Panoramic Banner / Cinematic Video Player */}
       <div className="desi-goodness-banner-container">
-        <img
-          src="/images/desi-goodness-banner-4k.png"
-          alt="Desi Goodness - The true Indian Milk featuring Desi Gir Cow in lush organic pasture"
-          className="desi-goodness-banner-img"
-          loading="eager"
-        />
+        <video
+          className="desi-goodness-video-player"
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
+          poster="/images/desi-goodness-banner-4k.png"
+        >
+          <source src="/videos/desi-cow-cinematic.webm" type="video/webm" />
+          <source src="/videos/desi-cow-cinematic.mp4" type="video/mp4" />
+          <img
+            src="/images/desi-goodness-banner-4k.png"
+            alt="Desi Goodness - The true Indian Milk featuring Desi Gir Cow in lush organic pasture"
+            className="desi-goodness-banner-img"
+            loading="eager"
+          />
+        </video>
 
         {/* Ambient Nuances Layer */}
         <div className="desi-goodness-interactive-overlay">

@@ -16,11 +16,13 @@
   background: #faf6ee;
 }
 
-.desi-goodness-banner-img {
+.desi-goodness-banner-img,
+.desi-goodness-video-player {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
+  transform: translateZ(0);
 }
 
 /* Ambient Layer */
