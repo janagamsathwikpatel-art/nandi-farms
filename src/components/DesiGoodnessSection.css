@@ -2,7 +2,7 @@
 .desi-goodness-section {
   position: relative;
   width: 100%;
-  background-color: #f7f2e5;
+  background-color: #faf6ee;
   overflow: hidden;
   box-sizing: border-box;
 }
@@ -11,27 +11,15 @@
 .desi-goodness-banner-container {
   position: relative;
   width: 100%;
-  height: 420px;
+  aspect-ratio: 3840 / 1642;
   overflow: hidden;
-  background: #f7f2e5;
+  background: #faf6ee;
 }
 
-/* User-Specified Clean Cow Image & Video Display (Prevents Distortion) */
-.cow-image {
+.desi-goodness-banner-img {
   width: 100%;
-  height: 420px;
-  object-fit: contain;
-  object-position: center;
-  display: block;
-  background: #f7f2e5;
-  transform: translateZ(0);
-}
-
-.cow-image-cover {
-  width: 100%;
-  height: 420px;
+  height: 100%;
   object-fit: cover;
-  object-position: center;
   display: block;
 }
 
@@ -123,40 +111,4 @@
 @keyframes splashRingExpand {
   0% { transform: scale(0.4); opacity: 1; }
   100% { transform: scale(2.2); opacity: 0; }
-}
-
-/* Discreet Audio Toggle Button */
-.desi-audio-toggle-btn {
-  position: absolute;
-  bottom: 16px;
-  left: 20px;
-  pointer-events: auto;
-  background: rgba(25, 45, 28, 0.75);
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  color: #ffffff;
-  border-radius: 30px;
-  padding: 6px 14px;
-  font-size: 11px;
-  font-weight: 600;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  cursor: pointer;
-  transition: background 0.2s ease, transform 0.15s ease;
-  z-index: 20;
-}
-
-.desi-audio-toggle-btn:hover {
-  background: rgba(25, 45, 28, 0.95);
-  transform: translateY(-2px);
-}
-
-@media (max-width: 640px) {
-  .desi-audio-toggle-btn {
-    bottom: 8px;
-    left: 8px;
-    padding: 4px 10px;
-    font-size: 10px;
-  }
 }
