@@ -107,16 +107,19 @@
 
 .harvest-hero-intro {
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(15px, 1.3vw, 19px);
+  font-size: clamp(16px, 1.35vw, 20px);
   line-height: 1.55;
-  color: #3b523e;
+  color: #f7d373;
+  text-shadow: 0 1px 3px rgba(15, 35, 20, 0.85), 0 2px 8px rgba(15, 35, 20, 0.45);
+  font-weight: 500;
   margin: 0 0 20px;
 }
 
 .harvest-hero-leaf-divider {
   font-size: 32px;
-  color: #2b5738;
-  opacity: 0.85;
+  color: #f7d373;
+  text-shadow: 0 1px 3px rgba(15, 35, 20, 0.85);
+  opacity: 0.95;
 }
 
 /* Product Cards Grid: 4 columns across desktop */
