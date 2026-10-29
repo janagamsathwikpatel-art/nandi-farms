@@ -741,12 +741,84 @@ export const CATEGORY_HARVEST_ITEMS: Record<string, HarvestItem[]> = {
   ],
 };
 
+interface TodaysHarvestFeatured {
+  id: string;
+  title: string;
+  subtitle: string;
+  price: number;
+  originalPrice: number;
+  unit: string;
+  image: string;
+  badge?: string;
+  description: string;
+  highlights: string[];
+}
+
+const TODAYS_HARVEST_PRODUCTS: TodaysHarvestFeatured[] = [
+  {
+    id: "th-buffalo-milk",
+    title: "Buffalo Milk (1 L)",
+    subtitle: "Rich, creamy, farm-fresh buffalo milk",
+    price: 70,
+    originalPrice: 85,
+    unit: "1 L",
+    image: "/images/todays_harvest/buffalo_milk.png",
+    badge: "Rich & Creamy",
+    description: "100% single-source farm fresh buffalo milk from pasture-fed water buffaloes. Naturally sweet, thick, and packed with calcium and healthy fats. Bottled within 15 minutes of dawn milking.",
+    highlights: ["Chilled to 4°C in 15 mins", "Zero Preservatives or Additives", "Eco-friendly Sealed Glass Bottle", "Delivered Cold before 7:00 AM"],
+  },
+  {
+    id: "th-cow-milk",
+    title: "Cow Milk (1 L)",
+    subtitle: "Light, nutritious, perfect for everyday",
+    price: 60,
+    originalPrice: 75,
+    unit: "1 L",
+    image: "/images/todays_harvest/cow_milk.png",
+    badge: "A2 Single Source",
+    description: "Gentle on digestion and naturally rich in A2 beta-casein proteins. Sourced directly from our free-grazing indigenous cows at Nandi Eco Farm with zero hormone injections.",
+    highlights: ["Certified A2 Beta-Casein", "Zero Adulteration or Dilution", "Farm-Bottled Fresh Daily", "Automated Pause Anytime"],
+  },
+  {
+    id: "th-veggie-basket",
+    title: "Seasonal Vegetable Basket",
+    subtitle: "Handpicked farm-fresh vegetables",
+    price: 199,
+    originalPrice: 249,
+    unit: "basket",
+    image: "/images/todays_harvest/vegetable_basket.png",
+    badge: "Harvested Today",
+    description: "An assorted morning harvest containing seasonal farm staples: vine-ripened red tomatoes, tender baby carrots, crisp bell peppers, and fresh coriander, harvested fresh at 5:00 AM.",
+    highlights: ["100% Chemical-Free Farming", "Harvested at First Dawn", "Zero Cold-Storage Delay", "Direct Farm-to-Kitchen"],
+  },
+  {
+    id: "th-leafy-greens",
+    title: "Leafy Greens (300 g)",
+    subtitle: "Fresh, nutritious and locally grown",
+    price: 30,
+    originalPrice: 40,
+    unit: "300 g",
+    image: "/images/todays_harvest/leafy_greens.png",
+    badge: "Hydro / Soil Pure",
+    description: "Crisp, vibrant spinach and local greens harvested at first dawn. Washed in ozonated natural water, tender, and packed with vital iron, folate, and living nutrients.",
+    highlights: ["Zero Chemical Pesticides", "Tender Morning Cut", "Washed in Ozonated Water", "Vibrant & Living Greens"],
+  },
+];
+
 export default function HarvestCategoryGrid() {
   const [selectedCategory, setSelectedCategory] = useState<string>("milk");
   const [activeSubFilter, setActiveSubFilter] = useState<string>("all");
   const [cart, setCart] = useState<{ [productId: string]: number }>({});
   const [isMilkModalOpen, setIsMilkModalOpen] = useState(false);
+  const [activeModalProduct, setActiveModalProduct] = useState<TodaysHarvestFeatured | null>(null);
   const freshPageRef = useRef<HTMLDivElement>(null);
+  const catalogRef = useRef<HTMLDivElement>(null);
+
+  const scrollToCatalog = () => {
+    if (catalogRef.current) {
+      catalogRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
 
   const handleCardClick = (catId: string) => {
     setSelectedCategory(catId);
@@ -885,18 +957,141 @@ export default function HarvestCategoryGrid() {
           </div>
         </div>
 
-        {/* Today's Harvest Banner (Replaces previous editorial header with matching dimensions) */}
-        <div className="relative w-full overflow-hidden border-b border-[#eee8db] bg-[#fbf8f2]">
-          <img
-            src="/images/todays-harvest-banner-hd.png"
-            alt="Today's Harvest - Fresh Farm Products"
-            className="w-full h-auto object-cover block"
-            loading="eager"
-          />
+        {/* INTERACTIVE TODAY'S HARVEST SECTION (HD Items with Click-to-Open Modal & Add-to-Cart) */}
+        <div className="relative w-full overflow-hidden border-b border-[#eee8db] bg-[#fbf8f2] py-8 sm:py-10 px-4 sm:px-6 lg:px-8">
+          {/* Subtle rustic background sketch watermark */}
+          <div className="absolute left-0 bottom-0 w-72 h-44 opacity-15 pointer-events-none select-none">
+            <img
+              src="/images/todays_harvest/farm_sketch.png"
+              alt=""
+              className="w-full h-full object-contain object-left-bottom"
+            />
+          </div>
+
+          <div className="relative max-w-7xl mx-auto flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-8 z-10">
+            {/* Left Column: Editorial Header */}
+            <div className="lg:w-[26%] shrink-0 flex flex-col justify-between">
+              <div>
+                <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-900/10 text-emerald-900 text-[10px] font-bold tracking-[0.2em] uppercase mb-2">
+                  <Leaf className="w-3 h-3 text-emerald-700" />
+                  <span>Fresh Today</span>
+                </div>
+                <h2 className="font-serif text-3xl sm:text-4xl text-[#142819] font-medium tracking-tight">
+                  TODAY&apos;S HARVEST
+                </h2>
+                <p className="text-xs sm:text-sm text-[#4d5c4b] mt-2 leading-relaxed">
+                  Carefully sourced. Honestly priced. Delivered fresh across Hyderabad.
+                </p>
+                <div className="w-14 h-0.5 bg-[#d8ccb6] mt-4" />
+              </div>
+            </div>
+
+            {/* Right Column: 4 Interactive HD Product Cards */}
+            <div className="lg:w-[74%] w-full flex flex-col">
+              <div className="flex items-center justify-between sm:justify-end mb-3">
+                <span className="sm:hidden text-xs font-semibold text-[#183622]">Featured Harvest</span>
+                <button
+                  type="button"
+                  onClick={scrollToCatalog}
+                  className="text-xs font-semibold text-emerald-900 hover:text-emerald-700 flex items-center gap-1 group cursor-pointer"
+                >
+                  <span>View all products</span>
+                  <span className="transition-transform duration-200 group-hover:translate-x-1">→</span>
+                </button>
+              </div>
+
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
+                {TODAYS_HARVEST_PRODUCTS.map((prod) => {
+                  const qty = cart[prod.id] || 0;
+                  return (
+                    <div
+                      key={prod.id}
+                      onClick={() => setActiveModalProduct(prod)}
+                      className="bg-[#f7f3ea]/70 hover:bg-white rounded-2xl p-3 sm:p-3.5 border border-[#ede4d2] hover:border-emerald-600/50 hover:shadow-xl transition-all duration-300 cursor-pointer flex flex-col justify-between group"
+                    >
+                      {/* HD Product Cutout */}
+                      <div className="w-full aspect-[4/3] flex items-center justify-center overflow-hidden mb-2 rounded-xl bg-[#fbf8f2]/60 p-1">
+                        <img
+                          src={prod.image}
+                          alt={prod.title}
+                          className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300 drop-shadow-sm"
+                          loading="eager"
+                        />
+                      </div>
+
+                      {/* Title & Subtitle */}
+                      <div>
+                        {prod.badge && (
+                          <span className="text-[9px] uppercase font-bold tracking-wider text-emerald-800 bg-emerald-100/60 px-1.5 py-0.5 rounded-sm inline-block mb-1">
+                            {prod.badge}
+                          </span>
+                        )}
+                        <h4 className="font-serif text-sm sm:text-base font-semibold text-[#162e1e] line-clamp-1 group-hover:text-emerald-800 transition-colors">
+                          {prod.title}
+                        </h4>
+                        <p className="text-[11px] text-[#556453] mt-0.5 line-clamp-2 leading-relaxed">
+                          {prod.subtitle}
+                        </p>
+                      </div>
+
+                      {/* Price & Add to Cart button */}
+                      <div className="flex items-center justify-between mt-3 pt-2.5 border-t border-[#eee5d5]">
+                        <div className="flex items-baseline gap-1">
+                          <span className="font-serif text-sm sm:text-base font-bold text-[#142918]">
+                            ₹{prod.price}
+                          </span>
+                          <span className="text-[10px] font-sans font-normal text-[#6b7969]">
+                            /{prod.unit}
+                          </span>
+                        </div>
+
+                        {qty === 0 ? (
+                          <button
+                            type="button"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              updateCart(prod.id, 1);
+                            }}
+                            className="px-3 py-1 bg-[#1a3821] hover:bg-[#132d19] active:scale-95 text-white text-xs font-semibold rounded-lg flex items-center gap-1 transition-all shadow-xs cursor-pointer"
+                          >
+                            <span>Add</span>
+                            <ShoppingBag className="w-3 h-3" />
+                          </button>
+                        ) : (
+                          <div
+                            onClick={(e) => e.stopPropagation()}
+                            className="flex items-center bg-[#1a3821] text-white rounded-lg px-2 py-0.5 shadow-xs gap-2"
+                          >
+                            <button
+                              type="button"
+                              onClick={() => updateCart(prod.id, -1)}
+                              className="w-4 h-4 flex items-center justify-center hover:bg-emerald-700 rounded transition-colors cursor-pointer text-xs"
+                              aria-label="Decrease quantity"
+                            >
+                              -
+                            </button>
+                            <span className="text-xs font-bold">{qty}</span>
+                            <button
+                              type="button"
+                              onClick={() => updateCart(prod.id, 1)}
+                              className="w-4 h-4 flex items-center justify-center hover:bg-emerald-700 rounded transition-colors cursor-pointer text-xs"
+                              aria-label="Increase quantity"
+                            >
+                              +
+                            </button>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Fresh Page Sub-Filter Chips & Catalog */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+        <div ref={catalogRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
           {/* Sub-Filter Chips */}
           <div className="flex items-center justify-between flex-wrap gap-3 pb-6 mb-8 border-b border-[#ece5d7]">
             <div className="flex items-center gap-2 overflow-x-auto pb-2 sm:pb-0 scrollbar-none">
@@ -1062,6 +1257,106 @@ export default function HarvestCategoryGrid() {
         isOpen={isMilkModalOpen}
         onClose={() => setIsMilkModalOpen(false)}
       />
+
+      {/* Featured Harvest Item Detail Modal (Opened when clicking an item) */}
+      {activeModalProduct && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
+          onClick={() => setActiveModalProduct(null)}
+        >
+          <div
+            className="relative w-full max-w-lg bg-[#fdfbf7] rounded-3xl shadow-2xl border border-[#ede4d2] overflow-hidden p-6 sm:p-8"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Close button */}
+            <button
+              type="button"
+              onClick={() => setActiveModalProduct(null)}
+              className="absolute top-5 right-5 w-9 h-9 rounded-full bg-[#f4ede0] hover:bg-[#eae1d0] active:scale-95 text-[#183622] flex items-center justify-center transition-all cursor-pointer font-bold text-sm shadow-xs"
+              aria-label="Close dialog"
+            >
+              ✕
+            </button>
+
+            {/* Product Image & Key Info */}
+            <div className="flex flex-col sm:flex-row items-center gap-6">
+              <div className="w-36 h-36 shrink-0 bg-[#fbf8f2] rounded-2xl p-2.5 border border-[#ede5d6] flex items-center justify-center">
+                <img
+                  src={activeModalProduct.image}
+                  alt={activeModalProduct.title}
+                  className="w-full h-full object-contain drop-shadow-md"
+                />
+              </div>
+
+              <div className="text-left w-full">
+                <span className="text-[10px] uppercase font-bold tracking-wider px-2.5 py-0.5 rounded-full bg-emerald-100/80 text-emerald-900 border border-emerald-300/60 inline-block mb-1.5">
+                  {activeModalProduct.badge || "100% Farm Fresh"}
+                </span>
+                <h3 className="font-serif text-2xl sm:text-3xl text-[#142819] font-medium tracking-tight">
+                  {activeModalProduct.title}
+                </h3>
+                <p className="text-xs sm:text-sm text-[#526350] mt-1">
+                  {activeModalProduct.subtitle}
+                </p>
+
+                <div className="flex items-baseline gap-2 mt-3">
+                  <span className="font-serif text-2xl font-bold text-[#142918]">
+                    ₹{activeModalProduct.price}
+                  </span>
+                  <span className="text-xs text-[#8c9789] line-through">
+                    ₹{activeModalProduct.originalPrice}
+                  </span>
+                  <span className="text-xs text-[#526350]">/{activeModalProduct.unit}</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Full Description & Nutritional Highlights */}
+            <div className="mt-5 pt-4 border-t border-[#ede5d6] text-left">
+              <p className="text-xs sm:text-sm text-[#4b5a4a] leading-relaxed">
+                {activeModalProduct.description}
+              </p>
+
+              <div className="grid grid-cols-2 gap-2.5 mt-4">
+                {activeModalProduct.highlights.map((h, i) => (
+                  <div key={i} className="flex items-center gap-1.5 text-xs text-[#3d4d3c] font-medium">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-700 shrink-0" />
+                    <span>{h}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Modal Actions */}
+            <div className="mt-6 pt-5 border-t border-[#ede5d6] flex flex-col sm:flex-row items-center gap-3">
+              <button
+                type="button"
+                onClick={() => {
+                  updateCart(activeModalProduct.id, 1);
+                  setActiveModalProduct(null);
+                }}
+                className="w-full sm:flex-1 py-3 bg-[#183622] hover:bg-[#122b1a] active:scale-95 text-white text-xs sm:text-sm font-semibold rounded-xl shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer"
+              >
+                <ShoppingBag className="w-4 h-4" />
+                <span>Add to Farm Basket (₹{activeModalProduct.price})</span>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => {
+                  setActiveModalProduct(null);
+                  setIsMilkModalOpen(true);
+                }}
+                className="w-full sm:w-auto px-5 py-3 bg-[#f2ebd9] hover:bg-[#e7dfcb] active:scale-95 text-[#183622] text-xs sm:text-sm font-semibold rounded-xl transition-all cursor-pointer whitespace-nowrap"
+              >
+                Subscribe Daily
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
