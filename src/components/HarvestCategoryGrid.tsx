@@ -964,7 +964,7 @@ export default function HarvestCategoryGrid() {
           onViewAllProducts={scrollToCatalog}
         />
 
-        {/* 4K Ultra HD "Desi Goodness - The true Indian Milk" Section with Grazing Cow & Hand-Milking Animations */}
+        {/* 4K Ultra-HD Desi Goodness Showcase with Cow Grazing & Hand-Milking Animations */}
         <div ref={catalogRef} className="w-full">
           <DesiGoodnessSection />
         </div>
