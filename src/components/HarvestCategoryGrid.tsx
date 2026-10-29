@@ -12,6 +12,7 @@ import {
   Leaf,
 } from "lucide-react";
 import MilkSubscriptionModal from "./MilkSubscriptionModal";
+import HarvestSection from "./HarvestSection";
 
 export interface HarvestItem {
   id: string;
@@ -929,99 +930,31 @@ export default function HarvestCategoryGrid() {
         ref={freshPageRef}
         className="w-full bg-[#fdfbf7] border-t border-[#ede7d8] transition-all duration-500"
       >
-        {/* ULTRA HD SEAMLESS TODAY'S HARVEST BANNER WITH INTERACTIVE HOTSPOTS */}
-        <div className="relative w-full overflow-hidden border-b border-[#eee8db] bg-[#fbf8f2]">
-          <div className="relative w-full aspect-[3072/1023] select-none">
-            {/* Ultra HD 3072x1023 Crisp Artwork */}
-            <img
-              src="/images/todays-harvest-banner-uhd.png"
-              alt="Today's Harvest - Fresh Farm Products"
-              className="w-full h-full object-cover block"
-              loading="eager"
-            />
-
-            {/* "View all products →" Hotspot (Top Right: x ≈ 86% - 98%, y ≈ 6% - 16%) */}
-            <button
-              type="button"
-              onClick={scrollToCatalog}
-              className="absolute right-[2.5%] top-[6%] w-[14%] h-[12%] cursor-pointer rounded-lg hover:bg-black/5 active:scale-95 transition-all"
-              aria-label="View all products"
-              title="View all products"
-            />
-
-            {/* Item 1: Buffalo Milk (x: 26.5% - 42%) */}
-            <div
-              onClick={() => setActiveModalProduct(TODAYS_HARVEST_PRODUCTS[0])}
-              className="absolute left-[26.5%] top-[8%] w-[15.5%] h-[85%] cursor-pointer rounded-2xl hover:bg-white/20 active:bg-white/30 transition-all duration-200 group"
-              title="Click to view Buffalo Milk details"
-            >
-              <button
-                type="button"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  updateCart(TODAYS_HARVEST_PRODUCTS[0].id, 1);
-                }}
-                className="absolute left-[8%] bottom-[7%] w-[84%] h-[16%] rounded-lg cursor-pointer hover:bg-black/10 active:scale-95 transition-all"
-                aria-label="Add Buffalo Milk to cart"
-                title="Add to cart"
-              />
-            </div>
-
-            {/* Item 2: Cow Milk (x: 43% - 58.5%) */}
-            <div
-              onClick={() => setActiveModalProduct(TODAYS_HARVEST_PRODUCTS[1])}
-              className="absolute left-[43%] top-[8%] w-[15.5%] h-[85%] cursor-pointer rounded-2xl hover:bg-white/20 active:bg-white/30 transition-all duration-200 group"
-              title="Click to view Cow Milk details"
-            >
-              <button
-                type="button"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  updateCart(TODAYS_HARVEST_PRODUCTS[1].id, 1);
-                }}
-                className="absolute left-[8%] bottom-[7%] w-[84%] h-[16%] rounded-lg cursor-pointer hover:bg-black/10 active:scale-95 transition-all"
-                aria-label="Add Cow Milk to cart"
-                title="Add to cart"
-              />
-            </div>
-
-            {/* Item 3: Seasonal Vegetable Basket (x: 59.5% - 78%) */}
-            <div
-              onClick={() => setActiveModalProduct(TODAYS_HARVEST_PRODUCTS[2])}
-              className="absolute left-[59.5%] top-[8%] w-[18.5%] h-[85%] cursor-pointer rounded-2xl hover:bg-white/20 active:bg-white/30 transition-all duration-200 group"
-              title="Click to view Seasonal Vegetable Basket details"
-            >
-              <button
-                type="button"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  updateCart(TODAYS_HARVEST_PRODUCTS[2].id, 1);
-                }}
-                className="absolute left-[10%] bottom-[7%] w-[80%] h-[16%] rounded-lg cursor-pointer hover:bg-black/10 active:scale-95 transition-all"
-                aria-label="Add Vegetable Basket to cart"
-                title="Add to cart"
-              />
-            </div>
-
-            {/* Item 4: Leafy Greens (x: 79% - 97.5%) */}
-            <div
-              onClick={() => setActiveModalProduct(TODAYS_HARVEST_PRODUCTS[3])}
-              className="absolute left-[79%] top-[8%] w-[18.5%] h-[85%] cursor-pointer rounded-2xl hover:bg-white/20 active:bg-white/30 transition-all duration-200 group"
-              title="Click to view Leafy Greens details"
-            >
-              <button
-                type="button"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  updateCart(TODAYS_HARVEST_PRODUCTS[3].id, 1);
-                }}
-                className="absolute left-[10%] bottom-[7%] w-[80%] h-[16%] rounded-lg cursor-pointer hover:bg-black/10 active:scale-95 transition-all"
-                aria-label="Add Leafy Greens to cart"
-                title="Add to cart"
-              />
-            </div>
-          </div>
-        </div>
+        {/* NEW LUSH FARM HARVEST SECTION (Live HTML Text & Products outside Ultra HD Background) */}
+        <HarvestSection
+          cartCount={totalCartCount}
+          onAddToCart={(product, qty) => updateCart(product.id, qty)}
+          onOpenModal={(product) =>
+            setActiveModalProduct({
+              id: product.id,
+              title: product.name,
+              subtitle: product.description,
+              price: product.price,
+              originalPrice: product.originalPrice || product.price,
+              unit: product.unit || "1 L",
+              image: product.image,
+              badge: product.badge,
+              description: product.description,
+              highlights:
+                product.highlights || [
+                  "100% Farm Fresh",
+                  "Zero Chemical Spray",
+                  "Direct Farm Delivery",
+                ],
+            })
+          }
+          onViewAllProducts={scrollToCatalog}
+        />
 
         {/* Fresh Page Sub-Filter Chips & Catalog */}
         <div ref={catalogRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">

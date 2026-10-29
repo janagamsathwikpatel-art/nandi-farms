@@ -1,0 +1,245 @@
+.harvest-section {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: 32px 5% 60px;
+  color: #214432;
+  background: #f1f0d9;
+  font-family: Arial, sans-serif;
+}
+
+/* Decorative landscape/background image */
+.harvest-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(241, 240, 217, 0.96) 0%,
+      rgba(241, 240, 217, 0.88) 55%,
+      rgba(241, 240, 217, 0.55) 100%
+    ),
+    url("/images/harvest-background.png") center / cover no-repeat;
+  opacity: 1;
+}
+
+.harvest-topbar {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 45px;
+}
+
+.cart-count {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.view-products {
+  color: #214432;
+  text-decoration: none;
+  font-weight: 700;
+  border-bottom: 1px solid #214432;
+  padding-bottom: 6px;
+  cursor: pointer;
+  background: transparent;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+}
+
+.view-products span {
+  margin-left: 12px;
+  font-size: 20px;
+}
+
+.harvest-layout {
+  display: grid;
+  grid-template-columns: minmax(220px, 0.9fr) 2.8fr;
+  gap: 30px;
+  align-items: start;
+}
+
+.harvest-heading {
+  padding-top: 20px;
+}
+
+.eyebrow {
+  letter-spacing: 5px;
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.harvest-heading h1 {
+  font-family: Georgia, serif;
+  font-size: clamp(38px, 4vw, 66px);
+  line-height: 0.94;
+  margin: 18px 0;
+  letter-spacing: -2px;
+}
+
+.harvest-intro {
+  font-family: Georgia, serif;
+  font-size: clamp(15px, 1.4vw, 20px);
+  line-height: 1.5;
+}
+
+.leaf-divider {
+  font-size: 35px;
+  margin-top: 20px;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.product-card {
+  min-width: 0;
+}
+
+.product-image {
+  height: 190px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.product-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.product-image:hover img {
+  transform: scale(1.04);
+}
+
+.product-card h2 {
+  font-size: 16px;
+  line-height: 1.4;
+  margin: 14px 0 6px;
+  color: #182a20;
+  font-weight: 600;
+}
+
+.product-description {
+  min-height: 45px;
+  color: #5c6259;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.product-price {
+  font-family: Georgia, serif;
+  font-size: 28px;
+  font-weight: 700;
+  margin: 12px 0;
+  color: #17271e;
+}
+
+.product-price span {
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.quantity-control {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 150px;
+  margin: 12px auto;
+  border: 1px solid #d3d5b6;
+  border-radius: 30px;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.quantity-control button {
+  border: 0;
+  background: transparent;
+  padding: 8px 14px;
+  font-size: 19px;
+  cursor: pointer;
+  color: #214432;
+}
+
+.quantity-control span {
+  font-weight: 600;
+}
+
+.add-cart {
+  width: 100%;
+  border: 0;
+  border-radius: 10px;
+  padding: 13px 8px;
+  background: #365b35;
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.add-cart:hover {
+  background: #214432;
+  transform: translateY(-2px);
+}
+
+.add-cart span {
+  margin-right: 8px;
+}
+
+@media (max-width: 1000px) {
+  .harvest-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .harvest-heading {
+    max-width: 500px;
+  }
+
+  .product-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 520px) {
+  .harvest-section {
+    padding: 22px 16px 40px;
+  }
+
+  .harvest-topbar {
+    margin-bottom: 25px;
+  }
+
+  .harvest-heading h1 {
+    font-size: 43px;
+  }
+
+  .product-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px 14px;
+  }
+
+  .product-image {
+    height: 135px;
+  }
+
+  .product-card h2 {
+    font-size: 14px;
+  }
+
+  .product-price {
+    font-size: 23px;
+  }
+}
