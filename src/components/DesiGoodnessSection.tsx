@@ -1,11 +1,20 @@
 "use client";
 
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import "./DesiGoodnessSection.css";
 
 export default function DesiGoodnessSection() {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [isMuted, setIsMuted] = useState(true);
+
+  useEffect(() => {
+    // Ensure smooth autoplay across all modern browsers
+    if (videoRef.current) {
+      videoRef.current.play().catch((err) => {
+        console.log("Autoplay waiting for user gesture:", err);
+      });
+    }
+  }, []);
 
   const toggleSound = () => {
     if (videoRef.current) {
@@ -20,6 +29,7 @@ export default function DesiGoodnessSection() {
       <div className="desi-goodness-banner-container">
         <video
           ref={videoRef}
+          src="/videos/desi-cow-cinematic.mp4"
           className="desi-goodness-video-player"
           autoPlay
           loop
@@ -28,7 +38,6 @@ export default function DesiGoodnessSection() {
           preload="auto"
           poster="/images/desi-goodness-banner-4k.png"
         >
-          <source src="/videos/desi-cow-cinematic.webm" type="video/webm" />
           <source src="/videos/desi-cow-cinematic.mp4" type="video/mp4" />
           <img
             src="/images/desi-goodness-banner-4k.png"
