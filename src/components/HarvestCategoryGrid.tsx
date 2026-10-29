@@ -9,8 +9,12 @@ import {
   Star,
   Zap,
   ArrowRight,
+  ArrowLeft,
   CheckCircle2,
   Calendar,
+  ShieldCheck,
+  Truck,
+  Leaf,
 } from "lucide-react";
 import MilkSubscriptionModal from "./MilkSubscriptionModal";
 
@@ -19,6 +23,7 @@ export interface HarvestItem {
   title: string;
   category: string;
   categoryTitle: string;
+  subCategory?: string;
   weight: string;
   price: number;
   originalPrice: number;
@@ -36,6 +41,8 @@ export interface CategoryBox {
   title: string;
   tagline: string;
   image: string;
+  subCategories: string[];
+  bannerDesc: string;
 }
 
 export const CATEGORY_BOXES: CategoryBox[] = [
@@ -44,54 +51,81 @@ export const CATEGORY_BOXES: CategoryBox[] = [
     title: "Milk",
     tagline: "Pure. Fresh. Everyday. →",
     image: "/images/category_cards/milk_hd.jpg",
+    subCategories: ["All Milk", "A2 Desi Cow", "Buffalo Milk", "Full Cream"],
+    bannerDesc:
+      "100% single-source farm fresh milk chilled to 4°C within 15 minutes of dawn milking. Zero adulteration, zero preservatives, and no synthetic hormones.",
   },
   {
     id: "vegetables",
     title: "Vegetables",
     tagline: "Seasonal goodness from our farms. →",
     image: "/images/category_cards/vegetables_hd.jpg",
+    subCategories: ["All Veggies", "Daily Cooking", "Roots & Tubers", "Crisp & Salads"],
+    bannerDesc:
+      "Harvested daily from certified organic acreage. Grown in rich living soil nourished by natural compost and fresh rainwater.",
   },
   {
     id: "fruits",
     title: "Fruits",
     tagline: "Nature's sweetest harvest. →",
     image: "/images/category_cards/fruits_hd.jpg",
+    subCategories: ["All Fruits", "Seasonal Harvest", "Tree Ripened", "Citrus & Berries"],
+    bannerDesc:
+      "Tree-ripened orchard harvest delivered without carbide ripening or wax coating. Bursting with natural fructose, minerals, and vitamins.",
   },
   {
     id: "grains_pulses",
     title: "Grains & Pulses",
     tagline: "Wholesome nutrition for every meal. →",
     image: "/images/category_cards/grains_pulses_hd.jpg",
+    subCategories: ["All Grains", "Unpolished Dals", "Aged Rice", "Native Millets"],
+    bannerDesc:
+      "Traditional native seeds, unpolished to retain 100% of their nutrient-dense bran and natural dietary fibers.",
   },
   {
     id: "oils_ghee",
     title: "Oils & Ghee",
     tagline: "Pure oils for a healthier you. →",
     image: "/images/category_cards/oils_ghee_hd.jpg",
+    subCategories: ["All Oils & Ghee", "A2 Bilona Ghee", "Cold Pressed", "Wood Pressed"],
+    bannerDesc:
+      "Hand-churned Vedic bilona curd ghee and slow-pressed oils extracted at room temperature in wooden mills.",
   },
   {
     id: "spices",
     title: "Spices",
     tagline: "Natural flavours, rooted in tradition. →",
     image: "/images/category_cards/spices_hd.jpg",
+    subCategories: ["All Spices", "High Curcumin", "Sun Dried", "Stone Ground"],
+    bannerDesc:
+      "Sun-dried indigenous spices, rich in active volatile essential oils and slow-ground to preserve heritage aromas.",
   },
   {
     id: "dairy_products",
     title: "Dairy Products",
     tagline: "Goodness in every bite. →",
     image: "/images/category_cards/dairy_products_hd.jpg",
+    subCategories: ["All Dairy", "Malai Paneer", "Farm Butter", "Set Curd & Dahi"],
+    bannerDesc:
+      "Slow-batch artisan dairy crafted fresh daily from whole unhomogenized A2 cow and buffalo milk.",
   },
   {
     id: "leafy_greens",
     title: "Leafy Greens",
     tagline: "Fresh leaves, brighter days. →",
     image: "/images/category_cards/leafy_greens_hd.jpg",
+    subCategories: ["All Greens", "Tender Spinach", "Aromatic Herbs", "Cooking Greens"],
+    bannerDesc:
+      "Crisp, dewy leaves plucked at dawn and hydro-cooled immediately to preserve tender cell walls and crisp crunch.",
   },
   {
     id: "healthy_snacks",
     title: "Healthy Snacks",
     tagline: "Nutritious choices for active living. →",
     image: "/images/category_cards/healthy_snacks_hd.jpg",
+    subCategories: ["All Snacks", "Roasted Nuts", "Omega-3 Seeds", "Guilt-Free Crunch"],
+    bannerDesc:
+      "Lightly roasted farm nuts and superfood seeds without palm oil, artificial flavors, or synthetic preservatives.",
   },
 ];
 
@@ -102,6 +136,7 @@ export const CATEGORY_HARVEST_ITEMS: Record<string, HarvestItem[]> = {
       title: "Desi Gir Cow A2 Raw Milk (Chilled)",
       category: "milk",
       categoryTitle: "Milk",
+      subCategory: "A2 Desi Cow",
       weight: "1 L",
       price: 85,
       originalPrice: 95,
@@ -118,6 +153,7 @@ export const CATEGORY_HARVEST_ITEMS: Record<string, HarvestItem[]> = {
       title: "Farmstead Buffalo Fresh Whole Milk",
       category: "milk",
       categoryTitle: "Milk",
+      subCategory: "Buffalo Milk",
       weight: "1 L",
       price: 78,
       originalPrice: 85,
@@ -134,6 +170,7 @@ export const CATEGORY_HARVEST_ITEMS: Record<string, HarvestItem[]> = {
       title: "Nandi Farms A2 Toned Fresh Milk",
       category: "milk",
       categoryTitle: "Milk",
+      subCategory: "A2 Desi Cow",
       weight: "500 ml",
       price: 45,
       originalPrice: 50,
@@ -150,6 +187,7 @@ export const CATEGORY_HARVEST_ITEMS: Record<string, HarvestItem[]> = {
       title: "Farm Fresh Glass Bottle A2 Farm Milk",
       category: "milk",
       categoryTitle: "Milk",
+      subCategory: "Full Cream",
       weight: "1 L",
       price: 92,
       originalPrice: 105,
@@ -168,6 +206,7 @@ export const CATEGORY_HARVEST_ITEMS: Record<string, HarvestItem[]> = {
       title: "Country Vine Ripe Tomatoes",
       category: "vegetables",
       categoryTitle: "Vegetables",
+      subCategory: "Daily Cooking",
       weight: "1 kg",
       price: 38,
       originalPrice: 50,
@@ -184,6 +223,7 @@ export const CATEGORY_HARVEST_ITEMS: Record<string, HarvestItem[]> = {
       title: "Organic Orange Farm Carrots",
       category: "vegetables",
       categoryTitle: "Vegetables",
+      subCategory: "Crisp & Salads",
       weight: "500 g",
       price: 32,
       originalPrice: 45,
@@ -200,6 +240,7 @@ export const CATEGORY_HARVEST_ITEMS: Record<string, HarvestItem[]> = {
       title: "Farm Jyoti Fresh Potatoes",
       category: "vegetables",
       categoryTitle: "Vegetables",
+      subCategory: "Roots & Tubers",
       weight: "1 kg",
       price: 35,
       originalPrice: 45,
@@ -216,6 +257,7 @@ export const CATEGORY_HARVEST_ITEMS: Record<string, HarvestItem[]> = {
       title: "Green Bell Peppers / Capsicum",
       category: "vegetables",
       categoryTitle: "Vegetables",
+      subCategory: "Crisp & Salads",
       weight: "500 g",
       price: 42,
       originalPrice: 55,
@@ -234,6 +276,7 @@ export const CATEGORY_HARVEST_ITEMS: Record<string, HarvestItem[]> = {
       title: "Kashmiri Royal Delicious Apples",
       category: "fruits",
       categoryTitle: "Fruits",
+      subCategory: "Seasonal Harvest",
       weight: "4 pcs (~600 g)",
       price: 165,
       originalPrice: 210,
@@ -250,6 +293,7 @@ export const CATEGORY_HARVEST_ITEMS: Record<string, HarvestItem[]> = {
       title: "Farm Fresh Sweet Papaya",
       category: "fruits",
       categoryTitle: "Fruits",
+      subCategory: "Tree Ripened",
       weight: "1 pc (~800 g)",
       price: 52,
       originalPrice: 65,
@@ -266,6 +310,7 @@ export const CATEGORY_HARVEST_ITEMS: Record<string, HarvestItem[]> = {
       title: "Organic Robusta Farm Bananas",
       category: "fruits",
       categoryTitle: "Fruits",
+      subCategory: "Daily Fresh",
       weight: "500 g (4-5 pcs)",
       price: 38,
       originalPrice: 48,
@@ -282,6 +327,7 @@ export const CATEGORY_HARVEST_ITEMS: Record<string, HarvestItem[]> = {
       title: "Ruby Red Farm Pomegranates",
       category: "fruits",
       categoryTitle: "Fruits",
+      subCategory: "Citrus & Berries",
       weight: "2 pcs (~500 g)",
       price: 125,
       originalPrice: 160,
@@ -300,6 +346,7 @@ export const CATEGORY_HARVEST_ITEMS: Record<string, HarvestItem[]> = {
       title: "Organic Unpolished Toor Dal",
       category: "grains_pulses",
       categoryTitle: "Grains & Pulses",
+      subCategory: "Unpolished Dals",
       weight: "1 kg",
       price: 185,
       originalPrice: 230,
@@ -316,6 +363,7 @@ export const CATEGORY_HARVEST_ITEMS: Record<string, HarvestItem[]> = {
       title: "Organic Green Moong Dal (Split)",
       category: "grains_pulses",
       categoryTitle: "Grains & Pulses",
+      subCategory: "Unpolished Dals",
       weight: "1 kg",
       price: 160,
       originalPrice: 195,
@@ -332,6 +380,7 @@ export const CATEGORY_HARVEST_ITEMS: Record<string, HarvestItem[]> = {
       title: "Aged Traditional Himalayan Basmati Rice",
       category: "grains_pulses",
       categoryTitle: "Grains & Pulses",
+      subCategory: "Aged Rice",
       weight: "1 kg",
       price: 145,
       originalPrice: 180,
@@ -348,6 +397,7 @@ export const CATEGORY_HARVEST_ITEMS: Record<string, HarvestItem[]> = {
       title: "Organic Native Foxtail Millet (Kangni)",
       category: "grains_pulses",
       categoryTitle: "Grains & Pulses",
+      subCategory: "Native Millets",
       weight: "1 kg",
       price: 120,
       originalPrice: 150,
@@ -366,6 +416,7 @@ export const CATEGORY_HARVEST_ITEMS: Record<string, HarvestItem[]> = {
       title: "Pure A2 Bilona Gir Cow Cultured Ghee",
       category: "oils_ghee",
       categoryTitle: "Oils & Ghee",
+      subCategory: "A2 Bilona Ghee",
       weight: "500 ml",
       price: 950,
       originalPrice: 1150,
@@ -382,6 +433,7 @@ export const CATEGORY_HARVEST_ITEMS: Record<string, HarvestItem[]> = {
       title: "Cold Pressed Yellow Mustard Oil (Kachi Ghani)",
       category: "oils_ghee",
       categoryTitle: "Oils & Ghee",
+      subCategory: "Cold Pressed",
       weight: "1 L",
       price: 240,
       originalPrice: 290,
@@ -398,6 +450,7 @@ export const CATEGORY_HARVEST_ITEMS: Record<string, HarvestItem[]> = {
       title: "Wood Pressed Sesame Gingelly Oil",
       category: "oils_ghee",
       categoryTitle: "Oils & Ghee",
+      subCategory: "Wood Pressed",
       weight: "500 ml",
       price: 210,
       originalPrice: 260,
@@ -414,6 +467,7 @@ export const CATEGORY_HARVEST_ITEMS: Record<string, HarvestItem[]> = {
       title: "Wood Pressed Groundnut Peanut Oil",
       category: "oils_ghee",
       categoryTitle: "Oils & Ghee",
+      subCategory: "Wood Pressed",
       weight: "1 L",
       price: 260,
       originalPrice: 320,
@@ -432,6 +486,7 @@ export const CATEGORY_HARVEST_ITEMS: Record<string, HarvestItem[]> = {
       title: "High-Curcumin Salem Organic Turmeric Powder",
       category: "spices",
       categoryTitle: "Spices",
+      subCategory: "High Curcumin",
       weight: "200 g",
       price: 85,
       originalPrice: 110,
@@ -448,6 +503,7 @@ export const CATEGORY_HARVEST_ITEMS: Record<string, HarvestItem[]> = {
       title: "Kashmiri Reshampatti Red Chilli Powder",
       category: "spices",
       categoryTitle: "Spices",
+      subCategory: "Stone Ground",
       weight: "200 g",
       price: 110,
       originalPrice: 140,
@@ -464,6 +520,7 @@ export const CATEGORY_HARVEST_ITEMS: Record<string, HarvestItem[]> = {
       title: "Sun-Dried Green Coriander Dhaniya Powder",
       category: "spices",
       categoryTitle: "Spices",
+      subCategory: "Sun Dried",
       weight: "200 g",
       price: 80,
       originalPrice: 100,
@@ -480,6 +537,7 @@ export const CATEGORY_HARVEST_ITEMS: Record<string, HarvestItem[]> = {
       title: "Artisanal 16-Spice Royal Garam Masala",
       category: "spices",
       categoryTitle: "Spices",
+      subCategory: "Stone Ground",
       weight: "100 g",
       price: 95,
       originalPrice: 120,
@@ -498,6 +556,7 @@ export const CATEGORY_HARVEST_ITEMS: Record<string, HarvestItem[]> = {
       title: "Farm Fresh A2 Malai Paneer Block",
       category: "dairy_products",
       categoryTitle: "Dairy Products",
+      subCategory: "Malai Paneer",
       weight: "200 g",
       price: 110,
       originalPrice: 130,
@@ -514,6 +573,7 @@ export const CATEGORY_HARVEST_ITEMS: Record<string, HarvestItem[]> = {
       title: "Artisanal Farmstead Vacuum Diced Paneer",
       category: "dairy_products",
       categoryTitle: "Dairy Products",
+      subCategory: "Malai Paneer",
       weight: "200 g",
       price: 115,
       originalPrice: 135,
@@ -530,6 +590,7 @@ export const CATEGORY_HARVEST_ITEMS: Record<string, HarvestItem[]> = {
       title: "Farmstead Natural Cheddar Cheese Slices",
       category: "dairy_products",
       categoryTitle: "Dairy Products",
+      subCategory: "Set Curd & Dahi",
       weight: "100 g (5 slices)",
       price: 95,
       originalPrice: 115,
@@ -548,6 +609,7 @@ export const CATEGORY_HARVEST_ITEMS: Record<string, HarvestItem[]> = {
       title: "Country Farm Tender Palak / Spinach",
       category: "leafy_greens",
       categoryTitle: "Leafy Greens",
+      subCategory: "Tender Spinach",
       weight: "250 g",
       price: 25,
       originalPrice: 35,
@@ -564,6 +626,7 @@ export const CATEGORY_HARVEST_ITEMS: Record<string, HarvestItem[]> = {
       title: "Fresh Tender Methi / Fenugreek Leaves",
       category: "leafy_greens",
       categoryTitle: "Leafy Greens",
+      subCategory: "Cooking Greens",
       weight: "250 g",
       price: 30,
       originalPrice: 40,
@@ -580,6 +643,7 @@ export const CATEGORY_HARVEST_ITEMS: Record<string, HarvestItem[]> = {
       title: "Fresh Green Mountain Mint / Pudina",
       category: "leafy_greens",
       categoryTitle: "Leafy Greens",
+      subCategory: "Aromatic Herbs",
       weight: "1 bunch (~100 g)",
       price: 15,
       originalPrice: 20,
@@ -596,6 +660,7 @@ export const CATEGORY_HARVEST_ITEMS: Record<string, HarvestItem[]> = {
       title: "Organic Fresh Green Coriander / Dhaniya",
       category: "leafy_greens",
       categoryTitle: "Leafy Greens",
+      subCategory: "Aromatic Herbs",
       weight: "1 bunch (~100 g)",
       price: 20,
       originalPrice: 25,
@@ -614,6 +679,7 @@ export const CATEGORY_HARVEST_ITEMS: Record<string, HarvestItem[]> = {
       title: "Premium California Jumbo Badam Almonds",
       category: "healthy_snacks",
       categoryTitle: "Healthy Snacks",
+      subCategory: "Roasted Nuts",
       weight: "250 g",
       price: 280,
       originalPrice: 340,
@@ -630,6 +696,7 @@ export const CATEGORY_HARVEST_ITEMS: Record<string, HarvestItem[]> = {
       title: "Kashmiri Light Halves Walnut Kernels",
       category: "healthy_snacks",
       categoryTitle: "Healthy Snacks",
+      subCategory: "Roasted Nuts",
       weight: "250 g",
       price: 390,
       originalPrice: 480,
@@ -646,6 +713,7 @@ export const CATEGORY_HARVEST_ITEMS: Record<string, HarvestItem[]> = {
       title: "Roasted Omega-3 Organic Flax Seeds",
       category: "healthy_snacks",
       categoryTitle: "Healthy Snacks",
+      subCategory: "Omega-3 Seeds",
       weight: "200 g",
       price: 90,
       originalPrice: 115,
@@ -662,6 +730,7 @@ export const CATEGORY_HARVEST_ITEMS: Record<string, HarvestItem[]> = {
       title: "Black Raw Superfood Chia Seeds",
       category: "healthy_snacks",
       categoryTitle: "Healthy Snacks",
+      subCategory: "Omega-3 Seeds",
       weight: "200 g",
       price: 110,
       originalPrice: 145,
@@ -678,14 +747,23 @@ export const CATEGORY_HARVEST_ITEMS: Record<string, HarvestItem[]> = {
 
 export default function HarvestCategoryGrid() {
   const [selectedCategory, setSelectedCategory] = useState<string>("milk");
+  const [activeSubFilter, setActiveSubFilter] = useState<string>("all");
   const [cart, setCart] = useState<{ [productId: string]: number }>({});
   const [isMilkModalOpen, setIsMilkModalOpen] = useState(false);
-  const itemsSectionRef = useRef<HTMLDivElement>(null);
+  const freshPageRef = useRef<HTMLDivElement>(null);
 
   const handleCardClick = (catId: string) => {
     setSelectedCategory(catId);
-    if (itemsSectionRef.current) {
-      itemsSectionRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+    setActiveSubFilter("all");
+    if (freshPageRef.current) {
+      freshPageRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
+  const scrollToGridTop = () => {
+    const el = document.getElementById("categories");
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
     }
   };
 
@@ -703,112 +781,186 @@ export default function HarvestCategoryGrid() {
   };
 
   const totalCartCount = Object.values(cart).reduce((a, b) => a + b, 0);
-  const activeItems = CATEGORY_HARVEST_ITEMS[selectedCategory] || [];
   const activeBox = CATEGORY_BOXES.find((b) => b.id === selectedCategory) || CATEGORY_BOXES[0];
+  const allCategoryItems = CATEGORY_HARVEST_ITEMS[selectedCategory] || [];
+
+  const filteredItems =
+    activeSubFilter === "all"
+      ? allCategoryItems
+      : allCategoryItems.filter((item) => item.subCategory === activeSubFilter);
 
   return (
     <section id="categories" className="relative w-full bg-[#f6f2e8] overflow-hidden">
-      {/* 1. 3x3 Full-Width Edge-to-Edge Grid (0 side margin, 0 horizontal gap) */}
+      {/* 1. 100% BORDERLESS 3x3 CATEGORY GRID (Zero box lines, zero divider borders, seamless full width) */}
       <div className="w-full">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 w-full border-t border-b border-[#e5decb]">
-          {CATEGORY_BOXES.map((box) => {
-            const isSelected = selectedCategory === box.id;
-            return (
-              <button
-                key={box.id}
-                type="button"
-                onClick={() => handleCardClick(box.id)}
-                className={`group relative w-full overflow-hidden text-left focus:outline-none transition-all duration-200 border-b lg:border-b sm:border-r border-[#e5decb] ${
-                  isSelected ? "ring-4 ring-inset ring-emerald-600/70" : "hover:opacity-95"
-                }`}
-                aria-label={`View ${box.title} items`}
-              >
-                {/* Ultra HD Card Image */}
-                <div className="w-full relative overflow-hidden bg-[#f4eee2]">
-                  <img
-                    src={box.image}
-                    alt={box.title}
-                    className="w-full h-auto object-cover block transition-transform duration-500 group-hover:scale-[1.02]"
-                    loading="eager"
-                  />
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 w-full border-none gap-0 p-0 m-0">
+          {CATEGORY_BOXES.map((box) => (
+            <button
+              key={box.id}
+              type="button"
+              onClick={() => handleCardClick(box.id)}
+              className="group relative w-full overflow-hidden text-left focus:outline-none transition-all duration-300 border-none p-0 m-0 cursor-pointer block bg-[#f4eee2]"
+              aria-label={`Open ${box.title} Fresh Page`}
+            >
+              {/* Ultra HD Card Artwork - 100% Clean without lines or badges */}
+              <img
+                src={box.image}
+                alt={box.title}
+                className="w-full h-auto object-cover block transition-transform duration-500 group-hover:scale-[1.03]"
+                loading="eager"
+              />
 
-                  {/* Active Indicator Badge overlay on top corner */}
-                  {isSelected && (
-                    <div className="absolute top-3 right-3 bg-emerald-800 text-white text-[11px] font-semibold tracking-wider uppercase px-3 py-1 rounded-full shadow-md flex items-center gap-1.5 z-10">
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-300 animate-pulse" />
-                      Viewing Items ↓
-                    </div>
-                  )}
-
-                  {/* Subtle interactive hover highlight */}
-                  <div className="absolute inset-0 bg-emerald-950/0 group-hover:bg-emerald-950/5 transition-colors pointer-events-none" />
-                </div>
-              </button>
-            );
-          })}
+              {/* Gentle luminous hover vignette */}
+              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors pointer-events-none" />
+            </button>
+          ))}
         </div>
       </div>
 
-      {/* 2. Interactive Category Harvest Items Showcase (Directly Below Grid) */}
-      <div ref={itemsSectionRef} className="w-full py-12 md:py-16 bg-[#faf7f0] border-b border-[#e5decb]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Header Bar */}
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8 pb-5 border-b border-[#e8dfcf]">
-            <div>
-              <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-emerald-800 mb-1.5">
-                <Sparkles className="w-4 h-4 text-emerald-600" />
-                <span>Selected Category Harvest</span>
+      {/* 2. DEDICATED "FRESH PAGE" CATEGORY EXPERIENCE (Directly down of that section) */}
+      <div
+        id="category-fresh-page"
+        ref={freshPageRef}
+        className="w-full bg-[#fdfbf7] border-t border-[#ede7d8] transition-all duration-500"
+      >
+        {/* Fresh Page Breadcrumb Top Bar */}
+        <div className="bg-[#f7f3ea] border-b border-[#e9e2d2] py-3.5 px-4 sm:px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto flex items-center justify-between text-xs font-sans">
+            <button
+              type="button"
+              onClick={scrollToGridTop}
+              className="inline-flex items-center gap-1.5 text-emerald-900 font-semibold hover:text-emerald-700 transition-colors cursor-pointer"
+            >
+              <ArrowLeft className="w-4 h-4" />
+              <span>Back to All Categories</span>
+            </button>
+
+            <div className="flex items-center gap-2 text-[#687366]">
+              <span>Farm Harvest</span>
+              <span>/</span>
+              <span className="font-semibold text-emerald-900">{activeBox.title}</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Fresh Page Editorial Hero Banner */}
+        <div className="relative bg-gradient-to-b from-[#f7f3ea] to-[#fdfbf7] py-10 md:py-14 px-4 sm:px-6 lg:px-8 border-b border-[#eee8db]">
+          <div className="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center justify-between gap-6">
+            <div className="max-w-3xl">
+              <div className="inline-flex items-center gap-2 px-3 py-1 bg-emerald-900/10 text-emerald-900 rounded-full text-xs font-semibold tracking-wider uppercase mb-3">
+                <Leaf className="w-3.5 h-3.5 text-emerald-700" />
+                <span>Nandi Farms Certified Harvest</span>
               </div>
-              <h2 className="font-serif text-3xl sm:text-4xl text-[#1a3323] font-medium tracking-tight">
+              <h1 className="font-serif text-3xl sm:text-5xl text-[#162e1e] font-medium tracking-tight">
                 Fresh {activeBox.title} Collection
-              </h2>
-              <p className="text-sm text-[#4a5848] mt-1 font-sans">
-                {activeBox.tagline.replace(" →", "")} • Harvested at peak ripeness and delivered cold.
+              </h1>
+              <p className="text-sm sm:text-base text-[#465544] mt-2.5 font-sans leading-relaxed">
+                {activeBox.bannerDesc}
               </p>
+              <div className="flex flex-wrap items-center gap-4 mt-4 text-xs text-[#5a6858] font-medium">
+                <span className="flex items-center gap-1">
+                  <ShieldCheck className="w-4 h-4 text-emerald-700" /> Zero Chemical Spray
+                </span>
+                <span>•</span>
+                <span className="flex items-center gap-1">
+                  <Truck className="w-4 h-4 text-emerald-700" /> Cold-Chain Delivery in 10-15 Mins
+                </span>
+                <span>•</span>
+                <span className="flex items-center gap-1">
+                  <Sparkles className="w-4 h-4 text-emerald-700" /> Harvested Fresh Daily
+                </span>
+              </div>
             </div>
 
-            {/* Quick Actions & Milk Subscription Link */}
-            <div className="flex items-center gap-3">
-              {selectedCategory === "milk" && (
+            {/* Milk Subscription Quick Trigger (when in Milk category) */}
+            {selectedCategory === "milk" && (
+              <div className="bg-white p-5 rounded-2xl border border-emerald-600/30 shadow-md max-w-sm flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center gap-2 text-xs font-bold text-emerald-800 uppercase tracking-wider mb-1">
+                    <Calendar className="w-4 h-4 text-emerald-700" />
+                    <span>Daily Morning Delivery</span>
+                  </div>
+                  <h3 className="font-serif text-lg font-medium text-[#162e1e]">
+                    A2 Milk Subscription
+                  </h3>
+                  <p className="text-xs text-[#526050] mt-1">
+                    Delivered cold to your doorstep before 7:00 AM every morning. Automated pause anytime.
+                  </p>
+                </div>
                 <button
                   type="button"
                   onClick={() => setIsMilkModalOpen(true)}
-                  className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-800 hover:bg-emerald-900 text-white text-xs font-medium rounded-full transition-all shadow-sm"
+                  className="mt-4 w-full py-2.5 bg-emerald-800 hover:bg-emerald-900 active:scale-95 text-white text-xs font-semibold rounded-xl transition-all shadow-sm flex items-center justify-center gap-1.5"
                 >
-                  <Calendar className="w-3.5 h-3.5" />
-                  <span>Setup Daily Milk Subscription →</span>
+                  <span>Subscribe Now</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
                 </button>
-              )}
-              <span className="text-xs font-medium text-[#6c786a] bg-white px-3 py-1.5 rounded-full border border-[#ded5c2]">
-                Showing {activeItems.length} items
-              </span>
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* Fresh Page Sub-Filter Chips & Catalog */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+          {/* Sub-Filter Chips */}
+          <div className="flex items-center justify-between flex-wrap gap-3 pb-6 mb-8 border-b border-[#ece5d7]">
+            <div className="flex items-center gap-2 overflow-x-auto pb-2 sm:pb-0 scrollbar-none">
+              <button
+                type="button"
+                onClick={() => setActiveSubFilter("all")}
+                className={`px-4 py-2 rounded-full text-xs font-medium transition-all ${
+                  activeSubFilter === "all"
+                    ? "bg-emerald-900 text-white shadow-sm"
+                    : "bg-[#f2ece0] text-[#4a5847] hover:bg-[#e6decf]"
+                }`}
+              >
+                All Items ({allCategoryItems.length})
+              </button>
+              {activeBox.subCategories.slice(1).map((subCat) => (
+                <button
+                  key={subCat}
+                  type="button"
+                  onClick={() => setActiveSubFilter(subCat)}
+                  className={`px-4 py-2 rounded-full text-xs font-medium whitespace-nowrap transition-all ${
+                    activeSubFilter === subCat
+                      ? "bg-emerald-900 text-white shadow-sm"
+                      : "bg-[#f2ece0] text-[#4a5847] hover:bg-[#e6decf]"
+                  }`}
+                >
+                  {subCat}
+                </button>
+              ))}
+            </div>
+
+            <div className="text-xs font-medium text-[#657363]">
+              Showing {filteredItems.length} fresh {activeBox.title.toLowerCase()} items
             </div>
           </div>
 
-          {/* Items Grid */}
+          {/* Product Cards Grid */}
           <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
-            {activeItems.map((product) => {
+            {filteredItems.map((product) => {
               const qty = cart[product.id] || 0;
               return (
                 <div
                   key={product.id}
-                  className="group bg-white rounded-2xl p-3.5 sm:p-4 border border-[#e5decb] shadow-sm hover:shadow-md transition-all duration-200 flex flex-col justify-between"
+                  className="group bg-white rounded-2xl p-4 border border-[#e8e2d4] shadow-xs hover:shadow-md transition-all duration-300 flex flex-col justify-between"
                 >
-                  {/* Top packshot + badge */}
                   <div>
-                    <div className="relative aspect-square w-full rounded-xl overflow-hidden bg-[#f7f5ee] mb-3">
+                    {/* Packshot Image */}
+                    <div className="relative aspect-square w-full rounded-xl overflow-hidden bg-[#fbf9f4] mb-3">
                       <img
                         src={product.image}
                         alt={product.title}
-                        className="w-full h-full object-contain p-2 group-hover:scale-105 transition-transform duration-300"
+                        className="w-full h-full object-contain p-2.5 group-hover:scale-105 transition-transform duration-300"
                         loading="lazy"
                       />
                       {product.tag && (
-                        <span className="absolute top-2 left-2 bg-[#1a3323] text-[#f8f4e8] text-[10px] font-semibold tracking-wide uppercase px-2 py-0.5 rounded-md">
+                        <span className="absolute top-2.5 left-2.5 bg-[#162e1e] text-[#f8f4e8] text-[10px] font-semibold tracking-wide uppercase px-2 py-0.5 rounded-md">
                           {product.tag}
                         </span>
                       )}
-                      <span className="absolute bottom-2 left-2 bg-white/90 backdrop-blur-sm text-emerald-800 text-[10px] font-bold px-1.5 py-0.5 rounded flex items-center gap-1 shadow-xs border border-emerald-100">
+                      <span className="absolute bottom-2.5 left-2.5 bg-white/95 backdrop-blur-sm text-emerald-800 text-[10px] font-bold px-2 py-0.5 rounded-md flex items-center gap-1 shadow-xs border border-emerald-100">
                         <Zap className="w-2.5 h-2.5 fill-emerald-600 text-emerald-600" />
                         {product.eta}
                       </span>
@@ -819,7 +971,7 @@ export default function HarvestCategoryGrid() {
                       <span className="font-medium text-[#2d3a2c]">{product.weight}</span>
                       <span className="flex items-center gap-0.5 text-amber-700 font-semibold text-[11px]">
                         <Star className="w-3 h-3 fill-amber-500 text-amber-500" />
-                        {product.rating}
+                        {product.rating} ({product.reviewsCount})
                       </span>
                     </div>
 
@@ -829,16 +981,16 @@ export default function HarvestCategoryGrid() {
                     </h3>
 
                     {/* Description */}
-                    <p className="text-[11px] text-[#6a7568] mt-1 line-clamp-2 font-sans">
+                    <p className="text-[11px] text-[#6a7568] mt-1.5 line-clamp-2 font-sans leading-relaxed">
                       {product.description}
                     </p>
                   </div>
 
                   {/* Price & Add to Cart button */}
-                  <div className="mt-4 pt-3 border-t border-[#f0ece1] flex items-center justify-between gap-2">
+                  <div className="mt-4 pt-3 border-t border-[#f2ede3] flex items-center justify-between gap-2">
                     <div>
                       <div className="flex items-baseline gap-1.5">
-                        <span className="text-base font-bold text-[#1a3323]">₹{product.price}</span>
+                        <span className="text-base font-bold text-[#162e1e]">₹{product.price}</span>
                         <span className="text-xs text-[#8c9789] line-through">₹{product.originalPrice}</span>
                       </div>
                       <span className="text-[10px] font-semibold text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded">
@@ -850,17 +1002,17 @@ export default function HarvestCategoryGrid() {
                       <button
                         type="button"
                         onClick={() => updateCart(product.id, 1)}
-                        className="px-3.5 py-1.5 bg-emerald-800 hover:bg-emerald-900 active:scale-95 text-white text-xs font-semibold rounded-lg shadow-sm transition-all flex items-center gap-1"
+                        className="px-4 py-1.5 bg-emerald-800 hover:bg-emerald-900 active:scale-95 text-white text-xs font-semibold rounded-lg shadow-sm transition-all flex items-center gap-1 cursor-pointer"
                       >
                         <Plus className="w-3.5 h-3.5" />
                         <span>ADD</span>
                       </button>
                     ) : (
-                      <div className="flex items-center bg-emerald-800 text-white rounded-lg px-1.5 py-1 shadow-sm gap-2">
+                      <div className="flex items-center bg-emerald-800 text-white rounded-lg px-2 py-1 shadow-sm gap-2">
                         <button
                           type="button"
                           onClick={() => updateCart(product.id, -1)}
-                          className="w-5 h-5 flex items-center justify-center hover:bg-emerald-700 rounded transition-colors"
+                          className="w-5 h-5 flex items-center justify-center hover:bg-emerald-700 rounded transition-colors cursor-pointer"
                           aria-label="Decrease quantity"
                         >
                           <Minus className="w-3 h-3" />
@@ -869,7 +1021,7 @@ export default function HarvestCategoryGrid() {
                         <button
                           type="button"
                           onClick={() => updateCart(product.id, 1)}
-                          className="w-5 h-5 flex items-center justify-center hover:bg-emerald-700 rounded transition-colors"
+                          className="w-5 h-5 flex items-center justify-center hover:bg-emerald-700 rounded transition-colors cursor-pointer"
                           aria-label="Increase quantity"
                         >
                           <Plus className="w-3 h-3" />
@@ -902,7 +1054,7 @@ export default function HarvestCategoryGrid() {
           <button
             type="button"
             onClick={() => alert(`Proceeding to checkout with ${totalCartCount} fresh farm items!`)}
-            className="px-4 py-2 bg-[#d89b4f] hover:bg-[#c58b4a] active:scale-95 text-[#162e1e] font-semibold text-xs rounded-full transition-all flex items-center gap-1.5 shadow-md"
+            className="px-4 py-2 bg-[#d89b4f] hover:bg-[#c58b4a] active:scale-95 text-[#162e1e] font-semibold text-xs rounded-full transition-all flex items-center gap-1.5 shadow-md cursor-pointer"
           >
             <span>View Basket</span>
             <ArrowRight className="w-3.5 h-3.5" />
