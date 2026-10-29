@@ -120,7 +120,7 @@ export default function Hero() {
         <button
           type="button"
           onClick={() => setIsMilkModalOpen(true)}
-          className="milk-link"
+          className="shop-button milk-button"
         >
           Milk subscription <span>→</span>
         </button>

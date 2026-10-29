@@ -140,61 +140,62 @@
   color: #eeeae2;
 }
 
-/* Right-side CTA options */
+/* Right-side CTA options - Shifted upside to clear bottle cap */
 .hero-options {
   position: absolute;
   z-index: 2;
-  top: 25%;
-  right: 4%;
-  width: 245px;
-  padding-left: 35px;
-  border-left: 1px solid #f8f4e8;
+  top: 14%;
+  right: 5%;
+  width: 255px;
+  padding-left: 32px;
+  border-left: 1px solid rgba(248, 244, 232, 0.85);
   display: flex;
   flex-direction: column;
-  gap: 25px;
+  gap: 16px;
 }
 
 .shop-button,
-.milk-link {
+.milk-button {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  color: white;
+  color: #ffffff;
   text-decoration: none;
   font-family: Arial, sans-serif;
-  font-size: 16px;
+  font-size: 15px;
+  font-weight: 500;
   cursor: pointer;
-  background: transparent;
-  border: none;
-  text-align: left;
-}
-
-.shop-button {
-  padding: 17px 18px 17px 25px;
+  padding: 15px 18px 15px 22px;
   border: 1px solid #53dc83;
   border-radius: 40px;
-  background: rgba(20, 100, 55, 0.4);
-  transition: background 0.2s ease, transform 0.2s ease;
+  background: rgba(20, 100, 55, 0.45);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  transition: background 0.2s ease, transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  text-align: left;
+  box-sizing: border-box;
+  width: 100%;
 }
 
-.shop-button:hover {
+.shop-button:hover,
+.milk-button:hover {
   background: #176c3c;
-  transform: scale(1.02);
+  border-color: #72ef9e;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(23, 108, 60, 0.4);
 }
 
 .shop-button span,
-.milk-link span {
-  font-size: 24px;
+.milk-button span {
+  font-size: 22px;
+  line-height: 1;
+  transition: transform 0.2s ease;
 }
 
-.milk-link {
-  padding: 10px 8px;
-  transition: color 0.2s ease;
-}
-
-.milk-link:hover {
-  color: #53dc83;
+.shop-button:hover span,
+.milk-button:hover span {
+  transform: translateX(4px);
 }
 
 /* Responsive breakpoints */
