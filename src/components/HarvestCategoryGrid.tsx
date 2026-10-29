@@ -8,7 +8,6 @@ import {
   Star,
   Zap,
   ArrowRight,
-  ArrowLeft,
   CheckCircle2,
   Leaf,
 } from "lucide-react";
@@ -828,13 +827,6 @@ export default function HarvestCategoryGrid() {
     }
   };
 
-  const scrollToGridTop = () => {
-    const el = document.getElementById("categories");
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-  };
-
   const updateCart = (productId: string, delta: number) => {
     setCart((prev) => {
       const current = prev[productId] || 0;
@@ -937,26 +929,6 @@ export default function HarvestCategoryGrid() {
         ref={freshPageRef}
         className="w-full bg-[#fdfbf7] border-t border-[#ede7d8] transition-all duration-500"
       >
-        {/* Fresh Page Breadcrumb Top Bar */}
-        <div className="bg-[#f7f3ea] border-b border-[#e9e2d2] py-3.5 px-4 sm:px-6 lg:px-8">
-          <div className="max-w-7xl mx-auto flex items-center justify-between text-xs font-sans">
-            <button
-              type="button"
-              onClick={scrollToGridTop}
-              className="inline-flex items-center gap-1.5 text-emerald-900 font-semibold hover:text-emerald-700 transition-colors cursor-pointer"
-            >
-              <ArrowLeft className="w-4 h-4" />
-              <span>Back to All Categories</span>
-            </button>
-
-            <div className="flex items-center gap-2 text-[#687366]">
-              <span>Farm Harvest</span>
-              <span>/</span>
-              <span className="font-semibold text-emerald-900">{activeBox.title}</span>
-            </div>
-          </div>
-        </div>
-
         {/* INTERACTIVE TODAY'S HARVEST SECTION (HD Items with Click-to-Open Modal & Add-to-Cart) */}
         <div className="relative w-full overflow-hidden border-b border-[#eee8db] bg-[#fbf8f2] py-8 sm:py-10 px-4 sm:px-6 lg:px-8">
           {/* Subtle rustic background sketch watermark */}
