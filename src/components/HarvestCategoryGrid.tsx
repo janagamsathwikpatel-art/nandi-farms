@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import MilkSubscriptionModal from "./MilkSubscriptionModal";
 import HarvestHeroSection from "./HarvestHeroSection";
+import DesiGoodnessSection from "./DesiGoodnessSection";
 
 export interface HarvestItem {
   id: string;
@@ -963,139 +964,9 @@ export default function HarvestCategoryGrid() {
           onViewAllProducts={scrollToCatalog}
         />
 
-        {/* Fresh Page Sub-Filter Chips & Catalog */}
-        <div ref={catalogRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
-          {/* Sub-Filter Chips */}
-          <div className="flex items-center justify-between flex-wrap gap-3 pb-6 mb-8 border-b border-[#ece5d7]">
-            <div className="flex items-center gap-2 overflow-x-auto pb-2 sm:pb-0 scrollbar-none">
-              <button
-                type="button"
-                onClick={() => setActiveSubFilter("all")}
-                className={`px-4 py-2 rounded-full text-xs font-medium transition-all ${
-                  activeSubFilter === "all"
-                    ? "bg-emerald-900 text-white shadow-sm"
-                    : "bg-[#f2ece0] text-[#4a5847] hover:bg-[#e6decf]"
-                }`}
-              >
-                All Items ({allCategoryItems.length})
-              </button>
-              {activeBox.subCategories.slice(1).map((subCat) => (
-                <button
-                  key={subCat}
-                  type="button"
-                  onClick={() => setActiveSubFilter(subCat)}
-                  className={`px-4 py-2 rounded-full text-xs font-medium whitespace-nowrap transition-all ${
-                    activeSubFilter === subCat
-                      ? "bg-emerald-900 text-white shadow-sm"
-                      : "bg-[#f2ece0] text-[#4a5847] hover:bg-[#e6decf]"
-                  }`}
-                >
-                  {subCat}
-                </button>
-              ))}
-            </div>
-
-            <div className="text-xs font-medium text-[#657363]">
-              Showing {filteredItems.length} fresh {activeBox.title.toLowerCase()} items
-            </div>
-          </div>
-
-          {/* Product Cards Grid */}
-          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
-            {filteredItems.map((product) => {
-              const qty = cart[product.id] || 0;
-              return (
-                <div
-                  key={product.id}
-                  className="group bg-white rounded-2xl p-4 border border-[#e8e2d4] shadow-xs hover:shadow-md transition-all duration-300 flex flex-col justify-between"
-                >
-                  <div>
-                    {/* Packshot Image */}
-                    <div className="relative aspect-square w-full rounded-xl overflow-hidden bg-[#fbf9f4] mb-3">
-                      <img
-                        src={product.image}
-                        alt={product.title}
-                        className="w-full h-full object-contain p-2.5 group-hover:scale-105 transition-transform duration-300"
-                        loading="lazy"
-                      />
-                      {product.tag && (
-                        <span className="absolute top-2.5 left-2.5 bg-[#162e1e] text-[#f8f4e8] text-[10px] font-semibold tracking-wide uppercase px-2 py-0.5 rounded-md">
-                          {product.tag}
-                        </span>
-                      )}
-                      <span className="absolute bottom-2.5 left-2.5 bg-white/95 backdrop-blur-sm text-emerald-800 text-[10px] font-bold px-2 py-0.5 rounded-md flex items-center gap-1 shadow-xs border border-emerald-100">
-                        <Zap className="w-2.5 h-2.5 fill-emerald-600 text-emerald-600" />
-                        {product.eta}
-                      </span>
-                    </div>
-
-                    {/* Weight & Rating */}
-                    <div className="flex items-center justify-between text-xs text-[#6e7b6d] mb-1">
-                      <span className="font-medium text-[#2d3a2c]">{product.weight}</span>
-                      <span className="flex items-center gap-0.5 text-amber-700 font-semibold text-[11px]">
-                        <Star className="w-3 h-3 fill-amber-500 text-amber-500" />
-                        {product.rating} ({product.reviewsCount})
-                      </span>
-                    </div>
-
-                    {/* Title */}
-                    <h3 className="font-sans text-sm font-semibold text-[#18271a] line-clamp-2 leading-snug group-hover:text-emerald-800 transition-colors">
-                      {product.title}
-                    </h3>
-
-                    {/* Description */}
-                    <p className="text-[11px] text-[#6a7568] mt-1.5 line-clamp-2 font-sans leading-relaxed">
-                      {product.description}
-                    </p>
-                  </div>
-
-                  {/* Price & Add to Cart button */}
-                  <div className="mt-4 pt-3 border-t border-[#f2ede3] flex items-center justify-between gap-2">
-                    <div>
-                      <div className="flex items-baseline gap-1.5">
-                        <span className="text-base font-bold text-[#162e1e]">₹{product.price}</span>
-                        <span className="text-xs text-[#8c9789] line-through">₹{product.originalPrice}</span>
-                      </div>
-                      <span className="text-[10px] font-semibold text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded">
-                        {product.discount}
-                      </span>
-                    </div>
-
-                    {qty === 0 ? (
-                      <button
-                        type="button"
-                        onClick={() => updateCart(product.id, 1)}
-                        className="px-4 py-1.5 bg-emerald-800 hover:bg-emerald-900 active:scale-95 text-white text-xs font-semibold rounded-lg shadow-sm transition-all flex items-center gap-1 cursor-pointer"
-                      >
-                        <Plus className="w-3.5 h-3.5" />
-                        <span>ADD</span>
-                      </button>
-                    ) : (
-                      <div className="flex items-center bg-emerald-800 text-white rounded-lg px-2 py-1 shadow-sm gap-2">
-                        <button
-                          type="button"
-                          onClick={() => updateCart(product.id, -1)}
-                          className="w-5 h-5 flex items-center justify-center hover:bg-emerald-700 rounded transition-colors cursor-pointer"
-                          aria-label="Decrease quantity"
-                        >
-                          <Minus className="w-3 h-3" />
-                        </button>
-                        <span className="text-xs font-bold w-4 text-center">{qty}</span>
-                        <button
-                          type="button"
-                          onClick={() => updateCart(product.id, 1)}
-                          className="w-5 h-5 flex items-center justify-center hover:bg-emerald-700 rounded transition-colors cursor-pointer"
-                          aria-label="Increase quantity"
-                        >
-                          <Plus className="w-3 h-3" />
-                        </button>
-                      </div>
-                    )}
-                  </div>
-                </div>
-              );
-            })}
-          </div>
+        {/* 4K Ultra HD "Desi Goodness - The true Indian Milk" Section with Grazing Cow & Hand-Milking Animations */}
+        <div ref={catalogRef} className="w-full">
+          <DesiGoodnessSection />
         </div>
       </div>
 
