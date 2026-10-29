@@ -823,28 +823,28 @@ export default function HarvestCategoryGrid() {
         </div>
       </div>
 
-      {/* 1. 100% BORDERLESS ZERO-GAP 3x3 CATEGORY GRID (Pure Photos + Live HTML Text Outside Image) */}
-      <div className="w-full p-0 m-0 leading-none">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 w-full border-none gap-0 p-0 m-0">
+      {/* 1. BALANCED CATEGORY GRID WITH REFINED GAP (Pure Photos + Live HTML Text Outside Image) */}
+      <div className="w-full p-3 sm:p-4 lg:p-6 leading-none">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 w-full gap-3 sm:gap-4 lg:gap-5">
           {CATEGORY_BOXES.map((box) => (
             <button
               key={box.id}
               type="button"
               onClick={() => handleCardClick(box.id)}
-              className="relative w-full overflow-hidden text-left focus:outline-none border-none p-0 m-0 cursor-pointer block bg-[#f4eee2] group transition-colors hover:bg-[#ede7da]"
+              className="relative w-full overflow-hidden text-left focus:outline-none p-0 cursor-pointer block bg-[#f4eee2] group transition-all duration-300 hover:bg-[#ede7da] hover:shadow-md"
               aria-label={`Open ${box.title} Fresh Page`}
             >
-              {/* Pure Photograph without any text - 100% flush zero gap */}
+              {/* Pure Photograph without any text */}
               <div className="w-full aspect-[1200/480] overflow-hidden bg-[#f4eee2] p-0 m-0 block">
                 <img
                   src={box.photo}
                   alt={box.title}
-                  className="w-full h-full object-cover block m-0 p-0"
+                  className="w-full h-full object-cover block m-0 p-0 transition-transform duration-500 group-hover:scale-105"
                   loading="eager"
                 />
               </div>
 
-              {/* Live HTML Text Block rendered OUTSIDE the image (No divider line/gap) */}
+              {/* Live HTML Text Block rendered OUTSIDE the image */}
               <div className="px-6 py-4 sm:px-7 sm:py-5 bg-[#f4eee2] flex items-center justify-between border-none m-0">
                 <div>
                   <h3 className="font-serif text-2xl sm:text-3xl text-[#183622] font-medium tracking-tight">
