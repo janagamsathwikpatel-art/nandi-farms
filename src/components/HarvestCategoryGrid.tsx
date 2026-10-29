@@ -809,19 +809,16 @@ export default function HarvestCategoryGrid() {
               key={box.id}
               type="button"
               onClick={() => handleCardClick(box.id)}
-              className="group relative w-full overflow-hidden text-left focus:outline-none transition-all duration-300 border-none p-0 m-0 cursor-pointer block bg-[#f4eee2]"
+              className="relative w-full overflow-hidden text-left focus:outline-none border-none p-0 m-0 cursor-pointer block bg-[#f4eee2]"
               aria-label={`Open ${box.title} Fresh Page`}
             >
-              {/* Ultra HD Card Artwork - 100% Clean without lines or badges */}
+              {/* Ultra HD Card Artwork - 100% Clean without box layer or clipping */}
               <img
                 src={box.image}
                 alt={box.title}
-                className="w-full h-auto object-cover block transition-transform duration-500 group-hover:scale-[1.03]"
+                className="w-full h-auto object-cover block m-0 p-0"
                 loading="eager"
               />
-
-              {/* Gentle luminous hover vignette */}
-              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors pointer-events-none" />
             </button>
           ))}
         </div>
