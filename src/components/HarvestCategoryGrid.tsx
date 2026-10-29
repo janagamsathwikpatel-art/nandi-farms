@@ -791,16 +791,16 @@ export default function HarvestCategoryGrid() {
 
   return (
     <section id="categories" className="relative w-full bg-[#f6f2e8] overflow-hidden">
-      {/* Section Heading: "Shop By Category" matching Nandi Farms editorial style */}
-      <div className="w-full text-center pt-14 pb-8 sm:pt-18 sm:pb-10 px-4 bg-[#f6f2e8]">
-        <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-medium text-[#183420] tracking-tight">
-          Shop By Category
-        </h2>
-        {/* Golden accent underline */}
-        <div className="mt-3.5 mx-auto w-16 sm:w-20 h-[2.5px] bg-[#d89b4f] rounded-full" />
-        <p className="mt-3 text-sm sm:text-base text-[#4a5848] font-sans max-w-xl mx-auto">
-          Explore 100% certified organic farm harvest, cold-pressed oils, and fresh A2 dairy delivered daily.
-        </p>
+      {/* Panoramic Artistic Banner: "Shop By Category" */}
+      <div className="w-full bg-[#fdfbf7] pt-6 sm:pt-10 pb-4">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-center">
+          <img
+            src="/images/shop-by-category-banner.png"
+            alt="Shop By Category - Pure Goodness for a Healthier Tomorrow"
+            className="w-full max-w-5xl h-auto object-contain block"
+            loading="eager"
+          />
+        </div>
       </div>
 
       {/* 1. 100% BORDERLESS 3x3 CATEGORY GRID (Zero box lines, zero divider borders, seamless full width) */}
