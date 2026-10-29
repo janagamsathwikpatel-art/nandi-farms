@@ -2,648 +2,769 @@
 
 import React, { useState, useRef } from "react";
 import {
-  Clock,
+  Sparkles,
+  ShoppingBag,
   Plus,
   Minus,
-  ShoppingBag,
+  Star,
+  Zap,
   ArrowRight,
   ArrowLeft,
-  Calendar,
   CheckCircle2,
-  Sparkles,
+  Calendar,
+  ShieldCheck,
+  Truck,
+  Leaf,
 } from "lucide-react";
 import MilkSubscriptionModal from "./MilkSubscriptionModal";
 
-export interface BlinkitProduct {
+export interface HarvestItem {
   id: string;
   title: string;
-  subCategory: string;
+  category: string;
+  categoryTitle: string;
+  subCategory?: string;
   weight: string;
   price: number;
-  originalPrice?: number;
+  originalPrice: number;
+  discount: string;
+  rating: number;
+  reviewsCount: number;
+  eta: string;
   image: string;
-  optionsCount?: number;
+  tag?: string;
+  description: string;
 }
 
-export interface SubCategoryTab {
+export interface CategoryBox {
   id: string;
-  name: string;
+  title: string;
+  tagline: string;
   image: string;
+  subCategories: string[];
+  bannerDesc: string;
 }
 
-export interface PrimaryCategory {
-  id: string;
-  name: string;
-  bannerTitle: string;
-  bannerSubtitle: string;
-  image: string;
-  subCategories: SubCategoryTab[];
-  seoTitle: string;
-  seoDescription: string;
-}
-
-export const PRIMARY_CATEGORIES: PrimaryCategory[] = [
+export const CATEGORY_BOXES: CategoryBox[] = [
   {
     id: "milk",
-    name: "Milk",
-    bannerTitle: "Dairy, Bread & Eggs",
-    bannerSubtitle: "Pure, fresh farm harvest and chilled dairy essentials",
+    title: "Milk",
+    tagline: "Pure. Fresh. Everyday. →",
     image: "/images/category_cards/milk_hd.jpg",
-    seoTitle: "Milk Online",
-    seoDescription:
-      "The richness of milk as nature's perfect food is demonstrated by its high content of essential nutrients, versatility in cooking, and its indispensable role in sustaining life. Milk has been more than a simple staple; it is a source of vital nourishment across all generations.",
-    subCategories: [
-      { id: "milk", name: "Milk", image: "/images/categories/desi-milk.png" },
-      { id: "bread", name: "Bread & Pav", image: "/images/categories/bread.png" },
-      { id: "eggs", name: "Eggs", image: "/images/categories/eggs.png" },
-      { id: "curd", name: "Curd & Yogurt", image: "/images/products/paneer-amul.jpg" },
-      { id: "cheese", name: "Cheese & Butter", image: "/images/products/cheese-slices.jpg" },
-      { id: "batter", name: "Batter", image: "/images/categories/flour.png" },
-      { id: "paneer", name: "Paneer & Tofu", image: "/images/products/paneer-milky-mist.jpg" },
-    ],
+    subCategories: ["All Milk", "A2 Desi Cow", "Buffalo Milk", "Full Cream"],
+    bannerDesc:
+      "100% single-source farm fresh milk chilled to 4°C within 15 minutes of dawn milking. Zero adulteration, zero preservatives, and no synthetic hormones.",
   },
   {
     id: "vegetables",
-    name: "Vegetables",
-    bannerTitle: "Fresh Farm Vegetables",
-    bannerSubtitle: "Naturally grown vegetables harvested daily at sunrise",
+    title: "Vegetables",
+    tagline: "Seasonal goodness from our farms. →",
     image: "/images/category_cards/vegetables_hd.jpg",
-    seoTitle: "Fresh Vegetables Online",
-    seoDescription:
-      "Grown in mineral-rich black soils using chemical-free practices. Hand-plucked at dawn and delivered crisp to your home within hours.",
-    subCategories: [
-      { id: "all-veg", name: "All Veggies", image: "/images/quick_categories/c1.webp" },
-      { id: "roots", name: "Roots & Tubers", image: "/images/quick_categories/c2.webp" },
-      { id: "tomatoes", name: "Tomatoes", image: "/images/quick_categories/c3.webp" },
-      { id: "peppers", name: "Capsicum & Peas", image: "/images/quick_categories/c4.webp" },
-    ],
+    subCategories: ["All Veggies", "Daily Cooking", "Roots & Tubers", "Crisp & Salads"],
+    bannerDesc:
+      "Harvested daily from certified organic acreage. Grown in rich living soil nourished by natural compost and fresh rainwater.",
   },
   {
     id: "fruits",
-    name: "Fruits",
-    bannerTitle: "Orchard Fresh Fruits",
-    bannerSubtitle: "Tree-ripened nature's sweetest harvest",
+    title: "Fruits",
+    tagline: "Nature's sweetest harvest. →",
     image: "/images/category_cards/fruits_hd.jpg",
-    seoTitle: "Fresh Fruits Online",
-    seoDescription:
-      "Naturally ripened without artificial carbides or wax coating. Bursting with vitamins, enzymes, and pure natural sweetness.",
-    subCategories: [
-      { id: "all-fruits", name: "All Fruits", image: "/images/quick_categories/c5.webp" },
-      { id: "apples", name: "Apples & Pears", image: "/images/quick_categories/c6.webp" },
-      { id: "bananas", name: "Bananas", image: "/images/quick_categories/c7.webp" },
-      { id: "pomegranates", name: "Pomegranates", image: "/images/quick_categories/c8.webp" },
-    ],
+    subCategories: ["All Fruits", "Seasonal Harvest", "Tree Ripened", "Citrus & Berries"],
+    bannerDesc:
+      "Tree-ripened orchard harvest delivered without carbide ripening or wax coating. Bursting with natural fructose, minerals, and vitamins.",
   },
   {
     id: "grains_pulses",
-    name: "Grains & Pulses",
-    bannerTitle: "Wholesome Grains & Pulses",
-    bannerSubtitle: "Unpolished native dals and aromatic aged rice",
+    title: "Grains & Pulses",
+    tagline: "Wholesome nutrition for every meal. →",
     image: "/images/category_cards/grains_pulses_hd.jpg",
-    seoTitle: "Organic Grains & Pulses Online",
-    seoDescription:
-      "Traditional native seeds, 100% unpolished to retain natural dietary fiber, plant protein, and essential minerals.",
-    subCategories: [
-      { id: "dals", name: "Dals & Pulses", image: "/images/categories/dal.png" },
-      { id: "rice", name: "Aged Basmati", image: "/images/categories/rice.png" },
-      { id: "millets", name: "Native Millets", image: "/images/categories/millet.png" },
-      { id: "flour", name: "Atta & Flours", image: "/images/categories/flour.png" },
-    ],
+    subCategories: ["All Grains", "Unpolished Dals", "Aged Rice", "Native Millets"],
+    bannerDesc:
+      "Traditional native seeds, unpolished to retain 100% of their nutrient-dense bran and natural dietary fibers.",
   },
   {
     id: "oils_ghee",
-    name: "Oils & Ghee",
-    bannerTitle: "Pure Vedic Oils & Ghee",
-    bannerSubtitle: "Cultured A2 bilona ghee and wood-pressed oils",
+    title: "Oils & Ghee",
+    tagline: "Pure oils for a healthier you. →",
     image: "/images/category_cards/oils_ghee_hd.jpg",
-    seoTitle: "Pure Ghee & Cold Pressed Oils Online",
-    seoDescription:
-      "Hand-churned bilona ghee made from cultured curd of indigenous Gir cows. Cold-pressed virgin cooking oils extracted at room temperature.",
-    subCategories: [
-      { id: "ghee", name: "A2 Desi Ghee", image: "/images/categories/ghee.png" },
-      { id: "mustard-oil", name: "Mustard Oil", image: "/images/categories/oil.png" },
-      { id: "sesame-oil", name: "Sesame Oil", image: "/images/products/oil-sesame.jpg" },
-      { id: "groundnut-oil", name: "Groundnut Oil", image: "/images/products/oil-groundnut.jpg" },
-    ],
+    subCategories: ["All Oils & Ghee", "A2 Bilona Ghee", "Cold Pressed", "Wood Pressed"],
+    bannerDesc:
+      "Hand-churned Vedic bilona curd ghee and slow-pressed oils extracted at room temperature in wooden mills.",
   },
   {
     id: "spices",
-    name: "Spices",
-    bannerTitle: "Stone Ground Spices",
-    bannerSubtitle: "Aromatic indigenous spices rooted in tradition",
+    title: "Spices",
+    tagline: "Natural flavours, rooted in tradition. →",
     image: "/images/category_cards/spices_hd.jpg",
-    seoTitle: "Authentic Indian Spices Online",
-    seoDescription:
-      "Sun-dried hand-sorted spices rich in essential oils. Ground slowly on stone grinders to preserve natural fragrance and curcumin.",
-    subCategories: [
-      { id: "all-spices", name: "All Spices", image: "/images/categories/spices.png" },
-      { id: "turmeric", name: "Turmeric & Chilli", image: "/images/products/spices-haldi.jpg" },
-      { id: "whole-spices", name: "Whole Spices", image: "/images/products/spices-coriander.jpg" },
-      { id: "masalas", name: "Garam Masala", image: "/images/products/spices-garam-masala.jpg" },
-    ],
+    subCategories: ["All Spices", "High Curcumin", "Sun Dried", "Stone Ground"],
+    bannerDesc:
+      "Sun-dried indigenous spices, rich in active volatile essential oils and slow-ground to preserve heritage aromas.",
   },
   {
     id: "dairy_products",
-    name: "Dairy Products",
-    bannerTitle: "Artisanal Fresh Dairy",
-    bannerSubtitle: "Fresh malai paneer, set dahi and cultured butter",
+    title: "Dairy Products",
+    tagline: "Goodness in every bite. →",
     image: "/images/category_cards/dairy_products_hd.jpg",
-    seoTitle: "Artisanal Dairy Online",
-    seoDescription:
-      "Slow-crafted daily from pure unadulterated whole milk. No synthetic thickeners, preservatives, or artificial coloring.",
-    subCategories: [
-      { id: "paneer-sub", name: "Malai Paneer", image: "/images/products/paneer-amul.jpg" },
-      { id: "curd-sub", name: "Set Dahi", image: "/images/products/paneer-milky-mist.jpg" },
-      { id: "cheese-sub", name: "Cheese Slices", image: "/images/products/cheese-slices.jpg" },
-    ],
+    subCategories: ["All Dairy", "Malai Paneer", "Farm Butter", "Set Curd & Dahi"],
+    bannerDesc:
+      "Slow-batch artisan dairy crafted fresh daily from whole unhomogenized A2 cow and buffalo milk.",
   },
   {
     id: "leafy_greens",
-    name: "Leafy Greens",
-    bannerTitle: "Fresh Leafy Greens",
-    bannerSubtitle: "Dewy, crisp greens plucked fresh at dawn",
+    title: "Leafy Greens",
+    tagline: "Fresh leaves, brighter days. →",
     image: "/images/category_cards/leafy_greens_hd.jpg",
-    seoTitle: "Farm Greens Online",
-    seoDescription:
-      "Harvested fresh with roots intact, washed in clean farm water and delivered crisp for vibrant everyday nutrition.",
-    subCategories: [
-      { id: "palak-sub", name: "Tender Palak", image: "/images/quick_categories/c9.webp" },
-      { id: "methi-sub", name: "Fresh Methi", image: "/images/quick_categories/c10.webp" },
-      { id: "herbs-sub", name: "Mint & Coriander", image: "/images/quick_categories/c11.webp" },
-    ],
+    subCategories: ["All Greens", "Tender Spinach", "Aromatic Herbs", "Cooking Greens"],
+    bannerDesc:
+      "Crisp, dewy leaves plucked at dawn and hydro-cooled immediately to preserve tender cell walls and crisp crunch.",
   },
   {
     id: "healthy_snacks",
-    name: "Healthy Snacks",
-    bannerTitle: "Nutritious Farm Snacks",
-    bannerSubtitle: "Roasted superfood seeds and California nuts",
+    title: "Healthy Snacks",
+    tagline: "Nutritious choices for active living. →",
     image: "/images/category_cards/healthy_snacks_hd.jpg",
-    seoTitle: "Healthy Snacks Online",
-    seoDescription:
-      "Crunchy slow-roasted nuts, Himalayan pink salt makhana, and raw omega-3 superfood seeds for energetic living.",
-    subCategories: [
-      { id: "nuts-sub", name: "Almonds & Walnuts", image: "/images/products/dryfruit-almonds.jpg" },
-      { id: "seeds-sub", name: "Chia & Flax Seeds", image: "/images/products/seeds-flax.jpg" },
-      { id: "crunch-sub", name: "Roasted Makhana", image: "/images/products/dryfruit-walnuts.jpg" },
-    ],
+    subCategories: ["All Snacks", "Roasted Nuts", "Omega-3 Seeds", "Guilt-Free Crunch"],
+    bannerDesc:
+      "Lightly roasted farm nuts and superfood seeds without palm oil, artificial flavors, or synthetic preservatives.",
   },
 ];
 
-export const BLINKIT_CATALOG: Record<string, BlinkitProduct[]> = {
-  // Milk Sub-Category matching user screenshot
+export const CATEGORY_HARVEST_ITEMS: Record<string, HarvestItem[]> = {
   milk: [
     {
-      id: "heritage-daily-health",
-      title: "Heritage Daily Health Toned Milk",
-      subCategory: "milk",
-      weight: "500 ml",
-      price: 33,
-      image: "/images/products/milk-amul-toned.jpg",
-    },
-    {
-      id: "amul-taaza-500",
-      title: "Amul Taaza Toned Milk",
-      subCategory: "milk",
-      weight: "500 ml",
-      price: 30,
-      image: "/images/products/milk-amul-gold.jpg",
-      optionsCount: 2,
-    },
-    {
-      id: "amul-buffalo-a2",
-      title: "Amul Buffalo A2 Milk",
-      subCategory: "milk",
-      weight: "500 ml",
-      price: 42,
-      image: "/images/products/milk-desi-a2.jpg",
-    },
-    {
-      id: "heritage-golden-cow",
-      title: "Heritage Golden Cow Milk",
-      subCategory: "milk",
-      weight: "500 ml",
-      price: 33,
-      image: "/images/products/milk-amul-gold.jpg",
-    },
-    {
-      id: "arokya-toned",
-      title: "Arokya Toned Milk",
-      subCategory: "milk",
-      weight: "500 ml",
-      price: 32,
-      image: "/images/products/milk-desi-a2.jpg",
-    },
-    {
-      id: "godrej-jersey",
-      title: "Godrej Jersey Toned Milk - 14g Protein",
-      subCategory: "milk",
-      weight: "500 ml",
-      price: 32,
-      originalPrice: 33,
-      image: "/images/products/milk-amul-toned.jpg",
-    },
-    {
-      id: "heritage-long-life",
-      title: "Heritage Special Long Life Milk (90 Days Shelf Life)",
-      subCategory: "milk",
-      weight: "450 ml",
-      price: 33,
-      originalPrice: 34,
-      image: "/images/products/milk-amul-gold.jpg",
-    },
-    {
-      id: "amul-taaza-homo-1l",
-      title: "Amul Taaza Homogenised Toned Milk",
-      subCategory: "milk",
-      weight: "1 ltr",
-      price: 77,
-      image: "/images/products/milk-amul-gold.jpg",
-    },
-    {
-      id: "sids-farm-toned",
-      title: "Sids Farm Toned Milk",
-      subCategory: "milk",
-      weight: "500 ml",
-      price: 38,
-      image: "/images/products/milk-desi-a2.jpg",
-      optionsCount: 2,
-    },
-    {
-      id: "sids-farm-pure-cow",
-      title: "Sids Farm Pure Cow Milk",
-      subCategory: "milk",
-      weight: "500 ml",
-      price: 46,
-      image: "/images/products/milk-desi-a2.jpg",
-      optionsCount: 2,
-    },
-    {
-      id: "country-delight-buffalo",
-      title: "Country Delight Buffalo Fresh Milk",
-      subCategory: "milk",
-      weight: "450 ml",
-      price: 59,
-      originalPrice: 62,
-      image: "/images/products/milk-amul-gold.jpg",
-    },
-    {
-      id: "arokya-full-cream",
-      title: "Arokya Full Cream Milk",
-      subCategory: "milk",
-      weight: "500 ml",
-      price: 45,
-      image: "/images/products/milk-desi-a2.jpg",
-    },
-  ],
-
-  // Bread & Pav
-  bread: [
-    {
-      id: "bread-multigrain",
-      title: "The Health Factory Zero Maida Multigrain Bread",
-      subCategory: "bread",
-      weight: "400 g",
-      price: 55,
-      originalPrice: 60,
-      image: "/images/products/bread-multigrain.jpg",
-    },
-    {
-      id: "bread-wheat",
-      title: "Modern 100% Whole Wheat Brown Bread",
-      subCategory: "bread",
-      weight: "400 g",
-      price: 45,
-      image: "/images/products/bread-wheat.jpg",
-    },
-    {
-      id: "bread-white-pav",
-      title: "Artisanal Soft Bakery Pav Buns",
-      subCategory: "bread",
-      weight: "6 pcs",
-      price: 35,
-      image: "/images/products/bread-white.jpg",
-    },
-  ],
-
-  // Eggs
-  eggs: [
-    {
-      id: "eggs-nutriplus",
-      title: "Eggoz Farm Fresh Brown Protein Eggs",
-      subCategory: "eggs",
-      weight: "6 pcs",
-      price: 75,
-      originalPrice: 85,
-      image: "/images/products/eggs-nutriplus.jpg",
-    },
-    {
-      id: "eggs-white",
-      title: "Farmstead Clean White Table Eggs",
-      subCategory: "eggs",
-      weight: "6 pcs",
-      price: 48,
-      image: "/images/products/eggs-white.jpg",
-    },
-    {
-      id: "eggs-brown",
-      title: "Country Free Range Desi Eggs",
-      subCategory: "eggs",
-      weight: "6 pcs",
-      price: 90,
-      originalPrice: 105,
-      image: "/images/products/eggs-brown.jpg",
-    },
-  ],
-
-  // Curd & Yogurt
-  curd: [
-    {
-      id: "curd-farm-dahi",
-      title: "Heritage Daily Pure Fresh Curd / Dahi",
-      subCategory: "curd",
-      weight: "400 g",
-      price: 45,
-      image: "/images/products/paneer-amul.jpg",
-    },
-    {
-      id: "curd-milky-mist",
-      title: "Milky Mist Natural Set Dahi",
-      subCategory: "curd",
-      weight: "1 kg",
-      price: 90,
-      originalPrice: 98,
-      image: "/images/products/paneer-milky-mist.jpg",
-    },
-  ],
-
-  // Cheese & Butter
-  cheese: [
-    {
-      id: "cheese-slices-brand",
-      title: "Amul Processed Natural Cheese Slices",
-      subCategory: "cheese",
-      weight: "100 g (5 slices)",
-      price: 85,
-      image: "/images/products/cheese-slices.jpg",
-    },
-    {
-      id: "butter-amul",
-      title: "Amul Pasteurised Butter",
-      subCategory: "cheese",
-      weight: "100 g",
-      price: 58,
-      image: "/images/products/ghee-amul.jpg",
-    },
-  ],
-
-  // Batter
-  batter: [
-    {
-      id: "batter-idli-dosa",
-      title: "iD Fresh Natural Idli & Dosa Batter",
-      subCategory: "batter",
-      weight: "1 kg",
+      id: "milk-desi-a2",
+      title: "Desi Gir Cow A2 Raw Milk (Chilled)",
+      category: "milk",
+      categoryTitle: "Milk",
+      subCategory: "A2 Desi Cow",
+      weight: "1 L",
       price: 85,
       originalPrice: 95,
-      image: "/images/products/atta-khapli.jpg",
-    },
-  ],
-
-  // Paneer & Tofu
-  paneer: [
-    {
-      id: "paneer-amul-fresh",
-      title: "Amul Fresh Malai Paneer",
-      subCategory: "paneer",
-      weight: "200 g",
-      price: 95,
-      image: "/images/products/paneer-amul.jpg",
+      discount: "10% OFF",
+      rating: 4.9,
+      reviewsCount: 1420,
+      eta: "10 MINS",
+      image: "/images/products/milk-desi-a2.jpg",
+      tag: "Pure A2 Cow",
+      description: "Direct morning harvest from indigenous Gir cows with natural beta-casein.",
     },
     {
-      id: "paneer-milky-cubes",
-      title: "Milky Mist Fresh Diced Paneer",
-      subCategory: "paneer",
-      weight: "200 g",
-      price: 110,
-      originalPrice: 120,
-      image: "/images/products/paneer-milky-mist.jpg",
+      id: "milk-amul-gold",
+      title: "Farmstead Buffalo Fresh Whole Milk",
+      category: "milk",
+      categoryTitle: "Milk",
+      subCategory: "Buffalo Milk",
+      weight: "1 L",
+      price: 78,
+      originalPrice: 85,
+      discount: "8% OFF",
+      rating: 4.8,
+      reviewsCount: 960,
+      eta: "10 MINS",
+      image: "/images/products/milk-amul-gold.jpg",
+      tag: "Rich & Creamy",
+      description: "Creamy fresh buffalo milk, rich in calcium and natural fats for morning tea and coffee.",
+    },
+    {
+      id: "milk-amul-toned",
+      title: "Nandi Farms A2 Toned Fresh Milk",
+      category: "milk",
+      categoryTitle: "Milk",
+      subCategory: "A2 Desi Cow",
+      weight: "500 ml",
+      price: 45,
+      originalPrice: 50,
+      discount: "10% OFF",
+      rating: 4.9,
+      reviewsCount: 820,
+      eta: "10 MINS",
+      image: "/images/products/milk-amul-toned.jpg",
+      tag: "Daily Essential",
+      description: "Light, digestible single-source farm fresh milk pasteurized with zero preservatives.",
+    },
+    {
+      id: "milk-farm-raw",
+      title: "Farm Fresh Glass Bottle A2 Farm Milk",
+      category: "milk",
+      categoryTitle: "Milk",
+      subCategory: "Full Cream",
+      weight: "1 L",
+      price: 92,
+      originalPrice: 105,
+      discount: "12% OFF",
+      rating: 5.0,
+      reviewsCount: 610,
+      eta: "10 MINS",
+      image: "/images/products/milk-desi-a2.jpg",
+      tag: "Eco Glass Bottle",
+      description: "Delivered cold within 4 hours of milking in sanitized returnable glass bottles.",
     },
   ],
-
-  // Vegetables
-  "all-veg": [
+  vegetables: [
     {
       id: "veg-tomato",
-      title: "Country Farm Red Ripe Tomatoes",
-      subCategory: "all-veg",
+      title: "Country Vine Ripe Tomatoes",
+      category: "vegetables",
+      categoryTitle: "Vegetables",
+      subCategory: "Daily Cooking",
       weight: "1 kg",
       price: 38,
       originalPrice: 50,
+      discount: "24% OFF",
+      rating: 4.8,
+      reviewsCount: 1890,
+      eta: "10 MINS",
       image: "/images/quick_categories/c1.webp",
+      tag: "Farm Picked",
+      description: "Naturally ripened juicy red country tomatoes with rich tangy flavour.",
     },
     {
       id: "veg-carrot",
-      title: "Fresh Crunchy Orange Carrots",
-      subCategory: "all-veg",
+      title: "Organic Orange Farm Carrots",
+      category: "vegetables",
+      categoryTitle: "Vegetables",
+      subCategory: "Crisp & Salads",
       weight: "500 g",
       price: 32,
       originalPrice: 45,
+      discount: "28% OFF",
+      rating: 4.8,
+      reviewsCount: 780,
+      eta: "10 MINS",
       image: "/images/quick_categories/c2.webp",
+      tag: "Sweet & Crunchy",
+      description: "Crisp sweet carrots grown without chemical sprays in black soil.",
     },
     {
       id: "veg-potato",
-      title: "Fresh Jyoti Thin-Skin Potatoes",
-      subCategory: "all-veg",
+      title: "Farm Jyoti Fresh Potatoes",
+      category: "vegetables",
+      categoryTitle: "Vegetables",
+      subCategory: "Roots & Tubers",
       weight: "1 kg",
       price: 35,
       originalPrice: 45,
+      discount: "22% OFF",
+      rating: 4.7,
+      reviewsCount: 2150,
+      eta: "10 MINS",
       image: "/images/quick_categories/c3.webp",
+      tag: "Staple",
+      description: "Firm fresh harvesting potatoes with thin skin, ideal for curries and baking.",
     },
     {
       id: "veg-capsicum",
-      title: "Green Capsicum / Shimla Mirch",
-      subCategory: "all-veg",
+      title: "Green Bell Peppers / Capsicum",
+      category: "vegetables",
+      categoryTitle: "Vegetables",
+      subCategory: "Crisp & Salads",
       weight: "500 g",
       price: 42,
       originalPrice: 55,
+      discount: "23% OFF",
+      rating: 4.8,
+      reviewsCount: 640,
+      eta: "10 MINS",
       image: "/images/quick_categories/c4.webp",
+      tag: "Fresh Harvest",
+      description: "Crisp, thick-walled green peppers harvested early morning from polyhouses.",
     },
   ],
-
-  // Fruits
-  "all-fruits": [
+  fruits: [
     {
       id: "fruit-apple",
-      title: "Royal Delicious Kashmiri Apples",
-      subCategory: "all-fruits",
+      title: "Kashmiri Royal Delicious Apples",
+      category: "fruits",
+      categoryTitle: "Fruits",
+      subCategory: "Seasonal Harvest",
       weight: "4 pcs (~600 g)",
       price: 165,
       originalPrice: 210,
+      discount: "21% OFF",
+      rating: 4.9,
+      reviewsCount: 1120,
+      eta: "10 MINS",
       image: "/images/quick_categories/c5.webp",
+      tag: "Mountain Orchard",
+      description: "Sweet, crunchy high-altitude Kashmiri apples with zero wax coating.",
     },
     {
       id: "fruit-papaya",
-      title: "Farm Sweet Ripe Papaya",
-      subCategory: "all-fruits",
+      title: "Farm Fresh Sweet Papaya",
+      category: "fruits",
+      categoryTitle: "Fruits",
+      subCategory: "Tree Ripened",
       weight: "1 pc (~800 g)",
       price: 52,
       originalPrice: 65,
+      discount: "20% OFF",
+      rating: 4.8,
+      reviewsCount: 840,
+      eta: "10 MINS",
       image: "/images/quick_categories/c6.webp",
+      tag: "Digestive Aid",
+      description: "Sweet golden papaya harvested ripe straight from our plantation.",
     },
     {
       id: "fruit-banana",
-      title: "Organic Robusta Bananas",
-      subCategory: "all-fruits",
+      title: "Organic Robusta Farm Bananas",
+      category: "fruits",
+      categoryTitle: "Fruits",
+      subCategory: "Daily Fresh",
       weight: "500 g (4-5 pcs)",
       price: 38,
       originalPrice: 48,
+      discount: "20% OFF",
+      rating: 4.7,
+      reviewsCount: 1650,
+      eta: "10 MINS",
       image: "/images/quick_categories/c7.webp",
+      tag: "Daily Potassium",
+      description: "Naturally ripened without carbide; rich and creamy texture.",
     },
     {
       id: "fruit-pomegranate",
-      title: "Ruby Red Sweet Pomegranates",
-      subCategory: "all-fruits",
+      title: "Ruby Red Farm Pomegranates",
+      category: "fruits",
+      categoryTitle: "Fruits",
+      subCategory: "Citrus & Berries",
       weight: "2 pcs (~500 g)",
       price: 125,
       originalPrice: 160,
+      discount: "21% OFF",
+      rating: 4.9,
+      reviewsCount: 570,
+      eta: "10 MINS",
       image: "/images/quick_categories/c8.webp",
+      tag: "Antioxidant Rich",
+      description: "Juicy deep ruby pearls with soft seeds and high natural sweetness.",
     },
   ],
-
-  // Grains & Pulses
-  dals: [
+  grains_pulses: [
     {
       id: "grain-toor",
       title: "Organic Unpolished Toor Dal",
-      subCategory: "dals",
+      category: "grains_pulses",
+      categoryTitle: "Grains & Pulses",
+      subCategory: "Unpolished Dals",
       weight: "1 kg",
       price: 185,
       originalPrice: 230,
+      discount: "19% OFF",
+      rating: 4.9,
+      reviewsCount: 2240,
+      eta: "10 MINS",
       image: "/images/products/dal-toor.jpg",
+      tag: "Unpolished",
+      description: "Native seed toor dal, 100% unpolished to retain natural dietary fiber and protein.",
     },
     {
       id: "grain-moong",
       title: "Organic Green Moong Dal (Split)",
-      subCategory: "dals",
+      category: "grains_pulses",
+      categoryTitle: "Grains & Pulses",
+      subCategory: "Unpolished Dals",
       weight: "1 kg",
       price: 160,
       originalPrice: 195,
+      discount: "17% OFF",
+      rating: 4.9,
+      reviewsCount: 1480,
+      eta: "10 MINS",
       image: "/images/products/dal-moong.jpg",
+      tag: "High Protein",
+      description: "Nutritious split green moong dal, easy to digest and ideal for khichdi and soups.",
     },
     {
-      id: "grain-chana",
-      title: "Traditional Unpolished Chana Dal",
-      subCategory: "dals",
+      id: "grain-basmati",
+      title: "Aged Traditional Himalayan Basmati Rice",
+      category: "grains_pulses",
+      categoryTitle: "Grains & Pulses",
+      subCategory: "Aged Rice",
       weight: "1 kg",
-      price: 130,
-      originalPrice: 160,
-      image: "/images/products/dal-chana.jpg",
+      price: 145,
+      originalPrice: 180,
+      discount: "19% OFF",
+      rating: 4.9,
+      reviewsCount: 1950,
+      eta: "10 MINS",
+      image: "/images/products/rice-basmati.jpg",
+      tag: "2-Yr Aged",
+      description: "Naturally aged extra-long grain basmati with delicate natural aroma.",
     },
     {
-      id: "grain-urad",
-      title: "Organic Dhuli Urad Dal",
-      subCategory: "dals",
+      id: "grain-foxtail",
+      title: "Organic Native Foxtail Millet (Kangni)",
+      category: "grains_pulses",
+      categoryTitle: "Grains & Pulses",
+      subCategory: "Native Millets",
       weight: "1 kg",
-      price: 175,
-      originalPrice: 210,
-      image: "/images/products/dal-urad.jpg",
+      price: 120,
+      originalPrice: 150,
+      discount: "20% OFF",
+      rating: 4.9,
+      reviewsCount: 890,
+      eta: "10 MINS",
+      image: "/images/products/millet-foxtail.jpg",
+      tag: "Gluten-Free",
+      description: "Low-GI ancient grain packed with iron and calcium for sustainable stamina.",
     },
   ],
-
-  // Oils & Ghee
-  ghee: [
+  oils_ghee: [
     {
-      id: "ghee-anveshan-bilona",
-      title: "Anveshan A2 Gir Cow Vedic Bilona Ghee",
-      subCategory: "ghee",
+      id: "oil-ghee-gir",
+      title: "Pure A2 Bilona Gir Cow Cultured Ghee",
+      category: "oils_ghee",
+      categoryTitle: "Oils & Ghee",
+      subCategory: "A2 Bilona Ghee",
       weight: "500 ml",
       price: 950,
       originalPrice: 1150,
+      discount: "17% OFF",
+      rating: 5.0,
+      reviewsCount: 3120,
+      eta: "10 MINS",
       image: "/images/products/ghee-anveshan.jpg",
+      tag: "Vedic Bilona",
+      description: "Traditional curd-churned golden bilona ghee with aromatic nutty grains.",
     },
     {
-      id: "ghee-gowardhan-pure",
-      title: "Gowardhan 100% Pure Cow Ghee",
-      subCategory: "ghee",
+      id: "oil-mustard",
+      title: "Cold Pressed Yellow Mustard Oil (Kachi Ghani)",
+      category: "oils_ghee",
+      categoryTitle: "Oils & Ghee",
+      subCategory: "Cold Pressed",
       weight: "1 L",
-      price: 680,
-      originalPrice: 740,
-      image: "/images/products/ghee-gowardhan.jpg",
+      price: 240,
+      originalPrice: 290,
+      discount: "17% OFF",
+      rating: 4.9,
+      reviewsCount: 1640,
+      eta: "10 MINS",
+      image: "/images/products/oil-mustard-fortune.jpg",
+      tag: "Cold Pressed",
+      description: "Extracted at room temperature to preserve natural pungency and essential fatty acids.",
     },
     {
-      id: "ghee-amul-tin",
-      title: "Amul Pure Ghee Tin",
-      subCategory: "ghee",
+      id: "oil-sesame",
+      title: "Wood Pressed Sesame Gingelly Oil",
+      category: "oils_ghee",
+      categoryTitle: "Oils & Ghee",
+      subCategory: "Wood Pressed",
+      weight: "500 ml",
+      price: 210,
+      originalPrice: 260,
+      discount: "19% OFF",
+      rating: 4.9,
+      reviewsCount: 780,
+      eta: "10 MINS",
+      image: "/images/products/oil-sesame.jpg",
+      tag: "Wood Pressed",
+      description: "Traditional mara chekku extraction using country sesame seeds and palm jaggery.",
+    },
+    {
+      id: "oil-groundnut",
+      title: "Wood Pressed Groundnut Peanut Oil",
+      category: "oils_ghee",
+      categoryTitle: "Oils & Ghee",
+      subCategory: "Wood Pressed",
       weight: "1 L",
-      price: 640,
-      image: "/images/products/ghee-amul.jpg",
+      price: 260,
+      originalPrice: 320,
+      discount: "18% OFF",
+      rating: 4.8,
+      reviewsCount: 920,
+      eta: "10 MINS",
+      image: "/images/products/oil-groundnut.jpg",
+      tag: "Pure Virgin",
+      description: "Rich peanut aroma with high smoke point, ideal for everyday Indian cooking.",
     },
   ],
-
-  // Spices
-  "all-spices": [
+  spices: [
     {
-      id: "spices-haldi-pack",
-      title: "Tata Sampann Organic Turmeric Powder",
-      subCategory: "all-spices",
+      id: "spice-turmeric",
+      title: "High-Curcumin Salem Organic Turmeric Powder",
+      category: "spices",
+      categoryTitle: "Spices",
+      subCategory: "High Curcumin",
       weight: "200 g",
       price: 85,
       originalPrice: 110,
+      discount: "22% OFF",
+      rating: 4.9,
+      reviewsCount: 2350,
+      eta: "10 MINS",
       image: "/images/products/spices-haldi.jpg",
+      tag: "5.5% Curcumin",
+      description: "Direct farm-ground aromatic golden turmeric with high medicinal curcumin.",
     },
     {
-      id: "spices-chilli-pack",
-      title: "Catch Kashmiri Mirch Powder",
-      subCategory: "all-spices",
+      id: "spice-chilli",
+      title: "Kashmiri Reshampatti Red Chilli Powder",
+      category: "spices",
+      categoryTitle: "Spices",
+      subCategory: "Stone Ground",
       weight: "200 g",
       price: 110,
       originalPrice: 140,
+      discount: "21% OFF",
+      rating: 4.8,
+      reviewsCount: 1420,
+      eta: "10 MINS",
       image: "/images/products/spices-chilli.jpg",
+      tag: "Vibrant Color",
+      description: "Mild heat with deep natural crimson color for royal gravies.",
     },
     {
-      id: "spices-coriander-pack",
-      title: "Everest Coriander Dhaniya Powder",
-      subCategory: "all-spices",
+      id: "spice-coriander",
+      title: "Sun-Dried Green Coriander Dhaniya Powder",
+      category: "spices",
+      categoryTitle: "Spices",
+      subCategory: "Sun Dried",
       weight: "200 g",
       price: 80,
       originalPrice: 100,
+      discount: "20% OFF",
+      rating: 4.8,
+      reviewsCount: 890,
+      eta: "10 MINS",
       image: "/images/products/spices-coriander.jpg",
+      tag: "Aromatic",
+      description: "Slow-roasted seeds stone-ground to release citrusy herbal fragrance.",
     },
     {
-      id: "spices-garam-pack",
-      title: "MDH Royal Garam Masala",
-      subCategory: "all-spices",
+      id: "spice-garam",
+      title: "Artisanal 16-Spice Royal Garam Masala",
+      category: "spices",
+      categoryTitle: "Spices",
+      subCategory: "Stone Ground",
       weight: "100 g",
       price: 95,
       originalPrice: 120,
+      discount: "20% OFF",
+      rating: 4.9,
+      reviewsCount: 1150,
+      eta: "10 MINS",
       image: "/images/products/spices-garam-masala.jpg",
+      tag: "Hand Roasted",
+      description: "Blended with whole mace, star anise, nutmeg, and green cardamom.",
+    },
+  ],
+  dairy_products: [
+    {
+      id: "dairy-paneer-amul",
+      title: "Farm Fresh A2 Malai Paneer Block",
+      category: "dairy_products",
+      categoryTitle: "Dairy Products",
+      subCategory: "Malai Paneer",
+      weight: "200 g",
+      price: 110,
+      originalPrice: 130,
+      discount: "15% OFF",
+      rating: 4.9,
+      reviewsCount: 2840,
+      eta: "10 MINS",
+      image: "/images/products/paneer-amul.jpg",
+      tag: "Melt-in-Mouth",
+      description: "Soft, spongy malai paneer crafted fresh every dawn from whole cow milk.",
+    },
+    {
+      id: "dairy-paneer-milky",
+      title: "Artisanal Farmstead Vacuum Diced Paneer",
+      category: "dairy_products",
+      categoryTitle: "Dairy Products",
+      subCategory: "Malai Paneer",
+      weight: "200 g",
+      price: 115,
+      originalPrice: 135,
+      discount: "14% OFF",
+      rating: 4.8,
+      reviewsCount: 1210,
+      eta: "10 MINS",
+      image: "/images/products/paneer-milky-mist.jpg",
+      tag: "Fresh Cut",
+      description: "Pre-cut gourmet paneer cubes ready to saute or add to rich curries.",
+    },
+    {
+      id: "dairy-cheese",
+      title: "Farmstead Natural Cheddar Cheese Slices",
+      category: "dairy_products",
+      categoryTitle: "Dairy Products",
+      subCategory: "Set Curd & Dahi",
+      weight: "100 g (5 slices)",
+      price: 95,
+      originalPrice: 115,
+      discount: "17% OFF",
+      rating: 4.7,
+      reviewsCount: 640,
+      eta: "10 MINS",
+      image: "/images/products/cheese-slices.jpg",
+      tag: "Pure Dairy",
+      description: "Natural aged cheese slices with no artificial emulsifiers or palm oil.",
+    },
+  ],
+  leafy_greens: [
+    {
+      id: "leafy-palak",
+      title: "Country Farm Tender Palak / Spinach",
+      category: "leafy_greens",
+      categoryTitle: "Leafy Greens",
+      subCategory: "Tender Spinach",
+      weight: "250 g",
+      price: 25,
+      originalPrice: 35,
+      discount: "28% OFF",
+      rating: 4.9,
+      reviewsCount: 1980,
+      eta: "10 MINS",
+      image: "/images/quick_categories/c9.webp",
+      tag: "Hydroponic & Soil",
+      description: "Crisp emerald leaves washed with pure farm water, packed with iron.",
+    },
+    {
+      id: "leafy-methi",
+      title: "Fresh Tender Methi / Fenugreek Leaves",
+      category: "leafy_greens",
+      categoryTitle: "Leafy Greens",
+      subCategory: "Cooking Greens",
+      weight: "250 g",
+      price: 30,
+      originalPrice: 40,
+      discount: "25% OFF",
+      rating: 4.8,
+      reviewsCount: 890,
+      eta: "10 MINS",
+      image: "/images/quick_categories/c10.webp",
+      tag: "Aromatic Herb",
+      description: "Tender bitter-sweet greens, perfect for methi parathas and aloo methi.",
+    },
+    {
+      id: "leafy-pudina",
+      title: "Fresh Green Mountain Mint / Pudina",
+      category: "leafy_greens",
+      categoryTitle: "Leafy Greens",
+      subCategory: "Aromatic Herbs",
+      weight: "1 bunch (~100 g)",
+      price: 15,
+      originalPrice: 20,
+      discount: "25% OFF",
+      rating: 4.9,
+      reviewsCount: 1420,
+      eta: "10 MINS",
+      image: "/images/quick_categories/c11.webp",
+      tag: "Invigorating",
+      description: "Intense refreshing menthol aroma for fresh chutneys, raitas, and teas.",
+    },
+    {
+      id: "leafy-coriander",
+      title: "Organic Fresh Green Coriander / Dhaniya",
+      category: "leafy_greens",
+      categoryTitle: "Leafy Greens",
+      subCategory: "Aromatic Herbs",
+      weight: "1 bunch (~100 g)",
+      price: 20,
+      originalPrice: 25,
+      discount: "20% OFF",
+      rating: 4.8,
+      reviewsCount: 1740,
+      eta: "10 MINS",
+      image: "/images/quick_categories/c12.webp",
+      tag: "Fresh Cut",
+      description: "Bright leafy sprigs harvested with root intact for maximum longevity.",
+    },
+  ],
+  healthy_snacks: [
+    {
+      id: "snack-almonds",
+      title: "Premium California Jumbo Badam Almonds",
+      category: "healthy_snacks",
+      categoryTitle: "Healthy Snacks",
+      subCategory: "Roasted Nuts",
+      weight: "250 g",
+      price: 280,
+      originalPrice: 340,
+      discount: "17% OFF",
+      rating: 4.9,
+      reviewsCount: 2650,
+      eta: "10 MINS",
+      image: "/images/products/dryfruit-almonds.jpg",
+      tag: "Heart Healthy",
+      description: "Crunchy hand-selected whole almonds with high vitamin E and healthy fats.",
+    },
+    {
+      id: "snack-walnuts",
+      title: "Kashmiri Light Halves Walnut Kernels",
+      category: "healthy_snacks",
+      categoryTitle: "Healthy Snacks",
+      subCategory: "Roasted Nuts",
+      weight: "250 g",
+      price: 390,
+      originalPrice: 480,
+      discount: "18% OFF",
+      rating: 4.9,
+      reviewsCount: 1120,
+      eta: "10 MINS",
+      image: "/images/products/dryfruit-walnuts.jpg",
+      tag: "Omega-3 Rich",
+      description: "Bitter-free light golden walnut halves from high Kashmir valleys.",
+    },
+    {
+      id: "snack-flax",
+      title: "Roasted Omega-3 Organic Flax Seeds",
+      category: "healthy_snacks",
+      categoryTitle: "Healthy Snacks",
+      subCategory: "Omega-3 Seeds",
+      weight: "200 g",
+      price: 90,
+      originalPrice: 115,
+      discount: "21% OFF",
+      rating: 4.8,
+      reviewsCount: 840,
+      eta: "10 MINS",
+      image: "/images/products/seeds-flax.jpg",
+      tag: "Superfood",
+      description: "Slow-roasted nutty flax seeds for smooth digestion and plant protein.",
+    },
+    {
+      id: "snack-chia",
+      title: "Black Raw Superfood Chia Seeds",
+      category: "healthy_snacks",
+      categoryTitle: "Healthy Snacks",
+      subCategory: "Omega-3 Seeds",
+      weight: "200 g",
+      price: 110,
+      originalPrice: 145,
+      discount: "24% OFF",
+      rating: 4.9,
+      reviewsCount: 960,
+      eta: "10 MINS",
+      image: "/images/products/seeds-chia.jpg",
+      tag: "High Fiber",
+      description: "Hydrating hydrophilic seeds that expand in smoothies and puddings.",
     },
   ],
 };
 
 export default function HarvestCategoryGrid() {
-  const [selectedPrimaryCategory, setSelectedPrimaryCategory] = useState<string>("milk");
-  const [selectedSubCategory, setSelectedSubCategory] = useState<string>("milk");
+  const [selectedCategory, setSelectedCategory] = useState<string>("milk");
+  const [activeSubFilter, setActiveSubFilter] = useState<string>("all");
   const [cart, setCart] = useState<{ [productId: string]: number }>({});
   const [isMilkModalOpen, setIsMilkModalOpen] = useState(false);
-  const catalogViewRef = useRef<HTMLDivElement>(null);
+  const freshPageRef = useRef<HTMLDivElement>(null);
 
-  const currentPrimary =
-    PRIMARY_CATEGORIES.find((c) => c.id === selectedPrimaryCategory) || PRIMARY_CATEGORIES[0];
-
-  const handleCategoryBoxClick = (catId: string) => {
-    setSelectedPrimaryCategory(catId);
-    const prim = PRIMARY_CATEGORIES.find((c) => c.id === catId);
-    if (prim && prim.subCategories.length > 0) {
-      setSelectedSubCategory(prim.subCategories[0].id);
-    }
-    if (catalogViewRef.current) {
-      catalogViewRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+  const handleCardClick = (catId: string) => {
+    setSelectedCategory(catId);
+    setActiveSubFilter("all");
+    if (freshPageRef.current) {
+      freshPageRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
     }
   };
 
-  const handleSubCategoryClick = (subId: string) => {
-    setSelectedSubCategory(subId);
+  const scrollToGridTop = () => {
+    const el = document.getElementById("categories");
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
   };
 
   const updateCart = (productId: string, delta: number) => {
@@ -660,43 +781,41 @@ export default function HarvestCategoryGrid() {
   };
 
   const totalCartCount = Object.values(cart).reduce((a, b) => a + b, 0);
+  const activeBox = CATEGORY_BOXES.find((b) => b.id === selectedCategory) || CATEGORY_BOXES[0];
+  const allCategoryItems = CATEGORY_HARVEST_ITEMS[selectedCategory] || [];
 
-  // Products to show
-  const currentProducts =
-    BLINKIT_CATALOG[selectedSubCategory] ||
-    BLINKIT_CATALOG[selectedPrimaryCategory] ||
-    BLINKIT_CATALOG["milk"] ||
-    [];
+  const filteredItems =
+    activeSubFilter === "all"
+      ? allCategoryItems
+      : allCategoryItems.filter((item) => item.subCategory === activeSubFilter);
 
   return (
-    <section id="categories" className="relative w-full bg-[#fdfbf7] overflow-hidden">
-      {/* 1. Panoramic Artistic Banner: "Shop By Category" */}
-      <div className="w-full bg-[#fdfbf7] pt-6 sm:pt-10 pb-4">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-center">
-          <img
-            src="/images/shop-by-category-banner.png"
-            alt="Shop By Category - Pure Goodness for a Healthier Tomorrow"
-            className="w-full max-w-5xl h-auto object-contain block"
-            loading="eager"
-          />
-        </div>
+    <section id="categories" className="relative w-full bg-[#f6f2e8] overflow-hidden">
+      {/* 100% Full-Width Edge-to-Edge "Shop By Category" Banner (Zero Gaps) */}
+      <div className="w-full p-0 m-0 leading-none overflow-hidden block">
+        <img
+          src="/images/shop-by-category-banner-clean.png"
+          alt="Shop By Category - Pure Goodness for a Healthier Tomorrow"
+          className="w-full h-auto object-cover block m-0 p-0"
+          loading="eager"
+        />
       </div>
 
-      {/* 2. 100% BORDERLESS 3x3 CATEGORY GRID (Zero box lines, zero divider borders, seamless full width) */}
+      {/* 1. 100% BORDERLESS 3x3 CATEGORY GRID (Zero box lines, zero divider borders, seamless full width) */}
       <div className="w-full">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 w-full border-none gap-0 p-0 m-0">
-          {PRIMARY_CATEGORIES.map((cat) => (
+          {CATEGORY_BOXES.map((box) => (
             <button
-              key={cat.id}
+              key={box.id}
               type="button"
-              onClick={() => handleCategoryBoxClick(cat.id)}
+              onClick={() => handleCardClick(box.id)}
               className="group relative w-full overflow-hidden text-left focus:outline-none transition-all duration-300 border-none p-0 m-0 cursor-pointer block bg-[#f4eee2]"
-              aria-label={`Open ${cat.name} Blinkit Catalog`}
+              aria-label={`Open ${box.title} Fresh Page`}
             >
-              {/* Ultra HD Card Artwork */}
+              {/* Ultra HD Card Artwork - 100% Clean without lines or badges */}
               <img
-                src={cat.image}
-                alt={cat.name}
+                src={box.image}
+                alt={box.title}
                 className="w-full h-auto object-cover block transition-transform duration-500 group-hover:scale-[1.03]"
                 loading="eager"
               />
@@ -708,180 +827,226 @@ export default function HarvestCategoryGrid() {
         </div>
       </div>
 
-      {/* 3. AUTHENTIC BLINKIT.COM CATALOG VIEW (Directly Down of that section) */}
+      {/* 2. DEDICATED "FRESH PAGE" CATEGORY EXPERIENCE (Directly down of that section) */}
       <div
-        id="blinkit-catalog"
-        ref={catalogViewRef}
-        className="w-full bg-white border-t border-gray-200 mt-6 transition-all duration-300"
+        id="category-fresh-page"
+        ref={freshPageRef}
+        className="w-full bg-[#fdfbf7] border-t border-[#ede7d8] transition-all duration-500"
       >
-        <div className="max-w-[1440px] mx-auto">
-          {/* Top Category Title Bar */}
-          <div className="px-6 py-4 border-b border-gray-200 flex items-center justify-between bg-white sticky top-0 z-20">
-            <div>
-              <h2 className="text-xl sm:text-2xl font-bold text-gray-900 font-sans tracking-tight">
-                {currentPrimary.bannerTitle}
-              </h2>
-              <p className="text-xs text-gray-500 mt-0.5">{currentPrimary.bannerSubtitle}</p>
+        {/* Fresh Page Breadcrumb Top Bar */}
+        <div className="bg-[#f7f3ea] border-b border-[#e9e2d2] py-3.5 px-4 sm:px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto flex items-center justify-between text-xs font-sans">
+            <button
+              type="button"
+              onClick={scrollToGridTop}
+              className="inline-flex items-center gap-1.5 text-emerald-900 font-semibold hover:text-emerald-700 transition-colors cursor-pointer"
+            >
+              <ArrowLeft className="w-4 h-4" />
+              <span>Back to All Categories</span>
+            </button>
+
+            <div className="flex items-center gap-2 text-[#687366]">
+              <span>Farm Harvest</span>
+              <span>/</span>
+              <span className="font-semibold text-emerald-900">{activeBox.title}</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Fresh Page Editorial Hero Banner */}
+        <div className="relative bg-gradient-to-b from-[#f7f3ea] to-[#fdfbf7] py-10 md:py-14 px-4 sm:px-6 lg:px-8 border-b border-[#eee8db]">
+          <div className="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center justify-between gap-6">
+            <div className="max-w-3xl">
+              <div className="inline-flex items-center gap-2 px-3 py-1 bg-emerald-900/10 text-emerald-900 rounded-full text-xs font-semibold tracking-wider uppercase mb-3">
+                <Leaf className="w-3.5 h-3.5 text-emerald-700" />
+                <span>Nandi Farms Certified Harvest</span>
+              </div>
+              <h1 className="font-serif text-3xl sm:text-5xl text-[#162e1e] font-medium tracking-tight">
+                Fresh {activeBox.title} Collection
+              </h1>
+              <p className="text-sm sm:text-base text-[#465544] mt-2.5 font-sans leading-relaxed">
+                {activeBox.bannerDesc}
+              </p>
+              <div className="flex flex-wrap items-center gap-4 mt-4 text-xs text-[#5a6858] font-medium">
+                <span className="flex items-center gap-1">
+                  <ShieldCheck className="w-4 h-4 text-emerald-700" /> Zero Chemical Spray
+                </span>
+                <span>•</span>
+                <span className="flex items-center gap-1">
+                  <Truck className="w-4 h-4 text-emerald-700" /> Cold-Chain Delivery in 10-15 Mins
+                </span>
+                <span>•</span>
+                <span className="flex items-center gap-1">
+                  <Sparkles className="w-4 h-4 text-emerald-700" /> Harvested Fresh Daily
+                </span>
+              </div>
             </div>
 
-            {selectedPrimaryCategory === "milk" && (
-              <button
-                type="button"
-                onClick={() => setIsMilkModalOpen(true)}
-                className="hidden sm:inline-flex items-center gap-2 px-4 py-2 bg-emerald-800 hover:bg-emerald-900 text-white text-xs font-semibold rounded-full shadow-sm transition-all"
-              >
-                <Calendar className="w-3.5 h-3.5" />
-                <span>Daily Milk Subscription →</span>
-              </button>
+            {/* Milk Subscription Quick Trigger (when in Milk category) */}
+            {selectedCategory === "milk" && (
+              <div className="bg-white p-5 rounded-2xl border border-emerald-600/30 shadow-md max-w-sm flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center gap-2 text-xs font-bold text-emerald-800 uppercase tracking-wider mb-1">
+                    <Calendar className="w-4 h-4 text-emerald-700" />
+                    <span>Daily Morning Delivery</span>
+                  </div>
+                  <h3 className="font-serif text-lg font-medium text-[#162e1e]">
+                    A2 Milk Subscription
+                  </h3>
+                  <p className="text-xs text-[#526050] mt-1">
+                    Delivered cold to your doorstep before 7:00 AM every morning. Automated pause anytime.
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setIsMilkModalOpen(true)}
+                  className="mt-4 w-full py-2.5 bg-emerald-800 hover:bg-emerald-900 active:scale-95 text-white text-xs font-semibold rounded-xl transition-all shadow-sm flex items-center justify-center gap-1.5"
+                >
+                  <span>Subscribe Now</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </button>
+              </div>
             )}
           </div>
+        </div>
 
-          {/* Blinkit 2-Column Layout: Left Sidebar + Right Products Grid */}
-          <div className="flex w-full min-h-[600px]">
-            {/* Left Sidebar Rail */}
-            <div className="w-24 sm:w-28 md:w-32 flex-shrink-0 bg-[#f9f9f9] border-r border-gray-200 flex flex-col py-2">
-              {currentPrimary.subCategories.map((sub) => {
-                const isActive = selectedSubCategory === sub.id;
-                return (
-                  <button
-                    key={sub.id}
-                    type="button"
-                    onClick={() => handleSubCategoryClick(sub.id)}
-                    className={`w-full py-3.5 px-1.5 flex flex-col items-center justify-center text-center cursor-pointer transition-all border-b border-gray-100 ${
-                      isActive
-                        ? "bg-white border-l-4 border-l-[#0c831f] shadow-xs"
-                        : "bg-[#f9f9f9] hover:bg-gray-100/80 border-l-4 border-l-transparent"
-                    }`}
-                  >
-                    <div className="w-12 h-12 rounded-xl bg-white p-1 flex items-center justify-center mb-1.5 shadow-2xs border border-gray-100">
+        {/* Fresh Page Sub-Filter Chips & Catalog */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+          {/* Sub-Filter Chips */}
+          <div className="flex items-center justify-between flex-wrap gap-3 pb-6 mb-8 border-b border-[#ece5d7]">
+            <div className="flex items-center gap-2 overflow-x-auto pb-2 sm:pb-0 scrollbar-none">
+              <button
+                type="button"
+                onClick={() => setActiveSubFilter("all")}
+                className={`px-4 py-2 rounded-full text-xs font-medium transition-all ${
+                  activeSubFilter === "all"
+                    ? "bg-emerald-900 text-white shadow-sm"
+                    : "bg-[#f2ece0] text-[#4a5847] hover:bg-[#e6decf]"
+                }`}
+              >
+                All Items ({allCategoryItems.length})
+              </button>
+              {activeBox.subCategories.slice(1).map((subCat) => (
+                <button
+                  key={subCat}
+                  type="button"
+                  onClick={() => setActiveSubFilter(subCat)}
+                  className={`px-4 py-2 rounded-full text-xs font-medium whitespace-nowrap transition-all ${
+                    activeSubFilter === subCat
+                      ? "bg-emerald-900 text-white shadow-sm"
+                      : "bg-[#f2ece0] text-[#4a5847] hover:bg-[#e6decf]"
+                  }`}
+                >
+                  {subCat}
+                </button>
+              ))}
+            </div>
+
+            <div className="text-xs font-medium text-[#657363]">
+              Showing {filteredItems.length} fresh {activeBox.title.toLowerCase()} items
+            </div>
+          </div>
+
+          {/* Product Cards Grid */}
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
+            {filteredItems.map((product) => {
+              const qty = cart[product.id] || 0;
+              return (
+                <div
+                  key={product.id}
+                  className="group bg-white rounded-2xl p-4 border border-[#e8e2d4] shadow-xs hover:shadow-md transition-all duration-300 flex flex-col justify-between"
+                >
+                  <div>
+                    {/* Packshot Image */}
+                    <div className="relative aspect-square w-full rounded-xl overflow-hidden bg-[#fbf9f4] mb-3">
                       <img
-                        src={sub.image}
-                        alt={sub.name}
-                        className="w-full h-full object-contain"
+                        src={product.image}
+                        alt={product.title}
+                        className="w-full h-full object-contain p-2.5 group-hover:scale-105 transition-transform duration-300"
                         loading="lazy"
                       />
+                      {product.tag && (
+                        <span className="absolute top-2.5 left-2.5 bg-[#162e1e] text-[#f8f4e8] text-[10px] font-semibold tracking-wide uppercase px-2 py-0.5 rounded-md">
+                          {product.tag}
+                        </span>
+                      )}
+                      <span className="absolute bottom-2.5 left-2.5 bg-white/95 backdrop-blur-sm text-emerald-800 text-[10px] font-bold px-2 py-0.5 rounded-md flex items-center gap-1 shadow-xs border border-emerald-100">
+                        <Zap className="w-2.5 h-2.5 fill-emerald-600 text-emerald-600" />
+                        {product.eta}
+                      </span>
                     </div>
-                    <span
-                      className={`text-[11px] leading-tight px-1 ${
-                        isActive ? "font-bold text-gray-900" : "font-medium text-gray-600"
-                      }`}
-                    >
-                      {sub.name}
-                    </span>
-                  </button>
-                );
-              })}
-            </div>
 
-            {/* Right Main Product Catalog Grid */}
-            <div className="flex-1 p-4 sm:p-6 bg-white overflow-y-auto">
-              {/* Product Cards Grid matching Blinkit screenshot */}
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 sm:gap-4">
-                {currentProducts.map((prod) => {
-                  const qty = cart[prod.id] || 0;
-                  return (
-                    <div
-                      key={prod.id}
-                      className="bg-white rounded-xl border border-gray-200/90 p-3 flex flex-col justify-between hover:shadow-md transition-shadow relative"
-                    >
-                      {/* Product Top */}
-                      <div>
-                        {/* Packshot Image */}
-                        <div className="relative aspect-square w-full rounded-lg overflow-hidden bg-white mb-2 flex items-center justify-center">
-                          <img
-                            src={prod.image}
-                            alt={prod.title}
-                            className="w-full h-full object-contain p-1"
-                            loading="lazy"
-                          />
-                        </div>
-
-                        {/* ETA Pill: ⏱ 8 MINS */}
-                        <div className="flex items-center gap-1 text-[10px] font-bold text-gray-600 mb-1">
-                          <Clock className="w-2.5 h-2.5 text-gray-500" />
-                          <span>8 MINS</span>
-                        </div>
-
-                        {/* Title */}
-                        <h4 className="text-xs font-semibold text-gray-900 line-clamp-2 leading-snug min-h-[32px]">
-                          {prod.title}
-                        </h4>
-
-                        {/* Weight */}
-                        <p className="text-[11px] text-gray-500 mt-1 font-medium">{prod.weight}</p>
-                      </div>
-
-                      {/* Price & Green ADD Button */}
-                      <div className="mt-3 pt-2 border-t border-gray-100 flex items-center justify-between">
-                        <div>
-                          <div className="flex items-baseline gap-1">
-                            <span className="text-xs font-bold text-gray-900">₹{prod.price}</span>
-                            {prod.originalPrice && (
-                              <span className="text-[10px] text-gray-400 line-through">
-                                ₹{prod.originalPrice}
-                              </span>
-                            )}
-                          </div>
-                        </div>
-
-                        <div className="flex flex-col items-center">
-                          {qty === 0 ? (
-                            <button
-                              type="button"
-                              onClick={() => updateCart(prod.id, 1)}
-                              className="px-3.5 py-1 border border-[#0c831f] text-[#0c831f] hover:bg-[#0c831f] hover:text-white rounded-md text-[11px] font-bold tracking-wide uppercase transition-colors shadow-2xs cursor-pointer"
-                            >
-                              ADD
-                            </button>
-                          ) : (
-                            <div className="flex items-center bg-[#0c831f] text-white rounded-md px-1.5 py-0.5 gap-1.5 shadow-xs">
-                              <button
-                                type="button"
-                                onClick={() => updateCart(prod.id, -1)}
-                                className="w-4 h-4 flex items-center justify-center font-bold hover:opacity-80 cursor-pointer"
-                                aria-label="Decrease quantity"
-                              >
-                                -
-                              </button>
-                              <span className="text-[11px] font-bold w-3 text-center">{qty}</span>
-                              <button
-                                type="button"
-                                onClick={() => updateCart(prod.id, 1)}
-                                className="w-4 h-4 flex items-center justify-center font-bold hover:opacity-80 cursor-pointer"
-                                aria-label="Increase quantity"
-                              >
-                                +
-                              </button>
-                            </div>
-                          )}
-
-                          {prod.optionsCount && qty === 0 && (
-                            <span className="text-[9px] text-gray-400 font-normal mt-0.5">
-                              {prod.optionsCount} options
-                            </span>
-                          )}
-                        </div>
-                      </div>
+                    {/* Weight & Rating */}
+                    <div className="flex items-center justify-between text-xs text-[#6e7b6d] mb-1">
+                      <span className="font-medium text-[#2d3a2c]">{product.weight}</span>
+                      <span className="flex items-center gap-0.5 text-amber-700 font-semibold text-[11px]">
+                        <Star className="w-3 h-3 fill-amber-500 text-amber-500" />
+                        {product.rating} ({product.reviewsCount})
+                      </span>
                     </div>
-                  );
-                })}
-              </div>
 
-              {/* Bottom Editorial Content Block (matching Blinkit screenshot) */}
-              <div className="mt-12 pt-8 border-t border-gray-200">
-                <h3 className="text-lg font-bold text-gray-900 font-sans mb-2">
-                  {currentPrimary.seoTitle}
-                </h3>
-                <p className="text-xs text-gray-600 leading-relaxed font-sans max-w-5xl">
-                  {currentPrimary.seoDescription}
-                </p>
-              </div>
-            </div>
+                    {/* Title */}
+                    <h3 className="font-sans text-sm font-semibold text-[#18271a] line-clamp-2 leading-snug group-hover:text-emerald-800 transition-colors">
+                      {product.title}
+                    </h3>
+
+                    {/* Description */}
+                    <p className="text-[11px] text-[#6a7568] mt-1.5 line-clamp-2 font-sans leading-relaxed">
+                      {product.description}
+                    </p>
+                  </div>
+
+                  {/* Price & Add to Cart button */}
+                  <div className="mt-4 pt-3 border-t border-[#f2ede3] flex items-center justify-between gap-2">
+                    <div>
+                      <div className="flex items-baseline gap-1.5">
+                        <span className="text-base font-bold text-[#162e1e]">₹{product.price}</span>
+                        <span className="text-xs text-[#8c9789] line-through">₹{product.originalPrice}</span>
+                      </div>
+                      <span className="text-[10px] font-semibold text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded">
+                        {product.discount}
+                      </span>
+                    </div>
+
+                    {qty === 0 ? (
+                      <button
+                        type="button"
+                        onClick={() => updateCart(product.id, 1)}
+                        className="px-4 py-1.5 bg-emerald-800 hover:bg-emerald-900 active:scale-95 text-white text-xs font-semibold rounded-lg shadow-sm transition-all flex items-center gap-1 cursor-pointer"
+                      >
+                        <Plus className="w-3.5 h-3.5" />
+                        <span>ADD</span>
+                      </button>
+                    ) : (
+                      <div className="flex items-center bg-emerald-800 text-white rounded-lg px-2 py-1 shadow-sm gap-2">
+                        <button
+                          type="button"
+                          onClick={() => updateCart(product.id, -1)}
+                          className="w-5 h-5 flex items-center justify-center hover:bg-emerald-700 rounded transition-colors cursor-pointer"
+                          aria-label="Decrease quantity"
+                        >
+                          <Minus className="w-3 h-3" />
+                        </button>
+                        <span className="text-xs font-bold w-4 text-center">{qty}</span>
+                        <button
+                          type="button"
+                          onClick={() => updateCart(product.id, 1)}
+                          className="w-5 h-5 flex items-center justify-center hover:bg-emerald-700 rounded transition-colors cursor-pointer"
+                          aria-label="Increase quantity"
+                        >
+                          <Plus className="w-3 h-3" />
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>
 
-      {/* 4. Floating Farm Basket Summary Bar (when items are added) */}
+      {/* 3. Floating Farm Basket Summary Bar (when items are added) */}
       {totalCartCount > 0 && (
         <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-40 w-[92%] max-w-lg bg-[#16301d] text-white rounded-full px-5 py-3.5 shadow-2xl border border-emerald-500/30 flex items-center justify-between backdrop-blur-md animate-fade-in-up">
           <div className="flex items-center gap-3">
@@ -892,7 +1057,7 @@ export default function HarvestCategoryGrid() {
               <p className="text-xs font-medium text-emerald-200">
                 {totalCartCount} {totalCartCount === 1 ? "item" : "items"} in Farm Basket
               </p>
-              <p className="text-xs text-white/80">⏱ Delivery in 8-10 mins</p>
+              <p className="text-xs text-white/80">⚡ Delivery in 10-15 mins</p>
             </div>
           </div>
 
