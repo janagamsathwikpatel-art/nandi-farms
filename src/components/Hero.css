@@ -6,7 +6,98 @@
   color: #f8f4e8;
 }
 
-/* Image stays separate from text */
+/* Integrated Transparent Header */
+.hero-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 4.5%;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.45) 0%, transparent 100%);
+}
+
+.hero-brand .brand-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #f8f4e8;
+  font-family: Arial, sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: 2px;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.hero-nav {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.hero-nav a,
+.hero-nav .nav-btn {
+  color: rgba(248, 244, 232, 0.85);
+  font-family: Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: color 0.2s ease;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.hero-nav a:hover,
+.hero-nav .nav-btn:hover {
+  color: #53dc83;
+}
+
+.hero-header-right {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.location-picker {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #f8f4e8;
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 6px;
+  background: transparent;
+  border: none;
+  transition: background 0.2s ease;
+}
+
+.location-picker:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.menu-toggle {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #f8f4e8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+}
+
+/* Image stays continuous and separate from text */
 .hero-background {
   position: absolute;
   inset: 0;
@@ -27,7 +118,7 @@
   position: relative;
   z-index: 1;
   width: 60%;
-  padding-top: 115px;
+  padding-top: 130px;
   margin-left: 4.5%;
 }
 
@@ -53,7 +144,7 @@
 .hero-options {
   position: absolute;
   z-index: 2;
-  top: 23%;
+  top: 25%;
   right: 4%;
   width: 245px;
   padding-left: 35px;
@@ -106,7 +197,13 @@
   color: #53dc83;
 }
 
-/* Mobile responsive */
+/* Responsive breakpoints */
+@media (max-width: 800px) {
+  .hero-nav {
+    display: none;
+  }
+}
+
 @media (max-width: 700px) {
   .hero-section {
     min-height: 100svh;
