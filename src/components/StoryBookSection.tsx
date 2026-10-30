@@ -156,7 +156,7 @@ export default function StoryBookSection({ onShopFresh }: StoryBookSectionProps)
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
     >
-      <div className="relative w-full storybook-fullwidth-canvas flex flex-col justify-between storybook-viewport-full">
+      <div className="relative storybook-fullwidth-canvas flex flex-col justify-between storybook-viewport-full">
         {/* ===================================================================
             FULL-WIDTH & FULL-LENGTH ARTWORK (Cover to Page 07)
             =================================================================== */}

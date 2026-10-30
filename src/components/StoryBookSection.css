@@ -15,16 +15,22 @@
   -webkit-user-select: none;
 }
 
-/* Full-bleed responsive canvas */
+/* Framed responsive textbook canvas with decreased width */
 .storybook-fullwidth-canvas {
   position: relative;
-  width: 100%;
-  min-h: 75vh;
-  height: clamp(520px, 85vh, 940px);
+  width: min(92vw, 1280px);
+  margin: 1.5rem auto;
+  border-radius: 1.25rem;
+  min-height: 60vh;
+  height: clamp(480px, 78vh, 860px);
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 
+    0 25px 60px -15px rgba(35, 20, 10, 0.25),
+    0 8px 24px -8px rgba(35, 20, 10, 0.15),
+    0 0 0 1px rgba(200, 180, 155, 0.45);
 }
 
 /* 3D Perspective viewport */
