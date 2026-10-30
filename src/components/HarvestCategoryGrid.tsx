@@ -965,14 +965,14 @@ export default function HarvestCategoryGrid() {
           onViewAllProducts={scrollToCatalog}
         />
 
-        {/* Transitional Section with Prominent, Large Font "A Daily Ritual of Freshness" */}
-        <div className="w-full py-6 md:py-8 bg-[#f4ebde] bg-[url('/images/parchment-texture-bg.png')] bg-repeat border-t border-[#e5d8c3]/80 flex items-center justify-center px-4">
-          <div className="relative w-full max-w-[760px] md:max-w-[880px] flex items-center justify-center select-none pointer-events-none">
+        {/* Transitional Section with Compact, Balanced Size (~140px Height) */}
+        <div className="w-full py-2 md:py-3 bg-[#f4ebde] bg-[url('/images/parchment-texture-bg.png')] bg-repeat border-t border-[#e5d8c3]/80 flex items-center justify-center px-4">
+          <div className="relative w-full max-w-[460px] md:max-w-[520px] flex items-center justify-center select-none pointer-events-none">
             <Image
               src="/images/daily-ritual-freshness-emblem.png"
               alt="A Daily Ritual of Freshness"
-              width={880}
-              height={231}
+              width={520}
+              height={137}
               priority
               className="w-full h-auto object-contain drop-shadow-sm"
             />
