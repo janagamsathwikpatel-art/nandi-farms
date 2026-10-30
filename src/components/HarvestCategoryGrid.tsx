@@ -13,7 +13,7 @@ import {
 } from "lucide-react";
 import MilkSubscriptionModal from "./MilkSubscriptionModal";
 import HarvestHeroSection from "./HarvestHeroSection";
-import DesiGoodnessSection from "./DesiGoodnessSection";
+import WhyYDailyA2Section from "./WhyYDailyA2Section";
 
 export interface HarvestItem {
   id: string;
@@ -964,9 +964,9 @@ export default function HarvestCategoryGrid() {
           onViewAllProducts={scrollToCatalog}
         />
 
-        {/* 4K Ultra-HD Desi Goodness Showcase with Cow Grazing & Hand-Milking Animations */}
+        {/* 4K Ultra-HD "Why Y Daily Focuses Only on A2 Dairy" Showcase */}
         <div ref={catalogRef} className="w-full">
-          <DesiGoodnessSection />
+          <WhyYDailyA2Section />
         </div>
       </div>
 

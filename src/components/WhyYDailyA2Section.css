@@ -1,0 +1,211 @@
+/* ==========================================================================
+   WHY Y DAILY FOCUSES ONLY ON A2 DAIRY - 4K ULTRA-HD SHOWCASE
+   ========================================================================== */
+
+.why-ydaily-section {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background-color: #f7f3e8;
+  margin: 0;
+  padding: 0;
+}
+
+/* Full-width responsive canvas preserving exact 4K aspect ratio (3840 / 1623) */
+.why-ydaily-canvas {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3840 / 1623;
+  overflow: hidden;
+  display: block;
+}
+
+.why-ydaily-base-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* Interactive Pins Layer */
+.why-ydaily-pins-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.pillar-pin-wrapper {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  pointer-events: auto;
+  z-index: 20;
+}
+
+.pillar-pulse-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: transform 0.2s ease;
+}
+
+.pillar-pulse-btn:hover {
+  transform: scale(1.15);
+}
+
+.pillar-pulse-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #f7d373;
+  box-shadow: 0 0 8px rgba(247, 211, 115, 0.95), 0 0 0 1.5px #183622;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.pillar-pulse-btn:hover .pillar-pulse-dot,
+.is-active .pillar-pulse-dot {
+  transform: scale(1.3);
+  background: #ffffff;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 1), 0 0 0 2px #183622;
+}
+
+.pillar-pulse-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1.5px solid #f7d373;
+  animation: pillar-ring-pulse 2.2s infinite;
+  opacity: 0.85;
+}
+
+@keyframes pillar-ring-pulse {
+  0% {
+    transform: scale(0.6);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
+
+/* Tooltip Popup Card */
+.pillar-tooltip-card {
+  position: absolute;
+  bottom: calc(100% + 12px);
+  width: 260px;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 12px 14px;
+  border: 1px solid rgba(24, 54, 34, 0.16);
+  box-shadow: 0 10px 28px rgba(10, 30, 15, 0.22);
+  z-index: 40;
+  animation: tooltip-pop 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.pillar-tooltip-card.left {
+  left: 0;
+}
+
+.pillar-tooltip-card.right {
+  right: 0;
+}
+
+@keyframes tooltip-pop {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.pillar-tooltip-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 6px;
+  border-bottom: 1px solid rgba(24, 54, 34, 0.08);
+  padding-bottom: 6px;
+}
+
+.pillar-tooltip-header h4 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: #173620;
+  margin: 0 0 2px;
+  line-height: 1.25;
+}
+
+.pillar-tooltip-sub {
+  font-family: Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  color: #8b572a;
+  margin: 0;
+}
+
+.pillar-tooltip-close {
+  background: transparent;
+  border: 0;
+  color: #888888;
+  font-size: 12px;
+  cursor: pointer;
+  padding: 0 0 0 8px;
+  line-height: 1;
+}
+
+.pillar-tooltip-close:hover {
+  color: #173620;
+}
+
+.pillar-tooltip-body {
+  font-family: Arial, sans-serif;
+  font-size: 11.5px;
+  line-height: 1.45;
+  color: #4a5d4c;
+  margin: 0;
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN (TABLET & MOBILE)
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  .why-ydaily-canvas {
+    aspect-ratio: auto;
+    min-height: 360px;
+  }
+
+  .why-ydaily-base-img {
+    height: 360px;
+    object-fit: cover;
+  }
+
+  .pillar-pulse-btn {
+    width: 24px;
+    height: 24px;
+  }
+
+  .pillar-pulse-dot {
+    width: 8px;
+    height: 8px;
+  }
+
+  .pillar-tooltip-card {
+    width: 220px;
+    padding: 10px 12px;
+  }
+}
