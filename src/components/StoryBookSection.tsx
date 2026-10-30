@@ -166,7 +166,6 @@ export default function StoryBookSection({ onShopFresh }: StoryBookSectionProps)
           <div
             onClick={handleNextPage}
             className="absolute inset-0 w-full h-full cursor-pointer"
-            title="Click anywhere to turn page"
           >
             <Image
               src={currentPage.image}
@@ -183,7 +182,7 @@ export default function StoryBookSection({ onShopFresh }: StoryBookSectionProps)
               }`}
             />
             {/* Subtle top & bottom lighting gradients */}
-            <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/60 pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/40 pointer-events-none" />
           </div>
         ) : (
           /* ===================================================================
@@ -279,56 +278,56 @@ export default function StoryBookSection({ onShopFresh }: StoryBookSectionProps)
             <ChevronRight className="w-6 h-6 text-emerald-400" />
           </button>
         )}
+      </div>
 
-        {/* Floating Bottom Pagination HUD */}
-        <div className="relative z-30 w-full px-6 pb-6 flex items-center justify-center">
-          <div className="storybook-glass-panel px-5 py-2.5 rounded-full flex items-center gap-4 sm:gap-6 shadow-2xl">
-            {/* Prev Button */}
-            <button
-              onClick={handlePrevPage}
-              disabled={pageIndex <= 0}
-              className={`text-xs font-serif font-semibold tracking-wider uppercase transition-colors ${
-                pageIndex <= 0
-                  ? "text-stone-600 cursor-not-allowed"
-                  : "text-stone-300 hover:text-white cursor-pointer"
-              }`}
-            >
-              ← PREV
-            </button>
+      {/* Dedicated Bottom Navigation Bar (Below the section image) */}
+      <div className="relative z-30 w-full py-5 bg-[#08130a] border-t border-emerald-950/70 flex items-center justify-center">
+        <div className="storybook-glass-panel px-6 py-2.5 rounded-full flex items-center gap-4 sm:gap-6 shadow-2xl">
+          {/* Prev Button */}
+          <button
+            onClick={handlePrevPage}
+            disabled={pageIndex <= 0}
+            className={`text-xs font-serif font-semibold tracking-wider uppercase transition-colors ${
+              pageIndex <= 0
+                ? "text-stone-600 cursor-not-allowed"
+                : "text-stone-300 hover:text-white cursor-pointer"
+            }`}
+          >
+            ← PREV
+          </button>
 
-            {/* Progress Indicator Dots */}
-            <div className="flex items-center gap-1.5 sm:gap-2">
-              {[0, 1, 2, 3, 4, 5, 6, 7, 8].map((idx) => (
-                <button
-                  key={idx}
-                  onClick={() => setPageIndex(idx)}
-                  className={`h-2 rounded-full transition-all duration-300 ${
-                    pageIndex === idx
-                      ? "w-7 sm:w-8 bg-emerald-400 shadow-md shadow-emerald-400/50"
-                      : "w-2 bg-white/30 hover:bg-white/60"
-                  }`}
-                  aria-label={idx === 0 ? "Go to Cover" : `Go to Page ${idx}`}
-                />
-              ))}
-            </div>
-
-            {/* Next / Conclusion Button */}
-            <button
-              onClick={handleNextPage}
-              disabled={pageIndex >= 8}
-              className={`text-xs font-serif font-semibold tracking-wider uppercase transition-colors ${
-                pageIndex >= 8
-                  ? "text-stone-600 cursor-not-allowed"
-                  : "text-emerald-400 hover:text-emerald-300 cursor-pointer"
-              }`}
-            >
-              {pageIndex === 0
-                ? "START STORY →"
-                : pageIndex === 7
-                ? "CONCLUSION →"
-                : "NEXT →"}
-            </button>
+          {/* Progress Indicator Dots */}
+          <div className="flex items-center gap-1.5 sm:gap-2">
+            {[0, 1, 2, 3, 4, 5, 6, 7, 8].map((idx) => (
+              <button
+                key={idx}
+                onClick={() => setPageIndex(idx)}
+                className={`h-2 rounded-full transition-all duration-300 ${
+                  pageIndex === idx
+                    ? "w-7 sm:w-8 bg-emerald-400 shadow-md shadow-emerald-400/50"
+                    : "w-2 bg-white/30 hover:bg-white/60"
+                }`}
+                aria-label={idx === 0 ? "Go to Cover" : `Go to Page ${idx}`}
+              />
+            ))}
           </div>
+
+          {/* Next / Conclusion Button */}
+          <button
+            onClick={handleNextPage}
+            disabled={pageIndex >= 8}
+            className={`text-xs font-serif font-semibold tracking-wider uppercase transition-colors ${
+              pageIndex >= 8
+                ? "text-stone-600 cursor-not-allowed"
+                : "text-emerald-400 hover:text-emerald-300 cursor-pointer"
+            }`}
+          >
+            {pageIndex === 0
+              ? "START STORY →"
+              : pageIndex === 7
+              ? "CONCLUSION →"
+              : "NEXT →"}
+          </button>
         </div>
       </div>
     </section>
