@@ -161,17 +161,14 @@ export default function StoryBookSection({ onShopFresh }: StoryBookSectionProps)
             FULL-WIDTH & FULL-LENGTH ARTWORK (Cover to Page 07)
             =================================================================== */}
         {pageIndex <= 7 && currentPage ? (
-          <div
-            onClick={handleNextPage}
-            className="absolute inset-0 w-full h-full cursor-pointer"
-          >
+          <div className="absolute inset-0 w-full h-full select-none">
             <Image
               src={currentPage.image}
               alt={currentPage.alt}
               fill
               priority
               sizes="100vw"
-              className={`storybook-full-image ${
+              className={`storybook-full-image pointer-events-none ${
                 flipDirection === "next"
                   ? "animate-turn-forward"
                   : flipDirection === "prev"
@@ -179,6 +176,38 @@ export default function StoryBookSection({ onShopFresh }: StoryBookSectionProps)
                   : ""
               }`}
             />
+
+            {/* Left 50% Click Zone: Previous Page */}
+            {pageIndex > 0 && (
+              <div
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handlePrevPage();
+                }}
+                className="absolute inset-y-0 left-0 w-1/2 z-20 cursor-w-resize group"
+                aria-label="Previous Page"
+              >
+                <div className="absolute top-1/2 left-4 -translate-y-1/2 w-10 h-10 rounded-full bg-black/25 backdrop-blur-sm border border-white/20 flex items-center justify-center opacity-0 group-hover:opacity-90 transition-opacity duration-200 pointer-events-none shadow-xl">
+                  <span className="text-white text-xl font-bold font-serif leading-none select-none">‹</span>
+                </div>
+              </div>
+            )}
+
+            {/* Right 50% Click Zone: Next Page */}
+            {pageIndex < 8 && (
+              <div
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleNextPage();
+                }}
+                className="absolute inset-y-0 right-0 w-1/2 z-20 cursor-e-resize group"
+                aria-label="Next Page"
+              >
+                <div className="absolute top-1/2 right-4 -translate-y-1/2 w-10 h-10 rounded-full bg-black/25 backdrop-blur-sm border border-white/20 flex items-center justify-center opacity-0 group-hover:opacity-90 transition-opacity duration-200 pointer-events-none shadow-xl">
+                  <span className="text-white text-xl font-bold font-serif leading-none select-none">›</span>
+                </div>
+              </div>
+            )}
           </div>
         ) : (
           /* ===================================================================
