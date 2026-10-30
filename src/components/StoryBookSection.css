@@ -1,12 +1,12 @@
 /* ==========================================================================
-   Y DAILY - Full-Width & Full-Length Edge-to-Edge Cinematic Storybook
+   Y DAILY - Authentic Open Double-Page Hardcover Book Spread
    ========================================================================== */
 
 .storybook-fullwidth-section {
   position: relative;
   width: 100%;
   margin: 0;
-  padding: 0;
+  padding: 2.5rem 0 3.5rem 0;
   overflow: hidden;
   background-color: #f4ebde;
   background-image: url('/images/parchment-texture-bg.png');
@@ -15,150 +15,234 @@
   -webkit-user-select: none;
 }
 
-/* Framed responsive textbook canvas matching 2nd page size */
-.storybook-fullwidth-canvas {
-  position: relative;
-  width: min(92vw, 1280px);
-  aspect-ratio: 1672 / 941;
-  margin: 1.5rem auto;
-  border-radius: 1.25rem;
-  background-color: #f4ebde;
-  background-image: url('/images/parchment-texture-bg.png');
-  background-repeat: repeat;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 
-    0 25px 60px -15px rgba(35, 20, 10, 0.25),
-    0 8px 24px -8px rgba(35, 20, 10, 0.15),
-    0 0 0 1px rgba(200, 180, 155, 0.45);
-}
-
-/* 3D Perspective viewport */
-.storybook-viewport-full {
+/* 3D Perspective Stage */
+.storybook-stage {
   perspective: 2500px;
   perspective-origin: 50% 50%;
-  transform-style: preserve-3d;
-}
-
-/* Master full-bleed image background */
-.storybook-full-image {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  transition: opacity 0.75s cubic-bezier(0.4, 0, 0.2, 1), transform 0.85s cubic-bezier(0.25, 1, 0.5, 1);
-  will-change: opacity, transform;
-}
-
-/* 3D Page flip forward */
-@keyframes pageTurnFullForward {
-  0% {
-    transform: rotateY(0deg) scale(1);
-    opacity: 1;
-    filter: brightness(1);
-  }
-  48% {
-    transform: rotateY(-85deg) scale(0.96);
-    opacity: 0.85;
-    filter: brightness(0.65);
-  }
-  52% {
-    transform: rotateY(-95deg) scale(0.96);
-    opacity: 0.85;
-    filter: brightness(0.65);
-  }
-  100% {
-    transform: rotateY(-180deg) scale(1);
-    opacity: 0;
-    filter: brightness(1);
-  }
-}
-
-/* 3D Page flip backward */
-@keyframes pageTurnFullBackward {
-  0% {
-    transform: rotateY(-180deg) scale(1);
-    opacity: 0;
-    filter: brightness(1);
-  }
-  48% {
-    transform: rotateY(-95deg) scale(0.96);
-    opacity: 0.85;
-    filter: brightness(0.65);
-  }
-  52% {
-    transform: rotateY(-85deg) scale(0.96);
-    opacity: 0.85;
-    filter: brightness(0.65);
-  }
-  100% {
-    transform: rotateY(0deg) scale(1);
-    opacity: 1;
-    filter: brightness(1);
-  }
-}
-
-.animate-turn-forward {
-  transform-origin: left center;
-  animation: pageTurnFullForward 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-}
-
-.animate-turn-backward {
-  transform-origin: left center;
-  animation: pageTurnFullBackward 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-}
-
-/* Floating frosted glass controls */
-.storybook-glass-panel {
-  background: rgba(10, 24, 15, 0.65);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.15);
-}
-
-.storybook-glass-btn {
-  background: rgba(12, 28, 17, 0.75);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  transition: all 0.25s ease;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
-}
-
-.storybook-glass-btn:hover:not(:disabled) {
-  background: rgba(22, 60, 32, 0.9);
-  border-color: rgba(52, 211, 153, 0.5);
-  transform: scale(1.05);
-  box-shadow: 0 12px 30px rgba(16, 185, 129, 0.25);
-}
-
-.storybook-glass-btn:active:not(:disabled) {
-  transform: scale(0.96);
-}
-
-/* Floating Navigation Arrows */
-.storybook-nav-arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 30;
-  width: 52px;
-  height: 52px;
-  border-radius: 9999px;
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
+}
+
+/* Physical Hardcover Book Casing (Matching Reference Screenshot) */
+.storybook-hardcover-casing {
+  position: relative;
+  width: min(94vw, 1320px);
+  aspect-ratio: 2 / 1;
+  min-height: 520px;
+  background: #fbf8f2;
+  border-radius: 1.5rem;
+  padding: 10px;
+  /* Outer Hardcover Rim & Layered Pages Stack */
+  box-shadow:
+    0 0 0 1px #dfd1bd,
+    0 2px 0 #ede3d1,
+    0 4px 0 #e4d7bf,
+    0 6px 0 #dbcbaf,
+    0 8px 0 #d1c0a0,
+    0 10px 0 #c7b491,
+    0 28px 65px -15px rgba(45, 25, 10, 0.35);
+  border: 7px solid #cfbfa6;
+  display: flex;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+@media (max-width: 900px) {
+  .storybook-hardcover-casing {
+    aspect-ratio: auto;
+    min-height: 600px;
+  }
+}
+
+/* Open Book Double Spread Container */
+.storybook-spread-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  background-color: #faf7f0;
+  background-image: 
+    radial-gradient(#e8dfcd 0.6px, transparent 0.6px),
+    url('/images/parchment-texture-bg.png');
+  background-size: 16px 16px, auto;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+/* Left Page & Right Page */
+.storybook-page-half {
+  position: relative;
+  width: 50%;
+  height: 100%;
+  padding: 2.25rem 2.75rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
   cursor: pointer;
+  z-index: 10;
+}
+
+@media (max-width: 900px) {
+  .storybook-page-half {
+    padding: 1.5rem 1.75rem;
+  }
 }
 
 @media (max-width: 640px) {
-  .storybook-nav-arrow {
-    width: 42px;
-    height: 42px;
+  .storybook-spread-container {
+    flex-direction: column;
   }
+  .storybook-page-half {
+    width: 100%;
+    min-height: 380px;
+    padding: 1.25rem;
+  }
+}
+
+/* Center Spine Dividing Crease with Realistic Soft Shadows */
+.storybook-center-spine {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  background: rgba(145, 120, 90, 0.28);
+  box-shadow:
+    -10px 0 20px rgba(0, 0, 0, 0.08),
+     10px 0 20px rgba(0, 0, 0, 0.08);
+  z-index: 25;
+  pointer-events: none;
+}
+
+/* Spine fold gradients on left and right pages */
+.storybook-spine-shadow-left {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 48px;
+  background: linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 0.02) 65%, rgba(0, 0, 0, 0.09) 100%);
+  pointer-events: none;
+}
+
+.storybook-spine-shadow-right {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 48px;
+  background: linear-gradient(to left, transparent 0%, rgba(0, 0, 0, 0.02) 65%, rgba(0, 0, 0, 0.09) 100%);
+  pointer-events: none;
+}
+
+/* Corner Botanical Filigree Accent */
+.storybook-corner-filigree {
+  position: absolute;
+  width: 70px;
+  height: 70px;
+  opacity: 0.18;
+  pointer-events: none;
+}
+
+.storybook-corner-tl {
+  top: 12px;
+  left: 12px;
+}
+
+.storybook-corner-tr {
+  top: 12px;
+  right: 12px;
+}
+
+.storybook-corner-bl {
+  bottom: 12px;
+  left: 12px;
+}
+
+.storybook-corner-br {
+  bottom: 12px;
+  right: 12px;
+}
+
+/* Turn Animations */
+@keyframes pageTurnSpineForward {
+  0% {
+    transform: rotateY(0deg);
+    opacity: 1;
+    filter: brightness(1);
+  }
+  49% {
+    transform: rotateY(-88deg);
+    opacity: 0.9;
+    filter: brightness(0.7);
+  }
+  51% {
+    transform: rotateY(-92deg);
+    opacity: 0.9;
+    filter: brightness(0.7);
+  }
+  100% {
+    transform: rotateY(-180deg);
+    opacity: 0;
+    filter: brightness(1);
+  }
+}
+
+@keyframes pageTurnSpineBackward {
+  0% {
+    transform: rotateY(-180deg);
+    opacity: 0;
+    filter: brightness(1);
+  }
+  49% {
+    transform: rotateY(-92deg);
+    opacity: 0.9;
+    filter: brightness(0.7);
+  }
+  51% {
+    transform: rotateY(-88deg);
+    opacity: 0.9;
+    filter: brightness(0.7);
+  }
+  100% {
+    transform: rotateY(0deg);
+    opacity: 1;
+    filter: brightness(1);
+  }
+}
+
+.animate-page-turn-forward {
+  transform-origin: left center;
+  animation: pageTurnSpineForward 0.65s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.animate-page-turn-backward {
+  transform-origin: right center;
+  animation: pageTurnSpineBackward 0.65s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* Refined Pill Button on Right Page */
+.storybook-continue-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: serif;
+  font-size: 0.825rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #174223;
+  border-bottom: 2px solid #236536;
+  padding-bottom: 2px;
+  transition: all 0.25s ease;
+  cursor: pointer;
+}
+
+.storybook-continue-btn:hover {
+  color: #0b2613;
+  border-color: #0b2613;
+  gap: 0.75rem;
 }

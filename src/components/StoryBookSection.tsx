@@ -5,82 +5,146 @@ import Image from "next/image";
 import {
   ShoppingBag,
   CheckCircle2,
+  Sprout,
+  ArrowRight,
 } from "lucide-react";
 import "./StoryBookSection.css";
 
-interface StoryPageData {
+interface ChapterData {
   id: number;
-  stageNumber: string;
+  chapterNumber: string;
+  category: string;
   title: string;
   subtitle: string;
   image: string;
-  alt: string;
+  rightBadge: string;
+  yearRange: string;
+  statNumber: string;
+  statLabel: string;
+  narrative: string;
+  features: string[];
 }
 
-const STORY_PAGES: StoryPageData[] = [
+const CHAPTERS: ChapterData[] = [
   {
     id: 0,
-    stageNumber: "COVER",
+    chapterNumber: "PROLOGUE",
+    category: "OUR ORIGINS",
     title: "A Daily Ritual of Freshness",
-    subtitle: "Y Daily Origins & Dawn Milk Harvest",
+    subtitle: "From trusted village farms to your doorstep",
     image: "/storybook/story_cover.png",
-    alt: "Y Daily Story Cover - A Daily Ritual of Freshness",
+    rightBadge: "Sacred Dawn Harvest",
+    yearRange: "HYDERABAD • FRESH EVERY MORNING",
+    statNumber: "05:30",
+    statLabel: "Morning Dawn Milk Collection",
+    narrative:
+      "Every morning before the city stirs, our ritual begins in the quiet pastures of trusted rural farms. Pure A2 milk, gently collected, rapidly chilled to 4°C, and placed quietly on your doorstep before the sunrise.",
+    features: ["100% Pure A2 Milk", "Zero Additives", "Direct Farm Source"],
   },
   {
     id: 1,
-    stageNumber: "01",
-    title: "Where It Begins",
-    subtitle: "Healthy cows and trusted local farms",
+    chapterNumber: "CHAPTER 01",
+    category: "WHERE IT BEGINS",
+    title: "Healthy Cows & Trusted Farms",
+    subtitle: "Ethical cattle nurturing in natural pastures",
     image: "/storybook/story_page1.png",
-    alt: "Y Daily Story - Where It Begins: Healthy cows and trusted farms",
+    rightBadge: "Rooted in Ethics",
+    yearRange: "HAPPY COWS • SUSTAINABLE FUTURE",
+    statNumber: "100%",
+    statLabel: "Ethical Grazing & Pasture Fed",
+    narrative:
+      "We partner exclusively with local family farmers who raise indigenous Indian cattle with care. The cattle graze freely on organic green fodder, bask in natural sunshine, and live free from hormonal stimulants or synthetic antibiotics.",
+    features: ["Free Range Grazing", "Calf Nurtured First", "Chemical-Free Feed"],
   },
   {
     id: 2,
-    stageNumber: "02",
+    chapterNumber: "CHAPTER 02",
+    category: "THE HARVEST",
     title: "Pure Milk from Healthy Cows",
-    subtitle: "Fresh hygienic milk collection at dawn",
+    subtitle: "Hygienic fresh milk collection at dawn",
     image: "/storybook/story_page2.png",
-    alt: "Y Daily Story - Pure Milk from Healthy Cows",
+    rightBadge: "Single-Source Purity",
+    yearRange: "DAWN HARVEST • ZERO TOUCH",
+    statNumber: "02",
+    statLabel: "Stages of Quality Assurance",
+    narrative:
+      "At first light, our trained farmers collect milk using traditional gentle techniques combined with modern food-grade sanitization. The fresh milk is strained immediately into airtight stainless-steel vessels to lock in wholesome nutrients.",
+    features: ["Hygienic Collection", "Caring Farmers", "Quality Assured"],
   },
   {
     id: 3,
-    stageNumber: "03",
+    chapterNumber: "CHAPTER 03",
+    category: "THE CHILLING",
     title: "From Farm to Freshness",
-    subtitle: "Filtration, immediate chilling to 4°C & laboratory checks",
+    subtitle: "Rapid thermal drop to 4°C within 15 minutes",
     image: "/storybook/story_page3.png",
-    alt: "Y Daily Story - From Farm to Freshness: Filtration and chilling",
+    rightBadge: "Cold-Chain Integrity",
+    yearRange: "THERMAL DROP • 4°C IN 15 MINS",
+    statNumber: "4°C",
+    statLabel: "Immediate Cold Stabilization",
+    narrative:
+      "Temperature is the true guardian of milk freshness. Within 15 minutes of milking, the milk is chilled down to 4°C in localized bulk milk coolers, preventing bacterial multiplication while naturally preserving delicate bioactive enzymes.",
+    features: ["Instant Chilling", "Zero Preservatives", "Nutrient Protected"],
   },
   {
     id: 4,
-    stageNumber: "04",
+    chapterNumber: "CHAPTER 04",
+    category: "THE BOTTLING",
     title: "Hygienic Processing & Packing",
-    subtitle: "Modern automated processing and glass bottling",
+    subtitle: "Modern automated facility in sterilized glass",
     image: "/storybook/story_page4.png",
-    alt: "Y Daily Story - Hygienic Processing & Packing",
+    rightBadge: "Zero Plastic Guarantee",
+    yearRange: "GLASS BOTTLED • TAMPER-EVIDENT",
+    statNumber: "0%",
+    statLabel: "Plastic Leaching or Toxins",
+    narrative:
+      "Inside our certified hygienic facility, milk undergoes double micro-filtration before automated bottling into sanitized glass containers. Glass is chemically inert, keeping the milk colder for longer and ensuring pure, unadulterated taste.",
+    features: ["Modern Facility", "Hygienic Packing", "Sealed Freshness"],
   },
   {
     id: 5,
-    stageNumber: "05",
+    chapterNumber: "CHAPTER 05",
+    category: "THE HARVEST",
     title: "Straight from the Farm",
-    subtitle: "Fresh organic vegetables & seasonal produce",
+    subtitle: "Organic seasonal vegetables & crisp greens",
     image: "/storybook/story_page5.png",
-    alt: "Y Daily Story - Straight from the Farm Vegetables",
+    rightBadge: "Farm Fresh Vegetables",
+    yearRange: "HARVESTED DAILY • PEAK RIPENESS",
+    statNumber: "24h",
+    statLabel: "From Soil to Your Kitchen",
+    narrative:
+      "Alongside pure dairy, we bring you fresh seasonal vegetables grown in nutrient-dense soil. Harvested in the cool early hours, washed with pure ozonated water, and delivered directly with zero chemical coating or artificial wax.",
+    features: ["Seasonal Harvest", "Naturally Grown", "Fresh & Nutritious"],
   },
   {
     id: 6,
-    stageNumber: "06",
+    chapterNumber: "CHAPTER 06",
+    category: "THE DELIVERY",
     title: "Freshness at Your Doorstep",
-    subtitle: "Cold-chain delivered to your home before 07:00 AM",
+    subtitle: "Reliable cold-chain delivery before 07:00 AM",
     image: "/storybook/story_page6.png",
-    alt: "Y Daily Story - Freshness at Your Doorstep Delivery",
+    rightBadge: "Morning Routine",
+    yearRange: "BEFORE 7:00 AM • SILENT DELIVERY",
+    statNumber: "07:00",
+    statLabel: "Morning Doorstep Guarantee",
+    narrative:
+      "While Hyderabad sleeps, our temperature-monitored refrigerated vehicles transport your orders across the city. Your eco-friendly insulated crate is placed quietly on your porch before you wake up for your morning tea or coffee.",
+    features: ["Safe Delivery", "Maintained Freshness", "On Time to Home"],
   },
   {
     id: 7,
-    stageNumber: "07",
+    chapterNumber: "CHAPTER 07",
+    category: "THE PROMISE",
     title: "Goodness for Generations",
-    subtitle: "Y Daily's enduring promise of uncompromised purity",
+    subtitle: "Uncompromising purity for you and your family",
     image: "/storybook/story_page7.png",
-    alt: "Y Daily Story - Goodness for Generations",
+    rightBadge: "Timeless Goodness",
+    yearRange: "PURE TODAY • HEALTHIER TOMORROWS",
+    statNumber: "100%",
+    statLabel: "Family Traceability & Health",
+    narrative:
+      "Good food is a family legacy. By choosing pure unadulterated A2 milk and seasonal organic vegetables, you invest in lifelong immunity, effortless digestion, and the continued well-being of sustainable, ethical Indian farming communities.",
+    features: ["Digestive Ease", "Immunity Support", "Generational Purity"],
   },
 ];
 
@@ -89,33 +153,30 @@ interface StoryBookSectionProps {
 }
 
 export default function StoryBookSection({ onShopFresh }: StoryBookSectionProps) {
-  // pageIndex: 0 = Cover, 1 to 7 = Story Pages, 8 = Epilogue
+  // pageIndex: 0 = Prologue/Cover, 1..7 = Chapters, 8 = Epilogue
   const [pageIndex, setPageIndex] = useState(0);
-
-  // Transition state: 'next' | 'prev' | null
   const [flipDirection, setFlipDirection] = useState<"next" | "prev" | null>(null);
 
-  // Touch tracking for swipe gestures
   const touchStartXRef = useRef<number | null>(null);
 
-  // Next Page
+  // Next Chapter
   const handleNextPage = () => {
     if (pageIndex >= 8 || flipDirection) return;
     setFlipDirection("next");
     setTimeout(() => {
       setPageIndex((prev) => Math.min(prev + 1, 8));
       setFlipDirection(null);
-    }, 500);
+    }, 550);
   };
 
-  // Previous Page
+  // Previous Chapter
   const handlePrevPage = () => {
     if (pageIndex <= 0 || flipDirection) return;
     setFlipDirection("prev");
     setTimeout(() => {
       setPageIndex((prev) => Math.max(prev - 1, 0));
       setFlipDirection(null);
-    }, 500);
+    }, 550);
   };
 
   // Keyboard navigation
@@ -147,117 +208,192 @@ export default function StoryBookSection({ onShopFresh }: StoryBookSectionProps)
     touchStartXRef.current = null;
   };
 
-  const currentPage = pageIndex <= 7 ? STORY_PAGES[pageIndex] : null;
+  const currentChapter = pageIndex <= 7 ? CHAPTERS[pageIndex] : null;
 
   return (
     <section
       className="storybook-fullwidth-section"
-      aria-label="Y Daily Interactive 3D Storybook Showcase"
+      aria-label="Y Daily Interactive Open Storybook Spread"
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
     >
-      <div className="relative storybook-fullwidth-canvas flex flex-col justify-between storybook-viewport-full">
-        {/* ===================================================================
-            FULL-WIDTH & FULL-LENGTH ARTWORK (Cover to Page 07)
-            =================================================================== */}
-        {pageIndex <= 7 && currentPage ? (
-          <div className="absolute inset-0 w-full h-full select-none">
-            <Image
-              src={currentPage.image}
-              alt={currentPage.alt}
-              fill
-              priority
-              sizes="100vw"
-              className={`storybook-full-image pointer-events-none ${
-                flipDirection === "next"
-                  ? "animate-turn-forward"
-                  : flipDirection === "prev"
-                  ? "animate-turn-backward"
-                  : ""
+      <div className="storybook-stage">
+        {/* Physical Hardcover Book Casing (Matches Reference Screenshot) */}
+        <div className="storybook-hardcover-casing">
+          {/* Inside Open Spread (Two Visible Pages) */}
+          <div className="storybook-spread-container">
+            {/* Center Spine Divider & Crease with Soft Fold Shadows */}
+            <div className="storybook-center-spine hidden md:block" />
+            <div className="storybook-spine-shadow-left hidden md:block" />
+            <div className="storybook-spine-shadow-right hidden md:block" />
+
+            {/* Subtle Corner Filigrees matching reference */}
+            <div className="storybook-corner-filigree storybook-corner-tl">
+              <svg viewBox="0 0 100 100" fill="none" stroke="#7a6042" strokeWidth="1.2">
+                <path d="M10,10 Q50,10 50,50 Q10,50 10,10 Z M25,25 Q70,25 70,70" />
+              </svg>
+            </div>
+            <div className="storybook-corner-filigree storybook-corner-tr">
+              <svg viewBox="0 0 100 100" fill="none" stroke="#7a6042" strokeWidth="1.2">
+                <path d="M90,10 Q50,10 50,50 Q90,50 90,10 Z M75,25 Q30,25 30,70" />
+              </svg>
+            </div>
+
+            {/* =============================================================
+                LEFT PAGE (Image, Title & Chapter Marker)
+                ============================================================= */}
+            <div
+              onClick={handlePrevPage}
+              className={`storybook-page-half ${
+                flipDirection === "prev" ? "animate-page-turn-backward" : ""
               }`}
-            />
-
-            {/* Left 50% Click Zone: Previous Page */}
-            {pageIndex > 0 && (
-              <div
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handlePrevPage();
-                }}
-                className="absolute inset-y-0 left-0 w-1/2 z-20 cursor-w-resize group"
-                aria-label="Previous Page"
-              >
-                <div className="absolute top-1/2 left-4 -translate-y-1/2 w-10 h-10 rounded-full bg-black/25 backdrop-blur-sm border border-white/20 flex items-center justify-center opacity-0 group-hover:opacity-90 transition-opacity duration-200 pointer-events-none shadow-xl">
-                  <span className="text-white text-xl font-bold font-serif leading-none select-none">‹</span>
-                </div>
-              </div>
-            )}
-
-            {/* Right 50% Click Zone: Next Page */}
-            {pageIndex < 8 && (
-              <div
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handleNextPage();
-                }}
-                className="absolute inset-y-0 right-0 w-1/2 z-20 cursor-e-resize group"
-                aria-label="Next Page"
-              >
-                <div className="absolute top-1/2 right-4 -translate-y-1/2 w-10 h-10 rounded-full bg-black/25 backdrop-blur-sm border border-white/20 flex items-center justify-center opacity-0 group-hover:opacity-90 transition-opacity duration-200 pointer-events-none shadow-xl">
-                  <span className="text-white text-xl font-bold font-serif leading-none select-none">›</span>
-                </div>
-              </div>
-            )}
-          </div>
-        ) : (
-          /* ===================================================================
-             STAGE 8: FULL-WIDTH CELEBRATORY EPILOGUE
-             =================================================================== */
-          <div className="absolute inset-0 w-full h-full bg-[#0a180e] flex items-center justify-center p-6">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-emerald-900/40 via-[#0a180e] to-black pointer-events-none" />
-            <div className="relative z-20 max-w-xl text-center flex flex-col items-center">
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-900/60 border border-emerald-500/40 text-emerald-300 text-xs font-semibold uppercase tracking-wider mb-5 shadow-inner">
-                <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-                Our Timeless Promise
+              title="Click left page to go back"
+            >
+              {/* Top Chapter Label */}
+              <div>
+                <span className="text-[11px] font-sans font-bold tracking-[0.25em] text-[#826a4c] uppercase block mb-1">
+                  {pageIndex <= 7
+                    ? `${currentChapter?.chapterNumber} • ${currentChapter?.category}`
+                    : "EPILOGUE • OUR PROMISE"}
+                </span>
+                <h3 className="text-xl sm:text-2xl md:text-3xl font-serif font-bold text-[#1b2b1e] tracking-tight leading-snug">
+                  {pageIndex <= 7 ? currentChapter?.title : "From Our Farms, to Your Family."}
+                </h3>
               </div>
 
-              <h3 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-white tracking-tight leading-tight">
-                FROM OUR FARMS TO YOUR FAMILY
-              </h3>
-
-              <p className="mt-3 text-lg sm:text-xl text-amber-200/90 font-serif italic">
-                &ldquo;Pure Today. Healthier Tomorrows.&rdquo;
-              </p>
-
-              <div className="w-20 h-0.5 bg-amber-400/40 my-6" />
-
-              <p className="text-sm sm:text-base text-stone-300 font-sans leading-relaxed mb-8 max-w-md">
-                Experience pure unadulterated freshness delivered quietly to your doorstep before the city awakens.
-              </p>
-
-              <button
-                onClick={() => {
-                  if (onShopFresh) {
-                    onShopFresh();
-                  } else {
-                    const catalog = document.getElementById("catalog");
-                    if (catalog) {
-                      catalog.scrollIntoView({ behavior: "smooth" });
-                    }
+              {/* Inset Photo / Illustration with elegant book border */}
+              <div className="relative w-full my-3 flex-1 min-h-[220px] sm:min-h-[260px] md:min-h-[300px] rounded-lg overflow-hidden bg-[#f0ebd9] border-2 border-white shadow-md">
+                <Image
+                  src={
+                    pageIndex <= 7 && currentChapter
+                      ? currentChapter.image
+                      : "/storybook/story_page7.png"
                   }
-                }}
-                className="inline-flex items-center gap-3 px-10 py-4 rounded-full bg-gradient-to-r from-emerald-600 via-emerald-500 to-emerald-600 hover:from-emerald-500 hover:to-emerald-400 text-white font-serif font-semibold text-lg shadow-2xl shadow-emerald-950/80 hover:scale-105 active:scale-95 transition-all cursor-pointer border border-emerald-300/40"
-              >
-                <ShoppingBag className="w-5 h-5 text-amber-300" />
-                <span>SHOP FRESH →</span>
-              </button>
+                  alt={pageIndex <= 7 ? currentChapter?.title || "" : "Y Daily Promise"}
+                  fill
+                  priority
+                  sizes="(max-width: 900px) 100vw, 600px"
+                  className="object-contain"
+                />
+              </div>
+
+              {/* Left Page Bottom Annotation */}
+              <div className="flex items-center justify-between text-[11px] text-[#705e48] font-sans pt-1 border-t border-[#dfd2be]/70">
+                <span className="italic">
+                  {pageIndex <= 7 ? currentChapter?.subtitle : "Pure A2 Morning Ritual"}
+                </span>
+                <span className="font-serif font-semibold text-emerald-900 hidden sm:inline">
+                  {pageIndex > 0 ? "← Previous Chapter" : ""}
+                </span>
+              </div>
+            </div>
+
+            {/* =============================================================
+                RIGHT PAGE (Emblem, Narrative, Badges & Action)
+                ============================================================= */}
+            <div
+              onClick={handleNextPage}
+              className={`storybook-page-half ${
+                flipDirection === "next" ? "animate-page-turn-forward" : ""
+              }`}
+              title="Click right page to continue"
+            >
+              {/* Top Heritage Emblem & Timeline Marker */}
+              <div className="text-center pt-1">
+                <div className="inline-flex items-center gap-1.5 justify-center mb-1 text-[#225732]">
+                  <Sprout className="w-4 h-4 text-emerald-700" />
+                  <span className="font-serif font-bold text-xs tracking-[0.2em] text-[#1c4728] uppercase">
+                    Y DAILY
+                  </span>
+                </div>
+                <p className="text-[10px] font-sans tracking-[0.25em] text-[#857053] uppercase font-semibold">
+                  {pageIndex <= 7 ? currentChapter?.yearRange : "PURE TODAY • HEALTHIER TOMORROWS"}
+                </p>
+              </div>
+
+              {/* Center Stylized Display Typography */}
+              <div className="text-center my-auto py-2">
+                <div className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-[#7a4e28] tracking-tight leading-none mb-2">
+                  {pageIndex <= 7 ? currentChapter?.statNumber : "100%"}
+                </div>
+                <h4 className="text-base sm:text-lg md:text-xl font-serif font-bold text-[#1a2e1d] mb-3">
+                  {pageIndex <= 7 ? currentChapter?.statLabel : "Dedicated to Pure A2 Wellness"}
+                </h4>
+                <p className="text-xs sm:text-sm text-[#4d4234] font-sans leading-relaxed max-w-md mx-auto">
+                  {pageIndex <= 7
+                    ? currentChapter?.narrative
+                    : "Begin your mornings with pure unadulterated freshness. Harvested, chilled, and delivered before the sun rises."}
+                </p>
+              </div>
+
+              {/* 3 Organic Feature Badges */}
+              <div className="flex flex-wrap items-center justify-center gap-2 my-2">
+                {(pageIndex <= 7 && currentChapter
+                  ? currentChapter.features
+                  : ["Pure A2 Dairy", "Farm Fresh Greens", "Doorstep Delivery"]
+                ).map((badge, idx) => (
+                  <span
+                    key={idx}
+                    className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-[#eee5d3] text-[#423525] text-[10px] sm:text-[11px] font-sans font-medium border border-[#decfae]"
+                  >
+                    <CheckCircle2 className="w-3 h-3 text-emerald-700" />
+                    {badge}
+                  </span>
+                ))}
+              </div>
+
+              {/* Bottom Action Button (CONTINUE OUR STORY or SHOP FRESH) */}
+              <div className="pt-2 border-t border-[#dfd2be]/70 flex items-center justify-between">
+                <span className="text-[11px] text-[#705e48] font-mono">
+                  {pageIndex <= 7 ? `SPREAD 0${pageIndex} / 07` : "EPILOGUE"}
+                </span>
+
+                {pageIndex < 8 ? (
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleNextPage();
+                    }}
+                    className="storybook-continue-btn"
+                  >
+                    <span>
+                      {pageIndex === 0
+                        ? "OPEN STORY"
+                        : pageIndex === 7
+                        ? "CONCLUSION"
+                        : "CONTINUE OUR STORY"}
+                    </span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </button>
+                ) : (
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      if (onShopFresh) {
+                        onShopFresh();
+                      } else {
+                        const catalog = document.getElementById("catalog");
+                        if (catalog) {
+                          catalog.scrollIntoView({ behavior: "smooth" });
+                        }
+                      }
+                    }}
+                    className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-[#184523] hover:bg-[#12361b] text-white text-xs font-serif font-bold tracking-wider uppercase transition-all shadow-md cursor-pointer"
+                  >
+                    <ShoppingBag className="w-3.5 h-3.5 text-amber-300" />
+                    <span>SHOP FRESH →</span>
+                  </button>
+                )}
+              </div>
             </div>
           </div>
-        )}
+        </div>
       </div>
 
-      {/* Dedicated Bottom Navigation Bar (Below the section image on Parchment Background) */}
-      <div className="relative z-30 w-full py-6 bg-[#f4ebde] bg-[url('/images/parchment-texture-bg.png')] bg-repeat border-t border-[#e2d5c2] flex items-center justify-center">
+      {/* Dedicated Bottom Pagination Bar */}
+      <div className="relative z-30 w-full mt-6 flex items-center justify-center">
         <div className="bg-[#122e1b]/95 backdrop-blur-md px-6 py-2.5 rounded-full flex items-center gap-4 sm:gap-6 shadow-xl border border-emerald-600/30">
           {/* Prev Button */}
           <button
@@ -283,7 +419,7 @@ export default function StoryBookSection({ onShopFresh }: StoryBookSectionProps)
                     ? "w-7 sm:w-8 bg-amber-400 shadow-md shadow-amber-400/50"
                     : "w-2 bg-white/30 hover:bg-white/60"
                 }`}
-                aria-label={idx === 0 ? "Go to Cover" : `Go to Page ${idx}`}
+                aria-label={idx === 0 ? "Go to Prologue" : `Go to Chapter ${idx}`}
               />
             ))}
           </div>
