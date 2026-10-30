@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState, useRef } from "react";
-import Image from "next/image";
 import {
   ShoppingBag,
   Plus,
@@ -965,19 +964,6 @@ export default function HarvestCategoryGrid() {
           onViewAllProducts={scrollToCatalog}
         />
 
-        {/* Transitional Spacing Section with Exact Screenshot Length (~150px) */}
-        <div className="w-full py-3 md:py-4 bg-[#f4ebde] bg-[url('/images/parchment-texture-bg.png')] bg-repeat border-t border-[#e5d8c3]/80 flex items-center justify-center px-4">
-          <div className="relative w-full max-w-[440px] flex items-center justify-center select-none pointer-events-none">
-            <Image
-              src="/images/daily-ritual-freshness-emblem.png"
-              alt="A Daily Ritual of Freshness"
-              width={440}
-              height={116}
-              priority
-              className="w-full h-auto object-contain drop-shadow-sm"
-            />
-          </div>
-        </div>
 
         {/* Interactive 3D Storybook Showcase */}
         <div ref={catalogRef} className="w-full">
