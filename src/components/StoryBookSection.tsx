@@ -10,11 +10,13 @@ import {
   Sparkles,
   ShoppingBag,
   CheckCircle2,
+  Sprout,
 } from "lucide-react";
 import "./StoryBookSection.css";
 
 interface StoryPageData {
   id: number;
+  stageNumber: string;
   title: string;
   subtitle: string;
   image: string;
@@ -24,6 +26,7 @@ interface StoryPageData {
 const STORY_PAGES: StoryPageData[] = [
   {
     id: 1,
+    stageNumber: "01",
     title: "Where It Begins",
     subtitle: "Healthy cows and trusted local farms",
     image: "/storybook/story_page1.png",
@@ -31,6 +34,7 @@ const STORY_PAGES: StoryPageData[] = [
   },
   {
     id: 2,
+    stageNumber: "02",
     title: "Pure Milk from Healthy Cows",
     subtitle: "Fresh hygienic milk collection at dawn",
     image: "/storybook/story_page2.png",
@@ -38,6 +42,7 @@ const STORY_PAGES: StoryPageData[] = [
   },
   {
     id: 3,
+    stageNumber: "03",
     title: "From Farm to Freshness",
     subtitle: "Filtration, immediate chilling to 4°C & laboratory checks",
     image: "/storybook/story_page3.png",
@@ -45,6 +50,7 @@ const STORY_PAGES: StoryPageData[] = [
   },
   {
     id: 4,
+    stageNumber: "04",
     title: "Hygienic Processing & Packing",
     subtitle: "Modern automated processing and glass bottling",
     image: "/storybook/story_page4.png",
@@ -52,6 +58,7 @@ const STORY_PAGES: StoryPageData[] = [
   },
   {
     id: 5,
+    stageNumber: "05",
     title: "Straight from the Farm",
     subtitle: "Fresh organic vegetables & seasonal produce",
     image: "/storybook/story_page5.png",
@@ -59,6 +66,7 @@ const STORY_PAGES: StoryPageData[] = [
   },
   {
     id: 6,
+    stageNumber: "06",
     title: "Freshness at Your Doorstep",
     subtitle: "Cold-chain delivered to your home before 07:00 AM",
     image: "/storybook/story_page6.png",
@@ -66,6 +74,7 @@ const STORY_PAGES: StoryPageData[] = [
   },
   {
     id: 7,
+    stageNumber: "07",
     title: "Goodness for Generations",
     subtitle: "Y Daily's enduring promise of uncompromised purity",
     image: "/storybook/story_page7.png",
@@ -79,30 +88,30 @@ interface StoryBookSectionProps {
 
 export default function StoryBookSection({ onShopFresh }: StoryBookSectionProps) {
   // Book State:
-  // isOpen: false = closed book cover, true = open story pages
+  // isOpen: false = Full-bleed cover, true = Full-bleed story pages
   const [isOpen, setIsOpen] = useState(false);
   const [isOpening, setIsOpening] = useState(false);
 
-  // pageIndex: 1 to 8 (1 = Page 01, ..., 7 = Page 07, 8 = Final Epilogue Page)
+  // pageIndex: 1 to 8 (1 = Page 01, ..., 7 = Page 07, 8 = Epilogue Page)
   const [pageIndex, setPageIndex] = useState(1);
 
-  // Page flip animation state: 'next' | 'prev' | null
+  // Transition state: 'next' | 'prev' | null
   const [flipDirection, setFlipDirection] = useState<"next" | "prev" | null>(null);
 
   // Touch tracking for swipe gestures
   const touchStartXRef = useRef<number | null>(null);
 
-  // Handle open book action
+  // Open book transition
   const handleOpenBook = () => {
     setIsOpening(true);
     setTimeout(() => {
       setIsOpen(true);
       setIsOpening(false);
       setPageIndex(1);
-    }, 850);
+    }, 600);
   };
 
-  // Handle closing / resetting book
+  // Close book transition
   const handleCloseBook = () => {
     setIsOpen(false);
     setPageIndex(1);
@@ -116,7 +125,7 @@ export default function StoryBookSection({ onShopFresh }: StoryBookSectionProps)
     setTimeout(() => {
       setPageIndex((prev) => Math.min(prev + 1, 8));
       setFlipDirection(null);
-    }, 650);
+    }, 500);
   };
 
   // Previous Page
@@ -126,7 +135,7 @@ export default function StoryBookSection({ onShopFresh }: StoryBookSectionProps)
     setTimeout(() => {
       setPageIndex((prev) => Math.max(prev - 1, 1));
       setFlipDirection(null);
-    }, 650);
+    }, 500);
   };
 
   // Keyboard navigation
@@ -163,306 +172,232 @@ export default function StoryBookSection({ onShopFresh }: StoryBookSectionProps)
   const currentPage = pageIndex <= 7 ? STORY_PAGES[pageIndex - 1] : null;
 
   return (
-    <section className="relative w-full py-16 md:py-24 bg-[#08120a] text-white overflow-hidden select-none">
-      {/* Background Ambience & Golden Morning Glow */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#14331d]/70 via-[#08120a] to-[#040805] pointer-events-none" />
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[800px] h-[550px] bg-amber-500/5 blur-[160px] pointer-events-none rounded-full" />
-
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-8 md:mb-12">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-900/60 border border-emerald-500/30 text-emerald-300 text-xs font-semibold tracking-wider uppercase mb-3 shadow-inner">
-            <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-            Interactive 3D Storybook
+    <section
+      className="storybook-fullwidth-section"
+      aria-label="Y Daily Interactive 3D Storybook Showcase"
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+    >
+      {/* =========================================================================
+          STATE 1: FULL-WIDTH & FULL-LENGTH COVER SCREEN
+          ========================================================================= */}
+      {!isOpen && (
+        <div className="relative w-full storybook-fullwidth-canvas flex flex-col justify-between">
+          {/* Full-Bleed Edge-to-Edge Cover Image */}
+          <div className="absolute inset-0 w-full h-full">
+            <Image
+              src="/storybook/story_cover.png"
+              alt="Y Daily - A Daily Ritual of Freshness Full Width Cover"
+              fill
+              priority
+              sizes="100vw"
+              className="object-cover object-center"
+            />
+            {/* Subtle cinematic gradient vignette */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-black/40 pointer-events-none" />
           </div>
-          <h2 className="text-3xl md:text-5xl font-serif font-bold text-white tracking-tight">
-            Our Journey from Dawn to Doorstep
-          </h2>
-          <p className="mt-3 text-sm md:text-base text-stone-300 font-sans">
-            Turn the pages to experience how pure morning freshness is harvested, chilled, and delivered to your family.
-          </p>
-        </div>
 
-        {/* =========================================================================
-            STATE 1: FULL-LENGTH CLOSED HARDCOVER BOOK (2:1 Widescreen)
-            ========================================================================= */}
-        {!isOpen && (
-          <div className="flex flex-col items-center justify-center storybook-viewport">
-            {/* Full-Length Hardcover Book Container */}
-            <div
-              onClick={handleOpenBook}
-              className={`relative cursor-pointer group transition-all duration-500 hover:scale-[1.01] w-full max-w-5xl ${
-                isOpening ? "animate-cover-open-landscape" : ""
-              }`}
-              style={{
-                transformStyle: "preserve-3d",
-              }}
-            >
-              {/* Luxury Silk Bookmark Ribbon */}
-              <div className="book-ribbon" />
-
-              {/* Book Outer Binding Box */}
-              <div className="relative w-full flex rounded-xl overflow-hidden book-thickness-shadow book-pages-stack-right book-pages-stack-bottom border-2 border-amber-400/30 bg-[#0d2614]">
-                {/* Hardcover Spine on the left */}
-                <div
-                  className="w-8 sm:w-12 md:w-16 flex-shrink-0 bg-gradient-to-r from-[#0a1f10] via-[#163b1e] to-[#0e2914] flex flex-col justify-between py-6 items-center shadow-2xl border-r border-amber-500/30 z-20"
-                  style={{
-                    boxShadow: "inset -4px 0 10px rgba(0,0,0,0.7), -6px 0 20px rgba(0,0,0,0.6)",
-                  }}
-                >
-                  <div className="w-1.5 h-6 bg-amber-400/40 rounded-full" />
-                  <span className="text-[10px] md:text-xs tracking-[0.3em] text-amber-200/70 font-semibold uppercase -rotate-90 whitespace-nowrap">
-                    Y DAILY • STORY
-                  </span>
-                  <div className="w-1.5 h-6 bg-amber-400/40 rounded-full" />
-                </div>
-
-                {/* Full-Length Master Cover Artwork (Exact 2:1 Aspect Ratio) */}
-                <div className="relative flex-1 aspect-[2/1] bg-[#122e19] overflow-hidden">
-                  <Image
-                    src="/storybook/story_cover.png"
-                    alt="Y Daily - A Daily Ritual of Freshness Full Length Cover"
-                    fill
-                    priority
-                    sizes="(max-width: 1200px) 100vw, 1200px"
-                    className="object-contain group-hover:scale-[1.015] transition-transform duration-700"
-                  />
-
-                  {/* Golden Embossed Cover Accent Border */}
-                  <div className="absolute inset-2 md:inset-4 border border-amber-400/40 rounded-lg pointer-events-none" />
-                  <div className="absolute inset-3 md:inset-6 border border-amber-400/20 rounded-md pointer-events-none" />
-
-                  {/* Subtle Shimmer Sheen on Hover */}
-                  <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
-                </div>
-              </div>
+          {/* Top Floating Badge Bar */}
+          <div className="relative z-20 w-full px-6 sm:px-12 pt-8 flex items-center justify-between">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full storybook-glass-panel text-emerald-300 text-xs font-semibold tracking-wider uppercase">
+              <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+              Interactive Storybook
             </div>
+            <div className="text-white/80 text-xs font-sans tracking-widest uppercase hidden sm:block">
+              Full-Length Experience • 07 Chapters
+            </div>
+          </div>
 
-            {/* "OPEN OUR STORY →" CTA Button below book */}
-            <div className="mt-8 flex flex-col items-center gap-3">
+          {/* Bottom Floating Glass Action Card */}
+          <div className="relative z-20 w-full px-6 sm:px-12 pb-12 flex flex-col items-center text-center">
+            <div className="max-w-2xl storybook-glass-panel rounded-2xl p-6 sm:p-8 flex flex-col items-center">
+              <div className="flex items-center gap-2 mb-2">
+                <Sprout className="w-5 h-5 text-emerald-400" />
+                <span className="font-serif text-amber-300 text-xs sm:text-sm tracking-[0.25em] uppercase font-bold">
+                  Y DAILY ORIGINS
+                </span>
+              </div>
+              <h2 className="text-2xl sm:text-4xl md:text-5xl font-serif font-bold text-white tracking-tight mb-3">
+                A Daily Ritual of Freshness
+              </h2>
+              <p className="text-xs sm:text-sm text-stone-200 font-sans max-w-lg mb-6 leading-relaxed">
+                Step inside our 3D storybook to experience how pure morning nourishment is harvested, chilled to 4°C, and delivered to your doorstep.
+              </p>
+
               <button
                 onClick={handleOpenBook}
                 disabled={isOpening}
-                className="group relative inline-flex items-center gap-3 px-8 md:px-10 py-3.5 md:py-4 rounded-full bg-gradient-to-r from-emerald-700 via-emerald-600 to-emerald-700 hover:from-emerald-600 hover:to-emerald-500 text-white font-serif text-lg tracking-wide shadow-xl shadow-emerald-950/60 hover:shadow-emerald-500/30 transition-all duration-300 hover:scale-105 active:scale-95 border border-emerald-400/40 cursor-pointer"
+                className="group inline-flex items-center gap-3 px-8 sm:px-10 py-3.5 sm:py-4 rounded-full bg-gradient-to-r from-emerald-600 via-emerald-500 to-emerald-600 hover:from-emerald-500 hover:to-emerald-400 text-white font-serif font-semibold text-base sm:text-lg tracking-wide shadow-2xl shadow-emerald-950/80 hover:shadow-emerald-500/40 transition-all duration-300 hover:scale-105 active:scale-95 border border-emerald-300/40 cursor-pointer"
               >
                 <BookOpen className="w-5 h-5 text-amber-300 transition-transform group-hover:rotate-12" />
-                <span className="font-semibold">{isOpening ? "OPENING STORYBOOK..." : "OPEN OUR STORY →"}</span>
+                <span>{isOpening ? "OPENING STORYBOOK..." : "OPEN OUR STORY →"}</span>
               </button>
-              <span className="text-xs text-stone-400 font-sans tracking-wide">
-                Click anywhere on the book or button to open full length story pages
-              </span>
             </div>
           </div>
-        )}
+        </div>
+      )}
 
-        {/* =========================================================================
-            STATE 2: OPEN FULL-LENGTH 3D STORY PAGES (Pages 01 - 07 + Epilogue)
-            ========================================================================= */}
-        {isOpen && (
-          <div
-            className="flex flex-col items-center justify-center storybook-viewport w-full"
-            onTouchStart={handleTouchStart}
-            onTouchEnd={handleTouchEnd}
-          >
-            {/* Top Toolbar: Stage indicator & Close Book */}
-            <div className="w-full max-w-5xl flex items-center justify-between mb-4 px-2 text-stone-300">
-              <div className="flex items-center gap-2">
-                <span className="text-xs md:text-sm font-semibold tracking-widest uppercase text-emerald-400 font-serif">
-                  {pageIndex <= 7 ? `STAGE 0${pageIndex} / 07` : "EPILOGUE"}
-                </span>
-                <span className="text-stone-500">•</span>
-                <span className="text-xs md:text-sm text-stone-200 font-medium">
-                  {pageIndex <= 7 ? currentPage?.title : "From Our Farms to Your Family"}
-                </span>
-              </div>
-
-              <button
-                onClick={handleCloseBook}
-                className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-stone-900/90 hover:bg-stone-800 border border-stone-700 text-xs text-stone-300 hover:text-white transition-all cursor-pointer shadow-md"
-                title="Return to closed book cover"
-              >
-                <RotateCcw className="w-3.5 h-3.5 text-amber-400" />
-                <span>Close Book</span>
-              </button>
+      {/* =========================================================================
+          STATE 2: FULL-WIDTH & FULL-LENGTH SEQUENTIAL STORY PAGES (01 to 07 + Epilogue)
+          ========================================================================= */}
+      {isOpen && (
+        <div className="relative w-full storybook-fullwidth-canvas flex flex-col justify-between storybook-viewport-full">
+          {/* Active Story Page Artwork - Edge-to-Edge Full Width & Full Length */}
+          {pageIndex <= 7 && currentPage ? (
+            <div className="absolute inset-0 w-full h-full">
+              <Image
+                src={currentPage.image}
+                alt={currentPage.alt}
+                fill
+                priority
+                sizes="100vw"
+                className={`storybook-full-image ${
+                  flipDirection === "next"
+                    ? "animate-turn-forward"
+                    : flipDirection === "prev"
+                    ? "animate-turn-backward"
+                    : ""
+                }`}
+              />
+              {/* Subtle top and bottom protective gradients for readability */}
+              <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/70 pointer-events-none" />
             </div>
-
-            {/* The Full-Length 3D Book Stage */}
-            <div
-              className="relative w-full max-w-5xl bg-[#122416] rounded-xl p-2 md:p-3 book-thickness-shadow border border-amber-500/30"
-              style={{
-                boxShadow: "0 30px 70px -15px rgba(0, 0, 0, 0.8), 0 0 50px rgba(18, 48, 25, 0.5)",
-              }}
-            >
-              {/* Book Page Frame */}
-              <div
-                className="relative w-full rounded-lg overflow-hidden storybook-paper book-pages-stack-right book-pages-stack-bottom border border-stone-300/80"
-                style={{
-                  transformStyle: "preserve-3d",
-                }}
-              >
-                {/* Corner Curl Invitation on hover */}
-                {pageIndex < 8 && (
-                  <div
-                    onClick={handleNextPage}
-                    className="page-corner-curl hidden md:block"
-                    title="Click corner to turn page"
-                  />
-                )}
-
-                {/* Left Book Spine Binding strip */}
-                <div
-                  className="absolute top-0 bottom-0 left-0 w-4 md:w-6 bg-gradient-to-r from-[#0d2413] via-[#1b4324] to-[#123019] z-20 shadow-md border-r border-amber-500/20 pointer-events-none"
-                />
-
-                {/* Page Content Container */}
-                <div className="relative w-full p-3 sm:p-5 md:p-6 pl-6 sm:pl-8 md:pl-10 flex flex-col justify-between">
-                  {/* Page Top Header Bar */}
-                  <div className="flex items-center justify-between text-[11px] md:text-xs tracking-wider text-stone-500 uppercase border-b border-stone-300/70 pb-2 mb-3">
-                    <span className="font-serif font-bold text-emerald-950 flex items-center gap-1.5">
-                      <span className="w-2 h-2 rounded-full bg-emerald-700" />
-                      Y DAILY STORYBOOK
-                    </span>
-                    <span className="font-mono text-stone-600 font-semibold">
-                      {pageIndex <= 7 ? `PAGE 0${currentPage?.id} OF 07` : "CONCLUSION"}
-                    </span>
-                  </div>
-
-                  {/* Page Main Graphic Stage (Full Length) */}
-                  <div
-                    onClick={handleNextPage}
-                    className="relative w-full aspect-[16/9] sm:aspect-[1.85/1] md:aspect-[2/1] rounded bg-[#f6f2e8] border border-stone-200/90 shadow-inner overflow-hidden cursor-pointer group flex items-center justify-center"
-                  >
-                    {pageIndex <= 7 && currentPage ? (
-                      /* Active Story Page Artwork - Full Length, No Cropping */
-                      <div className="relative w-full h-full">
-                        <Image
-                          src={currentPage.image}
-                          alt={currentPage.alt}
-                          fill
-                          priority
-                          sizes="(max-width: 1200px) 100vw, 1200px"
-                          className={`object-contain transition-transform duration-500 group-hover:scale-[1.01] ${
-                            flipDirection === "next"
-                              ? "animate-page-flip-forward"
-                              : flipDirection === "prev"
-                              ? "animate-page-flip-backward"
-                              : ""
-                          }`}
-                        />
-                      </div>
-                    ) : (
-                      /* =========================================================
-                         STAGE 8: FINAL EPILOGUE BRAND PAGE
-                         ========================================================= */
-                      <div className="text-center p-6 md:p-12 max-w-xl flex flex-col items-center justify-center">
-                        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-100 border border-emerald-300 text-emerald-900 text-xs font-semibold uppercase tracking-wider mb-4 shadow-sm">
-                          <CheckCircle2 className="w-4 h-4 text-emerald-700" />
-                          Our Daily Promise
-                        </div>
-
-                        <h3 className="text-2xl sm:text-3xl md:text-4xl font-serif font-bold text-stone-900 tracking-tight leading-tight">
-                          FROM OUR FARMS TO YOUR FAMILY
-                        </h3>
-
-                        <p className="mt-3 text-base md:text-lg text-emerald-900 font-serif italic">
-                          &ldquo;Pure Today. Healthier Tomorrows.&rdquo;
-                        </p>
-
-                        <div className="w-20 h-0.5 bg-amber-500/50 my-4" />
-
-                        <p className="text-xs sm:text-sm text-stone-600 font-sans leading-relaxed mb-6 max-w-md">
-                          Experience true unadulterated freshness delivered to your doorstep every morning before sunrise.
-                        </p>
-
-                        {/* Green SHOP FRESH → Button */}
-                        <button
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            if (onShopFresh) {
-                              onShopFresh();
-                            } else {
-                              const catalog = document.getElementById("catalog");
-                              if (catalog) {
-                                catalog.scrollIntoView({ behavior: "smooth" });
-                              }
-                            }
-                          }}
-                          className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-emerald-800 hover:bg-emerald-700 text-white font-serif font-semibold text-base shadow-xl shadow-emerald-950/40 hover:scale-105 active:scale-95 transition-all cursor-pointer border border-emerald-500/40"
-                        >
-                          <ShoppingBag className="w-5 h-5 text-amber-300" />
-                          <span>SHOP FRESH →</span>
-                        </button>
-                      </div>
-                    )}
-                  </div>
-
-                  {/* Page Bottom Footer Bar */}
-                  <div className="mt-3 flex items-center justify-between text-[11px] md:text-xs text-stone-500 font-sans pt-2 border-t border-stone-300/70">
-                    <span className="text-stone-700 font-medium">
-                      {pageIndex <= 7 ? currentPage?.subtitle : "Pure A2 Dairy & Farm Produce"}
-                    </span>
-                    <span className="text-emerald-900 font-serif font-semibold hidden sm:inline">
-                      {pageIndex < 8 ? "Click image to turn next →" : ""}
-                    </span>
-                  </div>
+          ) : (
+            /* ===================================================================
+               STAGE 8: FULL-WIDTH CELEBRATORY EPILOGUE
+               =================================================================== */
+            <div className="absolute inset-0 w-full h-full bg-[#0a180e] flex items-center justify-center p-6">
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-emerald-900/40 via-[#0a180e] to-black pointer-events-none" />
+              <div className="relative z-20 max-w-xl text-center flex flex-col items-center">
+                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-900/60 border border-emerald-500/40 text-emerald-300 text-xs font-semibold uppercase tracking-wider mb-5 shadow-inner">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+                  Our Timeless Promise
                 </div>
+
+                <h3 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-white tracking-tight leading-tight">
+                  FROM OUR FARMS TO YOUR FAMILY
+                </h3>
+
+                <p className="mt-3 text-lg sm:text-xl text-amber-200/90 font-serif italic">
+                  &ldquo;Pure Today. Healthier Tomorrows.&rdquo;
+                </p>
+
+                <div className="w-20 h-0.5 bg-amber-400/40 my-6" />
+
+                <p className="text-sm sm:text-base text-stone-300 font-sans leading-relaxed mb-8 max-w-md">
+                  Experience pure unadulterated freshness delivered quietly to your doorstep before the city awakens.
+                </p>
+
+                <button
+                  onClick={() => {
+                    if (onShopFresh) {
+                      onShopFresh();
+                    } else {
+                      const catalog = document.getElementById("catalog");
+                      if (catalog) {
+                        catalog.scrollIntoView({ behavior: "smooth" });
+                      }
+                    }
+                  }}
+                  className="inline-flex items-center gap-3 px-10 py-4 rounded-full bg-gradient-to-r from-emerald-600 via-emerald-500 to-emerald-600 hover:from-emerald-500 hover:to-emerald-400 text-white font-serif font-semibold text-lg shadow-2xl shadow-emerald-950/80 hover:scale-105 active:scale-95 transition-all cursor-pointer border border-emerald-300/40"
+                >
+                  <ShoppingBag className="w-5 h-5 text-amber-300" />
+                  <span>SHOP FRESH →</span>
+                </button>
               </div>
             </div>
+          )}
 
-            {/* Bottom Navigation & Pagination Controls */}
-            <div className="mt-6 flex items-center justify-between w-full max-w-2xl px-4">
-              {/* Previous Button */}
+          {/* Floating Top Navigation HUD */}
+          <div className="relative z-30 w-full px-6 sm:px-12 pt-6 flex items-center justify-between">
+            <div className="inline-flex items-center gap-3 storybook-glass-panel px-4 py-2 rounded-full text-white shadow-xl">
+              <span className="font-mono text-xs font-bold text-emerald-400 tracking-wider">
+                {pageIndex <= 7 ? `CHAPTER 0${pageIndex} / 07` : "EPILOGUE"}
+              </span>
+              <span className="w-1 h-1 rounded-full bg-white/40" />
+              <span className="font-serif text-xs sm:text-sm font-medium tracking-wide">
+                {pageIndex <= 7 ? currentPage?.title : "From Our Farms to Your Family"}
+              </span>
+            </div>
+
+            <button
+              onClick={handleCloseBook}
+              className="storybook-glass-btn px-4 py-2 rounded-full text-xs text-stone-200 hover:text-white flex items-center gap-1.5 cursor-pointer shadow-lg"
+              title="Return to Cover Screen"
+            >
+              <RotateCcw className="w-3.5 h-3.5 text-amber-400" />
+              <span>Cover Screen</span>
+            </button>
+          </div>
+
+          {/* Floating Left Side Navigation Arrow */}
+          <button
+            onClick={handlePrevPage}
+            disabled={pageIndex <= 1}
+            aria-label="Previous Page"
+            className={`storybook-nav-arrow storybook-glass-btn left-4 sm:left-8 ${
+              pageIndex <= 1 ? "opacity-25 pointer-events-none" : "text-white"
+            }`}
+          >
+            <ChevronLeft className="w-6 h-6 text-emerald-400" />
+          </button>
+
+          {/* Floating Right Side Navigation Arrow */}
+          <button
+            onClick={handleNextPage}
+            disabled={pageIndex >= 8}
+            aria-label="Next Page"
+            className={`storybook-nav-arrow storybook-glass-btn right-4 sm:right-8 ${
+              pageIndex >= 8 ? "opacity-25 pointer-events-none" : "text-white"
+            }`}
+          >
+            <ChevronRight className="w-6 h-6 text-emerald-400" />
+          </button>
+
+          {/* Floating Bottom Pagination HUD */}
+          <div className="relative z-30 w-full px-6 pb-6 flex items-center justify-center">
+            <div className="storybook-glass-panel px-5 py-2.5 rounded-full flex items-center gap-4 sm:gap-6 shadow-2xl">
+              {/* Prev Pill */}
               <button
                 onClick={handlePrevPage}
                 disabled={pageIndex <= 1}
-                className={`inline-flex items-center gap-2 px-4 sm:px-5 py-2.5 rounded-full border text-xs sm:text-sm font-serif font-semibold transition-all ${
-                  pageIndex <= 1
-                    ? "opacity-30 border-stone-800 text-stone-600 cursor-not-allowed"
-                    : "border-stone-700 bg-stone-900/90 hover:bg-stone-800 text-stone-200 hover:text-white cursor-pointer hover:border-emerald-500/40 shadow-lg"
+                className={`text-xs font-serif font-semibold tracking-wider uppercase transition-colors ${
+                  pageIndex <= 1 ? "text-stone-600 cursor-not-allowed" : "text-stone-300 hover:text-white cursor-pointer"
                 }`}
               >
-                <ChevronLeft className="w-4 h-4 text-emerald-400" />
-                <span>PREVIOUS</span>
+                ← PREV
               </button>
 
               {/* Progress Indicator Dots */}
-              <div className="flex flex-col items-center">
-                <div className="flex items-center gap-1.5 sm:gap-2 mb-1.5">
-                  {[1, 2, 3, 4, 5, 6, 7, 8].map((idx) => (
-                    <button
-                      key={idx}
-                      onClick={() => setPageIndex(idx)}
-                      className={`h-2 rounded-full transition-all duration-300 ${
-                        pageIndex === idx
-                          ? "w-7 sm:w-8 bg-emerald-400"
-                          : "w-2 bg-stone-700 hover:bg-stone-500"
-                      }`}
-                      aria-label={`Jump to page ${idx}`}
-                    />
-                  ))}
-                </div>
-                <span className="text-xs text-stone-400 font-mono">
-                  {pageIndex <= 7 ? `0${pageIndex} / 07` : "FINAL / 07"}
-                </span>
+              <div className="flex items-center gap-1.5 sm:gap-2">
+                {[1, 2, 3, 4, 5, 6, 7, 8].map((idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => setPageIndex(idx)}
+                    className={`h-2 rounded-full transition-all duration-300 ${
+                      pageIndex === idx
+                        ? "w-7 sm:w-8 bg-emerald-400 shadow-md shadow-emerald-400/50"
+                        : "w-2 bg-white/30 hover:bg-white/60"
+                    }`}
+                    aria-label={`Jump to page ${idx}`}
+                  />
+                ))}
               </div>
 
-              {/* Next Button */}
+              {/* Next / Conclusion Pill */}
               <button
                 onClick={handleNextPage}
                 disabled={pageIndex >= 8}
-                className={`inline-flex items-center gap-2 px-5 sm:px-6 py-2.5 rounded-full border text-xs sm:text-sm font-serif font-semibold transition-all ${
-                  pageIndex >= 8
-                    ? "opacity-30 border-stone-800 text-stone-600 cursor-not-allowed"
-                    : "border-emerald-600/40 bg-emerald-900/80 hover:bg-emerald-800 text-emerald-200 hover:text-white cursor-pointer shadow-lg shadow-emerald-950/60"
+                className={`text-xs font-serif font-semibold tracking-wider uppercase transition-colors ${
+                  pageIndex >= 8 ? "text-stone-600 cursor-not-allowed" : "text-emerald-400 hover:text-emerald-300 cursor-pointer"
                 }`}
               >
-                <span>{pageIndex === 7 ? "CONCLUSION" : "NEXT PAGE"}</span>
-                <ChevronRight className="w-4 h-4 text-emerald-300" />
+                {pageIndex === 7 ? "CONCLUSION →" : "NEXT →"}
               </button>
             </div>
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </section>
   );
 }
