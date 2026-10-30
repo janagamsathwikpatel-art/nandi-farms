@@ -218,218 +218,146 @@ export default function StoryBookSection({ onShopFresh }: StoryBookSectionProps)
       onTouchEnd={handleTouchEnd}
     >
       <div className="storybook-stage">
-        {/* Physical Hardcover Book Casing (Matches Reference Screenshot) */}
+        {/* Physical Hardcover Book Casing (Exact Match to User Reference Screenshot) */}
         <div className="storybook-hardcover-casing">
-          {/* =================================================================
-              STAGE 0: FULL-LENGTH COVER SCREEN
-              ================================================================= */}
-          {pageIndex === 0 ? (
-            <div
-              onClick={handleNextPage}
-              className="relative w-full h-full rounded-xl overflow-hidden cursor-pointer group flex flex-col justify-end p-6 sm:p-10 select-none"
-              title="Click cover to open our story"
-            >
-              {/* Full-Length Master Cover Artwork */}
+          {pageIndex <= 7 && currentChapter ? (
+            /* =================================================================
+                PAGES 00 TO 07: PURE FULL-FRAME MASTER ARTWORK
+                ================================================================= */
+            <div className="storybook-card-inner">
               <Image
-                src="/storybook/story_cover.png"
-                alt="Y Daily - A Daily Ritual of Freshness Hardcover"
+                src={currentChapter.image}
+                alt={currentChapter.title}
                 fill
                 priority
                 sizes="(max-width: 1320px) 100vw, 1320px"
-                className="object-cover group-hover:scale-[1.01] transition-transform duration-700"
+                className={`w-full h-full object-cover pointer-events-none select-none ${
+                  flipDirection === "next"
+                    ? "animate-story-turn-forward"
+                    : flipDirection === "prev"
+                    ? "animate-story-turn-backward"
+                    : ""
+                }`}
               />
 
-              {/* Bottom Subtle Overlay with OPEN OUR STORY Action */}
-              <div className="relative z-20 flex flex-col sm:flex-row items-center justify-between gap-4 w-full">
-                <div className="text-left hidden sm:block">
-                  <span className="text-[11px] font-sans uppercase tracking-[0.25em] text-white/90 font-bold block drop-shadow-md">
-                    Y Daily Textbook
-                  </span>
-                  <span className="text-xs text-white/80 italic font-serif drop-shadow-md">
-                    Click anywhere on the cover to begin reading →
-                  </span>
-                </div>
+              {/* Left 50% Click Zone -> Go Back */}
+              {pageIndex > 0 && (
+                <div
+                  onClick={handlePrevPage}
+                  className="absolute inset-y-0 left-0 w-1/2 z-20 cursor-w-resize"
+                  title="Click left side to go back"
+                  aria-label="Previous Page"
+                />
+              )}
 
-                <button
-                  type="button"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handleNextPage();
-                  }}
-                  className="inline-flex items-center gap-3 px-8 py-3.5 rounded-full bg-emerald-800/90 hover:bg-emerald-700 text-white font-serif font-bold text-sm sm:text-base tracking-wide shadow-2xl backdrop-blur-md border border-emerald-400/40 hover:scale-105 active:scale-95 transition-all cursor-pointer"
-                >
-                  <span>OPEN OUR STORY →</span>
-                  <ArrowRight className="w-4 h-4 text-amber-300" />
-                </button>
-              </div>
+              {/* Right 50% Click Zone -> Go Next (Full width on cover) */}
+              <div
+                onClick={handleNextPage}
+                className={`absolute inset-y-0 right-0 z-20 cursor-e-resize ${
+                  pageIndex === 0 ? "w-full" : "w-1/2"
+                }`}
+                title={
+                  pageIndex === 0
+                    ? "Click anywhere on cover to open our story"
+                    : pageIndex === 7
+                    ? "Click right side to view conclusion"
+                    : "Click right side to continue"
+                }
+                aria-label="Next Page"
+              />
             </div>
           ) : (
             /* =================================================================
-                STAGES 01 TO 07: OPEN DOUBLE-PAGE BOOK SPREAD
+                PAGE 08: EPILOGUE CONCLUSION SPREAD
                 ================================================================= */
-            <div className="storybook-spread-container">
-              {/* Center Spine Divider & Crease with Soft Fold Shadows */}
-              <div className="storybook-center-spine hidden md:block" />
-              <div className="storybook-spine-shadow-left hidden md:block" />
-              <div className="storybook-spine-shadow-right hidden md:block" />
-
-              {/* Subtle Corner Filigrees matching reference */}
-              <div className="storybook-corner-filigree storybook-corner-tl">
-                <svg viewBox="0 0 100 100" fill="none" stroke="#7a6042" strokeWidth="1.2">
-                  <path d="M10,10 Q50,10 50,50 Q10,50 10,10 Z M25,25 Q70,25 70,70" />
-                </svg>
-              </div>
-              <div className="storybook-corner-filigree storybook-corner-tr">
-                <svg viewBox="0 0 100 100" fill="none" stroke="#7a6042" strokeWidth="1.2">
-                  <path d="M90,10 Q50,10 50,50 Q90,50 90,10 Z M75,25 Q30,25 30,70" />
-                </svg>
-              </div>
-
-              {/* =============================================================
-                  LEFT PAGE (Image, Title & Chapter Marker)
-                  ============================================================= */}
+            <div className="storybook-card-inner storybook-epilogue-container">
+              {/* Back to Chapter 07 click area on left */}
               <div
                 onClick={handlePrevPage}
-                className={`storybook-page-half ${
-                  flipDirection === "prev" ? "animate-page-turn-backward" : ""
-                }`}
-                title="Click left page to go back"
-              >
-                {/* Top Chapter Label */}
-                <div>
-                  <span className="text-[11px] font-sans font-bold tracking-[0.25em] text-[#826a4c] uppercase block mb-1">
-                    {pageIndex <= 7
-                      ? `${currentChapter?.chapterNumber} • ${currentChapter?.category}`
-                      : "EPILOGUE • OUR PROMISE"}
-                  </span>
-                  <h3 className="text-xl sm:text-2xl md:text-3xl font-serif font-bold text-[#1b2b1e] tracking-tight leading-snug">
-                    {pageIndex <= 7 ? currentChapter?.title : "From Our Farms, to Your Family."}
-                  </h3>
-                </div>
+                className="absolute inset-y-0 left-0 w-1/4 z-20 cursor-w-resize"
+                title="Click left to go back to Chapter 07"
+                aria-label="Previous Page"
+              />
 
-                {/* Inset Photo / Illustration with elegant book border */}
-                <div className="relative w-full my-3 flex-1 min-h-[220px] sm:min-h-[260px] md:min-h-[300px] rounded-lg overflow-hidden bg-[#f0ebd9] border-2 border-white shadow-md">
-                  <Image
-                    src={
-                      pageIndex <= 7 && currentChapter
-                        ? currentChapter.image
-                        : "/storybook/story_page7.png"
-                    }
-                    alt={pageIndex <= 7 ? currentChapter?.title || "" : "Y Daily Promise"}
-                    fill
-                    priority
-                    sizes="(max-width: 900px) 100vw, 600px"
-                    className="object-contain"
-                  />
-                </div>
-
-                {/* Left Page Bottom Annotation */}
-                <div className="flex items-center justify-between text-[11px] text-[#705e48] font-sans pt-1 border-t border-[#dfd2be]/70">
-                  <span className="italic">
-                    {pageIndex <= 7 ? currentChapter?.subtitle : "Pure A2 Morning Ritual"}
-                  </span>
-                  <span className="font-serif font-semibold text-emerald-900 hidden sm:inline">
-                    {pageIndex > 0 ? "← Previous Chapter" : ""}
+              <div className="relative z-10 max-w-xl mx-auto flex flex-col items-center">
+                {/* Brand Emblem */}
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-900/10 border border-emerald-800/20 text-[#1b4324] mb-3">
+                  <Sprout className="w-4 h-4 text-emerald-700" />
+                  <span className="font-serif font-bold text-xs tracking-[0.25em] uppercase">
+                    Y DAILY • HYDERABAD
                   </span>
                 </div>
-              </div>
 
-              {/* =============================================================
-                  RIGHT PAGE (Emblem, Narrative, Badges & Action)
-                  ============================================================= */}
-              <div
-                onClick={handleNextPage}
-                className={`storybook-page-half ${
-                  flipDirection === "next" ? "animate-page-turn-forward" : ""
-                }`}
-                title="Click right page to continue"
-              >
-                {/* Top Heritage Emblem & Timeline Marker */}
-                <div className="text-center pt-1">
-                  <div className="inline-flex items-center gap-1.5 justify-center mb-1 text-[#225732]">
-                    <Sprout className="w-4 h-4 text-emerald-700" />
-                    <span className="font-serif font-bold text-xs tracking-[0.2em] text-[#1c4728] uppercase">
-                      Y DAILY
+                {/* Headline */}
+                <h3 className="text-2xl sm:text-4xl md:text-5xl font-serif font-bold text-[#142617] tracking-tight leading-tight mb-2">
+                  From Our Farms, to Your Family.
+                </h3>
+                <p className="text-sm sm:text-base md:text-lg font-serif italic text-[#6d5b45] mb-6">
+                  Pure Today. Healthier Tomorrows.
+                </p>
+
+                {/* 3 Value Pillars */}
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 w-full my-3">
+                  <div className="bg-[#ede4d1]/70 border border-[#dfd2be] rounded-xl p-3 sm:p-4 text-center">
+                    <span className="text-xl sm:text-2xl block mb-1">🥛</span>
+                    <span className="text-xs sm:text-sm font-serif font-bold text-[#1e3422] block">
+                      100% Pure A2
+                    </span>
+                    <span className="text-[10px] text-[#6e5d48] font-sans">
+                      Single-source Gir cow dairy
                     </span>
                   </div>
-                  <p className="text-[10px] font-sans tracking-[0.25em] text-[#857053] uppercase font-semibold">
-                    {pageIndex <= 7 ? currentChapter?.yearRange : "PURE TODAY • HEALTHIER TOMORROWS"}
-                  </p>
-                </div>
-
-                {/* Center Stylized Display Typography */}
-                <div className="text-center my-auto py-2">
-                  <div className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-[#7a4e28] tracking-tight leading-none mb-2">
-                    {pageIndex <= 7 ? currentChapter?.statNumber : "100%"}
-                  </div>
-                  <h4 className="text-base sm:text-lg md:text-xl font-serif font-bold text-[#1a2e1d] mb-3">
-                    {pageIndex <= 7 ? currentChapter?.statLabel : "Dedicated to Pure A2 Wellness"}
-                  </h4>
-                  <p className="text-xs sm:text-sm text-[#4d4234] font-sans leading-relaxed max-w-md mx-auto">
-                    {pageIndex <= 7
-                      ? currentChapter?.narrative
-                      : "Begin your mornings with pure unadulterated freshness. Harvested, chilled, and delivered before the sun rises."}
-                  </p>
-                </div>
-
-                {/* 3 Organic Feature Badges */}
-                <div className="flex flex-wrap items-center justify-center gap-2 my-2">
-                  {(pageIndex <= 7 && currentChapter
-                    ? currentChapter.features
-                    : ["Pure A2 Dairy", "Farm Fresh Greens", "Doorstep Delivery"]
-                  ).map((badge, idx) => (
-                    <span
-                      key={idx}
-                      className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-[#eee5d3] text-[#423525] text-[10px] sm:text-[11px] font-sans font-medium border border-[#decfae]"
-                    >
-                      <CheckCircle2 className="w-3 h-3 text-emerald-700" />
-                      {badge}
+                  <div className="bg-[#ede4d1]/70 border border-[#dfd2be] rounded-xl p-3 sm:p-4 text-center">
+                    <span className="text-xl sm:text-2xl block mb-1">🥬</span>
+                    <span className="text-xs sm:text-sm font-serif font-bold text-[#1e3422] block">
+                      Daily Harvest
                     </span>
-                  ))}
+                    <span className="text-[10px] text-[#6e5d48] font-sans">
+                      Naturally grown vegetables
+                    </span>
+                  </div>
+                  <div className="bg-[#ede4d1]/70 border border-[#dfd2be] rounded-xl p-3 sm:p-4 text-center">
+                    <span className="text-xl sm:text-2xl block mb-1">🌅</span>
+                    <span className="text-xs sm:text-sm font-serif font-bold text-[#1e3422] block">
+                      Before 7:00 AM
+                    </span>
+                    <span className="text-[10px] text-[#6e5d48] font-sans">
+                      Silent doorstep delivery
+                    </span>
+                  </div>
                 </div>
 
-                {/* Bottom Action Button (CONTINUE OUR STORY or SHOP FRESH) */}
-                <div className="pt-2 border-t border-[#dfd2be]/70 flex items-center justify-between">
-                  <span className="text-[11px] text-[#705e48] font-mono">
-                    {pageIndex <= 7 ? `SPREAD 0${pageIndex} / 07` : "EPILOGUE"}
-                  </span>
-
-                  {pageIndex < 8 ? (
-                    <button
-                      type="button"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        handleNextPage();
-                      }}
-                      className="storybook-continue-btn"
-                    >
-                      <span>
-                        {pageIndex === 7
-                          ? "CONCLUSION"
-                          : "CONTINUE OUR STORY"}
-                      </span>
-                      <ArrowRight className="w-3.5 h-3.5" />
-                    </button>
-                  ) : (
-                    <button
-                      type="button"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        if (onShopFresh) {
-                          onShopFresh();
-                        } else {
-                          const catalog = document.getElementById("catalog");
-                          if (catalog) {
-                            catalog.scrollIntoView({ behavior: "smooth" });
-                          }
+                {/* Call to Action Buttons */}
+                <div className="mt-4 flex flex-wrap items-center justify-center gap-3">
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      if (onShopFresh) {
+                        onShopFresh();
+                      } else {
+                        const catalog = document.getElementById("catalog");
+                        if (catalog) {
+                          catalog.scrollIntoView({ behavior: "smooth" });
                         }
-                      }}
-                      className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-[#184523] hover:bg-[#12361b] text-white text-xs font-serif font-bold tracking-wider uppercase transition-all shadow-md cursor-pointer"
-                    >
-                      <ShoppingBag className="w-3.5 h-3.5 text-amber-300" />
-                      <span>SHOP FRESH →</span>
-                    </button>
-                  )}
+                      }
+                    }}
+                    className="inline-flex items-center gap-2.5 px-7 py-3 rounded-full bg-[#184523] hover:bg-[#12361b] text-white font-serif font-bold text-xs sm:text-sm tracking-wider uppercase shadow-xl hover:scale-105 active:scale-95 transition-all cursor-pointer"
+                  >
+                    <ShoppingBag className="w-4 h-4 text-amber-300" />
+                    <span>SHOP FRESH NOW →</span>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setPageIndex(0);
+                    }}
+                    className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-white/70 hover:bg-white text-[#4a3d2c] border border-[#cfbfa6] text-xs font-serif font-semibold transition-all cursor-pointer"
+                  >
+                    <span>↺ READ FROM START</span>
+                  </button>
                 </div>
               </div>
             </div>
@@ -464,12 +392,18 @@ export default function StoryBookSection({ onShopFresh }: StoryBookSectionProps)
                     ? "w-7 sm:w-8 bg-amber-400 shadow-md shadow-amber-400/50"
                     : "w-2 bg-white/30 hover:bg-white/60"
                 }`}
-                aria-label={idx === 0 ? "Go to Prologue" : `Go to Chapter ${idx}`}
+                aria-label={
+                  idx === 0
+                    ? "Go to Cover"
+                    : idx === 8
+                    ? "Go to Epilogue"
+                    : `Go to Chapter ${idx}`
+                }
               />
             ))}
           </div>
 
-          {/* Next / Conclusion Button */}
+          {/* Next Button */}
           <button
             onClick={handleNextPage}
             disabled={pageIndex >= 8}
@@ -483,6 +417,8 @@ export default function StoryBookSection({ onShopFresh }: StoryBookSectionProps)
               ? "START STORY →"
               : pageIndex === 7
               ? "CONCLUSION →"
+              : pageIndex === 8
+              ? "COMPLETED"
               : "NEXT →"}
           </button>
         </div>
