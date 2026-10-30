@@ -13,7 +13,7 @@ import {
 } from "lucide-react";
 import MilkSubscriptionModal from "./MilkSubscriptionModal";
 import HarvestHeroSection from "./HarvestHeroSection";
-import WhyYDailyA2Section from "./WhyYDailyA2Section";
+import StoryBookSection from "./StoryBookSection";
 
 export interface HarvestItem {
   id: string;
@@ -964,9 +964,9 @@ export default function HarvestCategoryGrid() {
           onViewAllProducts={scrollToCatalog}
         />
 
-        {/* 4K Ultra-HD "Why Y Daily Focuses Only on A2 Dairy" Showcase */}
+        {/* Interactive 3D Storybook Showcase */}
         <div ref={catalogRef} className="w-full">
-          <WhyYDailyA2Section />
+          <StoryBookSection onShopFresh={scrollToCatalog} />
         </div>
       </div>
 
