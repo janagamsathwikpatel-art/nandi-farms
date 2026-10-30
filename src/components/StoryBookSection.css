@@ -15,14 +15,13 @@
   -webkit-user-select: none;
 }
 
-/* Framed responsive textbook canvas with decreased width */
+/* Framed responsive textbook canvas matching 2nd page size */
 .storybook-fullwidth-canvas {
   position: relative;
   width: min(92vw, 1280px);
+  aspect-ratio: 1672 / 941;
   margin: 1.5rem auto;
   border-radius: 1.25rem;
-  min-height: 400px;
-  height: clamp(400px, 58vw, 680px);
   background-color: #f4ebde;
   background-image: url('/images/parchment-texture-bg.png');
   background-repeat: repeat;
@@ -49,7 +48,7 @@
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
   object-position: center;
   transition: opacity 0.75s cubic-bezier(0.4, 0, 0.2, 1), transform 0.85s cubic-bezier(0.25, 1, 0.5, 1);
   will-change: opacity, transform;
