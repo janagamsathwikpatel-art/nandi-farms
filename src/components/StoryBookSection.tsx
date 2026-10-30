@@ -5,12 +5,8 @@ import Image from "next/image";
 import {
   ChevronLeft,
   ChevronRight,
-  BookOpen,
-  RotateCcw,
-  Sparkles,
   ShoppingBag,
   CheckCircle2,
-  Sprout,
 } from "lucide-react";
 import "./StoryBookSection.css";
 
@@ -24,6 +20,14 @@ interface StoryPageData {
 }
 
 const STORY_PAGES: StoryPageData[] = [
+  {
+    id: 0,
+    stageNumber: "COVER",
+    title: "A Daily Ritual of Freshness",
+    subtitle: "Y Daily Origins & Dawn Milk Harvest",
+    image: "/storybook/story_cover.png",
+    alt: "Y Daily Story Cover - A Daily Ritual of Freshness",
+  },
   {
     id: 1,
     stageNumber: "01",
@@ -87,36 +91,14 @@ interface StoryBookSectionProps {
 }
 
 export default function StoryBookSection({ onShopFresh }: StoryBookSectionProps) {
-  // Book State:
-  // isOpen: false = Full-bleed cover, true = Full-bleed story pages
-  const [isOpen, setIsOpen] = useState(false);
-  const [isOpening, setIsOpening] = useState(false);
-
-  // pageIndex: 1 to 8 (1 = Page 01, ..., 7 = Page 07, 8 = Epilogue Page)
-  const [pageIndex, setPageIndex] = useState(1);
+  // pageIndex: 0 = Cover, 1 to 7 = Story Pages, 8 = Epilogue
+  const [pageIndex, setPageIndex] = useState(0);
 
   // Transition state: 'next' | 'prev' | null
   const [flipDirection, setFlipDirection] = useState<"next" | "prev" | null>(null);
 
   // Touch tracking for swipe gestures
   const touchStartXRef = useRef<number | null>(null);
-
-  // Open book transition
-  const handleOpenBook = () => {
-    setIsOpening(true);
-    setTimeout(() => {
-      setIsOpen(true);
-      setIsOpening(false);
-      setPageIndex(1);
-    }, 600);
-  };
-
-  // Close book transition
-  const handleCloseBook = () => {
-    setIsOpen(false);
-    setPageIndex(1);
-    setFlipDirection(null);
-  };
 
   // Next Page
   const handleNextPage = () => {
@@ -130,10 +112,10 @@ export default function StoryBookSection({ onShopFresh }: StoryBookSectionProps)
 
   // Previous Page
   const handlePrevPage = () => {
-    if (pageIndex <= 1 || flipDirection) return;
+    if (pageIndex <= 0 || flipDirection) return;
     setFlipDirection("prev");
     setTimeout(() => {
-      setPageIndex((prev) => Math.max(prev - 1, 1));
+      setPageIndex((prev) => Math.max(prev - 1, 0));
       setFlipDirection(null);
     }, 500);
   };
@@ -141,15 +123,13 @@ export default function StoryBookSection({ onShopFresh }: StoryBookSectionProps)
   // Keyboard navigation
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (!isOpen) return;
       if (e.key === "ArrowRight") handleNextPage();
       if (e.key === "ArrowLeft") handlePrevPage();
-      if (e.key === "Escape") handleCloseBook();
     };
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [isOpen, pageIndex, flipDirection]);
+  }, [pageIndex, flipDirection]);
 
   // Touch swipe support
   const handleTouchStart = (e: React.TouchEvent) => {
@@ -169,7 +149,7 @@ export default function StoryBookSection({ onShopFresh }: StoryBookSectionProps)
     touchStartXRef.current = null;
   };
 
-  const currentPage = pageIndex <= 7 ? STORY_PAGES[pageIndex - 1] : null;
+  const currentPage = pageIndex <= 7 ? STORY_PAGES[pageIndex] : null;
 
   return (
     <section
@@ -178,226 +158,179 @@ export default function StoryBookSection({ onShopFresh }: StoryBookSectionProps)
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
     >
-      {/* =========================================================================
-          STATE 1: FULL-WIDTH & FULL-LENGTH COVER SCREEN
-          ========================================================================= */}
-      {!isOpen && (
-        <div className="relative w-full storybook-fullwidth-canvas flex flex-col justify-between">
-          {/* Full-Bleed Edge-to-Edge Cover Image */}
-          <div className="absolute inset-0 w-full h-full">
+      <div className="relative w-full storybook-fullwidth-canvas flex flex-col justify-between storybook-viewport-full">
+        {/* ===================================================================
+            FULL-WIDTH & FULL-LENGTH ARTWORK (Cover to Page 07)
+            =================================================================== */}
+        {pageIndex <= 7 && currentPage ? (
+          <div
+            onClick={handleNextPage}
+            className="absolute inset-0 w-full h-full cursor-pointer"
+            title="Click anywhere to turn page"
+          >
             <Image
-              src="/storybook/story_cover.png"
-              alt="Y Daily - A Daily Ritual of Freshness Full Width Cover"
+              src={currentPage.image}
+              alt={currentPage.alt}
               fill
               priority
               sizes="100vw"
-              className="object-cover object-center"
+              className={`storybook-full-image ${
+                flipDirection === "next"
+                  ? "animate-turn-forward"
+                  : flipDirection === "prev"
+                  ? "animate-turn-backward"
+                  : ""
+              }`}
             />
-            {/* Subtle cinematic gradient vignette */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-black/40 pointer-events-none" />
+            {/* Subtle top & bottom lighting gradients */}
+            <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/60 pointer-events-none" />
           </div>
-
-          {/* Top Floating Badge Bar */}
-          <div className="relative z-20 w-full px-6 sm:px-12 pt-8 flex items-center justify-between">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full storybook-glass-panel text-emerald-300 text-xs font-semibold tracking-wider uppercase">
-              <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-              Interactive Storybook
-            </div>
-            <div className="text-white/80 text-xs font-sans tracking-widest uppercase hidden sm:block">
-              Full-Length Experience • 07 Chapters
-            </div>
-          </div>
-
-          {/* Bottom Floating Glass Action Card */}
-          <div className="relative z-20 w-full px-6 sm:px-12 pb-12 flex flex-col items-center text-center">
-            <div className="max-w-2xl storybook-glass-panel rounded-2xl p-6 sm:p-8 flex flex-col items-center">
-              <div className="flex items-center gap-2 mb-2">
-                <Sprout className="w-5 h-5 text-emerald-400" />
-                <span className="font-serif text-amber-300 text-xs sm:text-sm tracking-[0.25em] uppercase font-bold">
-                  Y DAILY ORIGINS
-                </span>
+        ) : (
+          /* ===================================================================
+             STAGE 8: FULL-WIDTH CELEBRATORY EPILOGUE
+             =================================================================== */
+          <div className="absolute inset-0 w-full h-full bg-[#0a180e] flex items-center justify-center p-6">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-emerald-900/40 via-[#0a180e] to-black pointer-events-none" />
+            <div className="relative z-20 max-w-xl text-center flex flex-col items-center">
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-900/60 border border-emerald-500/40 text-emerald-300 text-xs font-semibold uppercase tracking-wider mb-5 shadow-inner">
+                <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+                Our Timeless Promise
               </div>
-              <h2 className="text-2xl sm:text-4xl md:text-5xl font-serif font-bold text-white tracking-tight mb-3">
-                A Daily Ritual of Freshness
-              </h2>
-              <p className="text-xs sm:text-sm text-stone-200 font-sans max-w-lg mb-6 leading-relaxed">
-                Step inside our 3D storybook to experience how pure morning nourishment is harvested, chilled to 4°C, and delivered to your doorstep.
+
+              <h3 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-white tracking-tight leading-tight">
+                FROM OUR FARMS TO YOUR FAMILY
+              </h3>
+
+              <p className="mt-3 text-lg sm:text-xl text-amber-200/90 font-serif italic">
+                &ldquo;Pure Today. Healthier Tomorrows.&rdquo;
+              </p>
+
+              <div className="w-20 h-0.5 bg-amber-400/40 my-6" />
+
+              <p className="text-sm sm:text-base text-stone-300 font-sans leading-relaxed mb-8 max-w-md">
+                Experience pure unadulterated freshness delivered quietly to your doorstep before the city awakens.
               </p>
 
               <button
-                onClick={handleOpenBook}
-                disabled={isOpening}
-                className="group inline-flex items-center gap-3 px-8 sm:px-10 py-3.5 sm:py-4 rounded-full bg-gradient-to-r from-emerald-600 via-emerald-500 to-emerald-600 hover:from-emerald-500 hover:to-emerald-400 text-white font-serif font-semibold text-base sm:text-lg tracking-wide shadow-2xl shadow-emerald-950/80 hover:shadow-emerald-500/40 transition-all duration-300 hover:scale-105 active:scale-95 border border-emerald-300/40 cursor-pointer"
+                onClick={() => {
+                  if (onShopFresh) {
+                    onShopFresh();
+                  } else {
+                    const catalog = document.getElementById("catalog");
+                    if (catalog) {
+                      catalog.scrollIntoView({ behavior: "smooth" });
+                    }
+                  }
+                }}
+                className="inline-flex items-center gap-3 px-10 py-4 rounded-full bg-gradient-to-r from-emerald-600 via-emerald-500 to-emerald-600 hover:from-emerald-500 hover:to-emerald-400 text-white font-serif font-semibold text-lg shadow-2xl shadow-emerald-950/80 hover:scale-105 active:scale-95 transition-all cursor-pointer border border-emerald-300/40"
               >
-                <BookOpen className="w-5 h-5 text-amber-300 transition-transform group-hover:rotate-12" />
-                <span>{isOpening ? "OPENING STORYBOOK..." : "OPEN OUR STORY →"}</span>
+                <ShoppingBag className="w-5 h-5 text-amber-300" />
+                <span>SHOP FRESH →</span>
               </button>
             </div>
           </div>
-        </div>
-      )}
+        )}
 
-      {/* =========================================================================
-          STATE 2: FULL-WIDTH & FULL-LENGTH SEQUENTIAL STORY PAGES (01 to 07 + Epilogue)
-          ========================================================================= */}
-      {isOpen && (
-        <div className="relative w-full storybook-fullwidth-canvas flex flex-col justify-between storybook-viewport-full">
-          {/* Active Story Page Artwork - Edge-to-Edge Full Width & Full Length */}
-          {pageIndex <= 7 && currentPage ? (
-            <div className="absolute inset-0 w-full h-full">
-              <Image
-                src={currentPage.image}
-                alt={currentPage.alt}
-                fill
-                priority
-                sizes="100vw"
-                className={`storybook-full-image ${
-                  flipDirection === "next"
-                    ? "animate-turn-forward"
-                    : flipDirection === "prev"
-                    ? "animate-turn-backward"
-                    : ""
-                }`}
-              />
-              {/* Subtle top and bottom protective gradients for readability */}
-              <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/70 pointer-events-none" />
-            </div>
-          ) : (
-            /* ===================================================================
-               STAGE 8: FULL-WIDTH CELEBRATORY EPILOGUE
-               =================================================================== */
-            <div className="absolute inset-0 w-full h-full bg-[#0a180e] flex items-center justify-center p-6">
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-emerald-900/40 via-[#0a180e] to-black pointer-events-none" />
-              <div className="relative z-20 max-w-xl text-center flex flex-col items-center">
-                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-900/60 border border-emerald-500/40 text-emerald-300 text-xs font-semibold uppercase tracking-wider mb-5 shadow-inner">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-                  Our Timeless Promise
-                </div>
-
-                <h3 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-white tracking-tight leading-tight">
-                  FROM OUR FARMS TO YOUR FAMILY
-                </h3>
-
-                <p className="mt-3 text-lg sm:text-xl text-amber-200/90 font-serif italic">
-                  &ldquo;Pure Today. Healthier Tomorrows.&rdquo;
-                </p>
-
-                <div className="w-20 h-0.5 bg-amber-400/40 my-6" />
-
-                <p className="text-sm sm:text-base text-stone-300 font-sans leading-relaxed mb-8 max-w-md">
-                  Experience pure unadulterated freshness delivered quietly to your doorstep before the city awakens.
-                </p>
-
-                <button
-                  onClick={() => {
-                    if (onShopFresh) {
-                      onShopFresh();
-                    } else {
-                      const catalog = document.getElementById("catalog");
-                      if (catalog) {
-                        catalog.scrollIntoView({ behavior: "smooth" });
-                      }
-                    }
-                  }}
-                  className="inline-flex items-center gap-3 px-10 py-4 rounded-full bg-gradient-to-r from-emerald-600 via-emerald-500 to-emerald-600 hover:from-emerald-500 hover:to-emerald-400 text-white font-serif font-semibold text-lg shadow-2xl shadow-emerald-950/80 hover:scale-105 active:scale-95 transition-all cursor-pointer border border-emerald-300/40"
-                >
-                  <ShoppingBag className="w-5 h-5 text-amber-300" />
-                  <span>SHOP FRESH →</span>
-                </button>
-              </div>
-            </div>
-          )}
-
-          {/* Floating Top Navigation HUD */}
-          <div className="relative z-30 w-full px-6 sm:px-12 pt-6 flex items-center justify-between">
-            <div className="inline-flex items-center gap-3 storybook-glass-panel px-4 py-2 rounded-full text-white shadow-xl">
-              <span className="font-mono text-xs font-bold text-emerald-400 tracking-wider">
-                {pageIndex <= 7 ? `CHAPTER 0${pageIndex} / 07` : "EPILOGUE"}
-              </span>
-              <span className="w-1 h-1 rounded-full bg-white/40" />
-              <span className="font-serif text-xs sm:text-sm font-medium tracking-wide">
-                {pageIndex <= 7 ? currentPage?.title : "From Our Farms to Your Family"}
-              </span>
-            </div>
-
-            <button
-              onClick={handleCloseBook}
-              className="storybook-glass-btn px-4 py-2 rounded-full text-xs text-stone-200 hover:text-white flex items-center gap-1.5 cursor-pointer shadow-lg"
-              title="Return to Cover Screen"
-            >
-              <RotateCcw className="w-3.5 h-3.5 text-amber-400" />
-              <span>Cover Screen</span>
-            </button>
+        {/* Floating Top Navigation HUD */}
+        <div className="relative z-30 w-full px-6 sm:px-12 pt-6 flex items-center justify-between pointer-events-none">
+          <div className="inline-flex items-center gap-3 storybook-glass-panel px-4 py-2 rounded-full text-white shadow-xl pointer-events-auto">
+            <span className="font-mono text-xs font-bold text-emerald-400 tracking-wider">
+              {pageIndex === 0
+                ? "COVER"
+                : pageIndex <= 7
+                ? `0${pageIndex} / 07`
+                : "EPILOGUE"}
+            </span>
+            <span className="w-1 h-1 rounded-full bg-white/40" />
+            <span className="font-serif text-xs sm:text-sm font-medium tracking-wide">
+              {pageIndex <= 7 ? currentPage?.title : "From Our Farms to Your Family"}
+            </span>
           </div>
 
-          {/* Floating Left Side Navigation Arrow */}
+          {pageIndex > 0 && (
+            <button
+              onClick={() => setPageIndex(0)}
+              className="storybook-glass-btn px-4 py-2 rounded-full text-xs text-stone-200 hover:text-white flex items-center gap-1.5 cursor-pointer shadow-lg pointer-events-auto"
+              title="Return to Cover Screen"
+            >
+              <span>Back to Cover</span>
+            </button>
+          )}
+        </div>
+
+        {/* Floating Left Side Navigation Arrow */}
+        {pageIndex > 0 && (
           <button
             onClick={handlePrevPage}
-            disabled={pageIndex <= 1}
             aria-label="Previous Page"
-            className={`storybook-nav-arrow storybook-glass-btn left-4 sm:left-8 ${
-              pageIndex <= 1 ? "opacity-25 pointer-events-none" : "text-white"
-            }`}
+            className="storybook-nav-arrow storybook-glass-btn left-4 sm:left-8 text-white z-30"
           >
             <ChevronLeft className="w-6 h-6 text-emerald-400" />
           </button>
+        )}
 
-          {/* Floating Right Side Navigation Arrow */}
+        {/* Floating Right Side Navigation Arrow */}
+        {pageIndex < 8 && (
           <button
             onClick={handleNextPage}
-            disabled={pageIndex >= 8}
             aria-label="Next Page"
-            className={`storybook-nav-arrow storybook-glass-btn right-4 sm:right-8 ${
-              pageIndex >= 8 ? "opacity-25 pointer-events-none" : "text-white"
-            }`}
+            className="storybook-nav-arrow storybook-glass-btn right-4 sm:right-8 text-white z-30"
           >
             <ChevronRight className="w-6 h-6 text-emerald-400" />
           </button>
+        )}
 
-          {/* Floating Bottom Pagination HUD */}
-          <div className="relative z-30 w-full px-6 pb-6 flex items-center justify-center">
-            <div className="storybook-glass-panel px-5 py-2.5 rounded-full flex items-center gap-4 sm:gap-6 shadow-2xl">
-              {/* Prev Pill */}
-              <button
-                onClick={handlePrevPage}
-                disabled={pageIndex <= 1}
-                className={`text-xs font-serif font-semibold tracking-wider uppercase transition-colors ${
-                  pageIndex <= 1 ? "text-stone-600 cursor-not-allowed" : "text-stone-300 hover:text-white cursor-pointer"
-                }`}
-              >
-                ← PREV
-              </button>
+        {/* Floating Bottom Pagination HUD */}
+        <div className="relative z-30 w-full px-6 pb-6 flex items-center justify-center">
+          <div className="storybook-glass-panel px-5 py-2.5 rounded-full flex items-center gap-4 sm:gap-6 shadow-2xl">
+            {/* Prev Button */}
+            <button
+              onClick={handlePrevPage}
+              disabled={pageIndex <= 0}
+              className={`text-xs font-serif font-semibold tracking-wider uppercase transition-colors ${
+                pageIndex <= 0
+                  ? "text-stone-600 cursor-not-allowed"
+                  : "text-stone-300 hover:text-white cursor-pointer"
+              }`}
+            >
+              ← PREV
+            </button>
 
-              {/* Progress Indicator Dots */}
-              <div className="flex items-center gap-1.5 sm:gap-2">
-                {[1, 2, 3, 4, 5, 6, 7, 8].map((idx) => (
-                  <button
-                    key={idx}
-                    onClick={() => setPageIndex(idx)}
-                    className={`h-2 rounded-full transition-all duration-300 ${
-                      pageIndex === idx
-                        ? "w-7 sm:w-8 bg-emerald-400 shadow-md shadow-emerald-400/50"
-                        : "w-2 bg-white/30 hover:bg-white/60"
-                    }`}
-                    aria-label={`Jump to page ${idx}`}
-                  />
-                ))}
-              </div>
-
-              {/* Next / Conclusion Pill */}
-              <button
-                onClick={handleNextPage}
-                disabled={pageIndex >= 8}
-                className={`text-xs font-serif font-semibold tracking-wider uppercase transition-colors ${
-                  pageIndex >= 8 ? "text-stone-600 cursor-not-allowed" : "text-emerald-400 hover:text-emerald-300 cursor-pointer"
-                }`}
-              >
-                {pageIndex === 7 ? "CONCLUSION →" : "NEXT →"}
-              </button>
+            {/* Progress Indicator Dots */}
+            <div className="flex items-center gap-1.5 sm:gap-2">
+              {[0, 1, 2, 3, 4, 5, 6, 7, 8].map((idx) => (
+                <button
+                  key={idx}
+                  onClick={() => setPageIndex(idx)}
+                  className={`h-2 rounded-full transition-all duration-300 ${
+                    pageIndex === idx
+                      ? "w-7 sm:w-8 bg-emerald-400 shadow-md shadow-emerald-400/50"
+                      : "w-2 bg-white/30 hover:bg-white/60"
+                  }`}
+                  aria-label={idx === 0 ? "Go to Cover" : `Go to Page ${idx}`}
+                />
+              ))}
             </div>
+
+            {/* Next / Conclusion Button */}
+            <button
+              onClick={handleNextPage}
+              disabled={pageIndex >= 8}
+              className={`text-xs font-serif font-semibold tracking-wider uppercase transition-colors ${
+                pageIndex >= 8
+                  ? "text-stone-600 cursor-not-allowed"
+                  : "text-emerald-400 hover:text-emerald-300 cursor-pointer"
+              }`}
+            >
+              {pageIndex === 0
+                ? "START STORY →"
+                : pageIndex === 7
+                ? "CONCLUSION →"
+                : "NEXT →"}
+            </button>
           </div>
         </div>
-      )}
+      </div>
     </section>
   );
 }
