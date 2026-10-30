@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useRef } from "react";
+import Image from "next/image";
 import {
   ShoppingBag,
   Plus,
@@ -965,11 +966,16 @@ export default function HarvestCategoryGrid() {
         />
 
         {/* Transitional Organic Spacing Gap between Harvest Hero & Storybook */}
-        <div className="w-full py-10 md:py-16 bg-[#f4ebde] bg-[url('/images/parchment-texture-bg.png')] bg-repeat border-y border-[#e5d8c3]/80 flex items-center justify-center">
-          <div className="flex items-center gap-4 text-xs font-serif uppercase tracking-[0.25em] text-[#6b583f]">
-            <span className="w-12 md:w-24 h-px bg-gradient-to-r from-transparent to-[#bfa888]" />
-            <span className="font-semibold text-center">A Daily Ritual of Freshness</span>
-            <span className="w-12 md:w-24 h-px bg-gradient-to-l from-transparent to-[#bfa888]" />
+        <div className="w-full py-8 md:py-12 bg-[#f4ebde] bg-[url('/images/parchment-texture-bg.png')] bg-repeat border-t border-[#e5d8c3]/80 flex items-center justify-center px-4">
+          <div className="relative w-full max-w-xl md:max-w-2xl flex items-center justify-center select-none pointer-events-none">
+            <Image
+              src="/images/daily-ritual-freshness-emblem.png"
+              alt="A Daily Ritual of Freshness"
+              width={680}
+              height={226}
+              priority
+              className="w-full max-w-[480px] md:max-w-[580px] h-auto object-contain drop-shadow-sm"
+            />
           </div>
         </div>
 
