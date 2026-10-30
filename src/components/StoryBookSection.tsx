@@ -179,8 +179,6 @@ export default function StoryBookSection({ onShopFresh }: StoryBookSectionProps)
                   : ""
               }`}
             />
-            {/* Subtle top & bottom lighting gradients */}
-            <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/40 pointer-events-none" />
           </div>
         ) : (
           /* ===================================================================
