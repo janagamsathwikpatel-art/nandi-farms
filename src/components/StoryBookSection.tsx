@@ -3,8 +3,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import {
-  ChevronLeft,
-  ChevronRight,
   ShoppingBag,
   CheckCircle2,
 } from "lucide-react";
@@ -228,55 +226,6 @@ export default function StoryBookSection({ onShopFresh }: StoryBookSectionProps)
               </button>
             </div>
           </div>
-        )}
-
-        {/* Floating Top Navigation HUD */}
-        <div className="relative z-30 w-full px-6 sm:px-12 pt-6 flex items-center justify-between pointer-events-none">
-          <div className="inline-flex items-center gap-3 storybook-glass-panel px-4 py-2 rounded-full text-white shadow-xl pointer-events-auto">
-            <span className="font-mono text-xs font-bold text-emerald-400 tracking-wider">
-              {pageIndex === 0
-                ? "COVER"
-                : pageIndex <= 7
-                ? `0${pageIndex} / 07`
-                : "EPILOGUE"}
-            </span>
-            <span className="w-1 h-1 rounded-full bg-white/40" />
-            <span className="font-serif text-xs sm:text-sm font-medium tracking-wide">
-              {pageIndex <= 7 ? currentPage?.title : "From Our Farms to Your Family"}
-            </span>
-          </div>
-
-          {pageIndex > 0 && (
-            <button
-              onClick={() => setPageIndex(0)}
-              className="storybook-glass-btn px-4 py-2 rounded-full text-xs text-stone-200 hover:text-white flex items-center gap-1.5 cursor-pointer shadow-lg pointer-events-auto"
-              title="Return to Cover Screen"
-            >
-              <span>Back to Cover</span>
-            </button>
-          )}
-        </div>
-
-        {/* Floating Left Side Navigation Arrow */}
-        {pageIndex > 0 && (
-          <button
-            onClick={handlePrevPage}
-            aria-label="Previous Page"
-            className="storybook-nav-arrow storybook-glass-btn left-4 sm:left-8 text-white z-30"
-          >
-            <ChevronLeft className="w-6 h-6 text-emerald-400" />
-          </button>
-        )}
-
-        {/* Floating Right Side Navigation Arrow */}
-        {pageIndex < 8 && (
-          <button
-            onClick={handleNextPage}
-            aria-label="Next Page"
-            className="storybook-nav-arrow storybook-glass-btn right-4 sm:right-8 text-white z-30"
-          >
-            <ChevronRight className="w-6 h-6 text-emerald-400" />
-          </button>
         )}
       </div>
 
