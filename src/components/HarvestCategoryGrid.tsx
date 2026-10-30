@@ -964,6 +964,15 @@ export default function HarvestCategoryGrid() {
           onViewAllProducts={scrollToCatalog}
         />
 
+        {/* Transitional Organic Spacing Gap between Harvest Hero & Storybook */}
+        <div className="w-full py-10 md:py-16 bg-[#f4ebde] bg-[url('/images/parchment-texture-bg.png')] bg-repeat border-y border-[#e5d8c3]/80 flex items-center justify-center">
+          <div className="flex items-center gap-4 text-xs font-serif uppercase tracking-[0.25em] text-[#6b583f]">
+            <span className="w-12 md:w-24 h-px bg-gradient-to-r from-transparent to-[#bfa888]" />
+            <span className="font-semibold text-center">A Daily Ritual of Freshness</span>
+            <span className="w-12 md:w-24 h-px bg-gradient-to-l from-transparent to-[#bfa888]" />
+          </div>
+        </div>
+
         {/* Interactive 3D Storybook Showcase */}
         <div ref={catalogRef} className="w-full">
           <StoryBookSection onShopFresh={scrollToCatalog} />

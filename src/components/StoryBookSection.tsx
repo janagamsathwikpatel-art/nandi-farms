@@ -229,17 +229,17 @@ export default function StoryBookSection({ onShopFresh }: StoryBookSectionProps)
         )}
       </div>
 
-      {/* Dedicated Bottom Navigation Bar (Below the section image) */}
-      <div className="relative z-30 w-full py-5 bg-[#08130a] border-t border-emerald-950/70 flex items-center justify-center">
-        <div className="storybook-glass-panel px-6 py-2.5 rounded-full flex items-center gap-4 sm:gap-6 shadow-2xl">
+      {/* Dedicated Bottom Navigation Bar (Below the section image on Parchment Background) */}
+      <div className="relative z-30 w-full py-6 bg-[#f4ebde] bg-[url('/images/parchment-texture-bg.png')] bg-repeat border-t border-[#e2d5c2] flex items-center justify-center">
+        <div className="bg-[#122e1b]/95 backdrop-blur-md px-6 py-2.5 rounded-full flex items-center gap-4 sm:gap-6 shadow-xl border border-emerald-600/30">
           {/* Prev Button */}
           <button
             onClick={handlePrevPage}
             disabled={pageIndex <= 0}
             className={`text-xs font-serif font-semibold tracking-wider uppercase transition-colors ${
               pageIndex <= 0
-                ? "text-stone-600 cursor-not-allowed"
-                : "text-stone-300 hover:text-white cursor-pointer"
+                ? "text-white/30 cursor-not-allowed"
+                : "text-amber-100/80 hover:text-white cursor-pointer"
             }`}
           >
             ← PREV
@@ -253,7 +253,7 @@ export default function StoryBookSection({ onShopFresh }: StoryBookSectionProps)
                 onClick={() => setPageIndex(idx)}
                 className={`h-2 rounded-full transition-all duration-300 ${
                   pageIndex === idx
-                    ? "w-7 sm:w-8 bg-emerald-400 shadow-md shadow-emerald-400/50"
+                    ? "w-7 sm:w-8 bg-amber-400 shadow-md shadow-amber-400/50"
                     : "w-2 bg-white/30 hover:bg-white/60"
                 }`}
                 aria-label={idx === 0 ? "Go to Cover" : `Go to Page ${idx}`}
@@ -267,8 +267,8 @@ export default function StoryBookSection({ onShopFresh }: StoryBookSectionProps)
             disabled={pageIndex >= 8}
             className={`text-xs font-serif font-semibold tracking-wider uppercase transition-colors ${
               pageIndex >= 8
-                ? "text-stone-600 cursor-not-allowed"
-                : "text-emerald-400 hover:text-emerald-300 cursor-pointer"
+                ? "text-white/30 cursor-not-allowed"
+                : "text-amber-300 hover:text-amber-200 cursor-pointer font-bold"
             }`}
           >
             {pageIndex === 0
