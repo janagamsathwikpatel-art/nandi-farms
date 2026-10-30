@@ -1,33 +1,78 @@
-.hero-section {
+/* ==========================================================================
+   3-STAGE STICKY SCROLLYTELLING HERO SECTION (COLLECTED -> CHILLED -> DELIVERED)
+   ========================================================================== */
+
+/* Outer Scroll Track providing 300vh scrolling runway */
+.hero-scroll-track {
   position: relative;
-  min-height: 100vh;
-  overflow: hidden;
-  background: #101810;
-  color: #f8f4e8;
+  height: 300vh;
+  background-color: #f6f3eb;
+  margin: 0;
+  padding: 0;
 }
 
-/* Integrated Transparent Header */
-.hero-header {
-  position: absolute;
+/* Pinned 100vh Sticky Viewport keeping identical section dimensions */
+.hero-sticky-viewport {
+  position: sticky;
   top: 0;
-  left: 0;
-  right: 0;
-  z-index: 10;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+/* 4K Background Stack with Smooth Crossfading */
+.hero-bg-stack {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.hero-stage-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  opacity: 0;
+  transition: opacity 0.85s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: opacity;
+}
+
+.hero-stage-bg.is-active {
+  opacity: 1;
+}
+
+/* ==========================================================================
+   INTEGRATED HEADER NAVIGATION
+   ========================================================================== */
+
+.hero-header {
+  position: relative;
+  z-index: 20;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 24px 4.5%;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.45) 0%, transparent 100%);
+  padding: 24px 5%;
+  background: transparent;
 }
 
 .hero-brand .brand-link {
   display: flex;
   align-items: center;
   gap: 8px;
-  color: #f8f4e8;
+  color: #16281e;
   font-family: Arial, sans-serif;
-  font-weight: 700;
-  font-size: 16px;
+  font-weight: 800;
+  font-size: 17px;
   letter-spacing: 2px;
   text-decoration: none;
   text-transform: uppercase;
@@ -36,15 +81,15 @@
 .hero-nav {
   display: flex;
   align-items: center;
-  gap: 32px;
+  gap: 36px;
 }
 
 .hero-nav a,
 .hero-nav .nav-btn {
-  color: rgba(248, 244, 232, 0.85);
+  color: #2b3e32;
   font-family: Arial, sans-serif;
-  font-size: 11px;
-  font-weight: 600;
+  font-size: 11.5px;
+  font-weight: 700;
   letter-spacing: 2px;
   text-decoration: none;
   text-transform: uppercase;
@@ -57,184 +102,344 @@
 
 .hero-nav a:hover,
 .hero-nav .nav-btn:hover {
-  color: #53dc83;
+  color: #235738;
 }
 
 .hero-header-right {
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: 20px;
 }
 
 .location-picker {
   display: flex;
   align-items: center;
   gap: 6px;
-  color: #f8f4e8;
+  color: #1b3425;
   font-family: Arial, sans-serif;
   font-size: 13px;
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
-  padding: 4px 8px;
-  border-radius: 6px;
-  background: transparent;
-  border: none;
+  padding: 6px 12px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(27, 52, 37, 0.15);
+  backdrop-filter: blur(8px);
   transition: background 0.2s ease;
 }
 
 .location-picker:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.9);
 }
 
 .menu-toggle {
-  background: transparent;
-  border: none;
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(27, 52, 37, 0.15);
+  border-radius: 50%;
   cursor: pointer;
-  color: #f8f4e8;
+  width: 36px;
+  height: 36px;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 4px;
+  backdrop-filter: blur(8px);
+  transition: background 0.2s ease;
 }
 
-/* Image stays continuous and separate from text */
-.hero-background {
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(
-      90deg,
-      rgba(0, 0, 0, 0.35),
-      transparent 75%
-    ),
-    url("/images/y-daily-background.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+.menu-toggle:hover {
+  background: rgba(255, 255, 255, 0.9);
 }
 
-/* Text is rendered by HTML, not inside the image */
-.hero-text {
+/* ==========================================================================
+   MAIN HERO EDITORIAL CONTENT & TIMELINE GRID
+   ========================================================================= */
+
+.hero-content-grid {
   position: relative;
-  z-index: 1;
-  width: 60%;
-  padding-top: 130px;
-  margin-left: 4.5%;
+  z-index: 15;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 5%;
+  flex: 1;
 }
 
-.hero-text h1 {
-  margin: 0;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(58px, 8vw, 112px);
-  font-weight: 500;
-  line-height: 0.86;
-  letter-spacing: -5px;
-  color: #f8f4e8;
-}
-
-.hero-text p {
-  margin-top: 28px;
-  font-family: Arial, sans-serif;
-  font-size: clamp(17px, 2vw, 27px);
-  line-height: 1.4;
-  color: #eeeae2;
-}
-
-/* Right-side CTA options - Shifted upside to clear bottle cap */
-.hero-options {
-  position: absolute;
-  z-index: 2;
-  top: 14%;
-  right: 5%;
-  width: 255px;
-  padding-left: 32px;
-  border-left: 1px solid rgba(248, 244, 232, 0.85);
+/* Left Editorial Content (Time, Headline, Subtitle, CTA) */
+.hero-editorial-left {
+  max-width: 480px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  justify-content: center;
 }
 
-.shop-button,
-.milk-button {
+.hero-time-wrapper {
+  margin-bottom: 8px;
+}
+
+.hero-time-digits {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(74px, 8.8vw, 128px);
+  line-height: 0.92;
+  font-weight: 700;
+  color: #162436;
+  letter-spacing: -2px;
+  display: inline-block;
+  animation: hero-text-in 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero-headline {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(34px, 3.8vw, 56px);
+  line-height: 1.08;
+  color: #152233;
+  font-weight: 700;
+  letter-spacing: -1.2px;
+  margin: 16px 0 16px;
+  animation: hero-text-in 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero-subtitle {
+  font-family: Arial, sans-serif;
+  font-size: clamp(14px, 1.25vw, 17px);
+  line-height: 1.55;
+  color: #445667;
+  margin: 0 0 28px;
+  max-width: 430px;
+  animation: hero-text-in 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes hero-text-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-cta-wrapper {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 12px;
+}
+
+.hero-rhythm-btn {
+  background: #235738;
   color: #ffffff;
-  text-decoration: none;
+  border: 0;
+  border-radius: 8px;
+  padding: 14px 24px;
   font-family: Arial, sans-serif;
   font-size: 15px;
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
-  padding: 15px 18px 15px 22px;
-  border: 1px solid #53dc83;
-  border-radius: 40px;
-  background: rgba(20, 100, 55, 0.45);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-  transition: background 0.2s ease, transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
-  text-align: left;
-  box-sizing: border-box;
-  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4px 14px rgba(35, 87, 56, 0.28);
 }
 
-.shop-button:hover,
-.milk-button:hover {
-  background: #176c3c;
-  border-color: #72ef9e;
+.hero-rhythm-btn:hover {
+  background: #19432a;
   transform: translateY(-2px);
-  box-shadow: 0 4px 14px rgba(23, 108, 60, 0.4);
+  box-shadow: 0 6px 18px rgba(25, 67, 42, 0.38);
 }
 
-.shop-button span,
-.milk-button span {
-  font-size: 22px;
-  line-height: 1;
+.hero-rhythm-btn:active {
+  transform: translateY(0);
+}
+
+/* ==========================================================================
+   RIGHT VERTICAL SCROLLYTELLING TIMELINE
+   ========================================================================== */
+
+.hero-timeline-right {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 46px;
+  padding-left: 24px;
+}
+
+/* Connecting spine line */
+.timeline-track-spine {
+  position: absolute;
+  left: 6px;
+  top: 10px;
+  bottom: 10px;
+  width: 1.5px;
+  background: rgba(255, 255, 255, 0.3);
+  z-index: 1;
+}
+
+.timeline-step-btn {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  padding: 4px 0;
+  text-align: left;
   transition: transform 0.2s ease;
 }
 
-.shop-button:hover span,
-.milk-button:hover span {
-  transform: translateX(4px);
+.timeline-step-btn:hover {
+  transform: translateX(-2px);
 }
 
-/* Responsive breakpoints */
-@media (max-width: 800px) {
+.timeline-pip {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 255, 255, 0.55);
+  background: rgba(15, 28, 40, 0.4);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.timeline-step-btn.is-active .timeline-pip {
+  border-color: #28c76f;
+  background: #0d1e13;
+  box-shadow: 0 0 10px rgba(40, 199, 111, 0.7);
+}
+
+.timeline-pip-glow {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #28c76f;
+  box-shadow: 0 0 6px #28c76f;
+}
+
+.timeline-label {
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.65);
+  letter-spacing: 0.5px;
+  transition: color 0.3s ease;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+.timeline-step-btn.is-active .timeline-label {
+  color: #ffffff;
+  font-weight: 700;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
+}
+
+/* ==========================================================================
+   BOTTOM EDITORIAL BAR WITH DIVIDER LINE
+   ========================================================================== */
+
+.hero-bottom-bar {
+  position: relative;
+  z-index: 15;
+  padding: 0 5% 24px;
+}
+
+.bottom-bar-line {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    rgba(22, 36, 54, 0.2) 0%,
+    rgba(22, 36, 54, 0.1) 60%,
+    rgba(255, 255, 255, 0.25) 100%
+  );
+  margin-bottom: 14px;
+}
+
+.bottom-bar-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.bottom-location-tag {
+  font-family: Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  color: #2b3f4f;
+  text-transform: uppercase;
+}
+
+.bottom-motto-tag {
+  font-family: Arial, sans-serif;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: rgba(255, 255, 255, 0.7);
+  text-transform: uppercase;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN (TABLET & MOBILE)
+   ========================================================================== */
+
+@media (max-width: 1024px) {
   .hero-nav {
+    display: none;
+  }
+
+  .hero-content-grid {
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 60px;
+  }
+
+  .hero-timeline-right {
+    flex-direction: row;
+    padding-left: 0;
+    margin-top: 32px;
+    gap: 24px;
+  }
+
+  .timeline-track-spine {
     display: none;
   }
 }
 
-@media (max-width: 700px) {
-  .hero-section {
-    min-height: 100svh;
+@media (max-width: 640px) {
+  .hero-header {
+    padding: 18px 5%;
   }
 
-  .hero-background {
-    background-position: 57% center;
+  .hero-time-digits {
+    font-size: 64px;
   }
 
-  .hero-text {
-    width: 90%;
-    padding-top: 100px;
-    margin-left: 5%;
+  .hero-headline {
+    font-size: 32px;
+    margin: 12px 0;
   }
 
-  .hero-text h1 {
-    font-size: clamp(52px, 11vw, 76px);
-    letter-spacing: -3px;
+  .hero-subtitle {
+    font-size: 13.5px;
+    margin-bottom: 22px;
   }
 
-  .hero-text p {
-    font-size: 18px;
+  .hero-rhythm-btn {
+    padding: 12px 20px;
+    font-size: 14px;
   }
 
-  .hero-options {
-    position: relative;
-    top: auto;
-    right: auto;
-    width: min(300px, 90%);
-    margin: 30px 0 50px 5%;
-    padding-left: 16px;
+  .hero-bottom-bar {
+    padding-bottom: 18px;
+  }
+
+  .bottom-motto-tag {
+    font-size: 9px;
   }
 }
