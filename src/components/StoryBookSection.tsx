@@ -92,7 +92,7 @@ const CHAPTERS: ChapterData[] = [
     category: "THE BOTTLING",
     title: "Hygienic Processing & Packing",
     subtitle: "Modern automated facility in sterilized glass",
-    image: "/storybook/story_page4.png",
+    image: "/storybook/story_page4_hd.png",
     rightBadge: "Zero Plastic Guarantee",
     yearRange: "GLASS BOTTLED • TAMPER-EVIDENT",
     statNumber: "0%",
@@ -107,7 +107,7 @@ const CHAPTERS: ChapterData[] = [
     category: "THE HARVEST",
     title: "Straight from the Farm",
     subtitle: "Organic seasonal vegetables & crisp greens",
-    image: "/storybook/story_page5.png",
+    image: "/storybook/story_page5_hd.png",
     rightBadge: "Farm Fresh Vegetables",
     yearRange: "HARVESTED DAILY • PEAK RIPENESS",
     statNumber: "24h",
@@ -122,7 +122,7 @@ const CHAPTERS: ChapterData[] = [
     category: "THE DELIVERY",
     title: "Freshness at Your Doorstep",
     subtitle: "Reliable cold-chain delivery before 07:00 AM",
-    image: "/storybook/story_page6.png",
+    image: "/storybook/story_page6_hd.png",
     rightBadge: "Morning Routine",
     yearRange: "BEFORE 7:00 AM • SILENT DELIVERY",
     statNumber: "07:00",
@@ -226,10 +226,12 @@ export default function StoryBookSection({ onShopFresh }: StoryBookSectionProps)
                 ================================================================= */
             <div className="storybook-card-inner">
               <Image
+                key={currentChapter.image}
                 src={currentChapter.image}
                 alt={currentChapter.title}
                 fill
                 priority
+                unoptimized
                 sizes="(max-width: 1320px) 100vw, 1320px"
                 className={`w-full h-full object-cover pointer-events-none select-none ${
                   flipDirection === "next"
