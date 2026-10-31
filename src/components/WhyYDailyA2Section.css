@@ -15,7 +15,7 @@
 .why-ydaily-canvas {
   position: relative;
   width: 100%;
-  aspect-ratio: 3840 / 1623;
+  aspect-ratio: 3840 / 1616;
   overflow: hidden;
   display: block;
 }
@@ -27,6 +27,10 @@
   display: block;
   user-select: none;
   pointer-events: none;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: high-quality;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 /* Interactive Pins Layer */

@@ -110,7 +110,7 @@ export default function Hero() {
           {JOURNEY_STAGES.map((stage, idx) => (
             <div
               key={stage.id}
-              className={`hero-stage-bg ${idx === activeStageIndex ? "is-active" : ""}`}
+              className={`hero-stage-bg stage-${stage.id} ${idx === activeStageIndex ? "is-active" : ""}`}
               style={{ backgroundImage: `url(${stage.image})` }}
             />
           ))}

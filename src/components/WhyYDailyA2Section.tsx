@@ -22,8 +22,8 @@ const BRAND_PILLARS: BrandPillar[] = [
     description:
       "Unlike conventional A1 milk which releases BCM-7 during digestion causing discomfort, pure A2 beta-casein from indigenous cows digests smoothly and naturally.",
     side: "left",
-    topPercent: 21.5,
-    leftPercent: 22.2,
+    topPercent: 30.2,
+    leftPercent: 12.7,
   },
   {
     id: "health-first",
@@ -32,8 +32,8 @@ const BRAND_PILLARS: BrandPillar[] = [
     description:
       "Packed with natural calcium, bio-available vitamin D, healthy omega fats, and intact living proteins to nourish growing children and active adults.",
     side: "left",
-    topPercent: 38.5,
-    leftPercent: 22.2,
+    topPercent: 53.4,
+    leftPercent: 9.3,
   },
   {
     id: "pure-by-choice",
@@ -42,8 +42,8 @@ const BRAND_PILLARS: BrandPillar[] = [
     description:
       "Zero synthetic hormone injections, zero antibiotics, zero adulteration, and zero preservatives. 100% farm-fresh single-origin A2 goodness.",
     side: "left",
-    topPercent: 55.5,
-    leftPercent: 22.2,
+    topPercent: 78.9,
+    leftPercent: 10.3,
   },
 
   // Right 3 Pillars
@@ -54,8 +54,8 @@ const BRAND_PILLARS: BrandPillar[] = [
     description:
       "Our indigenous heritage cows roam freely in open sunlit pastures. Calves are nurtured first, and farming follows natural regenerative cycles.",
     side: "right",
-    topPercent: 21.5,
-    leftPercent: 73.5,
+    topPercent: 32.5,
+    leftPercent: 78.1,
   },
   {
     id: "transparency",
@@ -64,8 +64,8 @@ const BRAND_PILLARS: BrandPillar[] = [
     description:
       "We own every step from fodder cultivation to dawn milking and glass bottling, ensuring total farm-to-table traceability you can trust.",
     side: "right",
-    topPercent: 38.5,
-    leftPercent: 73.5,
+    topPercent: 58.0,
+    leftPercent: 78.1,
   },
   {
     id: "family-future",
@@ -74,8 +74,8 @@ const BRAND_PILLARS: BrandPillar[] = [
     description:
       "Preserving India's sacred native cattle breeds while delivering pure, unadulterated nourishment for healthier generations to come.",
     side: "right",
-    topPercent: 55.5,
-    leftPercent: 73.5,
+    topPercent: 81.2,
+    leftPercent: 80.1,
   },
 ];
 

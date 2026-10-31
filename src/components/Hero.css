@@ -51,6 +51,34 @@
   opacity: 1;
 }
 
+/* Soft legibility gradient for industrial plant setting in Stage 2 */
+.hero-stage-bg.stage-chilled::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(246, 248, 252, 0.94) 0%,
+    rgba(246, 248, 252, 0.78) 32%,
+    rgba(246, 248, 252, 0) 58%
+  );
+  pointer-events: none;
+}
+
+/* Soft legibility gradient for morning delivery truck in Stage 3 */
+.hero-stage-bg.stage-delivered::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(255, 255, 255, 0.8) 32%,
+    rgba(255, 255, 255, 0) 58%
+  );
+  pointer-events: none;
+}
+
 /* ==========================================================================
    INTEGRATED HEADER NAVIGATION
    ========================================================================== */
