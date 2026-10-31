@@ -24,6 +24,9 @@ export default function YDailyPage() {
         {/* Explore the Harvest 4K Ultra-HD Panoramic Banner */}
         <ExperienceFarm />
 
+        {/* Vertical Spacing Gap (Option 2: Warm Parchment #f1e6d4) */}
+        <div className="w-full h-8 sm:h-12 md:h-16 bg-[#f1e6d4]" aria-hidden="true" />
+
         {/* Farm Visit & Traceability Section */}
         <VisitFarm onOpenContact={() => setIsContactOpen(true)} />
       </main>

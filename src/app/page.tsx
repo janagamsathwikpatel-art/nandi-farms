@@ -24,6 +24,9 @@ export default function Home() {
         {/* "Come Experience the Farm" Section matching exact reference image */}
         <ExperienceFarm />
 
+        {/* Vertical Spacing Gap (Option 2: Warm Parchment #f1e6d4) */}
+        <div className="w-full h-8 sm:h-12 md:h-16 bg-[#f1e6d4]" aria-hidden="true" />
+
         {/* "Visit Nandi Farms" Section matching exact reference image with 4K HD text-free landscape */}
         <VisitFarm onOpenContact={() => setIsContactOpen(true)} />
       </main>
