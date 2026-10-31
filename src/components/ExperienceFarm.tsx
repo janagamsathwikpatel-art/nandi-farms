@@ -17,18 +17,18 @@ export default function ExperienceFarm() {
   return (
     <section
       id="explore-harvest"
-      className="relative w-full h-[340px] sm:h-[420px] md:h-[480px] lg:h-[520px] overflow-hidden bg-[#f1e6d4]"
+      className="relative w-full h-[380px] sm:h-[460px] md:h-[540px] lg:h-[620px] overflow-hidden bg-[#f1e6d4]"
       aria-label="Explore the Harvest"
     >
-      {/* 1. Full-Bleed Panoramic 4K Ultra-HD Master Plate (3840 x 855 px) */}
+      {/* 1. Exact 2nd Image Deployed Without Any Changes */}
       <Image
-        src="/images/explore-harvest-banner-4k.png"
+        src="/images/explore-harvest-master.jpg"
         alt="Farm Fresh Harvest Display"
         fill
         priority
         unoptimized
         sizes="100vw"
-        className="object-cover object-left md:object-center select-none pointer-events-none"
+        className="object-cover object-center select-none pointer-events-none"
       />
 
       {/* 2. Scaled-up Interactive HTML CTA Button Outside Image File */}
