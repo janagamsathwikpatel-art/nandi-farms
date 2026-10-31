@@ -32,7 +32,7 @@ export default function ExperienceFarm() {
       />
 
       {/* 2. Scaled-up Interactive HTML CTA Button Outside Image File */}
-      <div className="absolute right-6 sm:right-14 md:right-20 lg:right-28 top-1/2 -translate-y-1/2 z-10 flex flex-col items-center text-center">
+      <div className="absolute right-6 sm:right-14 md:right-20 lg:right-28 top-[34%] sm:top-[36%] -translate-y-1/2 z-10 flex flex-col items-center text-center">
         {/* Botanical Leaf Accent */}
         <div className="flex items-center gap-2 mb-2 sm:mb-2.5 text-[#284a2d]">
           <span className="w-5 sm:w-7 h-[1.5px] bg-[#284a2d]/40" />
