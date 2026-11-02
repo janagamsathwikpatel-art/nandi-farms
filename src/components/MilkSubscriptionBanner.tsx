@@ -50,7 +50,7 @@ export default function MilkSubscriptionBanner({ onOpenModal }: MilkSubscription
       </div>
 
       {/* 2. Live Interactive HTML/React Layer Rendered OUTSIDE Image */}
-      <div className="milk-sub-banner-content max-w-7xl mx-auto">
+      <div className="milk-sub-banner-content max-w-[1920px] 2xl:max-w-[2400px] 4k:max-w-[3400px] mx-auto w-full">
         <div className="milk-sub-grid">
           {/* Left Editorial Column */}
           <div className="milk-sub-editorial">

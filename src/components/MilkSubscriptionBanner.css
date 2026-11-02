@@ -3,7 +3,7 @@
   position: relative;
   width: 100%;
   overflow: hidden;
-  min-height: 400px;
+  min-height: 440px;
   background-color: #061c0c;
   color: #ffffff;
   padding: 48px 24px;
@@ -12,15 +12,21 @@
 
 @media (min-width: 640px) {
   .milk-sub-banner-section {
-    min-height: 460px;
+    min-height: 480px;
     padding: 56px 36px;
   }
 }
 
 @media (min-width: 1024px) {
   .milk-sub-banner-section {
-    min-height: 520px;
-    padding: 64px 48px;
+    min-height: clamp(520px, 35vw, 1344px);
+    padding: clamp(56px, 4vw, 100px) clamp(48px, 4vw, 120px);
+  }
+}
+
+@media (min-width: 1920px) {
+  .milk-sub-banner-section {
+    padding: clamp(64px, 5vw, 120px) clamp(64px, 5vw, 160px);
   }
 }
 
@@ -76,7 +82,19 @@
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
-    gap: 48px;
+    gap: clamp(40px, 4vw, 84px);
+  }
+}
+
+@media (min-width: 1920px) {
+  .milk-sub-editorial {
+    max-width: 460px;
+  }
+}
+
+@media (min-width: 2560px) {
+  .milk-sub-editorial {
+    max-width: 580px;
   }
 }
 
@@ -187,6 +205,48 @@
     width: 135px;
     min-height: 205px;
     padding: 20px 14px 18px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .milk-sub-cards-row {
+    gap: 22px;
+  }
+  .milk-sub-plan-card {
+    width: 160px;
+    min-height: 240px;
+    padding: 24px 16px 20px;
+    border-radius: 18px;
+  }
+  .milk-sub-days-num {
+    font-size: 44px;
+  }
+  .milk-sub-total-price {
+    font-size: 28px;
+  }
+  .milk-sub-per-day {
+    font-size: 13px;
+  }
+}
+
+@media (min-width: 2560px) {
+  .milk-sub-cards-row {
+    gap: 28px;
+  }
+  .milk-sub-plan-card {
+    width: 190px;
+    min-height: 280px;
+    padding: 28px 20px 24px;
+    border-radius: 22px;
+  }
+  .milk-sub-days-num {
+    font-size: 52px;
+  }
+  .milk-sub-total-price {
+    font-size: 34px;
+  }
+  .milk-sub-per-day {
+    font-size: 15px;
   }
 }
 
