@@ -27,6 +27,9 @@ export default function Home() {
         {/* "Explore the Harvest" Section matching exact reference image */}
         <ExperienceFarm />
 
+        {/* Vertical Spacing Gap between Explore the Harvest and Milk Subscriptions (Warm Parchment #f1e6d4) */}
+        <div className="w-full h-8 sm:h-12 md:h-16 bg-[#f1e6d4]" aria-hidden="true" />
+
         {/* 4K Ultra-HD Fresh Milk Subscriptions Section with Live HTML Elements */}
         <MilkSubscriptionBanner onOpenModal={() => setIsSubModalOpen(true)} />
 
