@@ -4,14 +4,71 @@ import React, { useState } from "react";
 import Hero from "@/components/Hero";
 import HarvestCategoryGrid from "@/components/HarvestCategoryGrid";
 import ExperienceFarm from "@/components/ExperienceFarm";
+import FarmVegetablesShelf from "@/components/FarmVegetablesShelf";
+import { ProductModal } from "@/components/ProductModal";
 import MilkSubscriptionBanner from "@/components/MilkSubscriptionBanner";
 import MilkSubscriptionModal from "@/components/MilkSubscriptionModal";
 import YDailyFooter from "@/components/YDailyFooter";
 import ContactModal from "@/components/ContactModal";
+import { Product, CartItem } from "@/types";
 
 export default function YDailyPage() {
   const [isContactOpen, setIsContactOpen] = useState(false);
   const [isSubModalOpen, setIsSubModalOpen] = useState(false);
+
+  // Model 1: Warm Parchment Farm Vegetables Shelf State
+  const [isVegetablesShowcaseOpen, setIsVegetablesShowcaseOpen] = useState(false);
+  const [activeVegetableModal, setActiveVegetableModal] = useState<Product | null>(null);
+  const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const [lovedItems, setLovedItems] = useState<string[]>([]);
+
+  React.useEffect(() => {
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search);
+      if (
+        params.get("explore") === "vegetables" ||
+        window.location.hash === "#farm-vegetables-shelf"
+      ) {
+        setIsVegetablesShowcaseOpen(true);
+      }
+    }
+  }, []);
+
+  const handleAddToCart = (product: Product) => {
+    setCartItems((prev) => {
+      const existing = prev.find((item) => item.product.id === product.id);
+      if (existing) {
+        return prev.map((item) =>
+          item.product.id === product.id
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
+        );
+      }
+      return [...prev, { product, quantity: 1 }];
+    });
+  };
+
+  const handleUpdateQuantity = (productId: string, delta: number) => {
+    setCartItems((prev) => {
+      return prev
+        .map((item) => {
+          if (item.product.id === productId) {
+            const nextQty = item.quantity + delta;
+            return nextQty > 0 ? { ...item, quantity: nextQty } : null;
+          }
+          return item;
+        })
+        .filter(Boolean) as CartItem[];
+    });
+  };
+
+  const handleToggleLoved = (productId: string) => {
+    setLovedItems((prev) =>
+      prev.includes(productId)
+        ? prev.filter((id) => id !== productId)
+        : [...prev, productId]
+    );
+  };
 
   return (
     <div className="min-h-screen flex flex-col bg-[#ffffff] selection:bg-[#c58b4a] selection:text-white">
@@ -24,7 +81,20 @@ export default function YDailyPage() {
         <HarvestCategoryGrid />
 
         {/* Explore the Harvest 4K Ultra-HD Panoramic Banner */}
-        <ExperienceFarm />
+        <ExperienceFarm
+          isVegetablesOpen={isVegetablesShowcaseOpen}
+          onExploreVegetables={() => setIsVegetablesShowcaseOpen((prev) => !prev)}
+        />
+
+        {/* Model 1: Seamless Warm Parchment Inline Farm Vegetables Showcase */}
+        <FarmVegetablesShelf
+          isOpen={isVegetablesShowcaseOpen}
+          onClose={() => setIsVegetablesShowcaseOpen(false)}
+          onSelectProduct={(product) => setActiveVegetableModal(product)}
+          cartItems={cartItems}
+          onAddToCart={handleAddToCart}
+          onUpdateQuantity={handleUpdateQuantity}
+        />
 
         {/* Vertical Spacing Gap between Explore the Harvest and Milk Subscriptions (Warm Parchment #f1e6d4) */}
         <div className="w-full h-8 sm:h-12 md:h-16 bg-[#f1e6d4]" aria-hidden="true" />
@@ -40,6 +110,24 @@ export default function YDailyPage() {
       <YDailyFooter
         onOpenContact={() => setIsContactOpen(true)}
         onOpenSubscription={() => setIsSubModalOpen(true)}
+      />
+
+      {/* Detailed Product Modal for Farm Vegetables */}
+      <ProductModal
+        product={activeVegetableModal}
+        isOpen={Boolean(activeVegetableModal)}
+        onClose={() => setActiveVegetableModal(null)}
+        quantity={
+          activeVegetableModal
+            ? cartItems.find((c) => c.product.id === activeVegetableModal.id)?.quantity || 0
+            : 0
+        }
+        onAddToCart={handleAddToCart}
+        onUpdateQuantity={handleUpdateQuantity}
+        isLoved={
+          activeVegetableModal ? lovedItems.includes(activeVegetableModal.id) : false
+        }
+        onToggleLoved={handleToggleLoved}
       />
 
       {/* Contact / Visit Modal */}

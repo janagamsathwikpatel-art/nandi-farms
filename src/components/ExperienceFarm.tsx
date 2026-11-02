@@ -2,10 +2,31 @@
 
 import React from "react";
 import Image from "next/image";
-import { ArrowRight, Leaf } from "lucide-react";
+import { ArrowRight, Leaf, ChevronDown } from "lucide-react";
 
-export default function ExperienceFarm() {
-  const scrollToHarvest = () => {
+interface ExperienceFarmProps {
+  onExploreVegetables?: () => void;
+  isVegetablesOpen?: boolean;
+}
+
+export default function ExperienceFarm({
+  onExploreVegetables,
+  isVegetablesOpen = false,
+}: ExperienceFarmProps) {
+  const handleExploreClick = () => {
+    if (onExploreVegetables) {
+      onExploreVegetables();
+      if (!isVegetablesOpen) {
+        setTimeout(() => {
+          const target = document.getElementById("farm-vegetables-shelf");
+          if (target) {
+            target.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
+        }, 100);
+      }
+      return;
+    }
+
     const target =
       document.getElementById("category-fresh-page") ||
       document.getElementById("categories");
@@ -43,14 +64,18 @@ export default function ExperienceFarm() {
         {/* Functional Clickable Button */}
         <button
           type="button"
-          onClick={scrollToHarvest}
-          className="group flex items-center gap-2 sm:gap-3 font-serif text-xl sm:text-2xl md:text-3xl lg:text-4xl font-medium text-[#1e3c23] hover:text-[#0b1c0e] transition-all cursor-pointer select-none drop-shadow-sm"
+          onClick={handleExploreClick}
+          className="group flex items-center gap-2 sm:gap-3 font-serif text-xl sm:text-2xl md:text-3xl lg:text-4xl font-medium text-[#1e3c23] hover:text-[#0b1c0e] transition-all cursor-pointer select-none drop-shadow-sm active:scale-95"
           aria-label="Explore the harvest catalog"
         >
           <span className="leading-tight">
             Explore<br className="inline" /> the harvest
           </span>
-          <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 transition-transform duration-300 group-hover:translate-x-2.5 text-[#1e3c23] group-hover:text-[#0b1c0e]" />
+          {isVegetablesOpen ? (
+            <ChevronDown className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 transition-transform duration-300 text-[#1e3c23] group-hover:text-[#0b1c0e] animate-bounce" />
+          ) : (
+            <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 transition-transform duration-300 group-hover:translate-x-2.5 text-[#1e3c23] group-hover:text-[#0b1c0e]" />
+          )}
         </button>
       </div>
     </section>
