@@ -1,13 +1,26 @@
 {
-  "hosting": {
-    "site": "y-daily",
-    "public": "out",
-    "cleanUrls": true,
-    "trailingSlash": false,
-    "ignore": [
-      "firebase.json",
-      "**/.*",
-      "**/node_modules/**"
-    ]
-  }
+  "hosting": [
+    {
+      "site": "y-daily",
+      "public": "out",
+      "cleanUrls": true,
+      "trailingSlash": false,
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ]
+    },
+    {
+      "site": "nandi-farms-app",
+      "public": "out",
+      "cleanUrls": true,
+      "trailingSlash": false,
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ]
+    }
+  ]
 }
