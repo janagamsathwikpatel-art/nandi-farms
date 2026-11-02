@@ -37,21 +37,20 @@
   inset: 0;
   background: linear-gradient(
     90deg,
-    rgba(6, 28, 12, 0.95) 0%,
-    rgba(6, 28, 12, 0.82) 45%,
-    rgba(6, 28, 12, 0.4) 70%,
-    transparent 100%
+    rgba(6, 28, 12, 0.4) 0%,
+    rgba(6, 28, 12, 0.15) 35%,
+    transparent 60%
   );
   pointer-events: none;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .milk-sub-mobile-gradient {
     background: linear-gradient(
       180deg,
-      rgba(6, 28, 12, 0.92) 0%,
-      rgba(6, 28, 12, 0.85) 60%,
-      rgba(6, 28, 12, 0.65) 100%
+      rgba(6, 28, 12, 0.90) 0%,
+      rgba(6, 28, 12, 0.82) 55%,
+      rgba(6, 28, 12, 0.6) 100%
     );
   }
 }
