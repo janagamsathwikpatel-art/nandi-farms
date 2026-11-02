@@ -15,6 +15,10 @@ import {
 import MilkSubscriptionModal from "./MilkSubscriptionModal";
 import HarvestHeroSection from "./HarvestHeroSection";
 import StoryBookSection from "./StoryBookSection";
+import { FilteredCategoryProducts } from "./FilteredCategoryProducts";
+import { ProductModal } from "./ProductModal";
+import { PRODUCTS } from "@/data/products";
+import { Product, CartItem } from "@/types";
 
 export interface HarvestItem {
   id: string;
@@ -807,13 +811,67 @@ const TODAYS_HARVEST_PRODUCTS: TodaysHarvestFeatured[] = [
   },
 ];
 
+export function getProductsForCategory(catId: string): Product[] {
+  return PRODUCTS.filter((p) => {
+    const c = (p.category || "").toLowerCase();
+    const n = (p.name || "").toLowerCase();
+    if (catId === "milk") {
+      return (n.includes("milk") || c === "milk") && !n.includes("combo");
+    }
+    if (catId === "vegetables") {
+      return (
+        (c === "fresh vegetables" || c === "roots vegetables") &&
+        !["spinach", "methi", "coriander", "mint", "palak"].some((k) => n.includes(k))
+      );
+    }
+    if (catId === "fruits") {
+      return c === "fruits";
+    }
+    if (catId === "grains_pulses") {
+      return c === "rice" || c === "ravva" || n.includes("atta");
+    }
+    if (catId === "oils_ghee") {
+      return c === "oils" || n.includes("ghee") || n.includes("oil");
+    }
+    if (catId === "spices") {
+      return (
+        c === "karam podulu" ||
+        c === "pickles" ||
+        n.includes("chilli") ||
+        n.includes("podi") ||
+        n.includes("pickle")
+      );
+    }
+    if (catId === "dairy_products") {
+      return c === "dairy" && !n.includes("milk");
+    }
+    if (catId === "leafy_greens") {
+      return (
+        c === "leafy greens" ||
+        ["spinach", "methi", "coriander", "mint", "palak", "greens"].some((k) =>
+          n.includes(k)
+        )
+      );
+    }
+    if (catId === "healthy_snacks") {
+      return c === "sweets" || n.includes("honey") || n.includes("ladoo") || n.includes("jamun");
+    }
+    return false;
+  });
+}
+
 export default function HarvestCategoryGrid() {
   const [selectedCategory, setSelectedCategory] = useState<string>("milk");
+  const [isCategoryProductsOpen, setIsCategoryProductsOpen] = useState(false);
+  const [activeProductModal, setActiveProductModal] = useState<Product | null>(null);
+  const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const [lovedItems, setLovedItems] = useState<string[]>([]);
   const [activeSubFilter, setActiveSubFilter] = useState<string>("all");
   const [cart, setCart] = useState<{ [productId: string]: number }>({});
   const [isMilkModalOpen, setIsMilkModalOpen] = useState(false);
   const [activeModalProduct, setActiveModalProduct] = useState<TodaysHarvestFeatured | null>(null);
   const freshPageRef = useRef<HTMLDivElement>(null);
+  const categoryProductsAnchorRef = useRef<HTMLDivElement>(null);
   const catalogRef = useRef<HTMLDivElement>(null);
 
   const scrollToCatalog = () => {
@@ -825,9 +883,46 @@ export default function HarvestCategoryGrid() {
   const handleCardClick = (catId: string) => {
     setSelectedCategory(catId);
     setActiveSubFilter("all");
-    if (freshPageRef.current) {
-      freshPageRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
+    setIsCategoryProductsOpen(true);
+    setTimeout(() => {
+      if (categoryProductsAnchorRef.current) {
+        categoryProductsAnchorRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }, 60);
+  };
+
+  const handleAddToCartProduct = (product: Product) => {
+    setCartItems((prev) => {
+      const existing = prev.find((item) => item.product.id === product.id);
+      if (existing) {
+        return prev.map((item) =>
+          item.product.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
+        );
+      }
+      return [...prev, { product, quantity: 1 }];
+    });
+    updateCart(product.id, 1);
+  };
+
+  const handleUpdateQuantityProduct = (productId: string, delta: number) => {
+    setCartItems((prev) => {
+      return prev
+        .map((item) => {
+          if (item.product.id === productId) {
+            const newQty = item.quantity + delta;
+            return newQty > 0 ? { ...item, quantity: newQty } : null;
+          }
+          return item;
+        })
+        .filter(Boolean) as CartItem[];
+    });
+    updateCart(productId, delta);
+  };
+
+  const handleToggleLovedProduct = (productId: string) => {
+    setLovedItems((prev) =>
+      prev.includes(productId) ? prev.filter((id) => id !== productId) : [...prev, productId]
+    );
   };
 
   const updateCart = (productId: string, delta: number) => {
@@ -894,9 +989,21 @@ export default function HarvestCategoryGrid() {
               key={box.id}
               type="button"
               onClick={() => handleCardClick(box.id)}
-              className="relative w-full overflow-hidden text-left focus:outline-none p-0 cursor-pointer block bg-[#f4eee2] group transition-all duration-300 hover:bg-[#ede7da] hover:shadow-md"
-              aria-label={`Open ${box.title} Fresh Page`}
+              className={`relative w-full overflow-hidden text-left focus:outline-none p-0 cursor-pointer block bg-[#f4eee2] group transition-all duration-300 hover:bg-[#ede7da] hover:shadow-md ${
+                isCategoryProductsOpen && selectedCategory === box.id
+                  ? "ring-4 ring-[#1b6b38] shadow-xl bg-[#ede7da]"
+                  : ""
+              }`}
+              aria-label={`Open ${box.title} Fresh Products`}
             >
+              {/* Active Category Badge */}
+              {isCategoryProductsOpen && selectedCategory === box.id && (
+                <div className="absolute top-3 right-3 z-10 bg-[#1b6b38] text-white text-[11px] font-bold px-3 py-1 rounded-full shadow-md flex items-center gap-1.5 animate-in fade-in">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-300 animate-pulse" />
+                  <span>Viewing Products</span>
+                </div>
+              )}
+
               {/* Pure Photograph without any text */}
               <div className="w-full aspect-[1200/480] overflow-hidden bg-[#f4eee2] p-0 m-0 block">
                 <img
@@ -918,13 +1025,38 @@ export default function HarvestCategoryGrid() {
                   </p>
                 </div>
                 <span className="text-2xl text-[#183622] font-light pl-4 transition-transform duration-300 group-hover:translate-x-1.5 shrink-0">
-                  →
+                  {isCategoryProductsOpen && selectedCategory === box.id ? "↓" : "→"}
                 </span>
               </div>
             </button>
           ))}
         </div>
       </div>
+
+      {/* 2. DEDICATED CATEGORY PRODUCTS VIEW (Revealed when ANY Category Card is Clicked) */}
+      {isCategoryProductsOpen && (
+        <div
+          ref={categoryProductsAnchorRef}
+          id="category-products-anchor"
+          className="w-full bg-[#fdfbf7] border-t border-b border-[#ede7d8] py-8 transition-all duration-500 animate-in fade-in"
+        >
+          <FilteredCategoryProducts
+            categoryName={activeBox.title}
+            products={getProductsForCategory(selectedCategory)}
+            cartItems={cartItems}
+            lovedItems={lovedItems}
+            onAddToCart={handleAddToCartProduct}
+            onUpdateQuantity={handleUpdateQuantityProduct}
+            onSelectProduct={(p) => setActiveProductModal(p)}
+            onToggleLoved={handleToggleLovedProduct}
+            onClearFilter={() => {
+              setIsCategoryProductsOpen(false);
+              const gridEl = document.getElementById("categories");
+              if (gridEl) gridEl.scrollIntoView({ behavior: "smooth" });
+            }}
+          />
+        </div>
+      )}
 
       {/* 2. DEDICATED "FRESH PAGE" CATEGORY EXPERIENCE (Directly down of that section) */}
       <div
@@ -1116,6 +1248,22 @@ export default function HarvestCategoryGrid() {
           </div>
         </div>
       )}
+
+      {/* Interactive Category Product Detail Modal */}
+      <ProductModal
+        product={activeProductModal}
+        isOpen={!!activeProductModal}
+        onClose={() => setActiveProductModal(null)}
+        quantity={
+          activeProductModal
+            ? cartItems.find((ci) => ci.product.id === activeProductModal.id)?.quantity || 0
+            : 0
+        }
+        onAddToCart={handleAddToCartProduct}
+        onUpdateQuantity={handleUpdateQuantityProduct}
+        isLoved={activeProductModal ? lovedItems.includes(activeProductModal.id) : false}
+        onToggleLoved={handleToggleLovedProduct}
+      />
     </section>
   );
 }
