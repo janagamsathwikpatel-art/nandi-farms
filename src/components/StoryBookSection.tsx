@@ -146,6 +146,21 @@ const CHAPTERS: ChapterData[] = [
       "Good food is a family legacy. By choosing pure unadulterated A2 milk and seasonal organic vegetables, you invest in lifelong immunity, effortless digestion, and the continued well-being of sustainable, ethical Indian farming communities.",
     features: ["Digestive Ease", "Immunity Support", "Generational Purity"],
   },
+  {
+    id: 8,
+    chapterNumber: "CONCLUSION",
+    category: "OUR STORY",
+    title: "From Our Farms, to Your Family",
+    subtitle: "Pure Today. Healthier Tomorrows.",
+    image: "/storybook/story_epilogue_hd.png",
+    rightBadge: "Our Values",
+    yearRange: "HYDERABAD • DAILY FRESH",
+    statNumber: "100%",
+    statLabel: "Freshness & Transparency",
+    narrative:
+      "At Y Daily, we believe real freshness begins at the source. We work hand in hand with farmers to bring you pure milk and naturally grown vegetables that are honest, healthy and full of life.",
+    features: ["Freshness", "Transparency", "Sustainability", "Community"],
+  },
 ];
 
 interface StoryBookSectionProps {
@@ -208,7 +223,7 @@ export default function StoryBookSection({ onShopFresh }: StoryBookSectionProps)
     touchStartXRef.current = null;
   };
 
-  const currentChapter = pageIndex <= 7 ? CHAPTERS[pageIndex] : null;
+  const currentChapter = pageIndex <= 8 ? CHAPTERS[pageIndex] : null;
 
   return (
     <section
@@ -220,9 +235,9 @@ export default function StoryBookSection({ onShopFresh }: StoryBookSectionProps)
       <div className="storybook-stage">
         {/* Physical Hardcover Book Casing (Exact Match to User Reference Screenshot) */}
         <div className="storybook-hardcover-casing">
-          {pageIndex <= 7 && currentChapter ? (
+          {currentChapter && (
             /* =================================================================
-                PAGES 00 TO 07: PURE FULL-FRAME MASTER ARTWORK
+                FULL-FRAME MASTER ARTWORK (PAGES 00 TO 08)
                 ================================================================= */
             <div className="storybook-card-inner">
               <Image
@@ -252,9 +267,18 @@ export default function StoryBookSection({ onShopFresh }: StoryBookSectionProps)
                 />
               )}
 
-              {/* Right 50% Click Zone -> Go Next (Full width on cover) */}
+              {/* Right 50% Click Zone -> Go Next (Full width on cover; Shop Fresh on Conclusion) */}
               <div
-                onClick={handleNextPage}
+                onClick={
+                  pageIndex === 8
+                    ? (onShopFresh
+                        ? onShopFresh
+                        : () => {
+                            const catalog = document.getElementById("catalog");
+                            if (catalog) catalog.scrollIntoView({ behavior: "smooth" });
+                          })
+                    : handleNextPage
+                }
                 className={`absolute inset-y-0 right-0 z-20 cursor-e-resize ${
                   pageIndex === 0 ? "w-full" : "w-1/2"
                 }`}
@@ -263,105 +287,12 @@ export default function StoryBookSection({ onShopFresh }: StoryBookSectionProps)
                     ? "Click anywhere on cover to open our story"
                     : pageIndex === 7
                     ? "Click right side to view conclusion"
+                    : pageIndex === 8
+                    ? "Click right side to shop fresh produce"
                     : "Click right side to continue"
                 }
-                aria-label="Next Page"
+                aria-label={pageIndex === 8 ? "Shop Fresh" : "Next Page"}
               />
-            </div>
-          ) : (
-            /* =================================================================
-                PAGE 08: EPILOGUE CONCLUSION SPREAD
-                ================================================================= */
-            <div className="storybook-card-inner storybook-epilogue-container">
-              {/* Back to Chapter 07 click area on left */}
-              <div
-                onClick={handlePrevPage}
-                className="absolute inset-y-0 left-0 w-1/4 z-20 cursor-w-resize"
-                title="Click left to go back to Chapter 07"
-                aria-label="Previous Page"
-              />
-
-              <div className="relative z-10 max-w-xl mx-auto flex flex-col items-center">
-                {/* Brand Emblem */}
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-900/10 border border-emerald-800/20 text-[#1b4324] mb-3">
-                  <Sprout className="w-4 h-4 text-emerald-700" />
-                  <span className="font-serif font-bold text-xs tracking-[0.25em] uppercase">
-                    Y DAILY • HYDERABAD
-                  </span>
-                </div>
-
-                {/* Headline */}
-                <h3 className="text-2xl sm:text-4xl md:text-5xl font-serif font-bold text-[#142617] tracking-tight leading-tight mb-2">
-                  From Our Farms, to Your Family.
-                </h3>
-                <p className="text-sm sm:text-base md:text-lg font-serif italic text-[#6d5b45] mb-6">
-                  Pure Today. Healthier Tomorrows.
-                </p>
-
-                {/* 3 Value Pillars */}
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 w-full my-3">
-                  <div className="bg-[#ede4d1]/70 border border-[#dfd2be] rounded-xl p-3 sm:p-4 text-center">
-                    <span className="text-xl sm:text-2xl block mb-1">🥛</span>
-                    <span className="text-xs sm:text-sm font-serif font-bold text-[#1e3422] block">
-                      100% Pure A2
-                    </span>
-                    <span className="text-[10px] text-[#6e5d48] font-sans">
-                      Single-source Gir cow dairy
-                    </span>
-                  </div>
-                  <div className="bg-[#ede4d1]/70 border border-[#dfd2be] rounded-xl p-3 sm:p-4 text-center">
-                    <span className="text-xl sm:text-2xl block mb-1">🥬</span>
-                    <span className="text-xs sm:text-sm font-serif font-bold text-[#1e3422] block">
-                      Daily Harvest
-                    </span>
-                    <span className="text-[10px] text-[#6e5d48] font-sans">
-                      Naturally grown vegetables
-                    </span>
-                  </div>
-                  <div className="bg-[#ede4d1]/70 border border-[#dfd2be] rounded-xl p-3 sm:p-4 text-center">
-                    <span className="text-xl sm:text-2xl block mb-1">🌅</span>
-                    <span className="text-xs sm:text-sm font-serif font-bold text-[#1e3422] block">
-                      Before 7:00 AM
-                    </span>
-                    <span className="text-[10px] text-[#6e5d48] font-sans">
-                      Silent doorstep delivery
-                    </span>
-                  </div>
-                </div>
-
-                {/* Call to Action Buttons */}
-                <div className="mt-4 flex flex-wrap items-center justify-center gap-3">
-                  <button
-                    type="button"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      if (onShopFresh) {
-                        onShopFresh();
-                      } else {
-                        const catalog = document.getElementById("catalog");
-                        if (catalog) {
-                          catalog.scrollIntoView({ behavior: "smooth" });
-                        }
-                      }
-                    }}
-                    className="inline-flex items-center gap-2.5 px-7 py-3 rounded-full bg-[#184523] hover:bg-[#12361b] text-white font-serif font-bold text-xs sm:text-sm tracking-wider uppercase shadow-xl hover:scale-105 active:scale-95 transition-all cursor-pointer"
-                  >
-                    <ShoppingBag className="w-4 h-4 text-amber-300" />
-                    <span>SHOP FRESH NOW →</span>
-                  </button>
-
-                  <button
-                    type="button"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setPageIndex(0);
-                    }}
-                    className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-white/70 hover:bg-white text-[#4a3d2c] border border-[#cfbfa6] text-xs font-serif font-semibold transition-all cursor-pointer"
-                  >
-                    <span>↺ READ FROM START</span>
-                  </button>
-                </div>
-              </div>
             </div>
           )}
         </div>
@@ -398,29 +329,33 @@ export default function StoryBookSection({ onShopFresh }: StoryBookSectionProps)
                   idx === 0
                     ? "Go to Cover"
                     : idx === 8
-                    ? "Go to Epilogue"
+                    ? "Go to Conclusion"
                     : `Go to Chapter ${idx}`
                 }
               />
             ))}
           </div>
 
-          {/* Next Button */}
+          {/* Next / Action Button */}
           <button
-            onClick={handleNextPage}
-            disabled={pageIndex >= 8}
-            className={`text-xs font-serif font-semibold tracking-wider uppercase transition-colors ${
-              pageIndex >= 8
-                ? "text-white/30 cursor-not-allowed"
-                : "text-amber-300 hover:text-amber-200 cursor-pointer font-bold"
-            }`}
+            onClick={
+              pageIndex === 8
+                ? (onShopFresh
+                    ? onShopFresh
+                    : () => {
+                        const catalog = document.getElementById("catalog");
+                        if (catalog) catalog.scrollIntoView({ behavior: "smooth" });
+                      })
+                : handleNextPage
+            }
+            className="text-xs font-serif font-semibold tracking-wider uppercase transition-colors text-amber-300 hover:text-amber-200 cursor-pointer font-bold"
           >
             {pageIndex === 0
               ? "START STORY →"
               : pageIndex === 7
               ? "CONCLUSION →"
               : pageIndex === 8
-              ? "COMPLETED"
+              ? "SHOP FRESH NOW →"
               : "NEXT →"}
           </button>
         </div>
