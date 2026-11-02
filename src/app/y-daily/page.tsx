@@ -27,7 +27,7 @@ export default function YDailyPage() {
         <ExperienceFarm />
 
         {/* Vertical Spacing Gap between Explore the Harvest and Milk Subscriptions (Warm Parchment #f1e6d4) */}
-        <div className="w-full h-8 sm:h-12 md:h-16 bg-[#f1e6d4]" aria-hidden="true" />
+        <div className="w-full h-8 sm:h-12 md:h-16 bg-[#f1e6d4] border-y border-[#dfd2be]/60" aria-hidden="true" />
 
         {/* 4K Ultra-HD Fresh Milk Subscriptions Section with Live HTML Elements */}
         <MilkSubscriptionBanner onOpenModal={() => setIsSubModalOpen(true)} />
