@@ -6,8 +6,7 @@ import HarvestCategoryGrid from "@/components/HarvestCategoryGrid";
 import ExperienceFarm from "@/components/ExperienceFarm";
 import MilkSubscriptionBanner from "@/components/MilkSubscriptionBanner";
 import MilkSubscriptionModal from "@/components/MilkSubscriptionModal";
-import VisitFarm from "@/components/VisitFarm";
-import Footer from "@/components/Footer";
+import YDailyFooter from "@/components/YDailyFooter";
 import ContactModal from "@/components/ContactModal";
 
 export default function Home() {
@@ -33,15 +32,15 @@ export default function Home() {
         {/* 4K Ultra-HD Fresh Milk Subscriptions Section with Live HTML Elements */}
         <MilkSubscriptionBanner onOpenModal={() => setIsSubModalOpen(true)} />
 
-        {/* Vertical Spacing Gap (Option 2: Warm Parchment #f1e6d4) */}
+        {/* Vertical Spacing Gap (Warm Parchment #f1e6d4) */}
         <div className="w-full h-8 sm:h-12 md:h-16 bg-[#f1e6d4]" aria-hidden="true" />
-
-        {/* "Visit Nandi Farms" Section matching exact reference image with 4K HD text-free landscape */}
-        <VisitFarm onOpenContact={() => setIsContactOpen(true)} />
       </main>
 
-      {/* Footer matching exact reference image */}
-      <Footer />
+      {/* Brand New 4K Y Daily Scenic Footer with Working Links, Form & Socials */}
+      <YDailyFooter
+        onOpenContact={() => setIsContactOpen(true)}
+        onOpenSubscription={() => setIsSubModalOpen(true)}
+      />
 
       {/* "Get in Touch" / Visit Booking Modal */}
       <ContactModal
