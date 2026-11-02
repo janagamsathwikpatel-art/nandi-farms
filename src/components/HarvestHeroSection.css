@@ -165,7 +165,7 @@
   height: 100%;
   object-fit: contain;
   transition: transform 0.35s ease;
-  filter: drop-shadow(0 6px 12px rgba(20, 45, 25, 0.1));
+  filter: drop-shadow(0 6px 14px rgba(20, 45, 25, 0.16));
 }
 
 .harvest-hero-product-card:hover .harvest-hero-product-image img {
