@@ -1,0 +1,413 @@
+.shop-page {
+  --farm-cream: #faf5ea;
+  --farm-burgundy: #680f0e;
+  --farm-gutter: max(4.6vw, calc((100% - 1560px) / 2));
+  --sans: var(--nandi-body), sans-serif;
+  --shop-border: #dacbb9;
+  --shop-text: #301b15;
+  --shop-muted: #6e584b;
+  background: var(--farm-cream);
+  color: var(--shop-text);
+  font-family: var(--sans);
+}
+
+.shop-brand {
+  width: 68px;
+}
+.shop-brand img {
+  height: auto;
+}
+
+.shop-page a:focus-visible,
+.shop-page input:focus-visible {
+  outline: 2px solid var(--farm-burgundy);
+  outline-offset: 4px;
+}
+
+.shop-header {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  min-height: 80px;
+  padding-inline: var(--farm-gutter);
+  border-bottom: 1px solid var(--shop-border);
+}
+
+.shop-header nav,
+.shop-footer nav {
+  display: flex;
+  gap: clamp(14px, 3vw, 42px);
+  align-items: center;
+}
+
+.shop-header nav a,
+.shop-home-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  gap: 6px;
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+.shop-header a[aria-current="page"] {
+  color: var(--farm-burgundy);
+  text-decoration: underline;
+  text-underline-offset: 0.4em;
+}
+
+.shop-home-link {
+  justify-self: end;
+}
+
+.shop-main {
+  width: min(100%, 1600px);
+  margin-inline: auto;
+  padding: clamp(18px, 3vw, 44px) clamp(16px, 4.6vw, 72px) 72px;
+}
+
+.shop-intro {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.08fr);
+  min-height: 330px;
+  overflow: hidden;
+  border: 1px solid var(--shop-border);
+  border-radius: 24px;
+  background: #f3e5ce;
+}
+
+.shop-intro-copy {
+  align-self: center;
+  padding: clamp(24px, 4.8vw, 74px);
+}
+
+.shop-back {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  margin-bottom: 12px;
+  color: var(--shop-muted);
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.shop-back:hover {
+  text-decoration: underline;
+}
+
+.shop-kicker {
+  margin: 0 0 12px;
+  color: var(--farm-burgundy);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.shop-intro h1,
+.shop-results-heading h2,
+.shop-empty h3 {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 500;
+}
+
+.shop-intro h1 {
+  color: var(--farm-burgundy);
+  font-size: clamp(3rem, 6vw, 6.25rem);
+  line-height: 0.97;
+  letter-spacing: -0.05em;
+  text-wrap: balance;
+}
+
+#shop-description {
+  max-width: 32ch;
+  margin: 20px 0 0;
+  color: var(--shop-muted);
+  font-size: clamp(0.95rem, 1.35vw, 1.15rem);
+  line-height: 1.5;
+}
+
+.shop-intro-art {
+  display: grid;
+  min-height: 200px;
+  place-items: center;
+  padding: 24px;
+  background: #cbb995 url("/nandi-farm/living-farm-poster.jpg") center / cover
+    no-repeat;
+}
+
+.shop-intro-art img {
+  width: min(80%, 440px);
+  height: clamp(176px, 24vw, 300px);
+  object-fit: contain;
+  filter: drop-shadow(0 12px 15px #2c1b1366);
+}
+
+.shop-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px 18px;
+  padding-block: 24px 18px;
+  border-bottom: 1px solid var(--shop-border);
+}
+
+.shop-categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.shop-categories a,
+.shop-search {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  border: 1px solid var(--shop-border);
+  border-radius: 999px;
+}
+
+.shop-categories a {
+  padding-inline: 14px;
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+.shop-categories a:hover {
+  border-color: var(--farm-burgundy);
+}
+
+.shop-categories a[aria-current="page"] {
+  border-color: var(--farm-burgundy);
+  background: var(--farm-burgundy);
+  color: white;
+}
+
+.shop-search {
+  gap: 7px;
+  width: min(100%, 244px);
+  padding-inline: 12px;
+  background: #fffdf8;
+}
+
+.shop-search svg {
+  flex: 0 0 19px;
+  width: 19px;
+  stroke: var(--shop-muted);
+  stroke-width: 1.7;
+  stroke-linecap: round;
+}
+
+.shop-search input {
+  width: 100%;
+  min-width: 0;
+  height: 42px;
+  padding: 0 2px;
+  border: 0;
+  border-radius: 12px;
+  background: transparent;
+  color: inherit;
+  font: 500 1rem var(--sans);
+}
+
+.shop-results-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  margin-block: 26px 18px;
+}
+
+.shop-results-heading h2 {
+  font-size: clamp(1.8rem, 3vw, 3rem);
+}
+.shop-results-heading p,
+.shop-catalog-note {
+  margin: 0;
+  color: var(--shop-muted);
+  font-size: 0.875rem;
+}
+.shop-catalog-note {
+  margin-top: 18px;
+}
+
+.shop-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 230px), 1fr));
+  gap: clamp(10px, 2vw, 22px);
+}
+
+.shop-card-link {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  height: 100%;
+  overflow: hidden;
+  border: 1px solid var(--shop-border);
+  border-radius: 16px;
+  background: #fffdf8;
+}
+
+.shop-card-link:hover {
+  border-color: var(--farm-burgundy);
+}
+
+.shop-card-photo {
+  display: grid;
+  aspect-ratio: 4 / 3;
+  grid-template: minmax(0, 1fr) / minmax(0, 1fr);
+  place-items: center;
+  padding: 14px;
+  border-bottom: 1px solid var(--shop-border);
+  background: #eee2ce;
+}
+
+.shop-card-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.shop-card-info {
+  display: grid;
+  align-content: space-between;
+  gap: 10px;
+  padding: 14px 16px;
+}
+
+.shop-card-info h3 {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.35;
+}
+
+.shop-card-bottom,
+.shop-price {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.shop-card-bottom {
+  justify-content: space-between;
+}
+.shop-price {
+  margin: 0;
+  flex-wrap: wrap;
+  color: var(--farm-burgundy);
+  font-weight: 700;
+}
+.shop-price del {
+  color: var(--shop-muted);
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.shop-card-arrow {
+  display: grid;
+  flex: 0 0 32px;
+  width: 32px;
+  height: 32px;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--farm-cream);
+  color: var(--farm-burgundy);
+  font-size: 1.15rem;
+}
+
+.shop-card-link:hover .shop-card-arrow {
+  background: var(--farm-burgundy);
+  color: white;
+}
+
+.shop-empty {
+  padding: clamp(24px, 5vw, 52px);
+  border: 1px solid var(--shop-border);
+  border-radius: 16px;
+  background: #fffdf8;
+}
+
+.shop-empty h3 {
+  font-size: clamp(1.4rem, 3vw, 2.25rem);
+}
+.shop-empty p {
+  margin: 12px 0 18px;
+  color: var(--shop-muted);
+}
+.shop-empty a {
+  color: var(--farm-burgundy);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
+}
+
+.shop-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px 28px;
+  padding: 26px var(--farm-gutter);
+  border-top: 1px solid var(--shop-border);
+  background: #f3e5ce;
+  color: var(--shop-text);
+}
+
+.shop-footer p {
+  display: grid;
+  gap: 4px;
+  margin: 0;
+  color: inherit;
+}
+.shop-footer p span {
+  color: var(--shop-muted);
+}
+.shop-footer a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 760px) {
+  .shop-header {
+    grid-template-columns: auto 1fr;
+    min-height: 66px;
+    gap: 16px;
+    padding-inline: 16px;
+  }
+
+  .shop-header nav {
+    justify-self: end;
+  }
+  .shop-brand {
+    width: 59px;
+  }
+  .shop-home-link {
+    display: none;
+  }
+  .shop-intro {
+    grid-template-columns: 1fr;
+    min-height: 0;
+  }
+  .shop-intro-copy {
+    padding: 12px 22px 28px;
+  }
+  .shop-intro-art img {
+    height: 150px;
+  }
+  .shop-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 390px) {
+  .shop-card-photo {
+    padding: 8px;
+  }
+  .shop-card-info {
+    padding: 10px;
+  }
+  .shop-card-info h3 {
+    font-size: 0.875rem;
+  }
+}

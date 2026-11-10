@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import Hero from "@/components/Hero";
+import NandiFarmHero from "@/components/NandiFarmHero";
 import HarvestHeroSection, { HeroProduct } from "@/components/HarvestHeroSection";
 import HarvestCategoryGrid from "@/components/HarvestCategoryGrid";
 import ExperienceFarm from "@/components/ExperienceFarm";
@@ -124,8 +124,8 @@ export default function YDailyPage() {
     <div className="min-h-screen flex flex-col bg-[#ffffff] selection:bg-[#c58b4a] selection:text-white">
       {/* Main Content */}
       <main className="flex-1">
-        {/* Y Daily Hero Experience with 3-Stage Dawn Journey */}
-        <Hero />
+        {/* Nandi Farms Hero Section (with video, parallax harvest crate & navigation) */}
+        <NandiFarmHero onOpenSubscription={() => setIsSubModalOpen(true)} />
 
         {/* TODAY'S HARVEST Section directly down of Hero Section (without any changes) */}
         <HarvestHeroSection

@@ -1,0 +1,330 @@
+[
+  {
+    "id": 420,
+    "name": "Buffalo Whole Milk 1L",
+    "image": "https://admin.eveggie.in/storage/products/1773479627_36962.jfif",
+    "price": 102,
+    "originalPrice": 120,
+    "category": "milk"
+  },
+  {
+    "id": 63,
+    "name": "Buffalo Whole Milk 0.5L",
+    "image": "https://admin.eveggie.in/storage/products/1737969169_49671.jfif",
+    "price": 52,
+    "originalPrice": 65,
+    "category": "milk"
+  },
+  {
+    "id": 382,
+    "name": "Desi Cow Milk 0.5L",
+    "image": "https://admin.eveggie.in/storage/products/1789289143_24161.png",
+    "price": 55,
+    "originalPrice": 75,
+    "category": "milk"
+  },
+  {
+    "id": 62,
+    "name": "Desi Cow Milk 1L",
+    "image": "https://admin.eveggie.in/storage/products/1789289285_25722.png",
+    "price": 110,
+    "originalPrice": 130,
+    "category": "milk"
+  },
+  {
+    "id": 157,
+    "name": "Drumstick Leaves",
+    "image": "https://admin.eveggie.in/storage/products/1738125713_19476.jpeg",
+    "price": 30,
+    "originalPrice": 45,
+    "category": "leafy-greens"
+  },
+  {
+    "id": 105,
+    "name": "Athreyapuram Dry Fruit Putharekulu -REGULAR",
+    "image": "https://admin.eveggie.in/storage/products/1784977567_53699.png",
+    "price": 100,
+    "originalPrice": 150,
+    "category": null
+  },
+  {
+    "id": 331,
+    "name": "Athreyapuram Putharekulu (Fully loaded with jaggery & dryfruits)",
+    "image": "https://admin.eveggie.in/storage/products/1784977660_45338.png",
+    "price": 150,
+    "originalPrice": 200,
+    "category": null
+  },
+  {
+    "id": 438,
+    "name": "Athreyapuram putharekulu(fully loaded with organic jaggery&dryfruits)",
+    "image": "https://admin.eveggie.in/storage/products/1784981408_98940.png",
+    "price": 200,
+    "originalPrice": 250,
+    "category": null
+  },
+  {
+    "id": 305,
+    "name": "ORGANIC Sunflower Oil coldpressed 1KG",
+    "image": "https://admin.eveggie.in/storage/products/1784296181_89444.png",
+    "price": 520,
+    "originalPrice": 570,
+    "category": null
+  },
+  {
+    "id": 51,
+    "name": "ORGANIC Sesame Oil(Black) coldpressed 1KG",
+    "image": "https://admin.eveggie.in/storage/products/1784274906_91233.png",
+    "price": 620,
+    "originalPrice": 670,
+    "category": null
+  },
+  {
+    "id": 443,
+    "name": "Millets Roti mix",
+    "image": "https://admin.eveggie.in/storage/products/1785580031_63566.png",
+    "price": 65,
+    "originalPrice": 80,
+    "category": null
+  },
+  {
+    "id": 446,
+    "name": "Raagi Vermicelli",
+    "image": "https://admin.eveggie.in/storage/products/1785580059_23667.png",
+    "price": 90,
+    "originalPrice": 110,
+    "category": null
+  },
+  {
+    "id": 234,
+    "name": "Millet Upma ravva",
+    "image": "https://admin.eveggie.in/storage/products/1785584796_67965.png",
+    "price": 90,
+    "originalPrice": 100,
+    "category": null
+  },
+  {
+    "id": 235,
+    "name": "Millet Idly Ravva",
+    "image": "https://admin.eveggie.in/storage/products/1785584875_33861.png",
+    "price": 90,
+    "originalPrice": 100,
+    "category": null
+  },
+  {
+    "id": 444,
+    "name": "Raagi flakes",
+    "image": "https://admin.eveggie.in/storage/products/1785587512_37511.jpeg",
+    "price": 100,
+    "originalPrice": 120,
+    "category": null
+  },
+  {
+    "id": 445,
+    "name": "Millets Noodles",
+    "image": "https://admin.eveggie.in/storage/products/1785597333_81333.png",
+    "price": 90,
+    "originalPrice": 110,
+    "category": null
+  },
+  {
+    "id": 449,
+    "name": "Millets Rusk",
+    "image": "https://admin.eveggie.in/storage/products/1785597558_95129.png",
+    "price": 70,
+    "originalPrice": 90,
+    "category": null
+  },
+  {
+    "id": 448,
+    "name": "Raagi Cookies",
+    "image": "https://admin.eveggie.in/storage/products/1785597522_68883.png",
+    "price": 80,
+    "originalPrice": 100,
+    "category": null
+  },
+  {
+    "id": 447,
+    "name": "Multi Millet Cookies",
+    "image": "https://admin.eveggie.in/storage/products/1785597501_12973.png",
+    "price": 80,
+    "originalPrice": 100,
+    "category": null
+  },
+  {
+    "id": 450,
+    "name": "Moon biscuits",
+    "image": "https://admin.eveggie.in/storage/products/1785997458_28401.png",
+    "price": 90,
+    "originalPrice": 110,
+    "category": null
+  },
+  {
+    "id": 107,
+    "name": "Chicken Pickle",
+    "image": "https://admin.eveggie.in/storage/products/1738057866_94408.jpeg",
+    "price": 250,
+    "originalPrice": 300,
+    "category": null
+  },
+  {
+    "id": 453,
+    "name": "Munakaya(drumstick) pickel",
+    "image": "https://admin.eveggie.in/storage/products/1787574180_86308.png",
+    "price": 130,
+    "originalPrice": 140,
+    "category": null
+  },
+  {
+    "id": 440,
+    "name": "Tomato pickel",
+    "image": "https://admin.eveggie.in/storage/products/1785144545_76766.png",
+    "price": 130,
+    "originalPrice": 140,
+    "category": null
+  },
+  {
+    "id": 439,
+    "name": "Ginger pickel",
+    "image": "https://admin.eveggie.in/storage/products/1785143945_38602.png",
+    "price": 130,
+    "originalPrice": 140,
+    "category": null
+  },
+  {
+    "id": 111,
+    "name": "Mango Pickle",
+    "image": "https://admin.eveggie.in/storage/products/1738058226_50433.jpeg",
+    "price": 130,
+    "originalPrice": 150,
+    "category": null
+  },
+  {
+    "id": 442,
+    "name": "Lemon pickel",
+    "image": "https://admin.eveggie.in/storage/products/1785145571_54169.png",
+    "price": 130,
+    "originalPrice": 140,
+    "category": null
+  },
+  {
+    "id": 431,
+    "name": "SMALL ONIONS",
+    "image": "https://admin.eveggie.in/storage/products/1780656466_60107.webp",
+    "price": 20,
+    "originalPrice": 25,
+    "category": null
+  },
+  {
+    "id": 59,
+    "name": "Paneer",
+    "image": "https://admin.eveggie.in/storage/products/1770282138_1609.png",
+    "price": 130,
+    "originalPrice": 175,
+    "category": null
+  },
+  {
+    "id": 454,
+    "name": "cauliflower pickel",
+    "image": "https://admin.eveggie.in/storage/products/1787575062_10960.png",
+    "price": 130,
+    "originalPrice": 140,
+    "category": null
+  },
+  {
+    "id": 441,
+    "name": "Gongura pickel",
+    "image": "https://admin.eveggie.in/storage/products/1785145115_14575.png",
+    "price": 150,
+    "originalPrice": 160,
+    "category": null
+  },
+  {
+    "id": 110,
+    "name": "Amla Pickle",
+    "image": "https://admin.eveggie.in/storage/products/1738058157_79108.jpeg",
+    "price": 130,
+    "originalPrice": 140,
+    "category": null
+  },
+  {
+    "id": 409,
+    "name": "Homemade Karivepaku podi",
+    "image": "https://admin.eveggie.in/storage/products/1789221759_24452.png",
+    "price": 90,
+    "originalPrice": 120,
+    "category": null
+  },
+  {
+    "id": 406,
+    "name": "Homemade Kandi Podi",
+    "image": "https://admin.eveggie.in/storage/products/1789222046_83268.png",
+    "price": 90,
+    "originalPrice": 120,
+    "category": null
+  },
+  {
+    "id": 451,
+    "name": "Homemade Nuvvulu podi",
+    "image": "https://admin.eveggie.in/storage/products/1789220611_40976.png",
+    "price": 90,
+    "originalPrice": 120,
+    "category": null
+  },
+  {
+    "id": 457,
+    "name": "Homemade Avisaginjala podi",
+    "image": "https://admin.eveggie.in/storage/products/1789223055_21032.png",
+    "price": 90,
+    "originalPrice": 120,
+    "category": null
+  },
+  {
+    "id": 404,
+    "name": "Homemade Palli Podi",
+    "image": "https://admin.eveggie.in/storage/products/1789223071_50497.png",
+    "price": 90,
+    "originalPrice": 120,
+    "category": null
+  },
+  {
+    "id": 386,
+    "name": "Thick Buffalo Curd",
+    "image": "https://admin.eveggie.in/storage/products/1746637190_78154.jpg",
+    "price": 30,
+    "originalPrice": 42,
+    "category": null
+  },
+  {
+    "id": 456,
+    "name": "BADAM MILK(200ML)",
+    "image": "https://admin.eveggie.in/storage/products/1789282750_79075.png",
+    "price": 30,
+    "originalPrice": 40,
+    "category": null
+  },
+  {
+    "id": 205,
+    "name": "Yellow Marigold",
+    "image": "https://admin.eveggie.in/storage/products/1738159577_7349.jpeg",
+    "price": 60,
+    "originalPrice": 80,
+    "category": null
+  },
+  {
+    "id": 203,
+    "name": "Orange Marigold Flower",
+    "image": "https://admin.eveggie.in/storage/products/1738159379_47820.jpeg",
+    "price": 60,
+    "originalPrice": 80,
+    "category": null
+  },
+  {
+    "id": 458,
+    "name": "Mango leaves",
+    "image": "https://admin.eveggie.in/storage/products/1793953308_10470.jpg",
+    "price": 30,
+    "originalPrice": 50,
+    "category": null
+  }
+]
