@@ -159,10 +159,6 @@ export default function HarvestHeroSection({
             <br />
             Delivered in Hyderabad.
           </p>
-
-          <div className="harvest-hero-leaf-divider" aria-hidden="true">
-            ❧
-          </div>
         </header>
 
         {/* 4 Product Cards Grid */}

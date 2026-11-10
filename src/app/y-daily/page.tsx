@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Hero from "@/components/Hero";
+import HarvestHeroSection, { HeroProduct } from "@/components/HarvestHeroSection";
 import HarvestCategoryGrid from "@/components/HarvestCategoryGrid";
 import ExperienceFarm from "@/components/ExperienceFarm";
 import FarmVegetablesShelf from "@/components/FarmVegetablesShelf";
@@ -48,6 +49,53 @@ export default function YDailyPage() {
     });
   };
 
+  const handleAddHeroProductToCart = (heroProduct: HeroProduct, quantity: number) => {
+    const product: Product = {
+      id: heroProduct.id,
+      name: heroProduct.name,
+      category: heroProduct.id.includes("milk") ? "Milk" : "Fresh Vegetables",
+      farmer: "Nandi Organic Farms",
+      price: heroProduct.price,
+      unit: heroProduct.unit,
+      image: heroProduct.image,
+      description: heroProduct.description,
+      badge: heroProduct.badge,
+    };
+
+    setCartItems((prev) => {
+      const existing = prev.find((item) => item.product.id === product.id);
+      if (existing) {
+        return prev.map((item) =>
+          item.product.id === product.id
+            ? { ...item, quantity: item.quantity + quantity }
+            : item
+        );
+      }
+      return [...prev, { product, quantity }];
+    });
+  };
+
+  const handleOpenHeroModal = (heroProduct: HeroProduct) => {
+    setActiveVegetableModal({
+      id: heroProduct.id,
+      name: heroProduct.name,
+      category: heroProduct.id.includes("milk") ? "Milk" : "Fresh Vegetables",
+      farmer: "Nandi Organic Farms",
+      price: heroProduct.price,
+      unit: heroProduct.unit,
+      image: heroProduct.image,
+      description: heroProduct.description,
+      badge: heroProduct.badge,
+    });
+  };
+
+  const scrollToCategories = () => {
+    const target = document.getElementById("categories");
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   const handleUpdateQuantity = (productId: string, delta: number) => {
     setCartItems((prev) => {
       return prev
@@ -70,12 +118,22 @@ export default function YDailyPage() {
     );
   };
 
+  const totalCartCount = cartItems.reduce((acc, item) => acc + item.quantity, 0);
+
   return (
     <div className="min-h-screen flex flex-col bg-[#ffffff] selection:bg-[#c58b4a] selection:text-white">
       {/* Main Content */}
       <main className="flex-1">
         {/* Y Daily Hero Experience with 3-Stage Dawn Journey */}
         <Hero />
+
+        {/* TODAY'S HARVEST Section directly down of Hero Section (without any changes) */}
+        <HarvestHeroSection
+          cartCount={totalCartCount}
+          onAddToCart={handleAddHeroProductToCart}
+          onOpenModal={handleOpenHeroModal}
+          onViewAllProducts={scrollToCategories}
+        />
 
         {/* 3x3 Harvest Category Grid with Interactive 3D Storybook */}
         <HarvestCategoryGrid />

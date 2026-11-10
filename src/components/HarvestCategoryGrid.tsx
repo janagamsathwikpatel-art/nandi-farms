@@ -13,7 +13,6 @@ import {
   Leaf,
 } from "lucide-react";
 import MilkSubscriptionModal from "./MilkSubscriptionModal";
-import HarvestHeroSection from "./HarvestHeroSection";
 import StoryBookSection from "./StoryBookSection";
 import { FilteredCategoryProducts } from "./FilteredCategoryProducts";
 import { ProductModal } from "./ProductModal";
@@ -1064,39 +1063,6 @@ export default function HarvestCategoryGrid() {
         ref={freshPageRef}
         className="w-full bg-[#fdfbf7] border-t border-[#ede7d8] transition-all duration-500"
       >
-        {/* HD FARM-FRESH ECOMMERCE HERO SECTION WITH FUNCTIONAL ADD-TO-CART */}
-        <HarvestHeroSection
-          cartCount={totalCartCount}
-          onAddToCart={(product, qty) => updateCart(product.id, qty)}
-          onOpenModal={(product) =>
-            setActiveModalProduct({
-              id: product.id,
-              title: product.name,
-              subtitle: product.description,
-              price: product.price,
-              originalPrice:
-                product.id === "th-buffalo-milk"
-                  ? 85
-                  : product.id === "th-cow-milk"
-                  ? 75
-                  : product.id === "th-veggie-basket"
-                  ? 249
-                  : 40,
-              unit: product.unit,
-              image: product.image,
-              badge: product.badge,
-              description: product.description,
-              highlights:
-                product.highlights || [
-                  "100% Farm Fresh",
-                  "Zero Chemical Spray",
-                  "Direct Farm Delivery",
-                ],
-            })
-          }
-          onViewAllProducts={scrollToCatalog}
-        />
-
         {/* Transitional Section with Balanced Gap and Breathing Room */}
         <div className="w-full pt-10 pb-8 md:pt-14 md:pb-10 bg-[#f1e6d4] bg-[url('/images/parchment-texture-bg.png')] bg-repeat border-t border-[#dfd1bd]/80 flex items-center justify-center px-4">
           <div className="relative w-full max-w-[460px] md:max-w-[520px] flex items-center justify-center select-none pointer-events-none">
