@@ -107,10 +107,10 @@ interface QuickCategoryGridProps {
 
 export default function QuickCategoryGrid({ onSelectCategory }: QuickCategoryGridProps) {
   return (
-    <section id="quick-categories" className="w-full bg-[#faf5ea] py-10 sm:py-14 lg:py-16 select-none">
-      <div className="max-w-[1380px] mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header Bar Outside the Card Container with Expanded Width */}
-        <div className="flex items-center justify-between mb-6 sm:mb-8 pb-3.5 sm:pb-4 border-b border-[#ded7c8]">
+    <section id="quick-categories" className="w-full bg-white border-y border-[#e2ded4] py-8 sm:py-10 lg:py-14 select-none">
+      <div className="w-full px-4 sm:px-8 lg:px-12 xl:px-16">
+        {/* Full-Width Header Bar with Zero Side Gaps */}
+        <div className="flex items-center justify-between mb-6 sm:mb-8 pb-3.5 sm:pb-4 border-b border-[#f0ece3]">
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#0f172a]">
             Shop by Category
           </h2>
@@ -123,9 +123,9 @@ export default function QuickCategoryGrid({ onSelectCategory }: QuickCategoryGri
           </Link>
         </div>
 
-        {/* 14 Categories Grid with Expanded Height, Width & Increased Item Sizes */}
-        <div className="bg-white rounded-3xl p-6 sm:p-9 lg:p-12 shadow-sm border border-[#e4ded3]">
-          <div className="grid grid-cols-4 sm:grid-cols-7 lg:grid-cols-8 gap-y-8 sm:gap-y-10 lg:gap-y-12 gap-x-3 sm:gap-x-4 lg:gap-x-6 items-start">
+        {/* 14 Categories Grid - Full Width Edge-to-Edge with Zero Side Gaps */}
+        <div className="w-full py-2">
+          <div className="grid grid-cols-4 sm:grid-cols-7 lg:grid-cols-8 gap-y-8 sm:gap-y-10 lg:gap-y-12 gap-x-3 sm:gap-x-4 lg:gap-x-6 items-start justify-items-center">
             {QUICK_CATEGORIES.map((cat) => (
               <Link
                 key={cat.id}
