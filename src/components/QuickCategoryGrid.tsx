@@ -107,10 +107,10 @@ interface QuickCategoryGridProps {
 
 export default function QuickCategoryGrid({ onSelectCategory }: QuickCategoryGridProps) {
   return (
-    <section id="quick-categories" className="w-full bg-white border-y border-[#e2ded4] py-8 sm:py-10 lg:py-12 select-none">
+    <section id="quick-categories" className="w-full bg-[#faf5ea] border-b border-[#ded7c8] py-8 sm:py-10 lg:py-12 select-none">
       <div className="w-full px-4 sm:px-6 lg:px-10 xl:px-12">
-        {/* Full-Width Header Bar with Zero Side Gaps */}
-        <div className="flex items-center justify-between mb-6 sm:mb-8 pb-3.5 sm:pb-4 border-b border-[#f0ece3]">
+        {/* Full-Width Header Bar with Harmonized Border */}
+        <div className="flex items-center justify-between mb-6 sm:mb-8 pb-3.5 sm:pb-4 border-b border-[#ded7c8]">
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#0f172a]">
             Shop by Category
           </h2>
