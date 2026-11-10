@@ -107,9 +107,6 @@ export default function NandiFarmHero({
 
   return (
     <div className={`nandi-hero ${nandiFarmFonts}`}>
-      <a className="skip" href="#categories">
-        Skip to content
-      </a>
       <header className="farm-header" ref={headerRef}>
         <a className="farm-brand" href="#home">
           <Image

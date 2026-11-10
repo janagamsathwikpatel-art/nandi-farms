@@ -8,9 +8,6 @@ import "./shop.css";
 export default function ShopLayout({ children }: { children: ReactNode }) {
   return (
     <div className={`shop-page ${nandiFarmFonts}`}>
-      <a className="sr-only focus:not-sr-only" href="#shop-main">
-        Skip to content
-      </a>
       <header className="shop-header">
         <Link href="/" className="shop-brand">
           <Image

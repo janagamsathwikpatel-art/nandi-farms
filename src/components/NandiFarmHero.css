@@ -8,20 +8,6 @@
   font-family: var(--sans);
 }
 
-.nandi-hero .skip {
-  position: fixed;
-  z-index: 100;
-  top: 12px;
-  left: 12px;
-  padding: 12px 16px;
-  background: white;
-  transform: translateY(-200%);
-}
-
-.nandi-hero .skip:focus {
-  transform: none;
-}
-
 .nandi-hero .farm-header {
   position: absolute;
   inset: 0 0 auto;
