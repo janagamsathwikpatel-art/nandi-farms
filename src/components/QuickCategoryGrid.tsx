@@ -123,8 +123,8 @@ export default function QuickCategoryGrid({ onSelectCategory }: QuickCategoryGri
           </Link>
         </div>
 
-        {/* 14 Categories Grid with Increased Prominent Item Sizes inside clean container */}
-        <div className="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 lg:p-10 shadow-xs border border-[#eee9df]">
+        {/* 14 Categories Grid with Code-Designed High Definition Layout */}
+        <div className="bg-white rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-10 shadow-sm border border-[#e8e4db]">
           <div className="grid grid-cols-4 sm:grid-cols-7 lg:grid-cols-8 gap-y-8 sm:gap-y-10 lg:gap-y-12 gap-x-3 sm:gap-x-4 lg:gap-x-6 items-start">
             {QUICK_CATEGORIES.map((cat) => (
               <Link
@@ -134,19 +134,19 @@ export default function QuickCategoryGrid({ onSelectCategory }: QuickCategoryGri
                 className="group flex flex-col items-center text-center cursor-pointer focus:outline-none"
                 aria-label={`Shop ${cat.title}`}
               >
-                {/* Product Icon Box - Significantly Increased Size */}
-                <div className="w-20 h-20 sm:w-26 sm:h-26 lg:w-30 lg:h-30 flex items-center justify-center p-1.5 rounded-2xl transition-all duration-300 group-hover:-translate-y-1.5 group-hover:scale-110">
+                {/* Product Icon Box - Code-Designed HD Sizing with Smooth Elevation */}
+                <div className="w-20 h-20 sm:w-24 sm:h-24 lg:w-28 lg:h-28 flex items-center justify-center p-2 rounded-2xl transition-all duration-300 ease-out group-hover:-translate-y-2 group-hover:scale-108">
                   <img
                     src={cat.image}
                     alt={cat.title}
-                    className="w-full h-full object-contain filter drop-shadow-sm transition-transform duration-300"
+                    className="w-full h-full object-contain filter drop-shadow-[0_4px_8px_rgba(0,0,0,0.06)] group-hover:drop-shadow-[0_8px_16px_rgba(0,0,0,0.12)] transition-all duration-300"
                     loading="eager"
                     decoding="async"
                   />
                 </div>
 
-                {/* Category Title - Larger, Crisp Font Outside Image */}
-                <span className="text-xs sm:text-sm lg:text-[15px] font-bold text-[#0f172a] leading-tight text-center mt-3 group-hover:text-[#e11d48] transition-colors max-w-[120px] line-clamp-2">
+                {/* Category Title - Crisp Anti-Aliased Live Font with Red Hover State */}
+                <span className="text-xs sm:text-sm lg:text-[14.5px] font-bold text-[#0f172a] leading-snug text-center mt-3 group-hover:text-[#e11d48] transition-colors max-w-[110px] min-h-[38px] flex items-start justify-center">
                   {cat.title}
                 </span>
               </Link>
