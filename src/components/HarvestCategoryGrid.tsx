@@ -947,7 +947,24 @@ export default function HarvestCategoryGrid() {
       : allCategoryItems.filter((item) => item.subCategory === activeSubFilter);
 
   return (
-    <section id="categories" className="relative w-full bg-[#f6f2e8] overflow-hidden pt-4 sm:pt-6 lg:pt-8">
+    <section id="categories" className="relative w-full bg-[#f6f2e8] overflow-hidden pt-6 sm:pt-8 lg:pt-10">
+      {/* "Shop by Category" Header Outside & Directly Above the 3x3 Grid */}
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-4 sm:pb-6">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between border-b border-[#ded7c8] pb-4 sm:pb-5 gap-2">
+          <div>
+            <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-[#183622] font-semibold tracking-tight">
+              Shop by Category
+            </h2>
+            <p className="text-xs sm:text-[13px] font-bold tracking-[0.2em] text-[#22442d] uppercase mt-1.5">
+              Pure Goodness for a Healthier Tomorrow
+            </p>
+          </div>
+          <span className="text-xs font-semibold text-[#7d4f19] bg-[#ebdccb] px-3.5 py-1.5 rounded-full w-fit">
+            9 Collections
+          </span>
+        </div>
+      </div>
+
       {/* 1. BALANCED CATEGORY GRID WITH REFINED GAP (Pure Photos + Live HTML Text Outside Image) */}
       <div className="w-full p-3 sm:p-4 lg:p-6 leading-none">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 w-full gap-3 sm:gap-4 lg:gap-5">
