@@ -20,8 +20,6 @@ export default function NandiFarmHero({
   const crateRef = useRef<HTMLImageElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [playing, setPlaying] = useState(false);
-  const [videoFailed, setVideoFailed] = useState(false);
 
   useEffect(() => {
     if (!menuOpen) return;
@@ -93,13 +91,6 @@ export default function NandiFarmHero({
     };
   }, []);
 
-  function toggleVideo() {
-    const video = videoRef.current;
-    if (!video) return;
-    if (video.paused) void video.play().catch(() => {});
-    else video.pause();
-  }
-
   function openSubscription() {
     setMenuOpen(false);
     onOpenSubscription();
@@ -164,9 +155,6 @@ export default function NandiFarmHero({
             playsInline
             preload="none"
             aria-hidden="true"
-            onPlay={() => setPlaying(true)}
-            onPause={() => setPlaying(false)}
-            onError={() => setVideoFailed(true)}
           />
           <div className="farm-crate-stage">
             <Image
@@ -179,23 +167,6 @@ export default function NandiFarmHero({
               loading="eager"
             />
           </div>
-        </div>
-        <div className="living-farm-actions">
-          <Link className="farm-primary" href="/shop">
-            Shop the farm
-          </Link>
-          <button
-            className="farm-secondary"
-            type="button"
-            onClick={openSubscription}
-          >
-            Explore milk plans
-          </button>
-          {!videoFailed && (
-            <button className="farm-motion" type="button" onClick={toggleVideo}>
-              {playing ? "Pause motion" : "Play motion"}
-            </button>
-          )}
         </div>
       </section>
     </div>
