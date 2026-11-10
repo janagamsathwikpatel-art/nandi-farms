@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import NandiFarmHero from "@/components/NandiFarmHero";
+import QuickCategoryGrid from "@/components/QuickCategoryGrid";
 import HarvestHeroSection, { HeroProduct } from "@/components/HarvestHeroSection";
 import HarvestCategoryGrid from "@/components/HarvestCategoryGrid";
 import ExperienceFarm from "@/components/ExperienceFarm";
@@ -127,7 +128,10 @@ export default function Home() {
         {/* Nandi Farms Hero Section (with video, parallax harvest crate & navigation) */}
         <NandiFarmHero onOpenSubscription={() => setIsSubModalOpen(true)} />
 
-        {/* TODAY'S HARVEST Section directly down of Hero Section (without any changes) */}
+        {/* Shop by Category Quick Grid (directly down of Hero Section as requested) */}
+        <QuickCategoryGrid />
+
+        {/* TODAY'S HARVEST Section directly down of Category Section */}
         <HarvestHeroSection
           cartCount={totalCartCount}
           onAddToCart={handleAddHeroProductToCart}
