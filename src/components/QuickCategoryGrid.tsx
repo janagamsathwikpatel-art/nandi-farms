@@ -107,25 +107,25 @@ interface QuickCategoryGridProps {
 
 export default function QuickCategoryGrid({ onSelectCategory }: QuickCategoryGridProps) {
   return (
-    <section id="quick-categories" className="w-full bg-[#faf5ea] py-8 sm:py-12 lg:py-14 border-b border-[#ede7da] select-none">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header Bar Outside the Card Container */}
-        <div className="flex items-center justify-between mb-6 sm:mb-8 pb-3.5 border-b border-[#ded7c8]">
-          <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#0f172a]">
+    <section id="quick-categories" className="w-full bg-[#faf5ea] py-6 sm:py-8 lg:py-10 select-none">
+      <div className="max-w-[1260px] mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header Bar Outside the Card Container Matching Reference Length */}
+        <div className="flex items-center justify-between mb-4 sm:mb-5 pb-2.5 sm:pb-3 border-b border-[#ded7c8]">
+          <h2 className="text-xl sm:text-2xl lg:text-[26px] font-bold tracking-tight text-[#0f172a]">
             Shop by Category
           </h2>
           <Link
             href="/shop"
-            className="text-sm sm:text-base font-bold text-[#e11d48] hover:text-[#be123c] transition-colors flex items-center gap-1.5 group cursor-pointer"
+            className="text-xs sm:text-sm font-bold text-[#e11d48] hover:text-[#be123c] transition-colors flex items-center gap-1 group cursor-pointer"
           >
             <span>See All</span>
             <span className="transition-transform group-hover:translate-x-1 font-extrabold">›</span>
           </Link>
         </div>
 
-        {/* 14 Categories Grid with Code-Designed High Definition Layout */}
-        <div className="bg-white rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-10 shadow-sm border border-[#e8e4db]">
-          <div className="grid grid-cols-4 sm:grid-cols-7 lg:grid-cols-8 gap-y-8 sm:gap-y-10 lg:gap-y-12 gap-x-3 sm:gap-x-4 lg:gap-x-6 items-start">
+        {/* 14 Categories Grid with Exact Sleek Proportions Matching Reference */}
+        <div className="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-6 lg:p-7 shadow-xs border border-[#e4ded3]">
+          <div className="grid grid-cols-4 sm:grid-cols-7 lg:grid-cols-8 gap-y-5 sm:gap-y-6 lg:gap-y-7 gap-x-2 sm:gap-x-3 lg:gap-x-4 items-start">
             {QUICK_CATEGORIES.map((cat) => (
               <Link
                 key={cat.id}
@@ -134,19 +134,19 @@ export default function QuickCategoryGrid({ onSelectCategory }: QuickCategoryGri
                 className="group flex flex-col items-center text-center cursor-pointer focus:outline-none"
                 aria-label={`Shop ${cat.title}`}
               >
-                {/* Product Icon Box - Code-Designed HD Sizing with Smooth Elevation */}
-                <div className="w-20 h-20 sm:w-24 sm:h-24 lg:w-28 lg:h-28 flex items-center justify-center p-2 rounded-2xl transition-all duration-300 ease-out group-hover:-translate-y-2 group-hover:scale-108">
+                {/* Product Icon Box - Calibrated Sleek Proportions */}
+                <div className="w-14 h-14 sm:w-16 sm:h-16 lg:w-[68px] lg:h-[68px] flex items-center justify-center p-1 rounded-xl transition-all duration-200 ease-out group-hover:-translate-y-1.5 group-hover:scale-110">
                   <img
                     src={cat.image}
                     alt={cat.title}
-                    className="w-full h-full object-contain filter drop-shadow-[0_4px_8px_rgba(0,0,0,0.06)] group-hover:drop-shadow-[0_8px_16px_rgba(0,0,0,0.12)] transition-all duration-300"
+                    className="w-full h-full object-contain filter drop-shadow-[0_3px_6px_rgba(0,0,0,0.06)] group-hover:drop-shadow-[0_6px_12px_rgba(0,0,0,0.12)] transition-all duration-200"
                     loading="eager"
                     decoding="async"
                   />
                 </div>
 
-                {/* Category Title - Crisp Anti-Aliased Live Font with Red Hover State */}
-                <span className="text-xs sm:text-sm lg:text-[14.5px] font-bold text-[#0f172a] leading-snug text-center mt-3 group-hover:text-[#e11d48] transition-colors max-w-[110px] min-h-[38px] flex items-start justify-center">
+                {/* Category Title - Compact & Crisp Live Typography */}
+                <span className="text-[11px] sm:text-xs lg:text-[13px] font-bold text-[#0f172a] leading-tight text-center mt-2 group-hover:text-[#e11d48] transition-colors max-w-[95px] min-h-[30px] flex items-start justify-center">
                   {cat.title}
                 </span>
               </Link>
