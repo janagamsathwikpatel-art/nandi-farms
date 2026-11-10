@@ -483,7 +483,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
                         <div className="flex items-center space-x-2">
                           <span className="text-lg">✨</span>
                           <h4 className="font-black text-base text-gray-900">
-                            Customers Also Added to Cart
+                            Reference Items to Buy (Frequently Added)
                           </h4>
                           <span className="bg-emerald-100 text-emerald-900 text-[10px] font-black px-2 py-0.5 rounded-full">
                             Top Fresh Picks
