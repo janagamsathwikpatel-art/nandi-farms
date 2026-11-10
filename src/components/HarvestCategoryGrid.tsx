@@ -947,7 +947,7 @@ export default function HarvestCategoryGrid() {
       : allCategoryItems.filter((item) => item.subCategory === activeSubFilter);
 
   return (
-    <section id="categories" className="relative w-full bg-[#f6f2e8] overflow-hidden pt-6 sm:pt-8 lg:pt-10">
+    <section id="categories" className="relative w-full bg-[#faf5ea] overflow-hidden pt-6 sm:pt-8 lg:pt-10">
       {/* "Shop by Category" Header Outside & Directly Above the 3x3 Grid */}
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-4 sm:pb-6">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between border-b border-[#ded7c8] pb-4 sm:pb-5 gap-2">

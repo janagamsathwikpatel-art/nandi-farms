@@ -38,7 +38,7 @@ export default function ExperienceFarm({
   return (
     <section
       id="explore-harvest"
-      className="relative w-full h-[260px] sm:h-[320px] md:h-[380px] lg:h-[420px] overflow-hidden bg-[#f1e6d4]"
+      className="relative w-full h-[260px] sm:h-[320px] md:h-[380px] lg:h-[420px] overflow-hidden bg-[#faf5ea]"
       aria-label="Explore the Harvest"
     >
       {/* 1. Exact 2nd Image Deployed Without Any Changes */}

@@ -214,7 +214,7 @@ export default function FarmVegetablesShelf({
   return (
     <section
       id="farm-vegetables-shelf"
-      className="w-full bg-[#fbf7ee] border-y border-[#ede3d2] py-8 sm:py-12 px-4 sm:px-8 lg:px-12 transition-all duration-500 animate-in fade-in slide-in-from-top-4"
+      className="w-full bg-[#faf5ea] border-y border-[#ede3d2] py-8 sm:py-12 px-4 sm:px-8 lg:px-12 transition-all duration-500 animate-in fade-in slide-in-from-top-4"
       aria-label="Fresh Farm Vegetables Collection"
     >
       <div className="max-w-7xl mx-auto">

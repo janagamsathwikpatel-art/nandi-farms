@@ -26,7 +26,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${cormorant.variable} ${jakarta.variable} scroll-smooth`}>
-      <body className="font-sans antialiased bg-[#fbf9f5] text-[#222e23] selection:bg-[#c58b4a] selection:text-white">
+      <body className="font-sans antialiased bg-[#faf5ea] text-[#222e23] selection:bg-[#c58b4a] selection:text-white">
         {children}
       </body>
     </html>

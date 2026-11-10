@@ -122,7 +122,7 @@ export default function YDailyPage() {
   const totalCartCount = cartItems.reduce((acc, item) => acc + item.quantity, 0);
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#ffffff] selection:bg-[#c58b4a] selection:text-white">
+    <div className="min-h-screen flex flex-col bg-[#faf5ea] selection:bg-[#c58b4a] selection:text-white">
       {/* Main Content */}
       <main className="flex-1">
         {/* Nandi Farms Hero Section (with video, parallax harvest crate & navigation) */}
@@ -158,14 +158,14 @@ export default function YDailyPage() {
           onUpdateQuantity={handleUpdateQuantity}
         />
 
-        {/* Vertical Spacing Gap between Explore the Harvest and Milk Subscriptions (Warm Parchment #f1e6d4) */}
-        <div className="w-full h-8 sm:h-12 md:h-16 bg-[#f1e6d4]" aria-hidden="true" />
+        {/* Vertical Spacing Gap between Explore the Harvest and Milk Subscriptions (Warm Parchment #faf5ea) */}
+        <div className="w-full h-8 sm:h-12 md:h-16 bg-[#faf5ea]" aria-hidden="true" />
 
         {/* 4K Ultra-HD Fresh Milk Subscriptions Section with Live HTML Elements */}
         <MilkSubscriptionBanner onOpenModal={() => setIsSubModalOpen(true)} />
 
-        {/* Vertical Spacing Gap (Warm Parchment #f1e6d4) */}
-        <div className="w-full h-8 sm:h-12 md:h-16 bg-[#f1e6d4]" aria-hidden="true" />
+        {/* Vertical Spacing Gap (Warm Parchment #faf5ea) */}
+        <div className="w-full h-8 sm:h-12 md:h-16 bg-[#faf5ea]" aria-hidden="true" />
       </main>
 
       {/* Brand New 4K Y Daily Scenic Footer with Working Links, Form & Socials */}
