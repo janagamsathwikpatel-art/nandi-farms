@@ -947,39 +947,7 @@ export default function HarvestCategoryGrid() {
       : allCategoryItems.filter((item) => item.subCategory === activeSubFilter);
 
   return (
-    <section id="categories" className="relative w-full bg-[#f6f2e8] overflow-hidden">
-      {/* 100% Full-Width Panoramic "Shop By Category" Banner (Text Rendered Outside Image) */}
-      <div className="relative w-full p-0 m-0 leading-none overflow-hidden block">
-        {/* Pure Photographic Background (Zero baked text) */}
-        <img
-          src="/images/shop-by-category-banner-clean-bg.png"
-          alt="Shop By Category Background"
-          className="w-full h-auto object-cover block m-0 p-0"
-          loading="eager"
-        />
-
-        {/* Live HTML Typography Layer rendered OUTSIDE the image */}
-        <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4 pointer-events-none">
-          {/* Botanical Dual Leaf Emblem */}
-          <div className="flex items-center justify-center mb-1.5 sm:mb-2 opacity-90">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="w-5 h-5 sm:w-6 sm:h-6 text-[#183622]">
-              <path d="M12 4C10 9 6 11 2 11C2 15 5 20 12 20C19 20 22 15 22 11C18 11 14 9 12 4Z" fill="currentColor" fillOpacity="0.85" />
-              <path d="M12 6V18" stroke="#f6f2e8" strokeWidth="1.2" strokeLinecap="round" />
-            </svg>
-          </div>
-
-          {/* Live Heading */}
-          <h2 className="font-serif text-3xl sm:text-5xl md:text-6xl text-[#183622] font-medium tracking-tight">
-            Shop By Category
-          </h2>
-
-          {/* Subtitle cleanly without line fragments */}
-          <p className="text-[10px] sm:text-xs font-semibold tracking-[0.25em] text-[#22442d] uppercase font-sans mt-2 sm:mt-3">
-            PURE GOODNESS FOR A HEALTHIER TOMORROW
-          </p>
-        </div>
-      </div>
-
+    <section id="categories" className="relative w-full bg-[#f6f2e8] overflow-hidden pt-4 sm:pt-6 lg:pt-8">
       {/* 1. BALANCED CATEGORY GRID WITH REFINED GAP (Pure Photos + Live HTML Text Outside Image) */}
       <div className="w-full p-3 sm:p-4 lg:p-6 leading-none">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 w-full gap-3 sm:gap-4 lg:gap-5">
