@@ -138,91 +138,139 @@ export interface CollectionCardItem {
   image: string;
   bgColor: string;
   arrowWidthClass: string;
+  aspectClass: string;
+  flexRatio: number;
 }
 
-export const ALL_9_COLLECTIONS: CollectionCardItem[] = [
+export interface CollectionRow {
+  rowId: string;
+  desktopAspect: string;
+  items: CollectionCardItem[];
+}
+
+export const COLLECTION_ROWS: CollectionRow[] = [
   {
-    id: "milk",
-    title: "Milk",
-    category: "milk",
-    subCategory: "all",
-    image: "/images/collections/col_milk_clean_2x.png",
-    bgColor: "bg-[#faf5ea]",
-    arrowWidthClass: "w-16 sm:w-20",
+    rowId: "row-1",
+    desktopAspect: "lg:aspect-[975/230]",
+    items: [
+      {
+        id: "milk",
+        title: "Milk",
+        category: "milk",
+        subCategory: "all",
+        image: "/images/collections/col_milk_clean_2x.png",
+        bgColor: "bg-[#faf5ea]",
+        arrowWidthClass: "w-16 sm:w-20",
+        aspectClass: "aspect-[356/230]",
+        flexRatio: 356,
+      },
+      {
+        id: "vegetables",
+        title: "Vegetables",
+        category: "vegetables",
+        subCategory: "all",
+        image: "/images/collections/col_vegetables_clean_2x.png",
+        bgColor: "bg-[#faf5ea]",
+        arrowWidthClass: "w-24 sm:w-28",
+        aspectClass: "aspect-[317/230]",
+        flexRatio: 317,
+      },
+      {
+        id: "fruits",
+        title: "Fruits",
+        category: "fruits",
+        subCategory: "all",
+        image: "/images/collections/col_fruits_clean_2x.png",
+        bgColor: "bg-[#faf5ea]",
+        arrowWidthClass: "w-16 sm:w-20",
+        aspectClass: "aspect-[302/230]",
+        flexRatio: 302,
+      },
+    ],
   },
   {
-    id: "vegetables",
-    title: "Vegetables",
-    category: "vegetables",
-    subCategory: "all",
-    image: "/images/collections/col_vegetables_clean_2x.png",
-    bgColor: "bg-[#dce5da]",
-    arrowWidthClass: "w-24 sm:w-28",
+    rowId: "row-2",
+    desktopAspect: "lg:aspect-[977/198]",
+    items: [
+      {
+        id: "curd",
+        title: "Curd",
+        category: "dairy_products",
+        subCategory: "Set Curd & Dahi",
+        image: "/images/collections/col_curd_clean_2x.png",
+        bgColor: "bg-[#faf5ea]",
+        arrowWidthClass: "w-16 sm:w-20",
+        aspectClass: "aspect-[297/198]",
+        flexRatio: 297,
+      },
+      {
+        id: "paneer",
+        title: "Paneer",
+        category: "dairy_products",
+        subCategory: "Malai Paneer",
+        image: "/images/collections/col_paneer_clean_2x.png",
+        bgColor: "bg-[#faf5ea]",
+        arrowWidthClass: "w-16 sm:w-20",
+        aspectClass: "aspect-[320/198]",
+        flexRatio: 320,
+      },
+      {
+        id: "ghee",
+        title: "Ghee",
+        category: "oils_ghee",
+        subCategory: "A2 Bilona Ghee",
+        image: "/images/collections/col_ghee_clean_2x.png",
+        bgColor: "bg-[#faf5ea]",
+        arrowWidthClass: "w-16 sm:w-20",
+        aspectClass: "aspect-[360/198]",
+        flexRatio: 360,
+      },
+    ],
   },
   {
-    id: "fruits",
-    title: "Fruits",
-    category: "fruits",
-    subCategory: "all",
-    image: "/images/collections/col_fruits_clean_2x.png",
-    bgColor: "bg-[#faefe2]",
-    arrowWidthClass: "w-16 sm:w-20",
-  },
-  {
-    id: "curd",
-    title: "Curd",
-    category: "dairy_products",
-    subCategory: "Set Curd & Dahi",
-    image: "/images/collections/col_curd_clean_2x.png",
-    bgColor: "bg-[#dce5da]",
-    arrowWidthClass: "w-16 sm:w-20",
-  },
-  {
-    id: "paneer",
-    title: "Paneer",
-    category: "dairy_products",
-    subCategory: "Malai Paneer",
-    image: "/images/collections/col_paneer_clean_2x.png",
-    bgColor: "bg-[#faefe2]",
-    arrowWidthClass: "w-16 sm:w-20",
-  },
-  {
-    id: "ghee",
-    title: "Ghee",
-    category: "oils_ghee",
-    subCategory: "A2 Bilona Ghee",
-    image: "/images/collections/col_ghee_clean_2x.png",
-    bgColor: "bg-[#faefe2]",
-    arrowWidthClass: "w-16 sm:w-20",
-  },
-  {
-    id: "grains",
-    title: "Grains",
-    category: "grains_pulses",
-    subCategory: "Aged Rice",
-    image: "/images/collections/col_grains_clean_2x.png",
-    bgColor: "bg-[#faf5ea]",
-    arrowWidthClass: "w-16 sm:w-20",
-  },
-  {
-    id: "pulses",
-    title: "Pulses",
-    category: "grains_pulses",
-    subCategory: "Unpolished Dals",
-    image: "/images/collections/col_pulses_clean_2x.png",
-    bgColor: "bg-[#dce5da]",
-    arrowWidthClass: "w-16 sm:w-20",
-  },
-  {
-    id: "dryfruits",
-    title: "Dry Fruits",
-    category: "healthy_snacks",
-    subCategory: "Roasted Nuts",
-    image: "/images/collections/col_dryfruits_clean_2x.png",
-    bgColor: "bg-[#faefe2]",
-    arrowWidthClass: "w-24 sm:w-28",
+    rowId: "row-3",
+    desktopAspect: "lg:aspect-[972/198]",
+    items: [
+      {
+        id: "grains",
+        title: "Grains",
+        category: "grains_pulses",
+        subCategory: "Aged Rice",
+        image: "/images/collections/col_grains_clean_2x.png",
+        bgColor: "bg-[#faf5ea]",
+        arrowWidthClass: "w-16 sm:w-20",
+        aspectClass: "aspect-[324/198]",
+        flexRatio: 324,
+      },
+      {
+        id: "pulses",
+        title: "Pulses",
+        category: "grains_pulses",
+        subCategory: "Unpolished Dals",
+        image: "/images/collections/col_pulses_clean_2x.png",
+        bgColor: "bg-[#faf5ea]",
+        arrowWidthClass: "w-16 sm:w-20",
+        aspectClass: "aspect-[296/198]",
+        flexRatio: 296,
+      },
+      {
+        id: "dryfruits",
+        title: "Dry Fruits",
+        category: "healthy_snacks",
+        subCategory: "Roasted Nuts",
+        image: "/images/collections/col_dryfruits_clean_2x.png",
+        bgColor: "bg-[#faf5ea]",
+        arrowWidthClass: "w-24 sm:w-28",
+        aspectClass: "aspect-[352/198]",
+        flexRatio: 352,
+      },
+    ],
   },
 ];
+
+export const ALL_9_COLLECTIONS: CollectionCardItem[] = COLLECTION_ROWS.flatMap(
+  (row) => row.items
+);
 
 export const CATEGORY_HARVEST_ITEMS: Record<string, HarvestItem[]> = {
   milk: [
@@ -963,7 +1011,6 @@ export default function HarvestCategoryGrid() {
   const [cart, setCart] = useState<{ [productId: string]: number }>({});
   const [isMilkModalOpen, setIsMilkModalOpen] = useState(false);
   const [activeModalProduct, setActiveModalProduct] = useState<TodaysHarvestFeatured | null>(null);
-  const [showAllCollections, setShowAllCollections] = useState(false);
   const freshPageRef = useRef<HTMLDivElement>(null);
   const allCollectionsRef = useRef<HTMLDivElement>(null);
   const categoryProductsAnchorRef = useRef<HTMLDivElement>(null);
@@ -973,20 +1020,6 @@ export default function HarvestCategoryGrid() {
     if (catalogRef.current) {
       catalogRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
     }
-  };
-
-  const handleToggleAllCollections = () => {
-    setShowAllCollections((prev) => {
-      const next = !prev;
-      if (next) {
-        setTimeout(() => {
-          if (allCollectionsRef.current) {
-            allCollectionsRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
-          }
-        }, 100);
-      }
-      return next;
-    });
   };
 
   const handleCardClick = (catId: string, subFilter?: string) => {
@@ -1058,234 +1091,85 @@ export default function HarvestCategoryGrid() {
 
   return (
     <section id="categories" className="relative w-full bg-[#faf5ea] overflow-hidden py-6 sm:py-8 lg:py-10">
-      {/* 1. EVERYDAY GOODNESS & 9 COLLECTIONS BENTO CONTAINER (Live HTML Typography Outside Images, Zero Box Hover) */}
+      {/* 1. EVERYDAY GOODNESS 9 COLLECTIONS BENTO CONTAINER (Pure Artwork, Zero White Layout, No Clipping) */}
       <div
         ref={allCollectionsRef}
         id="collections-container"
         className="w-full max-w-[1536px] 2xl:max-w-[1680px] mx-auto px-4 sm:px-6 lg:px-10 xl:px-12 pb-6 sm:pb-8 select-none"
       >
         <div className="w-full">
-          {!showAllCollections ? (
-            /* STATE A: EVERYDAY GOODNESS (3-Card Bento Grid) */
-            <div className="animate-in fade-in duration-500">
-              {/* Header Bar Outside the Cards (Crisp Live HTML) */}
-              <div className="flex flex-col sm:flex-row sm:items-start justify-between pb-6 sm:pb-8 gap-4">
-                <div>
-                  <h2 className="font-playfair text-3xl sm:text-4xl lg:text-[44px] text-[#16301d] font-normal tracking-tight leading-none">
-                    Everyday Goodness
-                  </h2>
-                  <p className="text-sm sm:text-base text-[#4b5563] mt-2.5 font-sans font-medium">
-                    Explore dairy, fruits, vegetables and more.
-                  </p>
-                </div>
-                <button
-                  type="button"
-                  onClick={handleToggleAllCollections}
-                  className="inline-flex items-center gap-2 bg-[#f3e4d5] hover:bg-[#ebd3be] text-[#4a3018] font-semibold text-xs sm:text-sm px-5 sm:px-6 py-2.5 sm:py-3 rounded-full transition-all duration-300 shadow-xs hover:shadow cursor-pointer self-start sm:self-auto shrink-0 focus:outline-none"
-                  aria-label="Toggle all 9 collections"
-                >
-                  <span>View all 9 collections</span>
-                  <span className="text-base transition-transform duration-300">→</span>
-                </button>
+          <div className="animate-in fade-in duration-500">
+            {/* Header Bar: Everyday Goodness with Exact Typography & Badge */}
+            <div className="flex flex-col sm:flex-row sm:items-start justify-between pb-6 sm:pb-8 gap-4 border-b border-[#ece3d5]/80 mb-6 sm:mb-8">
+              <div>
+                <h2 className="font-playfair text-3xl sm:text-4xl lg:text-[44px] text-[#16301d] font-normal tracking-tight leading-none">
+                  Everyday Goodness
+                </h2>
+                <p className="text-sm sm:text-base text-[#4b5563] mt-2.5 font-sans font-medium">
+                  Explore dairy, fruits, vegetables and more.
+                </p>
               </div>
-
-              {/* Bento Grid: Left Milk + Right Stacked Veg & Fruit (Live Text, No Hover Box) */}
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-5 lg:gap-6 items-stretch">
-                {/* A. Left Column: Milk Card (5 of 12 cols on desktop) */}
-                <button
-                  type="button"
-                  onClick={() => handleCardClick("milk")}
-                  className={`group relative w-full lg:col-span-5 rounded-2xl sm:rounded-3xl overflow-hidden text-left focus:outline-none p-0 cursor-pointer block bg-[#faf5ea] shadow-sm hover:shadow-md transition-all duration-300 min-h-[380px] sm:min-h-[440px] lg:min-h-[480px] ${
-                    isCategoryProductsOpen && selectedCategory === "milk"
-                      ? "ring-4 ring-[#16301d]"
-                      : ""
-                  }`}
-                  aria-label="Open Milk Products"
-                >
-                  {/* Background Plate Image (Clean 2nd Image Artwork - Zero Streaks) */}
-                  <img
-                    src="/images/bento_clean_v2/milk_2x.png"
-                    alt="Fresh Farm Milk"
-                    className="absolute inset-0 w-full h-full object-cover object-bottom transition-transform duration-700 ease-out group-hover:scale-105 pointer-events-none select-none"
-                    loading="eager"
-                  />
-
-                  {/* Live HTML Typography Outside Image */}
-                  <div className="absolute top-6 sm:top-8 left-6 sm:left-8 z-10 flex items-center gap-3 select-none">
-                    <span className="font-playfair text-3xl sm:text-4xl lg:text-[42px] text-[#16301d] font-normal tracking-tight leading-none drop-shadow-sm">
-                      Milk
-                    </span>
-                    <span className="w-8 h-8 rounded-full bg-[#16301d]/10 flex items-center justify-center text-[#16301d] text-base group-hover:bg-[#16301d] group-hover:text-white group-hover:translate-x-1 transition-all duration-300 shadow-xs">
-                      →
-                    </span>
-                  </div>
-
-                  {/* Active Indicator Badge */}
-                  {isCategoryProductsOpen && selectedCategory === "milk" && (
-                    <div className="absolute top-6 right-6 z-10 bg-[#16301d] text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-md flex items-center gap-1.5 animate-in fade-in">
-                      <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                      <span>Viewing Dairy</span>
-                    </div>
-                  )}
-                </button>
-
-                {/* B. Right Column: Stacked Vegetables & Fruits Cards (7 of 12 cols on desktop) */}
-                <div className="lg:col-span-7 flex flex-col gap-4 sm:gap-5 lg:gap-6 justify-between">
-                  {/* Top Card: Vegetables */}
-                  <button
-                    type="button"
-                    onClick={() => handleCardClick("vegetables")}
-                    className={`group relative w-full h-[180px] sm:h-[210px] lg:h-[228px] rounded-2xl sm:rounded-3xl overflow-hidden text-left focus:outline-none p-0 cursor-pointer block bg-[#dce5da] shadow-sm hover:shadow-md transition-all duration-300 ${
-                      isCategoryProductsOpen && selectedCategory === "vegetables"
-                        ? "ring-4 ring-[#16301d]"
-                        : ""
-                    }`}
-                    aria-label="Open Vegetables Products"
-                  >
-                    <img
-                      src="/images/bento_clean_v2/veg_2x.png"
-                      alt="Fresh Organic Vegetables"
-                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 pointer-events-none select-none"
-                      loading="eager"
-                    />
-
-                    {/* Live HTML Typography Outside Image */}
-                    <div className="absolute top-1/2 -translate-y-1/2 left-6 sm:left-10 z-10 select-none">
-                      <span className="font-playfair text-3xl sm:text-4xl lg:text-[42px] text-[#16301d] font-normal tracking-tight leading-none drop-shadow-sm block">
-                        Vegetables
-                      </span>
-                      <div className="flex items-center w-36 sm:w-44 h-px bg-[#16301d]/40 mt-3 sm:mt-4 relative">
-                        <span className="absolute -right-1 -top-2.5 text-base text-[#16301d] transition-transform duration-300 group-hover:translate-x-2">
-                          →
-                        </span>
-                      </div>
-                    </div>
-
-                    {/* Active Indicator Badge */}
-                    {isCategoryProductsOpen && selectedCategory === "vegetables" && (
-                      <div className="absolute top-5 right-5 z-10 bg-[#16301d] text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-md flex items-center gap-1.5 animate-in fade-in">
-                        <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                        <span>Viewing Veggies</span>
-                      </div>
-                    )}
-                  </button>
-
-                  {/* Bottom Card: Fruits */}
-                  <button
-                    type="button"
-                    onClick={() => handleCardClick("fruits")}
-                    className={`group relative w-full h-[180px] sm:h-[210px] lg:h-[228px] rounded-2xl sm:rounded-3xl overflow-hidden text-left focus:outline-none p-0 cursor-pointer block bg-[#faefe2] shadow-sm hover:shadow-md transition-all duration-300 ${
-                      isCategoryProductsOpen && selectedCategory === "fruits"
-                        ? "ring-4 ring-[#16301d]"
-                        : ""
-                    }`}
-                    aria-label="Open Fruits Products"
-                  >
-                    <img
-                      src="/images/bento_clean_v2/fruit_2x.png"
-                      alt="Fresh Orchard Fruits"
-                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 pointer-events-none select-none"
-                      loading="eager"
-                    />
-
-                    {/* Live HTML Typography Outside Image */}
-                    <div className="absolute top-1/2 -translate-y-1/2 right-6 sm:right-10 z-10 text-right select-none">
-                      <span className="font-playfair text-3xl sm:text-4xl lg:text-[42px] text-[#16301d] font-normal tracking-tight leading-none drop-shadow-sm block">
-                        Fruits
-                      </span>
-                      <div className="flex items-center w-36 sm:w-44 h-px bg-[#16301d]/40 mt-3 sm:mt-4 relative ml-auto">
-                        <span className="absolute -right-1 -top-2.5 text-base text-[#16301d] transition-transform duration-300 group-hover:translate-x-2">
-                          →
-                        </span>
-                      </div>
-                    </div>
-
-                    {/* Active Indicator Badge */}
-                    {isCategoryProductsOpen && selectedCategory === "fruits" && (
-                      <div className="absolute top-5 left-5 z-10 bg-[#16301d] text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-md flex items-center gap-1.5 animate-in fade-in">
-                        <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                        <span>Viewing Fruits</span>
-                      </div>
-                    )}
-                  </button>
-                </div>
+              <div className="flex items-center gap-3 self-start sm:self-auto shrink-0">
+                <span className="bg-[#f1e3d3] text-[#5c3e1e] font-sans font-semibold text-xs sm:text-sm px-4 sm:px-5 py-2 rounded-full shadow-xs select-none">
+                  9 Collections
+                </span>
               </div>
             </div>
-          ) : (
-            /* STATE B: ALL 9 COLLECTIONS (Exact Reference Grid with Live HTML Outside Images, No Hover Box) */
-            <div className="animate-in fade-in duration-500">
-              {/* Header Bar matching Reference Screenshot */}
-              <div className="flex flex-col sm:flex-row sm:items-start justify-between pb-6 sm:pb-8 gap-4 border-b border-[#ece3d5]/80 mb-6 sm:mb-8">
-                <div>
-                  <h2 className="font-playfair text-3xl sm:text-4xl lg:text-[46px] text-[#16301d] font-normal tracking-tight leading-none">
-                    All Collections
-                  </h2>
-                  <p className="text-sm sm:text-base text-[#525f54] mt-2.5 font-sans font-medium">
-                    Everyday goodness, all in one place.
-                  </p>
+
+            {/* 3 Bento Rows: 9 Collections matching Master Artwork with Perfect Proportions & Zero Cutoff */}
+            <div className="flex flex-col gap-4 sm:gap-5 lg:gap-6">
+              {COLLECTION_ROWS.map((row) => (
+                <div
+                  key={row.rowId}
+                  className={`grid grid-cols-1 sm:grid-cols-2 lg:flex lg:flex-row gap-4 sm:gap-5 lg:gap-6 w-full ${row.desktopAspect}`}
+                >
+                  {row.items.map((col) => {
+                    const isSelected =
+                      isCategoryProductsOpen &&
+                      selectedCategory === col.category &&
+                      (col.subCategory === "all" ||
+                        activeSubFilter === col.subCategory ||
+                        activeSubFilter === "all");
+
+                    return (
+                      <button
+                        key={col.id}
+                        type="button"
+                        onClick={() =>
+                          handleCardClick(
+                            col.category,
+                            col.subCategory === "all" ? undefined : col.subCategory
+                          )
+                        }
+                        style={{ flex: `${col.flexRatio} ${col.flexRatio} 0%` }}
+                        className={`group relative rounded-2xl sm:rounded-3xl overflow-hidden ${col.aspectClass} lg:aspect-auto ${col.bgColor} shadow-xs hover:shadow-md transition-all duration-300 cursor-pointer block text-left focus:outline-none p-0 w-full lg:w-auto h-auto min-h-[160px] sm:min-h-[200px] lg:min-h-0 ${
+                          isSelected ? "ring-4 ring-[#16301d]" : ""
+                        }`}
+                        aria-label={`Open ${col.title} Collection`}
+                      >
+                        {/* Clean Photographic Plate (Zero text overlaid - Exactly like Image 3) */}
+                        <img
+                          src={col.image}
+                          alt={col.title}
+                          title={col.title}
+                          className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105 pointer-events-none select-none"
+                          loading="lazy"
+                        />
+
+                        {/* Active Indicator Badge if currently active in product view */}
+                        {isSelected && (
+                          <div className="absolute top-4 right-4 z-10 bg-[#16301d] text-white text-[11px] font-semibold px-2.5 py-1 rounded-full shadow-md flex items-center gap-1.5 animate-in fade-in">
+                            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                            <span>Viewing</span>
+                          </div>
+                        )}
+                      </button>
+                    );
+                  })}
                 </div>
-                <div className="flex items-center gap-3 self-start sm:self-auto shrink-0">
-                  <span className="bg-[#f1e3d3] text-[#5c3e1e] font-sans font-semibold text-xs sm:text-sm px-4 sm:px-5 py-2 rounded-full shadow-xs select-none">
-                    9 Collections
-                  </span>
-                  <button
-                    type="button"
-                    onClick={handleToggleAllCollections}
-                    className="inline-flex items-center gap-2 bg-[#ede7da] hover:bg-[#e4dcce] text-[#16301d] font-sans font-semibold text-xs sm:text-sm px-4 sm:px-5 py-2 rounded-full transition-colors cursor-pointer focus:outline-none"
-                    aria-label="Back to Everyday Goodness"
-                  >
-                    <span>← Everyday Goodness</span>
-                  </button>
-                </div>
-              </div>
-
-              {/* 3x3 Grid: 9 Collections matching Reference Image with Live HTML Text */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 lg:gap-6">
-                {ALL_9_COLLECTIONS.map((col) => {
-                  const isSelected =
-                    isCategoryProductsOpen &&
-                    selectedCategory === col.category &&
-                    (col.subCategory === "all" ||
-                      activeSubFilter === col.subCategory ||
-                      activeSubFilter === "all");
-
-                  return (
-                    <button
-                      key={col.id}
-                      type="button"
-                      onClick={() =>
-                        handleCardClick(
-                          col.category,
-                          col.subCategory === "all" ? undefined : col.subCategory
-                        )
-                      }
-                      className={`group relative rounded-2xl sm:rounded-3xl overflow-hidden aspect-[318/191] ${col.bgColor} shadow-xs hover:shadow-md transition-all duration-300 cursor-pointer block text-left focus:outline-none p-0 ${
-                        isSelected ? "ring-4 ring-[#16301d]" : ""
-                      }`}
-                      aria-label={`Open ${col.title} Collection`}
-                    >
-                      {/* Option 1: Clean Photographic Plate (Zero text overlaid - Exactly like Image 3) */}
-                      <img
-                        src={col.image}
-                        alt={col.title}
-                        title={col.title}
-                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105 pointer-events-none select-none"
-                        loading="lazy"
-                      />
-
-                      {/* Active Indicator Badge if currently active in product view */}
-                      {isSelected && (
-                        <div className="absolute top-4 right-4 z-10 bg-[#16301d] text-white text-[11px] font-semibold px-2.5 py-1 rounded-full shadow-md flex items-center gap-1.5 animate-in fade-in">
-                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                          <span>Viewing</span>
-                        </div>
-                      )}
-                    </button>
-                  );
-                })}
-              </div>
+              ))}
             </div>
-          )}
+          </div>
         </div>
       </div>
 
