@@ -13,7 +13,7 @@ import {
   Leaf,
 } from "lucide-react";
 import MilkSubscriptionModal from "./MilkSubscriptionModal";
-import StoryBookSection from "./StoryBookSection";
+import ScrollMilkJourney from "./ScrollMilkJourney";
 import { FilteredCategoryProducts } from "./FilteredCategoryProducts";
 import { ProductModal } from "./ProductModal";
 import { PRODUCTS } from "@/data/products";
@@ -1042,29 +1042,15 @@ export default function HarvestCategoryGrid() {
         </div>
       )}
 
-      {/* 2. DEDICATED "FRESH PAGE" CATEGORY EXPERIENCE (Directly down of that section) */}
+      {/* 2. DEDICATED "FRESH PAGE" CATEGORY EXPERIENCE (Replaces Screenshot 4 Section) */}
       <div
         id="category-fresh-page"
         ref={freshPageRef}
-        className="w-full bg-[#fdfbf7] border-t border-[#ede7d8] transition-all duration-500"
+        className="w-full bg-[#faf5ea] border-t border-[#ded7c8] transition-all duration-500"
       >
-        {/* Transitional Section with Balanced Gap and Breathing Room */}
-        <div className="w-full pt-10 pb-8 md:pt-14 md:pb-10 bg-[#f1e6d4] bg-[url('/images/parchment-texture-bg.png')] bg-repeat border-t border-[#dfd1bd]/80 flex items-center justify-center px-4">
-          <div className="relative w-full max-w-[460px] md:max-w-[520px] flex items-center justify-center select-none pointer-events-none">
-            <Image
-              src="/images/daily-ritual-freshness-emblem.png"
-              alt="A Daily Ritual of Freshness"
-              width={520}
-              height={137}
-              priority
-              className="w-full h-auto object-contain drop-shadow-sm"
-            />
-          </div>
-        </div>
-
-        {/* Interactive 3D Storybook Showcase */}
+        {/* Interactive Scroll-Driven 3-Step Milk Journey (Images 1, 2, 3 open sequentially as user scrolls) */}
         <div ref={catalogRef} className="w-full">
-          <StoryBookSection onShopFresh={scrollToCatalog} />
+          <ScrollMilkJourney onShopFresh={scrollToCatalog} />
         </div>
       </div>
 
