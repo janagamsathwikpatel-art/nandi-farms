@@ -871,6 +871,7 @@ export default function HarvestCategoryGrid() {
   const [activeModalProduct, setActiveModalProduct] = useState<TodaysHarvestFeatured | null>(null);
   const [showAllCollections, setShowAllCollections] = useState(false);
   const freshPageRef = useRef<HTMLDivElement>(null);
+  const allCollectionsRef = useRef<HTMLDivElement>(null);
   const categoryProductsAnchorRef = useRef<HTMLDivElement>(null);
   const catalogRef = useRef<HTMLDivElement>(null);
 
@@ -878,6 +879,20 @@ export default function HarvestCategoryGrid() {
     if (catalogRef.current) {
       catalogRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
     }
+  };
+
+  const handleToggleAllCollections = () => {
+    setShowAllCollections((prev) => {
+      const next = !prev;
+      if (next) {
+        setTimeout(() => {
+          if (allCollectionsRef.current) {
+            allCollectionsRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
+        }, 100);
+      }
+      return next;
+    });
   };
 
   const handleCardClick = (catId: string) => {
@@ -949,8 +964,8 @@ export default function HarvestCategoryGrid() {
 
   return (
     <section id="categories" className="relative w-full bg-[#faf5ea] overflow-hidden py-6 sm:py-8 lg:py-10">
-      {/* 1:1 Exact Master Banner with Interactive Hotspots (No Changes from 1st Image) */}
-      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-6 sm:pb-8">
+      {/* 1. INCREASED WIDTH MASTER BANNER (100% Exact 1st Image with Interactive Hotspots) */}
+      <div className="w-full max-w-[1536px] 2xl:max-w-[1680px] mx-auto px-4 sm:px-6 lg:px-10 xl:px-12 pb-6 sm:pb-8">
         <div className="relative w-full aspect-[2/1] rounded-2xl sm:rounded-3xl overflow-hidden shadow-sm select-none bg-[#faf5ea]">
           <img
             src="/images/everyday_goodness_banner.png"
@@ -959,10 +974,10 @@ export default function HarvestCategoryGrid() {
             loading="eager"
           />
 
-          {/* Hotspot: View all 9 collections */}
+          {/* Hotspot: View all 9 collections (Triggers 2nd image 9 Collections section below) */}
           <button
             type="button"
-            onClick={() => setShowAllCollections((prev) => !prev)}
+            onClick={handleToggleAllCollections}
             className="absolute left-[72.5%] top-[9.5%] w-[21.5%] h-[7%] rounded-full cursor-pointer hover:bg-black/5 active:scale-95 transition-all focus:outline-none"
             aria-label="View all 9 collections"
           />
@@ -993,46 +1008,82 @@ export default function HarvestCategoryGrid() {
         </div>
       </div>
 
-      {/* 2. OPTIONAL EXPANDED 6 REMAINING COLLECTIONS */}
+      {/* 2. REVEALED 9 COLLECTIONS SECTION (Matches Screenshot 2 when 'View all 9 collections' is clicked) */}
       {showAllCollections && (
-        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-8 transition-all duration-500 animate-in fade-in">
-          <div className="border-t border-[#ded7c8] pt-6 mb-5">
-            <h4 className="text-xs sm:text-sm font-bold tracking-[0.2em] text-[#22442d] uppercase">
-              All 9 Farm Collections
-            </h4>
+        <div
+          ref={allCollectionsRef}
+          id="all-collections-section"
+          className="w-full max-w-[1536px] 2xl:max-w-[1680px] mx-auto px-4 sm:px-6 lg:px-10 xl:px-12 pb-8 sm:pb-12 transition-all duration-500 animate-in fade-in"
+        >
+          {/* Header Bar matching Screenshot 2 */}
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between border-b border-[#ded7c8] pb-4 sm:pb-5 mb-6 sm:mb-8 gap-3">
+            <div>
+              <h3 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-[#183622] font-semibold tracking-tight">
+                Shop by Category
+              </h3>
+              <p className="text-xs sm:text-[13px] font-bold tracking-[0.2em] text-[#22442d] uppercase mt-1.5">
+                Pure Goodness for a Healthier Tomorrow
+              </p>
+            </div>
+            <div className="flex items-center gap-3">
+              <span className="text-xs font-semibold text-[#7d4f19] bg-[#ebdccb] px-3.5 py-1.5 rounded-full w-fit">
+                9 Collections
+              </span>
+              <button
+                type="button"
+                onClick={() => setShowAllCollections(false)}
+                className="text-xs font-bold text-[#183622] hover:text-[#2d5939] bg-[#ede7da] hover:bg-[#e4dcce] px-3.5 py-1.5 rounded-full transition-colors cursor-pointer"
+                aria-label="Hide 9 collections"
+              >
+                Hide Collections ↑
+              </button>
+            </div>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 lg:gap-5">
-            {CATEGORY_BOXES.slice(3).map((box) => (
+
+          {/* Full 3x3 Grid of All 9 Collections from Screenshot 2 */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 w-full gap-3 sm:gap-4 lg:gap-5">
+            {CATEGORY_BOXES.map((box) => (
               <button
                 key={box.id}
                 type="button"
                 onClick={() => handleCardClick(box.id)}
-                className={`relative w-full overflow-hidden text-left focus:outline-none p-0 cursor-pointer block bg-[#f4eee2] group transition-all duration-300 hover:bg-[#ede7da] hover:shadow-md rounded-2xl ${
+                className={`relative w-full overflow-hidden text-left focus:outline-none p-0 cursor-pointer block bg-[#f4eee2] group transition-all duration-300 hover:bg-[#ede7da] hover:shadow-md ${
                   isCategoryProductsOpen && selectedCategory === box.id
-                    ? "ring-4 ring-[#16301d] shadow-xl bg-[#ede7da]"
+                    ? "ring-4 ring-[#1b6b38] shadow-xl bg-[#ede7da]"
                     : ""
                 }`}
-                aria-label={`Open ${box.title}`}
+                aria-label={`Open ${box.title} Fresh Products`}
               >
-                <div className="w-full aspect-[1200/480] overflow-hidden bg-[#f4eee2]">
+                {/* Active Category Badge */}
+                {isCategoryProductsOpen && selectedCategory === box.id && (
+                  <div className="absolute top-3 right-3 z-10 bg-[#1b6b38] text-white text-[11px] font-bold px-3 py-1 rounded-full shadow-md flex items-center gap-1.5 animate-in fade-in">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-300 animate-pulse" />
+                    <span>Viewing Products</span>
+                  </div>
+                )}
+
+                {/* Photograph */}
+                <div className="w-full aspect-[1200/480] overflow-hidden bg-[#f4eee2] p-0 m-0 block">
                   <img
                     src={box.photo}
                     alt={box.title}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    className="w-full h-full object-cover block m-0 p-0 transition-transform duration-500 group-hover:scale-105"
                     loading="lazy"
                   />
                 </div>
-                <div className="px-5 py-4 bg-[#f4eee2] flex items-center justify-between">
+
+                {/* Live HTML Text Block rendered OUTSIDE image */}
+                <div className="px-6 py-4 sm:px-7 sm:py-5 bg-[#f4eee2] flex items-center justify-between border-none m-0">
                   <div>
-                    <h5 className="font-serif text-xl sm:text-2xl text-[#183622] font-medium tracking-tight">
+                    <h4 className="font-serif text-2xl sm:text-3xl text-[#183622] font-medium tracking-tight">
                       {box.title}
-                    </h5>
-                    <p className="text-xs text-[#4e5e4d] mt-0.5 font-sans">
+                    </h4>
+                    <p className="text-xs sm:text-sm text-[#4e5e4d] mt-1 font-sans">
                       {box.tagline}
                     </p>
                   </div>
-                  <span className="text-xl text-[#183622] transition-transform duration-300 group-hover:translate-x-1">
-                    →
+                  <span className="text-2xl text-[#183622] font-light pl-4 transition-transform duration-300 group-hover:translate-x-1.5 shrink-0">
+                    {isCategoryProductsOpen && selectedCategory === box.id ? "↓" : "→"}
                   </span>
                 </div>
               </button>
