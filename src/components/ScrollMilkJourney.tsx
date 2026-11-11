@@ -3,11 +3,11 @@
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { CheckCircle2, ChevronRight, Sparkles, Clock, ShieldCheck, Truck, ArrowRight } from "lucide-react";
+import { CheckCircle2, ArrowRight, BookOpen, ChevronLeft, ChevronRight } from "lucide-react";
 
-interface JourneyStage {
+interface PageData {
   id: number;
-  stageNumber: string;
+  pageNumber: string;
   badge: string;
   title: string;
   subtitle: string;
@@ -18,10 +18,10 @@ interface JourneyStage {
   highlights: string[];
 }
 
-const JOURNEY_STAGES: JourneyStage[] = [
+const PAGES: PageData[] = [
   {
     id: 0,
-    stageNumber: "01",
+    pageNumber: "PAGE 01",
     badge: "HARVEST AT DAWN",
     title: "Dawn Milking in Sacred Village Pastures",
     subtitle: "Ethical Cattle Care • 100% Grass-Fed • Untouched Dawn Collection",
@@ -34,7 +34,7 @@ const JOURNEY_STAGES: JourneyStage[] = [
   },
   {
     id: 1,
-    stageNumber: "02",
+    pageNumber: "PAGE 02",
     badge: "4°C COLD CHAIN",
     title: "Rapid 4°C Chilled Storage & Clean Bottling",
     subtitle: "Cold-Chain Integrity • Contact-Free Bottling • Sterilized Glass",
@@ -47,7 +47,7 @@ const JOURNEY_STAGES: JourneyStage[] = [
   },
   {
     id: 2,
-    stageNumber: "03",
+    pageNumber: "PAGE 03",
     badge: "DOORSTEP DELIVERY",
     title: "Fresh to Your Doorstep Every Morning",
     subtitle: "Insulated Refrigerated Dispatch • Timely Arrival by 6:00 AM",
@@ -66,8 +66,8 @@ interface ScrollMilkJourneyProps {
 
 export default function ScrollMilkJourney({ onShopFresh }: ScrollMilkJourneyProps) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [activeStage, setActiveStage] = useState(0);
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [activePage, setActivePage] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -78,18 +78,19 @@ export default function ScrollMilkJourney({ onShopFresh }: ScrollMilkJourneyProp
 
       if (totalDist <= 0) return;
 
-      // Calculate how far down through the container we have scrolled (0 to 1)
+      // Calculate bidirectional progress from 0.0 to 1.0
       const scrolled = -rect.top;
-      const progress = Math.min(Math.max(scrolled / totalDist, 0), 1);
+      const rawProgress = scrolled / totalDist;
+      const progress = Math.min(Math.max(rawProgress, 0), 1);
       setScrollProgress(progress);
 
-      // Determine active stage based on progress
-      if (progress < 0.33) {
-        setActiveStage(0);
-      } else if (progress < 0.66) {
-        setActiveStage(1);
+      // Determine which page is primarily in view
+      if (progress < 0.35) {
+        setActivePage(0);
+      } else if (progress < 0.70) {
+        setActivePage(1);
       } else {
-        setActiveStage(2);
+        setActivePage(2);
       }
     };
 
@@ -98,14 +99,14 @@ export default function ScrollMilkJourney({ onShopFresh }: ScrollMilkJourneyProp
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const scrollToStage = (stageIdx: number) => {
+  const scrollToPage = (pageIdx: number) => {
     if (!containerRef.current) return;
     const rect = containerRef.current.getBoundingClientRect();
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     const windowHeight = window.innerHeight;
     const totalDist = rect.height - windowHeight;
 
-    const targetFraction = stageIdx === 0 ? 0.05 : stageIdx === 1 ? 0.5 : 0.95;
+    const targetFraction = pageIdx === 0 ? 0.08 : pageIdx === 1 ? 0.48 : 0.90;
     const targetY = scrollTop + rect.top + totalDist * targetFraction;
 
     window.scrollTo({
@@ -114,177 +115,302 @@ export default function ScrollMilkJourney({ onShopFresh }: ScrollMilkJourneyProp
     });
   };
 
-  const current = JOURNEY_STAGES[activeStage];
+  // Continuous 3D Page Turn Angles for Bidirectional Scrubbing
+  // Page 1 turns between progress 0.12 and 0.42 (0deg -> -180deg)
+  const p1Raw = Math.min(Math.max((scrollProgress - 0.12) / 0.30, 0), 1);
+  const page1Angle = -(p1Raw * 180);
+  const page1Shadow = p1Raw > 0 && p1Raw < 1 ? Math.sin(p1Raw * Math.PI) * 0.4 : 0;
+
+  // Page 2 turns between progress 0.48 and 0.78 (0deg -> -180deg)
+  const p2Raw = Math.min(Math.max((scrollProgress - 0.48) / 0.30, 0), 1);
+  const page2Angle = -(p2Raw * 180);
+  const page2Shadow = p2Raw > 0 && p2Raw < 1 ? Math.sin(p2Raw * Math.PI) * 0.4 : 0;
 
   return (
     <section
       ref={containerRef}
       id="scroll-milk-journey"
-      className="relative w-full bg-[#faf5ea] min-h-[260vh] select-none"
+      className="relative w-full bg-[#faf5ea] min-h-[270vh] select-none"
     >
-      {/* Sticky Full-Viewport Story Stage */}
-      <div className="sticky top-0 h-screen w-full flex flex-col justify-between py-6 sm:py-8 px-4 sm:px-8 lg:px-14 xl:px-20 overflow-hidden">
+      {/* Sticky Full-Viewport Book Reader Stage */}
+      <div className="sticky top-0 h-screen w-full flex flex-col justify-between py-4 sm:py-6 lg:py-8 px-4 sm:px-8 lg:px-12 xl:px-16 overflow-hidden">
         
         {/* Top Header Bar & Progress Navigation */}
-        <div className="w-full max-w-7xl mx-auto flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-[#ded7c8]">
+        <div className="w-full max-w-7xl mx-auto flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 pb-3 sm:pb-4 border-b border-[#ded7c8]">
           <div className="flex items-center gap-3">
             <span className="w-2.5 h-2.5 rounded-full bg-[#167832] animate-pulse" />
             <div>
-              <p className="text-[11px] sm:text-xs font-black tracking-widest text-[#167832] uppercase">
-                Y Daily • Farm To Home Process
+              <p className="text-[11px] sm:text-xs font-black tracking-widest text-[#167832] uppercase flex items-center gap-1.5">
+                <BookOpen className="w-3.5 h-3.5" />
+                <span>Y Daily • A Daily Ritual of Freshness</span>
               </p>
-              <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold tracking-tight text-[#0f172a]">
-                A Daily Ritual of Freshness
+              <h2 className="text-xl sm:text-2xl lg:text-[28px] font-bold tracking-tight text-[#0f172a]">
+                The Farm to Home Journey
               </h2>
             </div>
           </div>
 
           {/* Interactive Step Navigation Pills */}
-          <div className="flex items-center gap-2 sm:gap-3 bg-white/80 backdrop-blur-md p-1.5 rounded-full border border-[#e2ded4] shadow-sm">
-            {JOURNEY_STAGES.map((s, idx) => (
+          <div className="flex items-center gap-1.5 sm:gap-2.5 bg-white/90 backdrop-blur-md p-1.5 rounded-full border border-[#ded7c8] shadow-sm">
+            {PAGES.map((p, idx) => (
               <button
-                key={s.id}
+                key={p.id}
                 type="button"
-                onClick={() => scrollToStage(idx)}
+                onClick={() => scrollToPage(idx)}
                 className={`px-3 sm:px-4 py-1.5 rounded-full text-xs sm:text-sm font-bold transition-all duration-300 flex items-center gap-1.5 cursor-pointer ${
-                  activeStage === idx
+                  activePage === idx
                     ? "bg-[#162e1e] text-white shadow-md scale-105"
                     : "text-[#4b5563] hover:text-[#0f172a] hover:bg-black/5"
                 }`}
               >
-                <span>{s.stageNumber}.</span>
-                <span className="hidden md:inline">{s.badge}</span>
-                <span className="md:hidden">Stage {idx + 1}</span>
+                <span>{p.pageNumber}.</span>
+                <span className="hidden md:inline">{p.badge}</span>
+                <span className="md:hidden">Page {idx + 1}</span>
               </button>
             ))}
           </div>
         </div>
 
-        {/* Main Stage Grid: Interactive Visual Viewer (Left) + Editorial Narrative (Right) */}
-        <div className="w-full max-w-7xl mx-auto flex-1 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-center py-4">
+        {/* 3D Perspective Book Reader Arena */}
+        <div className="w-full max-w-7xl mx-auto flex-1 flex items-center justify-center py-2" style={{ perspective: "2500px" }}>
           
-          {/* Left Column: Sequential Image Reveal Viewer (7 Cols) */}
-          <div className="lg:col-span-7 relative w-full h-[280px] sm:h-[380px] md:h-[440px] lg:h-[480px] rounded-3xl overflow-hidden shadow-2xl border-2 border-[#ded7c8] bg-black">
-            {JOURNEY_STAGES.map((s, idx) => {
-              const isActive = activeStage === idx;
-              return (
-                <div
-                  key={s.id}
-                  className={`absolute inset-0 w-full h-full transition-all duration-700 ease-out transform ${
-                    isActive
-                      ? "opacity-100 scale-100 z-10"
-                      : "opacity-0 scale-105 pointer-events-none z-0"
-                  }`}
-                >
+          {/* Physical Hardcover Book Casing */}
+          <div className="relative w-full max-w-[1240px] h-[340px] sm:h-[420px] md:h-[480px] lg:h-[520px] bg-[#fbf8f2] rounded-3xl p-3 sm:p-5 border-4 sm:border-[6px] border-[#cfbfa6] shadow-[0_12px_40px_rgba(45,25,10,0.18),0_2px_0_#ede3d1,0_4px_0_#e4d7bf,0_6px_0_#dbcbaf] overflow-hidden flex">
+            
+            {/* Center Book Spine Line / Gutter Shadow */}
+            <div className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-6 bg-gradient-to-r from-black/10 via-black/25 to-black/10 z-30 pointer-events-none hidden lg:block opacity-75" />
+
+            {/* Book Pages Container */}
+            <div className="relative w-full h-full rounded-2xl overflow-hidden bg-[#faf7f0]">
+              
+              {/* ================= PAGE 03 (BASE DESTINATION PAGE) ================= */}
+              <div className="absolute inset-0 w-full h-full grid grid-cols-1 lg:grid-cols-12 bg-[#faf7f0] z-0">
+                {/* Left Photo */}
+                <div className="lg:col-span-7 relative w-full h-[180px] sm:h-[220px] lg:h-full overflow-hidden bg-black">
                   <Image
-                    src={s.image}
-                    alt={s.title}
+                    src={PAGES[2].image}
+                    alt={PAGES[2].title}
                     fill
                     priority
                     sizes="(max-width: 1024px) 100vw, 60vw"
-                    className="object-cover object-center filter contrast-[1.02] brightness-[1.01]"
+                    className="object-cover object-center filter contrast-[1.03]"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
-
-                  {/* On-Image Phase Tag */}
-                  <div className="absolute top-4 left-4 sm:top-6 sm:left-6 bg-white/90 backdrop-blur-md px-3.5 py-1.5 rounded-full text-xs font-extrabold text-[#162e1e] border border-white/40 shadow-lg flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-[#e11d48]" />
-                    <span>STEP {s.stageNumber} OF 03</span>
+                  <div className="absolute top-4 left-4 bg-white/95 backdrop-blur-md px-3.5 py-1 rounded-full text-xs font-black text-[#162e1e] border border-white/40 shadow-md">
+                    PAGE 03 OF 03 • FINAL DESTINATION
                   </div>
-
-                  {/* Bottom Image Caption */}
-                  <div className="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6 text-white">
-                    <p className="text-xs sm:text-sm font-semibold tracking-wider text-emerald-300 uppercase">
-                      {s.badge}
-                    </p>
-                    <p className="text-base sm:text-lg font-bold drop-shadow-md">
-                      {s.title}
-                    </p>
+                  <div className="absolute bottom-4 left-4 right-4 text-white">
+                    <p className="text-xs font-bold text-emerald-300 uppercase tracking-wider">{PAGES[2].badge}</p>
+                    <p className="text-base sm:text-lg font-bold drop-shadow-md">{PAGES[2].title}</p>
                   </div>
                 </div>
-              );
-            })}
-          </div>
 
-          {/* Right Column: Editorial Narrative & Verification Details (5 Cols) */}
-          <div className="lg:col-span-5 flex flex-col justify-center space-y-4 sm:space-y-5 bg-white/90 backdrop-blur-md p-6 sm:p-8 rounded-3xl border border-[#ded7c8] shadow-sm">
-            {/* Stage Indicator Badge */}
-            <div className="flex items-center gap-2">
-              <span className="px-3 py-1 bg-[#162e1e] text-white text-xs font-black rounded-md tracking-wider">
-                STAGE {current.stageNumber}
-              </span>
-              <span className="text-xs font-extrabold text-[#b48246] tracking-wider uppercase">
-                {current.badge}
-              </span>
-            </div>
-
-            {/* Dynamic Stage Title */}
-            <div>
-              <h3 className="text-xl sm:text-2xl lg:text-[26px] font-bold text-[#0f172a] leading-tight transition-all duration-300">
-                {current.title}
-              </h3>
-              <p className="text-xs sm:text-sm font-semibold text-[#167832] mt-1">
-                {current.subtitle}
-              </p>
-            </div>
-
-            {/* Narrative Paragraph */}
-            <p className="text-xs sm:text-sm text-[#475569] leading-relaxed">
-              {current.description}
-            </p>
-
-            {/* Stat Box */}
-            <div className="flex items-center gap-4 p-3.5 bg-[#faf5ea] rounded-2xl border border-[#ded7c8]">
-              <div className="text-2xl sm:text-3xl font-black text-[#162e1e]">
-                {current.statValue}
-              </div>
-              <div className="text-xs font-bold text-[#475569] leading-tight">
-                {current.statLabel}
-              </div>
-            </div>
-
-            {/* Highlights List */}
-            <div className="space-y-1.5 pt-1">
-              {current.highlights.map((h, i) => (
-                <div key={i} className="flex items-center gap-2 text-xs sm:text-sm font-semibold text-[#1e293b]">
-                  <CheckCircle2 className="w-4 h-4 text-[#167832] shrink-0" />
-                  <span>{h}</span>
+                {/* Right Editorial Info */}
+                <div className="lg:col-span-5 p-4 sm:p-6 lg:p-8 flex flex-col justify-center space-y-3 sm:space-y-4 bg-[#fcfaf5]">
+                  <div className="flex items-center gap-2">
+                    <span className="px-2.5 py-0.5 bg-[#162e1e] text-white text-[11px] font-black rounded tracking-wider">
+                      PAGE 03
+                    </span>
+                    <span className="text-xs font-extrabold text-[#b48246] tracking-wider uppercase">
+                      {PAGES[2].badge}
+                    </span>
+                  </div>
+                  <div>
+                    <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-[#0f172a] leading-tight">
+                      {PAGES[2].title}
+                    </h3>
+                    <p className="text-xs sm:text-sm font-semibold text-[#167832] mt-0.5">
+                      {PAGES[2].subtitle}
+                    </p>
+                  </div>
+                  <p className="text-xs sm:text-sm text-[#475569] leading-relaxed line-clamp-3 sm:line-clamp-none">
+                    {PAGES[2].description}
+                  </p>
+                  <div className="flex items-center gap-3 p-2.5 sm:p-3 bg-[#faf5ea] rounded-xl border border-[#ded7c8]">
+                    <div className="text-xl sm:text-2xl font-black text-[#162e1e]">{PAGES[2].statValue}</div>
+                    <div className="text-[11px] sm:text-xs font-bold text-[#475569]">{PAGES[2].statLabel}</div>
+                  </div>
+                  <div className="space-y-1">
+                    {PAGES[2].highlights.map((h, i) => (
+                      <div key={i} className="flex items-center gap-1.5 text-xs font-semibold text-[#1e293b]">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-[#167832] shrink-0" />
+                        <span>{h}</span>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="pt-1 flex items-center gap-2">
+                    <Link
+                      href="/shop/milk"
+                      className="px-4 py-2 bg-[#162e1e] hover:bg-[#1f422b] text-white text-xs font-bold rounded-full transition-all flex items-center gap-1.5 shadow cursor-pointer"
+                    >
+                      <span>Shop Fresh Milk</span>
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </Link>
+                    {onShopFresh && (
+                      <button
+                        type="button"
+                        onClick={onShopFresh}
+                        className="px-3.5 py-2 border border-[#162e1e] hover:bg-black/5 text-[#162e1e] text-xs font-bold rounded-full transition-all cursor-pointer"
+                      >
+                        Explore Harvest
+                      </button>
+                    )}
+                  </div>
                 </div>
-              ))}
-            </div>
+              </div>
 
-            {/* Call To Action Buttons */}
-            <div className="pt-2 flex items-center gap-3">
-              <Link
-                href="/shop/milk"
-                className="px-5 py-2.5 bg-[#162e1e] hover:bg-[#1f422b] active:scale-95 text-white text-xs sm:text-sm font-bold rounded-full transition-all flex items-center gap-2 shadow-md cursor-pointer"
+              {/* ================= PAGE 02 (TURNING LEAF 2) ================= */}
+              <div
+                className="absolute inset-0 w-full h-full grid grid-cols-1 lg:grid-cols-12 bg-[#faf7f0] z-10 transition-transform duration-300 ease-out"
+                style={{
+                  transformOrigin: "left center",
+                  transform: `rotateY(${page2Angle}deg)`,
+                  backfaceVisibility: "hidden",
+                  boxShadow: page2Shadow > 0 ? `inset -20px 0 40px rgba(0,0,0,${page2Shadow})` : "none",
+                  display: page2Angle <= -90 ? "none" : "grid",
+                }}
               >
-                <span>Shop Fresh Milk</span>
-                <ArrowRight className="w-4 h-4" />
-              </Link>
-              {onShopFresh && (
-                <button
-                  type="button"
-                  onClick={onShopFresh}
-                  className="px-4 py-2.5 border border-[#162e1e] hover:bg-black/5 active:scale-95 text-[#162e1e] text-xs sm:text-sm font-bold rounded-full transition-all cursor-pointer"
-                >
-                  View Harvest Catalog
-                </button>
-              )}
+                {/* Left Photo */}
+                <div className="lg:col-span-7 relative w-full h-[180px] sm:h-[220px] lg:h-full overflow-hidden bg-black">
+                  <Image
+                    src={PAGES[1].image}
+                    alt={PAGES[1].title}
+                    fill
+                    priority
+                    sizes="(max-width: 1024px) 100vw, 60vw"
+                    className="object-cover object-center filter contrast-[1.03]"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+                  <div className="absolute top-4 left-4 bg-white/95 backdrop-blur-md px-3.5 py-1 rounded-full text-xs font-black text-[#162e1e] border border-white/40 shadow-md">
+                    PAGE 02 OF 03 • 4°C COLD CHAIN
+                  </div>
+                  <div className="absolute bottom-4 left-4 right-4 text-white">
+                    <p className="text-xs font-bold text-emerald-300 uppercase tracking-wider">{PAGES[1].badge}</p>
+                    <p className="text-base sm:text-lg font-bold drop-shadow-md">{PAGES[1].title}</p>
+                  </div>
+                </div>
+
+                {/* Right Editorial Info */}
+                <div className="lg:col-span-5 p-4 sm:p-6 lg:p-8 flex flex-col justify-center space-y-3 sm:space-y-4 bg-[#fcfaf5] border-l border-[#ded7c8]">
+                  <div className="flex items-center gap-2">
+                    <span className="px-2.5 py-0.5 bg-[#162e1e] text-white text-[11px] font-black rounded tracking-wider">
+                      PAGE 02
+                    </span>
+                    <span className="text-xs font-extrabold text-[#b48246] tracking-wider uppercase">
+                      {PAGES[1].badge}
+                    </span>
+                  </div>
+                  <div>
+                    <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-[#0f172a] leading-tight">
+                      {PAGES[1].title}
+                    </h3>
+                    <p className="text-xs sm:text-sm font-semibold text-[#167832] mt-0.5">
+                      {PAGES[1].subtitle}
+                    </p>
+                  </div>
+                  <p className="text-xs sm:text-sm text-[#475569] leading-relaxed line-clamp-3 sm:line-clamp-none">
+                    {PAGES[1].description}
+                  </p>
+                  <div className="flex items-center gap-3 p-2.5 sm:p-3 bg-[#faf5ea] rounded-xl border border-[#ded7c8]">
+                    <div className="text-xl sm:text-2xl font-black text-[#162e1e]">{PAGES[1].statValue}</div>
+                    <div className="text-[11px] sm:text-xs font-bold text-[#475569]">{PAGES[1].statLabel}</div>
+                  </div>
+                  <div className="space-y-1">
+                    {PAGES[1].highlights.map((h, i) => (
+                      <div key={i} className="flex items-center gap-1.5 text-xs font-semibold text-[#1e293b]">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-[#167832] shrink-0" />
+                        <span>{h}</span>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="text-[11px] font-bold text-[#64748b] pt-1">
+                    {page2Angle < 0 ? "📖 Page 02 turning open to Page 03..." : "▼ Scroll down to turn open Page 03"}
+                  </div>
+                </div>
+              </div>
+
+              {/* ================= PAGE 01 (TURNING LEAF 1 - TOP COVER) ================= */}
+              <div
+                className="absolute inset-0 w-full h-full grid grid-cols-1 lg:grid-cols-12 bg-[#faf7f0] z-20 transition-transform duration-300 ease-out"
+                style={{
+                  transformOrigin: "left center",
+                  transform: `rotateY(${page1Angle}deg)`,
+                  backfaceVisibility: "hidden",
+                  boxShadow: page1Shadow > 0 ? `inset -20px 0 40px rgba(0,0,0,${page1Shadow})` : "none",
+                  display: page1Angle <= -90 ? "none" : "grid",
+                }}
+              >
+                {/* Left Photo */}
+                <div className="lg:col-span-7 relative w-full h-[180px] sm:h-[220px] lg:h-full overflow-hidden bg-black">
+                  <Image
+                    src={PAGES[0].image}
+                    alt={PAGES[0].title}
+                    fill
+                    priority
+                    sizes="(max-width: 1024px) 100vw, 60vw"
+                    className="object-cover object-center filter contrast-[1.03]"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+                  <div className="absolute top-4 left-4 bg-white/95 backdrop-blur-md px-3.5 py-1 rounded-full text-xs font-black text-[#162e1e] border border-white/40 shadow-md">
+                    PAGE 01 OF 03 • SACRED HARVEST
+                  </div>
+                  <div className="absolute bottom-4 left-4 right-4 text-white">
+                    <p className="text-xs font-bold text-emerald-300 uppercase tracking-wider">{PAGES[0].badge}</p>
+                    <p className="text-base sm:text-lg font-bold drop-shadow-md">{PAGES[0].title}</p>
+                  </div>
+                </div>
+
+                {/* Right Editorial Info */}
+                <div className="lg:col-span-5 p-4 sm:p-6 lg:p-8 flex flex-col justify-center space-y-3 sm:space-y-4 bg-[#fcfaf5] border-l border-[#ded7c8]">
+                  <div className="flex items-center gap-2">
+                    <span className="px-2.5 py-0.5 bg-[#162e1e] text-white text-[11px] font-black rounded tracking-wider">
+                      PAGE 01
+                    </span>
+                    <span className="text-xs font-extrabold text-[#b48246] tracking-wider uppercase">
+                      {PAGES[0].badge}
+                    </span>
+                  </div>
+                  <div>
+                    <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-[#0f172a] leading-tight">
+                      {PAGES[0].title}
+                    </h3>
+                    <p className="text-xs sm:text-sm font-semibold text-[#167832] mt-0.5">
+                      {PAGES[0].subtitle}
+                    </p>
+                  </div>
+                  <p className="text-xs sm:text-sm text-[#475569] leading-relaxed line-clamp-3 sm:line-clamp-none">
+                    {PAGES[0].description}
+                  </p>
+                  <div className="flex items-center gap-3 p-2.5 sm:p-3 bg-[#faf5ea] rounded-xl border border-[#ded7c8]">
+                    <div className="text-xl sm:text-2xl font-black text-[#162e1e]">{PAGES[0].statValue}</div>
+                    <div className="text-[11px] sm:text-xs font-bold text-[#475569]">{PAGES[0].statLabel}</div>
+                  </div>
+                  <div className="space-y-1">
+                    {PAGES[0].highlights.map((h, i) => (
+                      <div key={i} className="flex items-center gap-1.5 text-xs font-semibold text-[#1e293b]">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-[#167832] shrink-0" />
+                        <span>{h}</span>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="text-[11px] font-bold text-[#64748b] pt-1">
+                    {page1Angle < 0 ? "📖 Page 01 turning open to Page 02..." : "▼ Scroll down to turn open Page 02"}
+                  </div>
+                </div>
+              </div>
+
             </div>
           </div>
         </div>
 
-        {/* Bottom Scroll Progress Bar */}
+        {/* Bottom Interactive Scroll Indicator Bar */}
         <div className="w-full max-w-7xl mx-auto pt-2">
           <div className="flex items-center justify-between text-[11px] font-bold text-[#64748b] mb-1.5">
             <span>Scroll Progress: {Math.round(scrollProgress * 100)}%</span>
-            <span>
-              {activeStage === 0
-                ? "▼ Scroll down to reveal 4°C Bottling Line"
-                : activeStage === 1
-                ? "▼ Scroll down to reveal Doorstep Delivery"
-                : "✓ Journey Complete • Continuing to Next Section"}
+            <span className="flex items-center gap-2">
+              <span className="text-[#167832]">▼ Scroll Down to open pages</span>
+              <span>•</span>
+              <span className="text-[#3b82f6]">▲ Scroll Up to turn back pages</span>
             </span>
           </div>
           <div className="w-full h-1.5 bg-[#e2ded4] rounded-full overflow-hidden">
