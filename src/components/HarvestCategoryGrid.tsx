@@ -1264,7 +1264,7 @@ export default function HarvestCategoryGrid() {
                       }`}
                       aria-label={`Open ${col.title} Collection`}
                     >
-                      {/* Clean Photographic Plate (Zero text baked into or overlaid on image - Exactly like Image 3) */}
+                      {/* Clean Photographic Plate (from 2nd image - zero ghosting & zero smears) */}
                       <img
                         src={col.image}
                         alt={col.title}
@@ -1272,6 +1272,20 @@ export default function HarvestCategoryGrid() {
                         className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105 pointer-events-none select-none"
                         loading="lazy"
                       />
+
+                      {/* Live HTML Typography Preserved Without Any Changes of Text */}
+                      <div className="absolute top-4 sm:top-5 lg:top-6 left-4 sm:left-5 lg:left-6 z-10 select-none">
+                        <span className="font-playfair text-2xl sm:text-3xl lg:text-[34px] text-[#16301d] font-normal tracking-tight block leading-none drop-shadow-xs">
+                          {col.title}
+                        </span>
+                        <div
+                          className={`flex items-center ${col.arrowWidthClass} h-px bg-[#16301d]/60 mt-2 sm:mt-2.5 relative`}
+                        >
+                          <span className="absolute -right-1 -top-2 text-xs sm:text-sm text-[#16301d] transition-transform duration-300 group-hover:translate-x-1.5">
+                            →
+                          </span>
+                        </div>
+                      </div>
 
                       {/* Active Indicator Badge if currently active in product view */}
                       {isSelected && (
