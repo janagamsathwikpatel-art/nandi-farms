@@ -1062,9 +1062,9 @@ export default function HarvestCategoryGrid() {
       <div
         ref={allCollectionsRef}
         id="collections-container"
-        className="w-full max-w-[1536px] 2xl:max-w-[1680px] mx-auto px-4 sm:px-6 lg:px-10 xl:px-12 pb-6 sm:pb-8"
+        className="w-full max-w-[1536px] 2xl:max-w-[1680px] mx-auto px-4 sm:px-6 lg:px-10 xl:px-12 pb-6 sm:pb-8 select-none"
       >
-        <div className="w-full bg-[#fcf9f2] border border-[#e8dfd1] rounded-[24px] sm:rounded-[32px] p-6 sm:p-8 lg:p-10 shadow-sm select-none">
+        <div className="w-full">
           {!showAllCollections ? (
             /* STATE A: EVERYDAY GOODNESS (3-Card Bento Grid) */
             <div className="animate-in fade-in duration-500">
@@ -1081,7 +1081,7 @@ export default function HarvestCategoryGrid() {
                 <button
                   type="button"
                   onClick={handleToggleAllCollections}
-                  className="inline-flex items-center gap-2 bg-[#f3e4d5] hover:bg-[#ebd3be] text-[#4a3018] font-semibold text-xs sm:text-sm px-5 sm:px-6 py-2.5 sm:py-3 rounded-full transition-all duration-300 shadow-sm hover:shadow cursor-pointer self-start sm:self-auto shrink-0 focus:outline-none"
+                  className="inline-flex items-center gap-2 bg-[#f3e4d5] hover:bg-[#ebd3be] text-[#4a3018] font-semibold text-xs sm:text-sm px-5 sm:px-6 py-2.5 sm:py-3 rounded-full transition-all duration-300 shadow-xs hover:shadow cursor-pointer self-start sm:self-auto shrink-0 focus:outline-none"
                   aria-label="Toggle all 9 collections"
                 >
                   <span>View all 9 collections</span>
@@ -1102,9 +1102,9 @@ export default function HarvestCategoryGrid() {
                   }`}
                   aria-label="Open Milk Products"
                 >
-                  {/* Background Plate Image */}
+                  {/* Background Plate Image (Clean 2nd Image Artwork - Zero Streaks) */}
                   <img
-                    src="/images/bento_milk_clean.png"
+                    src="/images/bento_clean_v2/milk_2x.png"
                     alt="Fresh Farm Milk"
                     className="absolute inset-0 w-full h-full object-cover object-bottom transition-transform duration-700 ease-out group-hover:scale-105 pointer-events-none select-none"
                     loading="eager"
@@ -1115,7 +1115,7 @@ export default function HarvestCategoryGrid() {
                     <span className="font-playfair text-3xl sm:text-4xl lg:text-[42px] text-[#16301d] font-normal tracking-tight leading-none drop-shadow-sm">
                       Milk
                     </span>
-                    <span className="w-8 h-8 rounded-full bg-[#16301d]/10 flex items-center justify-center text-[#16301d] text-base group-hover:bg-[#16301d] group-hover:text-white group-hover:translate-x-1 transition-all duration-300 shadow-sm">
+                    <span className="w-8 h-8 rounded-full bg-[#16301d]/10 flex items-center justify-center text-[#16301d] text-base group-hover:bg-[#16301d] group-hover:text-white group-hover:translate-x-1 transition-all duration-300 shadow-xs">
                       →
                     </span>
                   </div>
@@ -1143,7 +1143,7 @@ export default function HarvestCategoryGrid() {
                     aria-label="Open Vegetables Products"
                   >
                     <img
-                      src="/images/bento_veg_clean.png"
+                      src="/images/bento_clean_v2/veg_2x.png"
                       alt="Fresh Organic Vegetables"
                       className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 pointer-events-none select-none"
                       loading="eager"
@@ -1182,7 +1182,7 @@ export default function HarvestCategoryGrid() {
                     aria-label="Open Fruits Products"
                   >
                     <img
-                      src="/images/bento_fruit_clean.png"
+                      src="/images/bento_clean_v2/fruit_2x.png"
                       alt="Fresh Orchard Fruits"
                       className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 pointer-events-none select-none"
                       loading="eager"
