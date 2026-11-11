@@ -109,19 +109,28 @@ export default function QuickCategoryGrid({ onSelectCategory }: QuickCategoryGri
   return (
     <section id="quick-categories" className="w-full bg-[#faf5ea] border-b border-[#ded7c8] py-8 sm:py-10 lg:py-12 select-none">
       <div className="w-full px-4 sm:px-6 lg:px-10 xl:px-12">
-        {/* Full-Width Header Bar with Harmonized Border */}
-        <div className="flex items-center justify-between mb-6 sm:mb-8 pb-3.5 sm:pb-4 border-b border-[#ded7c8]">
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#0f172a]">
-            Shop by Category
-          </h2>
+        {/* Full-Width Header Bar with New Serif Typography & Tagline matching Screenshot 1 */}
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-4 sm:mb-5">
+          <div>
+            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-[50px] font-semibold tracking-tight text-[#16301d] leading-none">
+              Shop by Category
+            </h2>
+            <p className="font-sans text-[11px] sm:text-xs md:text-sm font-extrabold tracking-[0.24em] text-[#193622] uppercase mt-2 sm:mt-2.5">
+              PURE GOODNESS FOR A HEALTHIER TOMORROW
+            </p>
+          </div>
           <Link
             href="/shop"
-            className="text-sm sm:text-base font-bold text-[#e11d48] hover:text-[#be123c] transition-colors flex items-center gap-1.5 group cursor-pointer"
+            className="text-xs sm:text-sm md:text-base font-bold text-[#16301d] hover:text-[#2b5936] transition-colors inline-flex items-center gap-1.5 group cursor-pointer self-start sm:self-auto pb-1"
+            aria-label="View all categories in shop"
           >
             <span>See All</span>
             <span className="transition-transform group-hover:translate-x-1 font-extrabold text-lg">›</span>
           </Link>
         </div>
+
+        {/* Thin Divider Line matching Screenshot 1 */}
+        <div className="w-full h-px bg-[#ded7c8] mb-8 sm:mb-10 lg:mb-12" />
 
         {/* 14 Categories Grid - Symmetrical 7x2 Grid, Zero Outer Side Gaps & Zero Empty Columns */}
         <div className="w-full py-2">
