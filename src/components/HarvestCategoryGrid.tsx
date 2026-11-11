@@ -147,7 +147,7 @@ export const ALL_9_COLLECTIONS: CollectionCardItem[] = [
     category: "milk",
     subCategory: "all",
     image: "/images/collections/col_milk_clean_2x.png",
-    bgColor: "bg-[#fbf8f2]",
+    bgColor: "bg-[#faf5ea]",
     arrowWidthClass: "w-16 sm:w-20",
   },
   {
@@ -201,7 +201,7 @@ export const ALL_9_COLLECTIONS: CollectionCardItem[] = [
     category: "grains_pulses",
     subCategory: "Aged Rice",
     image: "/images/collections/col_grains_clean_2x.png",
-    bgColor: "bg-[#fbf8f2]",
+    bgColor: "bg-[#faf5ea]",
     arrowWidthClass: "w-16 sm:w-20",
   },
   {
@@ -1095,7 +1095,7 @@ export default function HarvestCategoryGrid() {
                 <button
                   type="button"
                   onClick={() => handleCardClick("milk")}
-                  className={`group relative w-full lg:col-span-5 rounded-2xl sm:rounded-3xl overflow-hidden text-left focus:outline-none p-0 cursor-pointer block bg-[#fbf8f2] shadow-sm hover:shadow-md transition-all duration-300 min-h-[380px] sm:min-h-[440px] lg:min-h-[480px] ${
+                  className={`group relative w-full lg:col-span-5 rounded-2xl sm:rounded-3xl overflow-hidden text-left focus:outline-none p-0 cursor-pointer block bg-[#faf5ea] shadow-sm hover:shadow-md transition-all duration-300 min-h-[380px] sm:min-h-[440px] lg:min-h-[480px] ${
                     isCategoryProductsOpen && selectedCategory === "milk"
                       ? "ring-4 ring-[#16301d]"
                       : ""
