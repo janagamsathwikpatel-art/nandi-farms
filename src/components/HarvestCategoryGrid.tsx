@@ -964,47 +964,151 @@ export default function HarvestCategoryGrid() {
 
   return (
     <section id="categories" className="relative w-full bg-[#faf5ea] overflow-hidden py-6 sm:py-8 lg:py-10">
-      {/* 1. INCREASED WIDTH MASTER BANNER (100% Exact 1st Image with Interactive Hotspots) */}
+      {/* 1. EVERYDAY GOODNESS BENTO CONTAINER (Live HTML Typography Outside Images, Zero Box Hover) */}
       <div className="w-full max-w-[1536px] 2xl:max-w-[1680px] mx-auto px-4 sm:px-6 lg:px-10 xl:px-12 pb-6 sm:pb-8">
-        <div className="relative w-full aspect-[2/1] rounded-2xl sm:rounded-3xl overflow-hidden shadow-sm select-none bg-[#faf5ea]">
-          <img
-            src="/images/everyday_goodness_banner.png"
-            alt="Everyday Goodness - Milk, Vegetables, Fruits"
-            className="w-full h-full object-contain pointer-events-none"
-            loading="eager"
-          />
+        <div className="w-full bg-[#fcf9f2] border border-[#e8dfd1] rounded-[24px] sm:rounded-[32px] p-6 sm:p-8 lg:p-10 shadow-sm select-none">
+          {/* Header Bar Outside the Cards (Crisp Live HTML) */}
+          <div className="flex flex-col sm:flex-row sm:items-start justify-between pb-6 sm:pb-8 gap-4">
+            <div>
+              <h2 className="font-playfair text-3xl sm:text-4xl lg:text-[44px] text-[#16301d] font-normal tracking-tight leading-none">
+                Everyday Goodness
+              </h2>
+              <p className="text-sm sm:text-base text-[#4b5563] mt-2.5 font-sans font-medium">
+                Explore dairy, fruits, vegetables and more.
+              </p>
+            </div>
+            <button
+              type="button"
+              onClick={handleToggleAllCollections}
+              className="inline-flex items-center gap-2 bg-[#f3e4d5] hover:bg-[#ebd3be] text-[#4a3018] font-semibold text-xs sm:text-sm px-5 sm:px-6 py-2.5 sm:py-3 rounded-full transition-all duration-300 shadow-sm hover:shadow cursor-pointer self-start sm:self-auto shrink-0 focus:outline-none"
+              aria-label="Toggle all 9 collections"
+            >
+              <span>{showAllCollections ? "Hide collections" : "View all 9 collections"}</span>
+              <span className="text-base transition-transform duration-300">{showAllCollections ? "↑" : "→"}</span>
+            </button>
+          </div>
 
-          {/* Hotspot: View all 9 collections (Triggers 2nd image 9 Collections section below) */}
-          <button
-            type="button"
-            onClick={handleToggleAllCollections}
-            className="absolute left-[72.5%] top-[9.5%] w-[21.5%] h-[7%] rounded-full cursor-pointer hover:bg-black/5 active:scale-95 transition-all focus:outline-none"
-            aria-label="View all 9 collections"
-          />
+          {/* Bento Grid: Left Milk + Right Stacked Veg & Fruit (Live Text, No Hover Box) */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-5 lg:gap-6 items-stretch">
+            {/* A. Left Column: Milk Card (5 of 12 cols on desktop) */}
+            <button
+              type="button"
+              onClick={() => handleCardClick("milk")}
+              className={`group relative w-full lg:col-span-5 rounded-2xl sm:rounded-3xl overflow-hidden text-left focus:outline-none p-0 cursor-pointer block bg-[#fbf8f2] shadow-sm hover:shadow-md transition-all duration-300 min-h-[380px] sm:min-h-[440px] lg:min-h-[480px] ${
+                isCategoryProductsOpen && selectedCategory === "milk"
+                  ? "ring-4 ring-[#16301d]"
+                  : ""
+              }`}
+              aria-label="Open Milk Products"
+            >
+              {/* Background Plate Image */}
+              <img
+                src="/images/bento_milk_clean.png"
+                alt="Fresh Farm Milk"
+                className="absolute inset-0 w-full h-full object-cover object-bottom transition-transform duration-700 ease-out group-hover:scale-105 pointer-events-none select-none"
+                loading="eager"
+              />
 
-          {/* Hotspot: Milk Card */}
-          <button
-            type="button"
-            onClick={() => handleCardClick("milk")}
-            className="absolute left-[2.2%] top-[24.6%] w-[34.6%] h-[71.5%] rounded-2xl sm:rounded-3xl cursor-pointer hover:ring-2 hover:ring-[#16301d]/30 active:scale-[0.99] transition-all focus:outline-none"
-            aria-label="Shop Fresh Milk"
-          />
+              {/* Live HTML Typography Outside Image */}
+              <div className="absolute top-6 sm:top-8 left-6 sm:left-8 z-10 flex items-center gap-3 select-none">
+                <span className="font-playfair text-3xl sm:text-4xl lg:text-[42px] text-[#16301d] font-normal tracking-tight leading-none drop-shadow-sm">
+                  Milk
+                </span>
+                <span className="w-8 h-8 rounded-full bg-[#16301d]/10 flex items-center justify-center text-[#16301d] text-base group-hover:bg-[#16301d] group-hover:text-white group-hover:translate-x-1 transition-all duration-300 shadow-sm">
+                  →
+                </span>
+              </div>
 
-          {/* Hotspot: Vegetables Card */}
-          <button
-            type="button"
-            onClick={() => handleCardClick("vegetables")}
-            className="absolute left-[37.9%] top-[24.6%] w-[59.9%] h-[33.4%] rounded-2xl sm:rounded-3xl cursor-pointer hover:ring-2 hover:ring-[#16301d]/30 active:scale-[0.99] transition-all focus:outline-none"
-            aria-label="Shop Fresh Vegetables"
-          />
+              {/* Active Indicator Badge */}
+              {isCategoryProductsOpen && selectedCategory === "milk" && (
+                <div className="absolute top-6 right-6 z-10 bg-[#16301d] text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-md flex items-center gap-1.5 animate-in fade-in">
+                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                  <span>Viewing Dairy</span>
+                </div>
+              )}
+            </button>
 
-          {/* Hotspot: Fruits Card */}
-          <button
-            type="button"
-            onClick={() => handleCardClick("fruits")}
-            className="absolute left-[37.9%] top-[62.7%] w-[59.9%] h-[33.4%] rounded-2xl sm:rounded-3xl cursor-pointer hover:ring-2 hover:ring-[#16301d]/30 active:scale-[0.99] transition-all focus:outline-none"
-            aria-label="Shop Fresh Fruits"
-          />
+            {/* B. Right Column: Stacked Vegetables & Fruits Cards (7 of 12 cols on desktop) */}
+            <div className="lg:col-span-7 flex flex-col gap-4 sm:gap-5 lg:gap-6 justify-between">
+              {/* Top Card: Vegetables */}
+              <button
+                type="button"
+                onClick={() => handleCardClick("vegetables")}
+                className={`group relative w-full h-[180px] sm:h-[210px] lg:h-[228px] rounded-2xl sm:rounded-3xl overflow-hidden text-left focus:outline-none p-0 cursor-pointer block bg-[#dce5da] shadow-sm hover:shadow-md transition-all duration-300 ${
+                  isCategoryProductsOpen && selectedCategory === "vegetables"
+                    ? "ring-4 ring-[#16301d]"
+                    : ""
+                }`}
+                aria-label="Open Vegetables Products"
+              >
+                <img
+                  src="/images/bento_veg_clean.png"
+                  alt="Fresh Organic Vegetables"
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 pointer-events-none select-none"
+                  loading="eager"
+                />
+
+                {/* Live HTML Typography Outside Image */}
+                <div className="absolute top-1/2 -translate-y-1/2 left-6 sm:left-10 z-10 select-none">
+                  <span className="font-playfair text-3xl sm:text-4xl lg:text-[42px] text-[#16301d] font-normal tracking-tight leading-none drop-shadow-sm block">
+                    Vegetables
+                  </span>
+                  <div className="flex items-center w-36 sm:w-44 h-px bg-[#16301d]/40 mt-3 sm:mt-4 relative">
+                    <span className="absolute -right-1 -top-2.5 text-base text-[#16301d] transition-transform duration-300 group-hover:translate-x-2">
+                      →
+                    </span>
+                  </div>
+                </div>
+
+                {/* Active Indicator Badge */}
+                {isCategoryProductsOpen && selectedCategory === "vegetables" && (
+                  <div className="absolute top-5 right-5 z-10 bg-[#16301d] text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-md flex items-center gap-1.5 animate-in fade-in">
+                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                    <span>Viewing Veggies</span>
+                  </div>
+                )}
+              </button>
+
+              {/* Bottom Card: Fruits */}
+              <button
+                type="button"
+                onClick={() => handleCardClick("fruits")}
+                className={`group relative w-full h-[180px] sm:h-[210px] lg:h-[228px] rounded-2xl sm:rounded-3xl overflow-hidden text-left focus:outline-none p-0 cursor-pointer block bg-[#faefe2] shadow-sm hover:shadow-md transition-all duration-300 ${
+                  isCategoryProductsOpen && selectedCategory === "fruits"
+                    ? "ring-4 ring-[#16301d]"
+                    : ""
+                }`}
+                aria-label="Open Fruits Products"
+              >
+                <img
+                  src="/images/bento_fruit_clean.png"
+                  alt="Fresh Orchard Fruits"
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 pointer-events-none select-none"
+                  loading="eager"
+                />
+
+                {/* Live HTML Typography Outside Image */}
+                <div className="absolute top-1/2 -translate-y-1/2 right-6 sm:right-10 z-10 text-right select-none">
+                  <span className="font-playfair text-3xl sm:text-4xl lg:text-[42px] text-[#16301d] font-normal tracking-tight leading-none drop-shadow-sm block">
+                    Fruits
+                  </span>
+                  <div className="flex items-center w-36 sm:w-44 h-px bg-[#16301d]/40 mt-3 sm:mt-4 relative ml-auto">
+                    <span className="absolute -right-1 -top-2.5 text-base text-[#16301d] transition-transform duration-300 group-hover:translate-x-2">
+                      →
+                    </span>
+                  </div>
+                </div>
+
+                {/* Active Indicator Badge */}
+                {isCategoryProductsOpen && selectedCategory === "fruits" && (
+                  <div className="absolute top-5 left-5 z-10 bg-[#16301d] text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-md flex items-center gap-1.5 animate-in fade-in">
+                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                    <span>Viewing Fruits</span>
+                  </div>
+                )}
+              </button>
+            </div>
+          </div>
         </div>
       </div>
 

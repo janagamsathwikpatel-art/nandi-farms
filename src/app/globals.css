@@ -3,12 +3,17 @@
 @layer base {
   :root {
     --font-serif: var(--font-serif, "Cormorant Garamond", Georgia, serif);
+    --font-playfair: var(--font-playfair, "Playfair Display", Georgia, serif);
     --font-sans: var(--font-sans, "Plus Jakarta Sans", sans-serif);
   }
 }
 
 .font-serif {
   font-family: var(--font-serif), "Cormorant Garamond", Georgia, serif;
+}
+
+.font-playfair {
+  font-family: var(--font-playfair), "Playfair Display", Georgia, serif;
 }
 
 .font-sans {
