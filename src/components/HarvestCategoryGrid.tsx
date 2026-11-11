@@ -869,6 +869,7 @@ export default function HarvestCategoryGrid() {
   const [cart, setCart] = useState<{ [productId: string]: number }>({});
   const [isMilkModalOpen, setIsMilkModalOpen] = useState(false);
   const [activeModalProduct, setActiveModalProduct] = useState<TodaysHarvestFeatured | null>(null);
+  const [showAllCollections, setShowAllCollections] = useState(false);
   const freshPageRef = useRef<HTMLDivElement>(null);
   const categoryProductsAnchorRef = useRef<HTMLDivElement>(null);
   const catalogRef = useRef<HTMLDivElement>(null);
@@ -948,74 +949,200 @@ export default function HarvestCategoryGrid() {
 
   return (
     <section id="categories" className="relative w-full bg-[#faf5ea] overflow-hidden pt-6 sm:pt-8 lg:pt-10">
-      {/* "Shop by Category" Header Outside & Directly Above the 3x3 Grid */}
+      {/* "Everyday Goodness" Header Outside & Directly Above the Bento Grid */}
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-4 sm:pb-6">
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between border-b border-[#ded7c8] pb-4 sm:pb-5 gap-2">
+        <div className="flex flex-col sm:flex-row sm:items-start justify-between pb-4 sm:pb-5 gap-3 border-b border-[#ded7c8]">
           <div>
-            <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-[#183622] font-semibold tracking-tight">
-              Shop by Category
+            <h2 className="font-serif text-3xl sm:text-4xl lg:text-[44px] text-[#16301d] font-medium tracking-tight leading-none">
+              Everyday Goodness
             </h2>
-            <p className="text-xs sm:text-[13px] font-bold tracking-[0.2em] text-[#22442d] uppercase mt-1.5">
-              Pure Goodness for a Healthier Tomorrow
+            <p className="text-sm sm:text-base text-[#4b5563] mt-2 font-sans font-medium">
+              Explore dairy, fruits, vegetables and more.
             </p>
           </div>
-          <span className="text-xs font-semibold text-[#7d4f19] bg-[#ebdccb] px-3.5 py-1.5 rounded-full w-fit">
-            9 Collections
-          </span>
+          <button
+            type="button"
+            onClick={() => setShowAllCollections((prev) => !prev)}
+            className="inline-flex items-center gap-2 bg-[#f3e4d5] hover:bg-[#ebd3be] text-[#4a3018] font-semibold text-xs sm:text-sm px-5 sm:px-6 py-2.5 sm:py-3 rounded-full transition-all duration-300 shadow-sm hover:shadow cursor-pointer self-start sm:self-auto shrink-0"
+            aria-label="Toggle all 9 collections"
+          >
+            <span>{showAllCollections ? "Hide collections" : "View all 9 collections"}</span>
+            <span className="text-base transition-transform duration-300">{showAllCollections ? "↑" : "→"}</span>
+          </button>
         </div>
       </div>
 
-      {/* 1. BALANCED CATEGORY GRID WITH REFINED GAP (Pure Photos + Live HTML Text Outside Image) */}
-      <div className="w-full p-3 sm:p-4 lg:p-6 leading-none">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 w-full gap-3 sm:gap-4 lg:gap-5">
-          {CATEGORY_BOXES.map((box) => (
+      {/* 1. EVERYDAY GOODNESS BENTO GRID (Clean Visual Plates + Live HTML Text Outside Images) */}
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-6 sm:pb-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-5 lg:gap-6 items-stretch">
+          {/* A. Left Column: Milk Card (5 of 12 cols on desktop) */}
+          <button
+            type="button"
+            onClick={() => handleCardClick("milk")}
+            className={`group relative w-full lg:col-span-5 rounded-2xl sm:rounded-3xl overflow-hidden text-left focus:outline-none p-0 cursor-pointer block bg-[#fbf8f2] shadow-sm hover:shadow-xl transition-all duration-300 min-h-[380px] sm:min-h-[440px] lg:min-h-[480px] ${
+              isCategoryProductsOpen && selectedCategory === "milk"
+                ? "ring-4 ring-[#16301d] shadow-xl"
+                : ""
+            }`}
+            aria-label="Open Milk Products"
+          >
+            {/* Background Plate Image */}
+            <img
+              src="/images/bento_milk_clean.png"
+              alt="Fresh Farm Milk"
+              className="absolute inset-0 w-full h-full object-cover object-bottom transition-transform duration-700 ease-out group-hover:scale-105 pointer-events-none select-none"
+              loading="eager"
+            />
+
+            {/* Live HTML Typography Outside Image */}
+            <div className="absolute top-6 sm:top-8 left-6 sm:left-8 z-10 flex items-center gap-3 select-none">
+              <span className="font-serif text-3xl sm:text-4xl lg:text-[42px] text-[#16301d] font-medium tracking-tight leading-none drop-shadow-sm">
+                Milk
+              </span>
+              <span className="w-8 h-8 rounded-full bg-[#16301d]/10 flex items-center justify-center text-[#16301d] text-base group-hover:bg-[#16301d] group-hover:text-white group-hover:translate-x-1 transition-all duration-300 shadow-sm">
+                →
+              </span>
+            </div>
+
+            {/* Active Indicator Badge */}
+            {isCategoryProductsOpen && selectedCategory === "milk" && (
+              <div className="absolute top-6 right-6 z-10 bg-[#16301d] text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-md flex items-center gap-1.5 animate-in fade-in">
+                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                <span>Viewing Dairy</span>
+              </div>
+            )}
+          </button>
+
+          {/* B. Right Column: Stacked Vegetables & Fruits Cards (7 of 12 cols on desktop) */}
+          <div className="lg:col-span-7 flex flex-col gap-4 sm:gap-5 lg:gap-6 justify-between">
+            {/* Top Card: Vegetables */}
             <button
-              key={box.id}
               type="button"
-              onClick={() => handleCardClick(box.id)}
-              className={`relative w-full overflow-hidden text-left focus:outline-none p-0 cursor-pointer block bg-[#f4eee2] group transition-all duration-300 hover:bg-[#ede7da] hover:shadow-md ${
-                isCategoryProductsOpen && selectedCategory === box.id
-                  ? "ring-4 ring-[#1b6b38] shadow-xl bg-[#ede7da]"
+              onClick={() => handleCardClick("vegetables")}
+              className={`group relative w-full h-[180px] sm:h-[210px] lg:h-[228px] rounded-2xl sm:rounded-3xl overflow-hidden text-left focus:outline-none p-0 cursor-pointer block bg-[#dce5da] shadow-sm hover:shadow-xl transition-all duration-300 ${
+                isCategoryProductsOpen && selectedCategory === "vegetables"
+                  ? "ring-4 ring-[#16301d] shadow-xl"
                   : ""
               }`}
-              aria-label={`Open ${box.title} Fresh Products`}
+              aria-label="Open Vegetables Products"
             >
-              {/* Active Category Badge */}
-              {isCategoryProductsOpen && selectedCategory === box.id && (
-                <div className="absolute top-3 right-3 z-10 bg-[#1b6b38] text-white text-[11px] font-bold px-3 py-1 rounded-full shadow-md flex items-center gap-1.5 animate-in fade-in">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-300 animate-pulse" />
-                  <span>Viewing Products</span>
+              <img
+                src="/images/bento_veg_clean.png"
+                alt="Fresh Organic Vegetables"
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 pointer-events-none select-none"
+                loading="eager"
+              />
+
+              {/* Live HTML Typography Outside Image */}
+              <div className="absolute top-1/2 -translate-y-1/2 left-6 sm:left-10 z-10 select-none">
+                <span className="font-serif text-3xl sm:text-4xl lg:text-[42px] text-[#16301d] font-medium tracking-tight leading-none drop-shadow-sm block">
+                  Vegetables
+                </span>
+                <div className="flex items-center w-36 sm:w-44 h-px bg-[#16301d]/40 mt-3 sm:mt-4 relative">
+                  <span className="absolute -right-1 -top-2.5 text-base text-[#16301d] transition-transform duration-300 group-hover:translate-x-2">
+                    →
+                  </span>
+                </div>
+              </div>
+
+              {/* Active Indicator Badge */}
+              {isCategoryProductsOpen && selectedCategory === "vegetables" && (
+                <div className="absolute top-5 right-5 z-10 bg-[#16301d] text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-md flex items-center gap-1.5 animate-in fade-in">
+                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                  <span>Viewing Veggies</span>
                 </div>
               )}
-
-              {/* Pure Photograph without any text */}
-              <div className="w-full aspect-[1200/480] overflow-hidden bg-[#f4eee2] p-0 m-0 block">
-                <img
-                  src={box.photo}
-                  alt={box.title}
-                  className="w-full h-full object-cover block m-0 p-0 transition-transform duration-500 group-hover:scale-105"
-                  loading="eager"
-                />
-              </div>
-
-              {/* Live HTML Text Block rendered OUTSIDE the image */}
-              <div className="px-6 py-4 sm:px-7 sm:py-5 bg-[#f4eee2] flex items-center justify-between border-none m-0">
-                <div>
-                  <h3 className="font-serif text-2xl sm:text-3xl text-[#183622] font-medium tracking-tight">
-                    {box.title}
-                  </h3>
-                  <p className="text-xs sm:text-sm text-[#4e5e4d] mt-1 font-sans">
-                    {box.tagline}
-                  </p>
-                </div>
-                <span className="text-2xl text-[#183622] font-light pl-4 transition-transform duration-300 group-hover:translate-x-1.5 shrink-0">
-                  {isCategoryProductsOpen && selectedCategory === box.id ? "↓" : "→"}
-                </span>
-              </div>
             </button>
-          ))}
+
+            {/* Bottom Card: Fruits */}
+            <button
+              type="button"
+              onClick={() => handleCardClick("fruits")}
+              className={`group relative w-full h-[180px] sm:h-[210px] lg:h-[228px] rounded-2xl sm:rounded-3xl overflow-hidden text-left focus:outline-none p-0 cursor-pointer block bg-[#faefe2] shadow-sm hover:shadow-xl transition-all duration-300 ${
+                isCategoryProductsOpen && selectedCategory === "fruits"
+                  ? "ring-4 ring-[#16301d] shadow-xl"
+                  : ""
+              }`}
+              aria-label="Open Fruits Products"
+            >
+              <img
+                src="/images/bento_fruit_clean.png"
+                alt="Fresh Orchard Fruits"
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 pointer-events-none select-none"
+                loading="eager"
+              />
+
+              {/* Live HTML Typography Outside Image */}
+              <div className="absolute top-1/2 -translate-y-1/2 right-6 sm:right-10 z-10 text-right select-none">
+                <span className="font-serif text-3xl sm:text-4xl lg:text-[42px] text-[#16301d] font-medium tracking-tight leading-none drop-shadow-sm block">
+                  Fruits
+                </span>
+                <div className="flex items-center w-36 sm:w-44 h-px bg-[#16301d]/40 mt-3 sm:mt-4 relative ml-auto">
+                  <span className="absolute -right-1 -top-2.5 text-base text-[#16301d] transition-transform duration-300 group-hover:translate-x-2">
+                    →
+                  </span>
+                </div>
+              </div>
+
+              {/* Active Indicator Badge */}
+              {isCategoryProductsOpen && selectedCategory === "fruits" && (
+                <div className="absolute top-5 left-5 z-10 bg-[#16301d] text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-md flex items-center gap-1.5 animate-in fade-in">
+                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                  <span>Viewing Fruits</span>
+                </div>
+              )}
+            </button>
+          </div>
         </div>
       </div>
+
+      {/* 2. OPTIONAL EXPANDED 6 REMAINING COLLECTIONS */}
+      {showAllCollections && (
+        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-8 transition-all duration-500 animate-in fade-in">
+          <div className="border-t border-[#ded7c8] pt-6 mb-5">
+            <h4 className="text-xs sm:text-sm font-bold tracking-[0.2em] text-[#22442d] uppercase">
+              All 9 Farm Collections
+            </h4>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 lg:gap-5">
+            {CATEGORY_BOXES.slice(3).map((box) => (
+              <button
+                key={box.id}
+                type="button"
+                onClick={() => handleCardClick(box.id)}
+                className={`relative w-full overflow-hidden text-left focus:outline-none p-0 cursor-pointer block bg-[#f4eee2] group transition-all duration-300 hover:bg-[#ede7da] hover:shadow-md rounded-2xl ${
+                  isCategoryProductsOpen && selectedCategory === box.id
+                    ? "ring-4 ring-[#16301d] shadow-xl bg-[#ede7da]"
+                    : ""
+                }`}
+                aria-label={`Open ${box.title}`}
+              >
+                <div className="w-full aspect-[1200/480] overflow-hidden bg-[#f4eee2]">
+                  <img
+                    src={box.photo}
+                    alt={box.title}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                </div>
+                <div className="px-5 py-4 bg-[#f4eee2] flex items-center justify-between">
+                  <div>
+                    <h5 className="font-serif text-xl sm:text-2xl text-[#183622] font-medium tracking-tight">
+                      {box.title}
+                    </h5>
+                    <p className="text-xs text-[#4e5e4d] mt-0.5 font-sans">
+                      {box.tagline}
+                    </p>
+                  </div>
+                  <span className="text-xl text-[#183622] transition-transform duration-300 group-hover:translate-x-1">
+                    →
+                  </span>
+                </div>
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* 2. DEDICATED CATEGORY PRODUCTS VIEW (Revealed when ANY Category Card is Clicked) */}
       {isCategoryProductsOpen && (
