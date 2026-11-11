@@ -1264,18 +1264,17 @@ export default function HarvestCategoryGrid() {
                       }`}
                       aria-label={`Open ${col.title} Collection`}
                     >
-                      {/* Clean Photographic Plate (from 2nd image - zero ghosting & zero smears) */}
+                      {/* Clean Photographic Plate (Zero text baked into image - extracted from 2nd Image) */}
                       <img
                         src={col.image}
                         alt={col.title}
-                        title={col.title}
                         className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105 pointer-events-none select-none"
                         loading="lazy"
                       />
 
-                      {/* Live HTML Typography Preserved Without Any Changes of Text */}
+                      {/* Live HTML Typography Without Changes (From Screenshot) */}
                       <div className="absolute top-4 sm:top-5 lg:top-6 left-4 sm:left-5 lg:left-6 z-10 select-none">
-                        <span className="font-playfair text-2xl sm:text-3xl lg:text-[34px] text-[#16301d] font-normal tracking-tight block leading-none drop-shadow-xs">
+                        <span className="font-playfair text-2xl sm:text-3xl lg:text-[34px] text-[#16301d] font-normal tracking-tight block leading-none drop-shadow-sm">
                           {col.title}
                         </span>
                         <div
