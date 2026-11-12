@@ -1141,7 +1141,7 @@ export default function HarvestCategoryGrid() {
                 <button
                   type="button"
                   onClick={() => handleCardClick("milk")}
-                  className={`group relative w-full lg:col-span-5 rounded-2xl sm:rounded-3xl overflow-hidden aspect-[354/363] lg:aspect-auto lg:h-full text-left focus:outline-none p-0 cursor-pointer block bg-[#faf5ea] shadow-xs hover:shadow-md transition-all duration-300 min-h-[340px] sm:min-h-[400px] lg:min-h-0 ${
+                  className={`group relative w-full lg:col-span-5 rounded-2xl sm:rounded-3xl overflow-hidden aspect-[356/370] lg:aspect-auto lg:h-full text-left focus:outline-none p-0 cursor-pointer block bg-[#faf5ea] shadow-xs hover:shadow-md transition-all duration-300 min-h-[340px] sm:min-h-[400px] lg:min-h-0 ${
                     isCategoryProductsOpen && selectedCategory === "milk"
                       ? "ring-4 ring-[#16301d]"
                       : ""
@@ -1183,18 +1183,18 @@ export default function HarvestCategoryGrid() {
                     <button
                       type="button"
                       onClick={() => handleCardClick("vegetables")}
-                      className={`group relative w-full aspect-[616/182] rounded-2xl sm:rounded-3xl bg-[#dfe3d0] overflow-visible text-left focus:outline-none p-0 cursor-pointer block shadow-xs hover:shadow-md transition-all duration-300 ${
+                      className={`group relative w-full aspect-[612/180] rounded-2xl sm:rounded-3xl bg-[#dfe3d0] overflow-visible text-left focus:outline-none p-0 cursor-pointer block shadow-xs hover:shadow-md transition-all duration-300 ${
                         isCategoryProductsOpen && selectedCategory === "vegetables"
                           ? "ring-4 ring-[#16301d]"
                           : ""
                       }`}
                       aria-label="Open Vegetables Products"
                     >
-                      {/* Exact image from user screenshot with leaves extending -12.1% above the top border */}
+                      {/* Exact image from user screenshot with leaves extending -11.7% above the top border */}
                       <img
                         src="/images/bento_v3/veg_exact_2x.png"
                         alt="Fresh Organic Vegetables"
-                        className="absolute -top-[12.1%] left-0 w-full h-[112.1%] object-contain pointer-events-none select-none transition-transform duration-700 ease-out group-hover:scale-105"
+                        className="absolute -top-[11.7%] left-0 w-full h-[111.7%] object-contain pointer-events-none select-none transition-transform duration-700 ease-out group-hover:scale-105"
                         loading="eager"
                       />
 
@@ -1224,7 +1224,7 @@ export default function HarvestCategoryGrid() {
                   <button
                     type="button"
                     onClick={() => handleCardClick("fruits")}
-                    className={`group relative w-full aspect-[612/174] rounded-2xl sm:rounded-3xl overflow-hidden text-left focus:outline-none p-0 cursor-pointer block bg-[#faf5ea] shadow-xs hover:shadow-md transition-all duration-300 ${
+                    className={`group relative w-full aspect-[612/179] rounded-2xl sm:rounded-3xl overflow-hidden text-left focus:outline-none p-0 cursor-pointer block bg-[#faf5ea] shadow-xs hover:shadow-md transition-all duration-300 ${
                       isCategoryProductsOpen && selectedCategory === "fruits"
                         ? "ring-4 ring-[#16301d]"
                         : ""
