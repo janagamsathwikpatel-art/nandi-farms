@@ -211,8 +211,8 @@ export default function ScrollMilkJourney({ onShopFresh }: ScrollMilkJourneyProp
               <div className="relative w-full aspect-[4/5] flex items-center justify-center pointer-events-none select-none overflow-hidden">
                 <video
                   ref={videoDesktopRef}
-                  src="/videos/milk-pouring-bottle-pure-v2.mp4"
-                  poster="/images/milk-video-poster-pure-v2.jpg"
+                  src="/videos/milk-pouring-bottle-pure-v3.mp4"
+                  poster="/images/milk-video-poster-pure-v3.jpg"
                   autoPlay
                   loop
                   muted
@@ -239,8 +239,8 @@ export default function ScrollMilkJourney({ onShopFresh }: ScrollMilkJourneyProp
             <div className="relative w-full max-w-[340px] aspect-[4/5] flex items-center justify-center pointer-events-none select-none overflow-hidden">
               <video
                 ref={videoMobileRef}
-                src="/videos/milk-pouring-bottle-pure-v2.mp4"
-                poster="/images/milk-video-poster-pure-v2.jpg"
+                src="/videos/milk-pouring-bottle-pure-v3.mp4"
+                poster="/images/milk-video-poster-pure-v3.jpg"
                 autoPlay
                 loop
                 muted
