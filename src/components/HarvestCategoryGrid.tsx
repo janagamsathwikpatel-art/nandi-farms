@@ -1155,6 +1155,18 @@ export default function HarvestCategoryGrid() {
                     loading="eager"
                   />
 
+                  {/* Live HTML Typography In The Box, Outside Image File */}
+                  <div className="absolute top-6 sm:top-8 left-6 sm:left-8 z-10 select-none">
+                    <span className="font-playfair text-3xl sm:text-4xl lg:text-[40px] text-[#16301d] font-normal tracking-tight block leading-none drop-shadow-xs">
+                      Milk
+                    </span>
+                    <div className="flex items-center w-24 sm:w-28 h-px bg-[#16301d]/60 mt-2 sm:mt-2.5 relative">
+                      <span className="absolute -right-1 -top-2 text-xs sm:text-sm text-[#16301d] transition-transform duration-300 group-hover:translate-x-1.5">
+                        →
+                      </span>
+                    </div>
+                  </div>
+
                   {/* Active Indicator Badge */}
                   {isCategoryProductsOpen && selectedCategory === "milk" && (
                     <div className="absolute top-5 right-5 z-10 bg-[#16301d] text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-md flex items-center gap-1.5 animate-in fade-in">
@@ -1184,6 +1196,18 @@ export default function HarvestCategoryGrid() {
                       loading="eager"
                     />
 
+                    {/* Live HTML Typography In The Box, Outside Image File */}
+                    <div className="absolute top-6 sm:top-8 left-6 sm:left-8 lg:left-10 z-10 select-none">
+                      <span className="font-playfair text-3xl sm:text-4xl lg:text-[40px] text-[#16301d] font-normal tracking-tight block leading-none drop-shadow-xs">
+                        Vegetables
+                      </span>
+                      <div className="flex items-center w-36 sm:w-44 h-px bg-[#16301d]/60 mt-2 sm:mt-2.5 relative">
+                        <span className="absolute -right-1 -top-2 text-xs sm:text-sm text-[#16301d] transition-transform duration-300 group-hover:translate-x-1.5">
+                          →
+                        </span>
+                      </div>
+                    </div>
+
                     {/* Active Indicator Badge */}
                     {isCategoryProductsOpen && selectedCategory === "vegetables" && (
                       <div className="absolute top-5 right-5 z-10 bg-[#16301d] text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-md flex items-center gap-1.5 animate-in fade-in">
@@ -1210,6 +1234,18 @@ export default function HarvestCategoryGrid() {
                       className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 pointer-events-none select-none"
                       loading="eager"
                     />
+
+                    {/* Live HTML Typography In The Box, Outside Image File */}
+                    <div className="absolute top-6 sm:top-8 left-6 sm:left-8 lg:left-10 z-10 select-none">
+                      <span className="font-playfair text-3xl sm:text-4xl lg:text-[40px] text-[#16301d] font-normal tracking-tight block leading-none drop-shadow-xs">
+                        Fruits
+                      </span>
+                      <div className="flex items-center w-28 sm:w-36 h-px bg-[#16301d]/60 mt-2 sm:mt-2.5 relative">
+                        <span className="absolute -right-1 -top-2 text-xs sm:text-sm text-[#16301d] transition-transform duration-300 group-hover:translate-x-1.5">
+                          →
+                        </span>
+                      </div>
+                    </div>
 
                     {/* Active Indicator Badge */}
                     {isCategoryProductsOpen && selectedCategory === "fruits" && (
