@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight, CheckCircle2, Sparkles } from "lucide-react";
 
 interface ScrollMilkJourneyProps {
   onShopFresh?: () => void;
@@ -35,7 +35,7 @@ export default function ScrollMilkJourney({ onShopFresh }: ScrollMilkJourneyProp
     return () => observer.disconnect();
   }, []);
 
-  // Smooth scroll parallax: move the bottle as the user scrolls through the section
+  // Smooth scroll parallax for bottle movement as user scrolls
   useEffect(() => {
     const handleScroll = () => {
       if (!sectionRef.current) return;
@@ -53,7 +53,7 @@ export default function ScrollMilkJourney({ onShopFresh }: ScrollMilkJourneyProp
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Ensure continuous looping video playback
+  // Ensure continuous looping video playback without interruption
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
@@ -67,37 +67,28 @@ export default function ScrollMilkJourney({ onShopFresh }: ScrollMilkJourneyProp
     return () => video.removeEventListener("ended", handleEnded);
   }, []);
 
-  // Scroll-driven parallax offsets
-  const bottleTranslateY = isVisible ? (scrollProgress - 0.5) * -50 : 45;
-  const bottleScale = isVisible ? 1 : 0.95;
+  // Parallax calculations
+  const bottleTranslateY = isVisible ? (scrollProgress - 0.5) * -35 : 40;
+  const bottleScale = isVisible ? 1 : 0.96;
   const bottleOpacity = isVisible ? 1 : 0;
-  const shadowScale = 0.9 + scrollProgress * 0.2;
+  const shadowScale = 0.9 + scrollProgress * 0.18;
 
   return (
     <section
       ref={sectionRef}
       id="scroll-milk-journey"
-      className="relative w-full bg-[#FAF6ED] py-16 sm:py-20 lg:py-24 px-4 sm:px-8 select-none overflow-hidden"
+      className="relative w-full bg-[#FAF6ED] py-16 sm:py-20 lg:py-28 px-4 sm:px-8 lg:px-12 select-none overflow-hidden"
     >
-      {/* SVG Definitions for Seamless Bottle Silhouette Clipping */}
-      <svg width="0" height="0" className="absolute pointer-events-none">
-        <defs>
-          <clipPath id="seamless-bottle-clip" clipPathUnits="objectBoundingBox">
-            <path d="M 0.47 0.0 L 0.53 0.0 L 0.53 0.22 C 0.55 0.22 0.57 0.24 0.57 0.26 L 0.57 0.35 C 0.57 0.42 0.69 0.46 0.69 0.52 L 0.69 0.90 C 0.69 0.94 0.65 0.96 0.50 0.96 C 0.35 0.96 0.31 0.94 0.31 0.90 L 0.31 0.52 C 0.31 0.46 0.43 0.42 0.43 0.35 L 0.43 0.26 C 0.43 0.24 0.45 0.22 0.47 0.22 Z" />
-          </clipPath>
-        </defs>
-      </svg>
-
-      <div className="max-w-[1280px] mx-auto flex flex-col items-center">
+      <div className="max-w-[1280px] mx-auto">
         
         {/* ========================================================= */}
         {/* 1. SECTION HEADING (Centred with strong visual hierarchy) */}
         {/* ========================================================= */}
-        <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-14">
+        <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-16 lg:mb-20">
           <p className="text-[11px] sm:text-xs font-bold tracking-[0.2em] uppercase text-[#193E2D] mb-3">
             THE MILK JOURNEY
           </p>
-          <h2 className="font-playfair text-3xl sm:text-4xl lg:text-5xl font-normal tracking-tight text-[#193E2D] mb-3 leading-tight">
+          <h2 className="font-playfair text-3xl sm:text-4xl lg:text-5xl font-normal tracking-tight text-[#193E2D] mb-4 leading-tight">
             From Farm to Your Door
           </h2>
           <p className="text-sm sm:text-base text-[#193E2D]/75 font-normal">
@@ -106,62 +97,178 @@ export default function ScrollMilkJourney({ onShopFresh }: ScrollMilkJourneyProp
         </div>
 
         {/* ========================================================= */}
-        {/* 2. CENTERED HERO BOTTLE WITH CONTINUOUS VIDEO FILLING     */}
-        {/* (No side cards - pure focus on moving 3D bottle)          */}
+        {/* 2. MAIN 3-COLUMN DESKTOP / BALANCED LAYOUT                */}
         {/* ========================================================= */}
-        <div className="relative w-full flex flex-col items-center justify-center my-4 sm:my-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-6 xl:gap-8 items-center">
           
-          <div
-            className="relative w-full max-w-[420px] sm:max-w-[460px] aspect-[4/5] flex items-center justify-center transition-all duration-700 ease-out"
-            style={{
-              transform: `translateY(${bottleTranslateY}px) scale(${bottleScale})`,
-              opacity: bottleOpacity,
-            }}
-          >
-            {/* Diffused Oval Floor Shadow Under Bottle Base (No Box Shadows!) */}
-            <div
-              className="absolute bottom-6 sm:bottom-8 w-48 sm:w-60 h-7 sm:h-9 rounded-[100%] bg-black/15 blur-lg pointer-events-none transition-transform duration-300"
-              style={{
-                transform: `scale(${shadowScale})`,
-              }}
-            />
-
-            {/* Seamless Masked Video: Continuous Milk Pouring & Filling */}
-            <div
-              className="relative w-full h-full flex items-center justify-center pointer-events-none select-none"
-              style={{
-                clipPath: "url(#seamless-bottle-clip)",
-                WebkitClipPath: "url(#seamless-bottle-clip)",
-              }}
-            >
-              <video
-                ref={videoRef}
-                src="/videos/milk-pouring-bottle.mp4"
-                poster="/images/milk-video-poster.jpg"
-                autoPlay
-                loop
-                muted
-                playsInline
-                preload="auto"
-                className="w-full h-full object-cover scale-110"
-              />
+          {/* ------------------------------------------------------- */}
+          {/* A. LEFT CONTENT BLOCKS (Desktop: Col 1-3)               */}
+          {/* Mobile Order: After central video                       */}
+          {/* ------------------------------------------------------- */}
+          <div className="order-2 lg:order-1 lg:col-span-3 flex flex-col justify-around gap-6 sm:gap-8 lg:gap-10 h-full py-2">
+            
+            {/* Block 01 */}
+            <div className="group text-left p-6 sm:p-7 rounded-2xl bg-white/75 backdrop-blur-xs border border-[#193E2D]/[0.08] shadow-[0_4px_20px_-4px_rgba(25,62,45,0.04)] hover:bg-white hover:shadow-[0_10px_28px_-6px_rgba(25,62,45,0.08)] transition-all duration-300">
+              <div className="flex items-center gap-3 mb-2.5">
+                <span className="inline-block text-[11px] font-bold text-[#193E2D] px-2.5 py-1 rounded-full bg-[#193E2D]/10 tracking-wide">
+                  01
+                </span>
+                <h3 className="font-playfair text-xl sm:text-2xl font-normal text-[#193E2D] tracking-tight">
+                  At the Farm
+                </h3>
+              </div>
+              <p className="text-[11px] font-semibold text-[#193E2D]/90 uppercase tracking-wider mb-2">
+                Ethical Cattle Care • 100% Grass-Fed
+              </p>
+              <p className="text-xs sm:text-sm text-[#193E2D]/80 leading-relaxed font-normal mb-4">
+                Gently collected before sunrise from free-grazing indigenous Hallikar, Desi Gir &amp; Murrah cattle nourished on organic green fodder. Zero synthetic hormones, zero antibiotics, and zero commercial feed.
+              </p>
+              <div className="flex flex-wrap gap-2 pt-1 border-t border-[#193E2D]/5">
+                <span className="inline-flex items-center gap-1.5 text-[11px] font-medium text-[#193E2D] bg-[#193E2D]/5 px-2.5 py-1 rounded-full">
+                  <CheckCircle2 className="w-3 h-3 text-[#193E2D]" />
+                  100% Grass-Fed
+                </span>
+                <span className="inline-flex items-center gap-1.5 text-[11px] font-medium text-[#193E2D] bg-[#193E2D]/5 px-2.5 py-1 rounded-full">
+                  <CheckCircle2 className="w-3 h-3 text-[#193E2D]" />
+                  Desi A2 Purity
+                </span>
+              </div>
             </div>
 
-            {/* Crystal Glass Reflection & Rim Highlight Overlay */}
-            <div
-              className="absolute inset-0 pointer-events-none rounded-full"
-              style={{
-                background:
-                  "radial-gradient(ellipse at 48% 40%, rgba(255,255,255,0.25) 0%, rgba(255,255,255,0) 65%)",
-              }}
-            />
+            {/* Block 02 */}
+            <div className="group text-left p-6 sm:p-7 rounded-2xl bg-white/75 backdrop-blur-xs border border-[#193E2D]/[0.08] shadow-[0_4px_20px_-4px_rgba(25,62,45,0.04)] hover:bg-white hover:shadow-[0_10px_28px_-6px_rgba(25,62,45,0.08)] transition-all duration-300">
+              <div className="flex items-center gap-3 mb-2.5">
+                <span className="inline-block text-[11px] font-bold text-[#193E2D] px-2.5 py-1 rounded-full bg-[#193E2D]/10 tracking-wide">
+                  02
+                </span>
+                <h3 className="font-playfair text-xl sm:text-2xl font-normal text-[#193E2D] tracking-tight">
+                  Careful Handling
+                </h3>
+              </div>
+              <p className="text-[11px] font-semibold text-[#193E2D]/90 uppercase tracking-wider mb-2">
+                4°C Cold Chain • Untouched Raw Goodness
+              </p>
+              <p className="text-xs sm:text-sm text-[#193E2D]/80 leading-relaxed font-normal mb-4">
+                Drawn through automated, sanitized stainless lines directly into sealed tanks. Flash-chilled to 4°C within 45 mins to preserve vital living enzymes, vitamins, and the natural intact cream-top layer.
+              </p>
+              <div className="flex flex-wrap gap-2 pt-1 border-t border-[#193E2D]/5">
+                <span className="inline-flex items-center gap-1.5 text-[11px] font-medium text-[#193E2D] bg-[#193E2D]/5 px-2.5 py-1 rounded-full">
+                  <CheckCircle2 className="w-3 h-3 text-[#193E2D]" />
+                  Chilled to 4°C
+                </span>
+                <span className="inline-flex items-center gap-1.5 text-[11px] font-medium text-[#193E2D] bg-[#193E2D]/5 px-2.5 py-1 rounded-full">
+                  <CheckCircle2 className="w-3 h-3 text-[#193E2D]" />
+                  Whole Cream Top
+                </span>
+              </div>
+            </div>
+          </div>
 
-            {/* Floating Quality Status Badge */}
-            <div className="absolute bottom-2 sm:bottom-4 px-4 py-1.5 rounded-full bg-white/85 backdrop-blur-md border border-[#193E2D]/10 shadow-[0_4px_16px_rgba(25,62,45,0.06)] flex items-center gap-2 pointer-events-none">
-              <Sparkles className="w-3.5 h-3.5 text-[#193E2D]" />
-              <span className="text-[11px] sm:text-xs font-medium text-[#193E2D] tracking-wide">
-                Fresh Pure A2 Farm Milk • Bottled Daily
-              </span>
+          {/* ------------------------------------------------------- */}
+          {/* B. CENTRAL SEAMLESS VIDEO (Desktop: Col 4-9, 50%)       */}
+          {/* Seamless #FAF6ED background, NO box, continuous loop    */}
+          {/* ------------------------------------------------------- */}
+          <div className="order-1 lg:order-2 md:col-span-2 lg:col-span-6 flex flex-col items-center justify-center relative">
+            <div
+              className="relative w-full max-w-[540px] flex flex-col items-center justify-center transition-all duration-700 ease-out"
+              style={{
+                transform: `translateY(${bottleTranslateY}px) scale(${bottleScale})`,
+                opacity: bottleOpacity,
+              }}
+            >
+              {/* Diffused Floor Shadow Under Bottle Base */}
+              <div
+                className="absolute bottom-6 sm:bottom-8 w-52 sm:w-68 h-7 sm:h-9 rounded-[100%] bg-black/15 blur-lg pointer-events-none transition-transform duration-300"
+                style={{
+                  transform: `scale(${shadowScale})`,
+                }}
+              />
+
+              {/* Seamless Video Element: Continuous Milk Pouring with Cream Background */}
+              <div className="relative w-full aspect-video flex items-center justify-center pointer-events-none select-none overflow-hidden">
+                <video
+                  ref={videoRef}
+                  src="/videos/milk-pouring-cream-seamless.mp4"
+                  poster="/images/milk-video-poster-seamless.jpg"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  preload="auto"
+                  className="w-full h-full object-contain"
+                />
+              </div>
+
+              {/* Subtle Quality Status Badge */}
+              <div className="mt-3 px-4 py-1.5 rounded-full bg-white/85 backdrop-blur-md border border-[#193E2D]/10 shadow-[0_4px_16px_rgba(25,62,45,0.06)] flex items-center gap-2 pointer-events-none">
+                <Sparkles className="w-3.5 h-3.5 text-[#193E2D]" />
+                <span className="text-[11px] sm:text-xs font-medium text-[#193E2D] tracking-wide">
+                  Single-Origin Pure A2 Farm Milk • Bottled Daily
+                </span>
+              </div>
+            </div>
+          </div>
+
+          {/* ------------------------------------------------------- */}
+          {/* C. RIGHT CONTENT BLOCKS (Desktop: Col 10-12)            */}
+          {/* Mobile Order: Follows blocks 01 & 02                     */}
+          {/* ------------------------------------------------------- */}
+          <div className="order-3 lg:order-3 lg:col-span-3 flex flex-col justify-around gap-6 sm:gap-8 lg:gap-10 h-full py-2">
+            
+            {/* Block 03 */}
+            <div className="group text-left p-6 sm:p-7 rounded-2xl bg-white/75 backdrop-blur-xs border border-[#193E2D]/[0.08] shadow-[0_4px_20px_-4px_rgba(25,62,45,0.04)] hover:bg-white hover:shadow-[0_10px_28px_-6px_rgba(25,62,45,0.08)] transition-all duration-300">
+              <div className="flex items-center gap-3 mb-2.5">
+                <span className="inline-block text-[11px] font-bold text-[#193E2D] px-2.5 py-1 rounded-full bg-[#193E2D]/10 tracking-wide">
+                  03
+                </span>
+                <h3 className="font-playfair text-xl sm:text-2xl font-normal text-[#193E2D] tracking-tight">
+                  Glass Bottles
+                </h3>
+              </div>
+              <p className="text-[11px] font-semibold text-[#193E2D]/90 uppercase tracking-wider mb-2">
+                Zero Microplastics • Pure Morning Taste
+              </p>
+              <p className="text-xs sm:text-sm text-[#193E2D]/80 leading-relaxed font-normal mb-4">
+                Bottled in clinical-grade, sterilized 500ml glass jars that eliminate microplastic leaching and preserve dawn taste. Hermetically sealed with a gold-foil crown cap for uncompromised freshness.
+              </p>
+              <div className="flex flex-wrap gap-2 pt-1 border-t border-[#193E2D]/5">
+                <span className="inline-flex items-center gap-1.5 text-[11px] font-medium text-[#193E2D] bg-[#193E2D]/5 px-2.5 py-1 rounded-full">
+                  <CheckCircle2 className="w-3 h-3 text-[#193E2D]" />
+                  Sterilized Glass
+                </span>
+                <span className="inline-flex items-center gap-1.5 text-[11px] font-medium text-[#193E2D] bg-[#193E2D]/5 px-2.5 py-1 rounded-full">
+                  <CheckCircle2 className="w-3 h-3 text-[#193E2D]" />
+                  Zero Plastic
+                </span>
+              </div>
+            </div>
+
+            {/* Block 04 */}
+            <div className="group text-left p-6 sm:p-7 rounded-2xl bg-white/75 backdrop-blur-xs border border-[#193E2D]/[0.08] shadow-[0_4px_20px_-4px_rgba(25,62,45,0.04)] hover:bg-white hover:shadow-[0_10px_28px_-6px_rgba(25,62,45,0.08)] transition-all duration-300">
+              <div className="flex items-center gap-3 mb-2.5">
+                <span className="inline-block text-[11px] font-bold text-[#193E2D] px-2.5 py-1 rounded-full bg-[#193E2D]/10 tracking-wide">
+                  04
+                </span>
+                <h3 className="font-playfair text-xl sm:text-2xl font-normal text-[#193E2D] tracking-tight">
+                  To Your Doorstep
+                </h3>
+              </div>
+              <p className="text-[11px] font-semibold text-[#193E2D]/90 uppercase tracking-wider mb-2">
+                Morning 06:30 AM • Flexible Subscription
+              </p>
+              <p className="text-xs sm:text-sm text-[#193E2D]/80 leading-relaxed font-normal mb-4">
+                Delivered cold to your doorstep before 6:30 AM every morning. Enjoy effortless control with flexible one-tap pause, vacation holds, and quantity updates via your mobile account.
+              </p>
+              <div className="flex flex-wrap gap-2 pt-1 border-t border-[#193E2D]/5">
+                <span className="inline-flex items-center gap-1.5 text-[11px] font-medium text-[#193E2D] bg-[#193E2D]/5 px-2.5 py-1 rounded-full">
+                  <CheckCircle2 className="w-3 h-3 text-[#193E2D]" />
+                  By 06:30 AM
+                </span>
+                <span className="inline-flex items-center gap-1.5 text-[11px] font-medium text-[#193E2D] bg-[#193E2D]/5 px-2.5 py-1 rounded-full">
+                  <CheckCircle2 className="w-3 h-3 text-[#193E2D]" />
+                  Easy Pause &amp; Play
+                </span>
+              </div>
             </div>
           </div>
         </div>
@@ -169,7 +276,7 @@ export default function ScrollMilkJourney({ onShopFresh }: ScrollMilkJourneyProp
         {/* ========================================================= */}
         {/* 3. MAIN BUTTON (Centred dark green button below layout)   */}
         {/* ========================================================= */}
-        <div className="mt-8 sm:mt-12 flex justify-center">
+        <div className="mt-14 sm:mt-18 lg:mt-22 flex justify-center">
           {onShopFresh ? (
             <button
               type="button"
