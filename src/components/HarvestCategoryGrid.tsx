@@ -15,6 +15,7 @@ import {
 import MilkSubscriptionModal from "./MilkSubscriptionModal";
 import ScrollMilkJourney from "./ScrollMilkJourney";
 import ScrollFruitJourney from "./ScrollFruitJourney";
+import ScrollVegetableJourney from "./ScrollVegetableJourney";
 import { FilteredCategoryProducts } from "./FilteredCategoryProducts";
 import { ProductModal } from "./ProductModal";
 import { PRODUCTS } from "@/data/products";
@@ -1397,6 +1398,7 @@ export default function HarvestCategoryGrid() {
         <div ref={catalogRef} className="w-full">
           <ScrollMilkJourney onShopFresh={scrollToCatalog} />
           <ScrollFruitJourney onShopFresh={scrollToCatalog} />
+          <ScrollVegetableJourney onShopFresh={scrollToCatalog} />
         </div>
       </div>
 
