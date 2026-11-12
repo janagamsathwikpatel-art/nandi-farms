@@ -1149,7 +1149,7 @@ export default function HarvestCategoryGrid() {
                   aria-label="Open Milk Products"
                 >
                   <img
-                    src="/images/bento_v3/milk_2x.png"
+                    src="/images/bento_v3/milk_exact_2x.png"
                     alt="Fresh Farm Milk"
                     className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 pointer-events-none select-none"
                     loading="eager"
@@ -1178,37 +1178,27 @@ export default function HarvestCategoryGrid() {
 
                 {/* B. Right Column: Stacked Vegetables & Fruits (7 of 12 cols on desktop) */}
                 <div className="lg:col-span-7 flex flex-col justify-between gap-4 sm:gap-5 lg:gap-6">
-                  {/* Top Card: Vegetables (Leaves Only Break Out of Box) */}
+                  {/* Top Card: Vegetables (Direct from User Image, Leaves Present Outside Box) */}
                   <div className="relative pt-4 sm:pt-6">
                     <button
                       type="button"
                       onClick={() => handleCardClick("vegetables")}
-                      className={`group relative w-full aspect-[612/178] rounded-2xl sm:rounded-3xl bg-[#dfe3d0] overflow-visible text-left focus:outline-none p-0 cursor-pointer block shadow-xs hover:shadow-md transition-all duration-300 ${
+                      className={`group relative w-full aspect-[616/182] rounded-2xl sm:rounded-3xl bg-[#dfe3d0] overflow-visible text-left focus:outline-none p-0 cursor-pointer block shadow-xs hover:shadow-md transition-all duration-300 ${
                         isCategoryProductsOpen && selectedCategory === "vegetables"
                           ? "ring-4 ring-[#16301d]"
                           : ""
                       }`}
                       aria-label="Open Vegetables Products"
                     >
-                      {/* 1. Rounded Card Body (Clipped to Box) */}
-                      <div className="absolute inset-0 rounded-2xl sm:rounded-3xl overflow-hidden bg-[#dfe3d0]">
-                        <img
-                          src="/images/bento_v3/veg_card_body.png"
-                          alt="Fresh Organic Vegetables"
-                          className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 pointer-events-none select-none"
-                          loading="eager"
-                        />
-                      </div>
-
-                      {/* 2. THE LEAVES ONLY: Popping Out Past the Box Top Edge! */}
+                      {/* Exact image from user screenshot with leaves extending -12.1% above the top border */}
                       <img
-                        src="/images/bento_v3/veg_leaves_popout.png"
-                        alt=""
-                        aria-hidden="true"
-                        className="absolute -top-4 sm:-top-6 lg:-top-8 right-6 sm:right-10 lg:right-16 w-[36%] sm:w-[32%] lg:w-[30%] pointer-events-none select-none z-20 transition-transform duration-700 ease-out group-hover:scale-105"
+                        src="/images/bento_v3/veg_exact_2x.png"
+                        alt="Fresh Organic Vegetables"
+                        className="absolute -top-[12.1%] left-0 w-full h-[112.1%] object-contain pointer-events-none select-none transition-transform duration-700 ease-out group-hover:scale-105"
+                        loading="eager"
                       />
 
-                      {/* 3. Live HTML Typography In The Box, Outside Image File */}
+                      {/* Live HTML Typography In The Box, Outside Image File */}
                       <div className="absolute top-6 sm:top-8 left-6 sm:left-8 lg:left-10 z-10 select-none">
                         <span className="font-playfair text-3xl sm:text-4xl lg:text-[40px] text-[#16301d] font-normal tracking-tight block leading-none drop-shadow-xs">
                           Vegetables
@@ -1242,7 +1232,7 @@ export default function HarvestCategoryGrid() {
                     aria-label="Open Fruits Products"
                   >
                     <img
-                      src="/images/bento_v3/fruit_2x.png"
+                      src="/images/bento_v3/fruit_exact_2x.png"
                       alt="Fresh Orchard Fruits"
                       className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 pointer-events-none select-none"
                       loading="eager"
