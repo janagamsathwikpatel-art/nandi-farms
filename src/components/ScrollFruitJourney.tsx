@@ -210,8 +210,8 @@ export default function ScrollFruitJourney({ onShopFresh }: ScrollFruitJourneyPr
               <div className="relative w-full aspect-[4/5] flex items-center justify-center pointer-events-none select-none overflow-hidden">
                 <video
                   ref={videoDesktopRef}
-                  src="/videos/fruit-harvest-basket-pure.mp4"
-                  poster="/images/fruit-harvest-poster.jpg"
+                  src="/videos/fruit-harvest-basket-pure-v2.mp4"
+                  poster="/images/fruit-harvest-poster-v2.jpg"
                   autoPlay
                   loop
                   muted
@@ -230,8 +230,8 @@ export default function ScrollFruitJourney({ onShopFresh }: ScrollFruitJourneyPr
             <div className="relative w-full max-w-[340px] aspect-[4/5] flex items-center justify-center pointer-events-none select-none overflow-hidden">
               <video
                 ref={videoMobileRef}
-                src="/videos/fruit-harvest-basket-pure.mp4"
-                poster="/images/fruit-harvest-poster.jpg"
+                src="/videos/fruit-harvest-basket-pure-v2.mp4"
+                poster="/images/fruit-harvest-poster-v2.jpg"
                 autoPlay
                 loop
                 muted
