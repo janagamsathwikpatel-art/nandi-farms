@@ -142,22 +142,45 @@ export default function ScrollFruitJourney({ onShopFresh }: ScrollFruitJourneyPr
     return () => ctx.revert();
   }, []);
 
-  // Ensure continuous looping video playback without interruption on both desktop and mobile
+  // Play once when Fruit Harvest section becomes visible, and hold the filled-basket frame
   useEffect(() => {
-    const handleLoop = (vid: HTMLVideoElement | null) => {
+    if (!sectionRef.current) return;
+
+    let hasPlayed = false;
+    const trigger = ScrollTrigger.create({
+      trigger: sectionRef.current,
+      start: "top 70%",
+      onEnter: () => {
+        if (!hasPlayed) {
+          hasPlayed = true;
+          const vD = videoDesktopRef.current;
+          if (vD) {
+            vD.currentTime = 0;
+            vD.play().catch(() => {});
+          }
+          const vM = videoMobileRef.current;
+          if (vM) {
+            vM.currentTime = 0;
+            vM.play().catch(() => {});
+          }
+        }
+      },
+    });
+
+    const handleHold = (vid: HTMLVideoElement | null) => {
       if (!vid) return () => {};
       const onEnded = () => {
-        vid.currentTime = 0;
-        vid.play().catch(() => {});
+        vid.pause(); // Hold final filled-basket frame permanently
       };
       vid.addEventListener("ended", onEnded);
       return () => vid.removeEventListener("ended", onEnded);
     };
 
-    const cleanDesktop = handleLoop(videoDesktopRef.current);
-    const cleanMobile = handleLoop(videoMobileRef.current);
+    const cleanDesktop = handleHold(videoDesktopRef.current);
+    const cleanMobile = handleHold(videoMobileRef.current);
 
     return () => {
+      trigger.kill();
       cleanDesktop();
       cleanMobile();
     };
@@ -207,19 +230,19 @@ export default function ScrollFruitJourney({ onShopFresh }: ScrollFruitJourneyPr
               {/* Diffused Floor Shadow Under Full Basket Base */}
               <div className="absolute bottom-4 w-72 h-8 rounded-[100%] bg-black/15 blur-lg pointer-events-none" />
 
-              {/* Seamless Full-Width Basket Video: 100% Background Removed on #FAF6ED */}
+              {/* Seamless Full-Width Basket Video with True Alpha Transparency on #FAF6ED */}
               <div className="relative w-full aspect-[16/11] flex items-center justify-center pointer-events-none select-none overflow-hidden">
                 <video
                   ref={videoDesktopRef}
-                  src="/videos/fruit-harvest-basket-pure-v4.mp4"
-                  poster="/images/fruit-harvest-poster-v4.jpg"
-                  autoPlay
-                  loop
+                  poster="/images/fruit-harvest-poster-v5.jpg"
                   muted
                   playsInline
                   preload="auto"
                   className="w-full h-full object-contain"
-                />
+                >
+                  <source src="/videos/fruit-harvest-basket-alpha.webm" type="video/webm" />
+                  <source src="/videos/fruit-harvest-basket-pure-v5.mp4" type="video/mp4" />
+                </video>
               </div>
             </div>
           </div>
@@ -231,15 +254,15 @@ export default function ScrollFruitJourney({ onShopFresh }: ScrollFruitJourneyPr
             <div className="relative w-full max-w-[380px] aspect-[16/11] flex items-center justify-center pointer-events-none select-none overflow-hidden">
               <video
                 ref={videoMobileRef}
-                src="/videos/fruit-harvest-basket-pure-v4.mp4"
-                poster="/images/fruit-harvest-poster-v4.jpg"
-                autoPlay
-                loop
+                poster="/images/fruit-harvest-poster-v5.jpg"
                 muted
                 playsInline
                 preload="auto"
                 className="w-full h-full object-contain"
-              />
+              >
+                <source src="/videos/fruit-harvest-basket-alpha.webm" type="video/webm" />
+                <source src="/videos/fruit-harvest-basket-pure-v5.mp4" type="video/mp4" />
+              </video>
             </div>
           </div>
 
