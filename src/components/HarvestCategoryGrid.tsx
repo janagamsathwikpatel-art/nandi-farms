@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import MilkSubscriptionModal from "./MilkSubscriptionModal";
 import ScrollMilkJourney from "./ScrollMilkJourney";
+import ScrollFruitJourney from "./ScrollFruitJourney";
 import { FilteredCategoryProducts } from "./FilteredCategoryProducts";
 import { ProductModal } from "./ProductModal";
 import { PRODUCTS } from "@/data/products";
@@ -1395,6 +1396,7 @@ export default function HarvestCategoryGrid() {
         {/* Interactive Scroll-Driven 3-Step Milk Journey (Images 1, 2, 3 open sequentially as user scrolls) */}
         <div ref={catalogRef} className="w-full">
           <ScrollMilkJourney onShopFresh={scrollToCatalog} />
+          <ScrollFruitJourney onShopFresh={scrollToCatalog} />
         </div>
       </div>
 
