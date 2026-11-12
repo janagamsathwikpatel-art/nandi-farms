@@ -204,8 +204,8 @@ export default function ScrollMilkJourney({ onShopFresh }: ScrollMilkJourneyProp
               <div className="relative w-full aspect-[4/5] flex items-center justify-center pointer-events-none select-none overflow-hidden">
                 <video
                   ref={videoRef}
-                  src="/videos/milk-pouring-bottle-tall.mp4"
-                  poster="/images/milk-video-poster-tall.jpg"
+                  src="/videos/milk-pouring-bottle-pure-v1.mp4"
+                  poster="/images/milk-video-poster-pure-v1.jpg"
                   autoPlay
                   loop
                   muted
