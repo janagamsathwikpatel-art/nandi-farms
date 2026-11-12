@@ -1178,44 +1178,57 @@ export default function HarvestCategoryGrid() {
 
                 {/* B. Right Column: Stacked Vegetables & Fruits (7 of 12 cols on desktop) */}
                 <div className="lg:col-span-7 flex flex-col justify-between gap-4 sm:gap-5 lg:gap-6">
-                  {/* Top Card: Vegetables */}
-                  <button
-                    type="button"
-                    onClick={() => handleCardClick("vegetables")}
-                    className={`group relative w-full aspect-[612/178] rounded-2xl sm:rounded-3xl overflow-hidden text-left focus:outline-none p-0 cursor-pointer block bg-[#faf5ea] shadow-xs hover:shadow-md transition-all duration-300 ${
-                      isCategoryProductsOpen && selectedCategory === "vegetables"
-                        ? "ring-4 ring-[#16301d]"
-                        : ""
-                    }`}
-                    aria-label="Open Vegetables Products"
-                  >
-                    <img
-                      src="/images/bento_v3/veg_2x.png"
-                      alt="Fresh Organic Vegetables"
-                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 pointer-events-none select-none"
-                      loading="eager"
-                    />
+                  {/* Top Card: Vegetables (Leaves Only Break Out of Box) */}
+                  <div className="relative pt-4 sm:pt-6">
+                    <button
+                      type="button"
+                      onClick={() => handleCardClick("vegetables")}
+                      className={`group relative w-full aspect-[612/178] rounded-2xl sm:rounded-3xl bg-[#dfe3d0] overflow-visible text-left focus:outline-none p-0 cursor-pointer block shadow-xs hover:shadow-md transition-all duration-300 ${
+                        isCategoryProductsOpen && selectedCategory === "vegetables"
+                          ? "ring-4 ring-[#16301d]"
+                          : ""
+                      }`}
+                      aria-label="Open Vegetables Products"
+                    >
+                      {/* 1. Rounded Card Body (Clipped to Box) */}
+                      <div className="absolute inset-0 rounded-2xl sm:rounded-3xl overflow-hidden bg-[#dfe3d0]">
+                        <img
+                          src="/images/bento_v3/veg_card_body.png"
+                          alt="Fresh Organic Vegetables"
+                          className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 pointer-events-none select-none"
+                          loading="eager"
+                        />
+                      </div>
 
-                    {/* Live HTML Typography In The Box, Outside Image File */}
-                    <div className="absolute top-6 sm:top-8 left-6 sm:left-8 lg:left-10 z-10 select-none">
-                      <span className="font-playfair text-3xl sm:text-4xl lg:text-[40px] text-[#16301d] font-normal tracking-tight block leading-none drop-shadow-xs">
-                        Vegetables
-                      </span>
-                      <div className="flex items-center w-36 sm:w-44 h-px bg-[#16301d]/60 mt-2 sm:mt-2.5 relative">
-                        <span className="absolute -right-1 -top-2 text-xs sm:text-sm text-[#16301d] transition-transform duration-300 group-hover:translate-x-1.5">
-                          →
+                      {/* 2. THE LEAVES ONLY: Popping Out Past the Box Top Edge! */}
+                      <img
+                        src="/images/bento_v3/veg_leaves_popout.png"
+                        alt=""
+                        aria-hidden="true"
+                        className="absolute -top-4 sm:-top-6 lg:-top-8 right-6 sm:right-10 lg:right-16 w-[36%] sm:w-[32%] lg:w-[30%] pointer-events-none select-none z-20 transition-transform duration-700 ease-out group-hover:scale-105"
+                      />
+
+                      {/* 3. Live HTML Typography In The Box, Outside Image File */}
+                      <div className="absolute top-6 sm:top-8 left-6 sm:left-8 lg:left-10 z-10 select-none">
+                        <span className="font-playfair text-3xl sm:text-4xl lg:text-[40px] text-[#16301d] font-normal tracking-tight block leading-none drop-shadow-xs">
+                          Vegetables
                         </span>
+                        <div className="flex items-center w-36 sm:w-44 h-px bg-[#16301d]/60 mt-2 sm:mt-2.5 relative">
+                          <span className="absolute -right-1 -top-2 text-xs sm:text-sm text-[#16301d] transition-transform duration-300 group-hover:translate-x-1.5">
+                            →
+                          </span>
+                        </div>
                       </div>
-                    </div>
 
-                    {/* Active Indicator Badge */}
-                    {isCategoryProductsOpen && selectedCategory === "vegetables" && (
-                      <div className="absolute top-5 right-5 z-10 bg-[#16301d] text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-md flex items-center gap-1.5 animate-in fade-in">
-                        <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                        <span>Viewing Veggies</span>
-                      </div>
-                    )}
-                  </button>
+                      {/* Active Indicator Badge */}
+                      {isCategoryProductsOpen && selectedCategory === "vegetables" && (
+                        <div className="absolute top-5 right-5 z-10 bg-[#16301d] text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-md flex items-center gap-1.5 animate-in fade-in">
+                          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                          <span>Viewing Veggies</span>
+                        </div>
+                      )}
+                    </button>
+                  </div>
 
                   {/* Bottom Card: Fruits */}
                   <button
