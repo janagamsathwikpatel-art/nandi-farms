@@ -230,19 +230,17 @@ export default function ScrollFruitJourney({ onShopFresh }: ScrollFruitJourneyPr
               {/* Diffused Floor Shadow Under Full Basket Base */}
               <div className="absolute bottom-4 w-72 h-8 rounded-[100%] bg-black/15 blur-lg pointer-events-none" />
 
-              {/* Seamless Full-Width Basket Video with True Alpha Transparency on #FAF6ED */}
+              {/* Option 2: Dedicated True Alpha WebM Video (VP9 yuva420p) */}
               <div className="relative w-full aspect-[16/11] flex items-center justify-center pointer-events-none select-none overflow-hidden">
                 <video
                   ref={videoDesktopRef}
+                  src="/videos/fruit-harvest-basket-alpha.webm"
                   poster="/images/fruit-harvest-poster-v5.jpg"
                   muted
                   playsInline
                   preload="auto"
                   className="w-full h-full object-contain"
-                >
-                  <source src="/videos/fruit-harvest-basket-alpha.webm" type="video/webm" />
-                  <source src="/videos/fruit-harvest-basket-pure-v5.mp4" type="video/mp4" />
-                </video>
+                />
               </div>
             </div>
           </div>
@@ -254,15 +252,13 @@ export default function ScrollFruitJourney({ onShopFresh }: ScrollFruitJourneyPr
             <div className="relative w-full max-w-[380px] aspect-[16/11] flex items-center justify-center pointer-events-none select-none overflow-hidden">
               <video
                 ref={videoMobileRef}
+                src="/videos/fruit-harvest-basket-alpha.webm"
                 poster="/images/fruit-harvest-poster-v5.jpg"
                 muted
                 playsInline
                 preload="auto"
                 className="w-full h-full object-contain"
-              >
-                <source src="/videos/fruit-harvest-basket-alpha.webm" type="video/webm" />
-                <source src="/videos/fruit-harvest-basket-pure-v5.mp4" type="video/mp4" />
-              </video>
+              />
             </div>
           </div>
 
