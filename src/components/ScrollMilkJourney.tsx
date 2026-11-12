@@ -12,7 +12,6 @@ export default function ScrollMilkJourney({ onShopFresh }: ScrollMilkJourneyProp
   const sectionRef = useRef<HTMLElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isVisible, setIsVisible] = useState(false);
-  const [scrollProgress, setScrollProgress] = useState(0);
 
   // Entrance trigger when section approaches viewport
   useEffect(() => {
@@ -35,24 +34,6 @@ export default function ScrollMilkJourney({ onShopFresh }: ScrollMilkJourneyProp
     return () => observer.disconnect();
   }, []);
 
-  // Smooth scroll parallax for bottle movement as user scrolls
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!sectionRef.current) return;
-      const rect = sectionRef.current.getBoundingClientRect();
-      const windowHeight = window.innerHeight;
-      
-      const totalDist = windowHeight + rect.height;
-      const currentDist = windowHeight - rect.top;
-      const progress = Math.min(Math.max(currentDist / totalDist, 0), 1);
-      setScrollProgress(progress);
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
   // Ensure continuous looping video playback without interruption
   useEffect(() => {
     const video = videoRef.current;
@@ -67,11 +48,10 @@ export default function ScrollMilkJourney({ onShopFresh }: ScrollMilkJourneyProp
     return () => video.removeEventListener("ended", handleEnded);
   }, []);
 
-  // Parallax calculations
-  const bottleTranslateY = isVisible ? (scrollProgress - 0.5) * -35 : 40;
-  const bottleScale = isVisible ? 1 : 0.96;
+  // Upside entrance: bottle descends smoothly from the upside (top) into position
+  // STRICTLY FIXED SCALE: scale is 1.0 permanently (NO zoom in, NO zoom out)
+  const bottleTranslateY = isVisible ? 0 : -85;
   const bottleOpacity = isVisible ? 1 : 0;
-  const shadowScale = 0.9 + scrollProgress * 0.18;
 
   return (
     <section
@@ -165,31 +145,28 @@ export default function ScrollMilkJourney({ onShopFresh }: ScrollMilkJourneyProp
           </div>
 
           {/* ------------------------------------------------------- */}
-          {/* B. CENTRAL SEAMLESS VIDEO (Desktop: Col 4-9, 50%)       */}
-          {/* Seamless #FAF6ED background, NO box, continuous loop    */}
+          {/* B. CENTRAL ENLARGED BOTTLE VIDEO (Col 4-9, 50% width)   */}
+          {/* 4:5 vertical proportion, 2.2x larger, NO ZOOM, NO BOX    */}
           {/* ------------------------------------------------------- */}
           <div className="order-1 lg:order-2 md:col-span-2 lg:col-span-6 flex flex-col items-center justify-center relative">
             <div
-              className="relative w-full max-w-[540px] flex flex-col items-center justify-center transition-all duration-700 ease-out"
+              className="relative w-full max-w-[460px] flex flex-col items-center justify-center transition-all duration-1000 ease-out"
               style={{
-                transform: `translateY(${bottleTranslateY}px) scale(${bottleScale})`,
+                transform: `translateY(${bottleTranslateY}px)`,
                 opacity: bottleOpacity,
               }}
             >
-              {/* Diffused Floor Shadow Under Bottle Base */}
+              {/* Diffused Floor Shadow Under Bottle Base (Fixed 1.0 Scale) */}
               <div
-                className="absolute bottom-6 sm:bottom-8 w-52 sm:w-68 h-7 sm:h-9 rounded-[100%] bg-black/15 blur-lg pointer-events-none transition-transform duration-300"
-                style={{
-                  transform: `scale(${shadowScale})`,
-                }}
+                className="absolute bottom-6 sm:bottom-8 w-52 sm:w-68 h-7 sm:h-9 rounded-[100%] bg-black/15 blur-lg pointer-events-none"
               />
 
-              {/* Seamless Video Element: Continuous Milk Pouring with Cream Background */}
-              <div className="relative w-full aspect-video flex items-center justify-center pointer-events-none select-none overflow-hidden">
+              {/* Seamless Video Element: 4:5 Vertical Focus (2.2x Larger Bottle) */}
+              <div className="relative w-full aspect-[4/5] flex items-center justify-center pointer-events-none select-none overflow-hidden">
                 <video
                   ref={videoRef}
-                  src="/videos/milk-pouring-cream-seamless.mp4"
-                  poster="/images/milk-video-poster-seamless.jpg"
+                  src="/videos/milk-pouring-bottle-tall.mp4"
+                  poster="/images/milk-video-poster-tall.jpg"
                   autoPlay
                   loop
                   muted
@@ -200,7 +177,7 @@ export default function ScrollMilkJourney({ onShopFresh }: ScrollMilkJourneyProp
               </div>
 
               {/* Subtle Quality Status Badge */}
-              <div className="mt-3 px-4 py-1.5 rounded-full bg-white/85 backdrop-blur-md border border-[#193E2D]/10 shadow-[0_4px_16px_rgba(25,62,45,0.06)] flex items-center gap-2 pointer-events-none">
+              <div className="mt-2 px-4 py-1.5 rounded-full bg-white/85 backdrop-blur-md border border-[#193E2D]/10 shadow-[0_4px_16px_rgba(25,62,45,0.06)] flex items-center gap-2 pointer-events-none">
                 <Sparkles className="w-3.5 h-3.5 text-[#193E2D]" />
                 <span className="text-[11px] sm:text-xs font-medium text-[#193E2D] tracking-wide">
                   Single-Origin Pure A2 Farm Milk • Bottled Daily
