@@ -1,8 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
-import Link from "next/link";
-import { ArrowRight, CheckCircle2 } from "lucide-react";
+import { CheckCircle2 } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -429,30 +428,6 @@ export default function ScrollMilkJourney({ onShopFresh }: ScrollMilkJourneyProp
             </div>
 
           </div>
-        </div>
-
-        {/* ========================================================= */}
-        {/* 3. MAIN BUTTON (Centred dark green button below layout)   */}
-        {/* ========================================================= */}
-        <div className="mt-16 sm:mt-20 lg:mt-24 flex justify-center">
-          {onShopFresh ? (
-            <button
-              type="button"
-              onClick={onShopFresh}
-              className="inline-flex items-center gap-3 bg-[#193E2D] text-white px-8 py-4 rounded-full text-base font-medium shadow-md hover:bg-[#122e21] hover:shadow-lg transition-all duration-300 cursor-pointer group"
-            >
-              <span>Explore Milk Plans</span>
-              <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
-            </button>
-          ) : (
-            <Link
-              href="/shop/milk"
-              className="inline-flex items-center gap-3 bg-[#193E2D] text-white px-8 py-4 rounded-full text-base font-medium shadow-md hover:bg-[#122e21] hover:shadow-lg transition-all duration-300 cursor-pointer group"
-            >
-              <span>Explore Milk Plans</span>
-              <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
-            </Link>
-          )}
         </div>
       </div>
     </section>
