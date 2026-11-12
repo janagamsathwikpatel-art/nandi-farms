@@ -2,8 +2,7 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import { ArrowRight, Leaf, ShieldCheck, Truck, Check } from "lucide-react";
-import "./MilkSubscriptionBanner.css";
+import { ArrowRight, Check } from "lucide-react";
 
 interface MilkSubscriptionBannerProps {
   onOpenModal?: (planDays?: number) => void;
@@ -25,123 +24,135 @@ const PLANS: SubscriptionPlan[] = [
 export default function MilkSubscriptionBanner({ onOpenModal }: MilkSubscriptionBannerProps) {
   const [selectedPlan, setSelectedPlan] = useState<number>(30);
 
-  const handlePlanClick = (days: number) => {
+  const handleSelectPlan = (days: number) => {
     setSelectedPlan(days);
+  };
+
+  const handleStartSubscription = () => {
     if (onOpenModal) {
-      onOpenModal(days);
+      onOpenModal(selectedPlan);
     }
   };
 
   return (
-    <section className="milk-sub-banner-section" aria-label="Milk Subscriptions">
-      {/* 1. 4K Ultra-HD Text-Free Master Photographic Plate */}
-      <div className="milk-sub-banner-bg" aria-hidden="true">
-        <Image
-          src="/images/milk-subscriptions-banner-4k.png"
-          alt="Fresh Farm Milk Subscriptions Background"
-          fill
-          priority
-          unoptimized
-          sizes="100vw"
-          className="object-cover object-right md:object-center select-none pointer-events-none"
-        />
-        {/* Soft mobile gradient overlay to ensure contrast on small screens */}
-        <div className="milk-sub-mobile-gradient" />
-      </div>
-
-      {/* 2. Live Interactive HTML/React Layer Rendered OUTSIDE Image */}
-      <div className="milk-sub-banner-content max-w-[1920px] 2xl:max-w-[2400px] 4k:max-w-[3400px] mx-auto w-full">
-        <div className="milk-sub-grid">
-          {/* Left Editorial Column */}
-          <div className="milk-sub-editorial">
-            <p className="milk-sub-eyebrow">MILK SUBSCRIPTIONS</p>
-            <h2 className="milk-sub-heading">
-              FRESH MILK
-              <br />
-              EVERY MORNING
-            </h2>
-            <p className="milk-sub-desc">
-              Pure milk from trusted farms,
-              <br className="hidden sm:inline" /> delivered to your doorstep in Hyderabad.
-            </p>
-
-            <button
-              type="button"
-              onClick={() => handlePlanClick(selectedPlan)}
-              className="milk-sub-cta-btn"
-              aria-label="Start milk subscription"
-            >
-              <span>Start milk subscription</span>
-              <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
-            </button>
+    <section
+      className="relative w-full bg-[#FAF6ED] py-14 sm:py-20 lg:py-24 px-4 sm:px-8 lg:px-12 select-none border-t border-[#193E2D]/5 overflow-hidden"
+      aria-label="Milk Subscriptions"
+    >
+      <div className="max-w-[1280px] mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+          
+          {/* ======================================================== */}
+          {/* LEFT COLUMN: Text-Free Editorial Photographic Plate       */}
+          {/* ======================================================== */}
+          <div className="lg:col-span-6 flex items-center justify-center">
+            <div className="relative w-full max-w-[540px] aspect-[535/512] rounded-2xl overflow-hidden shadow-[0_8px_30px_rgba(25,62,45,0.06)] bg-[#FAF6ED] border border-[#193E2D]/5">
+              <Image
+                src="/images/milk-subscription-editorial-plate.jpg"
+                alt="Fresh Farm Milk Bottle, Glass and Pasture Heritage"
+                fill
+                priority
+                sizes="(max-width: 1024px) 100vw, 540px"
+                className="object-contain object-center select-none pointer-events-none"
+              />
+            </div>
           </div>
 
-          {/* Center-Right Subscription Plan Cards */}
-          <div className="milk-sub-plans-container">
-            <div className="milk-sub-cards-row">
+          {/* ======================================================== */}
+          {/* RIGHT COLUMN: Live HTML Content & Interactive Plan Rows  */}
+          {/* Rendered 100% OUTSIDE the image                          */}
+          {/* ======================================================== */}
+          <div className="lg:col-span-6 flex flex-col justify-center max-w-xl mx-auto lg:mx-0 w-full">
+            
+            {/* Eyebrow Tag */}
+            <p className="text-[11px] sm:text-xs font-bold tracking-[0.22em] uppercase text-[#193E2D]/80 mb-2">
+              MILK SUBSCRIPTIONS
+            </p>
+
+            {/* Editorial Heading */}
+            <h2 className="font-playfair text-3xl sm:text-4xl lg:text-5xl font-normal text-[#193E2D] tracking-tight leading-[1.12] mb-3">
+              Fresh milk,
+              <br />
+              every morning.
+            </h2>
+
+            {/* Subheading / Description */}
+            <p className="text-sm sm:text-base text-[#193E2D]/75 leading-relaxed font-normal mb-8 sm:mb-10">
+              Pure milk from trusted farms, delivered to your doorstep in Hyderabad.
+            </p>
+
+            {/* Interactive Subscription Plan Rows (Clickable Buttons) */}
+            <div className="w-full space-y-2.5" role="radiogroup" aria-label="Subscription Plans">
               {PLANS.map((plan) => {
                 const isSelected = selectedPlan === plan.days;
                 return (
-                  <div
+                  <button
                     key={plan.days}
-                    className={`milk-sub-plan-card ${plan.popular ? "is-popular" : ""} ${
-                      isSelected ? "is-selected" : ""
+                    type="button"
+                    onClick={() => handleSelectPlan(plan.days)}
+                    role="radio"
+                    aria-checked={isSelected}
+                    className={`w-full text-left p-3.5 sm:p-4 rounded-xl transition-all duration-200 cursor-pointer flex flex-col justify-center border ${
+                      isSelected
+                        ? "bg-white border-[#193E2D] shadow-[0_4px_16px_rgba(25,62,45,0.08)] ring-1 ring-[#193E2D]"
+                        : "bg-white/40 hover:bg-white/90 border-[#193E2D]/10 hover:border-[#193E2D]/30"
                     }`}
-                    onClick={() => handlePlanClick(plan.days)}
-                    role="button"
-                    tabIndex={0}
-                    onKeyDown={(e) => {
-                      if (e.key === "Enter" || e.key === " ") {
-                        handlePlanClick(plan.days);
-                      }
-                    }}
-                    aria-label={`${plan.days} Days milk subscription for ₹${plan.totalPrice}`}
                   >
-                    {/* Most Popular Floating Badge */}
+                    {/* Most Popular Label */}
                     {plan.popular && (
-                      <span className="milk-sub-popular-badge">MOST POPULAR</span>
+                      <span className="text-[10px] sm:text-[11px] font-bold tracking-[0.16em] uppercase text-[#A87428] mb-1 block">
+                        MOST POPULAR
+                      </span>
                     )}
 
-                    <div className="milk-sub-card-inner">
-                      <div className="milk-sub-card-header">
-                        <span className="milk-sub-days-num">{plan.days}</span>
-                        <span className="milk-sub-days-label">DAYS</span>
+                    <div className="flex items-center justify-between w-full">
+                      {/* Left: Duration with Selection Indicator */}
+                      <div className="flex items-center gap-2.5">
+                        <span
+                          className={`w-4 h-4 rounded-full border flex items-center justify-center transition-all ${
+                            isSelected
+                              ? "border-[#193E2D] bg-[#193E2D] text-white"
+                              : "border-[#193E2D]/30 bg-transparent"
+                          }`}
+                          aria-hidden="true"
+                        >
+                          {isSelected && <Check className="w-2.5 h-2.5 stroke-[3]" />}
+                        </span>
+                        <span className="text-xs sm:text-sm font-bold tracking-wider text-[#193E2D] uppercase">
+                          {plan.days} DAYS
+                        </span>
                       </div>
 
-                      <div className="milk-sub-card-divider" />
-
-                      <div className="milk-sub-card-pricing">
-                        <span className="milk-sub-total-price">
+                      {/* Right: Pricing */}
+                      <div className="flex items-baseline gap-3 sm:gap-4">
+                        <span className="font-playfair text-xl sm:text-2xl font-medium text-[#193E2D]">
                           ₹{plan.totalPrice.toLocaleString("en-IN")}
                         </span>
-                        <span className="milk-sub-per-day">
+                        <span className="text-xs sm:text-sm text-[#193E2D]/60 font-normal">
                           ₹{plan.perDayPrice} per day
                         </span>
                       </div>
                     </div>
-                  </div>
+                  </button>
                 );
               })}
             </div>
 
-            {/* Quality Trust Badges */}
-            <div className="milk-sub-trust-badges">
-              <span className="milk-sub-trust-item">
-                <Leaf className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-                <span>Farm Fresh</span>
-              </span>
-              <span className="milk-sub-trust-divider">|</span>
-              <span className="milk-sub-trust-item">
-                <ShieldCheck className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-                <span>No Preservatives</span>
-              </span>
-              <span className="milk-sub-trust-divider">|</span>
-              <span className="milk-sub-trust-item">
-                <Truck className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-                <span>Daily Delivery</span>
-              </span>
+            {/* Primary CTA Button */}
+            <div className="pt-6 sm:pt-8">
+              <button
+                type="button"
+                onClick={handleStartSubscription}
+                className="group inline-flex items-center justify-center gap-2.5 px-8 py-3.5 sm:py-4 rounded-xl bg-[#193E2D] hover:bg-[#122E21] text-white text-sm sm:text-base font-medium transition-all duration-200 shadow-sm hover:shadow-md cursor-pointer"
+                aria-label={`Start ${selectedPlan} days milk subscription`}
+              >
+                <span>Start milk subscription</span>
+                <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
+              </button>
             </div>
+
           </div>
+
         </div>
       </div>
     </section>
