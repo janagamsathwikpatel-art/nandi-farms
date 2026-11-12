@@ -197,21 +197,22 @@ export default function ScrollFruitJourney({ onShopFresh }: ScrollFruitJourneyPr
           {/* ------------------------------------------------------- */}
           {/* DESKTOP CENTRAL MOVING BASKET TRACK (Sticky/GSAP Scrub) */}
           {/* Scale locked permanently at 1.0 (zero zoom in/out)      */}
+          {/* Full-width uncropped basket (aspect 16/11, w-[480px])   */}
           {/* ------------------------------------------------------- */}
-          <div className="hidden lg:block absolute left-1/2 -translate-x-1/2 top-0 pointer-events-none z-20 w-[420px] will-change-transform">
+          <div className="hidden lg:block absolute left-1/2 -translate-x-1/2 top-0 pointer-events-none z-20 w-[480px] will-change-transform">
             <div
               ref={basketDesktopRef}
               className="relative w-full flex flex-col items-center justify-center will-change-transform"
             >
-              {/* Diffused Floor Shadow Under Basket Base */}
-              <div className="absolute bottom-6 w-60 h-7 rounded-[100%] bg-black/15 blur-lg pointer-events-none" />
+              {/* Diffused Floor Shadow Under Full Basket Base */}
+              <div className="absolute bottom-4 w-72 h-8 rounded-[100%] bg-black/15 blur-lg pointer-events-none" />
 
-              {/* Seamless Video: 100% Background Removed on #FAF6ED */}
-              <div className="relative w-full aspect-[4/5] flex items-center justify-center pointer-events-none select-none overflow-hidden">
+              {/* Seamless Full-Width Basket Video: 100% Background Removed on #FAF6ED */}
+              <div className="relative w-full aspect-[16/11] flex items-center justify-center pointer-events-none select-none overflow-hidden">
                 <video
                   ref={videoDesktopRef}
-                  src="/videos/fruit-harvest-basket-pure-v3.mp4"
-                  poster="/images/fruit-harvest-poster-v3.jpg"
+                  src="/videos/fruit-harvest-basket-pure-v4.mp4"
+                  poster="/images/fruit-harvest-poster-v4.jpg"
                   autoPlay
                   loop
                   muted
@@ -227,11 +228,11 @@ export default function ScrollFruitJourney({ onShopFresh }: ScrollFruitJourneyPr
           {/* MOBILE BASKET DISPLAY (Top of Mobile Flow)              */}
           {/* ------------------------------------------------------- */}
           <div ref={basketMobileRef} className="lg:hidden flex flex-col items-center justify-center mb-10">
-            <div className="relative w-full max-w-[340px] aspect-[4/5] flex items-center justify-center pointer-events-none select-none overflow-hidden">
+            <div className="relative w-full max-w-[380px] aspect-[16/11] flex items-center justify-center pointer-events-none select-none overflow-hidden">
               <video
                 ref={videoMobileRef}
-                src="/videos/fruit-harvest-basket-pure-v3.mp4"
-                poster="/images/fruit-harvest-poster-v3.jpg"
+                src="/videos/fruit-harvest-basket-pure-v4.mp4"
+                poster="/images/fruit-harvest-poster-v4.jpg"
                 autoPlay
                 loop
                 muted
