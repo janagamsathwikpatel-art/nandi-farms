@@ -1,11 +1,11 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
-import Link from "next/link";
-import { ArrowRight, CheckCircle2, Sparkles } from "lucide-react";
+import { CheckCircle2 } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
+// Register ScrollTrigger plugin on client
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
@@ -16,81 +16,151 @@ interface ScrollFruitJourneyProps {
 
 export default function ScrollFruitJourney({ onShopFresh }: ScrollFruitJourneyProps) {
   const sectionRef = useRef<HTMLElement>(null);
-  const basketRef = useRef<HTMLDivElement>(null);
-  const shadowRef = useRef<HTMLDivElement>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
+  const journeyContainerRef = useRef<HTMLDivElement>(null);
+  const basketDesktopRef = useRef<HTMLDivElement>(null);
+  const basketMobileRef = useRef<HTMLDivElement>(null);
+  const videoDesktopRef = useRef<HTMLVideoElement>(null);
+  const videoMobileRef = useRef<HTMLVideoElement>(null);
 
-  // GSAP ScrollTrigger Timeline for Upside Entrance Animation
+  // GSAP ScrollTrigger Animation for Alternating Journey & Moving Fruit Basket
   useEffect(() => {
-    if (!sectionRef.current || !basketRef.current || !shadowRef.current) return;
+    if (!sectionRef.current) return;
 
     const ctx = gsap.context(() => {
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 75%",
-          toggleActions: "play none none reverse",
-        },
-      });
+      // 1. Desktop Central Basket Scroll Translation (Travels vertically with scroll)
+      // Strictly fixed scale: 1.0 permanently (NO zoom in, NO zoom out)
+      if (basketDesktopRef.current && journeyContainerRef.current) {
+        gsap.fromTo(
+          basketDesktopRef.current,
+          { y: 0 },
+          {
+            y: () => {
+              if (!journeyContainerRef.current || !basketDesktopRef.current) return 700;
+              const containerHeight = journeyContainerRef.current.offsetHeight;
+              const basketHeight = basketDesktopRef.current.offsetHeight;
+              return Math.max(containerHeight - basketHeight - 40, 200);
+            },
+            ease: "none",
+            scrollTrigger: {
+              trigger: journeyContainerRef.current,
+              start: "top 22%",
+              end: "bottom 82%",
+              scrub: 1.2, // Buttery-smooth physics scrub
+            },
+          }
+        );
+      }
 
-      // 1. Basket descends smoothly from upside (y: -220px -> 0px)
-      // STRICTLY FIXED SCALE: scale is 1.0 permanently (NO zoom in, NO zoom out)
-      tl.fromTo(
-        basketRef.current,
-        { y: -220, opacity: 0 },
+      // 2. Step 01 Reveal on LEFT SIDE
+      gsap.fromTo(
+        ".fruit-step-card-01-left",
+        { x: -60, opacity: 0 },
         {
-          y: 0,
+          x: 0,
           opacity: 1,
-          duration: 1.35,
-          ease: "power3.out",
-          onComplete: () => {
-            if (videoRef.current && videoRef.current.paused) {
-              videoRef.current.play().catch(() => {});
-            }
+          duration: 0.9,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: ".fruit-step-card-01-left",
+            start: "top 78%",
+            toggleActions: "play none none reverse",
           },
         }
       );
 
-      // 2. Floor contact shadow expands in sync under basket base
-      tl.fromTo(
-        shadowRef.current,
-        { opacity: 0, scale: 0.4 },
-        { opacity: 1, scale: 1, duration: 1.35, ease: "power3.out" },
-        "<"
+      // 3. Step 02 Reveal on RIGHT SIDE
+      gsap.fromTo(
+        ".fruit-step-card-02-right",
+        { x: 60, opacity: 0 },
+        {
+          x: 0,
+          opacity: 1,
+          duration: 0.9,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: ".fruit-step-card-02-right",
+            start: "top 78%",
+            toggleActions: "play none none reverse",
+          },
+        }
       );
 
-      // 3. Stagger Left Cards in from the left
-      tl.fromTo(
-        ".fruit-card-left",
-        { x: -50, opacity: 0 },
-        { x: 0, opacity: 1, duration: 0.85, stagger: 0.15, ease: "power2.out" },
-        "-=0.75"
+      // 4. Step 03 Reveal on LEFT SIDE
+      gsap.fromTo(
+        ".fruit-step-card-03-left",
+        { x: -60, opacity: 0 },
+        {
+          x: 0,
+          opacity: 1,
+          duration: 0.9,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: ".fruit-step-card-03-left",
+            start: "top 78%",
+            toggleActions: "play none none reverse",
+          },
+        }
       );
 
-      // 4. Stagger Right Cards in from the right
-      tl.fromTo(
-        ".fruit-card-right",
-        { x: 50, opacity: 0 },
-        { x: 0, opacity: 1, duration: 0.85, stagger: 0.15, ease: "power2.out" },
-        "<"
+      // 5. Step 04 Reveal on RIGHT SIDE
+      gsap.fromTo(
+        ".fruit-step-card-04-right",
+        { x: 60, opacity: 0 },
+        {
+          x: 0,
+          opacity: 1,
+          duration: 0.9,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: ".fruit-step-card-04-right",
+            start: "top 78%",
+            toggleActions: "play none none reverse",
+          },
+        }
       );
+
+      // 6. Mobile Basket Initial Entry
+      if (basketMobileRef.current) {
+        gsap.fromTo(
+          basketMobileRef.current,
+          { opacity: 0, y: -40 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 1,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: basketMobileRef.current,
+              start: "top 80%",
+              toggleActions: "play none none reverse",
+            },
+          }
+        );
+      }
     }, sectionRef);
 
     return () => ctx.revert();
   }, []);
 
-  // Ensure continuous looping video playback without interruption
+  // Ensure continuous looping video playback without interruption on both desktop and mobile
   useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    const handleEnded = () => {
-      video.currentTime = 0;
-      video.play().catch(() => {});
+    const handleLoop = (vid: HTMLVideoElement | null) => {
+      if (!vid) return () => {};
+      const onEnded = () => {
+        vid.currentTime = 0;
+        vid.play().catch(() => {});
+      };
+      vid.addEventListener("ended", onEnded);
+      return () => vid.removeEventListener("ended", onEnded);
     };
 
-    video.addEventListener("ended", handleEnded);
-    return () => video.removeEventListener("ended", handleEnded);
+    const cleanDesktop = handleLoop(videoDesktopRef.current);
+    const cleanMobile = handleLoop(videoMobileRef.current);
+
+    return () => {
+      cleanDesktop();
+      cleanMobile();
+    };
   }, []);
 
   return (
@@ -104,7 +174,7 @@ export default function ScrollFruitJourney({ onShopFresh }: ScrollFruitJourneyPr
         {/* ========================================================= */}
         {/* 1. SECTION HEADING (Centred with strong visual hierarchy) */}
         {/* ========================================================= */}
-        <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-16 lg:mb-20">
+        <div className="text-center max-w-2xl mx-auto mb-14 sm:mb-20 lg:mb-24">
           <p className="text-[11px] sm:text-xs font-bold tracking-[0.2em] uppercase text-[#193E2D] mb-3">
             THE FRUIT HARVEST
           </p>
@@ -117,92 +187,29 @@ export default function ScrollFruitJourney({ onShopFresh }: ScrollFruitJourneyPr
         </div>
 
         {/* ========================================================= */}
-        {/* 2. MAIN 3-COLUMN DESKTOP / BALANCED LAYOUT                */}
+        {/* 2. ALTERNATING SCROLL JOURNEY CONTAINER                   */}
         {/* ========================================================= */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-6 xl:gap-8 items-center">
+        <div ref={journeyContainerRef} className="relative w-full">
           
-          {/* ------------------------------------------------------- */}
-          {/* A. LEFT CONTENT BLOCKS (Desktop: Col 1-3)               */}
-          {/* Mobile Order: After central video                       */}
-          {/* ------------------------------------------------------- */}
-          <div className="order-2 lg:order-1 lg:col-span-3 flex flex-col justify-around gap-6 sm:gap-8 lg:gap-10 h-full py-2">
-            
-            {/* Block 01 */}
-            <div className="fruit-card-left group text-left p-6 sm:p-7 rounded-2xl bg-white/75 backdrop-blur-xs border border-[#193E2D]/[0.08] shadow-[0_4px_20px_-4px_rgba(25,62,45,0.04)] hover:bg-white hover:shadow-[0_10px_28px_-6px_rgba(25,62,45,0.08)] transition-all duration-300">
-              <div className="flex items-center gap-3 mb-2.5">
-                <span className="inline-block text-[11px] font-bold text-[#193E2D] px-2.5 py-1 rounded-full bg-[#193E2D]/10 tracking-wide">
-                  01
-                </span>
-                <h3 className="font-playfair text-xl sm:text-2xl font-normal text-[#193E2D] tracking-tight">
-                  Sun-Kissed Orchards
-                </h3>
-              </div>
-              <p className="text-[11px] font-semibold text-[#193E2D]/90 uppercase tracking-wider mb-2">
-                Ethical Growing • 100% Tree-Ripened
-              </p>
-              <p className="text-xs sm:text-sm text-[#193E2D]/80 leading-relaxed font-normal mb-4">
-                Nurtured across chemical-free heritage orchards in Karnataka. Allowed to mature fully on the branch under natural sunlight, achieving rich natural sweetness and peak nutritional density.
-              </p>
-              <div className="flex flex-wrap gap-2 pt-1 border-t border-[#193E2D]/5">
-                <span className="inline-flex items-center gap-1.5 text-[11px] font-medium text-[#193E2D] bg-[#193E2D]/5 px-2.5 py-1 rounded-full">
-                  <CheckCircle2 className="w-3 h-3 text-[#193E2D]" />
-                  100% Tree-Ripened
-                </span>
-                <span className="inline-flex items-center gap-1.5 text-[11px] font-medium text-[#193E2D] bg-[#193E2D]/5 px-2.5 py-1 rounded-full">
-                  <CheckCircle2 className="w-3 h-3 text-[#193E2D]" />
-                  Zero Carbide
-                </span>
-              </div>
-            </div>
-
-            {/* Block 02 */}
-            <div className="fruit-card-left group text-left p-6 sm:p-7 rounded-2xl bg-white/75 backdrop-blur-xs border border-[#193E2D]/[0.08] shadow-[0_4px_20px_-4px_rgba(25,62,45,0.04)] hover:bg-white hover:shadow-[0_10px_28px_-6px_rgba(25,62,45,0.08)] transition-all duration-300">
-              <div className="flex items-center gap-3 mb-2.5">
-                <span className="inline-block text-[11px] font-bold text-[#193E2D] px-2.5 py-1 rounded-full bg-[#193E2D]/10 tracking-wide">
-                  02
-                </span>
-                <h3 className="font-playfair text-xl sm:text-2xl font-normal text-[#193E2D] tracking-tight">
-                  Zero Chemicals
-                </h3>
-              </div>
-              <p className="text-[11px] font-semibold text-[#193E2D]/90 uppercase tracking-wider mb-2">
-                Bio-Organic Care • Safe for Children
-              </p>
-              <p className="text-xs sm:text-sm text-[#193E2D]/80 leading-relaxed font-normal mb-4">
-                Protected using traditional neem decoctions, friendly bio-controls, and pure cow dung vermicompost. Every single harvest batch is rigorously lab-tested for zero synthetic chemical or carbide residues.
-              </p>
-              <div className="flex flex-wrap gap-2 pt-1 border-t border-[#193E2D]/5">
-                <span className="inline-flex items-center gap-1.5 text-[11px] font-medium text-[#193E2D] bg-[#193E2D]/5 px-2.5 py-1 rounded-full">
-                  <CheckCircle2 className="w-3 h-3 text-[#193E2D]" />
-                  Lab-Tested Clean
-                </span>
-                <span className="inline-flex items-center gap-1.5 text-[11px] font-medium text-[#193E2D] bg-[#193E2D]/5 px-2.5 py-1 rounded-full">
-                  <CheckCircle2 className="w-3 h-3 text-[#193E2D]" />
-                  Zero Ethylene Gas
-                </span>
-              </div>
-            </div>
-          </div>
+          {/* Central Vertical Spine Guideline (Desktop Only) */}
+          <div className="hidden lg:block absolute left-1/2 -translate-x-1/2 top-4 bottom-4 w-[2px] bg-[#193E2D]/10 pointer-events-none" />
 
           {/* ------------------------------------------------------- */}
-          {/* B. CENTRAL FRUIT HARVEST BASKET VIDEO (Col 4-9, 50%)    */}
-          {/* Powered by GSAP upside entrance animation, FIXED 1.0   */}
+          {/* DESKTOP CENTRAL MOVING BASKET TRACK (Sticky/GSAP Scrub) */}
+          {/* Scale locked permanently at 1.0 (zero zoom in/out)      */}
           {/* ------------------------------------------------------- */}
-          <div className="order-1 lg:order-2 md:col-span-2 lg:col-span-6 flex flex-col items-center justify-center relative">
+          <div className="hidden lg:block absolute left-1/2 -translate-x-1/2 top-0 pointer-events-none z-20 w-[420px] will-change-transform">
             <div
-              ref={basketRef}
-              className="relative w-full max-w-[460px] flex flex-col items-center justify-center will-change-transform"
+              ref={basketDesktopRef}
+              className="relative w-full flex flex-col items-center justify-center will-change-transform"
             >
-              {/* Diffused Floor Shadow Under Basket Base (Animated in sync by GSAP) */}
-              <div
-                ref={shadowRef}
-                className="absolute bottom-6 sm:bottom-8 w-56 sm:w-72 h-7 sm:h-9 rounded-[100%] bg-black/15 blur-lg pointer-events-none will-change-transform"
-              />
+              {/* Diffused Floor Shadow Under Basket Base */}
+              <div className="absolute bottom-6 w-60 h-7 rounded-[100%] bg-black/15 blur-lg pointer-events-none" />
 
-              {/* Seamless Video Element: 4:5 Vertical Focus */}
+              {/* Seamless Video: 100% Background Removed on #FAF6ED */}
               <div className="relative w-full aspect-[4/5] flex items-center justify-center pointer-events-none select-none overflow-hidden">
                 <video
-                  ref={videoRef}
+                  ref={videoDesktopRef}
                   src="/videos/fruit-harvest-basket-pure.mp4"
                   poster="/images/fruit-harvest-poster.jpg"
                   autoPlay
@@ -213,103 +220,214 @@ export default function ScrollFruitJourney({ onShopFresh }: ScrollFruitJourneyPr
                   className="w-full h-full object-contain"
                 />
               </div>
-
-              {/* Subtle Quality Status Badge */}
-              <div className="mt-2 px-4 py-1.5 rounded-full bg-white/85 backdrop-blur-md border border-[#193E2D]/10 shadow-[0_4px_16px_rgba(25,62,45,0.06)] flex items-center gap-2 pointer-events-none">
-                <Sparkles className="w-3.5 h-3.5 text-[#193E2D]" />
-                <span className="text-[11px] sm:text-xs font-medium text-[#193E2D] tracking-wide">
-                  100% Naturally Ripened • Grade-A Harvest • Picked Daily
-                </span>
-              </div>
             </div>
           </div>
 
           {/* ------------------------------------------------------- */}
-          {/* C. RIGHT CONTENT BLOCKS (Desktop: Col 10-12)            */}
-          {/* Mobile Order: Follows blocks 01 & 02                     */}
+          {/* MOBILE BASKET DISPLAY (Top of Mobile Flow)              */}
           {/* ------------------------------------------------------- */}
-          <div className="order-3 lg:order-3 lg:col-span-3 flex flex-col justify-around gap-6 sm:gap-8 lg:gap-10 h-full py-2">
+          <div ref={basketMobileRef} className="lg:hidden flex flex-col items-center justify-center mb-10">
+            <div className="relative w-full max-w-[340px] aspect-[4/5] flex items-center justify-center pointer-events-none select-none overflow-hidden">
+              <video
+                ref={videoMobileRef}
+                src="/videos/fruit-harvest-basket-pure.mp4"
+                poster="/images/fruit-harvest-poster.jpg"
+                autoPlay
+                loop
+                muted
+                playsInline
+                preload="auto"
+                className="w-full h-full object-contain"
+              />
+            </div>
+          </div>
+
+          {/* ------------------------------------------------------- */}
+          {/* 4 ALTERNATING MILESTONE ROWS                            */}
+          {/* Row 1: Left 01  | Center Track | Right Trail            */}
+          {/* Row 2: Left Trail| Center Track | Right 02               */}
+          {/* Row 3: Left 03  | Center Track | Right Trail            */}
+          {/* Row 4: Left Trail| Center Track | Right 04               */}
+          {/* ------------------------------------------------------- */}
+          <div className="space-y-12 sm:space-y-16 lg:space-y-24">
             
-            {/* Block 03 */}
-            <div className="fruit-card-right group text-left p-6 sm:p-7 rounded-2xl bg-white/75 backdrop-blur-xs border border-[#193E2D]/[0.08] shadow-[0_4px_20px_-4px_rgba(25,62,45,0.04)] hover:bg-white hover:shadow-[0_10px_28px_-6px_rgba(25,62,45,0.08)] transition-all duration-300">
-              <div className="flex items-center gap-3 mb-2.5">
-                <span className="inline-block text-[11px] font-bold text-[#193E2D] px-2.5 py-1 rounded-full bg-[#193E2D]/10 tracking-wide">
-                  03
-                </span>
-                <h3 className="font-playfair text-xl sm:text-2xl font-normal text-[#193E2D] tracking-tight">
-                  Hand-Sorted Grade-A
-                </h3>
+            {/* ===================================================== */}
+            {/* MILESTONE ROW 01: STEP 01 ON LEFT                     */}
+            {/* ===================================================== */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center min-h-[220px]">
+              {/* LEFT SIDE: Card 01 */}
+              <div className="lg:col-span-4 fruit-step-card-01-left">
+                <div className="group text-left p-6 sm:p-7 rounded-2xl bg-white/80 backdrop-blur-xs border border-[#193E2D]/[0.08] shadow-[0_4px_20px_-4px_rgba(25,62,45,0.04)] hover:bg-white hover:shadow-[0_10px_28px_-6px_rgba(25,62,45,0.08)] transition-all duration-300">
+                  <div className="flex items-center gap-3 mb-2.5">
+                    <span className="inline-block text-[11px] font-bold text-[#193E2D] px-2.5 py-1 rounded-full bg-[#193E2D]/10 tracking-wide">
+                      01
+                    </span>
+                    <h3 className="font-playfair text-xl sm:text-2xl font-normal text-[#193E2D] tracking-tight">
+                      Sun-Kissed Orchards
+                    </h3>
+                  </div>
+                  <p className="text-[11px] font-semibold text-[#193E2D]/90 uppercase tracking-wider mb-2">
+                    Ethical Growing • 100% Tree-Ripened
+                  </p>
+                  <p className="text-xs sm:text-sm text-[#193E2D]/80 leading-relaxed font-normal mb-4">
+                    Nurtured across chemical-free heritage orchards in Karnataka. Allowed to mature fully on the branch under natural sunlight, achieving rich natural sweetness and peak nutritional density.
+                  </p>
+                  <div className="flex flex-wrap gap-2 pt-1 border-t border-[#193E2D]/5">
+                    <span className="inline-flex items-center gap-1.5 text-[11px] font-medium text-[#193E2D] bg-[#193E2D]/5 px-2.5 py-1 rounded-full">
+                      <CheckCircle2 className="w-3 h-3 text-[#193E2D]" />
+                      100% Tree-Ripened
+                    </span>
+                    <span className="inline-flex items-center gap-1.5 text-[11px] font-medium text-[#193E2D] bg-[#193E2D]/5 px-2.5 py-1 rounded-full">
+                      <CheckCircle2 className="w-3 h-3 text-[#193E2D]" />
+                      Zero Carbide
+                    </span>
+                  </div>
+                </div>
               </div>
-              <p className="text-[11px] font-semibold text-[#193E2D]/90 uppercase tracking-wider mb-2">
-                Gentle Sorting • Peak Brix Index
-              </p>
-              <p className="text-xs sm:text-sm text-[#193E2D]/80 leading-relaxed font-normal mb-4">
-                Carefully hand-graded at dawn by skilled farming artisans. Only pristine, unblemished, and peak-brix fruits make it into your morning harvest basket, ensuring supreme sweetness and aroma.
-              </p>
-              <div className="flex flex-wrap gap-2 pt-1 border-t border-[#193E2D]/5">
-                <span className="inline-flex items-center gap-1.5 text-[11px] font-medium text-[#193E2D] bg-[#193E2D]/5 px-2.5 py-1 rounded-full">
-                  <CheckCircle2 className="w-3 h-3 text-[#193E2D]" />
-                  Hand-Graded
-                </span>
-                <span className="inline-flex items-center gap-1.5 text-[11px] font-medium text-[#193E2D] bg-[#193E2D]/5 px-2.5 py-1 rounded-full">
-                  <CheckCircle2 className="w-3 h-3 text-[#193E2D]" />
-                  Peak Brix Sugar
-                </span>
+
+              {/* CENTER COLUMN: Spacer for moving basket track */}
+              <div className="hidden lg:block lg:col-span-4" />
+
+              {/* RIGHT SIDE: Ambient subtle milestone indicator */}
+              <div className="hidden lg:flex lg:col-span-4 items-center justify-start pl-8 text-[#193E2D]/40 text-xs italic">
+                <span className="w-2.5 h-2.5 rounded-full bg-[#193E2D]/20 mr-3" />
+                <span>05:00 AM • Dawn harvesting in mist-covered orchards</span>
               </div>
             </div>
 
-            {/* Block 04 */}
-            <div className="fruit-card-right group text-left p-6 sm:p-7 rounded-2xl bg-white/75 backdrop-blur-xs border border-[#193E2D]/[0.08] shadow-[0_4px_20px_-4px_rgba(25,62,45,0.04)] hover:bg-white hover:shadow-[0_10px_28px_-6px_rgba(25,62,45,0.08)] transition-all duration-300">
-              <div className="flex items-center gap-3 mb-2.5">
-                <span className="inline-block text-[11px] font-bold text-[#193E2D] px-2.5 py-1 rounded-full bg-[#193E2D]/10 tracking-wide">
-                  04
-                </span>
-                <h3 className="font-playfair text-xl sm:text-2xl font-normal text-[#193E2D] tracking-tight">
-                  Tree-to-Door in 12h
-                </h3>
+            {/* ===================================================== */}
+            {/* MILESTONE ROW 02: STEP 02 ON RIGHT                    */}
+            {/* ===================================================== */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center min-h-[220px]">
+              {/* LEFT SIDE: Ambient subtle milestone indicator */}
+              <div className="hidden lg:flex lg:col-span-4 items-center justify-end pr-8 text-[#193E2D]/40 text-xs italic">
+                <span>06:00 AM • Organic pest shield inspection</span>
+                <span className="w-2.5 h-2.5 rounded-full bg-[#193E2D]/20 ml-3" />
               </div>
-              <p className="text-[11px] font-semibold text-[#193E2D]/90 uppercase tracking-wider mb-2">
-                Morning 06:30 AM • Doorstep Fresh
-              </p>
-              <p className="text-xs sm:text-sm text-[#193E2D]/80 leading-relaxed font-normal mb-4">
-                Harvested at dawn and delivered to your doorstep the very next morning. Experience the unbeatable crunch, fragrant orchard perfume, and vital living enzymes of true farm freshness.
-              </p>
-              <div className="flex flex-wrap gap-2 pt-1 border-t border-[#193E2D]/5">
-                <span className="inline-flex items-center gap-1.5 text-[11px] font-medium text-[#193E2D] bg-[#193E2D]/5 px-2.5 py-1 rounded-full">
-                  <CheckCircle2 className="w-3 h-3 text-[#193E2D]" />
-                  Delivered by 7 AM
-                </span>
-                <span className="inline-flex items-center gap-1.5 text-[11px] font-medium text-[#193E2D] bg-[#193E2D]/5 px-2.5 py-1 rounded-full">
-                  <CheckCircle2 className="w-3 h-3 text-[#193E2D]" />
-                  Peak Morning Crunch
-                </span>
+
+              {/* CENTER COLUMN: Spacer for moving basket track */}
+              <div className="hidden lg:block lg:col-span-4" />
+
+              {/* RIGHT SIDE: Card 02 */}
+              <div className="lg:col-span-4 fruit-step-card-02-right">
+                <div className="group text-left p-6 sm:p-7 rounded-2xl bg-white/80 backdrop-blur-xs border border-[#193E2D]/[0.08] shadow-[0_4px_20px_-4px_rgba(25,62,45,0.04)] hover:bg-white hover:shadow-[0_10px_28px_-6px_rgba(25,62,45,0.08)] transition-all duration-300">
+                  <div className="flex items-center gap-3 mb-2.5">
+                    <span className="inline-block text-[11px] font-bold text-[#193E2D] px-2.5 py-1 rounded-full bg-[#193E2D]/10 tracking-wide">
+                      02
+                    </span>
+                    <h3 className="font-playfair text-xl sm:text-2xl font-normal text-[#193E2D] tracking-tight">
+                      Zero Chemicals
+                    </h3>
+                  </div>
+                  <p className="text-[11px] font-semibold text-[#193E2D]/90 uppercase tracking-wider mb-2">
+                    Bio-Organic Care • Safe for Children
+                  </p>
+                  <p className="text-xs sm:text-sm text-[#193E2D]/80 leading-relaxed font-normal mb-4">
+                    Protected using traditional neem decoctions, friendly bio-controls, and pure cow dung vermicompost. Every single harvest batch is rigorously lab-tested for zero synthetic chemical or carbide residues.
+                  </p>
+                  <div className="flex flex-wrap gap-2 pt-1 border-t border-[#193E2D]/5">
+                    <span className="inline-flex items-center gap-1.5 text-[11px] font-medium text-[#193E2D] bg-[#193E2D]/5 px-2.5 py-1 rounded-full">
+                      <CheckCircle2 className="w-3 h-3 text-[#193E2D]" />
+                      Lab-Tested Clean
+                    </span>
+                    <span className="inline-flex items-center gap-1.5 text-[11px] font-medium text-[#193E2D] bg-[#193E2D]/5 px-2.5 py-1 rounded-full">
+                      <CheckCircle2 className="w-3 h-3 text-[#193E2D]" />
+                      Zero Ethylene Gas
+                    </span>
+                  </div>
+                </div>
               </div>
             </div>
+
+            {/* ===================================================== */}
+            {/* MILESTONE ROW 03: STEP 03 ON LEFT                     */}
+            {/* ===================================================== */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center min-h-[220px]">
+              {/* LEFT SIDE: Card 03 */}
+              <div className="lg:col-span-4 fruit-step-card-03-left">
+                <div className="group text-left p-6 sm:p-7 rounded-2xl bg-white/80 backdrop-blur-xs border border-[#193E2D]/[0.08] shadow-[0_4px_20px_-4px_rgba(25,62,45,0.04)] hover:bg-white hover:shadow-[0_10px_28px_-6px_rgba(25,62,45,0.08)] transition-all duration-300">
+                  <div className="flex items-center gap-3 mb-2.5">
+                    <span className="inline-block text-[11px] font-bold text-[#193E2D] px-2.5 py-1 rounded-full bg-[#193E2D]/10 tracking-wide">
+                      03
+                    </span>
+                    <h3 className="font-playfair text-xl sm:text-2xl font-normal text-[#193E2D] tracking-tight">
+                      Hand-Sorted Grade-A
+                    </h3>
+                  </div>
+                  <p className="text-[11px] font-semibold text-[#193E2D]/90 uppercase tracking-wider mb-2">
+                    Gentle Sorting • Peak Brix Index
+                  </p>
+                  <p className="text-xs sm:text-sm text-[#193E2D]/80 leading-relaxed font-normal mb-4">
+                    Carefully hand-graded at dawn by skilled farming artisans. Only pristine, unblemished, and peak-brix fruits make it into your morning harvest basket, ensuring supreme sweetness and aroma.
+                  </p>
+                  <div className="flex flex-wrap gap-2 pt-1 border-t border-[#193E2D]/5">
+                    <span className="inline-flex items-center gap-1.5 text-[11px] font-medium text-[#193E2D] bg-[#193E2D]/5 px-2.5 py-1 rounded-full">
+                      <CheckCircle2 className="w-3 h-3 text-[#193E2D]" />
+                      Hand-Graded
+                    </span>
+                    <span className="inline-flex items-center gap-1.5 text-[11px] font-medium text-[#193E2D] bg-[#193E2D]/5 px-2.5 py-1 rounded-full">
+                      <CheckCircle2 className="w-3 h-3 text-[#193E2D]" />
+                      Peak Brix Sugar
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              {/* CENTER COLUMN: Spacer for moving basket track */}
+              <div className="hidden lg:block lg:col-span-4" />
+
+              {/* RIGHT SIDE: Ambient subtle milestone indicator */}
+              <div className="hidden lg:flex lg:col-span-4 items-center justify-start pl-8 text-[#193E2D]/40 text-xs italic">
+                <span className="w-2.5 h-2.5 rounded-full bg-[#193E2D]/20 mr-3" />
+                <span>06:45 AM • Artisanal grading for uncompromised brix</span>
+              </div>
+            </div>
+
+            {/* ===================================================== */}
+            {/* MILESTONE ROW 04: STEP 04 ON RIGHT                    */}
+            {/* ===================================================== */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center min-h-[220px]">
+              {/* LEFT SIDE: Ambient subtle milestone indicator */}
+              <div className="hidden lg:flex lg:col-span-4 items-center justify-end pr-8 text-[#193E2D]/40 text-xs italic">
+                <span>07:15 AM • Packed fresh and dispatched</span>
+                <span className="w-2.5 h-2.5 rounded-full bg-[#193E2D]/20 ml-3" />
+              </div>
+
+              {/* CENTER COLUMN: Spacer for moving basket track */}
+              <div className="hidden lg:block lg:col-span-4" />
+
+              {/* RIGHT SIDE: Card 04 */}
+              <div className="lg:col-span-4 fruit-step-card-04-right">
+                <div className="group text-left p-6 sm:p-7 rounded-2xl bg-white/80 backdrop-blur-xs border border-[#193E2D]/[0.08] shadow-[0_4px_20px_-4px_rgba(25,62,45,0.04)] hover:bg-white hover:shadow-[0_10px_28px_-6px_rgba(25,62,45,0.08)] transition-all duration-300">
+                  <div className="flex items-center gap-3 mb-2.5">
+                    <span className="inline-block text-[11px] font-bold text-[#193E2D] px-2.5 py-1 rounded-full bg-[#193E2D]/10 tracking-wide">
+                      04
+                    </span>
+                    <h3 className="font-playfair text-xl sm:text-2xl font-normal text-[#193E2D] tracking-tight">
+                      Tree-to-Door in 12h
+                    </h3>
+                  </div>
+                  <p className="text-[11px] font-semibold text-[#193E2D]/90 uppercase tracking-wider mb-2">
+                    Morning 06:30 AM • Doorstep Fresh
+                  </p>
+                  <p className="text-xs sm:text-sm text-[#193E2D]/80 leading-relaxed font-normal mb-4">
+                    Harvested at dawn and delivered to your doorstep the very next morning. Experience the unbeatable crunch, fragrant orchard perfume, and vital living enzymes of true farm freshness.
+                  </p>
+                  <div className="flex flex-wrap gap-2 pt-1 border-t border-[#193E2D]/5">
+                    <span className="inline-flex items-center gap-1.5 text-[11px] font-medium text-[#193E2D] bg-[#193E2D]/5 px-2.5 py-1 rounded-full">
+                      <CheckCircle2 className="w-3 h-3 text-[#193E2D]" />
+                      Delivered by 7 AM
+                    </span>
+                    <span className="inline-flex items-center gap-1.5 text-[11px] font-medium text-[#193E2D] bg-[#193E2D]/5 px-2.5 py-1 rounded-full">
+                      <CheckCircle2 className="w-3 h-3 text-[#193E2D]" />
+                      Peak Morning Crunch
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
           </div>
-        </div>
-
-        {/* ========================================================= */}
-        {/* 3. MAIN BUTTON (Centred dark green button below layout)   */}
-        {/* ========================================================= */}
-        <div className="mt-14 sm:mt-18 lg:mt-22 flex justify-center">
-          {onShopFresh ? (
-            <button
-              type="button"
-              onClick={onShopFresh}
-              className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-[#193E2D] text-white font-medium text-sm sm:text-base shadow-[0_10px_30px_-5px_rgba(25,62,45,0.3)] hover:bg-[#122e21] hover:shadow-[0_15px_35px_-5px_rgba(25,62,45,0.4)] active:scale-[0.98] transition-all duration-300 group cursor-pointer"
-            >
-              <span>Explore Orchard Harvest</span>
-              <ArrowRight className="w-4 h-4 text-emerald-400 group-hover:translate-x-1 transition-transform duration-300" />
-            </button>
-          ) : (
-            <Link
-              href="/shop/fruits"
-              className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-[#193E2D] text-white font-medium text-sm sm:text-base shadow-[0_10px_30px_-5px_rgba(25,62,45,0.3)] hover:bg-[#122e21] hover:shadow-[0_15px_35px_-5px_rgba(25,62,45,0.4)] active:scale-[0.98] transition-all duration-300 group"
-            >
-              <span>Explore Orchard Harvest</span>
-              <ArrowRight className="w-4 h-4 text-emerald-400 group-hover:translate-x-1 transition-transform duration-300" />
-            </Link>
-          )}
         </div>
 
       </div>
