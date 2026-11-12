@@ -1,269 +1,30 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --font-serif: var(--font-serif, "Cormorant Garamond", Georgia, serif);
+    --font-playfair: var(--font-playfair, "Playfair Display", Georgia, serif);
+    --font-sans: var(--font-sans, "Plus Jakarta Sans", sans-serif);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.font-serif {
+  font-family: var(--font-serif), "Cormorant Garamond", Georgia, serif;
 }
 
-/* Continuous Infinite Horizontal Left-Scrolling Marquee */
-@keyframes marquee {
-  0% {
-    transform: translateX(0%);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
+.font-playfair {
+  font-family: var(--font-playfair), "Playfair Display", Georgia, serif;
 }
 
-.animate-marquee {
-  animation: marquee 25s linear infinite;
+.font-sans {
+  font-family: var(--font-sans), "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
 }
 
-.animate-marquee-slow {
-  animation: marquee 35s linear infinite;
+/* Custom scrollbar for Zepto category carousel */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
 }
-
-/* 100% Guaranteed Pause Marquee Scrolling on Hover */
-.animate-marquee:hover,
-.animate-marquee-slow:hover,
-.showcase-marquee-container:hover .animate-marquee-slow,
-.marquee-pause-on-hover:hover {
-  animation-play-state: paused !important;
-}
-
-/* 1. Entrance: Fruit drops down from upside with physics spring bounce */
-@keyframes fruitDropIn {
-  0% {
-    transform: translateY(-90px) scale(0.92) rotateX(12deg);
-    opacity: 0;
-  }
-  60% {
-    transform: translateY(6px) scale(1.02) rotateX(-4deg);
-    opacity: 1;
-  }
-  80% {
-    transform: translateY(-3px) scale(0.99) rotateX(2deg);
-  }
-  100% {
-    transform: translateY(0px) scale(1) rotateX(0deg);
-    opacity: 1;
-  }
-}
-
-/* 2. 3D Levitation & Floating for Produce Centerpiece (Card 1) */
-@keyframes fruitLevitate3D {
-  0%, 100% {
-    transform: translateY(0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(1);
-    filter: drop-shadow(0 14px 16px rgba(0, 0, 0, 0.22));
-  }
-  25% {
-    transform: translateY(-8px) rotateX(4deg) rotateY(-3deg) rotateZ(0.8deg) scale(1.02);
-    filter: drop-shadow(0 20px 18px rgba(0, 0, 0, 0.16));
-  }
-  50% {
-    transform: translateY(-14px) rotateX(6deg) rotateY(0deg) rotateZ(-0.5deg) scale(1.035);
-    filter: drop-shadow(0 26px 24px rgba(0, 0, 0, 0.14));
-  }
-  75% {
-    transform: translateY(-7px) rotateX(2deg) rotateY(3deg) rotateZ(-1deg) scale(1.015);
-    filter: drop-shadow(0 18px 16px rgba(0, 0, 0, 0.18));
-  }
-}
-
-.animate-fruit-3d {
-  animation: fruitLevitate3D 4.5s ease-in-out infinite;
-  transform-style: preserve-3d;
-  will-change: transform, filter;
-}
-
-/* Combined: Stable in-place levitation */
-.animate-fruit-drop-and-float,
-.animate-fruit-stable-float {
-  animation: fruitLevitate3D 4.5s ease-in-out infinite;
-  transform-style: preserve-3d;
-  will-change: transform, filter;
-}
-
-/* Dynamic Shadow Depth beneath Fruits */
-@keyframes fruitShadowPulse {
-  0%, 100% {
-    transform: scale(1);
-    opacity: 0.35;
-  }
-  50% {
-    transform: scale(0.82);
-    opacity: 0.18;
-  }
-}
-
-.animate-fruit-shadow {
-  animation: fruitShadowPulse 4.5s ease-in-out infinite;
-}
-
-/* 3D Delivery Van: Stable In-Place Engine Rumble & Hover (Never drifts off-screen) */
-@keyframes truckStationaryHover {
-  0%, 100% {
-    transform: translateY(0px) rotateZ(0deg) scale(1);
-  }
-  50% {
-    transform: translateY(-4px) rotateZ(-1deg) scale(1.02);
-  }
-}
-
-.animate-truck-stationary-hover {
-  animation: 
-    truckStationaryHover 3.2s ease-in-out infinite,
-    truckEngineVibe 0.22s linear infinite;
-  transform-style: preserve-3d;
-  will-change: transform;
-}
-
-/* 3D Delivery Van: Drives Smoothly Along Background Golden Trail (Left to Right, Continuous Loop) */
-@keyframes truckDriveAlongGoldenTrail {
-  0% {
-    left: -32%;
-    top: 50%;
-    transform: translateY(0px) rotateZ(3deg) scale(0.96);
-    opacity: 0;
-  }
-  6% {
-    opacity: 1;
-  }
-  25% {
-    left: 8%;
-    top: 48%;
-    transform: translateY(-2px) rotateZ(1deg) scale(0.98);
-  }
-  50% {
-    left: 38%;
-    top: 43%;
-    transform: translateY(-4px) rotateZ(-1deg) scale(1.02);
-  }
-  75% {
-    left: 72%;
-    top: 36%;
-    transform: translateY(-3px) rotateZ(1deg) scale(1.05);
-  }
-  92% {
-    opacity: 1;
-  }
-  100% {
-    left: 116%;
-    top: 28%;
-    transform: translateY(0px) rotateZ(3deg) scale(0.98);
-    opacity: 0;
-  }
-}
-
-.animate-truck-gold-trail {
-  animation: 
-    truckDriveAlongGoldenTrail 8.5s cubic-bezier(0.4, 0.05, 0.25, 1) infinite,
-    truckEngineVibe 0.22s linear infinite;
-  transform-style: preserve-3d;
-  will-change: left, top, transform, opacity;
-}
-
-/* Card 3: Instant 100% Opacity Basket Stable Float (Guaranteed never empty) */
-.animate-basket-3d-motion,
-.animate-basket-stable-float {
-  animation: basketFloatingRotate3D 5.5s ease-in-out infinite;
-  transform-style: preserve-3d;
-  will-change: transform, filter;
-}
-
-/* Card 3: Ground Shadow Expansion Synchronized with Slow-Motion Descent */
-@keyframes basketShadowSlowExpand {
-  0% {
-    transform: scale(0.25);
-    opacity: 0;
-  }
-  25% {
-    opacity: 0.12;
-  }
-  75% {
-    transform: scale(1.06);
-    opacity: 0.28;
-  }
-  100% {
-    transform: scale(1);
-    opacity: 0.25;
-  }
-}
-
-.animate-basket-shadow {
-  animation: basketShadowSlowExpand 4.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-  will-change: transform, opacity;
-}
-
-/* Synchronized Continuous Shadow Breathing */
-@keyframes basketShadowSync {
-  0%, 100% {
-    transform: scale(1);
-    opacity: 0.25;
-  }
-  50% {
-    transform: scale(0.84);
-    opacity: 0.16;
-  }
-}
-
-.animate-basket-shadow-sync {
-  animation: 
-    basketShadowSlowExpand 3.5s cubic-bezier(0.22, 1, 0.36, 1) forwards,
-    basketShadowSync 5.5s ease-in-out 3.5s infinite;
-  will-change: transform, opacity;
-}
-
-/* Card 3: Left Leaf Vine 3D Parallax & Depth Sway (Background Leaves Only) */
-@keyframes leavesSwayLeft3D {
-  0%, 100% {
-    transform: rotateZ(0deg) rotateY(0deg) translateZ(0px);
-  }
-  50% {
-    transform: rotateZ(2.2deg) rotateY(4.5deg) translateZ(10px) scale(1.018);
-  }
-}
-
-.animate-leaves-left-3d {
-  animation: leavesSwayLeft3D 6.5s ease-in-out infinite;
-  transform-origin: left top;
-  transform-style: preserve-3d;
-  will-change: transform;
-}
-
-/* Card 3: Right Leaf Vine 3D Parallax & Depth Sway (Background Leaves Only) */
-@keyframes leavesSwayRight3D {
-  0%, 100% {
-    transform: rotateZ(0deg) rotateX(0deg) translateZ(0px);
-  }
-  50% {
-    transform: rotateZ(-2.5deg) rotateX(4deg) translateZ(12px) scale(1.02);
-  }
-}
-
-.animate-leaves-right-3d {
-  animation: leavesSwayRight3D 7.5s ease-in-out infinite;
-  transform-origin: right top;
-  transform-style: preserve-3d;
-  will-change: transform;
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }

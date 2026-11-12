@@ -1,0 +1,145 @@
+/* ==========================================================================
+   Y DAILY - Physical Hardcover Storybook Presentation
+   ========================================================================== */
+
+.storybook-fullwidth-section {
+  position: relative;
+  width: 100%;
+  margin: 0;
+  padding: 3rem 0 4rem 0;
+  overflow: hidden;
+  background-color: #f1e6d4;
+  background-image: url('/images/parchment-texture-bg.png');
+  background-repeat: repeat;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* 3D Perspective Stage */
+.storybook-stage {
+  perspective: 2500px;
+  perspective-origin: 50% 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+/* Physical Hardcover Book Casing (Exact Match to User Reference Screenshot) */
+.storybook-hardcover-casing {
+  position: relative;
+  width: min(94vw, 1320px);
+  aspect-ratio: 1672 / 941;
+  background: #fbf8f2;
+  border-radius: 1.25rem;
+  padding: 6px;
+  /* Outer Warm Hardcover Rim & Layered Stack Edge Effect */
+  box-shadow:
+    0 0 0 1px #dfd1bd,
+    0 2px 0 #ede3d1,
+    0 4px 0 #e4d7bf,
+    0 6px 0 #dbcbaf,
+    0 8px 0 #d1c0a0,
+    0 10px 0 #c7b491,
+    0 24px 55px -12px rgba(45, 25, 10, 0.35);
+  border: 7px solid #cfbfa6;
+  display: flex;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+@media (max-width: 640px) {
+  .storybook-hardcover-casing {
+    border-radius: 0.875rem;
+    padding: 4px;
+    border: 5px solid #cfbfa6;
+    box-shadow:
+      0 0 0 1px #dfd1bd,
+      0 2px 0 #ede3d1,
+      0 4px 0 #dbcbaf,
+      0 12px 25px -8px rgba(45, 25, 10, 0.3);
+  }
+}
+
+/* Full Artwork Inner Container */
+.storybook-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 0.875rem;
+  overflow: hidden;
+  background-color: #faf7f0;
+}
+
+@media (max-width: 640px) {
+  .storybook-card-inner {
+    border-radius: 0.5rem;
+  }
+}
+
+/* Smooth Page Turn Transition Animations */
+@keyframes storyTurnForward {
+  0% {
+    opacity: 1;
+    transform: scale(1) translateX(0);
+  }
+  45% {
+    opacity: 0.25;
+    transform: scale(0.985) translateX(-12px);
+  }
+  55% {
+    opacity: 0.25;
+    transform: scale(0.985) translateX(12px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateX(0);
+  }
+}
+
+@keyframes storyTurnBackward {
+  0% {
+    opacity: 1;
+    transform: scale(1) translateX(0);
+  }
+  45% {
+    opacity: 0.25;
+    transform: scale(0.985) translateX(12px);
+  }
+  55% {
+    opacity: 0.25;
+    transform: scale(0.985) translateX(-12px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateX(0);
+  }
+}
+
+.animate-story-turn-forward {
+  animation: storyTurnForward 0.42s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.animate-story-turn-backward {
+  animation: storyTurnBackward 0.42s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Epilogue Spread Styling */
+.storybook-epilogue-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: #faf6ee;
+  background-image: 
+    radial-gradient(#e4dac8 0.7px, transparent 0.7px),
+    url('/images/parchment-texture-bg.png');
+  background-size: 20px 20px, auto;
+  border-radius: 0.875rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem 1.5rem;
+  box-sizing: border-box;
+}

@@ -12,6 +12,7 @@ export interface Product {
   badge?: string;
   isBestSeller?: boolean;
   isPopular?: boolean;
+  description?: string;
 }
 
 export interface Category {

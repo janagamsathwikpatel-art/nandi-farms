@@ -53,6 +53,9 @@ export const ProductModal: React.FC<ProductModalProps> = ({
                 src={product.image}
                 alt={product.name}
                 className="w-full h-56 sm:h-64 object-cover rounded-xl shadow-xs group-hover:scale-105 transition-transform duration-300"
+                onError={(e) => {
+                  (e.target as HTMLImageElement).src = "/images/vegetable-basket.png";
+                }}
               />
               <button
                 onClick={() => onToggleLoved(product.id)}

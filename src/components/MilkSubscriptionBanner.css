@@ -1,0 +1,384 @@
+/* Milk Subscription 4K Interactive Banner */
+.milk-sub-banner-section {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  min-height: 440px;
+  background-color: #061c0c;
+  color: #ffffff;
+  padding: 48px 24px;
+  box-sizing: border-box;
+}
+
+@media (min-width: 640px) {
+  .milk-sub-banner-section {
+    min-height: 480px;
+    padding: 56px 36px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .milk-sub-banner-section {
+    min-height: clamp(520px, 35vw, 1344px);
+    padding: clamp(56px, 4vw, 100px) clamp(48px, 4vw, 120px);
+  }
+}
+
+@media (min-width: 1920px) {
+  .milk-sub-banner-section {
+    padding: clamp(64px, 5vw, 120px) clamp(64px, 5vw, 160px);
+  }
+}
+
+/* 4K Panoramic Background Plate */
+.milk-sub-banner-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.milk-sub-mobile-gradient {
+  display: block;
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(6, 28, 12, 0.4) 0%,
+    rgba(6, 28, 12, 0.15) 35%,
+    transparent 60%
+  );
+  pointer-events: none;
+}
+
+@media (max-width: 1024px) {
+  .milk-sub-mobile-gradient {
+    background: linear-gradient(
+      180deg,
+      rgba(6, 28, 12, 0.90) 0%,
+      rgba(6, 28, 12, 0.82) 55%,
+      rgba(6, 28, 12, 0.6) 100%
+    );
+  }
+}
+
+/* Foreground Content */
+.milk-sub-banner-content {
+  position: relative;
+  z-index: 10;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.milk-sub-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+  width: 100%;
+}
+
+@media (min-width: 1024px) {
+  .milk-sub-grid {
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: clamp(40px, 4vw, 84px);
+  }
+}
+
+@media (min-width: 1920px) {
+  .milk-sub-editorial {
+    max-width: 460px;
+  }
+}
+
+@media (min-width: 2560px) {
+  .milk-sub-editorial {
+    max-width: 580px;
+  }
+}
+
+/* Left Editorial Typography */
+.milk-sub-editorial {
+  max-width: 380px;
+}
+
+.milk-sub-eyebrow {
+  font-family: Arial, sans-serif;
+  font-size: 11px;
+  letter-spacing: 3px;
+  font-weight: 700;
+  color: #9cd4a8;
+  text-transform: uppercase;
+  margin: 0 0 10px;
+}
+
+.milk-sub-heading {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(28px, 3.2vw, 46px);
+  line-height: 1.05;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  color: #ffffff;
+  margin: 0 0 14px;
+}
+
+.milk-sub-desc {
+  font-family: Arial, sans-serif;
+  font-size: clamp(13px, 1.1vw, 15px);
+  line-height: 1.5;
+  color: #d6e8da;
+  margin: 0 0 24px;
+}
+
+/* White Pill CTA Button */
+.milk-sub-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #ffffff;
+  color: #123018;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 12px 24px;
+  border-radius: 9999px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.milk-sub-cta-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+  background: #f7faf7;
+}
+
+.milk-sub-cta-btn:active {
+  transform: translateY(0);
+}
+
+/* Center-Right Plans Container */
+.milk-sub-plans-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.milk-sub-cards-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+@media (min-width: 640px) {
+  .milk-sub-cards-row {
+    flex-wrap: nowrap;
+    gap: 16px;
+  }
+}
+
+/* Subscription Plan Cards */
+.milk-sub-plan-card {
+  position: relative;
+  width: 125px;
+  min-height: 185px;
+  border-radius: 14px;
+  background: rgba(12, 46, 23, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 18px 12px 16px;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+@media (min-width: 640px) {
+  .milk-sub-plan-card {
+    width: 135px;
+    min-height: 205px;
+    padding: 20px 14px 18px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .milk-sub-cards-row {
+    gap: 22px;
+  }
+  .milk-sub-plan-card {
+    width: 160px;
+    min-height: 240px;
+    padding: 24px 16px 20px;
+    border-radius: 18px;
+  }
+  .milk-sub-days-num {
+    font-size: 44px;
+  }
+  .milk-sub-total-price {
+    font-size: 28px;
+  }
+  .milk-sub-per-day {
+    font-size: 13px;
+  }
+}
+
+@media (min-width: 2560px) {
+  .milk-sub-cards-row {
+    gap: 28px;
+  }
+  .milk-sub-plan-card {
+    width: 190px;
+    min-height: 280px;
+    padding: 28px 20px 24px;
+    border-radius: 22px;
+  }
+  .milk-sub-days-num {
+    font-size: 52px;
+  }
+  .milk-sub-total-price {
+    font-size: 34px;
+  }
+  .milk-sub-per-day {
+    font-size: 15px;
+  }
+}
+
+.milk-sub-plan-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.4);
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+.milk-sub-plan-card.is-selected {
+  box-shadow: 0 0 0 2px #d89b4f, 0 10px 24px rgba(0, 0, 0, 0.4);
+}
+
+/* 30 Days Golden Card */
+.milk-sub-plan-card.is-popular {
+  background: linear-gradient(180deg, #f3d999 0%, #e5be6d 50%, #c79a40 100%);
+  border: 2px solid #fff2cc;
+  color: #1a2c16;
+  min-height: 195px;
+  box-shadow: 0 6px 20px rgba(216, 155, 79, 0.35);
+}
+
+@media (min-width: 640px) {
+  .milk-sub-plan-card.is-popular {
+    min-height: 215px;
+  }
+}
+
+.milk-sub-plan-card.is-popular:hover {
+  box-shadow: 0 12px 30px rgba(216, 155, 79, 0.5);
+}
+
+/* Most Popular Red Floating Badge */
+.milk-sub-popular-badge {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #ff1f2d;
+  color: #ffffff;
+  font-family: Arial, sans-serif;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  padding: 3px 9px;
+  border-radius: 6px;
+  white-space: nowrap;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* Card Header */
+.milk-sub-card-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.milk-sub-days-num {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 38px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.milk-sub-plan-card.is-popular .milk-sub-days-num {
+  color: #182c16;
+}
+
+.milk-sub-days-label {
+  font-family: Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  opacity: 0.85;
+  margin-top: 4px;
+}
+
+.milk-sub-card-divider {
+  width: 100%;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.2);
+  margin: 12px 0;
+}
+
+.milk-sub-plan-card.is-popular .milk-sub-card-divider {
+  background: rgba(24, 44, 22, 0.2);
+}
+
+/* Card Pricing */
+.milk-sub-card-pricing {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.milk-sub-total-price {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.milk-sub-plan-card.is-popular .milk-sub-total-price {
+  color: #122210;
+}
+
+.milk-sub-per-day {
+  font-family: Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  opacity: 0.85;
+  margin-top: 6px;
+}
+
+/* Trust Badges */
+.milk-sub-trust-badges {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  color: #d6e8da;
+  flex-wrap: wrap;
+}
+
+.milk-sub-trust-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.milk-sub-trust-divider {
+  color: rgba(255, 255, 255, 0.3);
+}

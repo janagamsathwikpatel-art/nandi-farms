@@ -1,204 +1,105 @@
-'use client';
+"use client";
 
-import React from 'react';
-import { Leaf } from 'lucide-react';
+import React from "react";
 
-interface FooterProps {
-  onSelectCategory?: (categoryName: string) => void;
-}
-
-export const Footer: React.FC<FooterProps> = ({ onSelectCategory }) => {
-  const handleScrollToProducts = () => {
-    const el =
-      document.getElementById('todays-picks') ||
-      document.getElementById('weekly-best-selling') ||
-      document.getElementById('categories');
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
-  const handleCategoryClick = (catName: string) => {
-    if (onSelectCategory) {
-      onSelectCategory(catName);
-    }
-    handleScrollToProducts();
-  };
-
+export default function Footer() {
   return (
-    <footer id="about" className="w-full bg-[#f4f7ef] relative overflow-hidden font-sans border-t border-[#dce5d8] select-none">
-      
-      {/* Ultra-HD Pastoral Farm Landscape Background Artwork (Fades seamlessly from right) */}
-      <div className="absolute inset-y-0 right-0 w-full md:w-3/4 lg:w-2/3 pointer-events-none select-none overflow-hidden z-0">
-        <img
-          src="/footer-farm-landscape-hd.jpg"
-          alt=""
-          className="w-full h-full object-cover object-right opacity-80 sm:opacity-90 lg:opacity-100 transform-gpu"
-          style={{
-            maskImage: 'linear-gradient(to right, transparent 0%, rgba(0,0,0,0.6) 20%, black 50%)',
-            WebkitMaskImage: 'linear-gradient(to right, transparent 0%, rgba(0,0,0,0.6) 20%, black 50%)',
-          }}
-          loading="eager"
-        />
-      </div>
-
-      {/* Main Responsive Content Container */}
-      <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 pt-12 pb-10 sm:pt-16 sm:pb-14 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
-          
-          {/* Left Column: Brand, Headline, Tagline & CTA Button (Spans 6 cols on large screens) */}
-          <div className="lg:col-span-6 flex flex-col items-start space-y-4 max-w-lg">
-            
-            {/* Brand Logo & Name */}
-            <div 
-              onClick={handleScrollToProducts}
-              className="inline-flex items-center space-x-2.5 cursor-pointer group"
-              title="Nandi Farms"
-            >
-              <div className="w-8 h-8 rounded-full bg-[#1c382b] flex items-center justify-center text-white shadow-xs group-hover:scale-105 transition-transform">
-                <Leaf className="w-4 h-4 fill-emerald-100 text-[#1c382b]" />
-              </div>
-              <span className="font-serif text-xl sm:text-2xl font-bold tracking-[0.2em] text-[#1c382b] uppercase">
-                NANDI FARMS
-              </span>
-            </div>
-
-            {/* Main Editorial Headline */}
-            <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-[#1c382b] tracking-tight leading-[1.15] pt-1">
-              Freshness, naturally.
-            </h2>
-
-            {/* Subtitle / Tagline */}
-            <p className="text-sm sm:text-base text-[#4a584c] font-normal leading-relaxed pb-2">
-              Milk, fruits &amp; vegetables for everyday living.
-            </p>
-
-            {/* CTA Pill Button */}
-            <button
-              type="button"
-              onClick={handleScrollToProducts}
-              className="inline-flex items-center space-x-2.5 px-6 sm:px-7 py-2.5 sm:py-3 rounded-full border border-[#3b5440] text-[#1c382b] bg-white/60 hover:bg-[#1c382b] hover:text-white backdrop-blur-xs text-xs sm:text-sm font-semibold tracking-wider uppercase transition-all duration-200 shadow-2xs hover:shadow-md cursor-pointer group active:scale-98"
-            >
-              <span>EXPLORE OUR PRODUCTS</span>
-              <span className="transform group-hover:translate-x-1 transition-transform">→</span>
-            </button>
-
+    <footer id="practices" className="w-full bg-[#162e1e] text-[#e0e8de] border-t border-[#204229] py-8 sm:py-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-6 md:gap-4">
+          {/* Left: Brand + Divider */}
+          <div className="flex items-center gap-4">
+            <span className="font-serif text-lg sm:text-xl font-bold tracking-[0.16em] text-white uppercase">
+              NANDI FARMS
+            </span>
+            <div className="h-5 w-[1px] bg-[#3a5d43] hidden sm:block" />
           </div>
 
-          {/* Navigation Links Columns (Spans 6 cols on large screens) */}
-          <div className="lg:col-span-6 grid grid-cols-2 sm:grid-cols-2 gap-8 sm:gap-12 pt-2 max-w-sm">
-            
-            {/* 1. EXPLORE Column */}
-            <div>
-              <h3 className="font-bold text-xs tracking-[0.18em] text-[#1c382b] uppercase mb-4 pb-1 inline-block border-b-2 border-[#1c382b]">
-                EXPLORE
-              </h3>
-              <ul className="space-y-2.5 text-sm">
-                <li>
-                  <button
-                    type="button"
-                    onClick={handleScrollToProducts}
-                    className="text-[#3b4c3e] hover:text-[#1c382b] hover:translate-x-1 font-medium transition-all inline-block text-left"
-                  >
-                    Shop All
-                  </button>
-                </li>
-                <li>
-                  <button
-                    type="button"
-                    onClick={() => handleCategoryClick('Dairy')}
-                    className="text-[#3b4c3e] hover:text-[#1c382b] hover:translate-x-1 font-medium transition-all inline-block text-left"
-                  >
-                    Milk
-                  </button>
-                </li>
-                <li>
-                  <button
-                    type="button"
-                    onClick={() => handleCategoryClick('Fresh Vegetables')}
-                    className="text-[#3b4c3e] hover:text-[#1c382b] hover:translate-x-1 font-medium transition-all inline-block text-left"
-                  >
-                    Vegetables
-                  </button>
-                </li>
-                <li>
-                  <button
-                    type="button"
-                    onClick={() => handleCategoryClick('Fruits')}
-                    className="text-[#3b4c3e] hover:text-[#1c382b] hover:translate-x-1 font-medium transition-all inline-block text-left"
-                  >
-                    Fruits
-                  </button>
-                </li>
-              </ul>
-            </div>
+          {/* Center: Navigation Links matching exact image */}
+          <nav className="flex flex-wrap items-center justify-center gap-5 sm:gap-7 text-xs sm:text-sm font-medium text-[#c4d4c3]">
+            <a href="#home" className="hover:text-white transition-colors">
+              Home
+            </a>
+            <a href="#our-story" className="hover:text-white transition-colors">
+              Our Story
+            </a>
+            <a href="#harvest-store" className="hover:text-white transition-colors">
+              What We Grow
+            </a>
+            <a href="#practices" className="hover:text-white transition-colors">
+              Our Practices
+            </a>
+            <a href="#visit" className="hover:text-white transition-colors">
+              Visit
+            </a>
+          </nav>
 
-            {/* 2. CONNECT Column */}
-            <div>
-              <h3 className="font-bold text-xs tracking-[0.18em] text-[#1c382b] uppercase mb-4 pb-1 inline-block border-b-2 border-[#1c382b]">
-                CONNECT
-              </h3>
-              <ul className="space-y-2.5 text-sm">
-                <li>
-                  <button
-                    type="button"
-                    onClick={handleScrollToProducts}
-                    className="text-[#3b4c3e] hover:text-[#1c382b] hover:translate-x-1 font-medium transition-all inline-block text-left"
-                  >
-                    About Us
-                  </button>
-                </li>
-                <li>
-                  <a
-                    href="mailto:support@nandifarms.com"
-                    className="text-[#3b4c3e] hover:text-[#1c382b] hover:translate-x-1 font-medium transition-all inline-block text-left"
-                  >
-                    Contact Us
-                  </a>
-                </li>
-                <li>
-                  <button
-                    type="button"
-                    onClick={handleScrollToProducts}
-                    className="text-[#3b4c3e] hover:text-[#1c382b] hover:translate-x-1 font-medium transition-all inline-block text-left"
-                  >
-                    FAQs
-                  </button>
-                </li>
-              </ul>
-            </div>
-
-          </div>
-
-        </div>
-      </div>
-
-      {/* Bottom Legal & Copyright Bar */}
-      <div className="border-t border-[#d8e2d4] bg-[#f0f4ea]/70 relative z-10">
-        <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 py-3.5 flex flex-col sm:flex-row items-center justify-between gap-2 text-[11px] sm:text-xs text-[#526354] font-medium">
-          <div>
-            &copy; {new Date().getFullYear()} NANDI FARMS. All rights reserved.
-          </div>
-          <div className="flex items-center space-x-3">
-            <button
-              type="button"
-              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-              className="hover:text-[#1c382b] hover:underline transition-colors"
+          {/* Right: Social Media Icons + Botanical Leaf Motif */}
+          <div className="flex items-center gap-3.5">
+            {/* Instagram */}
+            <a
+              href="https://instagram.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+              className="w-8 h-8 rounded-full border border-[#305338] flex items-center justify-center text-[#c4d4c3] hover:text-white hover:border-[#d89b4f] hover:bg-[#1f3f29] transition-all"
             >
-              Privacy Policy
-            </button>
-            <span>&middot;</span>
-            <button
-              type="button"
-              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-              className="hover:text-[#1c382b] hover:underline transition-colors"
+              <svg className="w-4 h-4 fill-none stroke-current" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
+                <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
+              </svg>
+            </a>
+
+            {/* Facebook */}
+            <a
+              href="https://facebook.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Facebook"
+              className="w-8 h-8 rounded-full border border-[#305338] flex items-center justify-center text-[#c4d4c3] hover:text-white hover:border-[#d89b4f] hover:bg-[#1f3f29] transition-all"
             >
-              Terms &amp; Conditions
-            </button>
+              <svg className="w-4 h-4 fill-currentColor" viewBox="0 0 24 24">
+                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+              </svg>
+            </a>
+
+            {/* YouTube */}
+            <a
+              href="https://youtube.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="YouTube"
+              className="w-8 h-8 rounded-full border border-[#305338] flex items-center justify-center text-[#c4d4c3] hover:text-white hover:border-[#d89b4f] hover:bg-[#1f3f29] transition-all"
+            >
+              <svg className="w-4 h-4 fill-currentColor" viewBox="0 0 24 24">
+                <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33zM9.75 15.02V8.48l5.75 3.27-5.75 3.27z"/>
+              </svg>
+            </a>
+
+            {/* Botanical Leaf Mark */}
+            <div className="pl-1 text-[#d89b4f]" title="Nandi Organic Mark">
+              <svg
+                className="w-6 h-6 transform rotate-45"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z" />
+                <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12" />
+              </svg>
+            </div>
           </div>
         </div>
-      </div>
 
+        {/* Bottom copyright notice */}
+        <div className="mt-8 pt-6 border-t border-[#1e3b26] text-center text-xs text-[#7d9380]">
+          © 2026 Nandi Farms. All rights reserved. Cultivated with organic regenerative practices.
+        </div>
+      </div>
     </footer>
   );
-};
+}
