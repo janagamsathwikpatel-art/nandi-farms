@@ -1137,11 +1137,11 @@ export default function HarvestCategoryGrid() {
 
               {/* Bento 3-Box Grid: Exact 2nd Image Layout (Milk on left, Veg & Fruits on right) */}
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-5 lg:gap-6 items-stretch">
-                {/* A. Left Column: Milk Card (5 of 12 cols on desktop) */}
+                {/* A. Left Column: Milk Card (5 of 12 cols on desktop) - 4K UHD */}
                 <button
                   type="button"
                   onClick={() => handleCardClick("milk")}
-                  className={`group relative w-full lg:col-span-5 rounded-2xl sm:rounded-3xl overflow-hidden aspect-[356/370] lg:aspect-auto lg:h-full text-left focus:outline-none p-0 cursor-pointer block bg-[#faf5ea] shadow-xs hover:shadow-md transition-all duration-300 min-h-[340px] sm:min-h-[400px] lg:min-h-0 ${
+                  className={`group relative w-full lg:col-span-5 rounded-2xl sm:rounded-3xl overflow-hidden aspect-[356/370] lg:aspect-auto lg:h-full text-left focus:outline-none p-0 cursor-pointer block bg-[#faf5ea] border border-[#16301d]/[0.07] shadow-[0_4px_20px_-4px_rgba(22,48,29,0.06)] hover:shadow-[0_16px_36px_-6px_rgba(22,48,29,0.12)] transition-all duration-500 ease-out min-h-[340px] sm:min-h-[400px] lg:min-h-0 ${
                     isCategoryProductsOpen && selectedCategory === "milk"
                       ? "ring-4 ring-[#16301d]"
                       : ""
@@ -1151,13 +1151,13 @@ export default function HarvestCategoryGrid() {
                   <img
                     src="/images/bento_v3/milk_exact_2x.png"
                     alt="Fresh Farm Milk"
-                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 pointer-events-none select-none"
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02] pointer-events-none select-none"
                     loading="eager"
                   />
 
                   {/* Live HTML Typography In The Box, Outside Image File */}
                   <div className="absolute top-6 sm:top-8 left-6 sm:left-8 z-10 select-none">
-                    <span className="font-playfair text-3xl sm:text-4xl lg:text-[40px] text-[#16301d] font-normal tracking-tight block leading-none drop-shadow-xs">
+                    <span className="font-playfair text-3xl sm:text-4xl lg:text-[40px] text-[#16301d] font-normal tracking-tight block leading-none drop-shadow-[0_1px_2px_rgba(255,255,255,0.3)]">
                       Milk
                     </span>
                     <div className="flex items-center w-24 sm:w-28 h-px bg-[#16301d]/60 mt-2 sm:mt-2.5 relative">
@@ -1169,7 +1169,7 @@ export default function HarvestCategoryGrid() {
 
                   {/* Active Indicator Badge */}
                   {isCategoryProductsOpen && selectedCategory === "milk" && (
-                    <div className="absolute top-5 right-5 z-10 bg-[#16301d] text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-md flex items-center gap-1.5 animate-in fade-in">
+                    <div className="absolute top-5 right-5 z-10 bg-[#16301d]/95 backdrop-blur-md text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg flex items-center gap-1.5 animate-in fade-in">
                       <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
                       <span>Viewing Dairy</span>
                     </div>
@@ -1178,29 +1178,29 @@ export default function HarvestCategoryGrid() {
 
                 {/* B. Right Column: Stacked Vegetables & Fruits (7 of 12 cols on desktop) */}
                 <div className="lg:col-span-7 flex flex-col justify-between gap-4 sm:gap-5 lg:gap-6">
-                  {/* Top Card: Vegetables (Direct from User Image, Leaves Present Outside Box) */}
+                  {/* Top Card: Vegetables (4K UHD, Leaves Present Outside Box) */}
                   <div className="relative pt-4 sm:pt-6">
                     <button
                       type="button"
                       onClick={() => handleCardClick("vegetables")}
-                      className={`group relative w-full aspect-[612/180] rounded-2xl sm:rounded-3xl bg-[#dfe3d0] overflow-visible text-left focus:outline-none p-0 cursor-pointer block shadow-xs hover:shadow-md transition-all duration-300 ${
+                      className={`group relative w-full aspect-[612/180] rounded-2xl sm:rounded-3xl bg-[#dfe3d0] border border-[#16301d]/[0.07] overflow-visible text-left focus:outline-none p-0 cursor-pointer block shadow-[0_4px_20px_-4px_rgba(22,48,29,0.06)] hover:shadow-[0_16px_36px_-6px_rgba(22,48,29,0.12)] transition-all duration-500 ease-out ${
                         isCategoryProductsOpen && selectedCategory === "vegetables"
                           ? "ring-4 ring-[#16301d]"
                           : ""
                       }`}
                       aria-label="Open Vegetables Products"
                     >
-                      {/* Exact image from user screenshot with leaves extending -11.7% above the top border */}
+                      {/* 4K UHD image from user screenshot with leaves extending -11.7% above the top border */}
                       <img
                         src="/images/bento_v3/veg_exact_2x.png"
                         alt="Fresh Organic Vegetables"
-                        className="absolute -top-[11.7%] left-0 w-full h-[111.7%] object-contain pointer-events-none select-none transition-transform duration-700 ease-out group-hover:scale-105"
+                        className="absolute -top-[11.7%] left-0 w-full h-[111.7%] object-contain pointer-events-none select-none transition-transform duration-700 ease-out group-hover:scale-[1.02]"
                         loading="eager"
                       />
 
                       {/* Live HTML Typography In The Box, Outside Image File */}
                       <div className="absolute top-6 sm:top-8 left-6 sm:left-8 lg:left-10 z-10 select-none">
-                        <span className="font-playfair text-3xl sm:text-4xl lg:text-[40px] text-[#16301d] font-normal tracking-tight block leading-none drop-shadow-xs">
+                        <span className="font-playfair text-3xl sm:text-4xl lg:text-[40px] text-[#16301d] font-normal tracking-tight block leading-none drop-shadow-[0_1px_2px_rgba(255,255,255,0.3)]">
                           Vegetables
                         </span>
                         <div className="flex items-center w-36 sm:w-44 h-px bg-[#16301d]/60 mt-2 sm:mt-2.5 relative">
@@ -1212,7 +1212,7 @@ export default function HarvestCategoryGrid() {
 
                       {/* Active Indicator Badge */}
                       {isCategoryProductsOpen && selectedCategory === "vegetables" && (
-                        <div className="absolute top-5 right-5 z-10 bg-[#16301d] text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-md flex items-center gap-1.5 animate-in fade-in">
+                        <div className="absolute top-5 right-5 z-10 bg-[#16301d]/95 backdrop-blur-md text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg flex items-center gap-1.5 animate-in fade-in">
                           <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
                           <span>Viewing Veggies</span>
                         </div>
@@ -1220,11 +1220,11 @@ export default function HarvestCategoryGrid() {
                     </button>
                   </div>
 
-                  {/* Bottom Card: Fruits */}
+                  {/* Bottom Card: Fruits (4K UHD) */}
                   <button
                     type="button"
                     onClick={() => handleCardClick("fruits")}
-                    className={`group relative w-full aspect-[612/179] rounded-2xl sm:rounded-3xl overflow-hidden text-left focus:outline-none p-0 cursor-pointer block bg-[#faf5ea] shadow-xs hover:shadow-md transition-all duration-300 ${
+                    className={`group relative w-full aspect-[612/179] rounded-2xl sm:rounded-3xl overflow-hidden text-left focus:outline-none p-0 cursor-pointer block bg-[#faf5ea] border border-[#16301d]/[0.07] shadow-[0_4px_20px_-4px_rgba(22,48,29,0.06)] hover:shadow-[0_16px_36px_-6px_rgba(22,48,29,0.12)] transition-all duration-500 ease-out ${
                       isCategoryProductsOpen && selectedCategory === "fruits"
                         ? "ring-4 ring-[#16301d]"
                         : ""
@@ -1234,13 +1234,13 @@ export default function HarvestCategoryGrid() {
                     <img
                       src="/images/bento_v3/fruit_exact_2x.png"
                       alt="Fresh Orchard Fruits"
-                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 pointer-events-none select-none"
+                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02] pointer-events-none select-none"
                       loading="eager"
                     />
 
                     {/* Live HTML Typography In The Box, Outside Image File */}
                     <div className="absolute top-6 sm:top-8 left-6 sm:left-8 lg:left-10 z-10 select-none">
-                      <span className="font-playfair text-3xl sm:text-4xl lg:text-[40px] text-[#16301d] font-normal tracking-tight block leading-none drop-shadow-xs">
+                      <span className="font-playfair text-3xl sm:text-4xl lg:text-[40px] text-[#16301d] font-normal tracking-tight block leading-none drop-shadow-[0_1px_2px_rgba(255,255,255,0.3)]">
                         Fruits
                       </span>
                       <div className="flex items-center w-28 sm:w-36 h-px bg-[#16301d]/60 mt-2 sm:mt-2.5 relative">
@@ -1252,7 +1252,7 @@ export default function HarvestCategoryGrid() {
 
                     {/* Active Indicator Badge */}
                     {isCategoryProductsOpen && selectedCategory === "fruits" && (
-                      <div className="absolute top-5 right-5 z-10 bg-[#16301d] text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-md flex items-center gap-1.5 animate-in fade-in">
+                      <div className="absolute top-5 right-5 z-10 bg-[#16301d]/95 backdrop-blur-md text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg flex items-center gap-1.5 animate-in fade-in">
                         <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
                         <span>Viewing Fruits</span>
                       </div>
