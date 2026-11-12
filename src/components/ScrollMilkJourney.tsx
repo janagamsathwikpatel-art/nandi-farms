@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef } from "react";
 import Link from "next/link";
-import { ArrowRight, CheckCircle2, Sparkles } from "lucide-react";
+import { ArrowRight, CheckCircle2 } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -221,14 +221,6 @@ export default function ScrollMilkJourney({ onShopFresh }: ScrollMilkJourneyProp
                   className="w-full h-full object-contain"
                 />
               </div>
-
-              {/* Quality Status Badge */}
-              <div className="mt-2 px-4 py-1.5 rounded-full bg-white/90 backdrop-blur-md border border-[#193E2D]/10 shadow-[0_4px_16px_rgba(25,62,45,0.06)] flex items-center gap-2 pointer-events-none">
-                <Sparkles className="w-3.5 h-3.5 text-[#193E2D]" />
-                <span className="text-[11px] sm:text-xs font-medium text-[#193E2D] tracking-wide">
-                  Single-Origin Pure A2 Farm Milk • Bottled Daily
-                </span>
-              </div>
             </div>
           </div>
 
@@ -248,12 +240,6 @@ export default function ScrollMilkJourney({ onShopFresh }: ScrollMilkJourneyProp
                 preload="auto"
                 className="w-full h-full object-contain"
               />
-            </div>
-            <div className="mt-2 px-4 py-1.5 rounded-full bg-white/90 backdrop-blur-md border border-[#193E2D]/10 shadow-[0_4px_16px_rgba(25,62,45,0.06)] flex items-center gap-2 pointer-events-none">
-              <Sparkles className="w-3.5 h-3.5 text-[#193E2D]" />
-              <span className="text-[11px] font-medium text-[#193E2D] tracking-wide">
-                Single-Origin Pure A2 Farm Milk • Bottled Daily
-              </span>
             </div>
           </div>
 
