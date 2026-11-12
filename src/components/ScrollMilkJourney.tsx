@@ -1,8 +1,15 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import Link from "next/link";
 import { ArrowRight, CheckCircle2, Sparkles } from "lucide-react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+// Register ScrollTrigger plugin on client
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 interface ScrollMilkJourneyProps {
   onShopFresh?: () => void;
@@ -10,28 +17,67 @@ interface ScrollMilkJourneyProps {
 
 export default function ScrollMilkJourney({ onShopFresh }: ScrollMilkJourneyProps) {
   const sectionRef = useRef<HTMLElement>(null);
+  const bottleRef = useRef<HTMLDivElement>(null);
+  const shadowRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
 
-  // Entrance trigger when section approaches viewport
+  // GSAP ScrollTrigger Timeline for Upside Entrance Animation
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          if (videoRef.current && videoRef.current.paused) {
-            videoRef.current.play().catch(() => {});
-          }
+    if (!sectionRef.current || !bottleRef.current || !shadowRef.current) return;
+
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 75%",
+          toggleActions: "play none none reverse",
+        },
+      });
+
+      // 1. Bottle descends smoothly from upside (y: -220px -> 0px)
+      // STRICTLY FIXED SCALE: scale is 1.0 permanently (NO zoom in, NO zoom out)
+      tl.fromTo(
+        bottleRef.current,
+        { y: -220, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 1.35,
+          ease: "power3.out",
+          onComplete: () => {
+            if (videoRef.current && videoRef.current.paused) {
+              videoRef.current.play().catch(() => {});
+            }
+          },
         }
-      },
-      { threshold: 0.15 }
-    );
+      );
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
+      // 2. Floor contact shadow expands in sync under bottle base
+      tl.fromTo(
+        shadowRef.current,
+        { opacity: 0, scale: 0.4 },
+        { opacity: 1, scale: 1, duration: 1.35, ease: "power3.out" },
+        "<"
+      );
 
-    return () => observer.disconnect();
+      // 3. Stagger Left Cards in from the left
+      tl.fromTo(
+        ".journey-card-left",
+        { x: -50, opacity: 0 },
+        { x: 0, opacity: 1, duration: 0.85, stagger: 0.15, ease: "power2.out" },
+        "-=0.75"
+      );
+
+      // 4. Stagger Right Cards in from the right
+      tl.fromTo(
+        ".journey-card-right",
+        { x: 50, opacity: 0 },
+        { x: 0, opacity: 1, duration: 0.85, stagger: 0.15, ease: "power2.out" },
+        "<"
+      );
+    }, sectionRef);
+
+    return () => ctx.revert();
   }, []);
 
   // Ensure continuous looping video playback without interruption
@@ -47,11 +93,6 @@ export default function ScrollMilkJourney({ onShopFresh }: ScrollMilkJourneyProp
     video.addEventListener("ended", handleEnded);
     return () => video.removeEventListener("ended", handleEnded);
   }, []);
-
-  // Upside entrance: bottle descends smoothly from the upside (top) into position
-  // STRICTLY FIXED SCALE: scale is 1.0 permanently (NO zoom in, NO zoom out)
-  const bottleTranslateY = isVisible ? 0 : -85;
-  const bottleOpacity = isVisible ? 1 : 0;
 
   return (
     <section
@@ -88,7 +129,7 @@ export default function ScrollMilkJourney({ onShopFresh }: ScrollMilkJourneyProp
           <div className="order-2 lg:order-1 lg:col-span-3 flex flex-col justify-around gap-6 sm:gap-8 lg:gap-10 h-full py-2">
             
             {/* Block 01 */}
-            <div className="group text-left p-6 sm:p-7 rounded-2xl bg-white/75 backdrop-blur-xs border border-[#193E2D]/[0.08] shadow-[0_4px_20px_-4px_rgba(25,62,45,0.04)] hover:bg-white hover:shadow-[0_10px_28px_-6px_rgba(25,62,45,0.08)] transition-all duration-300">
+            <div className="journey-card-left group text-left p-6 sm:p-7 rounded-2xl bg-white/75 backdrop-blur-xs border border-[#193E2D]/[0.08] shadow-[0_4px_20px_-4px_rgba(25,62,45,0.04)] hover:bg-white hover:shadow-[0_10px_28px_-6px_rgba(25,62,45,0.08)] transition-all duration-300">
               <div className="flex items-center gap-3 mb-2.5">
                 <span className="inline-block text-[11px] font-bold text-[#193E2D] px-2.5 py-1 rounded-full bg-[#193E2D]/10 tracking-wide">
                   01
@@ -116,7 +157,7 @@ export default function ScrollMilkJourney({ onShopFresh }: ScrollMilkJourneyProp
             </div>
 
             {/* Block 02 */}
-            <div className="group text-left p-6 sm:p-7 rounded-2xl bg-white/75 backdrop-blur-xs border border-[#193E2D]/[0.08] shadow-[0_4px_20px_-4px_rgba(25,62,45,0.04)] hover:bg-white hover:shadow-[0_10px_28px_-6px_rgba(25,62,45,0.08)] transition-all duration-300">
+            <div className="journey-card-left group text-left p-6 sm:p-7 rounded-2xl bg-white/75 backdrop-blur-xs border border-[#193E2D]/[0.08] shadow-[0_4px_20px_-4px_rgba(25,62,45,0.04)] hover:bg-white hover:shadow-[0_10px_28px_-6px_rgba(25,62,45,0.08)] transition-all duration-300">
               <div className="flex items-center gap-3 mb-2.5">
                 <span className="inline-block text-[11px] font-bold text-[#193E2D] px-2.5 py-1 rounded-full bg-[#193E2D]/10 tracking-wide">
                   02
@@ -146,19 +187,17 @@ export default function ScrollMilkJourney({ onShopFresh }: ScrollMilkJourneyProp
 
           {/* ------------------------------------------------------- */}
           {/* B. CENTRAL ENLARGED BOTTLE VIDEO (Col 4-9, 50% width)   */}
-          {/* 4:5 vertical proportion, 2.2x larger, NO ZOOM, NO BOX    */}
+          {/* Powered by GSAP upside entrance animation, FIXED 1.0   */}
           {/* ------------------------------------------------------- */}
           <div className="order-1 lg:order-2 md:col-span-2 lg:col-span-6 flex flex-col items-center justify-center relative">
             <div
-              className="relative w-full max-w-[460px] flex flex-col items-center justify-center transition-all duration-1000 ease-out"
-              style={{
-                transform: `translateY(${bottleTranslateY}px)`,
-                opacity: bottleOpacity,
-              }}
+              ref={bottleRef}
+              className="relative w-full max-w-[460px] flex flex-col items-center justify-center will-change-transform"
             >
-              {/* Diffused Floor Shadow Under Bottle Base (Fixed 1.0 Scale) */}
+              {/* Diffused Floor Shadow Under Bottle Base (Animated in sync by GSAP) */}
               <div
-                className="absolute bottom-6 sm:bottom-8 w-52 sm:w-68 h-7 sm:h-9 rounded-[100%] bg-black/15 blur-lg pointer-events-none"
+                ref={shadowRef}
+                className="absolute bottom-6 sm:bottom-8 w-52 sm:w-68 h-7 sm:h-9 rounded-[100%] bg-black/15 blur-lg pointer-events-none will-change-transform"
               />
 
               {/* Seamless Video Element: 4:5 Vertical Focus (2.2x Larger Bottle) */}
@@ -193,7 +232,7 @@ export default function ScrollMilkJourney({ onShopFresh }: ScrollMilkJourneyProp
           <div className="order-3 lg:order-3 lg:col-span-3 flex flex-col justify-around gap-6 sm:gap-8 lg:gap-10 h-full py-2">
             
             {/* Block 03 */}
-            <div className="group text-left p-6 sm:p-7 rounded-2xl bg-white/75 backdrop-blur-xs border border-[#193E2D]/[0.08] shadow-[0_4px_20px_-4px_rgba(25,62,45,0.04)] hover:bg-white hover:shadow-[0_10px_28px_-6px_rgba(25,62,45,0.08)] transition-all duration-300">
+            <div className="journey-card-right group text-left p-6 sm:p-7 rounded-2xl bg-white/75 backdrop-blur-xs border border-[#193E2D]/[0.08] shadow-[0_4px_20px_-4px_rgba(25,62,45,0.04)] hover:bg-white hover:shadow-[0_10px_28px_-6px_rgba(25,62,45,0.08)] transition-all duration-300">
               <div className="flex items-center gap-3 mb-2.5">
                 <span className="inline-block text-[11px] font-bold text-[#193E2D] px-2.5 py-1 rounded-full bg-[#193E2D]/10 tracking-wide">
                   03
@@ -221,7 +260,7 @@ export default function ScrollMilkJourney({ onShopFresh }: ScrollMilkJourneyProp
             </div>
 
             {/* Block 04 */}
-            <div className="group text-left p-6 sm:p-7 rounded-2xl bg-white/75 backdrop-blur-xs border border-[#193E2D]/[0.08] shadow-[0_4px_20px_-4px_rgba(25,62,45,0.04)] hover:bg-white hover:shadow-[0_10px_28px_-6px_rgba(25,62,45,0.08)] transition-all duration-300">
+            <div className="journey-card-right group text-left p-6 sm:p-7 rounded-2xl bg-white/75 backdrop-blur-xs border border-[#193E2D]/[0.08] shadow-[0_4px_20px_-4px_rgba(25,62,45,0.04)] hover:bg-white hover:shadow-[0_10px_28px_-6px_rgba(25,62,45,0.08)] transition-all duration-300">
               <div className="flex items-center gap-3 mb-2.5">
                 <span className="inline-block text-[11px] font-bold text-[#193E2D] px-2.5 py-1 rounded-full bg-[#193E2D]/10 tracking-wide">
                   04
