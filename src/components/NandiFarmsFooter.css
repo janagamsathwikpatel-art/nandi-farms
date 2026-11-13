@@ -1,14 +1,17 @@
-/* Nandi Farms 4K Scenic Footer with Live Interactive Buttons */
+/* Nandi Farms 4K Scenic Footer with Live Interactive Buttons - Ultra-HD Edition */
 .nandi-footer-section {
   position: relative;
   width: 100%;
   overflow: hidden;
   background-color: #faf6ed;
-  color: #133821;
+  color: #0f2e1a;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 @media (min-width: 1024px) {
@@ -18,7 +21,7 @@
   }
 }
 
-/* 4K Panoramic Scenic Background Plate (Zero Baked-in Text) */
+/* True 4K Ultra-HD Scenic Background Plate (3840 x 1280, Zero Baked-in Text) */
 .nandi-footer-bg {
   position: absolute;
   inset: 0;
@@ -132,8 +135,8 @@
   font-family: var(--font-playfair, serif);
   font-size: clamp(15px, 1.15vw, 18px);
   font-weight: 600;
-  color: #133821;
-  letter-spacing: -0.01em;
+  color: #0f2e1a;
+  letter-spacing: -0.015em;
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -141,9 +144,9 @@
 }
 
 .nandi-footer-heading-line {
-  width: 26px;
-  height: 2px;
-  background-color: #7da56c;
+  width: 28px;
+  height: 2.5px;
+  background-color: #649352;
   border-radius: 9999px;
   margin-top: 5px;
 }
@@ -162,9 +165,9 @@
   background: none;
   border: none;
   padding: 1px 0;
-  color: #1a3e26;
+  color: #133821;
   font-size: clamp(12px, 0.9vw, 13.5px);
-  font-weight: 400;
+  font-weight: 450;
   text-align: left;
   cursor: pointer;
   transition: all 0.25s ease;
@@ -179,7 +182,7 @@
 }
 
 .nandi-footer-btn-link:focus-visible {
-  outline: 2px solid #133821;
+  outline: 2px solid #0f2e1a;
   outline-offset: 3px;
   border-radius: 4px;
 }
@@ -189,8 +192,9 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  color: #1a3e26;
+  color: #133821;
   font-size: clamp(11.5px, 0.85vw, 13px);
+  font-weight: 450;
   margin-bottom: 7px;
   text-decoration: none;
   transition: color 0.2s ease;
@@ -203,7 +207,7 @@
 .nandi-footer-contact-icon {
   width: 15px;
   height: 15px;
-  color: #1a3e26;
+  color: #133821;
   flex-shrink: 0;
 }
 
@@ -219,8 +223,9 @@
   width: 26px;
   height: 26px;
   border-radius: 50%;
-  background-color: #dce7d1;
-  color: #133821;
+  background-color: #d8e5cd;
+  border: 1px solid rgba(19, 56, 33, 0.15);
+  color: #0f2e1a;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -229,41 +234,42 @@
 }
 
 .nandi-footer-social-btn:hover {
-  background-color: #133821;
+  background-color: #0f2e1a;
   color: #ffffff;
   transform: translateY(-2px);
-  box-shadow: 0 4px 10px rgba(19, 56, 33, 0.2);
+  box-shadow: 0 4px 10px rgba(15, 46, 26, 0.25);
 }
 
 /* Column 4: Stay Fresh with Nandi */
 .nandi-footer-stay-desc {
   font-size: clamp(11px, 0.8vw, 12.5px);
-  color: #2e4a36;
+  color: #24422e;
   margin-bottom: 10px;
   line-height: 1.4;
+  font-weight: 450;
 }
 
 .nandi-footer-input-pill {
   display: flex;
   align-items: center;
   background-color: #ffffff;
-  border: 1px solid #d2dbc5;
+  border: 1px solid #b5c4a7;
   border-radius: 9999px;
   padding: 4px 5px 4px 12px;
   max-width: 310px;
   transition: all 0.25s ease;
-  box-shadow: 0 2px 8px rgba(19, 56, 33, 0.04);
+  box-shadow: 0 2px 10px rgba(19, 56, 33, 0.06);
 }
 
 .nandi-footer-input-pill:focus-within {
-  border-color: #133821;
-  box-shadow: 0 0 0 3px rgba(19, 56, 33, 0.12);
+  border-color: #0f2e1a;
+  box-shadow: 0 0 0 3px rgba(15, 46, 26, 0.15);
 }
 
 .nandi-footer-input-icon {
   width: 15px;
   height: 15px;
-  color: #55725d;
+  color: #486851;
   margin-right: 7px;
   flex-shrink: 0;
 }
@@ -273,19 +279,19 @@
   background: transparent;
   outline: none;
   font-size: clamp(11px, 0.8vw, 12.5px);
-  color: #133821;
+  color: #0f2e1a;
   width: 100%;
 }
 
 .nandi-footer-input::placeholder {
-  color: #7b9483;
+  color: #6e8876;
 }
 
 .nandi-footer-submit-btn {
   width: 26px;
   height: 26px;
   border-radius: 50%;
-  background-color: #133821;
+  background-color: #0f2e1a;
   color: #ffffff;
   border: none;
   display: flex;
@@ -297,7 +303,7 @@
 }
 
 .nandi-footer-submit-btn:hover {
-  background-color: #255d38;
+  background-color: #205632;
   transform: scale(1.05);
 }
 
@@ -313,9 +319,9 @@
   gap: 8px;
   padding: 10px clamp(20px, 3.5vw, 64px);
   box-sizing: border-box;
-  background: linear-gradient(180deg, rgba(19, 56, 33, 0.72) 0%, rgba(19, 56, 33, 0.95) 100%);
-  backdrop-filter: blur(4px);
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  background: linear-gradient(180deg, rgba(15, 46, 26, 0.78) 0%, rgba(15, 46, 26, 0.98) 100%);
+  backdrop-filter: blur(6px);
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 8px 8px 0 0;
 }
 
@@ -330,9 +336,9 @@
   color: #ffffff;
   font-size: clamp(11px, 0.8vw, 12px);
   margin: 0;
-  font-weight: 400;
-  opacity: 0.95;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+  font-weight: 450;
+  opacity: 0.98;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
 }
 
 .nandi-footer-legal-links {
@@ -341,7 +347,7 @@
   gap: clamp(8px, 1.2vw, 16px);
   color: #ffffff;
   font-size: clamp(11px, 0.8vw, 12px);
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
 }
 
 .nandi-footer-legal-btn {
@@ -351,7 +357,7 @@
   font-size: inherit;
   padding: 0;
   cursor: pointer;
-  opacity: 0.92;
+  opacity: 0.95;
   transition: opacity 0.2s ease, text-decoration 0.2s ease;
 }
 
@@ -361,7 +367,7 @@
 }
 
 .nandi-footer-legal-divider {
-  opacity: 0.6;
+  opacity: 0.7;
   user-select: none;
   color: #ffffff;
 }
