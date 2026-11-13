@@ -215,7 +215,7 @@ export default function ScrollFruitJourney({ onShopFresh }: ScrollFruitJourneyPr
         <div ref={journeyContainerRef} className="relative w-full">
           
           {/* Central Vertical Spine Guideline (Desktop Only) */}
-          <div className="hidden lg:block absolute left-1/2 -translate-x-1/2 top-4 bottom-4 w-[2px] bg-[#193E2D]/10 pointer-events-none" />
+          <div className="hidden lg:block absolute left-1/2 -translate-x-1/2 top-4 bottom-4 w-[2px] bg-[#193E2D]/10 pointer-events-none z-0" />
 
           {/* ------------------------------------------------------- */}
           {/* DESKTOP CENTRAL MOVING BASKET TRACK (Sticky/GSAP Scrub) */}
@@ -230,8 +230,11 @@ export default function ScrollFruitJourney({ onShopFresh }: ScrollFruitJourneyPr
               {/* Diffused Floor Shadow Under Full Basket Base */}
               <div className="absolute bottom-4 w-72 h-8 rounded-[100%] bg-black/15 blur-lg pointer-events-none" />
 
+              {/* Solid Cream Backing Shield to prevent central guideline from slicing through basket */}
+              <div className="absolute inset-x-8 top-10 bottom-4 bg-[#FAF6ED] rounded-[45%] pointer-events-none" />
+
               {/* Handcrafted Woven Harvest Basket with Dynamic Falling Fruits (True Alpha WebM + Pure MP4) */}
-              <div className="relative w-full aspect-[16/11] flex items-center justify-center pointer-events-none select-none overflow-hidden">
+              <div className="relative w-full aspect-[16/11] flex items-center justify-center pointer-events-none select-none">
                 <video
                   ref={videoDesktopRef}
                   poster="/images/fruit-harvest-poster-v5.jpg"
@@ -251,7 +254,7 @@ export default function ScrollFruitJourney({ onShopFresh }: ScrollFruitJourneyPr
           {/* MOBILE BASKET DISPLAY (Top of Mobile Flow)              */}
           {/* ------------------------------------------------------- */}
           <div ref={basketMobileRef} className="lg:hidden flex flex-col items-center justify-center mb-10">
-            <div className="relative w-full max-w-[380px] aspect-[16/11] flex items-center justify-center pointer-events-none select-none overflow-hidden">
+            <div className="relative w-full max-w-[380px] aspect-[16/11] flex items-center justify-center pointer-events-none select-none">
               <video
                 ref={videoMobileRef}
                 poster="/images/fruit-harvest-poster-v5.jpg"
