@@ -1143,7 +1143,7 @@ export default function HarvestCategoryGrid() {
                 <button
                   type="button"
                   onClick={() => handleCardClick("milk")}
-                  className={`group relative w-full lg:col-span-5 rounded-2xl sm:rounded-3xl overflow-hidden aspect-[356/370] lg:aspect-auto lg:h-full text-left focus:outline-none p-0 cursor-pointer block bg-[#faf5ea] border border-[#16301d]/[0.07] shadow-[0_4px_20px_-4px_rgba(22,48,29,0.06)] hover:shadow-[0_16px_36px_-6px_rgba(22,48,29,0.12)] transition-all duration-500 ease-out min-h-[340px] sm:min-h-[400px] lg:min-h-0 ${
+                  className={`group relative w-full lg:col-span-5 rounded-2xl sm:rounded-3xl overflow-hidden aspect-[356/370] lg:aspect-auto lg:h-full text-left focus:outline-none p-0 cursor-pointer block bg-[#faf5ea] transition-all duration-500 ease-out min-h-[340px] sm:min-h-[400px] lg:min-h-0 ${
                     isCategoryProductsOpen && selectedCategory === "milk"
                       ? "ring-4 ring-[#16301d]"
                       : ""
@@ -1185,7 +1185,7 @@ export default function HarvestCategoryGrid() {
                     <button
                       type="button"
                       onClick={() => handleCardClick("vegetables")}
-                      className={`group relative w-full aspect-[612/180] rounded-2xl sm:rounded-3xl bg-[#dfe3d0] border border-[#16301d]/[0.07] overflow-visible text-left focus:outline-none p-0 cursor-pointer block shadow-[0_4px_20px_-4px_rgba(22,48,29,0.06)] hover:shadow-[0_16px_36px_-6px_rgba(22,48,29,0.12)] transition-all duration-500 ease-out ${
+                      className={`group relative w-full aspect-[612/180] rounded-2xl sm:rounded-3xl bg-[#dfe3d0] overflow-visible text-left focus:outline-none p-0 cursor-pointer block transition-all duration-500 ease-out ${
                         isCategoryProductsOpen && selectedCategory === "vegetables"
                           ? "ring-4 ring-[#16301d]"
                           : ""
@@ -1226,7 +1226,7 @@ export default function HarvestCategoryGrid() {
                   <button
                     type="button"
                     onClick={() => handleCardClick("fruits")}
-                    className={`group relative w-full aspect-[612/179] rounded-2xl sm:rounded-3xl overflow-hidden text-left focus:outline-none p-0 cursor-pointer block bg-[#faf5ea] border border-[#16301d]/[0.07] shadow-[0_4px_20px_-4px_rgba(22,48,29,0.06)] hover:shadow-[0_16px_36px_-6px_rgba(22,48,29,0.12)] transition-all duration-500 ease-out ${
+                    className={`group relative w-full aspect-[612/179] rounded-2xl sm:rounded-3xl overflow-hidden text-left focus:outline-none p-0 cursor-pointer block bg-[#faf5ea] transition-all duration-500 ease-out ${
                       isCategoryProductsOpen && selectedCategory === "fruits"
                         ? "ring-4 ring-[#16301d]"
                         : ""
