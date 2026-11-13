@@ -58,7 +58,7 @@ export default function NandiFarmsFooter({
       {/* 1. 4K Panoramic Scenic Background Plate (Zero Baked-in Text) */}
       <div className="nandi-footer-bg" aria-hidden="true">
         <Image
-          src="/images/nandi-farms-footer-4k.png"
+          src="/images/nandi-farms-footer-clean-4k.png"
           alt="Nandi Farms Panoramic Scenic Background"
           fill
           priority
