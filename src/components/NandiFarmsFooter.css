@@ -6,10 +6,16 @@
   background-color: #faf6ed;
   color: #133821;
   box-sizing: border-box;
-  min-height: clamp(480px, 33.3vw, 1200px);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+@media (min-width: 1024px) {
+  .nandi-footer-section {
+    aspect-ratio: 1024 / 341;
+    min-height: 420px;
+  }
 }
 
 /* 4K Panoramic Scenic Background Plate (Zero Baked-in Text) */
@@ -50,7 +56,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: clamp(28px, 3.5vw, 60px) clamp(20px, 3vw, 64px) 0;
+  padding: clamp(24px, 2.5vw, 48px) clamp(20px, 3vw, 64px) 0;
   box-sizing: border-box;
 }
 
@@ -58,7 +64,7 @@
 .nandi-footer-content-row {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 32px;
+  gap: 28px;
   align-items: flex-start;
 }
 
@@ -66,7 +72,7 @@
 @media (min-width: 1024px) {
   .nandi-footer-content-row {
     grid-template-columns: minmax(220px, 25%) 1fr;
-    gap: clamp(24px, 3vw, 48px);
+    gap: clamp(20px, 2.5vw, 40px);
   }
 }
 
@@ -81,7 +87,7 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  min-height: 200px;
+  min-height: 180px;
 }
 
 @media (max-width: 1023px) {
@@ -94,20 +100,20 @@
 .nandi-footer-columns-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 28px;
+  gap: 24px;
 }
 
 @media (min-width: 600px) {
   .nandi-footer-columns-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 32px;
+    gap: 28px;
   }
 }
 
 @media (min-width: 1024px) {
   .nandi-footer-columns-grid {
     grid-template-columns: 1.05fr 1.15fr 1.4fr 1.8fr;
-    gap: clamp(16px, 1.8vw, 36px);
+    gap: clamp(14px, 1.6vw, 32px);
   }
 }
 
@@ -119,12 +125,12 @@
 
 /* Headings with delicate green accent underline */
 .nandi-footer-col-header {
-  margin-bottom: 14px;
+  margin-bottom: 12px;
 }
 
 .nandi-footer-heading {
   font-family: var(--font-playfair, serif);
-  font-size: clamp(16px, 1.25vw, 19px);
+  font-size: clamp(15px, 1.15vw, 18px);
   font-weight: 600;
   color: #133821;
   letter-spacing: -0.01em;
@@ -135,18 +141,18 @@
 }
 
 .nandi-footer-heading-line {
-  width: 28px;
+  width: 26px;
   height: 2px;
   background-color: #7da56c;
   border-radius: 9999px;
-  margin-top: 6px;
+  margin-top: 5px;
 }
 
 /* Interactive Navigation Links */
 .nandi-footer-list {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 7px;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -155,9 +161,9 @@
 .nandi-footer-btn-link {
   background: none;
   border: none;
-  padding: 2px 0;
+  padding: 1px 0;
   color: #1a3e26;
-  font-size: clamp(12.5px, 0.95vw, 14px);
+  font-size: clamp(12px, 0.9vw, 13.5px);
   font-weight: 400;
   text-align: left;
   cursor: pointer;
@@ -182,10 +188,10 @@
 .nandi-footer-contact-item {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   color: #1a3e26;
-  font-size: clamp(12px, 0.9vw, 13.5px);
-  margin-bottom: 8px;
+  font-size: clamp(11.5px, 0.85vw, 13px);
+  margin-bottom: 7px;
   text-decoration: none;
   transition: color 0.2s ease;
 }
@@ -195,8 +201,8 @@
 }
 
 .nandi-footer-contact-icon {
-  width: 16px;
-  height: 16px;
+  width: 15px;
+  height: 15px;
   color: #1a3e26;
   flex-shrink: 0;
 }
@@ -205,13 +211,13 @@
 .nandi-footer-social-row {
   display: flex;
   align-items: center;
-  gap: 9px;
-  margin-top: 10px;
+  gap: 8px;
+  margin-top: 8px;
 }
 
 .nandi-footer-social-btn {
-  width: 28px;
-  height: 28px;
+  width: 26px;
+  height: 26px;
   border-radius: 50%;
   background-color: #dce7d1;
   color: #133821;
@@ -231,9 +237,9 @@
 
 /* Column 4: Stay Fresh with Nandi */
 .nandi-footer-stay-desc {
-  font-size: clamp(11.5px, 0.85vw, 13px);
+  font-size: clamp(11px, 0.8vw, 12.5px);
   color: #2e4a36;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
   line-height: 1.4;
 }
 
@@ -243,8 +249,8 @@
   background-color: #ffffff;
   border: 1px solid #d2dbc5;
   border-radius: 9999px;
-  padding: 4px 5px 4px 14px;
-  max-width: 320px;
+  padding: 4px 5px 4px 12px;
+  max-width: 310px;
   transition: all 0.25s ease;
   box-shadow: 0 2px 8px rgba(19, 56, 33, 0.04);
 }
@@ -255,10 +261,10 @@
 }
 
 .nandi-footer-input-icon {
-  width: 16px;
-  height: 16px;
+  width: 15px;
+  height: 15px;
   color: #55725d;
-  margin-right: 8px;
+  margin-right: 7px;
   flex-shrink: 0;
 }
 
@@ -266,7 +272,7 @@
   border: none;
   background: transparent;
   outline: none;
-  font-size: clamp(11.5px, 0.85vw, 13px);
+  font-size: clamp(11px, 0.8vw, 12.5px);
   color: #133821;
   width: 100%;
 }
@@ -276,8 +282,8 @@
 }
 
 .nandi-footer-submit-btn {
-  width: 28px;
-  height: 28px;
+  width: 26px;
+  height: 26px;
   border-radius: 50%;
   background-color: #133821;
   color: #ffffff;
@@ -304,38 +310,44 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  gap: 10px;
-  padding: 24px clamp(20px, 3.5vw, 64px) 16px;
+  gap: 8px;
+  padding: 10px clamp(20px, 3.5vw, 64px);
   box-sizing: border-box;
+  background: linear-gradient(180deg, rgba(19, 56, 33, 0.72) 0%, rgba(19, 56, 33, 0.95) 100%);
+  backdrop-filter: blur(4px);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px 8px 0 0;
 }
 
 @media (min-width: 768px) {
   .nandi-footer-bottom-bar {
     flex-direction: row;
-    padding-bottom: 20px;
+    padding: 8px clamp(24px, 3.5vw, 64px);
   }
 }
 
 .nandi-footer-copyright {
-  color: #eaf0e6;
-  font-size: clamp(11px, 0.8vw, 12.5px);
+  color: #ffffff;
+  font-size: clamp(11px, 0.8vw, 12px);
   margin: 0;
   font-weight: 400;
-  opacity: 0.92;
+  opacity: 0.95;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
 }
 
 .nandi-footer-legal-links {
   display: flex;
   align-items: center;
   gap: clamp(8px, 1.2vw, 16px);
-  color: #eaf0e6;
-  font-size: clamp(11px, 0.8vw, 12.5px);
+  color: #ffffff;
+  font-size: clamp(11px, 0.8vw, 12px);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
 }
 
 .nandi-footer-legal-btn {
   background: none;
   border: none;
-  color: #eaf0e6;
+  color: #ffffff;
   font-size: inherit;
   padding: 0;
   cursor: pointer;
@@ -349,6 +361,7 @@
 }
 
 .nandi-footer-legal-divider {
-  opacity: 0.5;
+  opacity: 0.6;
   user-select: none;
+  color: #ffffff;
 }
