@@ -233,18 +233,18 @@ export default function ScrollFruitJourney({ onShopFresh }: ScrollFruitJourneyPr
               {/* Solid Cream Backing Shield to prevent central guideline from slicing through basket */}
               <div className="absolute inset-x-8 top-10 bottom-4 bg-[#FAF6ED] rounded-[45%] pointer-events-none" />
 
-              {/* Handcrafted Woven Harvest Basket with Dynamic Falling Fruits (True Alpha WebM + Pure MP4) */}
+              {/* Handcrafted Woven Harvest Basket with Dynamic Falling Fruits (Pure MP4 on #FAF6ED + Alpha WebM) */}
               <div className="relative w-full aspect-[16/11] flex items-center justify-center pointer-events-none select-none">
                 <video
                   ref={videoDesktopRef}
-                  poster="/images/fruit-harvest-poster-v5.jpg"
+                  poster="/images/fruit-harvest-basket-only.png"
                   muted
                   playsInline
                   preload="auto"
                   className="w-full h-full object-contain pointer-events-none select-none"
                 >
-                  <source src="/videos/fruit-harvest-basket-alpha.webm" type="video/webm" />
                   <source src="/videos/fruit-harvest-basket-pure-v5.mp4" type="video/mp4" />
+                  <source src="/videos/fruit-harvest-basket-alpha.webm" type="video/webm" />
                 </video>
               </div>
             </div>
@@ -257,14 +257,14 @@ export default function ScrollFruitJourney({ onShopFresh }: ScrollFruitJourneyPr
             <div className="relative w-full max-w-[380px] aspect-[16/11] flex items-center justify-center pointer-events-none select-none">
               <video
                 ref={videoMobileRef}
-                poster="/images/fruit-harvest-poster-v5.jpg"
+                poster="/images/fruit-harvest-basket-only.png"
                 muted
                 playsInline
                 preload="auto"
                 className="w-full h-full object-contain pointer-events-none select-none"
               >
-                <source src="/videos/fruit-harvest-basket-alpha.webm" type="video/webm" />
                 <source src="/videos/fruit-harvest-basket-pure-v5.mp4" type="video/mp4" />
+                <source src="/videos/fruit-harvest-basket-alpha.webm" type="video/webm" />
               </video>
             </div>
           </div>

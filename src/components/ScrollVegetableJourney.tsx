@@ -232,18 +232,18 @@ export default function ScrollVegetableJourney({ onShopFresh }: ScrollVegetableJ
               {/* Solid Cream Backing Shield to prevent the vertical spine line from slicing through the basket */}
               <div className="absolute inset-x-8 top-10 bottom-4 bg-[#FAF6ED] rounded-[45%] pointer-events-none" />
 
-              {/* Seamless Video: Dual-Source WebM True Alpha + MP4 Fallback on #FAF6ED */}
+              {/* Seamless Video: Dual-Source MP4 Fallback on #FAF6ED + WebM True Alpha */}
               <div className="relative w-full aspect-[16/11] flex items-center justify-center pointer-events-none select-none">
                 <video
                   ref={videoDesktopRef}
-                  poster="/images/vegetable-harvest-poster.jpg"
+                  poster="/images/vegetable-harvest-basket-only.png"
                   muted
                   playsInline
                   preload="auto"
                   className="w-full h-full object-contain"
                 >
-                  <source src="/videos/vegetable-harvest-basket-alpha.webm" type="video/webm" />
                   <source src="/videos/vegetable-harvest-basket-pure.mp4" type="video/mp4" />
+                  <source src="/videos/vegetable-harvest-basket-alpha.webm" type="video/webm" />
                 </video>
               </div>
             </div>
@@ -256,14 +256,14 @@ export default function ScrollVegetableJourney({ onShopFresh }: ScrollVegetableJ
             <div className="relative w-full max-w-[380px] aspect-[16/11] flex items-center justify-center pointer-events-none select-none">
               <video
                 ref={videoMobileRef}
-                poster="/images/vegetable-harvest-poster.jpg"
+                poster="/images/vegetable-harvest-basket-only.png"
                 muted
                 playsInline
                 preload="auto"
                 className="w-full h-full object-contain"
               >
-                <source src="/videos/vegetable-harvest-basket-alpha.webm" type="video/webm" />
                 <source src="/videos/vegetable-harvest-basket-pure.mp4" type="video/mp4" />
+                <source src="/videos/vegetable-harvest-basket-alpha.webm" type="video/webm" />
               </video>
             </div>
           </div>
