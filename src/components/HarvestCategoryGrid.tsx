@@ -1234,7 +1234,7 @@ export default function HarvestCategoryGrid() {
                     aria-label="Open Fruits Products"
                   >
                     <img
-                      src="/images/bento_v3/fruit_exact_2x.png"
+                      src="/images/bento_v3/fruit_exact_v4.png"
                       alt="Fresh Orchard Fruits"
                       className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02] pointer-events-none select-none"
                       loading="eager"
