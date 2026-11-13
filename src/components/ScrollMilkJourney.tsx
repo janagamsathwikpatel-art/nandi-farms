@@ -190,9 +190,6 @@ export default function ScrollMilkJourney({ onShopFresh }: ScrollMilkJourneyProp
         {/* 2. ALTERNATING SCROLL JOURNEY CONTAINER                   */}
         {/* ========================================================= */}
         <div ref={journeyContainerRef} className="relative w-full">
-          
-          {/* Central Vertical Spine Guideline (Desktop Only) */}
-          <div className="hidden lg:block absolute left-1/2 -translate-x-1/2 top-4 bottom-4 w-[2px] bg-[#193E2D]/10 pointer-events-none" />
 
           {/* ------------------------------------------------------- */}
           {/* DESKTOP CENTRAL MOVING BOTTLE TRACK (Sticky/GSAP Scrub) */}

@@ -1185,7 +1185,7 @@ export default function HarvestCategoryGrid() {
                     <button
                       type="button"
                       onClick={() => handleCardClick("vegetables")}
-                      className={`group relative w-full aspect-[612/180] rounded-2xl sm:rounded-3xl bg-[#dfe3d0] border border-[#16301d]/[0.07] overflow-visible text-left focus:outline-none p-0 cursor-pointer block shadow-[0_4px_20px_-4px_rgba(22,48,29,0.06)] hover:shadow-[0_16px_36px_-6px_rgba(22,48,29,0.12)] transition-all duration-500 ease-out ${
+                      className={`group relative w-full aspect-[612/180] rounded-2xl sm:rounded-3xl bg-[#dfe3d0] overflow-visible text-left focus:outline-none p-0 cursor-pointer block border border-[#16301d]/[0.07] shadow-[0_4px_20px_-4px_rgba(22,48,29,0.06)] hover:shadow-[0_16px_36px_-6px_rgba(22,48,29,0.12)] transition-all duration-500 ease-out ${
                         isCategoryProductsOpen && selectedCategory === "vegetables"
                           ? "ring-4 ring-[#16301d]"
                           : ""
@@ -1234,7 +1234,7 @@ export default function HarvestCategoryGrid() {
                     aria-label="Open Fruits Products"
                   >
                     <img
-                      src="/images/bento_v3/fruit_exact_2x.png"
+                      src="/images/bento_v3/fruit_exact_master.png"
                       alt="Fresh Orchard Fruits"
                       className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02] pointer-events-none select-none"
                       loading="eager"

@@ -139,23 +139,6 @@ export default function ScrollVegetableJourney({ onShopFresh }: ScrollVegetableJ
           },
         }
       );
-
-      // 7. Ambient Timeline Line drawing animation down the central track
-      gsap.fromTo(
-        ".veg-journey-spine-line",
-        { scaleY: 0 },
-        {
-          scaleY: 1,
-          ease: "none",
-          transformOrigin: "top center",
-          scrollTrigger: {
-            trigger: journeyContainerRef.current,
-            start: "top 25%",
-            end: "bottom 85%",
-            scrub: true,
-          },
-        }
-      );
     }, sectionRef);
 
     return () => ctx.revert();
@@ -213,11 +196,6 @@ export default function ScrollVegetableJourney({ onShopFresh }: ScrollVegetableJ
         {/* ========================================================= */}
         <div ref={journeyContainerRef} className="relative">
 
-          {/* Vertical Central Subtle Spine Track */}
-          <div className="hidden lg:block absolute left-1/2 top-0 bottom-0 -translate-x-1/2 w-px bg-[#193E2D]/10 pointer-events-none">
-            <div className="veg-journey-spine-line w-full h-full bg-gradient-to-b from-[#193E2D]/40 via-[#2D5A43]/60 to-[#193E2D]/20 origin-top" />
-          </div>
-
           {/* ------------------------------------------------------- */}
           {/* DESKTOP BASKET VIDEO TRACK (Floating Central Column)   */}
           {/* ------------------------------------------------------- */}
@@ -228,9 +206,6 @@ export default function ScrollVegetableJourney({ onShopFresh }: ScrollVegetableJ
             >
               {/* Diffused Floor Shadow Under Full Basket Base */}
               <div className="absolute bottom-4 w-72 h-8 rounded-[100%] bg-black/15 blur-lg pointer-events-none" />
-
-              {/* Solid Cream Backing Shield to prevent the vertical spine line from slicing through the basket */}
-              <div className="absolute inset-x-8 top-10 bottom-4 bg-[#FAF6ED] rounded-[45%] pointer-events-none" />
 
               {/* Seamless Video: Dual-Source MP4 Fallback on #FAF6ED + WebM True Alpha */}
               <div className="relative w-full aspect-[16/11] flex items-center justify-center pointer-events-none select-none">
