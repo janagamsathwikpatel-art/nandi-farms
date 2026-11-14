@@ -15,35 +15,35 @@ export default function ShopContent({
           <source
             type="image/avif"
             srcSet="
-              /images/banners/shop/sunrise/shop-banner-sunrise-h173-2048.avif 2048w,
-              /images/banners/shop/sunrise/shop-banner-sunrise-h173-1440.avif 1440w,
-              /images/banners/shop/sunrise/shop-banner-sunrise-h173-1024.avif 1024w,
-              /images/banners/shop/sunrise/shop-banner-sunrise-h173-640.avif 640w
+              /images/banners/shop/sunrise/shop-banner-sunrise-h201-2048.avif 2048w,
+              /images/banners/shop/sunrise/shop-banner-sunrise-h201-1440.avif 1440w,
+              /images/banners/shop/sunrise/shop-banner-sunrise-h201-1024.avif 1024w,
+              /images/banners/shop/sunrise/shop-banner-sunrise-h201-640.avif 640w
             "
-            sizes="(max-width: 640px) 100vw, 1024px"
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 1600px"
           />
           <source
             type="image/webp"
             srcSet="
-              /images/banners/shop/sunrise/shop-banner-sunrise-h173-2048.webp 2048w,
-              /images/banners/shop/sunrise/shop-banner-sunrise-h173-1440.webp 1440w,
-              /images/banners/shop/sunrise/shop-banner-sunrise-h173-1024.webp 1024w,
-              /images/banners/shop/sunrise/shop-banner-sunrise-h173-640.webp 640w
+              /images/banners/shop/sunrise/shop-banner-sunrise-h201-2048.webp 2048w,
+              /images/banners/shop/sunrise/shop-banner-sunrise-h201-1440.webp 1440w,
+              /images/banners/shop/sunrise/shop-banner-sunrise-h201-1024.webp 1024w,
+              /images/banners/shop/sunrise/shop-banner-sunrise-h201-640.webp 640w
             "
-            sizes="(max-width: 640px) 100vw, 1024px"
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 1600px"
           />
           <img
-            src="/images/banners/shop/sunrise/shop-banner-sunrise-h173-1024.png"
+            src="/images/banners/shop/sunrise/shop-banner-sunrise-h201-1024.png"
             srcSet="
-              /images/banners/shop/sunrise/shop-banner-sunrise-h173-2048.png 2048w,
-              /images/banners/shop/sunrise/shop-banner-sunrise-h173-1440.png 1440w,
-              /images/banners/shop/sunrise/shop-banner-sunrise-h173-1024.png 1024w,
-              /images/banners/shop/sunrise/shop-banner-sunrise-h173-640.png 640w
+              /images/banners/shop/sunrise/shop-banner-sunrise-h201-2048.png 2048w,
+              /images/banners/shop/sunrise/shop-banner-sunrise-h201-1440.png 1440w,
+              /images/banners/shop/sunrise/shop-banner-sunrise-h201-1024.png 1024w,
+              /images/banners/shop/sunrise/shop-banner-sunrise-h201-640.png 640w
             "
-            sizes="(max-width: 640px) 100vw, 1024px"
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 1600px"
             alt="Scenic sunrise over Nandi Farms pasture with cows grazing, fresh dairy milk, butter, cheese, and farm produce"
             width={1024}
-            height={173}
+            height={201}
             fetchPriority="high"
             loading="eager"
             decoding="async"

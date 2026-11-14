@@ -68,8 +68,8 @@
 
 .farm-banner {
   width: 100%;
-  max-width: 1024px;
-  aspect-ratio: 1024 / 173;
+  max-width: 100%;
+  aspect-ratio: 1024 / 201;
   margin-inline: auto;
   border-radius: 20px;
   overflow: hidden;
