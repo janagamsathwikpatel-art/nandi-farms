@@ -1,24 +1,26 @@
-/* Today's Harvest Ultra-HD Panoramic Farm Banner Showcase */
+/* Today's Harvest Full-Width Panoramic Farm Showcase */
 .harvest-hero-showcase-section {
   width: 100%;
-  padding: clamp(14px, 2vw, 32px) clamp(16px, 4.5%, 64px);
+  padding: 0;
+  margin: 0;
   background-color: transparent;
   box-sizing: border-box;
+  overflow: hidden;
 }
 
 .harvest-hero-container {
-  width: min(100%, 1520px);
-  margin-inline: auto;
-  border-radius: 20px;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  border-radius: 0;
   overflow: hidden;
-  box-shadow: 0 6px 28px rgba(44, 27, 19, 0.09);
-  background-color: #fbf8f0;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: none;
+  background-color: transparent;
+  transition: transform 0.3s ease;
 }
 
 .harvest-hero-container:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 36px rgba(44, 27, 19, 0.14);
+  transform: translateY(-1px);
 }
 
 .harvest-hero-banner-link {
@@ -33,7 +35,7 @@
   width: 100%;
   height: auto;
   aspect-ratio: 3 / 1;
-  object-fit: contain;
+  object-fit: cover;
   image-rendering: -webkit-optimize-contrast;
   image-rendering: crisp-edges;
   transform: translateZ(0);
@@ -42,10 +44,10 @@
 
 @media (max-width: 768px) {
   .harvest-hero-showcase-section {
-    padding: 12px 14px 20px;
+    padding: 0;
   }
   .harvest-hero-container {
-    border-radius: 14px;
-    box-shadow: 0 4px 16px rgba(44, 27, 19, 0.08);
+    border-radius: 0;
+    box-shadow: none;
   }
 }
