@@ -2,6 +2,7 @@
 
 import React, { useState, useRef } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import {
   ShoppingBag,
   Plus,
@@ -16,7 +17,6 @@ import MilkSubscriptionModal from "./MilkSubscriptionModal";
 import ScrollMilkJourney from "./ScrollMilkJourney";
 import ScrollFruitJourney from "./ScrollFruitJourney";
 import ScrollVegetableJourney from "./ScrollVegetableJourney";
-import { FilteredCategoryProducts } from "./FilteredCategoryProducts";
 import { ProductModal } from "./ProductModal";
 import { PRODUCTS } from "@/data/products";
 import { Product, CartItem } from "@/types";
@@ -1126,29 +1126,23 @@ export default function HarvestCategoryGrid() {
                     Explore dairy, fruits, vegetables and more.
                   </p>
                 </div>
-                <button
-                  type="button"
-                  onClick={handleToggleAllCollections}
+                <Link
+                  href="/shop"
                   className="inline-flex items-center gap-2 bg-[#f3e4d5] hover:bg-[#ebd3be] text-[#4a3018] font-semibold text-xs sm:text-sm px-5 sm:px-6 py-2.5 sm:py-3 rounded-full transition-all duration-300 shadow-xs hover:shadow cursor-pointer self-start sm:self-auto shrink-0 focus:outline-none"
-                  aria-label="View all 9 collections"
+                  aria-label="View all 9 collections in shop"
                 >
                   <span>View all 9 collections</span>
                   <span className="text-base transition-transform duration-300">→</span>
-                </button>
+                </Link>
               </div>
 
               {/* Bento 3-Box Grid: Exact 2nd Image Layout (Milk on left, Veg & Fruits on right) */}
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-5 lg:gap-6 items-stretch">
                 {/* A. Left Column: Milk Card (5 of 12 cols on desktop) - 4K UHD */}
-                <button
-                  type="button"
-                  onClick={() => handleCardClick("milk")}
-                  className={`group relative w-full lg:col-span-5 rounded-2xl sm:rounded-3xl overflow-hidden aspect-[356/370] lg:aspect-auto lg:h-full text-left focus:outline-none p-0 cursor-pointer block bg-[#faf5ea] border border-[#16301d]/[0.07] shadow-[0_4px_20px_-4px_rgba(22,48,29,0.06)] hover:shadow-[0_16px_36px_-6px_rgba(22,48,29,0.12)] transition-all duration-500 ease-out min-h-[340px] sm:min-h-[400px] lg:min-h-0 ${
-                    isCategoryProductsOpen && selectedCategory === "milk"
-                      ? "ring-4 ring-[#16301d]"
-                      : ""
-                  }`}
-                  aria-label="Open Milk Products"
+                <Link
+                  href="/shop"
+                  className="group relative w-full lg:col-span-5 rounded-2xl sm:rounded-3xl overflow-hidden aspect-[356/370] lg:aspect-auto lg:h-full text-left focus:outline-none p-0 cursor-pointer block bg-[#faf5ea] border border-[#16301d]/[0.07] shadow-[0_4px_20px_-4px_rgba(22,48,29,0.06)] hover:shadow-[0_16px_36px_-6px_rgba(22,48,29,0.12)] transition-all duration-500 ease-out min-h-[340px] sm:min-h-[400px] lg:min-h-0"
+                  aria-label="Shop Milk Products"
                 >
                   <img
                     src="/images/bento_v3/milk_exact_2x.png"
@@ -1168,29 +1162,16 @@ export default function HarvestCategoryGrid() {
                       </span>
                     </div>
                   </div>
-
-                  {/* Active Indicator Badge */}
-                  {isCategoryProductsOpen && selectedCategory === "milk" && (
-                    <div className="absolute top-5 right-5 z-10 bg-[#16301d]/95 backdrop-blur-md text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg flex items-center gap-1.5 animate-in fade-in">
-                      <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                      <span>Viewing Dairy</span>
-                    </div>
-                  )}
-                </button>
+                </Link>
 
                 {/* B. Right Column: Stacked Vegetables & Fruits (7 of 12 cols on desktop) */}
                 <div className="lg:col-span-7 flex flex-col justify-between gap-4 sm:gap-5 lg:gap-6">
                   {/* Top Card: Vegetables (4K UHD, Leaves Present Outside Box) */}
                   <div className="relative pt-4 sm:pt-6">
-                    <button
-                      type="button"
-                      onClick={() => handleCardClick("vegetables")}
-                      className={`group relative w-full aspect-[612/180] rounded-2xl sm:rounded-3xl bg-[#dfe3d0] overflow-visible text-left focus:outline-none p-0 cursor-pointer block border border-[#16301d]/[0.07] shadow-[0_4px_20px_-4px_rgba(22,48,29,0.06)] hover:shadow-[0_16px_36px_-6px_rgba(22,48,29,0.12)] transition-all duration-500 ease-out ${
-                        isCategoryProductsOpen && selectedCategory === "vegetables"
-                          ? "ring-4 ring-[#16301d]"
-                          : ""
-                      }`}
-                      aria-label="Open Vegetables Products"
+                    <Link
+                      href="/shop"
+                      className="group relative w-full aspect-[612/180] rounded-2xl sm:rounded-3xl bg-[#dfe3d0] overflow-visible text-left focus:outline-none p-0 cursor-pointer block border border-[#16301d]/[0.07] shadow-[0_4px_20px_-4px_rgba(22,48,29,0.06)] hover:shadow-[0_16px_36px_-6px_rgba(22,48,29,0.12)] transition-all duration-500 ease-out"
+                      aria-label="Shop Vegetables Products"
                     >
                       {/* 4K UHD image from user screenshot with leaves extending -11.7% above the top border */}
                       <img
@@ -1211,27 +1192,14 @@ export default function HarvestCategoryGrid() {
                           </span>
                         </div>
                       </div>
-
-                      {/* Active Indicator Badge */}
-                      {isCategoryProductsOpen && selectedCategory === "vegetables" && (
-                        <div className="absolute top-5 right-5 z-10 bg-[#16301d]/95 backdrop-blur-md text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg flex items-center gap-1.5 animate-in fade-in">
-                          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                          <span>Viewing Veggies</span>
-                        </div>
-                      )}
-                    </button>
+                    </Link>
                   </div>
 
                   {/* Bottom Card: Fruits (4K UHD) */}
-                  <button
-                    type="button"
-                    onClick={() => handleCardClick("fruits")}
-                    className={`group relative w-full aspect-[612/179] rounded-2xl sm:rounded-3xl overflow-hidden text-left focus:outline-none p-0 cursor-pointer block bg-[#faf5ea] border border-[#16301d]/[0.07] shadow-[0_4px_20px_-4px_rgba(22,48,29,0.06)] hover:shadow-[0_16px_36px_-6px_rgba(22,48,29,0.12)] transition-all duration-500 ease-out ${
-                      isCategoryProductsOpen && selectedCategory === "fruits"
-                        ? "ring-4 ring-[#16301d]"
-                        : ""
-                    }`}
-                    aria-label="Open Fruits Products"
+                  <Link
+                    href="/shop"
+                    className="group relative w-full aspect-[612/179] rounded-2xl sm:rounded-3xl overflow-hidden text-left focus:outline-none p-0 cursor-pointer block bg-[#faf5ea] border border-[#16301d]/[0.07] shadow-[0_4px_20px_-4px_rgba(22,48,29,0.06)] hover:shadow-[0_16px_36px_-6px_rgba(22,48,29,0.12)] transition-all duration-500 ease-out"
+                    aria-label="Shop Fruits Products"
                   >
                     <img
                       src="/images/bento_v3/fruit_exact_master.png"
@@ -1251,15 +1219,7 @@ export default function HarvestCategoryGrid() {
                         </span>
                       </div>
                     </div>
-
-                    {/* Active Indicator Badge */}
-                    {isCategoryProductsOpen && selectedCategory === "fruits" && (
-                      <div className="absolute top-5 right-5 z-10 bg-[#16301d]/95 backdrop-blur-md text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg flex items-center gap-1.5 animate-in fade-in">
-                        <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                        <span>Viewing Fruits</span>
-                      </div>
-                    )}
-                  </button>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -1307,20 +1267,12 @@ export default function HarvestCategoryGrid() {
                           activeSubFilter === "all");
 
                       return (
-                        <button
+                        <Link
                           key={col.id}
-                          type="button"
-                          onClick={() =>
-                            handleCardClick(
-                              col.category,
-                              col.subCategory === "all" ? undefined : col.subCategory
-                            )
-                          }
+                          href="/shop"
                           style={{ flex: `${col.flexRatio} ${col.flexRatio} 0%` }}
-                          className={`group relative rounded-2xl sm:rounded-3xl overflow-hidden ${col.aspectClass} lg:aspect-auto ${col.bgColor} shadow-xs hover:shadow-md transition-all duration-300 cursor-pointer block text-left focus:outline-none p-0 w-full lg:w-auto h-auto min-h-[160px] sm:min-h-[200px] lg:min-h-0 ${
-                            isSelected ? "ring-4 ring-[#16301d]" : ""
-                          }`}
-                          aria-label={`Open ${col.title} Collection`}
+                          className={`group relative rounded-2xl sm:rounded-3xl overflow-hidden ${col.aspectClass} lg:aspect-auto ${col.bgColor} shadow-xs hover:shadow-md transition-all duration-300 cursor-pointer block text-left focus:outline-none p-0 w-full lg:w-auto h-auto min-h-[160px] sm:min-h-[200px] lg:min-h-0`}
+                          aria-label={`Open ${col.title} Collection in shop`}
                         >
                           {/* Clean Photographic Plate (Zero text baked into image) */}
                           <img
@@ -1344,15 +1296,7 @@ export default function HarvestCategoryGrid() {
                               </span>
                             </div>
                           </div>
-
-                          {/* Active Indicator Badge if currently active in product view */}
-                          {isSelected && (
-                            <div className="absolute top-4 right-4 z-10 bg-[#16301d] text-white text-[11px] font-semibold px-2.5 py-1 rounded-full shadow-md flex items-center gap-1.5 animate-in fade-in">
-                              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                              <span>Viewing</span>
-                            </div>
-                          )}
-                        </button>
+                        </Link>
                       );
                     })}
                   </div>
@@ -1363,30 +1307,6 @@ export default function HarvestCategoryGrid() {
         </div>
       </div>
 
-      {/* 2. DEDICATED CATEGORY PRODUCTS VIEW (Revealed when ANY Category Card is Clicked) */}
-      {isCategoryProductsOpen && (
-        <div
-          ref={categoryProductsAnchorRef}
-          id="category-products-anchor"
-          className="w-full bg-[#fdfbf7] border-t border-b border-[#ede7d8] py-8 transition-all duration-500 animate-in fade-in"
-        >
-          <FilteredCategoryProducts
-            categoryName={activeBox.title}
-            products={getProductsForCategory(selectedCategory)}
-            cartItems={cartItems}
-            lovedItems={lovedItems}
-            onAddToCart={handleAddToCartProduct}
-            onUpdateQuantity={handleUpdateQuantityProduct}
-            onSelectProduct={(p) => setActiveProductModal(p)}
-            onToggleLoved={handleToggleLovedProduct}
-            onClearFilter={() => {
-              setIsCategoryProductsOpen(false);
-              const gridEl = document.getElementById("categories");
-              if (gridEl) gridEl.scrollIntoView({ behavior: "smooth" });
-            }}
-          />
-        </div>
-      )}
 
       {/* 2. DEDICATED "FRESH PAGE" CATEGORY EXPERIENCE (Replaces Screenshot 4 Section) */}
       <div
