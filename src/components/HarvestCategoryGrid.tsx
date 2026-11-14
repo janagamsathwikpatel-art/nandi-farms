@@ -1171,53 +1171,31 @@ export default function HarvestCategoryGrid() {
                   />
                 </picture>
 
-                {/* Interactive Zone 1: Milk (Left 45% width) */}
+                {/* Interactive Zone 1: Milk (Left card: 0 to 37.5% width) */}
                 <Link
                   href="/shop"
-                  className="group absolute top-0 left-0 w-[45%] h-full z-10 cursor-pointer pt-3 sm:pt-6 pl-4 sm:pl-7 flex flex-col justify-start"
-                  aria-label="Shop Milk Products"
+                  className="group absolute top-0 left-0 w-[37.5%] h-full z-10 cursor-pointer"
+                  aria-label="Shop Farm Fresh Milk Products"
                 >
-                  <div className="select-none">
-                    <span className="font-playfair text-2xl sm:text-4xl lg:text-[40px] text-[#16301d] font-normal tracking-tight block leading-none drop-shadow-[0_1px_2px_rgba(255,255,255,0.4)]">
-                      Milk
-                    </span>
-                    <div className="flex items-center w-16 sm:w-24 h-px bg-[#16301d]/60 mt-1.5 sm:mt-2.5 relative">
-                      <span className="absolute -right-1 -top-2 text-xs sm:text-sm text-[#16301d] transition-transform duration-300 group-hover:translate-x-1.5">
-                        →
-                      </span>
-                    </div>
-                  </div>
+                  <span className="sr-only">Milk</span>
                 </Link>
 
-                {/* Interactive Zone 2: Vegetables (Right 55% width, Top 49% height) */}
+                {/* Interactive Zone 2: Vegetables (Top-right card: 38% to 100% width, top 49% height) */}
                 <Link
                   href="/shop"
-                  className="group absolute top-0 right-0 w-[55%] h-[49%] z-10 cursor-pointer pt-3 sm:pt-5 pl-4 sm:pl-7 flex flex-col justify-start"
-                  aria-label="Shop Vegetables Products"
+                  className="group absolute top-0 left-[38%] w-[62%] h-[49%] z-10 cursor-pointer"
+                  aria-label="Shop Fresh Organic Vegetables Products"
                 >
-                  <div className="select-none">
-                    <span className="font-playfair text-2xl sm:text-4xl lg:text-[40px] text-[#16301d] font-normal tracking-tight block leading-none drop-shadow-[0_1px_2px_rgba(255,255,255,0.4)]">
-                      Vegetables
-                    </span>
-                    <div className="flex items-center w-28 sm:w-40 h-px bg-[#16301d]/60 mt-1.5 sm:mt-2.5 relative">
-                      <span className="absolute -right-1 -top-2 text-xs sm:text-sm text-[#16301d] transition-transform duration-300 group-hover:translate-x-1.5">
-                        →
-                      </span>
-                    </div>
-                  </div>
+                  <span className="sr-only">Vegetables</span>
                 </Link>
 
-                {/* Interactive Zone 3: Fruits (Right 55% width, Bottom 49% height) */}
+                {/* Interactive Zone 3: Fruits (Bottom-right card: 38% to 100% width, bottom 49% height) */}
                 <Link
                   href="/shop"
-                  className="group absolute bottom-0 right-0 w-[55%] h-[49%] z-10 cursor-pointer pt-1.5 sm:pt-2.5 pl-2.5 sm:pl-4 flex flex-col justify-start"
-                  aria-label="Shop Fruits Products"
+                  className="group absolute bottom-0 left-[38%] w-[62%] h-[49%] z-10 cursor-pointer"
+                  aria-label="Shop Orchard Fruits Products"
                 >
-                  <div className="select-none">
-                    <span className="font-playfair text-xl sm:text-3xl lg:text-[32px] text-[#16301d] font-normal tracking-tight block leading-none drop-shadow-[0_1px_2px_rgba(255,255,255,0.4)]">
-                      Fruits
-                    </span>
-                  </div>
+                  <span className="sr-only">Fruits</span>
                 </Link>
               </div>
             </div>
