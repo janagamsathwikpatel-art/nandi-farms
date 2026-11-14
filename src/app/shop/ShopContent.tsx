@@ -15,35 +15,38 @@ export default function ShopContent({
           <source
             type="image/avif"
             srcSet="
-              /images/banners/shop/shop-banner-3840.avif 3840w,
-              /images/banners/shop/shop-banner-2560.avif 2560w,
-              /images/banners/shop/shop-banner-1920.avif 1920w,
-              /images/banners/shop/shop-banner-1280.avif 1280w
+              /images/banners/shop/sunrise/shop-banner-sunrise-2172.avif 2172w,
+              /images/banners/shop/sunrise/shop-banner-sunrise-1920.avif 1920w,
+              /images/banners/shop/sunrise/shop-banner-sunrise-1440.avif 1440w,
+              /images/banners/shop/sunrise/shop-banner-sunrise-1024.avif 1024w,
+              /images/banners/shop/sunrise/shop-banner-sunrise-640.avif 640w
             "
-            sizes="(max-width: 640px) 100vw, (max-width: 1200px) 100vw, 1600px"
+            sizes="(max-width: 640px) 100vw, 1120px"
           />
           <source
             type="image/webp"
             srcSet="
-              /images/banners/shop/shop-banner-3840.webp 3840w,
-              /images/banners/shop/shop-banner-2560.webp 2560w,
-              /images/banners/shop/shop-banner-1920.webp 1920w,
-              /images/banners/shop/shop-banner-1280.webp 1280w
+              /images/banners/shop/sunrise/shop-banner-sunrise-2172.webp 2172w,
+              /images/banners/shop/sunrise/shop-banner-sunrise-1920.webp 1920w,
+              /images/banners/shop/sunrise/shop-banner-sunrise-1440.webp 1440w,
+              /images/banners/shop/sunrise/shop-banner-sunrise-1024.webp 1024w,
+              /images/banners/shop/sunrise/shop-banner-sunrise-640.webp 640w
             "
-            sizes="(max-width: 640px) 100vw, (max-width: 1200px) 100vw, 1600px"
+            sizes="(max-width: 640px) 100vw, 1120px"
           />
           <img
-            src="/images/banners/shop/shop-banner-2560.png"
+            src="/images/banners/shop/sunrise/shop-banner-sunrise-1920.png"
             srcSet="
-              /images/banners/shop/shop-banner-3840.png 3840w,
-              /images/banners/shop/shop-banner-2560.png 2560w,
-              /images/banners/shop/shop-banner-1920.png 1920w,
-              /images/banners/shop/shop-banner-1280.png 1280w
+              /images/banners/shop/sunrise/shop-banner-sunrise-2172.png 2172w,
+              /images/banners/shop/sunrise/shop-banner-sunrise-1920.png 1920w,
+              /images/banners/shop/sunrise/shop-banner-sunrise-1440.png 1440w,
+              /images/banners/shop/sunrise/shop-banner-sunrise-1024.png 1024w,
+              /images/banners/shop/sunrise/shop-banner-sunrise-640.png 640w
             "
-            sizes="(max-width: 640px) 100vw, (max-width: 1200px) 100vw, 1600px"
+            sizes="(max-width: 640px) 100vw, 1120px"
             alt="Nandi Farms - Shop the farm: Fresh milk, seasonal produce, and pantry staples"
-            width={3840}
-            height={1280}
+            width={2172}
+            height={724}
             loading="eager"
             decoding="async"
           />
