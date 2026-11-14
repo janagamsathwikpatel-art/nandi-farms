@@ -105,6 +105,7 @@ export default function HarvestHeroSection({
               srcSet="
                 /images/banners/todays-harvest/todays-harvest-3840.webp 3840w,
                 /images/banners/todays-harvest/todays-harvest-2560.webp 2560w,
+                /images/banners/todays-harvest/todays-harvest-2172.webp 2172w,
                 /images/banners/todays-harvest/todays-harvest-1920.webp 1920w,
                 /images/banners/todays-harvest/todays-harvest-1280.webp 1280w,
                 /images/banners/todays-harvest/todays-harvest-1024.webp 1024w
@@ -112,18 +113,19 @@ export default function HarvestHeroSection({
               sizes="(max-width: 640px) 100vw, (max-width: 1200px) 100vw, 1520px"
             />
             <img
-              src="/images/banners/todays-harvest/todays-harvest-2560.png"
+              src="/items.png"
               srcSet="
                 /images/banners/todays-harvest/todays-harvest-3840.png 3840w,
                 /images/banners/todays-harvest/todays-harvest-2560.png 2560w,
+                /images/banners/todays-harvest/todays-harvest-2172.png 2172w,
                 /images/banners/todays-harvest/todays-harvest-1920.png 1920w,
                 /images/banners/todays-harvest/todays-harvest-1280.png 1280w,
                 /images/banners/todays-harvest/todays-harvest-1024.png 1024w
               "
               sizes="(max-width: 640px) 100vw, (max-width: 1200px) 100vw, 1520px"
               alt="Today's Harvest - Fresh Farm Milk, Dairy, Eggs, and Handpicked Produce"
-              width={3840}
-              height={1279}
+              width={2172}
+              height={724}
               loading="eager"
               decoding="async"
               className="harvest-hero-banner-img"
