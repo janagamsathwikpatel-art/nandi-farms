@@ -16,6 +16,15 @@
           ]
         },
         {
+          "source": "/images/banners/**",
+          "headers": [
+            {
+              "key": "Cache-Control",
+              "value": "no-cache, no-store, must-revalidate"
+            }
+          ]
+        },
+        {
           "source": "/shop",
           "headers": [
             {
@@ -39,6 +48,15 @@
       "headers": [
         {
           "source": "**/*.html",
+          "headers": [
+            {
+              "key": "Cache-Control",
+              "value": "no-cache, no-store, must-revalidate"
+            }
+          ]
+        },
+        {
+          "source": "/images/banners/**",
           "headers": [
             {
               "key": "Cache-Control",

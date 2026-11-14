@@ -103,22 +103,22 @@ export default function HarvestHeroSection({
             <source
               type="image/webp"
               srcSet="
-                /images/banners/harvest/todays-harvest-3840.webp 3840w,
-                /images/banners/harvest/todays-harvest-2560.webp 2560w,
-                /images/banners/harvest/todays-harvest-1920.webp 1920w,
-                /images/banners/harvest/todays-harvest-1280.webp 1280w,
-                /images/banners/harvest/todays-harvest-1024.webp 1024w
+                /images/banners/todays-harvest/todays-harvest-3840.webp 3840w,
+                /images/banners/todays-harvest/todays-harvest-2560.webp 2560w,
+                /images/banners/todays-harvest/todays-harvest-1920.webp 1920w,
+                /images/banners/todays-harvest/todays-harvest-1280.webp 1280w,
+                /images/banners/todays-harvest/todays-harvest-1024.webp 1024w
               "
               sizes="(max-width: 640px) 100vw, (max-width: 1200px) 100vw, 1520px"
             />
             <img
-              src="/images/banners/harvest/todays-harvest-2560.png"
+              src="/images/banners/todays-harvest/todays-harvest-2560.png"
               srcSet="
-                /images/banners/harvest/todays-harvest-3840.png 3840w,
-                /images/banners/harvest/todays-harvest-2560.png 2560w,
-                /images/banners/harvest/todays-harvest-1920.png 1920w,
-                /images/banners/harvest/todays-harvest-1280.png 1280w,
-                /images/banners/harvest/todays-harvest-1024.png 1024w
+                /images/banners/todays-harvest/todays-harvest-3840.png 3840w,
+                /images/banners/todays-harvest/todays-harvest-2560.png 2560w,
+                /images/banners/todays-harvest/todays-harvest-1920.png 1920w,
+                /images/banners/todays-harvest/todays-harvest-1280.png 1280w,
+                /images/banners/todays-harvest/todays-harvest-1024.png 1024w
               "
               sizes="(max-width: 640px) 100vw, (max-width: 1200px) 100vw, 1520px"
               alt="Today's Harvest - Fresh Farm Milk, Dairy, Eggs, and Handpicked Produce"
