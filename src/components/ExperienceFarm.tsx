@@ -1,8 +1,6 @@
 "use client";
 
 import React from "react";
-import Image from "next/image";
-import { ArrowRight, Leaf, ChevronDown } from "lucide-react";
 
 interface ExperienceFarmProps {
   onExploreVegetables?: () => void;
@@ -38,47 +36,57 @@ export default function ExperienceFarm({
   return (
     <section
       id="explore-harvest"
-      className="relative w-full h-[260px] sm:h-[340px] md:h-[420px] lg:h-[480px] overflow-hidden bg-[#faf5ea]"
+      className="relative w-full aspect-[2172/724] overflow-hidden bg-[#faf5ea]"
       aria-label="Explore the Harvest"
     >
-      {/* 1. High-Res Clean Background Plate */}
-      <Image
-        src="/images/explore_harvest_sage_clean.jpg"
-        alt="Farm Fresh Harvest Display"
-        fill
-        priority
-        unoptimized
-        sizes="100vw"
-        className="object-cover object-center select-none pointer-events-none"
+      {/* 4K Panoramic Master Banner with Multi-Tier Responsive srcset */}
+      <picture>
+        <source
+          type="image/webp"
+          srcSet="
+            /images/explore-harvest/explore-harvest-2172.webp 2172w,
+            /images/explore-harvest/explore-harvest-1920.webp 1920w,
+            /images/explore-harvest/explore-harvest-1440.webp 1440w,
+            /images/explore-harvest/explore-harvest-1024.webp 1024w,
+            /images/explore-harvest/explore-harvest-640.webp 640w
+          "
+          sizes="100vw"
+        />
+        <img
+          src="/explore-harvest.png"
+          srcSet="
+            /images/explore-harvest/explore-harvest-2172.png 2172w,
+            /images/explore-harvest/explore-harvest-1920.png 1920w,
+            /images/explore-harvest/explore-harvest-1440.png 1440w,
+            /images/explore-harvest/explore-harvest-1024.png 1024w,
+            /images/explore-harvest/explore-harvest-640.png 640w
+          "
+          sizes="100vw"
+          alt="Explore the Harvest - Fresh Organic Vegetables and Produce from Nandi Farms"
+          width={2172}
+          height={724}
+          loading="eager"
+          decoding="async"
+          className="w-full h-full object-cover select-none pointer-events-none"
+        />
+      </picture>
+
+      {/* Accessible Interactive Target over 'Shop the Harvest' Pill Button */}
+      <button
+        type="button"
+        onClick={handleExploreClick}
+        className="group absolute top-[62%] left-[4.5%] w-[25.5%] h-[25%] z-20 cursor-pointer rounded-full focus:outline-none focus:ring-2 focus:ring-[#16301d]"
+        aria-label="Shop the Harvest catalog"
+      >
+        <span className="sr-only">Shop the Harvest</span>
+      </button>
+
+      {/* Broad Click Target over Left Content Area */}
+      <div
+        onClick={handleExploreClick}
+        className="absolute top-0 left-0 w-[40%] h-full z-10 cursor-pointer"
+        aria-hidden="true"
       />
-
-      {/* 2. Crisp Live HTML Typography & Interactive Button Outside Image */}
-      <div className="absolute inset-0 z-10 flex flex-col items-center justify-center text-center px-4 select-none">
-        {/* Kicker */}
-        <span className="text-[11px] sm:text-xs md:text-sm lg:text-base font-extrabold tracking-[0.26em] text-[#1e3c23] uppercase drop-shadow-sm">
-          Y DAILY FARMS
-        </span>
-
-        {/* Main Serif Headline */}
-        <h2 className="font-serif text-3xl sm:text-5xl md:text-6xl lg:text-[68px] xl:text-[76px] font-normal text-[#16301d] tracking-tight leading-[1.08] mt-1.5 sm:mt-2.5 md:mt-3 drop-shadow-sm">
-          Explore the Harvest
-        </h2>
-
-        {/* Functional Clickable Pill Button */}
-        <button
-          type="button"
-          onClick={handleExploreClick}
-          className="group mt-3 sm:mt-5 md:mt-6 px-6 sm:px-8 md:px-10 py-2.5 sm:py-3.5 bg-[#16301d] hover:bg-[#1f422b] text-white font-medium text-xs sm:text-sm md:text-base lg:text-lg rounded-full transition-all duration-300 shadow-lg hover:shadow-xl active:scale-95 flex items-center gap-2 sm:gap-2.5 cursor-pointer"
-          aria-label="Shop the Harvest catalog"
-        >
-          <span>Shop the Harvest</span>
-          {isVegetablesOpen ? (
-            <ChevronDown className="w-4 h-4 sm:w-5 sm:h-5 transition-transform duration-300 text-white animate-bounce" />
-          ) : (
-            <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 transition-transform duration-300 group-hover:translate-x-1.5 text-white" />
-          )}
-        </button>
-      </div>
     </section>
   );
 }
