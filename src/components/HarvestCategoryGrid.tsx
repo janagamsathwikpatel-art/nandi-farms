@@ -1137,27 +1137,51 @@ export default function HarvestCategoryGrid() {
                 </button>
               </div>
 
-              {/* Bento 3-Box Grid: Exact 2nd Image Layout (Milk on left, Veg & Fruits on right) */}
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-5 lg:gap-6 items-stretch">
-                {/* A. Left Column: Milk Card (5 of 12 cols on desktop) - 4K UHD */}
+              {/* Unified Bento Master Image: Powered directly by public/everyday.png */}
+              <div className="relative w-full aspect-[1774/707] rounded-2xl sm:rounded-3xl overflow-hidden shadow-xs border border-[#16301d]/[0.07] bg-[#faf5ea]">
+                {/* Master Responsive Image Picture */}
+                <picture>
+                  <source
+                    type="image/webp"
+                    srcSet="
+                      /images/everyday/everyday-3548.webp 3548w,
+                      /images/everyday/everyday-1920.webp 1920w,
+                      /images/everyday/everyday-1774.webp 1774w,
+                      /images/everyday/everyday-1280.webp 1280w,
+                      /images/everyday/everyday-1024.webp 1024w
+                    "
+                    sizes="(max-width: 640px) 100vw, 1520px"
+                  />
+                  <img
+                    src="/everyday.png"
+                    srcSet="
+                      /images/everyday/everyday-3548.png 3548w,
+                      /images/everyday/everyday-1920.png 1920w,
+                      /images/everyday/everyday-1774.png 1774w,
+                      /images/everyday/everyday-1280.png 1280w,
+                      /images/everyday/everyday-1024.png 1024w
+                    "
+                    sizes="(max-width: 640px) 100vw, 1520px"
+                    alt="Everyday Goodness - Fresh Milk, Organic Vegetables, and Orchard Fruits"
+                    width={1774}
+                    height={707}
+                    loading="eager"
+                    decoding="async"
+                    className="w-full h-full object-cover select-none pointer-events-none"
+                  />
+                </picture>
+
+                {/* Interactive Zone 1: Milk (Left 45% width) */}
                 <Link
                   href="/shop"
-                  className="group relative w-full lg:col-span-5 rounded-2xl sm:rounded-3xl overflow-hidden aspect-[356/370] lg:aspect-auto lg:h-full text-left focus:outline-none p-0 cursor-pointer block bg-[#faf5ea] border border-[#16301d]/[0.07] shadow-[0_4px_20px_-4px_rgba(22,48,29,0.06)] hover:shadow-[0_16px_36px_-6px_rgba(22,48,29,0.12)] transition-all duration-500 ease-out min-h-[340px] sm:min-h-[400px] lg:min-h-0"
+                  className="group absolute top-0 left-0 w-[45%] h-full z-10 cursor-pointer pt-3 sm:pt-6 pl-4 sm:pl-7 flex flex-col justify-start"
                   aria-label="Shop Milk Products"
                 >
-                  <img
-                    src="/images/bento_v3/milk_exact_2x.png"
-                    alt="Fresh Farm Milk"
-                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02] pointer-events-none select-none"
-                    loading="eager"
-                  />
-
-                  {/* Live HTML Typography In The Box, Outside Image File */}
-                  <div className="absolute top-6 sm:top-8 left-6 sm:left-8 z-10 select-none">
-                    <span className="font-playfair text-3xl sm:text-4xl lg:text-[40px] text-[#16301d] font-normal tracking-tight block leading-none drop-shadow-[0_1px_2px_rgba(255,255,255,0.3)]">
+                  <div className="select-none">
+                    <span className="font-playfair text-2xl sm:text-4xl lg:text-[40px] text-[#16301d] font-normal tracking-tight block leading-none drop-shadow-[0_1px_2px_rgba(255,255,255,0.4)]">
                       Milk
                     </span>
-                    <div className="flex items-center w-24 sm:w-28 h-px bg-[#16301d]/60 mt-2 sm:mt-2.5 relative">
+                    <div className="flex items-center w-16 sm:w-24 h-px bg-[#16301d]/60 mt-1.5 sm:mt-2.5 relative">
                       <span className="absolute -right-1 -top-2 text-xs sm:text-sm text-[#16301d] transition-transform duration-300 group-hover:translate-x-1.5">
                         →
                       </span>
@@ -1165,63 +1189,36 @@ export default function HarvestCategoryGrid() {
                   </div>
                 </Link>
 
-                {/* B. Right Column: Stacked Vegetables & Fruits (7 of 12 cols on desktop) */}
-                <div className="lg:col-span-7 flex flex-col justify-between gap-4 sm:gap-5 lg:gap-6">
-                  {/* Top Card: Vegetables (4K UHD, Leaves Present Outside Box) */}
-                  <div className="relative pt-4 sm:pt-6">
-                    <Link
-                      href="/shop"
-                      className="group relative w-full aspect-[612/180] rounded-2xl sm:rounded-3xl bg-[#dfe3d0] overflow-visible text-left focus:outline-none p-0 cursor-pointer block border border-[#16301d]/[0.07] shadow-[0_4px_20px_-4px_rgba(22,48,29,0.06)] hover:shadow-[0_16px_36px_-6px_rgba(22,48,29,0.12)] transition-all duration-500 ease-out"
-                      aria-label="Shop Vegetables Products"
-                    >
-                      {/* 4K UHD image from user screenshot with leaves extending -11.7% above the top border */}
-                      <img
-                        src="/images/bento_v3/veg_exact_2x.png"
-                        alt="Fresh Organic Vegetables"
-                        className="absolute -top-[11.7%] left-0 w-full h-[111.7%] object-contain pointer-events-none select-none transition-transform duration-700 ease-out group-hover:scale-[1.02]"
-                        loading="eager"
-                      />
-
-                      {/* Live HTML Typography In The Box, Outside Image File */}
-                      <div className="absolute top-6 sm:top-8 left-6 sm:left-8 lg:left-10 z-10 select-none">
-                        <span className="font-playfair text-3xl sm:text-4xl lg:text-[40px] text-[#16301d] font-normal tracking-tight block leading-none drop-shadow-[0_1px_2px_rgba(255,255,255,0.3)]">
-                          Vegetables
-                        </span>
-                        <div className="flex items-center w-36 sm:w-44 h-px bg-[#16301d]/60 mt-2 sm:mt-2.5 relative">
-                          <span className="absolute -right-1 -top-2 text-xs sm:text-sm text-[#16301d] transition-transform duration-300 group-hover:translate-x-1.5">
-                            →
-                          </span>
-                        </div>
-                      </div>
-                    </Link>
-                  </div>
-
-                  {/* Bottom Card: Fruits (4K UHD) */}
-                  <Link
-                    href="/shop"
-                    className="group relative w-full aspect-[612/179] rounded-2xl sm:rounded-3xl overflow-hidden text-left focus:outline-none p-0 cursor-pointer block bg-[#faf5ea] border border-[#16301d]/[0.07] shadow-[0_4px_20px_-4px_rgba(22,48,29,0.06)] hover:shadow-[0_16px_36px_-6px_rgba(22,48,29,0.12)] transition-all duration-500 ease-out"
-                    aria-label="Shop Fruits Products"
-                  >
-                    <img
-                      src="/images/bento_v3/fruit_exact_master.png"
-                      alt="Fresh Orchard Fruits"
-                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02] pointer-events-none select-none"
-                      loading="eager"
-                    />
-
-                    {/* Live HTML Typography In The Box, Outside Image File */}
-                    <div className="absolute top-6 sm:top-8 left-6 sm:left-8 lg:left-10 z-10 select-none">
-                      <span className="font-playfair text-3xl sm:text-4xl lg:text-[40px] text-[#16301d] font-normal tracking-tight block leading-none drop-shadow-[0_1px_2px_rgba(255,255,255,0.3)]">
-                        Fruits
+                {/* Interactive Zone 2: Vegetables (Right 55% width, Top 49% height) */}
+                <Link
+                  href="/shop"
+                  className="group absolute top-0 right-0 w-[55%] h-[49%] z-10 cursor-pointer pt-3 sm:pt-5 pl-4 sm:pl-7 flex flex-col justify-start"
+                  aria-label="Shop Vegetables Products"
+                >
+                  <div className="select-none">
+                    <span className="font-playfair text-2xl sm:text-4xl lg:text-[40px] text-[#16301d] font-normal tracking-tight block leading-none drop-shadow-[0_1px_2px_rgba(255,255,255,0.4)]">
+                      Vegetables
+                    </span>
+                    <div className="flex items-center w-28 sm:w-40 h-px bg-[#16301d]/60 mt-1.5 sm:mt-2.5 relative">
+                      <span className="absolute -right-1 -top-2 text-xs sm:text-sm text-[#16301d] transition-transform duration-300 group-hover:translate-x-1.5">
+                        →
                       </span>
-                      <div className="flex items-center w-28 sm:w-36 h-px bg-[#16301d]/60 mt-2 sm:mt-2.5 relative">
-                        <span className="absolute -right-1 -top-2 text-xs sm:text-sm text-[#16301d] transition-transform duration-300 group-hover:translate-x-1.5">
-                          →
-                        </span>
-                      </div>
                     </div>
-                  </Link>
-                </div>
+                  </div>
+                </Link>
+
+                {/* Interactive Zone 3: Fruits (Right 55% width, Bottom 49% height) */}
+                <Link
+                  href="/shop"
+                  className="group absolute bottom-0 right-0 w-[55%] h-[49%] z-10 cursor-pointer pt-1.5 sm:pt-2.5 pl-2.5 sm:pl-4 flex flex-col justify-start"
+                  aria-label="Shop Fruits Products"
+                >
+                  <div className="select-none">
+                    <span className="font-playfair text-xl sm:text-3xl lg:text-[32px] text-[#16301d] font-normal tracking-tight block leading-none drop-shadow-[0_1px_2px_rgba(255,255,255,0.4)]">
+                      Fruits
+                    </span>
+                  </div>
+                </Link>
               </div>
             </div>
           ) : (

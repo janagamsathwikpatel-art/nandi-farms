@@ -25,6 +25,24 @@
           ]
         },
         {
+          "source": "/images/everyday/**",
+          "headers": [
+            {
+              "key": "Cache-Control",
+              "value": "no-cache, no-store, must-revalidate"
+            }
+          ]
+        },
+        {
+          "source": "/everyday.png",
+          "headers": [
+            {
+              "key": "Cache-Control",
+              "value": "no-cache, no-store, must-revalidate"
+            }
+          ]
+        },
+        {
           "source": "/shop",
           "headers": [
             {
@@ -57,6 +75,24 @@
         },
         {
           "source": "/images/banners/**",
+          "headers": [
+            {
+              "key": "Cache-Control",
+              "value": "no-cache, no-store, must-revalidate"
+            }
+          ]
+        },
+        {
+          "source": "/images/everyday/**",
+          "headers": [
+            {
+              "key": "Cache-Control",
+              "value": "no-cache, no-store, must-revalidate"
+            }
+          ]
+        },
+        {
+          "source": "/everyday.png",
           "headers": [
             {
               "key": "Cache-Control",
