@@ -1,391 +1,50 @@
-/* HD Farm-Fresh Ecommerce Hero Section */
-.harvest-hero-section {
-  position: relative;
-  isolation: isolate;
-  overflow: hidden;
-  padding: 36px 4.5% 64px;
-  color: #1b3823;
+/* Today's Harvest Ultra-HD Panoramic Farm Banner Showcase */
+.harvest-hero-showcase-section {
+  width: 100%;
+  padding: clamp(14px, 2vw, 32px) clamp(16px, 4.5%, 64px);
   background-color: transparent;
-  font-family: Arial, sans-serif;
   box-sizing: border-box;
 }
 
-/* Pure Panoramic Countryside HD Background (100% Original Artwork) */
-.harvest-hero-section::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  background: url("/images/harvest-landscape-clean-uhd.png") center / cover no-repeat;
-  opacity: 1;
-}
-
-/* Top Navigation Bar: Cart Counter & View All Products */
-.harvest-hero-topbar {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  gap: 28px;
-  margin-bottom: 35px;
-}
-
-.harvest-hero-cart-count {
-  font-size: 14px;
-  font-weight: 600;
-  color: #1b3823;
-  background: rgba(255, 255, 255, 0.7);
-  padding: 5px 14px;
+.harvest-hero-container {
+  width: min(100%, 1520px);
+  margin-inline: auto;
   border-radius: 20px;
-  border: 1px solid rgba(27, 56, 35, 0.15);
-  backdrop-filter: blur(4px);
+  overflow: hidden;
+  box-shadow: 0 6px 28px rgba(44, 27, 19, 0.09);
+  background-color: #fbf8f0;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.harvest-hero-view-products {
-  color: #1b3823;
-  text-decoration: none;
-  font-weight: 700;
-  font-size: 14px;
-  border-bottom: 1.5px solid #1b3823;
-  padding-bottom: 4px;
-  cursor: pointer;
-  background: transparent;
-  border-top: none;
-  border-left: none;
-  border-right: none;
-  transition: color 0.2s ease, border-color 0.2s ease;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.harvest-hero-view-products:hover {
-  color: #2e6840;
-  border-color: #2e6840;
-}
-
-.harvest-hero-view-products span {
-  font-size: 18px;
-  line-height: 1;
-  transition: transform 0.2s ease;
-}
-
-.harvest-hero-view-products:hover span {
-  transform: translateX(3px);
-}
-
-/* 2-Column Banner Layout */
-.harvest-hero-layout {
-  display: grid;
-  grid-template-columns: minmax(240px, 0.95fr) 3.05fr;
-  gap: 36px;
-  align-items: start;
-}
-
-/* Left Editorial Header */
-.harvest-hero-heading {
-  padding-top: 15px;
-}
-
-.harvest-hero-eyebrow {
-  letter-spacing: 5px;
-  font-weight: 700;
-  font-size: 12px;
-  color: #285435;
-  text-transform: uppercase;
-  margin-bottom: 12px;
-}
-
-.harvest-hero-heading h1 {
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(38px, 4.2vw, 68px);
-  line-height: 0.94;
-  margin: 0 0 20px;
-  letter-spacing: -2px;
-  color: #142a1a;
-  font-weight: 700;
-}
-
-.harvest-hero-intro {
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(16px, 1.35vw, 20px);
-  line-height: 1.55;
-  color: #f7d373;
-  text-shadow: 0 1px 3px rgba(15, 35, 20, 0.85), 0 2px 8px rgba(15, 35, 20, 0.45);
-  font-weight: 500;
-  margin: 0 0 20px;
-}
-
-.harvest-hero-leaf-divider {
-  font-size: 32px;
-  color: #f7d373;
-  text-shadow: 0 1px 3px rgba(15, 35, 20, 0.85);
-  opacity: 0.95;
-}
-
-/* Product Cards Grid: 4 columns across desktop */
-.harvest-hero-product-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 20px;
-}
-
-.harvest-hero-product-card {
-  min-width: 0;
-  background: rgba(255, 255, 255, 0.88);
-  border: 1px solid rgba(27, 56, 35, 0.14);
-  border-radius: 18px;
-  padding: 16px 14px 18px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 10px;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  box-shadow: 0 4px 16px rgba(20, 45, 25, 0.08);
-  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
-}
-
-.harvest-hero-product-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 12px 28px rgba(20, 45, 25, 0.16);
-  background: rgba(255, 255, 255, 0.96);
-  border-color: rgba(27, 56, 35, 0.28);
-}
-
-.harvest-hero-product-image {
-  height: 118px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  margin-bottom: 4px;
-  position: relative;
-}
-
-.harvest-hero-product-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  transition: transform 0.35s ease;
-  filter: drop-shadow(0 6px 14px rgba(20, 45, 25, 0.16));
-}
-
-.harvest-hero-product-card:hover .harvest-hero-product-image img {
-  transform: scale(1.05);
-}
-
-.harvest-hero-product-card h2 {
-  font-family: Arial, sans-serif;
-  font-size: 15px;
-  font-weight: 700;
-  line-height: 1.3;
-  margin: 0 0 2px;
-  color: #162c1d;
-  cursor: pointer;
-  transition: color 0.2s ease;
-}
-
-.harvest-hero-product-card h2:hover {
-  color: #27623c;
-}
-
-.harvest-hero-product-description {
-  color: #556758;
-  font-size: 12px;
-  line-height: 1.35;
-  margin: 0 0 4px;
-}
-
-.harvest-hero-product-price {
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 21px;
-  font-weight: 700;
-  margin: 0 0 6px;
-  color: #142a1a;
-  display: flex;
-  align-items: baseline;
-  gap: 4px;
-}
-
-.harvest-hero-product-price span {
-  font-family: Arial, sans-serif;
-  font-size: 12px;
-  font-weight: 500;
-  color: #617364;
-}
-
-/* Working Quantity Control */
-.harvest-hero-quantity-control {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  max-width: 100%;
-  margin: 0 auto 8px;
-  border: 1px solid #c9d6c3;
-  border-radius: 30px;
-  background: #ffffff;
-  padding: 2px 4px;
-  box-sizing: border-box;
-}
-
-.harvest-hero-quantity-control button {
-  border: 0;
-  background: transparent;
-  width: 24px;
-  height: 24px;
-  font-size: 15px;
-  font-weight: 600;
-  cursor: pointer;
-  color: #1b3823;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  transition: background 0.15s ease, transform 0.1s ease;
-}
-
-.harvest-hero-quantity-control button:hover {
-  background: rgba(27, 56, 35, 0.08);
-}
-
-.harvest-hero-quantity-control button:active {
-  transform: scale(0.92);
-}
-
-.harvest-hero-quantity-control span {
-  font-weight: 700;
-  font-size: 13px;
-  color: #1b3823;
-  min-width: 20px;
-  text-align: center;
-}
-
-/* Deep Forest-Green Add to Cart Button */
-.harvest-hero-add-cart {
-  width: 100%;
-  border: 0;
-  border-radius: 8px;
-  padding: 8px 12px;
-  background: #234b31;
-  color: #ffffff;
-  font-size: 12px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  box-shadow: 0 2px 8px rgba(35, 75, 49, 0.2);
-}
-
-.harvest-hero-add-cart:hover {
-  background: #193824;
+.harvest-hero-container:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(25, 56, 36, 0.35);
+  box-shadow: 0 10px 36px rgba(44, 27, 19, 0.14);
 }
 
-.harvest-hero-add-cart:active {
-  transform: translateY(0);
+.harvest-hero-banner-link {
+  display: block;
+  width: 100%;
+  text-decoration: none;
+  cursor: pointer;
 }
 
-/* Toast Confirmation Popup */
-.harvest-hero-toast {
-  position: fixed;
-  top: 24px;
-  right: 24px;
-  z-index: 100;
-  background: #183622;
-  color: #ffffff;
-  padding: 14px 22px;
-  border-radius: 14px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
-  font-size: 14px;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  border: 1px solid rgba(83, 220, 131, 0.3);
-  backdrop-filter: blur(8px);
-  animation: harvestToastSlideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+.harvest-hero-banner-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
-@keyframes harvestToastSlideIn {
-  from {
-    opacity: 0;
-    transform: translateY(-16px) scale(0.96);
+@media (max-width: 768px) {
+  .harvest-hero-showcase-section {
+    padding: 12px 14px 20px;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-/* Responsive Breakpoints */
-@media (max-width: 1100px) {
-  .harvest-hero-layout {
-    grid-template-columns: 1fr;
-    gap: 28px;
-  }
-
-  .harvest-hero-heading {
-    max-width: 600px;
-  }
-
-  .harvest-hero-product-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 18px;
-  }
-}
-
-@media (max-width: 600px) {
-  .harvest-hero-section {
-    padding: 24px 16px 44px;
-  }
-
-  .harvest-hero-topbar {
-    margin-bottom: 22px;
-  }
-
-  .harvest-hero-heading h1 {
-    font-size: 42px;
-  }
-
-  .harvest-hero-product-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 14px 10px;
-  }
-
-  .harvest-hero-product-card {
-    padding: 14px 10px;
-  }
-
-  .harvest-hero-product-image {
-    height: 100px;
-  }
-
-  .harvest-hero-product-card h2 {
-    font-size: 13px;
-  }
-
-  .harvest-hero-product-description {
-    font-size: 11px;
-    margin: 0 0 2px;
-  }
-
-  .harvest-hero-product-price {
-    font-size: 18px;
-    margin: 0 0 4px;
-  }
-
-  .harvest-hero-quantity-control {
-    max-width: 95px;
-    margin: 0 auto 4px;
-  }
-
-  .harvest-hero-add-cart {
-    font-size: 11px;
-    padding: 6px 8px;
+  .harvest-hero-container {
+    border-radius: 14px;
+    box-shadow: 0 4px 16px rgba(44, 27, 19, 0.08);
   }
 }
