@@ -1,373 +1,91 @@
-/* Nandi Farms 4K Scenic Footer with Live Interactive Buttons - Ultra-HD Edition */
-.nandi-footer-section {
+/* Clean Scenic Footer with Vintage Farm Gowshala Etching - Zero Text on Artwork */
+.nandi-footer-section-clean {
   position: relative;
   width: 100%;
   overflow: hidden;
-  background-color: #faf6ed;
-  color: #0f2e1a;
-  box-sizing: border-box;
+  background-color: #f7eedf;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
+  box-sizing: border-box;
 }
 
-@media (min-width: 1024px) {
-  .nandi-footer-section {
-    aspect-ratio: 1024 / 341;
-    min-height: 420px;
-  }
-}
-
-/* True 4K Ultra-HD Scenic Background Plate (3840 x 1280, Zero Baked-in Text) */
-.nandi-footer-bg {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-}
-
-/* Mobile readability overlay */
-.nandi-footer-mobile-overlay {
-  display: none;
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-}
-
-@media (max-width: 1023px) {
-  .nandi-footer-mobile-overlay {
-    display: block;
-    background: linear-gradient(
-      180deg,
-      rgba(250, 246, 237, 0.96) 0%,
-      rgba(250, 246, 237, 0.92) 55%,
-      rgba(250, 246, 237, 0.75) 80%,
-      transparent 100%
-    );
-  }
-}
-
-/* Foreground Interactive Container */
-.nandi-footer-container {
+.nandi-footer-art-wrapper {
   position: relative;
-  z-index: 10;
+  width: 100%;
+  aspect-ratio: 1024 / 440;
+  max-height: 580px;
+  min-height: 280px;
+  overflow: hidden;
+  display: block;
+}
+
+.nandi-footer-art-img {
   width: 100%;
   height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: clamp(24px, 2.5vw, 48px) clamp(20px, 3vw, 64px) 0;
-  box-sizing: border-box;
+  object-fit: cover;
+  object-position: center bottom;
+  display: block;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  transform: translateZ(0);
 }
 
-/* Top Content Row: Left Mascot Clearance + 4 Content Columns */
-.nandi-footer-content-row {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 28px;
-  align-items: flex-start;
-}
-
-/* Desktop layout matching screenshot: Left 25% is mascot clearance, right 75% is 4 columns */
-@media (min-width: 1024px) {
-  .nandi-footer-content-row {
-    grid-template-columns: minmax(220px, 25%) 1fr;
-    gap: clamp(20px, 2.5vw, 40px);
-  }
-}
-
-@media (min-width: 1440px) {
-  .nandi-footer-content-row {
-    grid-template-columns: minmax(260px, 24%) 1fr;
-  }
-}
-
-/* Spacer for the Left Green Mascot Badge on desktop */
-.nandi-footer-mascot-spacer {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  min-height: 180px;
-}
-
-@media (max-width: 1023px) {
-  .nandi-footer-mascot-spacer {
-    display: none;
-  }
-}
-
-/* 4 Navigation & Action Columns */
-.nandi-footer-columns-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 24px;
-}
-
-@media (min-width: 600px) {
-  .nandi-footer-columns-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 28px;
-  }
-}
-
-@media (min-width: 1024px) {
-  .nandi-footer-columns-grid {
-    grid-template-columns: 1.05fr 1.15fr 1.4fr 1.8fr;
-    gap: clamp(14px, 1.6vw, 32px);
-  }
-}
-
-/* Individual Column Styling */
-.nandi-footer-col {
-  display: flex;
-  flex-direction: column;
-}
-
-/* Headings with delicate green accent underline */
-.nandi-footer-col-header {
-  margin-bottom: 12px;
-}
-
-.nandi-footer-heading {
-  font-family: var(--font-playfair, serif);
-  font-size: clamp(15px, 1.15vw, 18px);
-  font-weight: 600;
-  color: #0f2e1a;
-  letter-spacing: -0.015em;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  line-height: 1.2;
-}
-
-.nandi-footer-heading-line {
-  width: 28px;
-  height: 2.5px;
-  background-color: #649352;
-  border-radius: 9999px;
-  margin-top: 5px;
-}
-
-/* Interactive Navigation Links */
-.nandi-footer-list {
-  display: flex;
-  flex-direction: column;
-  gap: 7px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.nandi-footer-btn-link {
-  background: none;
-  border: none;
-  padding: 1px 0;
-  color: #133821;
-  font-size: clamp(12px, 0.9vw, 13.5px);
-  font-weight: 450;
-  text-align: left;
-  cursor: pointer;
-  transition: all 0.25s ease;
-  line-height: 1.4;
-  display: inline-block;
-  width: fit-content;
-}
-
-.nandi-footer-btn-link:hover {
-  color: #2b703e;
-  transform: translateX(2px);
-}
-
-.nandi-footer-btn-link:focus-visible {
-  outline: 2px solid #0f2e1a;
-  outline-offset: 3px;
-  border-radius: 4px;
-}
-
-/* Column 3: Get in Touch Contact Items */
-.nandi-footer-contact-item {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  color: #133821;
-  font-size: clamp(11.5px, 0.85vw, 13px);
-  font-weight: 450;
-  margin-bottom: 7px;
-  text-decoration: none;
-  transition: color 0.2s ease;
-}
-
-.nandi-footer-contact-item:hover {
-  color: #2b703e;
-}
-
-.nandi-footer-contact-icon {
-  width: 15px;
-  height: 15px;
-  color: #133821;
-  flex-shrink: 0;
-}
-
-/* Social Buttons Row */
-.nandi-footer-social-row {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-top: 8px;
-}
-
-.nandi-footer-social-btn {
-  width: 26px;
-  height: 26px;
-  border-radius: 50%;
-  background-color: #d8e5cd;
-  border: 1px solid rgba(19, 56, 33, 0.15);
-  color: #0f2e1a;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.25s ease;
-  cursor: pointer;
-}
-
-.nandi-footer-social-btn:hover {
-  background-color: #0f2e1a;
-  color: #ffffff;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 10px rgba(15, 46, 26, 0.25);
-}
-
-/* Column 4: Stay Fresh with Nandi */
-.nandi-footer-stay-desc {
-  font-size: clamp(11px, 0.8vw, 12.5px);
-  color: #24422e;
-  margin-bottom: 10px;
-  line-height: 1.4;
-  font-weight: 450;
-}
-
-.nandi-footer-input-pill {
-  display: flex;
-  align-items: center;
-  background-color: #ffffff;
-  border: 1px solid #b5c4a7;
-  border-radius: 9999px;
-  padding: 4px 5px 4px 12px;
-  max-width: 310px;
-  transition: all 0.25s ease;
-  box-shadow: 0 2px 10px rgba(19, 56, 33, 0.06);
-}
-
-.nandi-footer-input-pill:focus-within {
-  border-color: #0f2e1a;
-  box-shadow: 0 0 0 3px rgba(15, 46, 26, 0.15);
-}
-
-.nandi-footer-input-icon {
-  width: 15px;
-  height: 15px;
-  color: #486851;
-  margin-right: 7px;
-  flex-shrink: 0;
-}
-
-.nandi-footer-input {
-  border: none;
-  background: transparent;
-  outline: none;
-  font-size: clamp(11px, 0.8vw, 12.5px);
-  color: #0f2e1a;
-  width: 100%;
-}
-
-.nandi-footer-input::placeholder {
-  color: #6e8876;
-}
-
-.nandi-footer-submit-btn {
-  width: 26px;
-  height: 26px;
-  border-radius: 50%;
-  background-color: #0f2e1a;
-  color: #ffffff;
-  border: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  flex-shrink: 0;
-  transition: all 0.25s ease;
-}
-
-.nandi-footer-submit-btn:hover {
-  background-color: #205632;
-  transform: scale(1.05);
-}
-
-/* Bottom Bar (Inside Dark Green Wave) */
-.nandi-footer-bottom-bar {
+/* Minimal Sleek Legal Under-Bar */
+.nandi-footer-underbar {
   position: relative;
   z-index: 10;
   width: 100%;
+  background-color: #1c2a20;
+  padding: 14px clamp(20px, 3.5vw, 64px);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  gap: 8px;
-  padding: 10px clamp(20px, 3.5vw, 64px);
+  gap: 10px;
+  color: #f5f0e6;
+  font-size: 12px;
   box-sizing: border-box;
-  background: linear-gradient(180deg, rgba(15, 46, 26, 0.78) 0%, rgba(15, 46, 26, 0.98) 100%);
-  backdrop-filter: blur(6px);
-  border-top: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 8px 8px 0 0;
 }
 
 @media (min-width: 768px) {
-  .nandi-footer-bottom-bar {
+  .nandi-footer-underbar {
     flex-direction: row;
-    padding: 8px clamp(24px, 3.5vw, 64px);
+    padding: 12px clamp(24px, 3.5vw, 64px);
   }
 }
 
-.nandi-footer-copyright {
-  color: #ffffff;
-  font-size: clamp(11px, 0.8vw, 12px);
+.nandi-footer-underbar-copy {
   margin: 0;
   font-weight: 450;
-  opacity: 0.98;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+  color: #e5ded2;
+  letter-spacing: 0.01em;
 }
 
-.nandi-footer-legal-links {
+.nandi-footer-underbar-links {
   display: flex;
   align-items: center;
   gap: clamp(8px, 1.2vw, 16px);
-  color: #ffffff;
-  font-size: clamp(11px, 0.8vw, 12px);
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+  color: #e5ded2;
 }
 
-.nandi-footer-legal-btn {
+.nandi-footer-underbar-btn {
   background: none;
   border: none;
-  color: #ffffff;
+  color: #f5f0e6;
   font-size: inherit;
   padding: 0;
   cursor: pointer;
-  opacity: 0.95;
+  opacity: 0.92;
   transition: opacity 0.2s ease, text-decoration 0.2s ease;
 }
 
-.nandi-footer-legal-btn:hover {
+.nandi-footer-underbar-btn:hover {
   opacity: 1;
   text-decoration: underline;
 }
 
-.nandi-footer-legal-divider {
-  opacity: 0.7;
+.nandi-footer-underbar-divider {
+  opacity: 0.6;
   user-select: none;
-  color: #ffffff;
+  color: #e5ded2;
 }
