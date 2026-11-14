@@ -29,9 +29,10 @@ export default function ShopContent({
               /images/banners/shop/sunrise/shop-banner-sunrise-678-640.png 640w
             "
             sizes="(max-width: 640px) 100vw, 1024px"
-            alt="Nandi Farms - Shop the farm: Fresh milk, seasonal produce, and pantry staples"
+            alt="Scenic sunrise over Nandi Farms pasture with cows grazing, fresh dairy milk, butter, cheese, and farm produce"
             width={1024}
             height={151}
+            fetchPriority="high"
             loading="eager"
             decoding="async"
           />
