@@ -167,7 +167,7 @@ export default function ScrollMilkJourney({ onShopFresh }: ScrollMilkJourneyProp
     <section
       ref={sectionRef}
       id="scroll-milk-journey"
-      className="relative w-full bg-[#FAF6ED] py-16 sm:py-20 lg:py-28 px-4 sm:px-8 lg:px-12 select-none overflow-hidden"
+      className="relative w-full bg-[#FAF6ED] pt-16 sm:pt-20 lg:pt-28 pb-24 sm:pb-32 lg:pb-36 px-4 sm:px-8 lg:px-12 select-none overflow-hidden"
     >
       <div className="max-w-[1280px] mx-auto">
         

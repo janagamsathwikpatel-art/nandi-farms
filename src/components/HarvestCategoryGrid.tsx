@@ -1315,11 +1315,22 @@ export default function HarvestCategoryGrid() {
         ref={freshPageRef}
         className="w-full bg-[#faf5ea] border-t border-[#ded7c8] transition-all duration-500"
       >
-        {/* Interactive Scroll-Driven 3-Step Milk Journey (Images 1, 2, 3 open sequentially as user scrolls) */}
-        <div ref={catalogRef} className="w-full">
-          <ScrollMilkJourney onShopFresh={scrollToCatalog} />
-          <ScrollFruitJourney onShopFresh={scrollToCatalog} />
-          <ScrollVegetableJourney onShopFresh={scrollToCatalog} />
+        {/* Continuous 3-Section GSAP Journey Stack (Milk -> Fruit -> Vegetable) */}
+        <div id="farm-journeys-continuous-stack" ref={catalogRef} className="relative w-full overflow-visible">
+          {/* Section 1: The Milk Journey (z-10) */}
+          <div className="relative z-10 w-full">
+            <ScrollMilkJourney onShopFresh={scrollToCatalog} />
+          </div>
+
+          {/* Section 2: The Fruit Harvest (z-20, slides over Milk from backside) */}
+          <div className="relative z-20 w-full -mt-10 sm:-mt-14 rounded-t-[36px] sm:rounded-t-[48px] shadow-[0_-25px_60px_rgba(25,62,45,0.09)] border-t border-[#193E2D]/10 bg-[#FAF6ED] overflow-hidden">
+            <ScrollFruitJourney onShopFresh={scrollToCatalog} />
+          </div>
+
+          {/* Section 3: The Living Soil Vegetable Journey (z-30, slides over Fruit from backside) */}
+          <div className="relative z-30 w-full -mt-10 sm:-mt-14 rounded-t-[36px] sm:rounded-t-[48px] shadow-[0_-30px_70px_rgba(25,62,45,0.12)] border-t border-[#193E2D]/10 bg-[#FAF6ED] overflow-hidden">
+            <ScrollVegetableJourney onShopFresh={scrollToCatalog} />
+          </div>
         </div>
       </div>
 
