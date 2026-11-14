@@ -1,7 +1,5 @@
-import Image from "next/image";
-import Link from "next/link";
 import catalog from "@/data/nandi-shop-catalog.json";
-import { farmAssets, type HarvestCategory } from "@/data/nandi-shop";
+import { type HarvestCategory } from "@/data/nandi-shop";
 import ShopCatalog from "./ShopCatalog";
 
 export default function ShopContent({
@@ -11,27 +9,14 @@ export default function ShopContent({
 }) {
   return (
     <>
-      <section className="shop-intro" aria-labelledby="shop-heading">
-        <div className="shop-intro-copy">
-          <Link className="shop-back" href="/">
-            ← Back to the farm
-          </Link>
-          <p className="shop-kicker">The Nandi Farms shop</p>
-          <h1 id="shop-heading">{category?.title ?? "Shop the farm"}</h1>
-          <p id="shop-description">
-            {category?.description ??
-              "Fresh milk, seasonal produce, and pantry staples for your home."}
-          </p>
-        </div>
-        <div className="shop-intro-art" aria-hidden="true">
-          <Image
-            src={`${farmAssets}/${category?.image ?? "nandi-farms-harvest-crate.webp"}`}
-            width={category?.width ?? 1080}
-            height={category ? 360 : 656}
-            alt=""
-            loading="eager"
-          />
-        </div>
+      <section className="farm-banner" aria-label="Nandi Farms Shop Banner">
+        <h1 className="sr-only">{category?.title ?? "Shop the farm"}</h1>
+        <img
+          src="/images/nandi-farm-shop-banner-hd.png"
+          alt="Nandi Farms - Shop the farm: Fresh milk, seasonal produce, and pantry staples"
+          loading="eager"
+          decoding="async"
+        />
       </section>
       <ShopCatalog
         products={
