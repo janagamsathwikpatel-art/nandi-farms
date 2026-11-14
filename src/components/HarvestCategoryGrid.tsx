@@ -1126,14 +1126,15 @@ export default function HarvestCategoryGrid() {
                     Explore dairy, fruits, vegetables and more.
                   </p>
                 </div>
-                <Link
-                  href="/shop"
+                <button
+                  type="button"
+                  onClick={handleToggleAllCollections}
                   className="inline-flex items-center gap-2 bg-[#f3e4d5] hover:bg-[#ebd3be] text-[#4a3018] font-semibold text-xs sm:text-sm px-5 sm:px-6 py-2.5 sm:py-3 rounded-full transition-all duration-300 shadow-xs hover:shadow cursor-pointer self-start sm:self-auto shrink-0 focus:outline-none"
-                  aria-label="View all 9 collections in shop"
+                  aria-label="View all 9 collections"
                 >
                   <span>View all 9 collections</span>
                   <span className="text-base transition-transform duration-300">→</span>
-                </Link>
+                </button>
               </div>
 
               {/* Bento 3-Box Grid: Exact 2nd Image Layout (Milk on left, Veg & Fruits on right) */}
