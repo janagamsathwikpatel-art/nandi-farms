@@ -71,22 +71,24 @@ export default function ExperienceFarm({
         />
       </picture>
 
-      {/* Accessible Interactive Target over 'Shop the Harvest' Pill Button */}
-      <button
-        type="button"
-        onClick={handleExploreClick}
-        className="group absolute top-[62%] left-[4.5%] w-[25.5%] h-[25%] z-20 cursor-pointer rounded-full focus:outline-none focus:ring-2 focus:ring-[#16301d]"
-        aria-label="Shop the Harvest catalog"
-      >
-        <span className="sr-only">Shop the Harvest</span>
-      </button>
+      {/* Live HTML/Tailwind Typography & Interactive Button Designed Outside Image */}
+      <div className="absolute top-[34%] left-[4.8%] flex flex-col items-start justify-center z-20 select-none max-w-[48%] pointer-events-auto">
+        <h2 className="font-playfair text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-[66px] text-[#16301d] font-normal leading-[1.06] tracking-tight">
+          Explore the<br />Harvest
+        </h2>
 
-      {/* Broad Click Target over Left Content Area */}
-      <div
-        onClick={handleExploreClick}
-        className="absolute top-0 left-0 w-[40%] h-full z-10 cursor-pointer"
-        aria-hidden="true"
-      />
+        <button
+          type="button"
+          onClick={handleExploreClick}
+          className="mt-2.5 sm:mt-4 md:mt-5 lg:mt-6 inline-flex items-center gap-2 sm:gap-2.5 px-4 sm:px-6 lg:px-8 py-1.5 sm:py-2.5 lg:py-3.5 bg-[#16301d] hover:bg-[#1f4228] active:scale-95 text-white rounded-full font-sans font-medium text-xs sm:text-sm md:text-base transition-all duration-300 shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-[#16301d]/50 group cursor-pointer"
+          aria-label="Shop the Harvest catalog"
+        >
+          <span>Shop the Harvest</span>
+          <span className="transition-transform duration-300 group-hover:translate-x-1 font-sans">
+            →
+          </span>
+        </button>
+      </div>
     </section>
   );
 }
