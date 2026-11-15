@@ -82,12 +82,12 @@ export default function NandiFarmsFooter({
           <section className="brand-column">
             <div className="footer-brand-logo-wrap">
               <img
-                src="/images/footer/nandi-farms-logo-footer.png"
+                src="/images/footer/nandi-farms-calf-logo-v3.png"
                 alt="Nandi Farms"
                 className="footer-brand-logo-img"
                 width={185}
                 height={180}
-                loading="lazy"
+                loading="eager"
                 decoding="async"
               />
             </div>

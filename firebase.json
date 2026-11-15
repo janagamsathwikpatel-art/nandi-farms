@@ -25,6 +25,15 @@
           ]
         },
         {
+          "source": "/images/footer/**",
+          "headers": [
+            {
+              "key": "Cache-Control",
+              "value": "no-cache, no-store, must-revalidate"
+            }
+          ]
+        },
+        {
           "source": "/images/everyday/**",
           "headers": [
             {
@@ -93,6 +102,15 @@
         },
         {
           "source": "/images/banners/**",
+          "headers": [
+            {
+              "key": "Cache-Control",
+              "value": "no-cache, no-store, must-revalidate"
+            }
+          ]
+        },
+        {
+          "source": "/images/footer/**",
           "headers": [
             {
               "key": "Cache-Control",
