@@ -1,0 +1,119 @@
+.harvest-card {
+  position: relative;
+  min-height: 520px;
+  padding: 42px 116px;
+  background: #fbf7ef;
+  color: #103b27;
+  font-family: Georgia, serif;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.harvest-card-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.harvest-bg-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: right center;
+  display: block;
+}
+
+.harvest-card-content {
+  position: relative;
+  z-index: 2;
+  max-width: 580px;
+  margin-top: 110px;
+}
+
+.harvest-card h1 {
+  margin: 0 0 44px;
+  font-size: clamp(52px, 6.5vw, 96px);
+  font-weight: 500;
+  line-height: 1.05;
+  letter-spacing: -2px;
+}
+
+.harvest-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 24px;
+  padding: 26px 58px;
+  border-radius: 999px;
+  background: #103b27;
+  color: #fff;
+  font-family: Arial, sans-serif;
+  font-size: 24px;
+  text-decoration: none;
+  box-shadow: 0 10px 20px rgba(16, 59, 39, 0.15);
+  transition: all 0.25s ease;
+  cursor: pointer;
+}
+
+.harvest-button:hover {
+  background: #194a33;
+  transform: translateY(-2px);
+  box-shadow: 0 14px 28px rgba(16, 59, 39, 0.22);
+}
+
+.harvest-button span {
+  font-size: 32px;
+  line-height: 1;
+  transition: transform 0.2s ease;
+}
+
+.harvest-button:hover span {
+  transform: translateX(4px);
+}
+
+@media (max-width: 900px) {
+  .harvest-card {
+    padding: 36px 40px;
+  }
+  .harvest-card-content {
+    margin-top: 80px;
+  }
+  .harvest-card h1 {
+    font-size: 48px;
+    letter-spacing: -1.5px;
+    margin-bottom: 32px;
+  }
+  .harvest-button {
+    padding: 18px 36px;
+    font-size: 19px;
+  }
+}
+
+@media (max-width: 600px) {
+  .harvest-card {
+    min-height: auto;
+    padding: 48px 24px;
+  }
+
+  .harvest-card-content {
+    margin-top: 70px;
+    max-width: 100%;
+  }
+
+  .harvest-card h1 {
+    font-size: 42px;
+    letter-spacing: -1px;
+    margin-bottom: 28px;
+  }
+
+  .harvest-button {
+    padding: 18px 28px;
+    font-size: 18px;
+    width: 100%;
+    justify-content: center;
+  }
+}
