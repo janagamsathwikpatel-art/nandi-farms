@@ -1172,8 +1172,8 @@ export default function HarvestCategoryGrid() {
                 </button>
               </div>
 
-              {/* Dynamic 3-Card Bento Grid: Decoupled Clean Photographic Plates with Live Crisp Typography */}
-              <div className="grid grid-cols-1 lg:grid-cols-[1308fr_2201fr] lg:grid-rows-2 gap-3 sm:gap-4 lg:gap-5 w-full aspect-auto lg:aspect-[3548/1414]">
+              {/* Dynamic 3-Card Bento Grid: Full-Bleed Plates without White Background Layout */}
+              <div className="grid grid-cols-1 lg:grid-cols-[1224fr_2118fr] lg:grid-rows-2 gap-3 sm:gap-4 lg:gap-5 w-full aspect-auto lg:aspect-[3342/1258]">
                 {everydayGoodness.collections.map((collection, index) => {
                   const isMilk = index === 0;
                   const isVeg = index === 1;
@@ -1186,10 +1186,10 @@ export default function HarvestCategoryGrid() {
                       href={collection.href}
                       className={`collection-card group relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-xs hover:shadow-xl transition-all duration-300 cursor-pointer block border border-[#16301d]/[0.07] bg-[#faf5ea] ${
                         isMilk
-                          ? "lg:col-start-1 lg:row-start-1 lg:row-span-2 aspect-[1308/1414] lg:aspect-auto h-full"
+                          ? "lg:col-start-1 lg:row-start-1 lg:row-span-2 aspect-[1224/1258] lg:aspect-auto h-full"
                           : isVeg
-                          ? "lg:col-start-2 lg:row-start-1 aspect-[2201/694] lg:aspect-auto h-full"
-                          : "lg:col-start-2 lg:row-start-2 aspect-[2201/687] lg:aspect-auto h-full"
+                          ? "lg:col-start-2 lg:row-start-1 aspect-[2118/618] lg:aspect-auto h-full"
+                          : "lg:col-start-2 lg:row-start-2 aspect-[2118/605] lg:aspect-auto h-full"
                       }`}
                       aria-label={`Open ${collection.title} Collection`}
                     >
