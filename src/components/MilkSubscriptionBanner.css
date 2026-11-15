@@ -1,0 +1,215 @@
+:root {
+  --green: #164633;
+  --muted: #72877b;
+  --cream: #fbf7ef;
+  --border: #dce1d9;
+  --gold: #ae741d;
+}
+
+.milk-plans-wrapper {
+  background: var(--cream);
+  width: 100%;
+  padding: 68px 24px;
+  box-sizing: border-box;
+}
+
+.milk-plans-container {
+  max-width: 1280px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  gap: 56px;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.milk-plans-image-col {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.milk-plans-card {
+  background: white;
+  border-radius: 26px;
+  box-shadow: 0 16px 40px rgba(22, 70, 51, 0.08);
+  overflow: hidden;
+  max-width: 520px;
+  width: 100%;
+  border: 1px solid var(--border);
+  box-sizing: border-box;
+}
+
+.milk-plans-plate-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+}
+
+.milk-plans {
+  max-width: 100%;
+  color: var(--green);
+  box-sizing: border-box;
+}
+
+.eyebrow {
+  margin: 0 0 20px;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 6px;
+}
+
+.milk-plans h1 {
+  margin: 0;
+  font-family: Georgia, serif;
+  font-size: clamp(40px, 4.5vw, 64px);
+  line-height: 1.08;
+  font-weight: 500;
+}
+
+.description {
+  margin: 20px 0 40px;
+  color: #557364;
+  font-size: 20px;
+  line-height: 1.45;
+}
+
+.plans {
+  display: grid;
+  gap: 16px;
+}
+
+.plan {
+  position: relative;
+  display: grid;
+  grid-template-columns: 36px 1fr auto auto;
+  align-items: center;
+  gap: 18px;
+  width: 100%;
+  min-height: 96px;
+  padding: 22px 28px;
+  color: var(--green);
+  text-align: left;
+  background: white;
+  border: 2px solid var(--border);
+  border-radius: 22px;
+  cursor: pointer;
+  box-sizing: border-box;
+  transition: all 0.2s ease;
+}
+
+.plan:hover {
+  border-color: #b8c6bd;
+  transform: translateY(-1px);
+}
+
+.plan strong {
+  font-size: 22px;
+  letter-spacing: 1px;
+}
+
+.plan.selected {
+  border: 3.5px solid var(--green);
+  box-shadow: 0 12px 24px rgba(22, 70, 51, 0.08);
+}
+
+.check {
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  border: 2px solid #b8c6bd;
+  border-radius: 50%;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.selected .check {
+  background: var(--green);
+  border-color: var(--green);
+}
+
+.price {
+  font-family: Georgia, serif;
+  font-size: 32px;
+  font-weight: 600;
+}
+
+.per-day {
+  color: var(--muted);
+  font-size: 18px;
+}
+
+.popular {
+  padding-top: 38px;
+}
+
+.popular-label {
+  position: absolute;
+  top: 12px;
+  left: 28px;
+  color: var(--gold);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 3px;
+}
+
+.start-button {
+  margin-top: 36px;
+  padding: 22px 48px;
+  border: 0;
+  border-radius: 20px;
+  background: var(--green);
+  color: white;
+  font-size: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  transition: all 0.2s ease;
+}
+
+.start-button:hover {
+  background: #103325;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(22, 70, 51, 0.2);
+}
+
+.start-button span {
+  margin-left: 14px;
+  font-size: 26px;
+  transition: transform 0.2s ease;
+}
+
+.start-button:hover span {
+  transform: translateX(4px);
+}
+
+@media (max-width: 1024px) {
+  .milk-plans-container {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+
+@media (max-width: 700px) {
+  .milk-plans-wrapper { padding: 40px 18px; }
+  .description { margin-bottom: 28px; font-size: 18px; }
+
+  .plan {
+    grid-template-columns: 32px 1fr auto;
+    min-height: 84px;
+    padding: 18px 20px;
+  }
+
+  .per-day {
+    grid-column: 2 / -1;
+    font-size: 15px;
+  }
+
+  .price { font-size: 26px; }
+  .plan strong { font-size: 18px; }
+  .start-button { width: 100%; justify-content: center; }
+}
