@@ -39,6 +39,29 @@
   z-index: 2;
 }
 
+/* Left Produce Still Life (Matching Reference: Copper Can, Milk Bottle, Eggs, Tomatoes) */
+.footer-left-produce-wrapper {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: 4;
+  pointer-events: none;
+  width: clamp(210px, 21vw, 340px);
+  max-height: 92%;
+  display: flex;
+  align-items: flex-end;
+}
+
+.footer-left-produce-img {
+  width: 100%;
+  height: auto;
+  max-height: 560px;
+  display: block;
+  object-fit: contain;
+  object-position: left bottom;
+  filter: drop-shadow(4px 4px 16px rgba(60, 20, 10, 0.12));
+}
+
 /* User Provided CSS */
 .nandi-footer {
   position: relative;
@@ -49,6 +72,13 @@
   color: #5a2419;
   font-family: Georgia, serif;
   box-sizing: border-box;
+}
+
+/* Desktop offset so brand column clears the produce still life cleanly */
+@media (min-width: 1025px) {
+  .nandi-footer {
+    padding-left: clamp(210px, 20vw, 290px);
+  }
 }
 
 .footer-top {
@@ -240,7 +270,18 @@
   margin: 0;
 }
 
+@media (max-width: 1024px) {
+  .footer-left-produce-wrapper {
+    width: clamp(160px, 18vw, 210px);
+    opacity: 0.85;
+  }
+}
+
 @media (max-width: 800px) {
+  .footer-left-produce-wrapper {
+    display: none;
+  }
+
   .footer-grid {
     grid-template-columns: 1fr;
     gap: 28px;

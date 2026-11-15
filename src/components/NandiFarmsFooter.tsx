@@ -69,7 +69,23 @@ export default function NandiFarmsFooter({
         </picture>
       </div>
 
-      {/* 2. User Provided Code Format as Live Text */}
+      {/* 2. Left Produce Still Life (Copper Milk Can, Milk Bottle, Eggs, Tomatoes) */}
+      <div className="footer-left-produce-wrapper" aria-hidden="true">
+        <picture>
+          <source srcSet="/images/footer/nandi-farms-footer-produce.webp" type="image/webp" />
+          <img
+            src="/images/footer/nandi-farms-footer-produce.png"
+            alt="Nandi Farms Fresh Produce"
+            className="footer-left-produce-img"
+            width={380}
+            height={580}
+            loading="lazy"
+            decoding="async"
+          />
+        </picture>
+      </div>
+
+      {/* 3. User Provided Code Format as Live Text */}
       <div className="nandi-footer">
         <div className="footer-top">
           <Link className="shop-link" href="/shop">
