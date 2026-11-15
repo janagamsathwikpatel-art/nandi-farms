@@ -1,7 +1,8 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
+import { Check } from "lucide-react";
 import { shopCategories, ShopCategoryItem } from "@/data/shopCategories";
 
 export interface QuickCategoryItem {
@@ -24,13 +25,49 @@ interface QuickCategoryGridProps {
 }
 
 export default function QuickCategoryGrid({ onSelectCategory }: QuickCategoryGridProps) {
+  // State for active copied feedback
+  const [copiedId, setCopiedId] = useState<string | null>(null);
+
+  const handleCopy = (e: React.MouseEvent, text: string, id: string) => {
+    e.stopPropagation();
+    e.preventDefault();
+    if (typeof navigator !== "undefined" && navigator.clipboard) {
+      navigator.clipboard.writeText(text).then(() => {
+        setCopiedId(id);
+        setTimeout(() => setCopiedId(null), 2000);
+      }).catch(() => {
+        // Fallback for clipboard permissions if any
+        const textarea = document.createElement("textarea");
+        textarea.value = text;
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand("copy");
+        document.body.removeChild(textarea);
+        setCopiedId(id);
+        setTimeout(() => setCopiedId(null), 2000);
+      });
+    }
+  };
+
   return (
-    <section id="quick-categories" className="shop-categories w-full bg-[#faf5ea] border-b border-[#ded7c8] py-8 sm:py-10 lg:py-12 select-none">
+    <section id="quick-categories" className="shop-categories w-full bg-[#faf5ea] border-b border-[#ded7c8] py-8 sm:py-10 lg:py-12 select-text">
       <div className="w-full px-4 sm:px-6 lg:px-10 xl:px-12">
-        {/* Semantic Header */}
+        {/* Semantic Header with Click-to-Copy and Motion */}
         <header className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-4 sm:pb-5 border-b border-[#ded7c8] mb-8 sm:mb-10 lg:mb-12">
-          <div>
-            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-[48px] font-semibold tracking-tight text-[#16301d] leading-none">
+          <div
+            onClick={(e) => handleCopy(e, `${shopCategories.title} - ${shopCategories.subtitle}`, "header")}
+            className="group relative cursor-pointer select-text transition-transform duration-200 hover:-translate-y-1 active:translate-y-0"
+            title="Click to copy header text"
+          >
+            {/* Floating Badge for Header */}
+            {copiedId === "header" && (
+              <div className="absolute -top-8 left-0 z-30 flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#193E2D] text-white text-[11px] font-semibold shadow-lg animate-bounce pointer-events-none">
+                <Check className="w-3.5 h-3.5 text-emerald-300" />
+                <span>Copied to Clipboard!</span>
+              </div>
+            )}
+
+            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-[48px] font-semibold tracking-tight text-[#16301d] leading-none transition-colors group-hover:text-[#2b5936]">
               {shopCategories.title}
             </h2>
             <p className="font-sans text-[11px] sm:text-xs md:text-sm font-extrabold tracking-[0.24em] text-[#193622] uppercase mt-2 sm:mt-2.5">
@@ -50,31 +87,53 @@ export default function QuickCategoryGrid({ onSelectCategory }: QuickCategoryGri
 
         {/* 14 Category Grid - Symmetrical 7x2 Layout */}
         <div className="category-grid grid grid-cols-4 sm:grid-cols-7 lg:grid-cols-7 gap-y-8 sm:gap-y-10 lg:gap-y-12 gap-x-3 sm:gap-x-4 lg:gap-x-6 items-start justify-items-center">
-          {shopCategories.categories.map((category) => (
-            <Link
-              href={category.href}
-              key={category.name}
-              onClick={() => onSelectCategory?.(category)}
-              className="category-card group flex flex-col items-center text-center cursor-pointer focus:outline-none"
-              aria-label={`Shop ${category.name}`}
-            >
-              {/* Product Icon Box */}
-              <div className="w-20 h-20 sm:w-22 sm:h-22 lg:w-26 lg:h-26 flex items-center justify-center p-2 rounded-2xl transition-all duration-300 ease-out group-hover:-translate-y-2 group-hover:scale-110">
-                <img
-                  src={category.image}
-                  alt={category.name}
-                  className="w-full h-full object-contain filter drop-shadow-[0_4px_10px_rgba(0,0,0,0.07)] group-hover:drop-shadow-[0_8px_18px_rgba(0,0,0,0.13)] transition-all duration-300"
-                  loading="eager"
-                  decoding="async"
-                />
-              </div>
+          {shopCategories.categories.map((category) => {
+            const isCopied = copiedId === category.name;
 
-              {/* Dynamic Live Text */}
-              <span className="text-xs sm:text-sm lg:text-[15px] font-bold text-[#0f172a] leading-tight text-center mt-3 group-hover:text-[#e11d48] transition-colors max-w-[120px] min-h-[38px] flex items-start justify-center">
-                {category.name}
-              </span>
-            </Link>
-          ))}
+            return (
+              <div
+                key={category.name}
+                className="category-card group relative flex flex-col items-center text-center select-text"
+              >
+                {/* Floating Badge for Individual Category */}
+                {isCopied && (
+                  <div className="absolute -top-7 left-1/2 -translate-x-1/2 z-30 flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-[#193E2D] text-white text-[10px] font-semibold shadow-lg animate-bounce whitespace-nowrap pointer-events-none">
+                    <Check className="w-3 h-3 text-emerald-300" />
+                    <span>Copied!</span>
+                  </div>
+                )}
+
+                {/* Product Icon Box (Navigates to Category Page on Click) */}
+                <Link
+                  href={category.href}
+                  onClick={() => onSelectCategory?.(category)}
+                  className="w-20 h-20 sm:w-22 sm:h-22 lg:w-26 lg:h-26 flex items-center justify-center p-2 rounded-2xl transition-all duration-300 ease-out group-hover:-translate-y-2 group-hover:scale-110 cursor-pointer"
+                  aria-label={`Shop ${category.name}`}
+                >
+                  <img
+                    src={category.image}
+                    alt={category.name}
+                    className="w-full h-full object-contain filter drop-shadow-[0_4px_10px_rgba(0,0,0,0.07)] group-hover:drop-shadow-[0_8px_18px_rgba(0,0,0,0.13)] transition-all duration-300"
+                    loading="eager"
+                    decoding="async"
+                  />
+                </Link>
+
+                {/* Category Title: Click-to-Copy with Tactile Motion Animation ("text moved") */}
+                <button
+                  type="button"
+                  onClick={(e) => handleCopy(e, category.name, category.name)}
+                  title={`Click to copy "${category.name}"`}
+                  className={`text-xs sm:text-sm lg:text-[15px] font-bold leading-tight text-center mt-3 max-w-[120px] min-h-[38px] flex items-start justify-center cursor-pointer select-text transition-all duration-200
+                    hover:text-[#2b5936] hover:-translate-y-1 active:translate-y-0.5 active:scale-95
+                    ${isCopied ? "text-[#193E2D] font-extrabold -translate-y-1 scale-105" : "text-[#0f172a]"}
+                  `}
+                >
+                  {category.name}
+                </button>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>
