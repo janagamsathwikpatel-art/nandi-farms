@@ -1,0 +1,59 @@
+.shop-farm-banner {
+  position: relative;
+  min-height: 620px;
+  padding: 70px 32px;
+  text-align: center;
+  color: #650b0b;
+  background-color: #fff6e8;
+  background-image: url("/images/banners/shop/shop-farm-banner-plate.webp");
+  background-size: cover;
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  font-family: Georgia, serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  box-sizing: border-box;
+}
+
+.shop-farm-banner h1 {
+  margin: 0;
+  font-size: clamp(58px, 8vw, 116px);
+  font-style: italic;
+  font-weight: normal;
+  line-height: 1.1;
+  color: #650b0b;
+}
+
+.shop-farm-banner p {
+  max-width: 640px;
+  margin: 22px auto;
+  font-size: clamp(24px, 3vw, 38px);
+  font-style: italic;
+  line-height: 1.35;
+  color: #650b0b;
+}
+
+.shop-now {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 12px 42px;
+  border: 3px solid #d89c00;
+  border-radius: 999px;
+  background: #234c08;
+  color: white;
+  font-size: 26px;
+  letter-spacing: 2px;
+  text-decoration: none;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.shop-now:hover {
+  background: #1c3d06;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(35, 76, 8, 0.25);
+}
