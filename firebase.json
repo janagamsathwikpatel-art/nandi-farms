@@ -34,6 +34,15 @@
           ]
         },
         {
+          "source": "/images/collections/**",
+          "headers": [
+            {
+              "key": "Cache-Control",
+              "value": "no-cache, no-store, must-revalidate"
+            }
+          ]
+        },
+        {
           "source": "/images/everyday/**",
           "headers": [
             {
@@ -111,6 +120,15 @@
         },
         {
           "source": "/images/footer/**",
+          "headers": [
+            {
+              "key": "Cache-Control",
+              "value": "no-cache, no-store, must-revalidate"
+            }
+          ]
+        },
+        {
+          "source": "/images/collections/**",
           "headers": [
             {
               "key": "Cache-Control",

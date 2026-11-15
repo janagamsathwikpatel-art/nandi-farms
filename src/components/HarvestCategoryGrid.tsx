@@ -12,6 +12,8 @@ import {
   ArrowRight,
   CheckCircle2,
   Leaf,
+  Check,
+  Copy,
 } from "lucide-react";
 import MilkSubscriptionModal from "./MilkSubscriptionModal";
 import ScrollMilkJourney from "./ScrollMilkJourney";
@@ -20,6 +22,7 @@ import ScrollVegetableJourney from "./ScrollVegetableJourney";
 import { ProductModal } from "./ProductModal";
 import { PRODUCTS } from "@/data/products";
 import { Product, CartItem } from "@/types";
+import { everydayGoodness } from "@/data/everydayGoodness";
 
 export interface HarvestItem {
   id: string;
@@ -1014,6 +1017,28 @@ export default function HarvestCategoryGrid() {
   const [isMilkModalOpen, setIsMilkModalOpen] = useState(false);
   const [activeModalProduct, setActiveModalProduct] = useState<TodaysHarvestFeatured | null>(null);
   const [showAllCollections, setShowAllCollections] = useState(false);
+  const [copiedGoodness, setCopiedGoodness] = useState<string | null>(null);
+
+  const handleCopyGoodness = (e: React.MouseEvent, text: string, id: string) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (typeof navigator !== "undefined" && navigator.clipboard) {
+      navigator.clipboard.writeText(text).then(() => {
+        setCopiedGoodness(id);
+        setTimeout(() => setCopiedGoodness(null), 2400);
+      });
+    }
+  };
+
+  const handleCopyGoodnessHeader = () => {
+    const text = `${everydayGoodness.title}\n${everydayGoodness.description}`;
+    if (typeof navigator !== "undefined" && navigator.clipboard) {
+      navigator.clipboard.writeText(text).then(() => {
+        setCopiedGoodness("header");
+        setTimeout(() => setCopiedGoodness(null), 2400);
+      });
+    }
+  };
   const freshPageRef = useRef<HTMLDivElement>(null);
   const allCollectionsRef = useRef<HTMLDivElement>(null);
   const categoryProductsAnchorRef = useRef<HTMLDivElement>(null);
@@ -1110,93 +1135,107 @@ export default function HarvestCategoryGrid() {
       <div
         ref={allCollectionsRef}
         id="collections-container"
-        className="w-full max-w-[1536px] 2xl:max-w-[1680px] mx-auto px-4 sm:px-6 lg:px-10 xl:px-12 pb-6 sm:pb-8 select-none"
+        className="w-full max-w-[1536px] 2xl:max-w-[1680px] mx-auto px-4 sm:px-6 lg:px-10 xl:px-12 pb-6 sm:pb-8 select-text"
       >
         <div className="w-full">
           {!showAllCollections ? (
-            /* STATE A: EVERYDAY GOODNESS (Exact 2nd Image: 3-Box Bento Layout) */
+            /* STATE A: EVERYDAY GOODNESS (Decoupled 3-Card Bento Layout) */
             <div className="animate-in fade-in duration-500">
               {/* Header Bar: Everyday Goodness with "View all 9 collections ->" button */}
               <div className="flex flex-col sm:flex-row sm:items-start justify-between pb-6 sm:pb-8 gap-4 border-b border-[#ece3d5]/80 mb-6 sm:mb-8">
-                <div>
-                  <h2 className="font-playfair text-3xl sm:text-4xl lg:text-[44px] text-[#16301d] font-normal tracking-tight leading-none">
-                    Everyday Goodness
+                <div
+                  onClick={handleCopyGoodnessHeader}
+                  title="Click to copy section header"
+                  className="relative cursor-pointer group"
+                >
+                  {copiedGoodness === "header" && (
+                    <div className="absolute -top-7 left-0 z-30 flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#16301d] text-white text-[11px] font-semibold shadow-lg animate-bounce">
+                      <Check className="w-3.5 h-3.5 text-emerald-300" />
+                      <span>Copied Header!</span>
+                    </div>
+                  )}
+                  <h2 className="font-playfair text-3xl sm:text-4xl lg:text-[44px] text-[#16301d] font-normal tracking-tight leading-none select-text transition-transform duration-300 group-hover:translate-x-0.5">
+                    {everydayGoodness.title}
                   </h2>
-                  <p className="text-sm sm:text-base text-[#4b5563] mt-2.5 font-sans font-medium">
-                    Explore dairy, fruits, vegetables and more.
+                  <p className="text-sm sm:text-base text-[#4b5563] mt-2.5 font-sans font-medium select-text">
+                    {everydayGoodness.description}
                   </p>
                 </div>
                 <button
                   type="button"
                   onClick={handleToggleAllCollections}
                   className="inline-flex items-center gap-2 bg-[#f3e4d5] hover:bg-[#ebd3be] text-[#4a3018] font-semibold text-xs sm:text-sm px-5 sm:px-6 py-2.5 sm:py-3 rounded-full transition-all duration-300 shadow-xs hover:shadow cursor-pointer self-start sm:self-auto shrink-0 focus:outline-none"
-                  aria-label="View all 9 collections"
+                  aria-label={everydayGoodness.cta.label}
                 >
-                  <span>View all 9 collections</span>
+                  <span>{everydayGoodness.cta.label}</span>
                   <span className="text-base transition-transform duration-300">→</span>
                 </button>
               </div>
 
-              {/* Unified Bento Master Image: Powered directly by public/everyday.png */}
-              <div className="relative w-full aspect-[1774/707] rounded-2xl sm:rounded-3xl overflow-hidden shadow-xs border border-[#16301d]/[0.07] bg-[#faf5ea]">
-                {/* Master Responsive Image Picture */}
-                <picture>
-                  <source
-                    type="image/webp"
-                    srcSet="
-                      /images/everyday/everyday-3548.webp 3548w,
-                      /images/everyday/everyday-1920.webp 1920w,
-                      /images/everyday/everyday-1774.webp 1774w,
-                      /images/everyday/everyday-1280.webp 1280w,
-                      /images/everyday/everyday-1024.webp 1024w
-                    "
-                    sizes="(max-width: 640px) 100vw, 1520px"
-                  />
-                  <img
-                    src="/everyday.png"
-                    srcSet="
-                      /images/everyday/everyday-3548.png 3548w,
-                      /images/everyday/everyday-1920.png 1920w,
-                      /images/everyday/everyday-1774.png 1774w,
-                      /images/everyday/everyday-1280.png 1280w,
-                      /images/everyday/everyday-1024.png 1024w
-                    "
-                    sizes="(max-width: 640px) 100vw, 1520px"
-                    alt="Everyday Goodness - Fresh Milk, Organic Vegetables, and Orchard Fruits"
-                    width={1774}
-                    height={707}
-                    loading="eager"
-                    decoding="async"
-                    className="w-full h-full object-cover select-none pointer-events-none"
-                  />
-                </picture>
+              {/* Dynamic 3-Card Bento Grid: Decoupled Clean Photographic Plates with Live Crisp Typography */}
+              <div className="grid grid-cols-1 lg:grid-cols-[1308fr_2201fr] lg:grid-rows-2 gap-3 sm:gap-4 lg:gap-5 w-full aspect-auto lg:aspect-[3548/1414]">
+                {everydayGoodness.collections.map((collection, index) => {
+                  const isMilk = index === 0;
+                  const isVeg = index === 1;
+                  const arrowWidth = isVeg ? "w-24 sm:w-28" : "w-16 sm:w-20";
+                  const isCopied = copiedGoodness === collection.title;
 
-                {/* Interactive Zone 1: Milk (Left card: 0 to 37.5% width) */}
-                <Link
-                  href="/shop"
-                  className="group absolute top-0 left-0 w-[37.5%] h-full z-10 cursor-pointer"
-                  aria-label="Shop Farm Fresh Milk Products"
-                >
-                  <span className="sr-only">Milk</span>
-                </Link>
+                  return (
+                    <Link
+                      key={collection.title}
+                      href={collection.href}
+                      className={`collection-card group relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-xs hover:shadow-xl transition-all duration-300 cursor-pointer block border border-[#16301d]/[0.07] bg-[#faf5ea] ${
+                        isMilk
+                          ? "lg:col-start-1 lg:row-start-1 lg:row-span-2 aspect-[1308/1414] lg:aspect-auto h-full"
+                          : isVeg
+                          ? "lg:col-start-2 lg:row-start-1 aspect-[2201/694] lg:aspect-auto h-full"
+                          : "lg:col-start-2 lg:row-start-2 aspect-[2201/687] lg:aspect-auto h-full"
+                      }`}
+                      aria-label={`Open ${collection.title} Collection`}
+                    >
+                      {/* Decoupled Clean Photographic Plate (Zero text baked into image) */}
+                      <img
+                        src={collection.image}
+                        alt={collection.title}
+                        className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.02] select-none pointer-events-none"
+                        loading="eager"
+                        decoding="async"
+                      />
 
-                {/* Interactive Zone 2: Vegetables (Top-right card: 38% to 100% width, top 49% height) */}
-                <Link
-                  href="/shop"
-                  className="group absolute top-0 left-[38%] w-[62%] h-[49%] z-10 cursor-pointer"
-                  aria-label="Shop Fresh Organic Vegetables Products"
-                >
-                  <span className="sr-only">Vegetables</span>
-                </Link>
+                      {/* Floating Copied Notification Pill */}
+                      {isCopied && (
+                        <div className="absolute top-4 right-4 z-30 flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#16301d] text-white text-[11px] font-semibold shadow-lg animate-bounce">
+                          <Check className="w-3.5 h-3.5 text-emerald-300" />
+                          <span>Copied {collection.title}!</span>
+                        </div>
+                      )}
 
-                {/* Interactive Zone 3: Fruits (Bottom-right card: 38% to 100% width, bottom 49% height) */}
-                <Link
-                  href="/shop"
-                  className="group absolute bottom-0 left-[38%] w-[62%] h-[49%] z-10 cursor-pointer"
-                  aria-label="Shop Orchard Fruits Products"
-                >
-                  <span className="sr-only">Fruits</span>
-                </Link>
+                      {/* Live Crisp Typography In The Box */}
+                      <div
+                        onClick={(e) =>
+                          handleCopyGoodness(
+                            e,
+                            `${collection.title} Collection\n${collection.href}`,
+                            collection.title
+                          )
+                        }
+                        title={`Click text to copy "${collection.title}"`}
+                        className="absolute top-4 sm:top-5 lg:top-7 left-4 sm:left-5 lg:left-7 z-10 select-text cursor-copy p-1 rounded-md transition-colors"
+                      >
+                        <span className="font-playfair text-2xl sm:text-3xl lg:text-4xl text-[#16301d] font-normal tracking-tight block leading-none drop-shadow-xs select-text">
+                          {collection.title}
+                        </span>
+                        <div
+                          className={`flex items-center ${arrowWidth} h-px bg-[#16301d]/70 mt-1.5 sm:mt-2 relative`}
+                        >
+                          <span className="absolute -right-1 -top-2 text-xs sm:text-sm text-[#16301d] transition-transform duration-300 group-hover:translate-x-1.5">
+                            →
+                          </span>
+                        </div>
+                      </div>
+                    </Link>
+                  );
+                })}
               </div>
             </div>
           ) : (
