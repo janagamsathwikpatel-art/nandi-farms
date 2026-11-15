@@ -49,7 +49,7 @@ export default function NandiFarmsFooter({
           </Link>
         </section>
 
-        {/* Existing Farm Shop Column */}
+        {/* Farm Shop Column */}
         <section className="footer-nav-col">
           <h3>FARM SHOP</h3>
           <Link href="/shop/milk" className="footer-nav-link">Milk &amp; Dairy</Link>
@@ -57,27 +57,27 @@ export default function NandiFarmsFooter({
           <Link href="/shop/eggs" className="footer-nav-link">Eggs &amp; Pantry</Link>
         </section>
 
-        {/* Existing Milk Plans Column */}
+        {/* Milk Plans Column */}
         <section className="footer-nav-col">
           <h3>MILK PLANS</h3>
           <a
             href="https://eveggie.in/subscriptions"
             target="_blank"
             rel="noopener noreferrer"
-            className="footer-nav-link"
+            className="footer-nav-link solid-underline"
           >
             Explore Milk Plans
           </a>
           <button
             type="button"
-            className="footer-link-btn"
+            className="footer-link-btn solid-underline"
             onClick={onOpenSubscription}
           >
             Manage Deliveries
           </button>
         </section>
 
-        {/* Existing Customer Care Column */}
+        {/* Customer Care Column */}
         <section className="footer-nav-col customer-care-col">
           <h3>CUSTOMER CARE</h3>
           <Link href="/shop" className="footer-nav-link">Delivery Areas</Link>
