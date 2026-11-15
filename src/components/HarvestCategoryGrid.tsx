@@ -1172,40 +1172,42 @@ export default function HarvestCategoryGrid() {
                 </button>
               </div>
 
-              {/* Everyday Goodness: Pure Single Image Banner ("Only Image") */}
-              <div className="w-full relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-xs hover:shadow-lg transition-all duration-300 border border-[#16301d]/[0.07] bg-[#faf5ea] group">
-                <picture>
-                  <source srcSet="/images/collections/everyday-goodness-plate.webp" type="image/webp" />
-                  <img
-                    src="/images/collections/everyday-goodness-plate.png"
-                    alt="Everyday Goodness - Dairy, Vegetables, and Fruits"
-                    className="w-full h-auto object-cover select-none pointer-events-none transition-transform duration-700 ease-out group-hover:scale-[1.01]"
-                    loading="eager"
-                    decoding="async"
-                  />
-                </picture>
+              {/* Collection Grid: 3 Clean Photographic Cards (Zero White Layout Background) */}
+              <div className="collection-grid grid grid-cols-1 lg:grid-cols-[1224fr_2118fr] lg:grid-rows-2 gap-3 sm:gap-4 lg:gap-5 w-full aspect-auto lg:aspect-[3342/1258]">
+                {everydayGoodness.collections.map((collection, index) => {
+                  const isMilk = index === 0;
+                  const isVeg = index === 1;
 
-                {/* Interactive Category Hit Zones (Seamless responsive overlays for Milk, Veg, Fruit) */}
-                <div className="absolute inset-0 grid grid-cols-1 lg:grid-cols-[1224fr_2118fr] lg:grid-rows-2">
-                  <Link
-                    href="/milk"
-                    aria-label="Open Milk Collection"
-                    className="lg:col-start-1 lg:row-start-1 lg:row-span-2 cursor-pointer z-10"
-                    title="Milk Collection"
-                  />
-                  <Link
-                    href="/vegetables"
-                    aria-label="Open Vegetables Collection"
-                    className="lg:col-start-2 lg:row-start-1 cursor-pointer z-10"
-                    title="Vegetables Collection"
-                  />
-                  <Link
-                    href="/fruits"
-                    aria-label="Open Fruits Collection"
-                    className="lg:col-start-2 lg:row-start-2 cursor-pointer z-10"
-                    title="Fruits Collection"
-                  />
-                </div>
+                  return (
+                    <Link
+                      href={collection.href}
+                      className={`collection-card group relative rounded-2xl sm:rounded-3xl shadow-xs hover:shadow-xl transition-all duration-300 cursor-pointer block border border-[#16301d]/[0.07] bg-[#faf5ea] ${
+                        isMilk
+                          ? "lg:col-start-1 lg:row-start-1 lg:row-span-2 aspect-[1224/1258] lg:aspect-auto h-full overflow-hidden"
+                          : isVeg
+                          ? "lg:col-start-2 lg:row-start-1 aspect-[2118/667] lg:aspect-auto h-full overflow-visible"
+                          : "lg:col-start-2 lg:row-start-2 aspect-[2118/605] lg:aspect-auto h-full overflow-hidden"
+                      }`}
+                      key={collection.title}
+                    >
+                      {/* Decoupled Clean Photography (Zero text baked in; Veg has leaves popping outside) */}
+                      <img
+                        src={collection.image}
+                        alt={collection.title}
+                        className={`w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.02] ${
+                          isVeg ? "rounded-b-2xl sm:rounded-b-3xl" : "rounded-2xl sm:rounded-3xl"
+                        }`}
+                        loading="eager"
+                        decoding="async"
+                      />
+
+                      {/* Live HTML Text from Code: <span>{collection.title} →</span> */}
+                      <span className="absolute top-4 sm:top-5 lg:top-7 left-4 sm:left-5 lg:left-7 z-10 font-playfair text-2xl sm:text-3xl lg:text-4xl text-[#16301d] font-normal tracking-tight block leading-none drop-shadow-xs select-text">
+                        {collection.title} →
+                      </span>
+                    </Link>
+                  );
+                })}
               </div>
             </div>
           ) : (
