@@ -1,18 +1,60 @@
-/* Nandi Farms Editorial Typography Footer */
+/* Container with Restored Vintage Gowshala Etching Background */
+.nandi-footer-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background-color: #f7eedf;
+}
+
+.nandi-footer-bg-wrapper {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.nandi-footer-bg-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center bottom;
+  display: block;
+}
+
+/* Subtle parchment gradient overlay ensuring 100% text legibility */
+.nandi-footer-container::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(247, 238, 223, 0.94) 0%,
+    rgba(247, 238, 223, 0.88) 55%,
+    rgba(247, 238, 223, 0.25) 85%,
+    rgba(247, 238, 223, 0.85) 100%
+  );
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* User Provided CSS */
 .nandi-footer {
+  position: relative;
+  z-index: 3;
   max-width: 1280px;
   margin: auto;
-  padding: 40px;
+  padding: 44px 40px 30px;
   color: #5a2419;
   font-family: Georgia, serif;
-  background: transparent;
   box-sizing: border-box;
 }
 
 .footer-top {
   display: flex;
   justify-content: flex-end;
-  padding-bottom: 30px;
+  padding-bottom: 24px;
   border-bottom: 1px solid #8f3323;
 }
 
@@ -23,18 +65,22 @@
   letter-spacing: 2px;
   text-decoration: none;
   transition: color 0.2s ease, transform 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
 }
 
 .shop-link:hover,
 .story-link:hover {
-  color: #aa2421;
+  color: #a82725;
+  transform: translateX(3px);
 }
 
 .footer-grid {
   display: grid;
   grid-template-columns: 1.4fr 1fr 1fr 1fr;
   gap: 36px;
-  padding: 56px 0;
+  padding: 48px 0 220px; /* Space for the gowshala etching to shine through */
 }
 
 .footer-grid section:not(.brand-column) {
@@ -45,7 +91,7 @@
 .logo-text strong {
   display: block;
   color: #8b1718;
-  font-size: 54px;
+  font-size: 52px;
   font-style: italic;
   line-height: 1.05;
 }
@@ -53,7 +99,7 @@
 .logo-text span {
   display: block;
   color: #8b1718;
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 700;
   letter-spacing: 8px;
   margin-top: 4px;
@@ -62,24 +108,25 @@
 .nandi-footer h2,
 .brand-column h2 {
   color: #8b1718;
-  font-size: 30px;
+  font-size: 28px;
   font-style: italic;
-  margin-top: 36px;
-  margin-bottom: 14px;
+  margin-top: 32px;
+  margin-bottom: 12px;
   line-height: 1.25;
 }
 
 .brand-column p {
   color: #5a2419;
-  font-size: 16px;
+  font-size: 15.5px;
   line-height: 1.5;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
+  max-width: 290px;
 }
 
 .nandi-footer h3,
 .footer-grid h3 {
   color: #8b1718;
-  font-size: 22px;
+  font-size: 21px;
   margin-top: 0;
   margin-bottom: 10px;
   letter-spacing: 0.5px;
@@ -93,10 +140,10 @@
   background: none;
   border: none;
   cursor: pointer;
-  padding: 16px 0;
+  padding: 14px 0;
   color: #5a2419;
   font-family: Georgia, serif;
-  font-size: 18px;
+  font-size: 17.5px;
   text-decoration: none;
   border-bottom: 1px dotted #c99a7e;
   transition: color 0.2s ease, padding-left 0.2s ease;
@@ -115,7 +162,7 @@
   padding-top: 20px;
   border-top: 1px solid #8f3323;
   color: #5a2419;
-  font-size: 15px;
+  font-size: 14.5px;
 }
 
 .footer-bottom a {
@@ -199,7 +246,7 @@
   .footer-grid {
     grid-template-columns: 1fr;
     gap: 28px;
-    padding: 36px 0;
+    padding: 36px 0 160px;
   }
 
   .footer-grid section:not(.brand-column) {
@@ -219,7 +266,7 @@
 
   .nandi-footer h2,
   .brand-column h2 {
-    font-size: 26px;
+    font-size: 24px;
     margin-top: 24px;
   }
 }
