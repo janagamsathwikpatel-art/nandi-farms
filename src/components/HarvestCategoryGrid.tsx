@@ -1172,70 +1172,40 @@ export default function HarvestCategoryGrid() {
                 </button>
               </div>
 
-              {/* Dynamic 3-Card Bento Grid: Full-Bleed Plates without White Background Layout */}
-              <div className="grid grid-cols-1 lg:grid-cols-[1224fr_2118fr] lg:grid-rows-2 gap-3 sm:gap-4 lg:gap-5 w-full aspect-auto lg:aspect-[3342/1258]">
-                {everydayGoodness.collections.map((collection, index) => {
-                  const isMilk = index === 0;
-                  const isVeg = index === 1;
-                  const arrowWidth = isVeg ? "w-24 sm:w-28" : "w-16 sm:w-20";
-                  const isCopied = copiedGoodness === collection.title;
+              {/* Everyday Goodness: Pure Single Image Banner ("Only Image") with Responsive Category Link Zones */}
+              <div className="w-full relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-xs hover:shadow-lg transition-all duration-300 border border-[#16301d]/[0.07] bg-[#faf5ea] group">
+                <picture>
+                  <source srcSet="/images/collections/everyday-goodness-3500.webp" type="image/webp" />
+                  <img
+                    src="/images/collections/everyday-goodness-3500.png"
+                    alt="Everyday Goodness - Dairy, Vegetables, and Fruits"
+                    className="w-full h-auto object-cover select-none pointer-events-none transition-transform duration-700 ease-out group-hover:scale-[1.01]"
+                    loading="eager"
+                    decoding="async"
+                  />
+                </picture>
 
-                  return (
-                    <Link
-                      key={collection.title}
-                      href={collection.href}
-                      className={`collection-card group relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-xs hover:shadow-xl transition-all duration-300 cursor-pointer block border border-[#16301d]/[0.07] bg-[#faf5ea] ${
-                        isMilk
-                          ? "lg:col-start-1 lg:row-start-1 lg:row-span-2 aspect-[1224/1258] lg:aspect-auto h-full"
-                          : isVeg
-                          ? "lg:col-start-2 lg:row-start-1 aspect-[2118/618] lg:aspect-auto h-full"
-                          : "lg:col-start-2 lg:row-start-2 aspect-[2118/605] lg:aspect-auto h-full"
-                      }`}
-                      aria-label={`Open ${collection.title} Collection`}
-                    >
-                      {/* Decoupled Clean Photographic Plate (Zero text baked into image) */}
-                      <img
-                        src={collection.image}
-                        alt={collection.title}
-                        className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.02] select-none pointer-events-none"
-                        loading="eager"
-                        decoding="async"
-                      />
-
-                      {/* Floating Copied Notification Pill */}
-                      {isCopied && (
-                        <div className="absolute top-4 right-4 z-30 flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#16301d] text-white text-[11px] font-semibold shadow-lg animate-bounce">
-                          <Check className="w-3.5 h-3.5 text-emerald-300" />
-                          <span>Copied {collection.title}!</span>
-                        </div>
-                      )}
-
-                      {/* Live Crisp Typography In The Box */}
-                      <div
-                        onClick={(e) =>
-                          handleCopyGoodness(
-                            e,
-                            `${collection.title} Collection\n${collection.href}`,
-                            collection.title
-                          )
-                        }
-                        title={`Click text to copy "${collection.title}"`}
-                        className="absolute top-4 sm:top-5 lg:top-7 left-4 sm:left-5 lg:left-7 z-10 select-text cursor-copy p-1 rounded-md transition-colors"
-                      >
-                        <span className="font-playfair text-2xl sm:text-3xl lg:text-4xl text-[#16301d] font-normal tracking-tight block leading-none drop-shadow-xs select-text">
-                          {collection.title}
-                        </span>
-                        <div
-                          className={`flex items-center ${arrowWidth} h-px bg-[#16301d]/70 mt-1.5 sm:mt-2 relative`}
-                        >
-                          <span className="absolute -right-1 -top-2 text-xs sm:text-sm text-[#16301d] transition-transform duration-300 group-hover:translate-x-1.5">
-                            →
-                          </span>
-                        </div>
-                      </div>
-                    </Link>
-                  );
-                })}
+                {/* Interactive Category Hit Zones (Invisible Overlays matching photography layout) */}
+                <div className="absolute inset-0 grid grid-cols-1 lg:grid-cols-[1224fr_2118fr] lg:grid-rows-2">
+                  <Link
+                    href="/milk"
+                    aria-label="Open Milk Collection"
+                    className="lg:col-start-1 lg:row-start-1 lg:row-span-2 cursor-pointer z-10"
+                    title="Milk Collection"
+                  />
+                  <Link
+                    href="/vegetables"
+                    aria-label="Open Vegetables Collection"
+                    className="lg:col-start-2 lg:row-start-1 cursor-pointer z-10"
+                    title="Vegetables Collection"
+                  />
+                  <Link
+                    href="/fruits"
+                    aria-label="Open Fruits Collection"
+                    className="lg:col-start-2 lg:row-start-2 cursor-pointer z-10"
+                    title="Fruits Collection"
+                  />
+                </div>
               </div>
             </div>
           ) : (
