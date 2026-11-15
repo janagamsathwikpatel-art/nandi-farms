@@ -1172,12 +1172,12 @@ export default function HarvestCategoryGrid() {
                 </button>
               </div>
 
-              {/* Everyday Goodness: Pure Single Image Banner ("Only Image") with Responsive Category Link Zones */}
+              {/* Everyday Goodness: Pure Single Image Banner ("Only Image") */}
               <div className="w-full relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-xs hover:shadow-lg transition-all duration-300 border border-[#16301d]/[0.07] bg-[#faf5ea] group">
                 <picture>
-                  <source srcSet="/images/collections/everyday-goodness-3500.webp" type="image/webp" />
+                  <source srcSet="/images/collections/everyday-goodness-plate.webp" type="image/webp" />
                   <img
-                    src="/images/collections/everyday-goodness-3500.png"
+                    src="/images/collections/everyday-goodness-plate.png"
                     alt="Everyday Goodness - Dairy, Vegetables, and Fruits"
                     className="w-full h-auto object-cover select-none pointer-events-none transition-transform duration-700 ease-out group-hover:scale-[1.01]"
                     loading="eager"
@@ -1185,7 +1185,7 @@ export default function HarvestCategoryGrid() {
                   />
                 </picture>
 
-                {/* Interactive Category Hit Zones (Invisible Overlays matching photography layout) */}
+                {/* Interactive Category Hit Zones (Seamless responsive overlays for Milk, Veg, Fruit) */}
                 <div className="absolute inset-0 grid grid-cols-1 lg:grid-cols-[1224fr_2118fr] lg:grid-rows-2">
                   <Link
                     href="/milk"
