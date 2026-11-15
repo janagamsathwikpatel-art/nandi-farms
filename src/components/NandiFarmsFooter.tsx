@@ -188,6 +188,20 @@ export default function NandiFarmsFooter({
         </div>
       </div>
 
+      {/* Reference Option 1: Decorative Traditional Folk Border Motif (Cow Bells, Droplets, Wheat Stalks) */}
+      <div className="footer-bottom-folk-border" aria-hidden="true">
+        <picture>
+          <source srcSet="/images/footer/nandi-farms-footer-folk-border.webp" type="image/webp" />
+          <img
+            src="/images/footer/nandi-farms-footer-folk-border.png"
+            alt=""
+            className="footer-bottom-folk-border-img"
+            loading="lazy"
+            decoding="async"
+          />
+        </picture>
+      </div>
+
       {activeModal && (
         <div
           className="nandi-footer-modal-backdrop"

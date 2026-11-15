@@ -204,6 +204,38 @@
   text-decoration: underline;
 }
 
+/* Reference Option 1: Decorative Traditional Folk Border Motif (Cow Bells, Droplets, Wheat Stalks) */
+.footer-bottom-folk-border {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 14px;
+  padding-bottom: 12px;
+  pointer-events: none;
+  background-image: url("/images/footer/nandi-farms-footer-folk-border-2560.webp");
+  background-repeat: repeat-x;
+  background-position: center bottom;
+  background-size: auto 26px;
+  height: 34px;
+}
+
+.footer-bottom-folk-border picture {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .footer-bottom-folk-border {
+    margin-top: 10px;
+    padding-bottom: 8px;
+    height: 26px;
+    background-size: auto 20px;
+  }
+}
+
 /* Modal styling for legal and contact buttons */
 .nandi-footer-modal-backdrop {
   position: fixed;
