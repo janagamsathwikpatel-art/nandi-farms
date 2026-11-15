@@ -28,180 +28,102 @@ export default function NandiFarmsFooter({
   };
 
   return (
-    <footer className="nandi-footer-container" id="top" aria-label="Nandi Farms Footer">
-      {/* 1. Restored Responsive Vintage Gowshala Etching Background Layer */}
-      <div className="nandi-footer-bg-wrapper" aria-hidden="true">
-        <picture>
-          <source
-            type="image/avif"
-            srcSet="
-              /images/footer/nandi-farms-footer-vintage-etching-2560.avif 2560w,
-              /images/footer/nandi-farms-footer-vintage-etching-1920.avif 1920w,
-              /images/footer/nandi-farms-footer-vintage-etching-1440.avif 1440w,
-              /images/footer/nandi-farms-footer-vintage-etching-1024.avif 1024w
-            "
-            sizes="100vw"
-          />
-          <source
-            type="image/webp"
-            srcSet="
-              /images/footer/nandi-farms-footer-vintage-etching-2560.webp 2560w,
-              /images/footer/nandi-farms-footer-vintage-etching-1920.webp 1920w,
-              /images/footer/nandi-farms-footer-vintage-etching-1440.webp 1440w,
-              /images/footer/nandi-farms-footer-vintage-etching-1024.webp 1024w
-            "
-            sizes="100vw"
-          />
-          <img
-            src="/images/footer/nandi-farms-footer-vintage-etching-1920.png"
-            srcSet="
-              /images/footer/nandi-farms-footer-vintage-etching-2560.png 2560w,
-              /images/footer/nandi-farms-footer-vintage-etching-1920.png 1920w,
-              /images/footer/nandi-farms-footer-vintage-etching-1440.png 1440w,
-              /images/footer/nandi-farms-footer-vintage-etching-1024.png 1024w
-            "
-            sizes="100vw"
-            alt="Nandi Farms vintage farm gowshala etching"
-            className="nandi-footer-bg-img"
-            loading="lazy"
-            decoding="async"
-          />
-        </picture>
-      </div>
-
-      {/* 2. Left Produce Still Life (Copper Milk Can, Milk Bottle, Eggs, Tomatoes) */}
-      <div className="footer-left-produce-wrapper" aria-hidden="true">
-        <picture>
-          <source srcSet="/images/footer/nandi-farms-footer-produce.webp" type="image/webp" />
-          <img
-            src="/images/footer/nandi-farms-footer-produce.png"
-            alt="Nandi Farms Fresh Produce"
-            className="footer-left-produce-img"
-            width={380}
-            height={580}
-            loading="lazy"
-            decoding="async"
-          />
-        </picture>
-      </div>
-
-      {/* 3. User Provided Code Format as Live Text */}
-      <div className="nandi-footer">
-        <div className="footer-top">
-          <Link className="shop-link" href="/shop">
-            VIEW FARM SHOP <span>&rarr;</span>
+    <footer className="nandi-footer-container" id="nandi-footer" aria-label="Nandi Farms Footer">
+      <div className="nandi-footer-content">
+        {/* Brand Column with Calf Mascot Logo */}
+        <section className="footer-brand-section">
+          <div className="footer-brand-logo-wrap">
+            <img
+              src="/images/footer/nandi-farms-calf-logo-v3.png"
+              alt="Nandi Farms"
+              className="footer-brand-logo-img"
+              width={140}
+              height={135}
+              loading="eager"
+            />
+          </div>
+          <h2>It started at home.</h2>
+          <p>One cow, one buffalo, and a simple promise to our family.</p>
+          <Link className="story-link" href="/about">
+            Read our story &rarr;
           </Link>
-        </div>
+        </section>
 
-        <div className="footer-grid">
-          {/* Brand Column with Calf Mascot Logo */}
-          <section className="brand-column">
-            <div className="footer-brand-logo-wrap">
-              <img
-                src="/images/footer/nandi-farms-calf-logo-v3.png"
-                alt="Nandi Farms"
-                className="footer-brand-logo-img"
-                width={185}
-                height={180}
-                loading="eager"
-                decoding="async"
-              />
-            </div>
+        {/* Existing Farm Shop Column */}
+        <section className="footer-nav-col">
+          <h3>FARM SHOP</h3>
+          <Link href="/shop/milk" className="footer-nav-link">Milk &amp; Dairy</Link>
+          <Link href="/shop/vegetables" className="footer-nav-link">Vegetables &amp; Fruit</Link>
+          <Link href="/shop/eggs" className="footer-nav-link">Eggs &amp; Pantry</Link>
+        </section>
 
-            <h2>It started at home.</h2>
-            <p>One cow, one buffalo, and a simple promise to our family.</p>
-            <Link className="story-link" href="/about">
-              Read our story &rarr;
-            </Link>
-          </section>
-
-          {/* Farm Shop Column */}
-          <section>
-            <h3>FARM SHOP</h3>
-            <Link href="/shop/milk">Milk &amp; Dairy</Link>
-            <Link href="/shop/vegetables">Vegetables &amp; Fruit</Link>
-            <Link href="/shop/eggs">Eggs &amp; Pantry</Link>
-          </section>
-
-          {/* Milk Plans Column */}
-          <section>
-            <h3>MILK PLANS</h3>
-            <a
-              href="https://eveggie.in/subscriptions"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Explore Milk Plans
-            </a>
-            <button
-              type="button"
-              className="footer-link-btn"
-              onClick={onOpenSubscription}
-            >
-              Manage Deliveries
-            </button>
-          </section>
-
-          {/* Customer Care Column */}
-          <section>
-            <h3>CUSTOMER CARE</h3>
-            <Link href="/shop">Delivery Areas</Link>
-            <button
-              type="button"
-              className="footer-link-btn"
-              onClick={onOpenContact}
-            >
-              Contact Us
-            </button>
-            <button
-              type="button"
-              className="footer-link-btn"
-              onClick={() =>
-                openInfoModal(
-                  "Privacy Policy",
-                  "At Nandi Farms, we uphold rigorous customer data security. We protect all user details, payment interactions, and delivery records with end-to-end encryption."
-                )
-              }
-            >
-              Privacy Policy
-            </button>
-            <button
-              type="button"
-              className="footer-link-btn"
-              onClick={() =>
-                openInfoModal(
-                  "Terms & Conditions",
-                  "Subscription memberships may be paused or customized with zero penalty anytime through your daily dashboard or customer care line."
-                )
-              }
-            >
-              Terms &amp; Conditions
-            </button>
-          </section>
-        </div>
-
-        <div className="footer-bottom">
-          <span>&copy; Nandi Farms</span>
-          <a href="#top" onClick={scrollToTop}>
-            Back to top &uarr;
+        {/* Existing Milk Plans Column */}
+        <section className="footer-nav-col">
+          <h3>MILK PLANS</h3>
+          <a
+            href="https://eveggie.in/subscriptions"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="footer-nav-link"
+          >
+            Explore Milk Plans
           </a>
-        </div>
+          <button
+            type="button"
+            className="footer-link-btn"
+            onClick={onOpenSubscription}
+          >
+            Manage Deliveries
+          </button>
+        </section>
+
+        {/* Existing Customer Care Column */}
+        <section className="footer-nav-col customer-care-col">
+          <h3>CUSTOMER CARE</h3>
+          <Link href="/shop" className="footer-nav-link">Delivery Areas</Link>
+          <button
+            type="button"
+            className="footer-link-btn"
+            onClick={onOpenContact}
+          >
+            Contact Us
+          </button>
+          <button
+            type="button"
+            className="footer-link-btn"
+            onClick={() =>
+              openInfoModal(
+                "Privacy Policy",
+                "At Nandi Farms, we uphold rigorous customer data security. We protect all user details, payment interactions, and delivery records with end-to-end encryption."
+              )
+            }
+          >
+            Privacy Policy
+          </button>
+          <button
+            type="button"
+            className="footer-link-btn"
+            onClick={() =>
+              openInfoModal(
+                "Terms & Conditions",
+                "Subscription memberships may be paused or customized with zero penalty anytime through your daily dashboard or customer care line."
+              )
+            }
+          >
+            Terms &amp; Conditions
+          </button>
+        </section>
       </div>
 
-      {/* Reference Option 1: Decorative Traditional Folk Border Motif (Cow Bells, Droplets, Wheat Stalks) */}
-      <div className="footer-bottom-folk-border" aria-hidden="true">
-        <picture>
-          <source srcSet="/images/footer/nandi-farms-footer-folk-border.webp" type="image/webp" />
-          <img
-            src="/images/footer/nandi-farms-footer-folk-border.png"
-            alt=""
-            className="footer-bottom-folk-border-img"
-            loading="lazy"
-            decoding="async"
-          />
-        </picture>
+      {/* Subtle Bottom Copyright Bar */}
+      <div className="footer-bottom-bar">
+        <span>&copy; Nandi Farms</span>
+        <a href="#nandi-footer" onClick={scrollToTop}>
+          Back to top &uarr;
+        </a>
       </div>
 
+      {/* Modal Dialog */}
       {activeModal && (
         <div
           className="nandi-footer-modal-backdrop"
