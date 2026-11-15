@@ -80,7 +80,7 @@
   display: grid;
   grid-template-columns: 1.4fr 1fr 1fr 1fr;
   gap: 36px;
-  padding: 48px 0 220px; /* Space for the gowshala etching to shine through */
+  padding: 44px 0 220px; /* Space for the gowshala etching to shine through */
 }
 
 .footer-grid section:not(.brand-column) {
@@ -88,39 +88,37 @@
   padding-left: 36px;
 }
 
-.logo-text strong {
+/* Brand Column Calf Mascot Logo (Matching Option 3 Reference) */
+.footer-brand-logo-wrap {
   display: block;
-  color: #8b1718;
-  font-size: 52px;
-  font-style: italic;
-  line-height: 1.05;
+  width: 185px;
+  margin-bottom: 24px;
 }
 
-.logo-text span {
+.footer-brand-logo-img {
+  width: 100%;
+  height: auto;
   display: block;
-  color: #8b1718;
-  font-size: 17px;
-  font-weight: 700;
-  letter-spacing: 8px;
-  margin-top: 4px;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 10px rgba(80, 20, 15, 0.1));
 }
 
 .nandi-footer h2,
 .brand-column h2 {
   color: #8b1718;
-  font-size: 28px;
+  font-size: 26px;
   font-style: italic;
-  margin-top: 32px;
+  margin-top: 0;
   margin-bottom: 12px;
   line-height: 1.25;
 }
 
 .brand-column p {
   color: #5a2419;
-  font-size: 15.5px;
+  font-size: 15px;
   line-height: 1.5;
-  margin-bottom: 18px;
-  max-width: 290px;
+  margin-bottom: 16px;
+  max-width: 280px;
 }
 
 .nandi-footer h3,
@@ -255,18 +253,14 @@
     padding: 24px 0 0;
   }
 
-  .logo-text strong {
-    font-size: 42px;
-  }
-
-  .logo-text span {
-    font-size: 15px;
-    letter-spacing: 6px;
+  .footer-brand-logo-wrap {
+    width: 160px;
+    margin-bottom: 18px;
   }
 
   .nandi-footer h2,
   .brand-column h2 {
     font-size: 24px;
-    margin-top: 24px;
+    margin-top: 12px;
   }
 }

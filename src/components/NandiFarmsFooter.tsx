@@ -78,11 +78,18 @@ export default function NandiFarmsFooter({
         </div>
 
         <div className="footer-grid">
-          {/* Brand Column */}
+          {/* Brand Column with Calf Mascot Logo */}
           <section className="brand-column">
-            <div className="logo-text">
-              <strong>Nandi</strong>
-              <span>FARMS</span>
+            <div className="footer-brand-logo-wrap">
+              <img
+                src="/images/footer/nandi-farms-logo-footer.png"
+                alt="Nandi Farms"
+                className="footer-brand-logo-img"
+                width={185}
+                height={180}
+                loading="lazy"
+                decoding="async"
+              />
             </div>
 
             <h2>It started at home.</h2>
