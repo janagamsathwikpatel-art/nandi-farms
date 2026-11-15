@@ -29,6 +29,22 @@ export default function NandiFarmsFooter({
 
   return (
     <footer className="nandi-footer-container" id="nandi-footer" aria-label="Nandi Farms Footer">
+      {/* High-Resolution Left Produce Still Life (Direct Image 2 Transparent Cutout) */}
+      <div className="footer-left-produce-wrapper" aria-hidden="true">
+        <picture>
+          <source srcSet="/images/footer/nandi-farms-footer-produce-cutout.webp?v=5" type="image/webp" />
+          <img
+            src="/images/footer/nandi-farms-footer-produce-cutout.png?v=5"
+            alt="Nandi Farms Fresh Produce"
+            className="footer-left-produce-img"
+            width={682}
+            height={1024}
+            loading="eager"
+            decoding="async"
+          />
+        </picture>
+      </div>
+
       <div className="nandi-footer-content">
         {/* Brand Column with Calf Mascot Logo */}
         <section className="footer-brand-section">
