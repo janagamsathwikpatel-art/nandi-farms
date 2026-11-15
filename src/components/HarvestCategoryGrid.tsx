@@ -1173,7 +1173,7 @@ export default function HarvestCategoryGrid() {
               </div>
 
               {/* Collection Grid: 3 Clean Photographic Cards (Zero White Layout Background) */}
-              <div className="collection-grid grid grid-cols-1 lg:grid-cols-[1224fr_2118fr] lg:grid-rows-2 gap-3 sm:gap-4 lg:gap-5 w-full aspect-auto lg:aspect-[3342/1258]">
+              <div className="collection-grid grid grid-cols-1 lg:grid-cols-[1224fr_2448fr] lg:grid-rows-2 gap-3 sm:gap-4 lg:gap-5 w-full aspect-auto lg:aspect-[3672/1520]">
                 {everydayGoodness.collections.map((collection, index) => {
                   const isMilk = index === 0;
                   const isVeg = index === 1;
@@ -1181,28 +1181,39 @@ export default function HarvestCategoryGrid() {
                   return (
                     <Link
                       href={collection.href}
-                      className={`collection-card group relative rounded-2xl sm:rounded-3xl shadow-xs hover:shadow-xl transition-all duration-300 cursor-pointer block border border-[#16301d]/[0.07] bg-[#faf5ea] ${
+                      className={`collection-card group relative transition-all duration-300 cursor-pointer block ${
                         isMilk
-                          ? "lg:col-start-1 lg:row-start-1 lg:row-span-2 aspect-[1224/1258] lg:aspect-auto h-full overflow-hidden"
+                          ? "lg:col-start-1 lg:row-start-1 lg:row-span-2 aspect-[1224/1258] lg:aspect-auto h-full rounded-2xl sm:rounded-3xl shadow-xs hover:shadow-xl border border-[#16301d]/[0.07] bg-[#faf5ea] overflow-hidden"
                           : isVeg
-                          ? "lg:col-start-2 lg:row-start-1 aspect-[2118/667] lg:aspect-auto h-full overflow-visible"
-                          : "lg:col-start-2 lg:row-start-2 aspect-[2118/605] lg:aspect-auto h-full overflow-hidden"
+                          ? "lg:col-start-2 lg:row-start-1 aspect-[2448/804] lg:aspect-auto h-full overflow-visible border-0 bg-transparent hover:scale-[1.01]"
+                          : "lg:col-start-2 lg:row-start-2 aspect-[2448/716] lg:aspect-auto h-full rounded-2xl sm:rounded-3xl shadow-xs hover:shadow-xl border border-[#16301d]/[0.07] bg-[#faf5ea] overflow-hidden"
                       }`}
                       key={collection.title}
                     >
-                      {/* Decoupled Clean Photography (Zero text baked in; Veg has leaves popping outside) */}
-                      <img
-                        src={collection.image}
-                        alt={collection.title}
-                        className={`w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.02] ${
-                          isVeg ? "rounded-b-2xl sm:rounded-b-3xl" : "rounded-2xl sm:rounded-3xl"
-                        }`}
-                        loading="eager"
-                        decoding="async"
-                      />
+                      {/* Decoupled Clean Photography (Zero text baked in; Veg leaves pop out outside card boundary) */}
+                      <picture>
+                        <source srcSet={collection.image.replace(/\.png$/, '.webp')} type="image/webp" />
+                        <img
+                          src={collection.image}
+                          alt={collection.title}
+                          className={`w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.01] ${
+                            isVeg ? "" : "rounded-2xl sm:rounded-3xl"
+                          }`}
+                          loading="eager"
+                          decoding="async"
+                        />
+                      </picture>
 
                       {/* Live HTML Text from Code: <span>{collection.title} →</span> */}
-                      <span className="absolute top-4 sm:top-5 lg:top-7 left-4 sm:left-5 lg:left-7 z-10 font-playfair text-2xl sm:text-3xl lg:text-4xl text-[#16301d] font-normal tracking-tight block leading-none drop-shadow-xs select-text">
+                      <span
+                        className={`absolute z-10 font-playfair text-2xl sm:text-3xl lg:text-4xl text-[#16301d] font-normal tracking-tight block leading-none drop-shadow-xs select-text ${
+                          isVeg
+                            ? "top-6 sm:top-8 lg:top-10 left-5 sm:left-7 lg:left-9"
+                            : isMilk
+                            ? "top-5 sm:top-6 lg:top-8 left-5 sm:left-6 lg:left-8"
+                            : "top-4 sm:top-5 lg:top-7 left-4 sm:left-5 lg:left-7"
+                        }`}
+                      >
                         {collection.title} →
                       </span>
                     </Link>
