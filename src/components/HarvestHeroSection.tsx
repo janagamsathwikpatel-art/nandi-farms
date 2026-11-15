@@ -2,6 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
+import ShopFarmBanner from "./ShopFarmBanner";
 import "./HarvestHeroSection.css";
 
 export interface HeroProduct {
@@ -92,47 +93,8 @@ export default function HarvestHeroSection({
   onViewAllProducts,
 }: HarvestHeroSectionProps) {
   return (
-    <section className="harvest-hero-showcase-section" aria-label="Today's Harvest">
-      <div className="harvest-hero-container">
-        <Link
-          href="/shop"
-          className="harvest-hero-banner-link"
-          aria-label="Explore Today's Harvest fresh milk, dairy, eggs, and farm produce"
-        >
-          <picture>
-            <source
-              type="image/webp"
-              srcSet="
-                /images/banners/todays-harvest/todays-harvest-3840.webp 3840w,
-                /images/banners/todays-harvest/todays-harvest-2560.webp 2560w,
-                /images/banners/todays-harvest/todays-harvest-2172.webp 2172w,
-                /images/banners/todays-harvest/todays-harvest-1920.webp 1920w,
-                /images/banners/todays-harvest/todays-harvest-1280.webp 1280w,
-                /images/banners/todays-harvest/todays-harvest-1024.webp 1024w
-              "
-              sizes="(max-width: 640px) 100vw, (max-width: 1200px) 100vw, 1520px"
-            />
-            <img
-              src="/items.png"
-              srcSet="
-                /images/banners/todays-harvest/todays-harvest-3840.png 3840w,
-                /images/banners/todays-harvest/todays-harvest-2560.png 2560w,
-                /images/banners/todays-harvest/todays-harvest-2172.png 2172w,
-                /images/banners/todays-harvest/todays-harvest-1920.png 1920w,
-                /images/banners/todays-harvest/todays-harvest-1280.png 1280w,
-                /images/banners/todays-harvest/todays-harvest-1024.png 1024w
-              "
-              sizes="(max-width: 640px) 100vw, (max-width: 1200px) 100vw, 1520px"
-              alt="Today's Harvest - Fresh Farm Milk, Dairy, Eggs, and Handpicked Produce"
-              width={2172}
-              height={724}
-              loading="eager"
-              decoding="async"
-              className="harvest-hero-banner-img"
-            />
-          </picture>
-        </Link>
-      </div>
-    </section>
+    <div id="shop-farm-hero" className="w-full">
+      <ShopFarmBanner />
+    </div>
   );
 }
