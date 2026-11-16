@@ -61,11 +61,37 @@ export default function ScrollFruitJourney({ onShopFresh }: ScrollFruitJourneyPr
     }
   };
 
-  // Ensure all steps are visibly presented with zero cut-off
+  // GSAP ScrollTrigger Animation for Alternating Journey & Moving Fruit Basket
   useEffect(() => {
     if (!sectionRef.current) return;
 
     const ctx = gsap.context(() => {
+      // 1. Desktop Central Basket Scroll Translation (Travels vertically with scroll)
+      // Strictly fixed scale: 1.0 permanently (NO zoom in, NO zoom out)
+      if (basketDesktopRef.current && journeyContainerRef.current) {
+        gsap.fromTo(
+          basketDesktopRef.current,
+          { y: 0 },
+          {
+            y: () => {
+              if (!journeyContainerRef.current || !basketDesktopRef.current) return 700;
+              const containerHeight = journeyContainerRef.current.offsetHeight;
+              const basketHeight = basketDesktopRef.current.offsetHeight;
+              return Math.max(containerHeight - basketHeight - 40, 200);
+            },
+            ease: "none",
+            scrollTrigger: {
+              trigger: journeyContainerRef.current,
+              start: "top 22%",
+              end: "bottom 82%",
+              scrub: 1.2, // Buttery-smooth physics scrub
+              invalidateOnRefresh: true,
+            },
+          }
+        );
+      }
+
+      // 2. Ensure all steps are visibly presented with zero cut-off
       fruitHarvestSteps.forEach((step, idx) => {
         const isLeft = idx % 2 === 0;
         const target = `.fruit-step-card-${step.number}-${isLeft ? "left" : "right"}`;

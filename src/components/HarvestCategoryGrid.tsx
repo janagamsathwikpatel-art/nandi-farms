@@ -1307,15 +1307,27 @@ export default function HarvestCategoryGrid() {
       </div>
 
 
-      {/* 2. DEDICATED "FRESH PAGE" CATEGORY EXPERIENCE (Replaces Screenshot 4 Section) */}
+      {/* 2. DEDICATED "FRESH PAGE" CATEGORY EXPERIENCE */}
       <div
         id="category-fresh-page"
         ref={freshPageRef}
-        className="w-full bg-[#faf5ea] border-t border-[#ded7c8] transition-all duration-500"
+        className="w-full bg-[#FAF6ED] transition-all duration-500"
       >
-        {/* Seamless 3-Stage Continuous Stacked Journeys (Milk -> Fruits -> Vegetables in-place layer reveal) */}
         <div ref={catalogRef} className="w-full">
-          <ContinuousStackedJourneys onShopFresh={scrollToCatalog} />
+          {/* Section 1: Pure A2 Farm Milk Journey */}
+          <div className="relative w-full">
+            <ScrollMilkJourney onShopFresh={() => handleCardClick("milk")} />
+          </div>
+
+          {/* Section 2: Tree-Ripened Fruit Harvest (Down of Milk Section) */}
+          <div className="relative w-full border-t border-[#193E2D]/10 bg-[#FAF6ED]">
+            <ScrollFruitJourney onShopFresh={() => handleCardClick("fruits")} />
+          </div>
+
+          {/* Section 3: Living Soil Organic Vegetable Journey (Down of Fruit Section) */}
+          <div className="relative w-full border-t border-[#193E2D]/10 bg-[#FAF6ED]">
+            <ScrollVegetableJourney onShopFresh={() => handleCardClick("vegetables")} />
+          </div>
         </div>
       </div>
 

@@ -66,6 +66,30 @@ export default function ScrollMilkJourney({ onShopFresh }: ScrollMilkJourneyProp
     if (!sectionRef.current) return;
 
     const ctx = gsap.context(() => {
+      // 1. Desktop Central Bottle Scroll Translation (Travels vertically with scroll)
+      if (bottleDesktopRef.current && journeyContainerRef.current) {
+        gsap.fromTo(
+          bottleDesktopRef.current,
+          { y: 0 },
+          {
+            y: () => {
+              if (!journeyContainerRef.current || !bottleDesktopRef.current) return 700;
+              const containerHeight = journeyContainerRef.current.offsetHeight;
+              const bottleHeight = bottleDesktopRef.current.offsetHeight;
+              return Math.max(containerHeight - bottleHeight - 40, 200);
+            },
+            ease: "none",
+            scrollTrigger: {
+              trigger: journeyContainerRef.current,
+              start: "top 22%",
+              end: "bottom 82%",
+              scrub: 1.2,
+              invalidateOnRefresh: true,
+            },
+          }
+        );
+      }
+
       // Ensure all steps are visibly presented with zero cut-off
       milkJourney.steps.forEach((step, idx) => {
         const isLeft = idx % 2 === 0;
