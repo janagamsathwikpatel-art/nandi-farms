@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { harvestCategories } from "@/data/nandi-shop";
+import ShopLayout from "../shop/layout";
 import ShopContent from "../shop/ShopContent";
 
 export const metadata: Metadata = {
@@ -7,5 +9,10 @@ export const metadata: Metadata = {
 };
 
 export default function FruitsPage() {
-  return <ShopContent />;
+  const fruitCategory = harvestCategories.find((c) => c.key === "fruits");
+  return (
+    <ShopLayout>
+      <ShopContent category={fruitCategory} />
+    </ShopLayout>
+  );
 }

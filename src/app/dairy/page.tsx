@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { harvestCategories } from "@/data/nandi-shop";
+import ShopLayout from "../shop/layout";
 import ShopContent from "../shop/ShopContent";
 
 export const metadata: Metadata = {
@@ -9,5 +10,9 @@ export const metadata: Metadata = {
 
 export default function DairyPage() {
   const milkCategory = harvestCategories.find((c) => c.key === "milk");
-  return <ShopContent category={milkCategory} />;
+  return (
+    <ShopLayout>
+      <ShopContent category={milkCategory} />
+    </ShopLayout>
+  );
 }

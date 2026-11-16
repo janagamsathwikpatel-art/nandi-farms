@@ -326,5 +326,101 @@
     "price": 30,
     "originalPrice": 50,
     "category": null
+  },
+  {
+    "id": 801,
+    "name": "Kashmiri Royal Delicious Apples (1kg)",
+    "image": "/images/fruits/kashmiri-apples.jpg",
+    "price": 165,
+    "originalPrice": 210,
+    "category": "fruits"
+  },
+  {
+    "id": 802,
+    "name": "Farm Fresh Sweet Papaya (1 pc)",
+    "image": "/images/fruits/papaya.jpg",
+    "price": 52,
+    "originalPrice": 65,
+    "category": "fruits"
+  },
+  {
+    "id": 803,
+    "name": "Organic Robusta Farm Bananas (1 Dozen)",
+    "image": "/images/fruits/robusta-bananas.jpg",
+    "price": 38,
+    "originalPrice": 48,
+    "category": "fruits"
+  },
+  {
+    "id": 804,
+    "name": "Ruby Red Farm Pomegranates (1kg)",
+    "image": "/images/fruits/red-pomegranate.jpg",
+    "price": 125,
+    "originalPrice": 160,
+    "category": "fruits"
+  },
+  {
+    "id": 805,
+    "name": "Nagpur Sweet Oranges - Santra (1kg)",
+    "image": "/images/fruits/nagpur-oranges.jpg",
+    "price": 95,
+    "originalPrice": 120,
+    "category": "fruits"
+  },
+  {
+    "id": 806,
+    "name": "Crisp Seedless Green Grapes (500g)",
+    "image": "/images/fruits/seedless-grapes.jpg",
+    "price": 90,
+    "originalPrice": 115,
+    "category": "fruits"
+  },
+  {
+    "id": 807,
+    "name": "Farm Fresh Sweet Mosambi (1kg)",
+    "image": "/images/fruits/mosambi.jpg",
+    "price": 75,
+    "originalPrice": 95,
+    "category": "fruits"
+  },
+  {
+    "id": 808,
+    "name": "Farm Fresh Queen Pineapple (1 pc)",
+    "image": "/images/fruits/pineapple.jpg",
+    "price": 80,
+    "originalPrice": 105,
+    "category": "fruits"
+  },
+  {
+    "id": 809,
+    "name": "Organic Mountain Strawberries (250g)",
+    "image": "/images/fruits/strawberries.jpg",
+    "price": 180,
+    "originalPrice": 230,
+    "category": "fruits"
+  },
+  {
+    "id": 810,
+    "name": "Imported Fresh Green Kiwi (3 pcs)",
+    "image": "/images/fruits/fresh-green-kiwi.jpg",
+    "price": 140,
+    "originalPrice": 180,
+    "category": "fruits"
+  },
+  {
+    "id": 811,
+    "name": "Farm Fresh Alphonso Mangoes (1kg)",
+    "image": "/images/fruits/mango.jpg",
+    "price": 110,
+    "originalPrice": 145,
+    "category": "fruits"
+  },
+  {
+    "id": 812,
+    "name": "Nandi Farms Fresh Fruits Morning Crate",
+    "image": "/images/fruits/fruits-crate-box.jpg",
+    "price": 299,
+    "originalPrice": 380,
+    "category": "fruits"
   }
 ]

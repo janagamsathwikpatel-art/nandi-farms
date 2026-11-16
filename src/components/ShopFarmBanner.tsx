@@ -12,15 +12,16 @@ export default function ShopFarmBanner() {
       >
         <picture>
           <source
-            srcSet="/images/banners/shop/shop-farm-banner-master-hd.webp?v=hd-final-1"
+            srcSet="/images/banners/shop/nandi-sunrise-harvest-panoramic.webp?v=exact-p1 1x, /images/banners/shop/nandi-sunrise-harvest-panoramic-2x.webp?v=exact-p1 2x"
             type="image/webp"
           />
           <img
-            src="/images/banners/shop/shop-farm-banner-master-hd.png?v=hd-final-1"
+            src="/images/banners/shop/nandi-sunrise-harvest-panoramic.png?v=exact-p1"
+            srcSet="/images/banners/shop/nandi-sunrise-harvest-panoramic.png?v=exact-p1 1x, /images/banners/shop/nandi-sunrise-harvest-panoramic-2x.png?v=exact-p1 2x"
             alt="Shop the Farm - Fresh milk, seasonal produce, and farm essentials for your home."
             className="shop-farm-banner-img"
-            width={2880}
-            height={960}
+            width={1024}
+            height={172}
             loading="eager"
             decoding="async"
           />

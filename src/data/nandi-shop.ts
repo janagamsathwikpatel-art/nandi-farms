@@ -43,6 +43,22 @@ export const harvestCategories = [
     image: "harvest-greens.webp",
     width: 448,
   },
+  {
+    key: "fruits",
+    label: "Fruits",
+    title: "Fresh Orchard Fruits",
+    description: "Hand-picked, sun-ripened orchard fruits from Nandi Farms.",
+    image: "harvest-fruits.webp",
+    width: 400,
+  },
+  {
+    key: "vegetables",
+    label: "Vegetables",
+    title: "Organic Vegetables",
+    description: "Freshly harvested organic vegetables from Nandi Farms.",
+    image: "harvest-vegetables.webp",
+    width: 400,
+  },
 ] as const;
 
 export type HarvestCategory = (typeof harvestCategories)[number];
