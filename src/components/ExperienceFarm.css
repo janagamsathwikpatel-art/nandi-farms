@@ -1,8 +1,10 @@
 .harvest-card {
   position: relative;
-  min-height: 520px;
-  padding: 42px 116px;
-  background: #fbf7ef;
+  min-height: 400px;
+  aspect-ratio: 1024 / 373;
+  width: 100%;
+  padding: 0 clamp(24px, 8vw, 116px);
+  background: #f4eee6;
   color: #103b27;
   font-family: Georgia, serif;
   overflow: hidden;
@@ -32,27 +34,27 @@
   position: relative;
   z-index: 2;
   max-width: 580px;
-  margin-top: 110px;
+  margin-top: clamp(24px, 4vw, 55px);
 }
 
 .harvest-card h1 {
-  margin: 0 0 44px;
-  font-size: clamp(52px, 6.5vw, 96px);
+  margin: 0 0 24px;
+  font-size: clamp(34px, 4.2vw, 48px);
   font-weight: 500;
-  line-height: 1.05;
-  letter-spacing: -2px;
+  line-height: 1.1;
+  letter-spacing: -1px;
 }
 
 .harvest-button {
   display: inline-flex;
   align-items: center;
-  gap: 24px;
-  padding: 26px 58px;
+  gap: 16px;
+  padding: 18px 44px;
   border-radius: 999px;
   background: #103b27;
   color: #fff;
   font-family: Arial, sans-serif;
-  font-size: 24px;
+  font-size: 19px;
   text-decoration: none;
   box-shadow: 0 10px 20px rgba(16, 59, 39, 0.15);
   transition: all 0.25s ease;
@@ -66,7 +68,7 @@
 }
 
 .harvest-button span {
-  font-size: 32px;
+  font-size: 24px;
   line-height: 1;
   transition: transform 0.2s ease;
 }
@@ -77,42 +79,45 @@
 
 @media (max-width: 900px) {
   .harvest-card {
-    padding: 36px 40px;
+    min-height: 350px;
+    padding: 0 40px;
   }
   .harvest-card-content {
-    margin-top: 80px;
+    margin-top: 35px;
   }
   .harvest-card h1 {
-    font-size: 48px;
-    letter-spacing: -1.5px;
-    margin-bottom: 32px;
+    font-size: 34px;
+    letter-spacing: -0.5px;
+    margin-bottom: 20px;
   }
   .harvest-button {
-    padding: 18px 36px;
-    font-size: 19px;
+    padding: 16px 32px;
+    font-size: 17px;
+    gap: 14px;
   }
 }
 
 @media (max-width: 600px) {
   .harvest-card {
     min-height: auto;
-    padding: 48px 24px;
+    aspect-ratio: auto;
+    padding: 36px 20px;
   }
 
   .harvest-card-content {
-    margin-top: 70px;
+    margin-top: 25px;
     max-width: 100%;
   }
 
   .harvest-card h1 {
-    font-size: 42px;
-    letter-spacing: -1px;
-    margin-bottom: 28px;
+    font-size: 28px;
+    letter-spacing: -0.5px;
+    margin-bottom: 18px;
   }
 
   .harvest-button {
-    padding: 18px 28px;
-    font-size: 18px;
+    padding: 15px 24px;
+    font-size: 16px;
     width: 100%;
     justify-content: center;
   }

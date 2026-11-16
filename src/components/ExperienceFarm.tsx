@@ -47,7 +47,7 @@ export default function ExperienceFarm({
             src="/explore-harvest.png"
             alt="Nandi Farms Organic Vegetables on Natural Linen"
             width={2172}
-            height={724}
+            height={791}
             loading="eager"
             className="harvest-bg-img"
           />
