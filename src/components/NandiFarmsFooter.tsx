@@ -69,6 +69,22 @@ export default function NandiFarmsFooter({
             </Link>
           </section>
 
+          {/* Mobile Produce Centerpiece Artwork (Visible on mobile <= 820px, between Brand Story and Nav Columns) */}
+          <div className="footer-mobile-produce-wrapper" aria-hidden="true">
+            <picture>
+              <source srcSet="/images/footer/nandi-farms-footer-produce-cutout.webp?v=12" type="image/webp" />
+              <img
+                src="/images/footer/nandi-farms-footer-produce-cutout.png?v=12"
+                alt="Nandi Farms Fresh Produce"
+                className="footer-mobile-produce-img"
+                width={475}
+                height={974}
+                loading="lazy"
+                decoding="async"
+              />
+            </picture>
+          </div>
+
           {/* Farm Shop Column */}
           <section className="footer-nav-col">
             <h3>FARM SHOP</h3>
@@ -100,38 +116,40 @@ export default function NandiFarmsFooter({
           {/* Customer Care Column */}
           <section className="footer-nav-col customer-care-col">
             <h3>CUSTOMER CARE</h3>
-            <Link href="/shop" className="footer-nav-link">Delivery Areas</Link>
-            <button
-              type="button"
-              className="footer-link-btn"
-              onClick={onOpenContact}
-            >
-              Contact Us
-            </button>
-            <button
-              type="button"
-              className="footer-link-btn"
-              onClick={() =>
-                openInfoModal(
-                  "Privacy Policy",
-                  "At Nandi Farms, we uphold rigorous customer data security. We protect all user details, payment interactions, and delivery records with end-to-end encryption."
-                )
-              }
-            >
-              Privacy Policy
-            </button>
-            <button
-              type="button"
-              className="footer-link-btn"
-              onClick={() =>
-                openInfoModal(
-                  "Terms & Conditions",
-                  "Subscription memberships may be paused or customized with zero penalty anytime through your daily dashboard or customer care line."
-                )
-              }
-            >
-              Terms &amp; Conditions
-            </button>
+            <div className="footer-customer-care-links">
+              <Link href="/shop" className="footer-nav-link">Delivery Areas</Link>
+              <button
+                type="button"
+                className="footer-link-btn"
+                onClick={onOpenContact}
+              >
+                Contact Us
+              </button>
+              <button
+                type="button"
+                className="footer-link-btn"
+                onClick={() =>
+                  openInfoModal(
+                    "Privacy Policy",
+                    "At Nandi Farms, we uphold rigorous customer data security. We protect all user details, payment interactions, and delivery records with end-to-end encryption."
+                  )
+                }
+              >
+                Privacy Policy
+              </button>
+              <button
+                type="button"
+                className="footer-link-btn"
+                onClick={() =>
+                  openInfoModal(
+                    "Terms & Conditions",
+                    "Subscription memberships may be paused or customized with zero penalty anytime through your daily dashboard or customer care line."
+                  )
+                }
+              >
+                Terms &amp; Conditions
+              </button>
+            </div>
           </section>
         </div>
       </div>
