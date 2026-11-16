@@ -192,9 +192,9 @@
   display: none;
 }
 
-/* Mobile produce is hidden on desktop */
-.footer-mobile-produce-wrapper {
-  display: none;
+/* Mobile header is hidden on desktop */
+.footer-mobile-header-row {
+  display: none !important;
 }
 
 .footer-customer-care-links {
@@ -221,100 +221,109 @@
     display: none !important;
   }
 
+  /* Desktop logo and story are hidden on mobile (handled by mobile header row) */
+  .footer-brand-logo-wrap {
+    display: none !important;
+  }
+
+  .footer-brand-section {
+    display: none !important;
+  }
+
   .nandi-footer-content {
-    padding: 32px 20px 0 20px;
+    padding: 24px 20px 0 20px;
     width: 100%;
     box-sizing: border-box;
   }
 
-  /* Centered Brand Mascot Logo */
-  .footer-brand-logo-wrap {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 12px;
+  /* Mobile Top Split Header: Produce Still Life Left, Logo & Story Right */
+  .footer-mobile-header-row {
+    display: grid !important;
+    grid-template-columns: 120px 1fr;
+    gap: 16px;
+    align-items: center;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(215, 205, 195, 0.7);
   }
 
-  .footer-brand-logo-img {
-    width: 95px;
-    height: auto;
+  .footer-mobile-produce-box {
+    width: 120px;
+    height: 155px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .footer-mobile-produce-img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 6px 12px rgba(40, 20, 10, 0.15));
     display: block;
-    margin: 0 auto;
+  }
+
+  .footer-mobile-brand-box {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .footer-mobile-brand-logo {
+    width: 80px;
+    height: auto;
+    margin-bottom: 6px;
+    display: block;
+  }
+
+  .footer-mobile-brand-box h2 {
+    font-size: clamp(18px, 4.8vw, 20px);
+    font-style: italic;
+    font-weight: normal;
+    color: #650b0b;
+    margin: 0 0 4px 0;
+    line-height: 1.2;
+    text-align: left;
+  }
+
+  .footer-mobile-brand-box p {
+    font-size: clamp(11.5px, 3.1vw, 12.5px);
+    color: #3c322d;
+    line-height: 1.35;
+    margin: 0 0 6px 0;
+    text-align: left;
+  }
+
+  .footer-mobile-brand-box a {
+    font-size: clamp(12.5px, 3.3vw, 13.5px);
+    font-weight: bold;
+    color: #650b0b;
+    text-decoration: none;
+    display: inline-block;
   }
 
   /* 2-Column Responsive Navigation Grid */
   .footer-columns-row {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 20px 16px;
+    gap: 18px 16px;
     align-items: start;
+    padding: 18px 0 16px 0;
   }
 
-  /* Centered Brand Story Section */
-  .footer-brand-section {
-    grid-column: 1 / -1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    border-right: none;
-    border-bottom: none;
-    padding-right: 0;
-    padding-bottom: 0;
-    margin-bottom: 0;
+  /* Reorder columns: Milk Plans comes first (left), Farm Shop comes after it (right) */
+  .milk-plans-col {
+    order: 1;
   }
 
-  .footer-brand-section h2 {
-    font-size: clamp(21px, 5.5vw, 24px);
-    font-style: italic;
-    font-weight: normal;
-    color: #650b0b;
-    margin: 0 0 6px 0;
-    line-height: 1.2;
-    text-align: center;
-  }
-
-  .footer-brand-section p {
-    font-size: clamp(13px, 3.4vw, 14px);
-    color: #3c322d;
-    line-height: 1.4;
-    max-width: 285px;
-    margin: 0 auto 8px auto;
-    text-align: center;
-  }
-
-  .story-link {
-    font-size: clamp(13.5px, 3.5vw, 14.5px);
-    font-weight: bold;
-    color: #650b0b;
-    text-decoration: none;
-    display: inline-block;
-    margin: 0 auto;
-  }
-
-  /* Prominent Centered Produce Still Life Artwork */
-  .footer-mobile-produce-wrapper {
-    grid-column: 1 / -1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 18px 0 22px 0;
-    padding: 0;
-  }
-
-  .footer-mobile-produce-img {
-    height: clamp(135px, 35vw, 155px);
-    width: auto;
-    max-width: 85%;
-    object-fit: contain;
-    display: block;
-    filter: drop-shadow(0 8px 16px rgba(40, 20, 10, 0.15));
+  .farm-shop-col {
+    order: 2;
   }
 
   /* Clean Navigation Columns */
   .footer-nav-col {
-    padding: 16px 0 0 0;
+    padding: 0;
     border-right: none;
-    border-top: 1px solid rgba(215, 205, 195, 0.7);
+    border-top: none;
   }
 
   .footer-nav-col h3 {
@@ -330,7 +339,7 @@
   .footer-link-btn {
     font-size: clamp(14px, 3.6vw, 15px);
     color: #3c322d;
-    padding: 6px 0;
+    padding: 5px 0;
     border-bottom: 1px dotted #d2c8be;
     display: block;
     text-align: left;
@@ -344,11 +353,12 @@
 
   /* Customer Care - Spanning Full Width with Balanced 2-Column Links */
   .customer-care-col {
+    order: 3;
     grid-column: 1 / -1;
     border-top: 1px solid rgba(215, 205, 195, 0.7);
     padding-top: 16px;
-    padding-bottom: 6px;
-    margin-bottom: 8px;
+    padding-bottom: 4px;
+    margin-bottom: 4px;
   }
 
   .footer-customer-care-links {

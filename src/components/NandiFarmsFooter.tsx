@@ -46,31 +46,9 @@ export default function NandiFarmsFooter({
       </div>
 
       <div className="nandi-footer-content">
-        {/* Brand Mascot Logo - Positioned Above Brand Column */}
-        <div className="footer-brand-logo-wrap">
-          <img
-            src="/images/footer/nandi-farms-calf-logo-v3.png"
-            alt="Nandi Farms"
-            className="footer-brand-logo-img"
-            width={140}
-            height={135}
-            loading="eager"
-          />
-        </div>
-
-        {/* Main 4-Column Horizontal Row (Starts beside 'It started at home.') */}
-        <div className="footer-columns-row">
-          {/* Brand Column with Story */}
-          <section className="footer-brand-section">
-            <h2>It started at home.</h2>
-            <p>One cow, one buffalo, and a simple promise to our family.</p>
-            <Link className="story-link" href="/about">
-              Read our story &rarr;
-            </Link>
-          </section>
-
-          {/* Mobile Produce Centerpiece Artwork (Visible on mobile <= 820px, between Brand Story and Nav Columns) */}
-          <div className="footer-mobile-produce-wrapper" aria-hidden="true">
+        {/* Mobile Top Split Header (Visible on mobile <= 820px: Produce on Left, Logo & Story on Right) */}
+        <div className="footer-mobile-header-row">
+          <div className="footer-mobile-produce-box" aria-hidden="true">
             <picture>
               <source srcSet="/images/footer/nandi-farms-footer-produce-cutout.webp?v=12" type="image/webp" />
               <img
@@ -84,9 +62,48 @@ export default function NandiFarmsFooter({
               />
             </picture>
           </div>
+          <div className="footer-mobile-brand-box">
+            <img
+              src="/images/footer/nandi-farms-calf-logo-v3.png"
+              alt="Nandi Farms"
+              className="footer-mobile-brand-logo"
+              width={140}
+              height={135}
+              loading="eager"
+            />
+            <h2>It started at home.</h2>
+            <p>One cow, one buffalo, and a simple promise to our family.</p>
+            <Link className="story-link" href="/about">
+              Read our story &rarr;
+            </Link>
+          </div>
+        </div>
+
+        {/* Brand Mascot Logo - Positioned Above Brand Column (Desktop) */}
+        <div className="footer-brand-logo-wrap">
+          <img
+            src="/images/footer/nandi-farms-calf-logo-v3.png"
+            alt="Nandi Farms"
+            className="footer-brand-logo-img"
+            width={140}
+            height={135}
+            loading="eager"
+          />
+        </div>
+
+        {/* Main 4-Column Horizontal Row (Starts beside 'It started at home.') */}
+        <div className="footer-columns-row">
+          {/* Brand Column with Story (Desktop) */}
+          <section className="footer-brand-section">
+            <h2>It started at home.</h2>
+            <p>One cow, one buffalo, and a simple promise to our family.</p>
+            <Link className="story-link" href="/about">
+              Read our story &rarr;
+            </Link>
+          </section>
 
           {/* Farm Shop Column */}
-          <section className="footer-nav-col">
+          <section className="footer-nav-col farm-shop-col">
             <h3>FARM SHOP</h3>
             <Link href="/shop/milk" className="footer-nav-link">Milk &amp; Dairy</Link>
             <Link href="/shop/vegetables" className="footer-nav-link">Vegetables &amp; Fruit</Link>
@@ -94,7 +111,7 @@ export default function NandiFarmsFooter({
           </section>
 
           {/* Milk Plans Column */}
-          <section className="footer-nav-col">
+          <section className="footer-nav-col milk-plans-col">
             <h3>MILK PLANS</h3>
             <a
               href="https://eveggie.in/subscriptions"
