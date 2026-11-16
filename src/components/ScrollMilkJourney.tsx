@@ -66,55 +66,12 @@ export default function ScrollMilkJourney({ onShopFresh }: ScrollMilkJourneyProp
     if (!sectionRef.current) return;
 
     const ctx = gsap.context(() => {
-      // 1. Desktop Central Bottle Scroll Translation (Travels vertically with scroll)
-      // Strictly fixed scale: 1.0 permanently (NO zoom in, NO zoom out)
-      if (bottleDesktopRef.current && journeyContainerRef.current) {
-        gsap.fromTo(
-          bottleDesktopRef.current,
-          { y: 0 },
-          {
-            y: () => {
-              if (!journeyContainerRef.current || !bottleDesktopRef.current) return 700;
-              const containerHeight = journeyContainerRef.current.offsetHeight;
-              const bottleHeight = bottleDesktopRef.current.offsetHeight;
-              return Math.max(containerHeight - bottleHeight - 40, 200);
-            },
-            ease: "none",
-            scrollTrigger: {
-              trigger: journeyContainerRef.current,
-              start: "top 22%",
-              end: "bottom 82%",
-              scrub: 1.2, // Buttery-smooth physics scrub
-            },
-          }
-        );
-      }
-
-      // 2. Ensure all steps are visibly presented with zero cut-off
+      // Ensure all steps are visibly presented with zero cut-off
       milkJourney.steps.forEach((step, idx) => {
         const isLeft = idx % 2 === 0;
         const target = `.milk-step-card-${step.number}-${isLeft ? "left" : "right"}`;
         gsap.set(target, { opacity: 1, x: 0 });
       });
-
-      // 3. Mobile Bottle Initial Entry
-      if (bottleMobileRef.current) {
-        gsap.fromTo(
-          bottleMobileRef.current,
-          { opacity: 0, y: -40 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 1,
-            ease: "power2.out",
-            scrollTrigger: {
-              trigger: bottleMobileRef.current,
-              start: "top 80%",
-              toggleActions: "play none none reverse",
-            },
-          }
-        );
-      }
     }, sectionRef);
 
     return () => ctx.revert();
@@ -299,7 +256,7 @@ export default function ScrollMilkJourney({ onShopFresh }: ScrollMilkJourneyProp
               return (
                 <div
                   key={step.number}
-                  className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center min-h-[220px]"
+                  className="journey-milestone-row grid grid-cols-1 lg:grid-cols-12 gap-8 items-center min-h-[220px]"
                 >
                   {isLeft ? (
                     <>

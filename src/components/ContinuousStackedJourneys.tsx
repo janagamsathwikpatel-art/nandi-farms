@@ -41,6 +41,20 @@ export default function ContinuousStackedJourneys({ onShopFresh }: ContinuousSta
       };
     };
 
+    // Helper to calculate exact vertical travel from Milestone 01 to Milestone 04
+    const getTravelDistance = (containerEl: HTMLElement | null) => {
+      if (!containerEl) return 960;
+      const rows = containerEl.querySelectorAll<HTMLElement>(".journey-milestone-row");
+      if (rows.length >= 4) {
+        const firstRow = rows[0];
+        const lastRow = rows[rows.length - 1];
+        const firstCenter = firstRow.offsetTop + firstRow.offsetHeight / 2;
+        const lastCenter = lastRow.offsetTop + lastRow.offsetHeight / 2;
+        return Math.max(lastCenter - firstCenter, 500);
+      }
+      return 960;
+    };
+
     const ctx = gsap.context(() => {
       ScrollTrigger.create({
         trigger: masterTrackRef.current,
@@ -50,6 +64,9 @@ export default function ContinuousStackedJourneys({ onShopFresh }: ContinuousSta
         onUpdate: (self) => {
           const p = self.progress; // 0.0 to 1.0
           const { maxMilk, maxFruit, maxVeg } = getDeltas();
+          const milkTravel = getTravelDistance(milkContentRef.current);
+          const fruitTravel = getTravelDistance(fruitContentRef.current);
+          const vegTravel = getTravelDistance(vegContentRef.current);
 
           // -----------------------------------------------------------------
           // STAGE 1: Milk Journey (0.00 -> 0.33)
@@ -60,21 +77,26 @@ export default function ContinuousStackedJourneys({ onShopFresh }: ContinuousSta
             if (milkContentRef.current) {
               gsap.set(milkContentRef.current, { y: -subP * maxMilk });
             }
-            gsap.set(".milk-central-bottle-inner", { y: subP * Math.min(maxMilk, 650) });
+            gsap.set(".milk-central-bottle-inner", { y: subP * milkTravel });
             if (milkStageRef.current) {
               // Fade out Milk in the final 0.04 (from 0.29 to 0.33)
               const fade = p > 0.29 ? Math.max(0, 1 - (p - 0.29) / 0.04) : 1;
               gsap.set(milkStageRef.current, { opacity: fade, pointerEvents: fade > 0.1 ? "auto" : "none" });
             }
-            // Fruits rests in place right behind Milk
+            // Fruits rests in place right behind Milk ready at Milestone 01
             if (fruitStageRef.current) {
               gsap.set(fruitStageRef.current, { opacity: 1, pointerEvents: "none" });
               if (fruitContentRef.current) {
                 gsap.set(fruitContentRef.current, { y: 0 });
               }
+              gsap.set(".fruit-central-basket-inner", { y: 0 });
             }
             if (vegStageRef.current) {
               gsap.set(vegStageRef.current, { opacity: 0, pointerEvents: "none" });
+              if (vegContentRef.current) {
+                gsap.set(vegContentRef.current, { y: 0 });
+              }
+              gsap.set(".veg-central-basket-inner", { y: 0 });
             }
           }
           // -----------------------------------------------------------------
@@ -89,18 +111,19 @@ export default function ContinuousStackedJourneys({ onShopFresh }: ContinuousSta
             if (fruitContentRef.current) {
               gsap.set(fruitContentRef.current, { y: -subP * maxFruit });
             }
-            gsap.set(".fruit-central-basket-inner", { y: subP * Math.min(maxFruit, 650) });
+            gsap.set(".fruit-central-basket-inner", { y: subP * fruitTravel });
             if (fruitStageRef.current) {
               // Fade out Fruits in the final 0.04 (from 0.62 to 0.66)
               const fade = p > 0.62 ? Math.max(0, 1 - (p - 0.62) / 0.04) : 1;
               gsap.set(fruitStageRef.current, { opacity: fade, pointerEvents: fade > 0.1 ? "auto" : "none" });
             }
-            // Vegetables rests in place right behind Fruits
+            // Vegetables rests in place right behind Fruits ready at Milestone 01
             if (vegStageRef.current) {
               gsap.set(vegStageRef.current, { opacity: 1, pointerEvents: "none" });
               if (vegContentRef.current) {
                 gsap.set(vegContentRef.current, { y: 0 });
               }
+              gsap.set(".veg-central-basket-inner", { y: 0 });
             }
           }
           // -----------------------------------------------------------------
@@ -113,12 +136,12 @@ export default function ContinuousStackedJourneys({ onShopFresh }: ContinuousSta
             if (fruitStageRef.current) {
               gsap.set(fruitStageRef.current, { opacity: 0, pointerEvents: "none" });
             }
-            // Scroll Vegetables through all 4 milestones
+            // Scroll Vegetables through all 4 milestones until last end
             const subP = Math.min(1, Math.max(0, (p - 0.66) / 0.30));
             if (vegContentRef.current) {
               gsap.set(vegContentRef.current, { y: -subP * maxVeg });
             }
-            gsap.set(".veg-central-basket-inner", { y: subP * Math.min(maxVeg, 650) });
+            gsap.set(".veg-central-basket-inner", { y: subP * vegTravel });
             if (vegStageRef.current) {
               gsap.set(vegStageRef.current, { opacity: 1, pointerEvents: "auto" });
             }
