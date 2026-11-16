@@ -17,14 +17,14 @@
   justify-content: space-between;
 }
 
-/* 1. Left Produce Still Life (Direct User Cutout Image 2) */
+/* 1. Left Produce Still Life (Direct User Cutout Image 2 - Exact Screenshot Size) */
 .footer-left-produce-wrapper {
   position: absolute;
-  left: 0;
-  top: 0;
+  left: clamp(2px, 0.4vw, 6px);
   bottom: 0;
-  width: clamp(210px, 25vw, 260px);
-  height: 100%;
+  height: 76.5%;
+  width: auto;
+  max-width: clamp(160px, 19vw, 200px);
   z-index: 1;
   pointer-events: none;
   display: flex;
@@ -32,8 +32,9 @@
 }
 
 .footer-left-produce-img {
-  width: 100%;
+  width: auto;
   height: 100%;
+  max-height: 100%;
   object-fit: contain;
   object-position: left bottom;
   display: block;
