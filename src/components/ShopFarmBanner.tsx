@@ -11,9 +11,12 @@ export default function ShopFarmBanner() {
         aria-label="Shop the Farm - Fresh milk, seasonal produce, and farm essentials for your home."
       >
         <picture>
-          <source srcSet="/images/banners/shop/shop-farm-banner-plate.webp?v=7" type="image/webp" />
+          <source
+            srcSet="/images/banners/shop/shop-farm-banner-master-hd.webp?v=hd-final-1"
+            type="image/webp"
+          />
           <img
-            src="/images/banners/shop/shop-farm-banner-plate.png?v=7"
+            src="/images/banners/shop/shop-farm-banner-master-hd.png?v=hd-final-1"
             alt="Shop the Farm - Fresh milk, seasonal produce, and farm essentials for your home."
             className="shop-farm-banner-img"
             width={2880}
