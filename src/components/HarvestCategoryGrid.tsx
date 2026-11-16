@@ -20,6 +20,7 @@ import ScrollMilkJourney from "./ScrollMilkJourney";
 import ScrollFruitJourney from "./ScrollFruitJourney";
 import ScrollVegetableJourney from "./ScrollVegetableJourney";
 import ContinuousStackedJourneys from "./ContinuousStackedJourneys";
+import OnePlacePinnedJourneys from "./OnePlacePinnedJourneys";
 import { ProductModal } from "./ProductModal";
 import { PRODUCTS } from "@/data/products";
 import { Product, CartItem } from "@/types";
@@ -1307,15 +1308,15 @@ export default function HarvestCategoryGrid() {
       </div>
 
 
-      {/* 2. DEDICATED "FRESH PAGE" CATEGORY EXPERIENCE (Replaces Screenshot 4 Section) */}
+      {/* 2. DEDICATED "FRESH PAGE" CATEGORY EXPERIENCE */}
       <div
         id="category-fresh-page"
         ref={freshPageRef}
-        className="w-full bg-[#faf5ea] border-t border-[#ded7c8] transition-all duration-500"
+        className="w-full bg-[#FAF6ED] transition-all duration-500"
       >
-        {/* Seamless 3-Stage Continuous Stacked Journeys (Milk -> Fruits -> Vegetables in-place layer reveal) */}
+        {/* One-Place Pinned Journeys (Milk -> Fruits -> Vegetables in One Stationary Viewport) */}
         <div ref={catalogRef} className="w-full">
-          <ContinuousStackedJourneys onShopFresh={scrollToCatalog} />
+          <OnePlacePinnedJourneys onShopFresh={handleCardClick} />
         </div>
       </div>
 
