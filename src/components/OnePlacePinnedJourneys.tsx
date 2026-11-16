@@ -159,14 +159,7 @@ export default function OnePlacePinnedJourneys({ onShopFresh }: OnePlacePinnedJo
     return () => vid.removeEventListener("ended", handleEnded);
   }, []);
 
-  const scrollToPhase = (targetProgress: number) => {
-    if (outerTrackRef.current) {
-      const top = outerTrackRef.current.offsetTop;
-      const height = outerTrackRef.current.offsetHeight;
-      const targetY = top + targetProgress * height;
-      window.scrollTo({ top: targetY, behavior: "smooth" });
-    }
-  };
+
 
   return (
     <div
@@ -189,31 +182,6 @@ export default function OnePlacePinnedJourneys({ onShopFresh }: OnePlacePinnedJo
           <div className="phase-layer-milk absolute inset-0 px-4 sm:px-8 lg:px-12 py-6 sm:py-8 lg:py-10 flex flex-col justify-between will-change-transform z-30">
             {/* Header */}
             <div className="text-center pt-2 select-text">
-              <div className="inline-flex items-center gap-2 p-1.5 rounded-full bg-[#193E2D]/5 border border-[#193E2D]/10 mb-3 shadow-xs">
-                <button
-                  type="button"
-                  onClick={() => scrollToPhase(0.05)}
-                  className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-[#193E2D] text-white shadow-md shadow-[#193E2D]/20 cursor-pointer"
-                >
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-300 animate-pulse" />
-                  <span>1. Farm Milk</span>
-                </button>
-                <button
-                  type="button"
-                  onClick={() => scrollToPhase(0.38)}
-                  className="px-3.5 py-1.5 rounded-full text-xs font-semibold text-[#193E2D]/70 hover:text-[#193E2D] cursor-pointer"
-                >
-                  <span>2. Orchard Fruits</span>
-                </button>
-                <button
-                  type="button"
-                  onClick={() => scrollToPhase(0.72)}
-                  className="px-3.5 py-1.5 rounded-full text-xs font-semibold text-[#193E2D]/70 hover:text-[#193E2D] cursor-pointer"
-                >
-                  <span>3. Living Soil Veggies</span>
-                </button>
-              </div>
-
               <p className="text-[10px] sm:text-[11px] font-bold tracking-[0.2em] uppercase text-[#193E2D] mb-1">
                 {milkJourney.badge}
               </p>
@@ -298,31 +266,6 @@ export default function OnePlacePinnedJourneys({ onShopFresh }: OnePlacePinnedJo
           <div className="phase-layer-fruits absolute inset-0 px-4 sm:px-8 lg:px-12 py-6 sm:py-8 lg:py-10 flex flex-col justify-between will-change-transform opacity-0 pointer-events-none z-20">
             {/* Header */}
             <div className="text-center pt-2 select-text">
-              <div className="inline-flex items-center gap-2 p-1.5 rounded-full bg-[#193E2D]/5 border border-[#193E2D]/10 mb-3 shadow-xs">
-                <button
-                  type="button"
-                  onClick={() => scrollToPhase(0.05)}
-                  className="px-3.5 py-1.5 rounded-full text-xs font-semibold text-[#193E2D]/70 hover:text-[#193E2D] cursor-pointer"
-                >
-                  <span>1. Farm Milk</span>
-                </button>
-                <button
-                  type="button"
-                  onClick={() => scrollToPhase(0.38)}
-                  className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-[#193E2D] text-white shadow-md shadow-[#193E2D]/20 cursor-pointer"
-                >
-                  <span className="w-1.5 h-1.5 rounded-full bg-amber-300 animate-pulse" />
-                  <span>2. Orchard Fruits</span>
-                </button>
-                <button
-                  type="button"
-                  onClick={() => scrollToPhase(0.72)}
-                  className="px-3.5 py-1.5 rounded-full text-xs font-semibold text-[#193E2D]/70 hover:text-[#193E2D] cursor-pointer"
-                >
-                  <span>3. Living Soil Veggies</span>
-                </button>
-              </div>
-
               <p className="text-[10px] sm:text-[11px] font-bold tracking-[0.2em] uppercase text-[#193E2D] mb-1">
                 {fruitHarvestJourney.badge}
               </p>
@@ -402,31 +345,6 @@ export default function OnePlacePinnedJourneys({ onShopFresh }: OnePlacePinnedJo
           <div className="phase-layer-vegetables absolute inset-0 px-4 sm:px-8 lg:px-12 py-6 sm:py-8 lg:py-10 flex flex-col justify-between will-change-transform opacity-0 pointer-events-none z-10">
             {/* Header */}
             <div className="text-center pt-2 select-text">
-              <div className="inline-flex items-center gap-2 p-1.5 rounded-full bg-[#193E2D]/5 border border-[#193E2D]/10 mb-3 shadow-xs">
-                <button
-                  type="button"
-                  onClick={() => scrollToPhase(0.05)}
-                  className="px-3.5 py-1.5 rounded-full text-xs font-semibold text-[#193E2D]/70 hover:text-[#193E2D] cursor-pointer"
-                >
-                  <span>1. Farm Milk</span>
-                </button>
-                <button
-                  type="button"
-                  onClick={() => scrollToPhase(0.38)}
-                  className="px-3.5 py-1.5 rounded-full text-xs font-semibold text-[#193E2D]/70 hover:text-[#193E2D] cursor-pointer"
-                >
-                  <span>2. Orchard Fruits</span>
-                </button>
-                <button
-                  type="button"
-                  onClick={() => scrollToPhase(0.72)}
-                  className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-[#193E2D] text-white shadow-md shadow-[#193E2D]/20 cursor-pointer"
-                >
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-300 animate-pulse" />
-                  <span>3. Living Soil Veggies</span>
-                </button>
-              </div>
-
               <p className="text-[10px] sm:text-[11px] font-bold tracking-[0.2em] uppercase text-[#193E2D] mb-1">
                 {livingSoilJourney.badge}
               </p>
