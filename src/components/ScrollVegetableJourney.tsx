@@ -56,11 +56,38 @@ export default function ScrollVegetableJourney({ onShopFresh }: ScrollVegetableJ
     }
   };
 
-  // Ensure all steps are visibly presented with zero cut-off
+  // GSAP ScrollTrigger Animation for Alternating Journey & Moving Vegetable Basket
   useEffect(() => {
     if (!sectionRef.current) return;
 
     const ctx = gsap.context(() => {
+      // 1. Desktop Central Basket Scroll Translation (Travels vertically until last end)
+      // Strictly fixed scale: 1.0 permanently (NO zoom in, NO zoom out)
+      if (basketDesktopRef.current && journeyContainerRef.current) {
+        gsap.fromTo(
+          basketDesktopRef.current,
+          { y: 0 },
+          {
+            y: () => {
+              if (!journeyContainerRef.current || !basketDesktopRef.current) return 750;
+              const containerHeight = journeyContainerRef.current.offsetHeight;
+              const basketHeight = basketDesktopRef.current.offsetHeight;
+              // Comes all the way until the last end (Card 04)
+              return Math.max(containerHeight - basketHeight - 16, 200);
+            },
+            ease: "none",
+            scrollTrigger: {
+              trigger: journeyContainerRef.current,
+              start: "top 22%",
+              end: "bottom 88%",
+              scrub: 1.2, // Buttery-smooth physics scrub
+              invalidateOnRefresh: true,
+            },
+          }
+        );
+      }
+
+      // 2. Ensure all steps are visibly presented with zero cut-off
       livingSoilJourney.steps.forEach((step, idx) => {
         const isLeft = idx % 2 === 0;
         const target = `.veg-step-card-${step.number}-${isLeft ? "left" : "right"}`;
@@ -118,7 +145,7 @@ export default function ScrollVegetableJourney({ onShopFresh }: ScrollVegetableJ
           {/* ------------------------------------------------------- */}
           {/* DESKTOP BASKET TRACK (Floating Central Column)         */}
           {/* ------------------------------------------------------- */}
-          <div className="hidden lg:flex absolute left-1/2 -translate-x-1/2 top-0 z-20 w-[480px] pointer-events-none items-center justify-center">
+          <div className="hidden lg:block absolute left-1/2 -translate-x-1/2 top-0 pointer-events-none z-20 w-[480px] will-change-transform">
             <div
               ref={basketDesktopRef}
               className="veg-central-basket-inner relative w-full flex flex-col items-center justify-center will-change-transform"
@@ -129,7 +156,7 @@ export default function ScrollVegetableJourney({ onShopFresh }: ScrollVegetableJ
               {/* Handcrafted Woven Harvest Basket with Authentic Farm-Fresh Vegetables */}
               <div className="relative w-full aspect-[16/10] flex items-center justify-center pointer-events-none select-none">
                 <img
-                  src="/images/vegetable-basket-full-hd.png"
+                  src="/images/user-vegetable-basket-transparent.png"
                   alt="Nandi Living Soil Vegetable Basket - Farm-fresh organic vegetables"
                   className="w-full h-full object-contain drop-shadow-[0_16px_28px_rgba(25,62,45,0.12)] pointer-events-none select-none"
                   loading="eager"
@@ -145,7 +172,7 @@ export default function ScrollVegetableJourney({ onShopFresh }: ScrollVegetableJ
             <div className="relative w-full max-w-[340px] aspect-[16/10] flex items-center justify-center pointer-events-none select-none">
               <div className="absolute bottom-2 w-64 h-5 rounded-[100%] bg-black/15 blur-md pointer-events-none" />
               <img
-                src="/images/vegetable-basket-full-hd.png"
+                src="/images/user-vegetable-basket-transparent.png"
                 alt="Nandi Living Soil Vegetable Basket"
                 className="w-full h-full object-contain drop-shadow-[0_12px_20px_rgba(25,62,45,0.12)] pointer-events-none select-none"
                 loading="eager"
