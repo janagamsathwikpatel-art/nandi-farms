@@ -49,7 +49,7 @@
   box-sizing: border-box;
   display: grid;
   grid-template-columns: 1.7fr 1.15fr 1.1fr 1.3fr;
-  padding: clamp(12px, 2vw, 22px) clamp(16px, 3vw, 36px) 0 clamp(235px, 26.5vw, 290px);
+  padding: clamp(28px, 3.5vw, 42px) clamp(16px, 3vw, 36px) 0 clamp(190px, 21vw, 220px);
   gap: 0;
 }
 
@@ -149,7 +149,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 6px clamp(20px, 4vw, 40px) 6px clamp(235px, 26.5vw, 290px);
+  padding: 6px clamp(20px, 4vw, 40px) 6px clamp(190px, 21vw, 220px);
   font-size: 11px;
   color: #7a685e;
   border-top: 1px solid rgba(222, 215, 200, 0.4);
