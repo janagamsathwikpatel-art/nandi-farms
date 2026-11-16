@@ -1130,7 +1130,7 @@ export default function HarvestCategoryGrid() {
       : allCategoryItems.filter((item) => item.subCategory === activeSubFilter);
 
   return (
-    <section id="categories" className="relative w-full bg-[#faf5ea] overflow-hidden py-6 sm:py-8 lg:py-10">
+    <section id="categories" className="relative w-full bg-[#faf5ea] overflow-visible py-6 sm:py-8 lg:py-10">
       {/* 1. EVERYDAY GOODNESS 9 COLLECTIONS BENTO CONTAINER (Pure Artwork, Zero White Layout, No Clipping) */}
       <div
         ref={allCollectionsRef}
@@ -1314,18 +1314,18 @@ export default function HarvestCategoryGrid() {
       >
         {/* Continuous 3-Section GSAP Journey Stack (Milk -> Fruit -> Vegetable) */}
         <div id="farm-journeys-continuous-stack" ref={catalogRef} className="relative w-full overflow-visible">
-          {/* Section 1: The Milk Journey (z-10) */}
-          <div className="relative z-10 w-full">
+          {/* Section 1: The Milk Journey (z-10, Pinned at top: 0) */}
+          <div className="sticky top-0 z-10 w-full min-h-screen bg-[#FAF6ED] overflow-hidden">
             <ScrollMilkJourney onShopFresh={scrollToCatalog} />
           </div>
 
-          {/* Section 2: The Fruit Harvest (z-20, slides over Milk from backside) */}
-          <div className="relative z-20 w-full -mt-10 sm:-mt-14 rounded-t-[36px] sm:rounded-t-[48px] shadow-[0_-25px_60px_rgba(25,62,45,0.09)] border-t border-[#193E2D]/10 bg-[#FAF6ED] overflow-hidden">
+          {/* Section 2: The Fruit Harvest (z-20, Pinned at top: 0, slides over Milk into exact same place) */}
+          <div className="sticky top-0 z-20 w-full min-h-screen rounded-t-[36px] sm:rounded-t-[48px] shadow-[0_-25px_60px_rgba(25,62,45,0.16)] border-t border-[#193E2D]/10 bg-[#FAF6ED] overflow-hidden">
             <ScrollFruitJourney onShopFresh={scrollToCatalog} />
           </div>
 
-          {/* Section 3: The Living Soil Vegetable Journey (z-30, slides over Fruit from backside) */}
-          <div className="relative z-30 w-full -mt-10 sm:-mt-14 rounded-t-[36px] sm:rounded-t-[48px] shadow-[0_-30px_70px_rgba(25,62,45,0.12)] border-t border-[#193E2D]/10 bg-[#FAF6ED] overflow-hidden">
+          {/* Section 3: The Living Soil Vegetable Journey (z-30, Pinned at top: 0, slides over Fruit into exact same place) */}
+          <div className="sticky top-0 z-30 w-full min-h-screen rounded-t-[36px] sm:rounded-t-[48px] shadow-[0_-30px_70px_rgba(25,62,45,0.20)] border-t border-[#193E2D]/10 bg-[#FAF6ED] overflow-hidden">
             <ScrollVegetableJourney onShopFresh={scrollToCatalog} />
           </div>
         </div>
