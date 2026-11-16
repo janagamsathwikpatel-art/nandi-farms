@@ -9,16 +9,16 @@
 .milk-plans-wrapper {
   background: var(--cream);
   width: 100%;
-  padding: 68px 24px;
+  padding: clamp(28px, 3.2vw, 42px) clamp(16px, 2.5vw, 24px);
   box-sizing: border-box;
 }
 
 .milk-plans-container {
-  max-width: 1280px;
+  max-width: 1200px;
   margin: auto;
   display: grid;
   grid-template-columns: 1fr 1.15fr;
-  gap: 56px;
+  gap: clamp(24px, 3vw, 42px);
   align-items: center;
   box-sizing: border-box;
 }
@@ -31,10 +31,10 @@
 
 .milk-plans-card {
   background: white;
-  border-radius: 26px;
-  box-shadow: 0 16px 40px rgba(22, 70, 51, 0.08);
+  border-radius: 18px;
+  box-shadow: 0 12px 30px rgba(22, 70, 51, 0.08);
   overflow: hidden;
-  max-width: 520px;
+  max-width: 440px;
   width: 100%;
   border: 1px solid var(--border);
   box-sizing: border-box;
@@ -54,46 +54,46 @@
 }
 
 .eyebrow {
-  margin: 0 0 20px;
-  font-size: 16px;
+  margin: 0 0 8px;
+  font-size: 13px;
   font-weight: 700;
-  letter-spacing: 6px;
+  letter-spacing: 4px;
 }
 
 .milk-plans h1 {
   margin: 0;
   font-family: Georgia, serif;
-  font-size: clamp(40px, 4.5vw, 64px);
-  line-height: 1.08;
+  font-size: clamp(28px, 3.2vw, 44px);
+  line-height: 1.1;
   font-weight: 500;
 }
 
 .description {
-  margin: 20px 0 40px;
+  margin: 10px 0 18px;
   color: #557364;
-  font-size: 20px;
-  line-height: 1.45;
+  font-size: 16px;
+  line-height: 1.4;
 }
 
 .plans {
   display: grid;
-  gap: 16px;
+  gap: 10px;
 }
 
 .plan {
   position: relative;
   display: grid;
-  grid-template-columns: 36px 1fr auto auto;
+  grid-template-columns: 28px 1fr auto auto;
   align-items: center;
-  gap: 18px;
+  gap: 14px;
   width: 100%;
-  min-height: 96px;
-  padding: 22px 28px;
+  min-height: 60px;
+  padding: 12px 20px;
   color: var(--green);
   text-align: left;
   background: white;
   border: 2px solid var(--border);
-  border-radius: 22px;
+  border-radius: 14px;
   cursor: pointer;
   box-sizing: border-box;
   transition: all 0.2s ease;
@@ -105,24 +105,24 @@
 }
 
 .plan strong {
-  font-size: 22px;
-  letter-spacing: 1px;
+  font-size: 17px;
+  letter-spacing: 0.5px;
 }
 
 .plan.selected {
-  border: 3.5px solid var(--green);
-  box-shadow: 0 12px 24px rgba(22, 70, 51, 0.08);
+  border: 2.5px solid var(--green);
+  box-shadow: 0 8px 18px rgba(22, 70, 51, 0.08);
 }
 
 .check {
-  width: 32px;
-  height: 32px;
+  width: 24px;
+  height: 24px;
   display: grid;
   place-items: center;
   border: 2px solid #b8c6bd;
   border-radius: 50%;
   color: white;
-  font-size: 18px;
+  font-size: 14px;
   font-weight: bold;
 }
 
@@ -133,37 +133,37 @@
 
 .price {
   font-family: Georgia, serif;
-  font-size: 32px;
+  font-size: 24px;
   font-weight: 600;
 }
 
 .per-day {
   color: var(--muted);
-  font-size: 18px;
+  font-size: 14px;
 }
 
 .popular {
-  padding-top: 38px;
+  padding-top: 24px;
 }
 
 .popular-label {
   position: absolute;
-  top: 12px;
-  left: 28px;
+  top: 5px;
+  left: 20px;
   color: var(--gold);
-  font-size: 13px;
+  font-size: 11px;
   font-weight: 700;
-  letter-spacing: 3px;
+  letter-spacing: 2px;
 }
 
 .start-button {
-  margin-top: 36px;
-  padding: 22px 48px;
+  margin-top: 18px;
+  padding: 14px 34px;
   border: 0;
-  border-radius: 20px;
+  border-radius: 50px;
   background: var(--green);
   color: white;
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 600;
   cursor: pointer;
   display: inline-flex;
@@ -178,8 +178,8 @@
 }
 
 .start-button span {
-  margin-left: 14px;
-  font-size: 26px;
+  margin-left: 10px;
+  font-size: 20px;
   transition: transform 0.2s ease;
 }
 

@@ -31,10 +31,10 @@ export default function NandiFarmsFooter({
     <footer className="nandi-footer-container" id="nandi-footer" aria-label="Nandi Farms Footer">
       {/* High-Resolution Left Produce Still Life (Direct Image 2 Cutout - Scaled to Footer Start) */}
       <div className="footer-left-produce-wrapper" aria-hidden="true">
-        <picture>
-          <source srcSet="/images/footer/nandi-farms-footer-produce-cutout.webp?v=11" type="image/webp" />
+        <picture className="footer-left-produce-pic">
+          <source srcSet="/images/footer/nandi-farms-footer-produce-cutout.webp?v=12" type="image/webp" />
           <img
-            src="/images/footer/nandi-farms-footer-produce-cutout.png?v=11"
+            src="/images/footer/nandi-farms-footer-produce-cutout.png?v=12"
             alt="Nandi Farms Fresh Produce"
             className="footer-left-produce-img"
             width={475}
