@@ -46,89 +46,94 @@ export default function NandiFarmsFooter({
       </div>
 
       <div className="nandi-footer-content">
-        {/* Brand Column with Calf Mascot Logo */}
-        <section className="footer-brand-section">
-          <div className="footer-brand-logo-wrap">
-            <img
-              src="/images/footer/nandi-farms-calf-logo-v3.png"
-              alt="Nandi Farms"
-              className="footer-brand-logo-img"
-              width={140}
-              height={135}
-              loading="eager"
-            />
-          </div>
-          <h2>It started at home.</h2>
-          <p>One cow, one buffalo, and a simple promise to our family.</p>
-          <Link className="story-link" href="/about">
-            Read our story &rarr;
-          </Link>
-        </section>
+        {/* Brand Mascot Logo - Positioned Above Brand Column */}
+        <div className="footer-brand-logo-wrap">
+          <img
+            src="/images/footer/nandi-farms-calf-logo-v3.png"
+            alt="Nandi Farms"
+            className="footer-brand-logo-img"
+            width={140}
+            height={135}
+            loading="eager"
+          />
+        </div>
 
-        {/* Farm Shop Column */}
-        <section className="footer-nav-col">
-          <h3>FARM SHOP</h3>
-          <Link href="/shop/milk" className="footer-nav-link">Milk &amp; Dairy</Link>
-          <Link href="/shop/vegetables" className="footer-nav-link">Vegetables &amp; Fruit</Link>
-          <Link href="/shop/eggs" className="footer-nav-link">Eggs &amp; Pantry</Link>
-        </section>
+        {/* Main 4-Column Horizontal Row (Starts beside 'It started at home.') */}
+        <div className="footer-columns-row">
+          {/* Brand Column with Story */}
+          <section className="footer-brand-section">
+            <h2>It started at home.</h2>
+            <p>One cow, one buffalo, and a simple promise to our family.</p>
+            <Link className="story-link" href="/about">
+              Read our story &rarr;
+            </Link>
+          </section>
 
-        {/* Milk Plans Column */}
-        <section className="footer-nav-col">
-          <h3>MILK PLANS</h3>
-          <a
-            href="https://eveggie.in/subscriptions"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="footer-nav-link solid-underline"
-          >
-            Explore Milk Plans
-          </a>
-          <button
-            type="button"
-            className="footer-link-btn solid-underline"
-            onClick={onOpenSubscription}
-          >
-            Manage Deliveries
-          </button>
-        </section>
+          {/* Farm Shop Column */}
+          <section className="footer-nav-col">
+            <h3>FARM SHOP</h3>
+            <Link href="/shop/milk" className="footer-nav-link">Milk &amp; Dairy</Link>
+            <Link href="/shop/vegetables" className="footer-nav-link">Vegetables &amp; Fruit</Link>
+            <Link href="/shop/eggs" className="footer-nav-link">Eggs &amp; Pantry</Link>
+          </section>
 
-        {/* Customer Care Column */}
-        <section className="footer-nav-col customer-care-col">
-          <h3>CUSTOMER CARE</h3>
-          <Link href="/shop" className="footer-nav-link">Delivery Areas</Link>
-          <button
-            type="button"
-            className="footer-link-btn"
-            onClick={onOpenContact}
-          >
-            Contact Us
-          </button>
-          <button
-            type="button"
-            className="footer-link-btn"
-            onClick={() =>
-              openInfoModal(
-                "Privacy Policy",
-                "At Nandi Farms, we uphold rigorous customer data security. We protect all user details, payment interactions, and delivery records with end-to-end encryption."
-              )
-            }
-          >
-            Privacy Policy
-          </button>
-          <button
-            type="button"
-            className="footer-link-btn"
-            onClick={() =>
-              openInfoModal(
-                "Terms & Conditions",
-                "Subscription memberships may be paused or customized with zero penalty anytime through your daily dashboard or customer care line."
-              )
-            }
-          >
-            Terms &amp; Conditions
-          </button>
-        </section>
+          {/* Milk Plans Column */}
+          <section className="footer-nav-col">
+            <h3>MILK PLANS</h3>
+            <a
+              href="https://eveggie.in/subscriptions"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="footer-nav-link solid-underline"
+            >
+              Explore Milk Plans
+            </a>
+            <button
+              type="button"
+              className="footer-link-btn solid-underline"
+              onClick={onOpenSubscription}
+            >
+              Manage Deliveries
+            </button>
+          </section>
+
+          {/* Customer Care Column */}
+          <section className="footer-nav-col customer-care-col">
+            <h3>CUSTOMER CARE</h3>
+            <Link href="/shop" className="footer-nav-link">Delivery Areas</Link>
+            <button
+              type="button"
+              className="footer-link-btn"
+              onClick={onOpenContact}
+            >
+              Contact Us
+            </button>
+            <button
+              type="button"
+              className="footer-link-btn"
+              onClick={() =>
+                openInfoModal(
+                  "Privacy Policy",
+                  "At Nandi Farms, we uphold rigorous customer data security. We protect all user details, payment interactions, and delivery records with end-to-end encryption."
+                )
+              }
+            >
+              Privacy Policy
+            </button>
+            <button
+              type="button"
+              className="footer-link-btn"
+              onClick={() =>
+                openInfoModal(
+                  "Terms & Conditions",
+                  "Subscription memberships may be paused or customized with zero penalty anytime through your daily dashboard or customer care line."
+                )
+              }
+            >
+              Terms &amp; Conditions
+            </button>
+          </section>
+        </div>
       </div>
 
       {/* Subtle Bottom Copyright Bar */}

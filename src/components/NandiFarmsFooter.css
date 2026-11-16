@@ -45,15 +45,31 @@
   display: block;
 }
 
-/* 2. Content Grid */
+/* 2. Content Container */
 .nandi-footer-content {
   position: relative;
   z-index: 2;
   width: 100%;
   box-sizing: border-box;
+  padding: clamp(24px, 3.2vw, 36px) clamp(16px, 3vw, 36px) 0 clamp(275px, 23vw, 320px);
+}
+
+.footer-brand-logo-wrap {
+  margin-bottom: clamp(6px, 0.8vw, 10px);
+}
+
+.footer-brand-logo-img {
+  width: clamp(90px, 10vw, 115px);
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+/* 4-Column Horizontal Row (Starts beside 'It started at home.') */
+.footer-columns-row {
   display: grid;
   grid-template-columns: 1.7fr 1.15fr 1.1fr 1.3fr;
-  padding: clamp(42px, 4.8vw, 62px) clamp(16px, 3vw, 36px) 0 clamp(275px, 23vw, 320px);
+  align-items: start;
   gap: 0;
 }
 
@@ -66,20 +82,13 @@
   padding-bottom: clamp(6px, 1vw, 14px);
 }
 
-.footer-brand-logo-img {
-  width: clamp(105px, 12vw, 130px);
-  height: auto;
-  object-fit: contain;
-  margin-bottom: 2px;
-}
-
 .footer-brand-section h2 {
-  font-size: clamp(18px, 2.2vw, 23px);
+  font-size: clamp(17px, 2.1vw, 22px);
   font-style: italic;
   font-weight: normal;
   color: #650b0b;
-  margin: clamp(4px, 0.6vw, 6px) 0 clamp(3px, 0.4vw, 5px) 0;
-  line-height: 1.15;
+  margin: 0 0 clamp(4px, 0.6vw, 8px) 0;
+  line-height: 1.2;
 }
 
 .footer-brand-section p {
