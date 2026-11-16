@@ -10,7 +10,7 @@ import FarmVegetablesShelf from "@/components/FarmVegetablesShelf";
 import { ProductModal } from "@/components/ProductModal";
 import MilkSubscriptionBanner from "@/components/MilkSubscriptionBanner";
 import MilkSubscriptionModal from "@/components/MilkSubscriptionModal";
-import YDailyFooter from "@/components/YDailyFooter";
+import NandiFarmsFooter from "@/components/NandiFarmsFooter";
 import ContactModal from "@/components/ContactModal";
 import { Product, CartItem } from "@/types";
 
@@ -168,8 +168,8 @@ export default function YDailyPage() {
         <div className="w-full h-8 sm:h-12 md:h-16 bg-[#faf5ea]" aria-hidden="true" />
       </main>
 
-      {/* Brand New 4K Y Daily Scenic Footer with Working Links, Form & Socials */}
-      <YDailyFooter
+      {/* Brand New 4K Nandi Farms Scenic Footer with Working Interactive Buttons */}
+      <NandiFarmsFooter
         onOpenContact={() => setIsContactOpen(true)}
         onOpenSubscription={() => setIsSubModalOpen(true)}
       />

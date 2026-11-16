@@ -1,4 +1,6 @@
-.shop-page {
+:root,
+.shop-page,
+.shop-content-wrapper {
   --farm-cream: #faf5ea;
   --farm-burgundy: #680f0e;
   --farm-gutter: max(4.6vw, calc((100% - 1560px) / 2));
@@ -9,6 +11,11 @@
   background: var(--farm-cream);
   color: var(--shop-text);
   font-family: var(--sans);
+}
+
+.shop-content-wrapper {
+  min-height: 100vh;
+  padding-bottom: 72px;
 }
 
 .shop-brand {
@@ -64,6 +71,37 @@
   width: min(100%, 1600px);
   margin-inline: auto;
   padding: clamp(18px, 3vw, 44px) clamp(16px, 4.6vw, 72px) 72px;
+}
+
+.shop-inventory {
+  width: min(100%, 1600px);
+  margin-inline: auto;
+  padding-inline: clamp(16px, 4.6vw, 72px);
+  box-sizing: border-box;
+}
+
+.farm-banner {
+  width: 100%;
+  max-width: 100%;
+  aspect-ratio: 1024 / 201;
+  margin-inline: auto;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(44, 27, 19, 0.08);
+  margin-bottom: clamp(14px, 2vw, 22px);
+  background-color: #faeedb;
+}
+
+.farm-banner picture,
+.farm-banner img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 .shop-intro {
@@ -384,6 +422,9 @@
   }
   .shop-home-link {
     display: none;
+  }
+  .farm-banner {
+    border-radius: 16px;
   }
   .shop-intro {
     grid-template-columns: 1fr;
