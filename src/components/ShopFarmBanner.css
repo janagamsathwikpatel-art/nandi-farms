@@ -2,68 +2,23 @@
   position: relative;
   width: 100%;
   aspect-ratio: 1024 / 341;
-  min-height: clamp(260px, 33vw, 360px);
   background-color: #fff6e8;
-  background-image: url("/images/banners/shop/shop-farm-banner-plate.webp");
-  background-size: 100% 100%;
-  background-position: center center;
-  background-repeat: no-repeat;
-  font-family: Georgia, serif;
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
   box-sizing: border-box;
   overflow: hidden;
-  padding: clamp(16px, 2.8vw, 36px) clamp(20px, 4vw, 50px);
+  display: block;
 }
 
-.shop-farm-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  width: clamp(240px, 32vw, 360px);
-  margin-left: clamp(10px, 3.5vw, 45px);
-}
-
-.shop-farm-banner h1 {
-  margin: 0;
-  font-size: clamp(20px, 3.2vw, 34px);
-  font-style: italic;
-  font-weight: normal;
-  line-height: 1.05;
-  color: #650b0b;
-}
-
-.shop-farm-banner p {
-  max-width: 320px;
-  margin: clamp(4px, 0.8vw, 8px) auto clamp(8px, 1.2vw, 14px);
-  font-size: clamp(10px, 1.25vw, 13px);
-  font-style: italic;
-  line-height: 1.35;
-  color: #650b0b;
-}
-
-.shop-now {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: clamp(4px, 0.6vw, 6px) clamp(14px, 1.8vw, 22px);
-  border: 1.5px solid #d89c00;
-  border-radius: 999px;
-  background: #234c08;
-  color: white;
-  font-size: clamp(9px, 1.1vw, 11px);
-  letter-spacing: 1.5px;
+.shop-farm-banner-link {
+  display: block;
+  width: 100%;
+  height: 100%;
   text-decoration: none;
-  font-family: system-ui, -apple-system, sans-serif;
-  font-weight: 600;
-  cursor: pointer;
-  transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-.shop-now:hover {
-  background: #1c3d06;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(35, 76, 8, 0.25);
+.shop-farm-banner-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  display: block;
 }
