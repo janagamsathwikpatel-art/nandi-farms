@@ -45,7 +45,7 @@
     "image": "https://admin.eveggie.in/storage/products/1784977567_53699.png",
     "price": 100,
     "originalPrice": 150,
-    "category": null
+    "category": "sweets"
   },
   {
     "id": 331,
@@ -53,7 +53,7 @@
     "image": "https://admin.eveggie.in/storage/products/1784977660_45338.png",
     "price": 150,
     "originalPrice": 200,
-    "category": null
+    "category": "sweets"
   },
   {
     "id": 438,
@@ -61,7 +61,7 @@
     "image": "https://admin.eveggie.in/storage/products/1784981408_98940.png",
     "price": 200,
     "originalPrice": 250,
-    "category": null
+    "category": "sweets"
   },
   {
     "id": 305,
@@ -69,7 +69,7 @@
     "image": "https://admin.eveggie.in/storage/products/1784296181_89444.png",
     "price": 520,
     "originalPrice": 570,
-    "category": null
+    "category": "vegetables"
   },
   {
     "id": 51,
@@ -77,7 +77,7 @@
     "image": "https://admin.eveggie.in/storage/products/1784274906_91233.png",
     "price": 620,
     "originalPrice": 670,
-    "category": null
+    "category": "vegetables"
   },
   {
     "id": 443,
@@ -85,7 +85,7 @@
     "image": "https://admin.eveggie.in/storage/products/1785580031_63566.png",
     "price": 65,
     "originalPrice": 80,
-    "category": null
+    "category": "ravva"
   },
   {
     "id": 446,
@@ -93,7 +93,7 @@
     "image": "https://admin.eveggie.in/storage/products/1785580059_23667.png",
     "price": 90,
     "originalPrice": 110,
-    "category": null
+    "category": "ravva"
   },
   {
     "id": 234,
@@ -101,7 +101,7 @@
     "image": "https://admin.eveggie.in/storage/products/1785584796_67965.png",
     "price": 90,
     "originalPrice": 100,
-    "category": null
+    "category": "ravva"
   },
   {
     "id": 235,
@@ -109,7 +109,7 @@
     "image": "https://admin.eveggie.in/storage/products/1785584875_33861.png",
     "price": 90,
     "originalPrice": 100,
-    "category": null
+    "category": "ravva"
   },
   {
     "id": 444,
@@ -117,7 +117,7 @@
     "image": "https://admin.eveggie.in/storage/products/1785587512_37511.jpeg",
     "price": 100,
     "originalPrice": 120,
-    "category": null
+    "category": "ravva"
   },
   {
     "id": 445,
@@ -125,7 +125,7 @@
     "image": "https://admin.eveggie.in/storage/products/1785597333_81333.png",
     "price": 90,
     "originalPrice": 110,
-    "category": null
+    "category": "ravva"
   },
   {
     "id": 449,
@@ -133,7 +133,7 @@
     "image": "https://admin.eveggie.in/storage/products/1785597558_95129.png",
     "price": 70,
     "originalPrice": 90,
-    "category": null
+    "category": "sweets"
   },
   {
     "id": 448,
@@ -141,7 +141,7 @@
     "image": "https://admin.eveggie.in/storage/products/1785597522_68883.png",
     "price": 80,
     "originalPrice": 100,
-    "category": null
+    "category": "sweets"
   },
   {
     "id": 447,
@@ -149,7 +149,7 @@
     "image": "https://admin.eveggie.in/storage/products/1785597501_12973.png",
     "price": 80,
     "originalPrice": 100,
-    "category": null
+    "category": "sweets"
   },
   {
     "id": 450,
@@ -157,7 +157,7 @@
     "image": "https://admin.eveggie.in/storage/products/1785997458_28401.png",
     "price": 90,
     "originalPrice": 110,
-    "category": null
+    "category": "sweets"
   },
   {
     "id": 107,
@@ -165,7 +165,7 @@
     "image": "https://admin.eveggie.in/storage/products/1738057866_94408.jpeg",
     "price": 250,
     "originalPrice": 300,
-    "category": null
+    "category": "pickles"
   },
   {
     "id": 453,
@@ -173,7 +173,7 @@
     "image": "https://admin.eveggie.in/storage/products/1787574180_86308.png",
     "price": 130,
     "originalPrice": 140,
-    "category": null
+    "category": "pickles"
   },
   {
     "id": 440,
@@ -181,7 +181,7 @@
     "image": "https://admin.eveggie.in/storage/products/1785144545_76766.png",
     "price": 130,
     "originalPrice": 140,
-    "category": null
+    "category": "pickles"
   },
   {
     "id": 439,
@@ -189,7 +189,7 @@
     "image": "https://admin.eveggie.in/storage/products/1785143945_38602.png",
     "price": 130,
     "originalPrice": 140,
-    "category": null
+    "category": "pickles"
   },
   {
     "id": 111,
@@ -197,7 +197,7 @@
     "image": "https://admin.eveggie.in/storage/products/1738058226_50433.jpeg",
     "price": 130,
     "originalPrice": 150,
-    "category": null
+    "category": "pickles"
   },
   {
     "id": 442,
@@ -205,7 +205,7 @@
     "image": "https://admin.eveggie.in/storage/products/1785145571_54169.png",
     "price": 130,
     "originalPrice": 140,
-    "category": null
+    "category": "pickles"
   },
   {
     "id": 431,
@@ -213,7 +213,7 @@
     "image": "https://admin.eveggie.in/storage/products/1780656466_60107.webp",
     "price": 20,
     "originalPrice": 25,
-    "category": null
+    "category": "vegetables"
   },
   {
     "id": 59,
@@ -221,7 +221,7 @@
     "image": "https://admin.eveggie.in/storage/products/1770282138_1609.png",
     "price": 130,
     "originalPrice": 175,
-    "category": null
+    "category": "milk"
   },
   {
     "id": 454,
@@ -229,7 +229,7 @@
     "image": "https://admin.eveggie.in/storage/products/1787575062_10960.png",
     "price": 130,
     "originalPrice": 140,
-    "category": null
+    "category": "pickles"
   },
   {
     "id": 441,
@@ -237,7 +237,7 @@
     "image": "https://admin.eveggie.in/storage/products/1785145115_14575.png",
     "price": 150,
     "originalPrice": 160,
-    "category": null
+    "category": "pickles"
   },
   {
     "id": 110,
@@ -245,7 +245,7 @@
     "image": "https://admin.eveggie.in/storage/products/1738058157_79108.jpeg",
     "price": 130,
     "originalPrice": 140,
-    "category": null
+    "category": "pickles"
   },
   {
     "id": 409,
@@ -253,7 +253,7 @@
     "image": "https://admin.eveggie.in/storage/products/1789221759_24452.png",
     "price": 90,
     "originalPrice": 120,
-    "category": null
+    "category": "karam-podulu"
   },
   {
     "id": 406,
@@ -261,7 +261,7 @@
     "image": "https://admin.eveggie.in/storage/products/1789222046_83268.png",
     "price": 90,
     "originalPrice": 120,
-    "category": null
+    "category": "karam-podulu"
   },
   {
     "id": 451,
@@ -269,7 +269,7 @@
     "image": "https://admin.eveggie.in/storage/products/1789220611_40976.png",
     "price": 90,
     "originalPrice": 120,
-    "category": null
+    "category": "karam-podulu"
   },
   {
     "id": 457,
@@ -277,7 +277,7 @@
     "image": "https://admin.eveggie.in/storage/products/1789223055_21032.png",
     "price": 90,
     "originalPrice": 120,
-    "category": null
+    "category": "karam-podulu"
   },
   {
     "id": 404,
@@ -285,7 +285,7 @@
     "image": "https://admin.eveggie.in/storage/products/1789223071_50497.png",
     "price": 90,
     "originalPrice": 120,
-    "category": null
+    "category": "karam-podulu"
   },
   {
     "id": 386,
@@ -293,7 +293,7 @@
     "image": "https://admin.eveggie.in/storage/products/1746637190_78154.jpg",
     "price": 30,
     "originalPrice": 42,
-    "category": null
+    "category": "milk"
   },
   {
     "id": 456,
@@ -301,7 +301,7 @@
     "image": "https://admin.eveggie.in/storage/products/1789282750_79075.png",
     "price": 30,
     "originalPrice": 40,
-    "category": null
+    "category": "milk"
   },
   {
     "id": 205,
@@ -309,7 +309,7 @@
     "image": "https://admin.eveggie.in/storage/products/1738159577_7349.jpeg",
     "price": 60,
     "originalPrice": 80,
-    "category": null
+    "category": "pooja-needs"
   },
   {
     "id": 203,
@@ -317,7 +317,7 @@
     "image": "https://admin.eveggie.in/storage/products/1738159379_47820.jpeg",
     "price": 60,
     "originalPrice": 80,
-    "category": null
+    "category": "pooja-needs"
   },
   {
     "id": 458,
@@ -325,7 +325,7 @@
     "image": "https://admin.eveggie.in/storage/products/1793953308_10470.jpg",
     "price": 30,
     "originalPrice": 50,
-    "category": null
+    "category": "pooja-needs"
   },
   {
     "id": 801,
@@ -422,5 +422,181 @@
     "price": 299,
     "originalPrice": 380,
     "category": "fruits"
+  },
+  {
+    "id": 901,
+    "name": "Fresh Tender Chicken Breast (500g)",
+    "image": "/chicken-breast.png",
+    "price": 160,
+    "originalPrice": 190,
+    "category": "meat-fish"
+  },
+  {
+    "id": 902,
+    "name": "Farm Fresh Country Chicken - Natu Kodi (1kg)",
+    "image": "/licious-chicken.png",
+    "price": 340,
+    "originalPrice": 390,
+    "category": "meat-fish"
+  },
+  {
+    "id": 903,
+    "name": "Farm Fresh Whole Chicken Curry Cut (1kg)",
+    "image": "/licious-chicken.png",
+    "price": 230,
+    "originalPrice": 270,
+    "category": "meat-fish"
+  },
+  {
+    "id": 904,
+    "name": "Farm Fresh River Fish Cut - Rohu (1kg)",
+    "image": "/images/shop_categories/meat-fish.png",
+    "price": 260,
+    "originalPrice": 310,
+    "category": "meat-fish"
+  },
+  {
+    "id": 905,
+    "name": "Fresh Cleaned Sea Prawns (500g)",
+    "image": "/images/shop_categories/meat-fish.png",
+    "price": 350,
+    "originalPrice": 420,
+    "category": "meat-fish"
+  },
+  {
+    "id": 906,
+    "name": "Tender Farm Mutton Curry Cut (500g)",
+    "image": "/meat-fish-category.png",
+    "price": 440,
+    "originalPrice": 490,
+    "category": "meat-fish"
+  },
+  {
+    "id": 911,
+    "name": "Aged Royal Basmati Rice (1kg)",
+    "image": "/basmati-rice.png",
+    "price": 140,
+    "originalPrice": 175,
+    "category": "rice"
+  },
+  {
+    "id": 912,
+    "name": "Traditional Sona Masoori Raw Rice (5kg)",
+    "image": "/images/shop_categories/rice.png",
+    "price": 320,
+    "originalPrice": 380,
+    "category": "rice"
+  },
+  {
+    "id": 913,
+    "name": "Organic Brown Rice Unpolished (1kg)",
+    "image": "/rice-category.png",
+    "price": 95,
+    "originalPrice": 120,
+    "category": "rice"
+  },
+  {
+    "id": 921,
+    "name": "Farm Fresh Country Potatoes (1kg)",
+    "image": "/images/shop_categories/roots-vegetables.png",
+    "price": 38,
+    "originalPrice": 48,
+    "category": "root-vegetables"
+  },
+  {
+    "id": 922,
+    "name": "Sweet Tender Farm Carrots (500g)",
+    "image": "/roots-vegetables-category.png",
+    "price": 32,
+    "originalPrice": 42,
+    "category": "root-vegetables"
+  },
+  {
+    "id": 923,
+    "name": "Organic Country Beetroots (500g)",
+    "image": "/roots-vegetables-category.png",
+    "price": 28,
+    "originalPrice": 38,
+    "category": "root-vegetables"
+  },
+  {
+    "id": 924,
+    "name": "Farm Fresh Country Ginger (250g)",
+    "image": "/images/shop_categories/roots-vegetables.png",
+    "price": 30,
+    "originalPrice": 40,
+    "category": "root-vegetables"
+  },
+  {
+    "id": 931,
+    "name": "Natural Herbal Aloevera & Neem Bathing Bar (125g)",
+    "image": "/images/shop_categories/personal-care.png",
+    "price": 65,
+    "originalPrice": 85,
+    "category": "personal-care"
+  },
+  {
+    "id": 932,
+    "name": "Pure Desi Cow Ghee Moisturizing Lip Butter (15g)",
+    "image": "/personal-care-category.png",
+    "price": 120,
+    "originalPrice": 150,
+    "category": "personal-care"
+  },
+  {
+    "id": 941,
+    "name": "Traditional South Indian Filter Coffee Blend (250g)",
+    "image": "/images/shop_categories/tea-coffee.png",
+    "price": 145,
+    "originalPrice": 180,
+    "category": "tea-coffee"
+  },
+  {
+    "id": 942,
+    "name": "Organic Nilgiri Whole Leaf Black Tea (250g)",
+    "image": "/tea-coffee-category.png",
+    "price": 125,
+    "originalPrice": 160,
+    "category": "tea-coffee"
+  },
+  {
+    "id": 951,
+    "name": "Farm Fresh Country Tomatoes (1kg)",
+    "image": "/images/shop_categories/fresh-vegetables.png",
+    "price": 40,
+    "originalPrice": 55,
+    "category": "vegetables"
+  },
+  {
+    "id": 952,
+    "name": "Fresh Crisp Green Capsicum (500g)",
+    "image": "/images/shop_categories/fresh-vegetables.png",
+    "price": 35,
+    "originalPrice": 45,
+    "category": "vegetables"
+  },
+  {
+    "id": 953,
+    "name": "Farm Fresh Tender Bhendi - Okra (500g)",
+    "image": "/images/shop_categories/fresh-vegetables.png",
+    "price": 28,
+    "originalPrice": 38,
+    "category": "vegetables"
+  },
+  {
+    "id": 961,
+    "name": "Farm Fresh Country Eggs (Pack of 6)",
+    "image": "/images/shop_categories/eggs.png",
+    "price": 72,
+    "originalPrice": 85,
+    "category": "eggs"
+  },
+  {
+    "id": 962,
+    "name": "Organic Free-Range Brown Eggs (Pack of 12)",
+    "image": "/farm-eggs.png",
+    "price": 140,
+    "originalPrice": 165,
+    "category": "eggs"
   }
 ]
