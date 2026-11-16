@@ -90,25 +90,11 @@ export default function ScrollFruitJourney({ onShopFresh }: ScrollFruitJourneyPr
         );
       }
 
-      // 2. Dynamic alternating reveal animations for all steps
+      // 2. Ensure all steps are visibly presented with zero cut-off
       fruitHarvestSteps.forEach((step, idx) => {
         const isLeft = idx % 2 === 0;
         const target = `.fruit-step-card-${step.number}-${isLeft ? "left" : "right"}`;
-        gsap.fromTo(
-          target,
-          { x: isLeft ? -60 : 60, opacity: 0 },
-          {
-            x: 0,
-            opacity: 1,
-            duration: 0.9,
-            ease: "power2.out",
-            scrollTrigger: {
-              trigger: target,
-              start: "top 78%",
-              toggleActions: "play none none reverse",
-            },
-          }
-        );
+        gsap.set(target, { opacity: 1, x: 0 });
       });
 
       // 3. Mobile Basket Initial Entry
@@ -226,7 +212,7 @@ export default function ScrollFruitJourney({ onShopFresh }: ScrollFruitJourneyPr
           <div className="hidden lg:block absolute left-1/2 -translate-x-1/2 top-0 pointer-events-none z-20 w-[480px] will-change-transform">
             <div
               ref={basketDesktopRef}
-              className="relative w-full flex flex-col items-center justify-center will-change-transform"
+              className="fruit-central-basket-inner relative w-full flex flex-col items-center justify-center will-change-transform"
             >
               {/* Diffused Floor Shadow Under Full Basket Base */}
               <div className="absolute bottom-4 w-72 h-8 rounded-[100%] bg-black/15 blur-lg pointer-events-none" />

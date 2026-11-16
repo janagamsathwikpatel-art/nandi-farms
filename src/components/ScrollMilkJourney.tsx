@@ -90,25 +90,11 @@ export default function ScrollMilkJourney({ onShopFresh }: ScrollMilkJourneyProp
         );
       }
 
-      // 2. Dynamic alternating reveal animations for all steps
+      // 2. Ensure all steps are visibly presented with zero cut-off
       milkJourney.steps.forEach((step, idx) => {
         const isLeft = idx % 2 === 0;
         const target = `.milk-step-card-${step.number}-${isLeft ? "left" : "right"}`;
-        gsap.fromTo(
-          target,
-          { x: isLeft ? -60 : 60, opacity: 0 },
-          {
-            x: 0,
-            opacity: 1,
-            duration: 0.9,
-            ease: "power2.out",
-            scrollTrigger: {
-              trigger: target,
-              start: "top 78%",
-              toggleActions: "play none none reverse",
-            },
-          }
-        );
+        gsap.set(target, { opacity: 1, x: 0 });
       });
 
       // 3. Mobile Bottle Initial Entry
@@ -202,7 +188,7 @@ export default function ScrollMilkJourney({ onShopFresh }: ScrollMilkJourneyProp
           <div className="hidden lg:block absolute left-1/2 -translate-x-1/2 top-0 pointer-events-none z-20 w-[420px] will-change-transform">
             <div
               ref={bottleDesktopRef}
-              className="relative w-full flex flex-col items-center justify-center will-change-transform"
+              className="milk-central-bottle-inner relative w-full flex flex-col items-center justify-center will-change-transform"
             >
               {/* Diffused Floor Shadow Under Bottle Base */}
               <div className="absolute bottom-6 w-56 h-7 rounded-[100%] bg-black/15 blur-lg pointer-events-none" />

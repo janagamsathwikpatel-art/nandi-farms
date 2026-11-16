@@ -19,6 +19,7 @@ import MilkSubscriptionModal from "./MilkSubscriptionModal";
 import ScrollMilkJourney from "./ScrollMilkJourney";
 import ScrollFruitJourney from "./ScrollFruitJourney";
 import ScrollVegetableJourney from "./ScrollVegetableJourney";
+import ContinuousStackedJourneys from "./ContinuousStackedJourneys";
 import { ProductModal } from "./ProductModal";
 import { PRODUCTS } from "@/data/products";
 import { Product, CartItem } from "@/types";
@@ -1312,22 +1313,9 @@ export default function HarvestCategoryGrid() {
         ref={freshPageRef}
         className="w-full bg-[#faf5ea] border-t border-[#ded7c8] transition-all duration-500"
       >
-        {/* Continuous 3-Section GSAP Journey Stack (Milk -> Fruit -> Vegetable) */}
-        <div id="farm-journeys-continuous-stack" ref={catalogRef} className="relative w-full overflow-visible">
-          {/* Section 1: The Milk Journey (z-10, Pinned at top: 0) */}
-          <div className="sticky top-0 z-10 w-full min-h-screen bg-[#FAF6ED] overflow-hidden">
-            <ScrollMilkJourney onShopFresh={scrollToCatalog} />
-          </div>
-
-          {/* Section 2: The Fruit Harvest (z-20, Pinned at top: 0, slides over Milk into exact same place) */}
-          <div className="sticky top-0 z-20 w-full min-h-screen rounded-t-[36px] sm:rounded-t-[48px] shadow-[0_-25px_60px_rgba(25,62,45,0.16)] border-t border-[#193E2D]/10 bg-[#FAF6ED] overflow-hidden">
-            <ScrollFruitJourney onShopFresh={scrollToCatalog} />
-          </div>
-
-          {/* Section 3: The Living Soil Vegetable Journey (z-30, Pinned at top: 0, slides over Fruit into exact same place) */}
-          <div className="sticky top-0 z-30 w-full min-h-screen rounded-t-[36px] sm:rounded-t-[48px] shadow-[0_-30px_70px_rgba(25,62,45,0.20)] border-t border-[#193E2D]/10 bg-[#FAF6ED] overflow-hidden">
-            <ScrollVegetableJourney onShopFresh={scrollToCatalog} />
-          </div>
+        {/* Seamless 3-Stage Continuous Stacked Journeys (Milk -> Fruits -> Vegetables in-place layer reveal) */}
+        <div ref={catalogRef} className="w-full">
+          <ContinuousStackedJourneys onShopFresh={scrollToCatalog} />
         </div>
       </div>
 
