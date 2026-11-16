@@ -20,6 +20,13 @@
   font-family: var(--font-sans), "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
 }
 
+html,
+body {
+  overflow-x: hidden;
+  max-width: 100vw;
+  -webkit-text-size-adjust: 100%;
+}
+
 /* Custom scrollbar for Zepto category carousel */
 .no-scrollbar::-webkit-scrollbar {
   display: none;

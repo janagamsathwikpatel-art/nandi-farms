@@ -1173,7 +1173,7 @@ export default function HarvestCategoryGrid() {
                 </button>
               </div>
 
-              {/* Collection Grid: 3 Clean Photographic Cards (Zero White Layout Background) */}
+              {/* Collection Grid: 3 Clean Photographic Cards (Fluid Mobile Responsive) */}
               <div className="collection-grid grid grid-cols-1 lg:grid-cols-[1224fr_2448fr] lg:grid-rows-2 gap-3 sm:gap-4 lg:gap-5 w-full aspect-auto lg:aspect-[3672/1520]">
                 {everydayGoodness.collections.map((collection, index) => {
                   const isMilk = index === 0;
@@ -1184,10 +1184,10 @@ export default function HarvestCategoryGrid() {
                       href={collection.href}
                       className={`collection-card group relative transition-all duration-300 cursor-pointer block ${
                         isMilk
-                          ? "lg:col-start-1 lg:row-start-1 lg:row-span-2 aspect-[1224/1258] lg:aspect-auto h-full rounded-2xl sm:rounded-3xl shadow-xs hover:shadow-xl border border-[#16301d]/[0.07] bg-[#faf5ea] overflow-hidden"
+                          ? "lg:col-start-1 lg:row-start-1 lg:row-span-2 aspect-[1224/1258] min-h-[240px] sm:min-h-0 lg:aspect-auto h-full rounded-2xl sm:rounded-3xl shadow-xs hover:shadow-xl border border-[#16301d]/[0.07] bg-[#faf5ea] overflow-hidden"
                           : isVeg
-                          ? "lg:col-start-2 lg:row-start-1 aspect-[2448/804] lg:aspect-auto h-full overflow-visible border-0 bg-transparent hover:scale-[1.01]"
-                          : "lg:col-start-2 lg:row-start-2 aspect-[2448/716] lg:aspect-auto h-full rounded-2xl sm:rounded-3xl shadow-xs hover:shadow-xl border border-[#16301d]/[0.07] bg-[#faf5ea] overflow-hidden"
+                          ? "lg:col-start-2 lg:row-start-1 aspect-[2448/804] min-h-[145px] sm:min-h-0 lg:aspect-auto h-full overflow-visible border-0 bg-transparent hover:scale-[1.01]"
+                          : "lg:col-start-2 lg:row-start-2 aspect-[2448/716] min-h-[140px] sm:min-h-0 lg:aspect-auto h-full rounded-2xl sm:rounded-3xl shadow-xs hover:shadow-xl border border-[#16301d]/[0.07] bg-[#faf5ea] overflow-hidden"
                       }`}
                       key={collection.title}
                     >

@@ -85,20 +85,20 @@ export default function QuickCategoryGrid({ onSelectCategory }: QuickCategoryGri
           </Link>
         </header>
 
-        {/* 14 Category Grid - Symmetrical 7x2 Layout */}
-        <div className="category-grid grid grid-cols-4 sm:grid-cols-7 lg:grid-cols-7 gap-y-8 sm:gap-y-10 lg:gap-y-12 gap-x-3 sm:gap-x-4 lg:gap-x-6 items-start justify-items-center">
+        {/* 14 Category Grid - Symmetrical 7x2 Layout (Fluid Mobile Responsive) */}
+        <div className="category-grid grid grid-cols-4 sm:grid-cols-7 lg:grid-cols-7 gap-y-6 sm:gap-y-10 lg:gap-y-12 gap-x-1.5 xs:gap-x-2.5 sm:gap-x-4 lg:gap-x-6 items-start justify-items-center">
           {shopCategories.categories.map((category) => {
             const isCopied = copiedId === category.name;
 
             return (
               <div
                 key={category.name}
-                className="category-card group relative flex flex-col items-center text-center select-text"
+                className="category-card group relative flex flex-col items-center text-center select-text w-full"
               >
                 {/* Floating Badge for Individual Category */}
                 {isCopied && (
-                  <div className="absolute -top-7 left-1/2 -translate-x-1/2 z-30 flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-[#193E2D] text-white text-[10px] font-semibold shadow-lg animate-bounce whitespace-nowrap pointer-events-none">
-                    <Check className="w-3 h-3 text-emerald-300" />
+                  <div className="absolute -top-7 left-1/2 -translate-x-1/2 z-30 flex items-center gap-1 px-2 py-0.5 rounded-full bg-[#193E2D] text-white text-[9px] xs:text-[10px] font-semibold shadow-lg animate-bounce whitespace-nowrap pointer-events-none">
+                    <Check className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-emerald-300" />
                     <span>Copied!</span>
                   </div>
                 )}
@@ -107,7 +107,7 @@ export default function QuickCategoryGrid({ onSelectCategory }: QuickCategoryGri
                 <Link
                   href={category.href}
                   onClick={() => onSelectCategory?.(category)}
-                  className="w-20 h-20 sm:w-22 sm:h-22 lg:w-26 lg:h-26 flex items-center justify-center p-2 rounded-2xl transition-all duration-300 ease-out group-hover:-translate-y-2 group-hover:scale-110 cursor-pointer"
+                  className="w-14 h-14 xs:w-16 xs:h-16 sm:w-20 sm:h-20 lg:w-26 lg:h-26 flex items-center justify-center p-1.5 sm:p-2 rounded-2xl transition-all duration-300 ease-out group-hover:-translate-y-2 group-hover:scale-110 cursor-pointer"
                   aria-label={`Shop ${category.name}`}
                 >
                   <img
@@ -124,7 +124,7 @@ export default function QuickCategoryGrid({ onSelectCategory }: QuickCategoryGri
                   type="button"
                   onClick={(e) => handleCopy(e, category.name, category.name)}
                   title={`Click to copy "${category.name}"`}
-                  className={`text-xs sm:text-sm lg:text-[15px] font-bold leading-tight text-center mt-3 max-w-[120px] min-h-[38px] flex items-start justify-center cursor-pointer select-text transition-all duration-200
+                  className={`text-[10.5px] xs:text-[11.5px] sm:text-sm lg:text-[15px] font-bold leading-snug text-center mt-2 sm:mt-3 max-w-[76px] xs:max-w-[88px] sm:max-w-[120px] min-h-[30px] sm:min-h-[38px] flex items-start justify-center cursor-pointer select-text transition-all duration-200
                     hover:text-[#2b5936] hover:-translate-y-1 active:translate-y-0.5 active:scale-95
                     ${isCopied ? "text-[#193E2D] font-extrabold -translate-y-1 scale-105" : "text-[#0f172a]"}
                   `}

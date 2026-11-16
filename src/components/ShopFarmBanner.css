@@ -30,3 +30,14 @@
 .shop-farm-banner-link:hover .shop-farm-banner-img {
   transform: scale(1.008);
 }
+
+@media (max-width: 640px) {
+  .shop-farm-banner {
+    min-height: 84px;
+  }
+
+  .shop-farm-banner-img {
+    min-height: 84px;
+    object-position: center center;
+  }
+}

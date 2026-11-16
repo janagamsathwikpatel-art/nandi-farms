@@ -252,8 +252,8 @@ export default function FarmVegetablesShelf({
           </div>
         </div>
 
-        {/* 8 Farm Vegetables Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 sm:gap-6">
+        {/* 8 Farm Vegetables Grid (2 Columns on Mobile, 4 on Desktop) */}
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6">
           {FARM_VEGETABLES.map((product) => {
             const currentUnit = selectedUnits[product.id] || product.unit;
             const unitOptions = getUnitOptions(product.unit);
@@ -270,7 +270,7 @@ export default function FarmVegetablesShelf({
             return (
               <div
                 key={product.id}
-                className="bg-white/95 rounded-2xl sm:rounded-3xl p-4 sm:p-5 border border-[#ede3d2] hover:border-[#245e33]/50 shadow-xs hover:shadow-lg transition-all duration-300 flex flex-col justify-between group relative"
+                className="bg-white/95 rounded-xl sm:rounded-3xl p-3 sm:p-5 border border-[#ede3d2] hover:border-[#245e33]/50 shadow-xs hover:shadow-lg transition-all duration-300 flex flex-col justify-between group relative"
               >
                 {/* Top Badge & Image Area */}
                 <div>

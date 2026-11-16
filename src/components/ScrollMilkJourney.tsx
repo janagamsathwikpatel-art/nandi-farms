@@ -199,7 +199,7 @@ export default function ScrollMilkJourney({ onShopFresh }: ScrollMilkJourneyProp
                 <div
                   onClick={() => handleCopyStep(step)}
                   title="Click to copy milestone text"
-                  className={`group relative text-left p-6 sm:p-7 rounded-2xl bg-white/90 backdrop-blur-xs border transition-all duration-300 cursor-pointer select-text
+                  className={`group relative text-left p-4 sm:p-7 rounded-2xl bg-white/90 backdrop-blur-xs border transition-all duration-300 cursor-pointer select-text
                     transform hover:-translate-y-1.5 active:scale-[0.98] active:translate-y-0.5
                     ${isCopied
                       ? "border-[#193E2D] shadow-[0_12px_28px_-6px_rgba(25,62,45,0.20)] ring-2 ring-[#193E2D]/20"
