@@ -113,6 +113,17 @@ export default function HarvestHeroSection(props?: HarvestHeroSectionProps) {
               className="harvest-hero-banner-img"
             />
           </picture>
+          <div className="harvest-hero-text-overlay" aria-hidden="false">
+            <span className="harvest-hero-tag">FRESH FROM NANDI FARMS</span>
+            <h2 className="harvest-hero-title">Today&apos;s Harvest</h2>
+            <p className="harvest-hero-desc">
+              Pure A2 farm milk, orchard fruits &amp; vegetables harvested at first dawn.
+            </p>
+            <span className="harvest-hero-cta">
+              <span>Shop Today&apos;s Harvest</span>
+              <span className="harvest-hero-arrow" aria-hidden="true">&rarr;</span>
+            </span>
+          </div>
         </Link>
       </div>
     </section>
