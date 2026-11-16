@@ -5,7 +5,7 @@
   min-height: clamp(340px, 35.8vw, 440px);
   background-color: #faf4e8;
   background-image: url("/images/footer/nandi-farms-footer-vintage-bg.webp?v=8");
-  background-size: 100% 100%;
+  background-size: cover;
   background-position: center bottom;
   background-repeat: no-repeat;
   color: #5a2419;
@@ -20,12 +20,11 @@
 /* 1. Left Produce Still Life - Scaled to where footer starts (100% Height) */
 .footer-left-produce-wrapper {
   position: absolute;
-  left: clamp(2px, 0.4vw, 6px);
+  left: 0;
   top: 0;
   bottom: 0;
   height: 100%;
   width: auto;
-  max-width: clamp(210px, 25vw, 255px);
   z-index: 1;
   pointer-events: none;
   display: flex;
@@ -37,7 +36,7 @@
   height: 100%;
   max-height: 100%;
   object-fit: contain;
-  object-position: left bottom;
+  object-position: left top;
   display: block;
 }
 
@@ -49,7 +48,7 @@
   box-sizing: border-box;
   display: grid;
   grid-template-columns: 1.7fr 1.15fr 1.1fr 1.3fr;
-  padding: clamp(28px, 3.5vw, 42px) clamp(16px, 3vw, 36px) 0 clamp(190px, 21vw, 220px);
+  padding: clamp(42px, 4.8vw, 62px) clamp(16px, 3vw, 36px) 0 clamp(230px, 20vw, 295px);
   gap: 0;
 }
 
@@ -149,7 +148,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 6px clamp(20px, 4vw, 40px) 6px clamp(190px, 21vw, 220px);
+  padding: 6px clamp(20px, 4vw, 40px) 6px clamp(230px, 20vw, 295px);
   font-size: 11px;
   color: #7a685e;
   border-top: 1px solid rgba(222, 215, 200, 0.4);
