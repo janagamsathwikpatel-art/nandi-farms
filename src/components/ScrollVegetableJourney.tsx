@@ -25,8 +25,6 @@ export default function ScrollVegetableJourney({ onShopFresh }: ScrollVegetableJ
   const journeyContainerRef = useRef<HTMLDivElement>(null);
   const basketDesktopRef = useRef<HTMLDivElement>(null);
   const basketMobileRef = useRef<HTMLDivElement>(null);
-  const videoDesktopRef = useRef<HTMLVideoElement>(null);
-  const videoMobileRef = useRef<HTMLVideoElement>(null);
 
   // Active state for click-to-copy tactile feedback
   const [copiedNumber, setCopiedNumber] = useState<string | null>(null);
@@ -58,56 +56,11 @@ export default function ScrollVegetableJourney({ onShopFresh }: ScrollVegetableJ
     }
   };
 
-  // GSAP ScrollTrigger Animation for Alternating Journey & Moving Vegetable Basket
+  // Ensure all steps are visibly presented with zero cut-off
   useEffect(() => {
     if (!sectionRef.current) return;
 
     const ctx = gsap.context(() => {
-      // 1. Desktop Central Basket Scroll Translation (Travels vertically with scroll)
-      // Strictly fixed scale: 1.0 permanently (NO zoom in, NO zoom out)
-      if (basketDesktopRef.current && journeyContainerRef.current) {
-        gsap.fromTo(
-          basketDesktopRef.current,
-          { y: 0 },
-          {
-            y: () => {
-              if (!journeyContainerRef.current || !basketDesktopRef.current) return 700;
-              const containerHeight = journeyContainerRef.current.offsetHeight;
-              const basketHeight = basketDesktopRef.current.offsetHeight;
-              return Math.max(containerHeight - basketHeight - 40, 200);
-            },
-            ease: "none",
-            scrollTrigger: {
-              trigger: journeyContainerRef.current,
-              start: "top 22%",
-              end: "bottom 82%",
-              scrub: 1.2, // Buttery-smooth physics scrub
-            },
-          }
-        );
-      }
-
-      // 2. Play-Once ScrollTrigger for Vegetable Falling Video
-      // Starts when section is 70% in view, plays once, then holds final filled composition
-      const playVideoOnce = (vid: HTMLVideoElement | null) => {
-        if (!vid || !sectionRef.current) return;
-        ScrollTrigger.create({
-          trigger: sectionRef.current,
-          start: "top 70%",
-          once: true,
-          onEnter: () => {
-            vid.currentTime = 0;
-            vid.play().catch(() => {
-              // Browser autoplay policy graceful fallback
-            });
-          },
-        });
-      };
-
-      playVideoOnce(videoDesktopRef.current);
-      playVideoOnce(videoMobileRef.current);
-
-      // 3. Ensure all steps are visibly presented with zero cut-off
       livingSoilJourney.steps.forEach((step, idx) => {
         const isLeft = idx % 2 === 0;
         const target = `.veg-step-card-${step.number}-${isLeft ? "left" : "right"}`;
@@ -116,26 +69,6 @@ export default function ScrollVegetableJourney({ onShopFresh }: ScrollVegetableJ
     }, sectionRef);
 
     return () => ctx.revert();
-  }, []);
-
-  // Ensure video pauses on the final frame when completed (permanently holds filled basket)
-  useEffect(() => {
-    const attachHoldOnEnd = (vid: HTMLVideoElement | null) => {
-      if (!vid) return () => {};
-      const onEnded = () => {
-        vid.pause();
-      };
-      vid.addEventListener("ended", onEnded);
-      return () => vid.removeEventListener("ended", onEnded);
-    };
-
-    const cleanDesktop = attachHoldOnEnd(videoDesktopRef.current);
-    const cleanMobile = attachHoldOnEnd(videoMobileRef.current);
-
-    return () => {
-      cleanDesktop();
-      cleanMobile();
-    };
   }, []);
 
   return (
@@ -183,7 +116,7 @@ export default function ScrollVegetableJourney({ onShopFresh }: ScrollVegetableJ
         <div ref={journeyContainerRef} className="relative">
 
           {/* ------------------------------------------------------- */}
-          {/* DESKTOP BASKET VIDEO TRACK (Floating Central Column)   */}
+          {/* DESKTOP BASKET TRACK (Floating Central Column)         */}
           {/* ------------------------------------------------------- */}
           <div className="hidden lg:flex absolute left-1/2 -translate-x-1/2 top-0 z-20 w-[480px] pointer-events-none items-center justify-center">
             <div
@@ -191,41 +124,32 @@ export default function ScrollVegetableJourney({ onShopFresh }: ScrollVegetableJ
               className="veg-central-basket-inner relative w-full flex flex-col items-center justify-center will-change-transform"
             >
               {/* Diffused Floor Shadow Under Full Basket Base */}
-              <div className="absolute bottom-4 w-72 h-8 rounded-[100%] bg-black/15 blur-lg pointer-events-none" />
+              <div className="absolute bottom-2 w-72 h-6 rounded-[100%] bg-black/15 blur-lg pointer-events-none" />
 
-              {/* Seamless Video: Dual-Source MP4 Fallback on #FAF6ED + WebM True Alpha */}
-              <div className="relative w-full aspect-[16/11] flex items-center justify-center pointer-events-none select-none">
-                <video
-                  ref={videoDesktopRef}
-                  poster="/images/vegetable-harvest-basket-only.png"
-                  muted
-                  playsInline
-                  preload="auto"
-                  className="w-full h-full object-contain"
-                >
-                  <source src="/videos/vegetable-harvest-basket-pure.mp4" type="video/mp4" />
-                  <source src="/videos/vegetable-harvest-basket-alpha.webm" type="video/webm" />
-                </video>
+              {/* Handcrafted Woven Harvest Basket with Authentic Farm-Fresh Vegetables */}
+              <div className="relative w-full aspect-[16/10] flex items-center justify-center pointer-events-none select-none">
+                <img
+                  src="/images/vegetable-basket-full-hd.png"
+                  alt="Nandi Living Soil Vegetable Basket - Farm-fresh organic vegetables"
+                  className="w-full h-full object-contain drop-shadow-[0_16px_28px_rgba(25,62,45,0.12)] pointer-events-none select-none"
+                  loading="eager"
+                />
               </div>
             </div>
           </div>
 
           {/* ------------------------------------------------------- */}
-          {/* MOBILE BASKET VIDEO DISPLAY (Top of Mobile Flow)        */}
+          {/* MOBILE BASKET DISPLAY (Top of Mobile Flow)              */}
           {/* ------------------------------------------------------- */}
           <div ref={basketMobileRef} className="lg:hidden flex flex-col items-center justify-center mb-10">
-            <div className="relative w-full max-w-[380px] aspect-[16/11] flex items-center justify-center pointer-events-none select-none">
-              <video
-                ref={videoMobileRef}
-                poster="/images/vegetable-harvest-basket-only.png"
-                muted
-                playsInline
-                preload="auto"
-                className="w-full h-full object-contain"
-              >
-                <source src="/videos/vegetable-harvest-basket-pure.mp4" type="video/mp4" />
-                <source src="/videos/vegetable-harvest-basket-alpha.webm" type="video/webm" />
-              </video>
+            <div className="relative w-full max-w-[340px] aspect-[16/10] flex items-center justify-center pointer-events-none select-none">
+              <div className="absolute bottom-2 w-64 h-5 rounded-[100%] bg-black/15 blur-md pointer-events-none" />
+              <img
+                src="/images/vegetable-basket-full-hd.png"
+                alt="Nandi Living Soil Vegetable Basket"
+                className="w-full h-full object-contain drop-shadow-[0_12px_20px_rgba(25,62,45,0.12)] pointer-events-none select-none"
+                loading="eager"
+              />
             </div>
           </div>
 
@@ -299,7 +223,7 @@ export default function ScrollVegetableJourney({ onShopFresh }: ScrollVegetableJ
               return (
                 <div
                   key={step.number}
-                  className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center min-h-[220px]"
+                  className="journey-milestone-row grid grid-cols-1 lg:grid-cols-12 gap-8 items-center min-h-[220px]"
                 >
                   {isLeft ? (
                     <>

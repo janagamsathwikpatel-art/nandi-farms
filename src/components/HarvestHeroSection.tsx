@@ -2,7 +2,6 @@
 
 import React from "react";
 import Link from "next/link";
-import ShopFarmBanner from "./ShopFarmBanner";
 import "./HarvestHeroSection.css";
 
 export interface HeroProduct {
@@ -86,15 +85,36 @@ interface HarvestHeroSectionProps {
   onViewAllProducts?: () => void;
 }
 
-export default function HarvestHeroSection({
-  cartCount,
-  onAddToCart,
-  onOpenModal,
-  onViewAllProducts,
-}: HarvestHeroSectionProps) {
+export default function HarvestHeroSection(props?: HarvestHeroSectionProps) {
+  void props;
   return (
-    <div id="shop-farm-hero" className="w-full">
-      <ShopFarmBanner />
-    </div>
+    <section className="harvest-hero-showcase-section" aria-label="Today's Harvest">
+      <div className="harvest-hero-container">
+        <Link
+          href="/shop"
+          className="harvest-hero-banner-link"
+          aria-label="Explore Today's Harvest fresh milk, dairy, eggs, and farm produce"
+        >
+          <picture>
+            <source
+              type="image/webp"
+              srcSet="/images/banners/home-harvest/home-harvest-banner.webp 1024w, /images/banners/home-harvest/home-harvest-banner-1440.webp 1440w, /images/banners/home-harvest/home-harvest-banner-2x.webp 2048w"
+              sizes="100vw"
+            />
+            <img
+              src="/images/banners/home-harvest/home-harvest-banner.png"
+              srcSet="/images/banners/home-harvest/home-harvest-banner.png 1024w, /images/banners/home-harvest/home-harvest-banner-1440.png 1440w, /images/banners/home-harvest/home-harvest-banner-2x.png 2048w"
+              sizes="100vw"
+              alt="Today's Harvest - Fresh Farm Milk, Dairy, Eggs, and Handpicked Produce"
+              width={1024}
+              height={341}
+              loading="eager"
+              decoding="async"
+              className="harvest-hero-banner-img"
+            />
+          </picture>
+        </Link>
+      </div>
+    </section>
   );
 }

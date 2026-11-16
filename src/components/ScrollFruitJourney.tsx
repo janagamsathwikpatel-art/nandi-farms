@@ -61,107 +61,19 @@ export default function ScrollFruitJourney({ onShopFresh }: ScrollFruitJourneyPr
     }
   };
 
-  // GSAP ScrollTrigger Animation for Alternating Journey & Moving Fruit Basket
+  // Ensure all steps are visibly presented with zero cut-off
   useEffect(() => {
     if (!sectionRef.current) return;
 
     const ctx = gsap.context(() => {
-      // 1. Desktop Central Basket Scroll Translation (Travels vertically with scroll)
-      // Strictly fixed scale: 1.0 permanently (NO zoom in, NO zoom out)
-      if (basketDesktopRef.current && journeyContainerRef.current) {
-        gsap.fromTo(
-          basketDesktopRef.current,
-          { y: 0 },
-          {
-            y: () => {
-              if (!journeyContainerRef.current || !basketDesktopRef.current) return 700;
-              const containerHeight = journeyContainerRef.current.offsetHeight;
-              const basketHeight = basketDesktopRef.current.offsetHeight;
-              return Math.max(containerHeight - basketHeight - 40, 200);
-            },
-            ease: "none",
-            scrollTrigger: {
-              trigger: journeyContainerRef.current,
-              start: "top 22%",
-              end: "bottom 82%",
-              scrub: 1.2, // Buttery-smooth physics scrub
-            },
-          }
-        );
-      }
-
-      // 2. Ensure all steps are visibly presented with zero cut-off
       fruitHarvestSteps.forEach((step, idx) => {
         const isLeft = idx % 2 === 0;
         const target = `.fruit-step-card-${step.number}-${isLeft ? "left" : "right"}`;
         gsap.set(target, { opacity: 1, x: 0 });
       });
-
-      // 3. Mobile Basket Initial Entry
-      if (basketMobileRef.current) {
-        gsap.fromTo(
-          basketMobileRef.current,
-          { opacity: 0, y: -40 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 1,
-            ease: "power2.out",
-            scrollTrigger: {
-              trigger: basketMobileRef.current,
-              start: "top 80%",
-              toggleActions: "play none none reverse",
-            },
-          }
-        );
-      }
     }, sectionRef);
 
     return () => ctx.revert();
-  }, []);
-
-  // Play once when Fruit Harvest section becomes visible, and hold the filled-basket frame permanently
-  useEffect(() => {
-    if (!sectionRef.current) return;
-
-    let hasPlayed = false;
-    const trigger = ScrollTrigger.create({
-      trigger: sectionRef.current,
-      start: "top 70%",
-      onEnter: () => {
-        if (!hasPlayed) {
-          hasPlayed = true;
-          const vD = videoDesktopRef.current;
-          if (vD) {
-            vD.currentTime = 0;
-            vD.play().catch(() => {});
-          }
-          const vM = videoMobileRef.current;
-          if (vM) {
-            vM.currentTime = 0;
-            vM.play().catch(() => {});
-          }
-        }
-      },
-    });
-
-    const handleHold = (vid: HTMLVideoElement | null) => {
-      if (!vid) return () => {};
-      const onEnded = () => {
-        vid.pause(); // Hold final filled-basket frame permanently
-      };
-      vid.addEventListener("ended", onEnded);
-      return () => vid.removeEventListener("ended", onEnded);
-    };
-
-    const cleanDesktop = handleHold(videoDesktopRef.current);
-    const cleanMobile = handleHold(videoMobileRef.current);
-
-    return () => {
-      trigger.kill();
-      cleanDesktop();
-      cleanMobile();
-    };
   }, []);
 
   return (
@@ -207,7 +119,7 @@ export default function ScrollFruitJourney({ onShopFresh }: ScrollFruitJourneyPr
           {/* ------------------------------------------------------- */}
           {/* DESKTOP CENTRAL MOVING BASKET TRACK (Sticky/GSAP Scrub) */}
           {/* Scale locked permanently at 1.0 (zero zoom in/out)      */}
-          {/* Full-width uncropped basket (aspect 16/11, w-[480px])   */}
+          {/* Full-width uncropped basket (aspect 16/12, w-[480px])   */}
           {/* ------------------------------------------------------- */}
           <div className="hidden lg:block absolute left-1/2 -translate-x-1/2 top-0 pointer-events-none z-20 w-[480px] will-change-transform">
             <div
@@ -215,21 +127,16 @@ export default function ScrollFruitJourney({ onShopFresh }: ScrollFruitJourneyPr
               className="fruit-central-basket-inner relative w-full flex flex-col items-center justify-center will-change-transform"
             >
               {/* Diffused Floor Shadow Under Full Basket Base */}
-              <div className="absolute bottom-4 w-72 h-8 rounded-[100%] bg-black/15 blur-lg pointer-events-none" />
+              <div className="absolute bottom-2 w-80 h-7 rounded-[100%] bg-black/15 blur-lg pointer-events-none" />
 
-              {/* Handcrafted Woven Harvest Basket with Dynamic Falling Fruits */}
-              <div className="relative w-full aspect-[16/11] flex items-center justify-center pointer-events-none select-none">
-                <video
-                  ref={videoDesktopRef}
-                  poster="/images/fruit-harvest-basket-only.png"
-                  muted
-                  playsInline
-                  preload="auto"
-                  className="w-full h-full object-contain pointer-events-none select-none"
-                >
-                  <source src="/videos/fruit-harvest-basket-pure-v5.mp4" type="video/mp4" />
-                  <source src="/videos/fruit-harvest-basket-alpha.webm" type="video/webm" />
-                </video>
+              {/* Handcrafted Woven Harvest Basket with Authentic Tree-Ripened Fruits */}
+              <div className="relative w-full aspect-[16/12] flex items-center justify-center pointer-events-none select-none">
+                <img
+                  src="/images/fruit-basket-full-hd.png"
+                  alt="Nandi Heritage Fruit Basket - Tree-ripened organic fruits"
+                  className="w-full h-full object-contain drop-shadow-[0_16px_28px_rgba(25,62,45,0.12)] pointer-events-none select-none"
+                  loading="eager"
+                />
               </div>
             </div>
           </div>
@@ -238,18 +145,14 @@ export default function ScrollFruitJourney({ onShopFresh }: ScrollFruitJourneyPr
           {/* MOBILE BASKET DISPLAY (Top of Mobile Flow)              */}
           {/* ------------------------------------------------------- */}
           <div ref={basketMobileRef} className="lg:hidden flex flex-col items-center justify-center mb-10">
-            <div className="relative w-full max-w-[380px] aspect-[16/11] flex items-center justify-center pointer-events-none select-none">
-              <video
-                ref={videoMobileRef}
-                poster="/images/fruit-harvest-basket-only.png"
-                muted
-                playsInline
-                preload="auto"
-                className="w-full h-full object-contain pointer-events-none select-none"
-              >
-                <source src="/videos/fruit-harvest-basket-pure-v5.mp4" type="video/mp4" />
-                <source src="/videos/fruit-harvest-basket-alpha.webm" type="video/webm" />
-              </video>
+            <div className="relative w-full max-w-[340px] aspect-[16/12] flex items-center justify-center pointer-events-none select-none">
+              <div className="absolute bottom-2 w-64 h-6 rounded-[100%] bg-black/15 blur-md pointer-events-none" />
+              <img
+                src="/images/fruit-basket-full-hd.png"
+                alt="Nandi Heritage Fruit Basket"
+                className="w-full h-full object-contain drop-shadow-[0_12px_20px_rgba(25,62,45,0.12)] pointer-events-none select-none"
+                loading="eager"
+              />
             </div>
           </div>
 
@@ -323,7 +226,7 @@ export default function ScrollFruitJourney({ onShopFresh }: ScrollFruitJourneyPr
               return (
                 <div
                   key={step.number}
-                  className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center min-h-[220px]"
+                  className="journey-milestone-row grid grid-cols-1 lg:grid-cols-12 gap-8 items-center min-h-[220px]"
                 >
                   {isLeft ? (
                     <>
