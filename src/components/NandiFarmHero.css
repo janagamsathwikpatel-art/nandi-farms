@@ -198,6 +198,14 @@
   }
 }
 
+@media (max-width: 820px) {
+  /* No GSAP pin on mobile — crate is visible immediately, no spacer gap */
+  .nandi-hero .farm-crate {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
 @media (max-width: 480px) {
   .nandi-hero .living-farm-media {
     aspect-ratio: 16 / 10;

@@ -51,38 +51,54 @@ export default function NandiFarmHero({
 
     gsap.registerPlugin(ScrollTrigger);
     const motion = gsap.matchMedia();
-    motion.add("(prefers-reduced-motion: no-preference)", () => {
-      const revealDistance = () =>
-        Math.round(gsap.utils.clamp(140, 480, hero.clientHeight * 0.55));
 
-      gsap.set(crate, { visibility: "visible" });
-      const reveal = gsap.timeline({
-        defaults: { ease: "none" },
-        scrollTrigger: {
-          trigger: hero,
-          start: "top top",
-          end: () => `+=${revealDistance()}`,
-          pin: true,
-          scrub: true,
-          invalidateOnRefresh: true,
-        },
-      });
-      reveal.fromTo(
-        crate,
-        {
-          y: () => (hero.clientHeight + crate.offsetHeight) / 2 + 16,
-        },
-        { y: 0, duration: 1 },
-        0,
-      );
-      // Counteract scroll while the scene is pinned so the header stays visible.
-      reveal.fromTo(
-        header,
-        { y: 0 },
-        { y: revealDistance, duration: 1.12 },
-        0,
-      );
-    });
+    // ── Desktop: pin + crate slide-up ──────────────────────────────────────
+    motion.add(
+      "(min-width: 821px) and (prefers-reduced-motion: no-preference)",
+      () => {
+        const revealDistance = () =>
+          Math.round(gsap.utils.clamp(140, 480, hero.clientHeight * 0.55));
+
+        gsap.set(crate, { visibility: "visible" });
+        const reveal = gsap.timeline({
+          defaults: { ease: "none" },
+          scrollTrigger: {
+            trigger: hero,
+            start: "top top",
+            end: () => `+=${revealDistance()}`,
+            pin: true,
+            scrub: true,
+            invalidateOnRefresh: true,
+          },
+        });
+        reveal.fromTo(
+          crate,
+          { y: () => (hero.clientHeight + crate.offsetHeight) / 2 + 16 },
+          { y: 0, duration: 1 },
+          0,
+        );
+        // Counteract scroll while pinned so the header stays visible.
+        reveal.fromTo(
+          header,
+          { y: 0 },
+          { y: revealDistance, duration: 1.12 },
+          0,
+        );
+      },
+    );
+
+    // ── Mobile: NO pin — just fade crate in on load (zero spacer gap) ──────
+    motion.add(
+      "(max-width: 820px) and (prefers-reduced-motion: no-preference)",
+      () => {
+        gsap.set(crate, { visibility: "visible", y: 0 });
+        gsap.fromTo(
+          crate,
+          { opacity: 0, scale: 0.92 },
+          { opacity: 1, scale: 1, duration: 0.7, ease: "power2.out", delay: 0.15 },
+        );
+      },
+    );
 
     return () => {
       motion.revert();
