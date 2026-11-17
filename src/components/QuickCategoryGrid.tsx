@@ -124,7 +124,7 @@ export default function QuickCategoryGrid({ onSelectCategory }: QuickCategoryGri
                   type="button"
                   onClick={(e) => handleCopy(e, category.name, category.name)}
                   title={`Click to copy "${category.name}"`}
-                  className={`text-[10.5px] xs:text-[11.5px] sm:text-sm lg:text-[15px] font-bold leading-snug text-center mt-2 sm:mt-3 max-w-[76px] xs:max-w-[88px] sm:max-w-[120px] min-h-[30px] sm:min-h-[38px] flex items-start justify-center cursor-pointer select-text transition-all duration-200
+                  className={`text-[13px] xs:text-[14px] sm:text-base lg:text-[17px] font-bold leading-snug text-center mt-2 sm:mt-3 max-w-[76px] xs:max-w-[88px] sm:max-w-[120px] min-h-[30px] sm:min-h-[38px] flex items-start justify-center cursor-pointer select-text transition-all duration-200
                     hover:text-[#2b5936] hover:-translate-y-1 active:translate-y-0.5 active:scale-95
                     ${isCopied ? "text-[#193E2D] font-extrabold -translate-y-1 scale-105" : "text-[#0f172a]"}
                   `}
