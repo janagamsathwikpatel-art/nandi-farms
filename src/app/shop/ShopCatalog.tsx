@@ -52,10 +52,24 @@ export default function ShopCatalog({
   category?: HarvestCategory;
 }) {
   const [search, setSearch] = useState("");
+  const [cart, setCart] = useState<{ [id: number]: number }>({});
   const query = search.trim().toLowerCase();
   const matches = products.filter((product) =>
     product.name.toLowerCase().includes(query),
   );
+
+  const updateQty = (productId: number, delta: number) => {
+    setCart((prev) => {
+      const current = prev[productId] || 0;
+      const updated = current + delta;
+      if (updated <= 0) {
+        const next = { ...prev };
+        delete next[productId];
+        return next;
+      }
+      return { ...prev, [productId]: updated };
+    });
+  };
   const currentBanner = (category ? CATEGORY_BANNERS[category.key] : null) ?? {
     src: "/images/banners/shop/fruits-sleek-harvest-banner.jpg",
     alt: `${category?.label ?? "All products"} - Nandi Farms Harvest`,
@@ -168,13 +182,11 @@ export default function ShopCatalog({
                         )
                       : 0;
                   const unit = getProductUnit(product.name, product.category || category?.key);
+                  const qty = cart[product.id] || 0;
 
                   return (
                     <article className="shop-card" key={product.id}>
-                      <a
-                        className="shop-card-link"
-                        href={`https://eveggie.in/products/${product.id}/details`}
-                      >
+                      <div className="shop-card-link">
                         <div className="shop-card-photo">
                           {discount > 0 && (
                             <div className="shop-discount-badge" aria-label={`${discount}% off`}>
@@ -233,18 +245,45 @@ export default function ShopCatalog({
                                 </del>
                               )}
                             </div>
-                            <span className="shop-add-btn">
-                              ADD
-                            </span>
+                            {qty === 0 ? (
+                              <button
+                                type="button"
+                                className="shop-add-btn"
+                                onClick={() => updateQty(product.id, 1)}
+                                aria-label={`Add ${product.name} to cart`}
+                              >
+                                ADD
+                              </button>
+                            ) : (
+                              <div className="shop-qty-stepper">
+                                <button
+                                  type="button"
+                                  className="shop-qty-btn"
+                                  onClick={() => updateQty(product.id, -1)}
+                                  aria-label="Decrease quantity"
+                                >
+                                  −
+                                </button>
+                                <span className="shop-qty-count">{qty}</span>
+                                <button
+                                  type="button"
+                                  className="shop-qty-btn"
+                                  onClick={() => updateQty(product.id, 1)}
+                                  aria-label="Increase quantity"
+                                >
+                                  +
+                                </button>
+                              </div>
+                            )}
                           </div>
                         </div>
-                      </a>
+                      </div>
                     </article>
                   );
                 })}
               </div>
               <p className="shop-catalog-note">
-                See each product page for current price and availability.
+                Freshly harvested and sourced directly from Nandi Farms.
               </p>
             </>
           )}
