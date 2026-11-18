@@ -115,7 +115,7 @@ export default function ShopCatalog({
                 src={activeBanner.src}
                 alt={activeBanner.alt}
                 width={1024}
-                height={341}
+                height={163}
                 priority
                 className="shop-category-banner-image"
               />
