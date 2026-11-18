@@ -1314,9 +1314,9 @@ export default function HarvestCategoryGrid() {
         ref={freshPageRef}
         className="w-full bg-[#FAF6ED] transition-all duration-500"
       >
-        {/* One-Place Pinned Journeys (Milk -> Fruits -> Vegetables in One Stationary Viewport) */}
+        {/* Continuous GSAP Pinned Journeys Stack (Milk -> Fruits -> Vegetables in One Stationary Viewport) */}
         <div ref={catalogRef} className="w-full">
-          <OnePlacePinnedJourneys onShopFresh={handleCardClick} />
+          <ContinuousStackedJourneys onShopFresh={handleCardClick} />
         </div>
       </div>
 
