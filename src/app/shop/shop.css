@@ -76,7 +76,7 @@
 .shop-inventory {
   width: min(100%, 1600px);
   margin-inline: auto;
-  padding-inline: clamp(16px, 4.6vw, 72px);
+  padding-inline: clamp(12px, 2vw, 32px);
   box-sizing: border-box;
 }
 
@@ -188,7 +188,7 @@
 
 .shop-layout {
   display: grid;
-  grid-template-columns: 270px minmax(0, 1fr);
+  grid-template-columns: 220px minmax(0, 1fr);
   gap: clamp(24px, 3.5vw, 44px);
   align-items: start;
   padding-top: clamp(16px, 2.5vw, 32px);
@@ -435,7 +435,7 @@
 
 .shop-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 230px), 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 190px), 1fr));
   gap: clamp(10px, 2vw, 22px);
 }
 
