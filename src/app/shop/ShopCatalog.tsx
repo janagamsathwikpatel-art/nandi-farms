@@ -16,13 +16,25 @@ type Product = {
   image: string;
   price: number;
   originalPrice: number | null;
+  category?: string;
 };
 
-const formatPrice = new Intl.NumberFormat("en-IN", {
-  style: "currency",
-  currency: "INR",
-  maximumFractionDigits: 2,
-});
+function getProductUnit(name: string, category?: string): string {
+  const match = name.match(/(\d+(?:\.\d+)?\s*(?:kg|g|gm|gms|ml|l|ltr|litre|pieces|pcs|pack|bunch))\b/i);
+  if (match) {
+    return match[1].replace(/(\d+)\s*([a-zA-Z]+)/, "$1 $2");
+  }
+  if (category === "milk") return "1 L";
+  if (category === "vegetables" || category === "root-vegetables" || category === "fruits") return "500 g";
+  if (category === "eggs") return "6 pcs";
+  if (category === "leafy-greens") return "1 bunch";
+  return "1 unit";
+}
+
+function formatInr(val: number): string {
+  return `₹${val}`;
+}
+
 const fallbackImage = `${farmAssets}/nandi-farms-logo.png`;
 
 const CATEGORY_BANNERS: Record<string, { src: string; alt: string }> = {
@@ -146,45 +158,90 @@ export default function ShopCatalog({
           ) : (
             <>
               <div className="shop-grid">
-                {matches.map((product) => (
-                  <article className="shop-card" key={product.id}>
-                    <a
-                      className="shop-card-link"
-                      href={`https://eveggie.in/products/${product.id}/details`}
-                    >
-                      <div className="shop-card-photo">
-                        <Image
-                          src={product.image}
-                          width={320}
-                          height={240}
-                          alt=""
-                          onError={(event) => {
-                            if (
-                              event.currentTarget.getAttribute("src") !==
-                              fallbackImage
-                            ) {
-                              event.currentTarget.src = fallbackImage;
-                            }
-                          }}
-                        />
-                      </div>
-                      <div className="shop-card-info">
-                        <h3>{product.name}</h3>
-                        <div className="shop-card-bottom">
-                          <p className="shop-price">
-                            <span>{formatPrice.format(product.price)}</span>
-                            {product.originalPrice !== null && (
-                              <del>{formatPrice.format(product.originalPrice)}</del>
-                            )}
-                          </p>
-                          <span className="shop-card-arrow" aria-hidden="true">
-                            ↗
-                          </span>
+                {matches.map((product) => {
+                  const discount =
+                    product.originalPrice && product.originalPrice > product.price
+                      ? Math.round(
+                          ((product.originalPrice - product.price) /
+                            product.originalPrice) *
+                            100,
+                        )
+                      : 0;
+                  const unit = getProductUnit(product.name, product.category || category?.key);
+
+                  return (
+                    <article className="shop-card" key={product.id}>
+                      <a
+                        className="shop-card-link"
+                        href={`https://eveggie.in/products/${product.id}/details`}
+                      >
+                        <div className="shop-card-photo">
+                          {discount > 0 && (
+                            <div className="shop-discount-badge" aria-label={`${discount}% off`}>
+                              <span className="shop-discount-percent">{discount}%</span>
+                              <span className="shop-discount-text">OFF</span>
+                            </div>
+                          )}
+                          <Image
+                            src={product.image}
+                            width={320}
+                            height={240}
+                            alt={product.name}
+                            onError={(event) => {
+                              if (
+                                event.currentTarget.getAttribute("src") !==
+                                fallbackImage
+                              ) {
+                                event.currentTarget.src = fallbackImage;
+                              }
+                            }}
+                          />
                         </div>
-                      </div>
-                    </a>
-                  </article>
-                ))}
+                        <div className="shop-card-info">
+                          <div className="shop-delivery-time">
+                            <svg
+                              width="12"
+                              height="12"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              strokeWidth="2.5"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              aria-hidden="true"
+                            >
+                              <circle cx="12" cy="13" r="8" />
+                              <path d="M12 9v4l2 2" />
+                              <path d="M5 3 2 6" />
+                              <path d="m22 6-3-3" />
+                              <path d="M10 2h4" />
+                            </svg>
+                            <span>8 MINS</span>
+                          </div>
+
+                          <h3 className="shop-card-title">{product.name}</h3>
+                          <div className="shop-card-unit">{unit}</div>
+
+                          <div className="shop-card-footer">
+                            <div className="shop-card-pricing">
+                              <span className="shop-current-price">
+                                {formatInr(product.price)}
+                              </span>
+                              {product.originalPrice !== null && product.originalPrice > product.price && (
+                                <del className="shop-original-price">
+                                  {formatInr(product.originalPrice)}
+                                </del>
+                              )}
+                            </div>
+                            <span className="shop-add-btn">
+                              ADD
+                            </span>
+                          </div>
+                        </div>
+                      </a>
+                    </article>
+                  );
+                })}
               </div>
               <p className="shop-catalog-note">
                 See each product page for current price and availability.
