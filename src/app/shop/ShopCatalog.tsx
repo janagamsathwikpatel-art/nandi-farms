@@ -44,7 +44,10 @@ export default function ShopCatalog({
   const matches = products.filter((product) =>
     product.name.toLowerCase().includes(query),
   );
-  const activeBanner = category ? CATEGORY_BANNERS[category.key] : null;
+  const currentBanner = (category ? CATEGORY_BANNERS[category.key] : null) ?? {
+    src: "/images/banners/shop/fruits-sleek-harvest-banner.jpg",
+    alt: `${category?.label ?? "All products"} - Nandi Farms Harvest`,
+  };
 
   return (
     <section className="shop-inventory" aria-labelledby="inventory-heading">
@@ -109,18 +112,17 @@ export default function ShopCatalog({
         {/* RIGHT MAIN PRODUCTS AREA                                  */}
         {/* ========================================================= */}
         <div className="shop-main-content">
-          {activeBanner && (
-            <div className="shop-category-banner">
-              <Image
-                src={activeBanner.src}
-                alt={activeBanner.alt}
-                width={1024}
-                height={163}
-                priority
-                className="shop-category-banner-image"
-              />
-            </div>
-          )}
+          {/* Universal Sleek Harvest Banner (All products & every Category) */}
+          <div className="shop-category-banner">
+            <Image
+              src={currentBanner.src}
+              alt={currentBanner.alt}
+              width={1024}
+              height={163}
+              priority
+              className="shop-category-banner-image"
+            />
+          </div>
 
           <div className="shop-results-heading">
             <h2 id="inventory-heading">{category?.label ?? "All products"}</h2>
