@@ -58,7 +58,7 @@ export default function MilkSubscriptionBanner({ onOpenModal }: MilkSubscription
         {/* ======================================================== */}
         {/* RIGHT COLUMN: User-Provided Milk Plans Code & Structure  */}
         {/* ======================================================== */}
-        <section className="milk-plans" aria-label="Milk Subscriptions">
+        <section className="milk-plans" id="milk-plans" aria-label="Milk Subscriptions">
           <p className="eyebrow">MILK SUBSCRIPTIONS</p>
           <h1>
             Fresh milk,

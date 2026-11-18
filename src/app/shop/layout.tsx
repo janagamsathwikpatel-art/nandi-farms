@@ -22,7 +22,7 @@ export default function ShopLayout({ children }: { children: ReactNode }) {
           <Link href="/shop" aria-current="page">
             Shop
           </Link>
-          <a href={milkPlansUrl}>Milk plans</a>
+          <Link href={milkPlansUrl}>Milk plans</Link>
           <Link href="/#explore-harvest">Our farm</Link>
         </nav>
         <Link className="shop-home-link" href="/#categories">
@@ -40,7 +40,7 @@ export default function ShopLayout({ children }: { children: ReactNode }) {
         <nav aria-label="Footer navigation">
           <Link href="/#explore-harvest">Our farm</Link>
           <Link href="/#categories">Shop by category</Link>
-          <a href={milkPlansUrl}>Milk plans</a>
+          <Link href={milkPlansUrl}>Milk plans</Link>
         </nav>
       </footer>
     </div>

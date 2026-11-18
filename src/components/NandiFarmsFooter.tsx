@@ -113,14 +113,22 @@ export default function NandiFarmsFooter({
           {/* Milk Plans Column */}
           <section className="footer-nav-col milk-plans-col">
             <h3>MILK PLANS</h3>
-            <a
-              href="https://eveggie.in/subscriptions"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="footer-nav-link solid-underline"
-            >
-              Explore Milk Plans
-            </a>
+            {onOpenSubscription ? (
+              <button
+                type="button"
+                className="footer-link-btn solid-underline"
+                onClick={onOpenSubscription}
+              >
+                Explore Milk Plans
+              </button>
+            ) : (
+              <Link
+                href="/#plans"
+                className="footer-nav-link solid-underline"
+              >
+                Explore Milk Plans
+              </Link>
+            )}
             <button
               type="button"
               className="footer-link-btn solid-underline"

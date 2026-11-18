@@ -1,5 +1,5 @@
 export const farmAssets = "/nandi-farm";
-export const milkPlansUrl = "https://eveggie.in/subscriptions";
+export const milkPlansUrl = "/#plans";
 
 export const harvestCategories = [
   {
