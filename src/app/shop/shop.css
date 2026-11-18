@@ -416,6 +416,7 @@
 .shop-category-banner {
   position: relative;
   width: 100%;
+  aspect-ratio: 1024 / 163;
   border-radius: 20px;
   overflow: hidden;
   box-shadow: 0 6px 24px -4px rgba(25, 62, 45, 0.08);

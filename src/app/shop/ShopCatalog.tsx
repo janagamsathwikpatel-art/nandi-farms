@@ -27,7 +27,7 @@ const fallbackImage = `${farmAssets}/nandi-farms-logo.png`;
 
 const CATEGORY_BANNERS: Record<string, { src: string; alt: string }> = {
   fruits: {
-    src: "/images/banners/shop/fruits-category-banner.jpg",
+    src: "/images/banners/shop/fruits-sleek-harvest-banner.jpg",
     alt: "Fresh Orchard Fruits - Nandi Farms",
   },
 };
