@@ -129,7 +129,7 @@ export default function ScrollVegetableJourney({ onShopFresh }: ScrollVegetableJ
               {/* Handcrafted Woven Harvest Basket with Authentic Farm-Fresh Vegetables */}
               <div className="relative w-full aspect-[16/10] flex items-center justify-center pointer-events-none select-none">
                 <img
-                  src="/images/vegetable-basket-full-hd.png"
+                  src="/images/user-vegetable-basket-transparent.png"
                   alt="Nandi Living Soil Vegetable Basket - Farm-fresh organic vegetables"
                   className="w-full h-full object-contain drop-shadow-[0_16px_28px_rgba(25,62,45,0.12)] pointer-events-none select-none"
                   loading="eager"
@@ -145,7 +145,7 @@ export default function ScrollVegetableJourney({ onShopFresh }: ScrollVegetableJ
             <div className="relative w-full max-w-[340px] aspect-[16/10] flex items-center justify-center pointer-events-none select-none">
               <div className="absolute bottom-2 w-64 h-5 rounded-[100%] bg-black/15 blur-md pointer-events-none" />
               <img
-                src="/images/vegetable-basket-full-hd.png"
+                src="/images/user-vegetable-basket-transparent.png"
                 alt="Nandi Living Soil Vegetable Basket"
                 className="w-full h-full object-contain drop-shadow-[0_12px_20px_rgba(25,62,45,0.12)] pointer-events-none select-none"
                 loading="eager"
