@@ -413,6 +413,26 @@
   font: 500 1rem var(--sans);
 }
 
+.shop-category-banner {
+  position: relative;
+  width: 100%;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 6px 24px -4px rgba(25, 62, 45, 0.08);
+  border: 1px solid rgba(25, 62, 45, 0.08);
+  margin-top: 4px;
+  margin-bottom: 8px;
+  background-color: #FAF6ED;
+}
+
+.shop-category-banner-image {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1024 / 341;
+  object-fit: cover;
+  display: block;
+}
+
 .shop-results-heading {
   display: flex;
   align-items: baseline;

@@ -25,6 +25,13 @@ const formatPrice = new Intl.NumberFormat("en-IN", {
 });
 const fallbackImage = `${farmAssets}/nandi-farms-logo.png`;
 
+const CATEGORY_BANNERS: Record<string, { src: string; alt: string }> = {
+  fruits: {
+    src: "/images/banners/shop/fruits-category-banner.jpg",
+    alt: "Fresh Orchard Fruits - Nandi Farms",
+  },
+};
+
 export default function ShopCatalog({
   products,
   category,
@@ -37,6 +44,7 @@ export default function ShopCatalog({
   const matches = products.filter((product) =>
     product.name.toLowerCase().includes(query),
   );
+  const activeBanner = category ? CATEGORY_BANNERS[category.key] : null;
 
   return (
     <section className="shop-inventory" aria-labelledby="inventory-heading">
@@ -101,6 +109,19 @@ export default function ShopCatalog({
         {/* RIGHT MAIN PRODUCTS AREA                                  */}
         {/* ========================================================= */}
         <div className="shop-main-content">
+          {activeBanner && (
+            <div className="shop-category-banner">
+              <Image
+                src={activeBanner.src}
+                alt={activeBanner.alt}
+                width={1024}
+                height={341}
+                priority
+                className="shop-category-banner-image"
+              />
+            </div>
+          )}
+
           <div className="shop-results-heading">
             <h2 id="inventory-heading">{category?.label ?? "All products"}</h2>
             <p role="status">
