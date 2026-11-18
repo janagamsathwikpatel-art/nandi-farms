@@ -27,6 +27,26 @@ export default function Home() {
   const [lovedItems, setLovedItems] = useState<string[]>([]);
 
   React.useEffect(() => {
+    const loadCart = () => {
+      try {
+        const saved = localStorage.getItem("nandi_cart_items");
+        if (saved) {
+          setCartItems(JSON.parse(saved));
+        }
+      } catch (e) {}
+    };
+    loadCart();
+    window.addEventListener("nandi_cart_updated", loadCart);
+    return () => window.removeEventListener("nandi_cart_updated", loadCart);
+  }, []);
+
+  React.useEffect(() => {
+    try {
+      localStorage.setItem("nandi_cart_items", JSON.stringify(cartItems));
+    } catch (e) {}
+  }, [cartItems]);
+
+  React.useEffect(() => {
     if (typeof window !== "undefined") {
       const params = new URLSearchParams(window.location.search);
       if (

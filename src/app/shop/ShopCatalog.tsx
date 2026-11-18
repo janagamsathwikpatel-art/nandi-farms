@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -58,6 +58,23 @@ export default function ShopCatalog({
     product.name.toLowerCase().includes(query),
   );
 
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem("nandi_cart_items");
+      if (saved) {
+        const parsed: { product: { id: string }; quantity: number }[] = JSON.parse(saved);
+        const map: { [id: number]: number } = {};
+        parsed.forEach((ci) => {
+          const numId = Number(ci.product.id);
+          if (!isNaN(numId)) {
+            map[numId] = ci.quantity;
+          }
+        });
+        setCart(map);
+      }
+    } catch (e) {}
+  }, []);
+
   const updateQty = (productId: number, delta: number) => {
     setCart((prev) => {
       const current = prev[productId] || 0;
@@ -69,6 +86,48 @@ export default function ShopCatalog({
       }
       return { ...prev, [productId]: updated };
     });
+
+    const targetProd = products.find((p) => p.id === productId);
+    if (targetProd) {
+      try {
+        const saved = localStorage.getItem("nandi_cart_items");
+        const existing: {
+          product: {
+            id: string;
+            name: string;
+            category: string;
+            farmer: string;
+            price: number;
+            unit: string;
+            image: string;
+          };
+          quantity: number;
+        }[] = saved ? JSON.parse(saved) : [];
+        const idx = existing.findIndex((item) => String(item.product.id) === String(productId));
+        const currentQty = idx >= 0 ? existing[idx].quantity : 0;
+        const newQty = currentQty + delta;
+        if (newQty <= 0) {
+          if (idx >= 0) existing.splice(idx, 1);
+        } else if (idx >= 0) {
+          existing[idx].quantity = newQty;
+        } else {
+          existing.push({
+            product: {
+              id: String(targetProd.id),
+              name: targetProd.name,
+              category: category?.label || "Farm Produce",
+              farmer: "Nandi Organic Farms",
+              price: targetProd.price,
+              unit: "1 pack",
+              image: targetProd.image,
+            },
+            quantity: newQty,
+          });
+        }
+        localStorage.setItem("nandi_cart_items", JSON.stringify(existing));
+        window.dispatchEvent(new Event("nandi_cart_updated"));
+      } catch (e) {}
+    }
   };
   const currentBanner = (category ? CATEGORY_BANNERS[category.key] : null) ?? {
     src: "/images/banners/shop/fruits-sleek-harvest-banner.jpg",
