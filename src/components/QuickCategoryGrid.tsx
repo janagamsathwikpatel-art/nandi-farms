@@ -86,7 +86,7 @@ export default function QuickCategoryGrid({ onSelectCategory }: QuickCategoryGri
         </header>
 
         {/* 14 Category Grid - Symmetrical 7x2 Layout (Fluid Mobile Responsive) */}
-        <div className="category-grid grid grid-cols-4 sm:grid-cols-7 lg:grid-cols-7 gap-y-6 sm:gap-y-10 lg:gap-y-12 gap-x-1.5 xs:gap-x-2.5 sm:gap-x-4 lg:gap-x-6 items-start justify-items-center">
+        <div className="category-grid grid grid-cols-4 sm:grid-cols-7 lg:grid-cols-7 gap-y-8 sm:gap-y-12 lg:gap-y-14 gap-x-1.5 xs:gap-x-2.5 sm:gap-x-4 lg:gap-x-6 items-start justify-items-center">
           {shopCategories.categories.map((category) => {
             const isCopied = copiedId === category.name;
 
@@ -107,7 +107,7 @@ export default function QuickCategoryGrid({ onSelectCategory }: QuickCategoryGri
                 <Link
                   href={category.href}
                   onClick={() => onSelectCategory?.(category)}
-                  className="w-14 h-14 xs:w-16 xs:h-16 sm:w-20 sm:h-20 lg:w-26 lg:h-26 flex items-center justify-center p-1.5 sm:p-2 rounded-2xl transition-all duration-300 ease-out group-hover:-translate-y-2 group-hover:scale-110 cursor-pointer"
+                  className="w-20 h-20 xs:w-22 xs:h-22 sm:w-28 sm:h-28 lg:w-32 lg:h-32 flex items-center justify-center p-2 sm:p-3 rounded-2xl transition-all duration-300 ease-out group-hover:-translate-y-2 group-hover:scale-110 cursor-pointer"
                   aria-label={`Shop ${category.name}`}
                 >
                   <img
