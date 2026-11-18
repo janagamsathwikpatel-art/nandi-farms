@@ -12,11 +12,13 @@ import MilkSubscriptionBanner from "@/components/MilkSubscriptionBanner";
 import MilkSubscriptionModal from "@/components/MilkSubscriptionModal";
 import NandiFarmsFooter from "@/components/NandiFarmsFooter";
 import ContactModal from "@/components/ContactModal";
+import CartDrawer from "@/components/CartDrawer";
 import { Product, CartItem } from "@/types";
 
 export default function Home() {
   const [isContactOpen, setIsContactOpen] = useState(false);
   const [isSubModalOpen, setIsSubModalOpen] = useState(false);
+  const [isCartOpen, setIsCartOpen] = useState(false);
 
   // Model 1: Warm Parchment Farm Vegetables Shelf State
   const [isVegetablesShowcaseOpen, setIsVegetablesShowcaseOpen] = useState(false);
@@ -126,7 +128,11 @@ export default function Home() {
       {/* Main Content */}
       <main className="flex-1">
         {/* Nandi Farms Hero Section (with video, parallax harvest crate & navigation) */}
-        <NandiFarmHero onOpenSubscription={() => setIsSubModalOpen(true)} />
+        <NandiFarmHero
+          onOpenSubscription={() => setIsSubModalOpen(true)}
+          cartCount={totalCartCount}
+          onOpenCart={() => setIsCartOpen(true)}
+        />
 
         {/* Shop by Category Quick Grid (directly down of Hero Section as requested) */}
         <QuickCategoryGrid />
@@ -202,6 +208,16 @@ export default function Home() {
       <MilkSubscriptionModal
         isOpen={isSubModalOpen}
         onClose={() => setIsSubModalOpen(false)}
+      />
+
+      {/* Farm Basket Slide-out Cart Drawer */}
+      <CartDrawer
+        isOpen={isCartOpen}
+        onClose={() => setIsCartOpen(false)}
+        items={cartItems}
+        onAddToCart={(id) => handleUpdateQuantity(id, 1)}
+        onRemoveFromCart={(id) => handleUpdateQuantity(id, -1)}
+        onClearCart={() => setCartItems([])}
       />
     </div>
   );

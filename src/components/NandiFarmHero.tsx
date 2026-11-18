@@ -3,17 +3,24 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { ShoppingBag } from "lucide-react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { farmAssets } from "@/data/nandi-shop";
 import { nandiFarmFonts } from "./nandiFarmFonts";
 import "./NandiFarmHero.css";
 
+interface NandiFarmHeroProps {
+  onOpenSubscription: () => void;
+  cartCount?: number;
+  onOpenCart?: () => void;
+}
+
 export default function NandiFarmHero({
   onOpenSubscription,
-}: {
-  onOpenSubscription: () => void;
-}) {
+  cartCount = 0,
+  onOpenCart,
+}: NandiFarmHeroProps) {
   const headerRef = useRef<HTMLElement>(null);
   const menuRef = useRef<HTMLButtonElement>(null);
   const heroRef = useRef<HTMLDivElement>(null);
@@ -148,10 +155,34 @@ export default function NandiFarmHero({
           <a href="#explore-harvest" onClick={() => setMenuOpen(false)}>
             Our farm
           </a>
+          <button
+            type="button"
+            className="farm-nav-cart-link"
+            onClick={() => {
+              setMenuOpen(false);
+              onOpenCart?.();
+            }}
+          >
+            Cart {cartCount > 0 ? `(${cartCount})` : ""}
+          </button>
         </nav>
-        <Link className="farm-store-link" href="/shop">
-          Shop online
-        </Link>
+        <div className="farm-header-actions">
+          <button
+            type="button"
+            className="farm-cart-btn"
+            onClick={onOpenCart}
+            aria-label={`View Farm Basket (${cartCount} items)`}
+          >
+            <ShoppingBag className="farm-cart-icon" aria-hidden="true" />
+            <span className="farm-cart-label">Cart</span>
+            {cartCount > 0 && (
+              <span className="farm-cart-badge">{cartCount}</span>
+            )}
+          </button>
+          <Link className="farm-store-link" href="/shop">
+            Shop online
+          </Link>
+        </div>
       </header>
       <section
         className="living-farm"

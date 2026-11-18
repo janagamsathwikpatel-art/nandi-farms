@@ -3,20 +3,23 @@
 import React, { useState } from "react";
 import { X, Plus, Minus, Trash2, ArrowRight, Zap, CheckCircle, ShieldCheck } from "lucide-react";
 import { HARVEST_PRODUCTS } from "./ZeptoHarvestSection";
+import type { CartItem } from "@/types";
 
 interface CartDrawerProps {
   isOpen: boolean;
   onClose: () => void;
-  cart: { [productId: string]: number };
-  onAddToCart: (id: string) => void;
-  onRemoveFromCart: (id: string) => void;
-  onClearCart: () => void;
+  cart?: { [productId: string]: number };
+  items?: CartItem[];
+  onAddToCart?: (id: string) => void;
+  onRemoveFromCart?: (id: string) => void;
+  onClearCart?: () => void;
 }
 
 export default function CartDrawer({
   isOpen,
   onClose,
   cart,
+  items,
   onAddToCart,
   onRemoveFromCart,
   onClearCart,
@@ -25,12 +28,21 @@ export default function CartDrawer({
 
   if (!isOpen) return null;
 
-  const cartItems = Object.entries(cart)
-    .map(([id, qty]) => {
-      const product = HARVEST_PRODUCTS.find((p) => p.id === id);
-      return product ? { ...product, quantity: qty } : null;
-    })
-    .filter(Boolean) as (typeof HARVEST_PRODUCTS[0] & { quantity: number })[];
+  const cartItems = items
+    ? items.map((ci) => ({
+        id: ci.product.id,
+        name: ci.product.name,
+        price: ci.product.price,
+        weight: ci.product.unit,
+        image: ci.product.image,
+        quantity: ci.quantity,
+      }))
+    : Object.entries(cart || {})
+        .map(([id, qty]) => {
+          const product = HARVEST_PRODUCTS.find((p) => p.id === id);
+          return product ? { ...product, quantity: qty } : null;
+        })
+        .filter(Boolean) as (typeof HARVEST_PRODUCTS[0] & { quantity: number })[];
 
   const itemTotal = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
   const deliveryFee = itemTotal >= 199 || itemTotal === 0 ? 0 : 29;
@@ -39,7 +51,7 @@ export default function CartDrawer({
   const handleCheckout = () => {
     setOrderPlaced(true);
     setTimeout(() => {
-      onClearCart();
+      onClearCart?.();
     }, 2000);
   };
 
@@ -150,7 +162,7 @@ export default function CartDrawer({
                   {/* Quantity Stepper */}
                   <div className="flex items-center bg-[#1c4028] text-white rounded-lg px-1.5 py-1">
                     <button
-                      onClick={() => onRemoveFromCart(item.id)}
+                      onClick={() => onRemoveFromCart?.(item.id)}
                       className="p-1 hover:bg-[#2b5a3a] rounded"
                       aria-label="Decrease"
                     >
@@ -160,7 +172,7 @@ export default function CartDrawer({
                       {item.quantity}
                     </span>
                     <button
-                      onClick={() => onAddToCart(item.id)}
+                      onClick={() => onAddToCart?.(item.id)}
                       className="p-1 hover:bg-[#2b5a3a] rounded"
                       aria-label="Increase"
                     >
